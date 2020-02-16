@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kick | Login Page</title>
+
+  <!-- Owl-Carousel -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+
+  <!-- Font Awesome CDN -->
+  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+
+  <!-- Custom Style-->
+  <link rel="stylesheet" href="./css/auth.css">
+
+  <!--custom css-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Main Javascript file -->
+  <script src="js/index.js"></script>
+</head>
+
+<body>
+
+  <div class="container mt-5 shadow-lg rounded">
+    <h4 class="py-3 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
+
+    <div class="row">
+      <!-- carousel part-->
+      <div class="col-md-6 d-none d-md-block">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade mb-3" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <h5 class="text-secondary px-3">Distribute the work</h5>
+              <img src="./assets/svg/undraw_public_discussion_btnw.svg" class="d-block w-100 max-300" alt="...">
+            </div>
+            <div class="carousel-item">
+              <h5 class="text-secondary px-3">Create goals</h5>
+              <img src="./assets/svg/undraw_reviewed_docs_neeb.svg" class="d-block w-100 max-300" alt="...">
+            </div>
+            <div class="carousel-item">
+              <h5 class="text-secondary px-3">Manage every task</h5>
+              <img src="./assets/svg/undraw_scrum_board_cesn.svg" class="d-block w-100 max-300" alt="...">
+            </div>
+          </div>
+
+          <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <!--end of carousel-->
+
+      <!--login form-->
+      <div id="login-form" class="col-md-6 col-sm-8 login-form py-4 pr-5">
+        <form class="d-flex flex-column">
+          <button type="button" class="btn-gradient ml-auto" onClick="showSignup()">Sign Up</button>
+
+          <div class="form-group mt-3">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn-gradient">Login</button>
+        </form>
+      </div>
+
+      <!--signup form-->
+      <div id="signup-form" class="col-md-6 col-sm-8 signup-form py-4 pr-5">
+        <form class="d-flex flex-column">
+          <button type="button" class="btn-gradient ml-auto" onClick="showLogin()">Login</button>
+
+          <div class="form-group mt-3">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputUsername1">Username</label>
+              <input type="text" class="form-control" id="exampleInputUsername1">
+            </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn-gradient">Sign Up</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
