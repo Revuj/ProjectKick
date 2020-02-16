@@ -1,0 +1,74 @@
+/*some resets*/
+
+@import url('https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap');
+
+ html {
+    box-sizing: border-box;
+    font-size: 16px;
+ }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+  }
+  
+  ol, ul {
+    list-style: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+/*global content*/
+:root{
+    --primary-gradient: linear-gradient(to right, #4e4376, #2b5876);
+    --mango-gradient : linear-gradient(to right, #ffa751, #ffe259);
+    --text-color: #F7F9F9;
+    --Montserrat: "Montserrat", cursive;
+    --Lobster: "Lobster", cursive;
+    --primary-shadow: 3px 4px 7px rgba(27, 27, 27, 0.534);
+    --border-color: rgba(0,0,0,0.329);
+    --container-item-color:#D3D3D3;
+    --item-color:#778899;
+}
+
+.btn-gradient{
+    padding: .5rem 1.5rem;
+    border: none;
+    border-radius: 4rem;
+    background: var(--primary-gradient);
+    color: whitesmoke;
+    font-size: .7rem;
+    box-shadow: var(--primary-shadow);
+    cursor: pointer;
+    width:7rem;
+}
+
+.max-300 {
+    height:300px;
+    width:auto;
+}
+
+body {
+    font-family: var(--Montserrat);
+}
+
+.hover-effect {
+    padding:0.5rem 0.3rem;
+}
+
+.hover-effect:hover {
+    background: var(--primary-gradient);
+    cursor: pointer;
+    border-radius: 10px;
+    color:var(--text-color);
+}
+
+

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>top</title>
+
+
+    <!-- Owl-Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/board.css">
+
+    <!--custom css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--custom js-->
+    <script src="./js/board.js" defer></script>
+</head>
+
+<body> <!-- main content of the board page-->
+    <h1 class = "m-5">Board</h1>
+
+    <section class="board-options d-flex flex-row bd-highlight mb-3 align-items-center m-4">
+
+        <!-- create a new task-->
+        <div class="p-2 bd-highlight">
+            <div class="input-group inputArea">
+                <input type="text" class="form-control listCreated" placeholder="Enter Todos">
+                <div class="input-group-append">
+                <button class="btn btn-secondary add-to-backlog" type="button" >
+                    <i class="fa fa-plus"></i>
+                </button>
+                </div>
+            </div>
+        </div>
+
+        <!--most relevant filters-->
+        <div class="bd-highlight">
+            <ul class="filters d-flex flex-row align-items-center">
+                <li class = "filter-item ml-3 hover-effect">Work assigned to me</li>
+                <li class = "filter-item ml-3 hover-effect">Recenlty updated</li>
+            </ul>
+        </div>
+
+   
+         <!--task searcher-->
+         <div class="p-2 bd-highlight  ml-auto">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+
+    </section>
+
+
+    
+    <section class = "kanban-table container-fluid mt-5">
+
+        <div class = "d-flex flex-row bd-highlight mb-3 align-items-begin justify-content-between">
+
+            <div class="bd-highlight task backlog">
+                <h3 class = "task-title text-center p-2">Backlog</h3>
+                <ul class = "task-items">
+                    <li class = "task-item ml-3 hover-effect" draggable="true">Work assigned to me</li>
+                    <li class = "task-item ml-3 hover-effect" draggable="true">Work assigned to me</li>
+                </ul>
+            </div> <!--end of backlog-->
+
+            <div class="bd-highlight task">
+                <h3 class = "task-title text-center p-2">To Develop</h3>
+                <ul class = "task-items">
+                    <li class = "task-item ml-3 hover-effect" draggable="true">Work assigned to me</li>
+                    <li class = "task-item ml-3 hover-effect" draggable="true">Work assigned to me</li>
+                    <li class = "task-item ml-3 hover-effect" draggable="true">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse qui, nesciunt voluptate, rem placeat fugiat sint impedit nam possimus sapiente ipsum facilis dolorum inventore tempora?</li>
+
+                </ul>
+            </div> <!--end of backlog-->
+
+
+            
+            <div class="bd-highlight task">
+                <h3 class = "task-title text-center p-2">Developing</h3>
+                <ul class = "task-items">
+                    <li class = "task-item ml-3 hover-effect" draggable="true">Work assigned to me</li>
+                    <li class = "task-item ml-3 hover-effect" draggable="true">Work assigned to me</li>
+                    <li class = "task-item ml-3 hover-effect" draggable="true">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse qui, nesciunt voluptate, rem placeat fugiat sint impedit nam possimus sapiente ipsum facilis dolorum inventore tempora?</li>
+                </ul>
+            </div> <!--end of backlog-->
+
+
+            <div class="bd-highlight task">
+                <h3 class = "task-title text-center p-2">Concluded</h3>
+                <ul class = "task-items">
+                  
+                </ul>
+            </div> <!--end of backlog-->
+
+
+        </div>  
+
+    
+    </section>
+
+</body>
+</html>
