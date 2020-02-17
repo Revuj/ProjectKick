@@ -1,0 +1,14 @@
+#main-nav {
+  background-color: #e9ecef;
+}
+
+#main-page-body {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 52%,
+    rgba(211, 230, 244, 1) 70%,
+    rgba(37, 97, 138, 1) 89%,
+    rgba(82, 24, 103, 1) 100%
+  );
+}
