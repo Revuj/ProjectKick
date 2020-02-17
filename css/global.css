@@ -27,7 +27,7 @@
   }
 
 /*global content*/
-:root{
+:root {
     --primary-gradient: linear-gradient(to right, #4e4376, #2b5876);
     --mango-gradient : linear-gradient(to right, #ffa751, #ffe259);
     --text-color: #F7F9F9;
@@ -37,6 +37,8 @@
     --border-color: rgba(0,0,0,0.329);
     --container-item-color:#D3D3D3;
     --item-color:#778899;
+    --primary-color:#2b5876;
+    --secondary-color:#92a6e2;
 }
 
 .btn-gradient{
