@@ -50,6 +50,8 @@ img {
   --border-color: rgba(0, 0, 0, 0.329);
   --container-item-color: #d3d3d3;
   --item-color: #778899;
+  --primary-color: #2b5876;
+  --secondary-color: #92a6e2;
 }
 
 .btn-gradient {
