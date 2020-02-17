@@ -1,9 +1,8 @@
 
 @import url('global.css');
 
-
-.login-form {
-    background-color: white;
+#signup-form {
+    display: none;
 }
 
 
