@@ -5,12 +5,18 @@
 html {
   box-sizing: border-box;
   font-size: 16px;
+  height: 100%;
+}
+
+body {
+  height: 100%;
 }
 
 *,
 *:before,
 *:after {
   box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 body,
@@ -47,8 +53,8 @@ img {
   --Montserrat: "Montserrat", cursive;
   --Lobster: "Lobster", cursive;
   --primary-shadow: 3px 4px 7px rgba(27, 27, 27, 0.534);
-  --border-color: rgba(0, 0, 0, 0.329);
-  --container-item-color: #d3d3d3;
+  --border-color: rgba(82, 82, 82, 0.329);
+  --container-item-color: rgb(250, 250, 250);
   --item-color: #778899;
   --primary-color: #2b5876;
   --secondary-color: #92a6e2;
@@ -87,6 +93,5 @@ body {
 .hover-effect:hover {
   background: var(--primary-gradient);
   cursor: pointer;
-  border-radius: 10px;
   color: var(--text-color);
 }
