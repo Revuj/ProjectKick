@@ -67,3 +67,8 @@
   border-radius: 5px;
   border: 1px solid var(--border-color);
 }
+
+.kanban-container {
+  overflow-x: auto;
+  height: 90%;
+}
