@@ -3,6 +3,7 @@ let create_list_btn = document.querySelector(".add-list");
 let kanban_table = document.querySelector(".kanban-table");
 let list_to_add_name = document.querySelector(".listCreated");
 let add_item_button = document.querySelectorAll(".add-item");
+let cancel_add_item_button = document.querySelectorAll(".cancel-add-item");
 
 const list_items = document.querySelectorAll(".task-item");
 const lists = document.querySelectorAll(".task-items");
@@ -41,7 +42,7 @@ create_list_btn.addEventListener("click", () => {
         </div>
         <div class="d-flex justify-content-between">
           <button type="submit" class="btn btn-primary add-item btn">Submit</button>
-          <button type="cancel" class="btn btn-primary cancel-add-item">Cancel</button>
+          <button type="reset" class="btn btn-primary cancel-add-item">Cancel</button>
         </div>
       </form>
       </li>
@@ -51,6 +52,7 @@ create_list_btn.addEventListener("click", () => {
   document.getElementById("add-list-form").reset();
   let addItemButtons = document.querySelectorAll(".task-items button");
   listenAddItem(addItemButtons[addItemButtons.length - 2]);
+  listenCancelAddItem(addItemButtons[addItemButtons.length - 1]);
 
   // let item = document.createElement("li");
   // item.innerHTML = list_to_add_name.value;
@@ -93,6 +95,17 @@ function listenAddItem(elem) {
 }
 
 [...add_item_button].forEach(elem => listenAddItem(elem));
+
+function listenCancelAddItem(elem) {
+  elem.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+    let liForm = elem.parentElement.parentElement.parentElement;
+    $(`#${liForm.getAttribute("id")}`).collapse("toggle");
+  });
+}
+
+[...cancel_add_item_button].forEach(elem => listenCancelAddItem(elem));
 
 function dragDrop() {
   for (let i = 0; i < list_items.length; i++) {
