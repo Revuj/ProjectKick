@@ -1,7 +1,8 @@
 /**global variables **/
-let create_task_btn = document.querySelector(".add-list");
+let create_list_btn = document.querySelector(".add-list");
 let kanban_table = document.querySelector(".kanban-table");
 let list_to_add_name = document.querySelector(".listCreated");
+let add_item_button = document.querySelectorAll(".add-item");
 
 const list_items = document.querySelectorAll(".task-item");
 const lists = document.querySelectorAll(".task-items");
@@ -15,7 +16,7 @@ let dragging = null;
 dragDrop();
 
 /*add event listeners */
-create_task_btn.addEventListener("click", () => {
+create_list_btn.addEventListener("click", () => {
   if (is_input_empty(list_to_add_name)) {
     changecolors("error", list_to_add_name);
     return;
@@ -26,13 +27,30 @@ create_task_btn.addEventListener("click", () => {
   newList.innerHTML = `              
 		<div class="task-title d-flex align-items-center py-0">
 			<h6 class="mr-auto my-0 text-left p-3"><i class="fa fa-fw fa-caret-right"></i>${list_to_add_name.value}</h6>
-			<i class="fas fa-plus order-3 mx-4"></i><i class="fas fa-trash-alt"></i>
+      <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-${list_to_add_name.value}" aria-expanded="false" aria-controls="add-item">
+      <i class="fas fa-plus"></i>
+      </button>
+      <i class="fas fa-trash-alt"></i>
 		</div>
-		<ul class="task-items">
+    <ul class="task-items">
+      <li class="task-item collapse" id="add-item-${list_to_add_name.value}">
+      <form class="add-item-form form-group">
+        <div class="form-group text-left">
+          <label for="item-title">Title</label>
+          <input type="text" class="form-control" id="item-title" aria-describedby="emailHelp" placeholder="">
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary add-item btn">Submit</button>
+          <button type="cancel" class="btn btn-primary cancel-add-item">Cancel</button>
+        </div>
+      </form>
+      </li>
 		</ul>`;
 
   kanban_table.appendChild(newList);
   document.getElementById("add-list-form").reset();
+  let addItemButtons = document.querySelectorAll(".task-items button");
+  listenAddItem(addItemButtons[addItemButtons.length - 2]);
 
   // let item = document.createElement("li");
   // item.innerHTML = list_to_add_name.value;
@@ -56,6 +74,25 @@ create_task_btn.addEventListener("click", () => {
   // backlog_items.appendChild(item);
   // clear_input(list_to_add_name);
 });
+
+function listenAddItem(elem) {
+  elem.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+    let title =
+      elem.parentElement.previousElementSibling.lastElementChild.value;
+    let liForm = elem.parentElement.parentElement.parentElement;
+    let list = liForm.parentElement;
+    let newItem = document.createElement("li");
+    newItem.className = "task-item hover-effect";
+    newItem.setAttribute("draggable", "true");
+    newItem.innerHTML = title;
+    list.insertBefore(newItem, liForm);
+    $(`#${liForm.getAttribute("id")}`).collapse("toggle");
+  });
+}
+
+[...add_item_button].forEach(elem => listenAddItem(elem));
 
 function dragDrop() {
   for (let i = 0; i < list_items.length; i++) {
