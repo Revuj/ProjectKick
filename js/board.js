@@ -58,27 +58,17 @@ create_list_btn.addEventListener("click", () => {
   listenAddItem(addItemButtons[addItemButtons.length - 2]);
   listenCancelAddItem(addItemButtons[addItemButtons.length - 1]);
 
-  // let item = document.createElement("li");
-  // item.innerHTML = list_to_add_name.value;
-  // item.className += " task-item ml-3 hover-effect";
-  // item.setAttribute("draggable", true);
+  newList.addEventListener("dragover", function(e) {
+    e.preventDefault();
+  });
 
-  // item.addEventListener("dragstart", function(e) {
-  //   draggedItem = item;
-  //   setTimeout(function() {
-  //     item.style.display = "none";
-  //   }, 0);
-  // });
+  newList.addEventListener("dragenter", function(e) {
+    e.preventDefault();
+  });
 
-  // item.addEventListener("dragend", function(e) {
-  //   setTimeout(function() {
-  //     draggedItem.style.display = "block";
-  //     draggedItem = null;
-  //   }, 0);
-  // });
-
-  // backlog_items.appendChild(item);
-  // clear_input(list_to_add_name);
+  newList.addEventListener("drop", function(e) {
+    this.append(draggedItem);
+  });
 });
 
 function listenAddItem(elem) {
@@ -95,6 +85,8 @@ function listenAddItem(elem) {
     newItem.innerHTML = title;
     list.insertBefore(newItem, liForm);
     $(`#${liForm.getAttribute("id")}`).collapse("toggle");
+    newItem.setAttribute("draggable", true);
+    setDraggable(newItem);
   });
 }
 
@@ -129,39 +121,42 @@ delete_list_button.addEventListener("click", event => {
   list.parentElement.removeChild(list);
 });
 
+function setDraggable(elem) {
+  elem.addEventListener("dragstart", function(e) {
+    draggedItem = elem;
+    setTimeout(function() {
+      elem.style.display = "none";
+    }, 0);
+  });
+
+  elem.addEventListener("dragend", function(e) {
+    setTimeout(function() {
+      draggedItem.style.display = "block";
+      draggedItem = null;
+    }, 0);
+  });
+
+  for (let j = 0; j < lists.length; j++) {
+    const list = lists[j];
+
+    list.addEventListener("dragover", function(e) {
+      e.preventDefault();
+    });
+
+    list.addEventListener("dragenter", function(e) {
+      e.preventDefault();
+    });
+
+    list.addEventListener("drop", function(e) {
+      console.log(draggedItem);
+      this.append(draggedItem);
+    });
+  }
+}
+
 function dragDrop() {
   for (let i = 0; i < list_items.length; i++) {
-    const item = list_items[i];
-
-    item.addEventListener("dragstart", function(e) {
-      draggedItem = item;
-      setTimeout(function() {
-        item.style.display = "none";
-      }, 0);
-    });
-
-    item.addEventListener("dragend", function(e) {
-      setTimeout(function() {
-        draggedItem.style.display = "block";
-        draggedItem = null;
-      }, 0);
-    });
-
-    for (let j = 0; j < lists.length; j++) {
-      const list = lists[j];
-
-      list.addEventListener("dragover", function(e) {
-        e.preventDefault();
-      });
-
-      list.addEventListener("dragenter", function(e) {
-        e.preventDefault();
-      });
-
-      list.addEventListener("drop", function(e) {
-        this.append(draggedItem);
-      });
-    }
+    setDraggable(list_items[i]);
   }
 }
 
