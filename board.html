@@ -159,13 +159,16 @@
 
       <section class="kanban-container container-fluid mt-4">
         <div class="kanban-table d-flex flex-row bd-highlight mb-3 align-items-begin">
-          <div class="bd-highlight task h-100">
+          <div class="bd-highlight task h-100" id="task-list-Backlog">
             <div class="task-title d-flex align-items-center py-0">
               <h6 class="mr-auto my-0 text-left p-3"><i class="fa fa-fw fa-caret-right"></i>Backlog</h6>
               <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-Backlog" aria-expanded="false" aria-controls="add-item">
                 <i class="fas fa-plus"></i>
               </button>
-              <i class="fas fa-trash-alt"></i>
+              <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal" data-list-id="task-list-Backlog">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+              
             </div>
             <ul class="task-items">
               <li class="task-item hover-effect" draggable="true">
@@ -191,6 +194,28 @@
           <!--end of backlog-->
         </div>
       </section>
+
+      <!-- Delete list modal -->
+      <div class="modal fade" id="delete-list-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-left">
+              <p>This action will remove any cards and automation preset associated with the column.</p>
+            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="delete-list-button" type="button" data-dismiss="modal" class="btn btn-primary btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!--end of main-container can possible be a section in the future-->
 

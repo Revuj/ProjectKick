@@ -4,6 +4,7 @@ let kanban_table = document.querySelector(".kanban-table");
 let list_to_add_name = document.querySelector(".listCreated");
 let add_item_button = document.querySelectorAll(".add-item");
 let cancel_add_item_button = document.querySelectorAll(".cancel-add-item");
+let delete_list_button = document.querySelector("#delete-list-button");
 
 const list_items = document.querySelectorAll(".task-item");
 const lists = document.querySelectorAll(".task-items");
@@ -25,13 +26,16 @@ create_list_btn.addEventListener("click", () => {
 
   let newList = document.createElement("div");
   newList.className = "bd-highlight task h-100";
+  newList.id = `task-list-${list_to_add_name.value}`;
   newList.innerHTML = `              
 		<div class="task-title d-flex align-items-center py-0">
 			<h6 class="mr-auto my-0 text-left p-3"><i class="fa fa-fw fa-caret-right"></i>${list_to_add_name.value}</h6>
       <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-${list_to_add_name.value}" aria-expanded="false" aria-controls="add-item">
       <i class="fas fa-plus"></i>
       </button>
-      <i class="fas fa-trash-alt"></i>
+      <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal" data-list-id="task-list-${list_to_add_name.value}">
+        <i class="fas fa-trash-alt"></i>
+      </button>
 		</div>
     <ul class="task-items">
       <li class="task-item collapse" id="add-item-${list_to_add_name.value}">
@@ -98,14 +102,32 @@ function listenAddItem(elem) {
 
 function listenCancelAddItem(elem) {
   elem.addEventListener("click", event => {
-    event.preventDefault();
-    event.stopPropagation();
     let liForm = elem.parentElement.parentElement.parentElement;
     $(`#${liForm.getAttribute("id")}`).collapse("toggle");
   });
 }
 
 [...cancel_add_item_button].forEach(elem => listenCancelAddItem(elem));
+
+/* Allows modal to know which list to delete */
+$("#delete-list-modal").on("show.bs.modal", function(event) {
+  let button = $(event.relatedTarget); // Button that triggered the modal
+  let recipient = button.data("list-id"); // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  let modal = $(this);
+  modal.find(".modal-title").text("Delete " + recipient.substring(10));
+  document
+    .getElementById("delete-list-button")
+    .setAttribute("data-list-id", recipient);
+});
+
+/* Delete List */
+delete_list_button.addEventListener("click", event => {
+  let list_id = delete_list_button.getAttribute("data-list-id");
+  let list = document.getElementById(list_id);
+  list.parentElement.removeChild(list);
+});
 
 function dragDrop() {
   for (let i = 0; i < list_items.length; i++) {
