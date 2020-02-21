@@ -72,3 +72,11 @@
   overflow-x: auto;
   height: 90%;
 }
+
+.edit-task {
+  background-color: white;
+}
+
+.edit-task:hover {
+  background-color: var(--item-color);
+}

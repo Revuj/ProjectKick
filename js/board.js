@@ -5,6 +5,8 @@ let list_to_add_name = document.querySelector(".listCreated");
 let add_item_button = document.querySelectorAll(".add-item");
 let cancel_add_item_button = document.querySelectorAll(".cancel-add-item");
 let delete_list_button = document.querySelector("#delete-list-button");
+let edit_item_buttons = document.querySelectorAll(".edit-task");
+let save_edit_item = document.querySelector("#edit-task-button");
 
 const list_items = document.querySelectorAll(".task-item");
 const lists = document.querySelectorAll(".task-items");
@@ -58,15 +60,16 @@ create_list_btn.addEventListener("click", () => {
   listenAddItem(addItemButtons[addItemButtons.length - 2]);
   listenCancelAddItem(addItemButtons[addItemButtons.length - 1]);
 
-  newList.addEventListener("dragover", function(e) {
+  newList.addEventListener("dragover", function (e) {
     e.preventDefault();
   });
 
-  newList.addEventListener("dragenter", function(e) {
+  newList.addEventListener("dragenter", function (e) {
     e.preventDefault();
   });
 
-  newList.addEventListener("drop", function(e) {
+  newList.children[1].addEventListener("drop", function (e) {
+    console.log(newList);
     this.append(draggedItem);
   });
 });
@@ -102,7 +105,7 @@ function listenCancelAddItem(elem) {
 [...cancel_add_item_button].forEach(elem => listenCancelAddItem(elem));
 
 /* Allows modal to know which list to delete */
-$("#delete-list-modal").on("show.bs.modal", function(event) {
+$("#delete-list-modal").on("show.bs.modal", function (event) {
   let button = $(event.relatedTarget); // Button that triggered the modal
   let recipient = button.data("list-id"); // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -122,15 +125,15 @@ delete_list_button.addEventListener("click", event => {
 });
 
 function setDraggable(elem) {
-  elem.addEventListener("dragstart", function(e) {
+  elem.addEventListener("dragstart", function (e) {
     draggedItem = elem;
-    setTimeout(function() {
+    setTimeout(function () {
       elem.style.display = "none";
     }, 0);
   });
 
-  elem.addEventListener("dragend", function(e) {
-    setTimeout(function() {
+  elem.addEventListener("dragend", function (e) {
+    setTimeout(function () {
       draggedItem.style.display = "block";
       draggedItem = null;
     }, 0);
@@ -139,16 +142,17 @@ function setDraggable(elem) {
   for (let j = 0; j < lists.length; j++) {
     const list = lists[j];
 
-    list.addEventListener("dragover", function(e) {
+    list.addEventListener("dragover", function (e) {
       e.preventDefault();
     });
 
-    list.addEventListener("dragenter", function(e) {
+    list.addEventListener("dragenter", function (e) {
       e.preventDefault();
     });
 
-    list.addEventListener("drop", function(e) {
-      console.log(draggedItem);
+    list.addEventListener("drop", function (e) {
+      console.log("oi");
+      console.log(this);
       this.append(draggedItem);
     });
   }
@@ -159,6 +163,33 @@ function dragDrop() {
     setDraggable(list_items[i]);
   }
 }
+
+/* Edit Task Label */
+[...edit_item_buttons].forEach(elem => elem.addEventListener("click", (event) => {
+  let label = elem.previousElementSibling;
+  label.style.backgroundColor = "green";
+}))
+
+$('#edit-task-modal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('task-label') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-body input').val(recipient)
+  document
+    .getElementById("edit-task-button")
+    .setAttribute("data-task-label", recipient);
+})
+
+save_edit_item.addEventListener("click", event => {
+  let newLabel = document.getElementById("edit-task-label").value;
+  let dataTaskLabel = save_edit_item.getAttribute("data-task-label");
+  console.log(dataTaskLabel);
+  let taskToEdit = document.getElementById(`${dataTaskLabel}`);
+  console.log(taskToEdit);
+  taskToEdit.children[0].innerHTML = newLabel;
+})
 
 /*general functions */
 
