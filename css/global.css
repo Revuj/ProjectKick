@@ -95,3 +95,7 @@ body {
   cursor: pointer;
   color: var(--text-color);
 }
+
+.clickable {
+  cursor: pointer;
+}
