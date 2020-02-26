@@ -90,7 +90,7 @@ function listenAddItem(elem) {
     newItem.id = id;
     newItem.className = "task-item text-left";
     newItem.setAttribute("draggable", "true");
-    newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"> <h6 class="mb-0 py-2">${title}</h6>
+    newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"> <h6 class="mb-0 py-2 task-title">${title}</h6>
     <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal" data-target="#edit-task-modal"
       data-task-id="${id}"><i class="fas fa-pencil-alt float-right"></i></button>
       </span>
@@ -193,8 +193,9 @@ $("#edit-task-modal").on("show.bs.modal", function(event) {
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
   var modal = $(this);
   var taskItem = document.querySelector(`.task-item[id="${recipient}"]`);
-  var label = taskItem.children[0].innerHTML;
-  modal.find(".modal-body input").val(label);
+  console.log(taskItem);
+  var title = taskItem.querySelector(".task-title").innerHTML;
+  modal.find(".modal-body input").val(title);
   document
     .getElementById("edit-task-button")
     .setAttribute("data-task-id", recipient);
@@ -203,10 +204,8 @@ $("#edit-task-modal").on("show.bs.modal", function(event) {
 save_edit_item.addEventListener("click", event => {
   let newLabel = document.getElementById("edit-task-label").value;
   let dataTaskLabel = save_edit_item.getAttribute("data-task-id");
-  console.log(dataTaskLabel);
   let taskToEdit = document.getElementById(`${dataTaskLabel}`);
-  console.log(taskToEdit);
-  taskToEdit.children[0].innerHTML = newLabel;
+  taskToEdit.querySelector(".task-title").innerHTML = newLabel;
 });
 
 function mouseOverListItem(elem) {

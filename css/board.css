@@ -24,7 +24,7 @@
   border: 1px solid var(--border-color);
 }
 
-.task-title {
+.task-list-title {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.5rem;
   background-color: var(--background-hover);
