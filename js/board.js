@@ -40,7 +40,7 @@ create_list_btn.addEventListener("click", () => {
       </button>
 		</div>
     <ul class="task-items">
-      <li class="task-item collapse" id="add-item-${list_to_add_name.value}">
+      <li class="add-item-li collapse" id="add-item-${list_to_add_name.value}">
       <form class="add-item-form form-group">
         <div class="form-group text-left">
           <label for="item-title">Title</label>
@@ -88,15 +88,17 @@ function listenAddItem(elem) {
       .toString(36)
       .substr(2, 9);
     newItem.id = id;
-    newItem.className = "task-item hover-effect d-flex align-items-center";
+    newItem.className = "task-item d-flex align-items-center";
     newItem.setAttribute("draggable", "true");
-    newItem.innerHTML = `<h6 class="mb-0 ml-2">${title}</h6>
-    <button type="button" class="btn ml-auto edit-task" data-toggle="modal" data-target="#edit-task-modal"
+    newItem.innerHTML = `<h6 class="mb-0 ml-2 py-3">${title}</h6>
+    <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal" data-target="#edit-task-modal"
       data-task-id="${id}"><i class="fas fa-pencil-alt float-right"></i></button>`;
     list.insertBefore(newItem, liForm);
     $(`#${liForm.getAttribute("id")}`).collapse("toggle");
     newItem.setAttribute("draggable", true);
     setDraggable(newItem);
+    mouseOverListItem(newItem);
+    mouseLeaveListItem(newItem);
     elem.parentElement.previousElementSibling.lastElementChild.value = "";
   });
 }
@@ -176,7 +178,6 @@ function dragDrop() {
 [...edit_item_buttons].forEach(elem =>
   elem.addEventListener("click", event => {
     let label = elem.previousElementSibling;
-    label.style.backgroundColor = "green";
   })
 );
 
@@ -202,6 +203,25 @@ save_edit_item.addEventListener("click", event => {
   console.log(taskToEdit);
   taskToEdit.children[0].innerHTML = newLabel;
 });
+
+function mouseOverListItem(elem) {
+  elem.addEventListener("mouseover", event => {
+    console.log(elem.lastElementChild);
+    elem.lastElementChild.classList.remove("d-none");
+  });
+}
+
+function mouseLeaveListItem(elem) {
+  elem.addEventListener("mouseleave", event => {
+    console.log(elem.lastElementChild);
+    elem.lastElementChild.classList.add("d-none");
+  });
+}
+
+/* Show edit button when item is hovered */
+[...list_items].forEach(elem => mouseOverListItem(elem));
+
+[...list_items].forEach(elem => mouseLeaveListItem(elem));
 
 /*general functions */
 

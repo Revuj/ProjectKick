@@ -180,19 +180,19 @@
             </div>
             <ul class="task-items">
               <!-- este id e o data-task-id eventualmente deverão vir da database -->
-              <li id="1" class="task-item hover-effect d-flex align-items-center"
+              <li id="1" class="task-item d-flex align-items-center"
                 draggable="true">
-                <h6 class="mb-0 ml-2">Work assigned to me</h6>
-                <button type="button" class="btn ml-auto edit-task" data-toggle="modal" data-target="#edit-task-modal"
+                <h6 class="mb-0 ml-2 py-3">Work assigned to me</h6>
+                <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal" data-target="#edit-task-modal"
                   data-task-id="1"><i class="fas fa-pencil-alt float-right"></i></button>
               </li>
-              <li id="2" class="task-item hover-effect d-flex align-items-center"
+              <li id="2" class="task-item d-flex align-items-center"
                 draggable="true">
-                <h6 class="mb-0 ml-2">A tua mãe, Vator</h6>
-                <button type="button" class="btn ml-auto edit-task" data-toggle="modal" data-target="#edit-task-modal"
+                <h6 class="mb-0 ml-2 py-3">A tua mãe, Vator</h6>
+                <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal" data-target="#edit-task-modal"
                   data-task-id="2"><i class="fas fa-pencil-alt float-right"></i></button>
               </li>
-              <li class="task-item collapse" id="add-item-Backlog">
+              <li class="add-item-li collapse" id="add-item-Backlog">
                 <form class="add-item-form form-group">
                   <div class="form-group text-left">
                     <label for="item-title">Title</label>
@@ -249,7 +249,7 @@
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                <label for="recipient-name" class="col-form-label font-weight-bold">Label:</label>
                 <input type="text" class="form-control" id="edit-task-label">
               </div>
             </form>
