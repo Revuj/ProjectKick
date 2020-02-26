@@ -46,6 +46,7 @@
   text-align: center;
   border-radius: 5px;
   border: 1px solid var(--border-color);
+  transition: 0.3s;
 }
 
 .task-item:hover {
@@ -78,6 +79,13 @@
   background-color: white;
 }
 
-.edit-task:hover {
-  background-color: var(--container-item-color);
+.list-item-counter,
+.list-item-creator,
+.list-item-label {
+  font-size: 0.9em;
+}
+
+.list-item-author {
+  width: 25px;
+  height: 25px;
 }

@@ -88,11 +88,16 @@ function listenAddItem(elem) {
       .toString(36)
       .substr(2, 9);
     newItem.id = id;
-    newItem.className = "task-item d-flex align-items-center";
+    newItem.className = "task-item text-left";
     newItem.setAttribute("draggable", "true");
-    newItem.innerHTML = `<h6 class="mb-0 ml-2 py-3">${title}</h6>
+    newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"> <h6 class="mb-0 py-2">${title}</h6>
     <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal" data-target="#edit-task-modal"
-      data-task-id="${id}"><i class="fas fa-pencil-alt float-right"></i></button>`;
+      data-task-id="${id}"><i class="fas fa-pencil-alt float-right"></i></button>
+      </span>
+      <span class="d-flex flex-row align-items-center mx-2 row-2">
+        <p class="w-100 mb-2"><span class="list-item-counter">#3</span> <span class="list-item-creator"> opened by
+            Revuj</span></p>
+      </span>`;
     list.insertBefore(newItem, liForm);
     $(`#${liForm.getAttribute("id")}`).collapse("toggle");
     newItem.setAttribute("draggable", true);
@@ -206,15 +211,13 @@ save_edit_item.addEventListener("click", event => {
 
 function mouseOverListItem(elem) {
   elem.addEventListener("mouseover", event => {
-    console.log(elem.lastElementChild);
-    elem.lastElementChild.classList.remove("d-none");
+    elem.querySelector(".edit-task").classList.remove("d-none");
   });
 }
 
 function mouseLeaveListItem(elem) {
   elem.addEventListener("mouseleave", event => {
-    console.log(elem.lastElementChild);
-    elem.lastElementChild.classList.add("d-none");
+    elem.querySelector(".edit-task").classList.add("d-none");
   });
 }
 

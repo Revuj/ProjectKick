@@ -180,17 +180,45 @@
             </div>
             <ul class="task-items">
               <!-- este id e o data-task-id eventualmente deverão vir da database -->
-              <li id="1" class="task-item d-flex align-items-center"
-                draggable="true">
-                <h6 class="mb-0 ml-2 py-3">Work assigned to me</h6>
-                <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal" data-target="#edit-task-modal"
-                  data-task-id="1"><i class="fas fa-pencil-alt float-right"></i></button>
+              <li id="1" class="task-item text-left" draggable="true">
+                <span class="d-flex flex-row align-items-center ml-2 row-1">
+                  <h6 class="mb-0 py-2">Work assigned to me</h6>
+                  <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal"
+                    data-target="#edit-task-modal" data-task-id="1"><i
+                      class="fas fa-pencil-alt float-right"></i></button>
+                </span>
+                <span class="d-flex flex-row align-items-center mx-2 row-2">
+                  <p class="w-100 mb-2"><span class="list-item-counter">#1</span> <span class="list-item-creator"> opened by
+                      Revuj</span></p>
+                </span>
+                <span class="d-flex flex-row align-items-center mx-2 row-3">
+                    <h6 class="mb-0 p-1 list-item-label bg-info">Iteration 1</h6> 
+                    <span
+                      class="list-item-author ml-auto"><img
+                        src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
+                        alt="@vitorb19" draggable="false">
+                    </span>
+                </span>
               </li>
-              <li id="2" class="task-item d-flex align-items-center"
-                draggable="true">
-                <h6 class="mb-0 ml-2 py-3">A tua mãe, Vator</h6>
-                <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal" data-target="#edit-task-modal"
-                  data-task-id="2"><i class="fas fa-pencil-alt float-right"></i></button>
+              <li id="2" class="task-item text-left" draggable="true">
+                <span class="d-flex flex-row align-items-center ml-2 row-1">
+                  <h6 class="mb-0 py-2">A tua mae, vator</h6>
+                  <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal"
+                    data-target="#edit-task-modal" data-task-id="2"><i
+                      class="fas fa-pencil-alt float-right"></i></button>
+                </span>
+                <span class="d-flex flex-row align-items-center mx-2 row-2">
+                  <p class="w-100 mb-2"><span class="list-item-counter">#2</span> <span class="list-item-creator"> opened by
+                      JPabelha</span></p>
+                </span>
+                <span class="d-flex flex-row align-items-center mx-2 row-3">
+                    <h6 class="mb-0 p-1 list-item-label bg-warning">Iteration 2</h6> 
+                    <span
+                      class="list-item-author ml-auto"><img
+                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                        alt="@vitorb19" draggable="false">
+                    </span>
+                </span>
               </li>
               <li class="add-item-li collapse" id="add-item-Backlog">
                 <form class="add-item-form form-group">
