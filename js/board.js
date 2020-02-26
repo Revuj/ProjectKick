@@ -30,7 +30,7 @@ create_list_btn.addEventListener("click", () => {
   newList.className = "bd-highlight task h-100";
   newList.id = `task-list-${list_to_add_name.value}`;
   newList.innerHTML = `              
-		<div class="task-title d-flex align-items-center py-0">
+		<div class="task-list-title d-flex align-items-center py-0">
 			<h6 class="mr-auto my-0 text-left p-3"><i class="fa fa-fw fa-caret-right"></i>${list_to_add_name.value}</h6>
       <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-${list_to_add_name.value}" aria-expanded="false" aria-controls="add-item">
       <i class="fas fa-plus"></i>
