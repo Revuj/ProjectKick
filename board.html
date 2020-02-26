@@ -179,14 +179,18 @@
 
             </div>
             <ul class="task-items">
-              <li id="Backlog: Work assigned to me" class="task-item hover-effect d-flex align-items-center"
+              <!-- este id e o data-task-id eventualmente deverão vir da database -->
+              <li id="1" class="task-item hover-effect d-flex align-items-center"
                 draggable="true">
                 <h6 class="mb-0 ml-2">Work assigned to me</h6>
                 <button type="button" class="btn ml-auto edit-task" data-toggle="modal" data-target="#edit-task-modal"
-                  data-task-label="Backlog: Work assigned to me"><i class="fas fa-pencil-alt float-right"></i></button>
+                  data-task-id="1"><i class="fas fa-pencil-alt float-right"></i></button>
               </li>
-              <li class="task-item hover-effect" draggable="true">
-                Work assigned to me
+              <li id="2" class="task-item hover-effect d-flex align-items-center"
+                draggable="true">
+                <h6 class="mb-0 ml-2">A tua mãe, Vator</h6>
+                <button type="button" class="btn ml-auto edit-task" data-toggle="modal" data-target="#edit-task-modal"
+                  data-task-id="2"><i class="fas fa-pencil-alt float-right"></i></button>
               </li>
               <li class="task-item collapse" id="add-item-Backlog">
                 <form class="add-item-form form-group">
