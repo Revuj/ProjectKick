@@ -1,0 +1,85 @@
+@import url("global.css");
+
+
+
+/*left content*/
+
+.event-manager {
+  background-color: tomato;
+}
+
+.calendar-left-side-day {
+  font-size: 5rem;
+}
+
+.calendar-left-side-day-of-week {
+  font-size: 1.25rem;
+}
+
+.current-day-events-list > li {
+  padding-left: 0.5rem;
+}
+
+
+
+/*right content*/
+
+.calendar-content {
+  background-color: teal;
+}
+
+.calendar-change-year {
+  font-size:1.25rem;
+}
+
+.calendar-month {
+  border-bottom: 1px solid white;
+  font-weight: 700;
+}
+
+.calendar-month > li {
+  padding: 0.25rem;
+  cursor:pointer;
+}
+
+.calendar-month > li:hover {
+  background-color: yellowgreen;
+}
+
+.calendar-month > li.active {
+  background-color: turquoise;
+ 
+}
+
+.calendar-week-list {
+  font-weight: 700;
+}
+
+.calendar-week-list > th  {
+  margin-bottom: 1rem;
+}
+
+.active-day {
+  box-shadow: var(--primary-shadow);
+  border-radius: 0.5rem;
+  background:tomato;
+}
+
+.selected-day {
+  background-color: violet;
+  box-shadow: var(--primary-shadow);
+  border-radius: 0.5rem;
+}
+
+.calendar-days-list > tr > td:hover {
+  background-color: wheat;
+}
+
+.another-month {
+  opacity: 0.2;
+}
+
+
+
+/*dias do proximo mes e seguinte com opacidade diferente e margem aumentar */
+
