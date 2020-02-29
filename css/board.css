@@ -32,7 +32,8 @@
 }
 
 .main-container {
-  height: 100%;
+  background-color: violet;
+  overflow: auto;
 }
 
 .task-items {
@@ -40,9 +41,9 @@
   overflow-y: auto;
   height: 100%;
   width: 100%;
-  min-height: 12rem;
   list-style: none;
   overflow-y: auto;
+  max-height: 20rem;
 
 }
 
@@ -83,6 +84,8 @@
   margin: 0;
   padding: 0;
   height: 100%;
+  background-color: teal;
+  
 }
 
 .kanban-table {
