@@ -24,32 +24,33 @@
   border: 1px solid var(--border-color);
 }
 
-.task-title {
+.task-list-title {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.5rem;
-  background-color: #e9ecef;
+  background-color: var(--background-hover);
 }
 
 .task-items {
   padding: 10px;
   overflow: auto;
   width: 100%;
-  max-height: 20rem;
   min-height: 12rem;
   list-style: none;
 }
 
-.task-item {
+.task-item,
+.add-item-li {
   background: white;
   padding: 0.4rem;
   margin-bottom: 0.5rem;
   text-align: center;
   border-radius: 5px;
   border: 1px solid var(--border-color);
+  transition: 0.3s;
 }
 
 .task-item:hover {
-  background: var(--item-color);
+  background: var(--background-hover);
 }
 
 .board-members li {
@@ -74,9 +75,17 @@
 }
 
 .edit-task {
+  display: none;
   background-color: white;
 }
 
-.edit-task:hover {
-  background-color: var(--item-color);
+.list-item-counter,
+.list-item-creator,
+.list-item-label {
+  font-size: 0.9em;
+}
+
+.list-item-author {
+  width: 25px;
+  height: 25px;
 }

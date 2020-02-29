@@ -85,6 +85,7 @@ img {
   --item-color: #778899;
   --primary-color: #2b5876;
   --secondary-color: #92a6e2;
+  --background-hover: #e9ecef;
 }
 
 .disable-selection {
