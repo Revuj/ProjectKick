@@ -22,7 +22,6 @@
   border-radius: 5px;
   margin-right: 1rem;
   border: 1px solid var(--border-color);
-
 }
 
 .task-list-title {
@@ -33,17 +32,16 @@
 
 .main-container {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .task-items {
   padding: 10px;
-  overflow-y: auto;
-  height: 100%;
   width: 100%;
-  min-height: 12rem;
+  height: calc(100% - 52px);
   list-style: none;
   overflow-y: auto;
-
 }
 
 .task-item,
@@ -78,17 +76,17 @@
 }
 
 .kanban-container {
-  overflow-y: hidden;
   overflow-x: auto;
+  overflow-y: hidden;
   margin: 0;
   padding: 0;
-  height: 100%;
+  flex: 1;
 }
 
 .kanban-table {
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
+  height: 100%;
 }
 
 .edit-task {
