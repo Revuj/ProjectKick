@@ -34,7 +34,10 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   background-color: white;
+=======
+>>>>>>> df8db0976f3aed52b5395967ee5e1d1e07d788f5
 }
 
 .task-items {
