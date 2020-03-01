@@ -22,7 +22,6 @@
   border-radius: 5px;
   margin-right: 1rem;
   border: 1px solid var(--border-color);
-
 }
 
 .task-list-title {
@@ -32,19 +31,18 @@
 }
 
 .main-container {
-  background-color: violet;
-  overflow: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
 }
 
 .task-items {
   padding: 10px;
-  overflow-y: auto;
-  height: 100%;
   width: 100%;
+  height: calc(100% - 52px);
   list-style: none;
   overflow-y: auto;
-  max-height: 20rem;
-
 }
 
 .task-item,
@@ -79,19 +77,17 @@
 }
 
 .kanban-container {
-  overflow-y: hidden;
   overflow-x: auto;
+  overflow-y: hidden;
   margin: 0;
   padding: 0;
-  height: 100%;
-  background-color: teal;
-  
+  flex: 1;
 }
 
 .kanban-table {
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
+  height: 100%;
 }
 
 .edit-task {
@@ -108,4 +104,21 @@
 .list-item-author {
   width: 25px;
   height: 25px;
+}
+
+#side-issue-container {
+  position: fixed;
+  top: 64px;
+  width: 10rem;
+  bottom: 0;
+  right: 0;
+  transition: all 0.3s ease;
+  background: violet;
+  z-index: -200;
+  overflow: hidden;
+}
+
+.is-collapsed-right .main-container {
+  padding-right: 10rem;
+  background: none;
 }

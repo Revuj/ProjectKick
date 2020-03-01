@@ -1,71 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>top</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>top</title>
+    <!-- Owl-Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
+      crossorigin="anonymous"
+    />
 
-  <!-- Owl-Carousel -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <!-- Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
 
-  <!-- Custom Style-->
-  <link rel="stylesheet" href="./css/board.css" />
-  <link rel="stylesheet" href="./css/navbar.css" />
+    <!--custom css-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
 
-  <!--custom css-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <!--custom js-->
+    <script src="./js/board.js" defer></script>
+  </head>
 
-  <!--custom js-->
-  <script src="./js/board.js" defer></script>
-</head>
+  <body>
+    <div class="page-wrapper h-100 is-collapsed">
+      <nav class="top-navbar">
+        <div
+          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
+        >
+          <div class="logo">
+            <h4 class="py-3 px-3">
+              <i class="fas fa-drafting-compass"></i> Kick
+            </h4>
+          </div>
 
-<body>
-  <div class="page-wrapper h-100 is-collapsed">
-
-    <nav class="top-navbar">
-
-      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
-
-        <div class="logo">
-          <h4 class="py-3 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
+          <ul class="d-flex align-items-end align-items-center mb-0">
+            <!--notifications-->
+            <li class="px-2 utility ml-3 notification mb-0">
+              <a href="#"><i class="fas fa-bell"></i></a>
+              <span class="num">4</span>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0">
+              <a href="#"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
         </div>
+      </nav>
 
-        <ul class="d-flex align-items-end align-items-center mb-0">
-
-          <!--notifications-->
-          <li class="px-2 utility ml-3 notification mb-0">
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <span class="num">4</span>
-          </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0">
-            <a href="#"><i class="fas fa-user"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- 
+      <!-- 
           inside a project he sidebar-menu options can be
           board
           flux diagram
@@ -75,284 +91,466 @@
           back
           ...
         -->
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-book"></i></span>
-            <span class="side-menu-item-title">My Work</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="far fa-folder"></i></span>
-            <span class="side-menu-item-title">Projects</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-columns"></i></span>
-            <span class="side-menu-item-title">Panels</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#" class="active">
-            <span class="m-2"><i class="fas fa-filter"></i></span>
-            <span class="side-menu-item-title">Filters</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-user-friends"></i></span>
-            <span class="side-menu-item-title">Users</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-cogs"></i></span>
-            <span class="side-menu-item-title">Settings</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-exclamation-triangle"></i></i></span>
-            <span class="side-menu-item-title">Urgent</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </li>
+          <li class="side-menu-item">
+            <a href="#">
+              <span class="m-2"><i class="fas fa-book"></i></span>
+              <span class="side-menu-item-title">My Work</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="#">
+              <span class="m-2"><i class="far fa-folder"></i></span>
+              <span class="side-menu-item-title">Projects</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="#">
+              <span class="m-2"><i class="fas fa-columns"></i></span>
+              <span class="side-menu-item-title">Panels</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="#" class="active">
+              <span class="m-2"><i class="fas fa-filter"></i></span>
+              <span class="side-menu-item-title">Filters</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="#">
+              <span class="m-2"><i class="fas fa-user-friends"></i></span>
+              <span class="side-menu-item-title">Users</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="#">
+              <span class="m-2"><i class="fas fa-cogs"></i></span>
+              <span class="side-menu-item-title">Settings</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="#">
+              <span class="m-2"
+                ><i class="fas fa-exclamation-triangle"></i
+              ></span>
+              <span class="side-menu-item-title">Urgent</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-
-
-    <!--generic container-->
-    <div class="main-container">
-      <!-- <div class="text-left d-flex flex-row">
+      <!--generic container-->
+      <div class="main-container">
+        <!-- <div class="text-left d-flex flex-row">
           <h5>Project Name</h5>
           <ul class="d-flex ml-4 board-members">
             <li class="mr-3 text-center">RV</li>
             <li class="mr-3 text-center">JA</li>
           </ul>
         </div> -->
-      <section class="board-options d-flex flex-row bd-highlight align-items-center mx-2 mt-4">
-        <!-- create a new task-->
-        <div class="p-2 bd-highlight">
-          <form id="add-list-form" class="input-group inputArea">
-            <input type="text" class="form-control listCreated" placeholder="Add list" />
-            <div class="input-group-append">
-              <button class="btn btn-secondary add-list" type="button">
-                <i class="fa fa-plus"></i>
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!--most relevant filters-->
-        <div class="bd-highlight">
-          <ul class="filters d-flex flex-row align-items-center">
-            <li class="filter-item ml-3 hover-effect">Work assigned to me</li>
-            <li class="filter-item ml-3 hover-effect">Recenlty updated</li>
-          </ul>
-        </div>
-
-        <!--task searcher-->
-        <div class="p-2 bd-highlight  ml-auto">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </section>
-
-      <section class="kanban-container mt-4">
-        <div class="kanban-table d-flex flex-row bd-highlight align-items-begin">
-          <div class="bd-highlight task" id="task-list-Backlog">
-            <div class="task-list-title d-flex align-items-center py-0">
-              <h6 class="mr-auto my-0 text-left p-3"><i class="fa fa-fw fa-caret-right"></i>Backlog</h6>
-              <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-Backlog"
-                aria-expanded="false" aria-controls="add-item">
-                <i class="fas fa-plus"></i>
-              </button>
-              <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal"
-                data-list-id="task-list-Backlog">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-
-            </div>
-            <ul class="task-items">
-              <!-- este id e o data-task-id eventualmente deverão vir da database -->
-              <li id="1" class="task-item text-left" draggable="true">
-                <span class="d-flex flex-row align-items-center ml-2 row-1">
-                  <h6 class="mb-0 py-2 task-title">Work assigned to me</h6>
-                  <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal"
-                    data-target="#edit-task-modal" data-task-id="1"><i
-                      class="fas fa-pencil-alt float-right"></i></button>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-2">
-                  <p class="w-100 mb-2"><span class="list-item-counter">#1</span> <span class="list-item-creator">
-                      opened by
-                      Revuj</span></p>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-3">
-                  <h6 class="mb-0 p-1 list-item-label bg-info">Iteration 1</h6>
-                  <span class="list-item-author ml-auto"><img
-                      src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4" alt="@vitorb19"
-                      draggable="false">
-                  </span>
-                </span>
-              </li>
-              <li id="2" class="task-item text-left" draggable="true">
-                <span class="d-flex flex-row align-items-center ml-2 row-1">
-                  <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
-                  <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal"
-                    data-target="#edit-task-modal" data-task-id="2"><i
-                      class="fas fa-pencil-alt float-right"></i></button>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-2">
-                  <p class="w-100 mb-2"><span class="list-item-counter">#2</span> <span class="list-item-creator">
-                      opened by
-                      JPabelha</span></p>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-3">
-                  <h6 class="mb-0 p-1 list-item-label bg-warning">Iteration 2</h6>
-                  <span class="list-item-author ml-auto"><img
-                      src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19"
-                      draggable="false">
-                  </span>
-                </span>
-              </li>
-              <li id="2" class="task-item text-left" draggable="true">
-                <span class="d-flex flex-row align-items-center ml-2 row-1">
-                  <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
-                  <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal"
-                    data-target="#edit-task-modal" data-task-id="2"><i
-                      class="fas fa-pencil-alt float-right"></i></button>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-2">
-                  <p class="w-100 mb-2"><span class="list-item-counter">#2</span> <span class="list-item-creator">
-                      opened by
-                      JPabelha</span></p>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-3">
-                  <h6 class="mb-0 p-1 list-item-label bg-warning">Iteration 2</h6>
-                  <span class="list-item-author ml-auto"><img
-                      src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19"
-                      draggable="false">
-                  </span>
-                </span>
-              </li>
-              <li id="2" class="task-item text-left" draggable="true">
-                <span class="d-flex flex-row align-items-center ml-2 row-1">
-                  <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
-                  <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal"
-                    data-target="#edit-task-modal" data-task-id="2"><i
-                      class="fas fa-pencil-alt float-right"></i></button>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-2">
-                  <p class="w-100 mb-2"><span class="list-item-counter">#2</span> <span class="list-item-creator">
-                      opened by
-                      JPabelha</span></p>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-3">
-                  <h6 class="mb-0 p-1 list-item-label bg-warning">Iteration 2</h6>
-                  <span class="list-item-author ml-auto"><img
-                      src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19"
-                      draggable="false">
-                  </span>
-                </span>
-              </li>
-              <li id="2" class="task-item text-left" draggable="true">
-                <span class="d-flex flex-row align-items-center ml-2 row-1">
-                  <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
-                  <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal"
-                    data-target="#edit-task-modal" data-task-id="2"><i
-                      class="fas fa-pencil-alt float-right"></i></button>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-2">
-                  <p class="w-100 mb-2"><span class="list-item-counter">#2</span> <span class="list-item-creator">
-                      opened by
-                      JPabelha</span></p>
-                </span>
-                <span class="d-flex flex-row align-items-center mx-2 row-3">
-                  <h6 class="mb-0 p-1 list-item-label bg-warning">Iteration 2</h6>
-                  <span class="list-item-author ml-auto"><img
-                      src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19"
-                      draggable="false">
-                  </span>
-                </span>
-              </li>
-              <li class="add-item-li collapse" id="add-item-Backlog">
-                <form class="add-item-form form-group">
-                  <div class="form-group text-left">
-                    <label for="item-title">Title</label>
-                    <input type="text" class="form-control" class="item-title" placeholder="">
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-primary add-item btn">Submit</button>
-                    <button type="reset" class="btn btn-primary cancel-add-item">Cancel</button>
-                  </div>
-                </form>
-              </li>
-            </ul>
-          </div>
-          <!--end of backlog-->
-        </div>
-      </section>
-
-      <!-- Delete list modal -->
-      <div class="modal fade" id="delete-list-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body text-left">
-              <p>This action will remove any cards and automation preset associated with the column.</p>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button id="delete-list-button" type="button" data-dismiss="modal"
-                class="btn btn-primary btn-danger">Delete</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Edit Task Modal -->
-    <div class="modal fade" id="edit-task-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Note</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label font-weight-bold">Label:</label>
-                <input type="text" class="form-control" id="edit-task-label">
+        <section
+          class="board-options d-flex flex-row bd-highlight align-items-center mx-2 mt-4"
+        >
+          <!-- create a new task-->
+          <div class="p-2 bd-highlight">
+            <form id="add-list-form" class="input-group inputArea">
+              <input
+                type="text"
+                class="form-control listCreated"
+                placeholder="Add list"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-secondary add-list" type="button">
+                  <i class="fa fa-plus"></i>
+                </button>
               </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button id="edit-task-button" type="button" class="btn btn-primary" data-dismiss="modal">Save Note</button>
+
+          <!--most relevant filters-->
+          <div class="bd-highlight">
+            <ul class="filters d-flex flex-row align-items-center">
+              <li class="filter-item ml-3 hover-effect">Work assigned to me</li>
+              <li class="filter-item ml-3 hover-effect">Recenlty updated</li>
+            </ul>
+          </div>
+
+          <!--task searcher-->
+          <div class="p-2 bd-highlight  ml-auto">
+            <form class="form-inline my-2 my-lg-0">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                class="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section class="kanban-container mt-4">
+          <div
+            class="kanban-table d-flex flex-row bd-highlight align-items-begin"
+          >
+            <div class="bd-highlight task" id="task-list-Backlog">
+              <div class="task-list-title d-flex align-items-center py-0">
+                <h6 class="mr-auto my-0 text-left p-3">
+                  <i class="fa fa-fw fa-caret-right"></i>Backlog
+                </h6>
+                <button
+                  class="btn mx-4 p-0 order-3"
+                  data-toggle="collapse"
+                  data-target="#add-item-Backlog"
+                  aria-expanded="false"
+                  aria-controls="add-item"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn"
+                  data-toggle="modal"
+                  data-target="#delete-list-modal"
+                  data-list-id="task-list-Backlog"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+              <ul class="task-items">
+                <!-- este id e o data-task-id eventualmente deverão vir da database -->
+                <li id="1" class="task-item text-left" draggable="true">
+                  <div class="d-flex flex-row align-items-center ml-2 row-1">
+                    <h6 class="mb-0 py-2 task-title">Work assigned to me</h6>
+                    <button
+                      type="button"
+                      class="btn ml-auto d-none edit-task"
+                      data-toggle="modal"
+                      data-target="#edit-task-modal"
+                      data-task-id="1"
+                    >
+                      <i class="fas fa-pencil-alt float-right"></i>
+                    </button>
+                  </div>
+                  <span class="d-flex flex-row align-items-center mx-2 row-2">
+                    <p class="w-100 mb-2">
+                      <span class="list-item-counter">#1</span>
+                      <span class="list-item-creator"> opened by Revuj</span>
+                    </p>
+                  </span>
+                  <span class="d-flex flex-row align-items-center mx-2 row-3">
+                    <h6 class="mb-0 p-1 list-item-label bg-info">
+                      Iteration 1
+                    </h6>
+                    <span class="list-item-author ml-auto"
+                      ><img
+                        src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
+                        alt="@vitorb19"
+                        draggable="false"
+                      />
+                    </span>
+                  </span>
+                </li>
+                <li id="2" class="task-item text-left" draggable="true">
+                  <span class="d-flex flex-row align-items-center ml-2 row-1">
+                    <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
+                    <button
+                      type="button"
+                      class="btn ml-auto d-none edit-task"
+                      data-toggle="modal"
+                      data-target="#edit-task-modal"
+                      data-task-id="2"
+                    >
+                      <i class="fas fa-pencil-alt float-right"></i>
+                    </button>
+                  </span>
+                  <span class="d-flex flex-row align-items-center mx-2 row-2">
+                    <p class="w-100 mb-2">
+                      <span class="list-item-counter">#2</span>
+                      <span class="list-item-creator"> opened by JPabelha</span>
+                    </p>
+                  </span>
+                  <span class="d-flex flex-row align-items-center mx-2 row-3">
+                    <h6 class="mb-0 p-1 list-item-label bg-warning">
+                      Iteration 2
+                    </h6>
+                    <span class="list-item-author ml-auto"
+                      ><img
+                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                        alt="@vitorb19"
+                        draggable="false"
+                      />
+                    </span>
+                  </span>
+                </li>
+                <li id="2" class="task-item text-left" draggable="true">
+                  <span class="d-flex flex-row align-items-center ml-2 row-1">
+                    <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
+                    <button
+                      type="button"
+                      class="btn ml-auto d-none edit-task"
+                      data-toggle="modal"
+                      data-target="#edit-task-modal"
+                      data-task-id="2"
+                    >
+                      <i class="fas fa-pencil-alt float-right"></i>
+                    </button>
+                  </span>
+                  <span class="d-flex flex-row align-items-center mx-2 row-2">
+                    <p class="w-100 mb-2">
+                      <span class="list-item-counter">#2</span>
+                      <span class="list-item-creator"> opened by JPabelha</span>
+                    </p>
+                  </span>
+                  <span class="d-flex flex-row align-items-center mx-2 row-3">
+                    <h6 class="mb-0 p-1 list-item-label bg-warning">
+                      Iteration 2
+                    </h6>
+                    <span class="list-item-author ml-auto"
+                      ><img
+                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                        alt="@vitorb19"
+                        draggable="false"
+                      />
+                    </span>
+                  </span>
+                </li>
+                <li id="2" class="task-item text-left" draggable="true">
+                  <span class="d-flex flex-row align-items-center ml-2 row-1">
+                    <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
+                    <button
+                      type="button"
+                      class="btn ml-auto d-none edit-task"
+                      data-toggle="modal"
+                      data-target="#edit-task-modal"
+                      data-task-id="2"
+                    >
+                      <i class="fas fa-pencil-alt float-right"></i>
+                    </button>
+                  </span>
+                  <span class="d-flex flex-row align-items-center mx-2 row-2">
+                    <p class="w-100 mb-2">
+                      <span class="list-item-counter">#2</span>
+                      <span class="list-item-creator"> opened by JPabelha</span>
+                    </p>
+                  </span>
+                  <span class="d-flex flex-row align-items-center mx-2 row-3">
+                    <h6 class="mb-0 p-1 list-item-label bg-warning">
+                      Iteration 2
+                    </h6>
+                    <span class="list-item-author ml-auto"
+                      ><img
+                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                        alt="@vitorb19"
+                        draggable="false"
+                      />
+                    </span>
+                  </span>
+                </li>
+                <li id="2" class="task-item text-left" draggable="true">
+                  <span class="d-flex flex-row align-items-center ml-2 row-1">
+                    <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
+                    <button
+                      type="button"
+                      class="btn ml-auto d-none edit-task"
+                      data-toggle="modal"
+                      data-target="#edit-task-modal"
+                      data-task-id="2"
+                    >
+                      <i class="fas fa-pencil-alt float-right"></i>
+                    </button>
+                  </span>
+                  <span class="d-flex flex-row align-items-center mx-2 row-2">
+                    <p class="w-100 mb-2">
+                      <span class="list-item-counter">#2</span>
+                      <span class="list-item-creator"> opened by JPabelha</span>
+                    </p>
+                  </span>
+                  <span class="d-flex flex-row align-items-center mx-2 row-3">
+                    <h6 class="mb-0 p-1 list-item-label bg-warning">
+                      Iteration 2
+                    </h6>
+                    <span class="list-item-author ml-auto"
+                      ><img
+                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                        alt="@vitorb19"
+                        draggable="false"
+                      />
+                    </span>
+                  </span>
+                </li>
+                <li class="add-item-li collapse" id="add-item-Backlog">
+                  <form class="add-item-form form-group">
+                    <div class="form-group text-left">
+                      <label for="item-title">Title</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        class="item-title"
+                        placeholder=""
+                      />
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <button
+                        type="submit"
+                        class="btn btn-primary add-item btn"
+                      >
+                        Submit
+                      </button>
+                      <button
+                        type="reset"
+                        class="btn btn-primary cancel-add-item"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </form>
+                </li>
+              </ul>
+            </div>
+            <!--end of backlog-->
+          </div>
+        </section>
+
+        <!-- Delete list modal -->
+        <div
+          class="modal fade"
+          id="delete-list-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-left">
+                <p>
+                  This action will remove any cards and automation preset
+                  associated with the column.
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  id="delete-list-button"
+                  type="button"
+                  data-dismiss="modal"
+                  class="btn btn-primary btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Edit Task Modal -->
+      <div
+        class="modal fade"
+        id="edit-task-modal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Note</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label
+                    for="recipient-name"
+                    class="col-form-label font-weight-bold"
+                    >Label:</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-task-label"
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                id="edit-task-button"
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+              >
+                Save Note
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Issue -->
+      <div id="side-issue-container">
+        <div id="side-issue">
+          <h1>HELLO</h1>
+        </div>
+      </div>
+      <!--end of main-container can possible be a section in the future-->
     </div>
-    <!--end of main-container can possible be a section in the future-->
+    <!--end of page wrapper-->
+  </body>
 
-  </div>
-  <!--end of page wrapper-->
-</body>
-
+  <script>
+    let sideIssueButtons = document.querySelectorAll(".task-items");
+    [...sideIssueButtons].forEach(elem =>
+      elem.addEventListener("click", function() {
+        document
+          .querySelector(".page-wrapper")
+          .classList.toggle("is-collapsed-right");
+      })
+    );
+  </script>
 </html>
