@@ -546,17 +546,25 @@
   <script>
     let sideIssue = document.querySelector("#side-issue");
     let sideIssueButtons = document.querySelectorAll(".task-item");
+    let pageWrapper = document.querySelector(".page-wrapper");
+
     [...sideIssueButtons].forEach(elem =>
       elem.addEventListener("click", function() {
         let taskID = elem.getAttribute("id");
         let taskTitle = elem.querySelector(".task-title").innerHTML;
+        if (pageWrapper.classList.contains("is-collapsed-right")) {
+          if (taskID !== sideIssue.getAttribute("data-task-id")) {
+            sideIssue.setAttribute("data-task-id", taskID);
+            sideIssue.children[0].innerHTML = taskTitle;
+          } else {
+            pageWrapper.classList.toggle("is-collapsed-right");
+          }
+        } else {
+          sideIssue.setAttribute("data-task-id", taskID);
+          sideIssue.children[0].innerHTML = taskTitle;
 
-        sideIssue.setAttribute("data-task-id", taskID);
-        sideIssue.children[0].innerHTML = taskTitle;
-
-        document
-          .querySelector(".page-wrapper")
-          .classList.toggle("is-collapsed-right");
+          pageWrapper.classList.toggle("is-collapsed-right");
+        }
       })
     );
   </script>
