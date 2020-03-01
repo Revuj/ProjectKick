@@ -294,102 +294,6 @@
                     </span>
                   </span>
                 </li>
-                <li id="2" class="task-item text-left" draggable="true">
-                  <span class="d-flex flex-row align-items-center ml-2 row-1">
-                    <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
-                    <button
-                      type="button"
-                      class="btn ml-auto d-none edit-task"
-                      data-toggle="modal"
-                      data-target="#edit-task-modal"
-                      data-task-id="2"
-                    >
-                      <i class="fas fa-pencil-alt float-right"></i>
-                    </button>
-                  </span>
-                  <span class="d-flex flex-row align-items-center mx-2 row-2">
-                    <p class="w-100 mb-2">
-                      <span class="list-item-counter">#2</span>
-                      <span class="list-item-creator"> opened by JPabelha</span>
-                    </p>
-                  </span>
-                  <span class="d-flex flex-row align-items-center mx-2 row-3">
-                    <h6 class="mb-0 p-1 list-item-label bg-warning">
-                      Iteration 2
-                    </h6>
-                    <span class="list-item-author ml-auto"
-                      ><img
-                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                        alt="@vitorb19"
-                        draggable="false"
-                      />
-                    </span>
-                  </span>
-                </li>
-                <li id="2" class="task-item text-left" draggable="true">
-                  <span class="d-flex flex-row align-items-center ml-2 row-1">
-                    <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
-                    <button
-                      type="button"
-                      class="btn ml-auto d-none edit-task"
-                      data-toggle="modal"
-                      data-target="#edit-task-modal"
-                      data-task-id="2"
-                    >
-                      <i class="fas fa-pencil-alt float-right"></i>
-                    </button>
-                  </span>
-                  <span class="d-flex flex-row align-items-center mx-2 row-2">
-                    <p class="w-100 mb-2">
-                      <span class="list-item-counter">#2</span>
-                      <span class="list-item-creator"> opened by JPabelha</span>
-                    </p>
-                  </span>
-                  <span class="d-flex flex-row align-items-center mx-2 row-3">
-                    <h6 class="mb-0 p-1 list-item-label bg-warning">
-                      Iteration 2
-                    </h6>
-                    <span class="list-item-author ml-auto"
-                      ><img
-                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                        alt="@vitorb19"
-                        draggable="false"
-                      />
-                    </span>
-                  </span>
-                </li>
-                <li id="2" class="task-item text-left" draggable="true">
-                  <span class="d-flex flex-row align-items-center ml-2 row-1">
-                    <h6 class="mb-0 py-2 task-title">A tua mae, vator</h6>
-                    <button
-                      type="button"
-                      class="btn ml-auto d-none edit-task"
-                      data-toggle="modal"
-                      data-target="#edit-task-modal"
-                      data-task-id="2"
-                    >
-                      <i class="fas fa-pencil-alt float-right"></i>
-                    </button>
-                  </span>
-                  <span class="d-flex flex-row align-items-center mx-2 row-2">
-                    <p class="w-100 mb-2">
-                      <span class="list-item-counter">#2</span>
-                      <span class="list-item-creator"> opened by JPabelha</span>
-                    </p>
-                  </span>
-                  <span class="d-flex flex-row align-items-center mx-2 row-3">
-                    <h6 class="mb-0 p-1 list-item-label bg-warning">
-                      Iteration 2
-                    </h6>
-                    <span class="list-item-author ml-auto"
-                      ><img
-                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                        alt="@vitorb19"
-                        draggable="false"
-                      />
-                    </span>
-                  </span>
-                </li>
                 <li class="add-item-li collapse" id="add-item-Backlog">
                   <form class="add-item-form form-group">
                     <div class="form-group text-left">
@@ -535,7 +439,12 @@
       <!-- Sidebar Issue -->
       <div id="side-issue-container">
         <div id="side-issue">
-          <h1>HELLO</h1>
+          <div class="d-flex">
+            <h5 class="font-weight-bold m-3 task-title">HELLO</h5>
+            <button type="button" class="btn ml-auto close-side-issue">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
         </div>
       </div>
       <!--end of main-container can possible be a section in the future-->
@@ -555,17 +464,23 @@
         if (pageWrapper.classList.contains("is-collapsed-right")) {
           if (taskID !== sideIssue.getAttribute("data-task-id")) {
             sideIssue.setAttribute("data-task-id", taskID);
-            sideIssue.children[0].innerHTML = taskTitle;
+            sideIssue.querySelector(".task-title").innerHTML = taskTitle;
           } else {
             pageWrapper.classList.toggle("is-collapsed-right");
           }
         } else {
           sideIssue.setAttribute("data-task-id", taskID);
-          sideIssue.children[0].innerHTML = taskTitle;
+          sideIssue.querySelector(".task-title").innerHTML = taskTitle;
 
           pageWrapper.classList.toggle("is-collapsed-right");
         }
       })
     );
+
+    let closeSideIssueButton = document.querySelector(".close-side-issue");
+    console.log(closeSideIssueButton);
+    closeSideIssueButton.addEventListener("click", event => {
+      pageWrapper.classList.toggle("is-collapsed-right");
+    });
   </script>
 </html>

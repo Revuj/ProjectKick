@@ -109,7 +109,7 @@
 #side-issue-container {
   position: fixed;
   top: 64px;
-  width: 10rem;
+  width: 30rem;
   bottom: 0;
   right: 0;
   transition: all 0.3s ease;
@@ -119,6 +119,14 @@
 }
 
 .is-collapsed-right .main-container {
-  padding-right: 10rem;
+  padding-right: 30rem;
   background: none;
+}
+
+.is-collapsed-right #side-issue-container {
+  z-index: 200;
+}
+
+.close-side-issue:hover {
+  background-color: white;
 }
