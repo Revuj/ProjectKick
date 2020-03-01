@@ -544,9 +544,16 @@
   </body>
 
   <script>
-    let sideIssueButtons = document.querySelectorAll(".task-items");
+    let sideIssue = document.querySelector("#side-issue");
+    let sideIssueButtons = document.querySelectorAll(".task-item");
     [...sideIssueButtons].forEach(elem =>
       elem.addEventListener("click", function() {
+        let taskID = elem.getAttribute("id");
+        let taskTitle = elem.querySelector(".task-title").innerHTML;
+
+        sideIssue.setAttribute("data-task-id", taskID);
+        sideIssue.children[0].innerHTML = taskTitle;
+
         document
           .querySelector(".page-wrapper")
           .classList.toggle("is-collapsed-right");
