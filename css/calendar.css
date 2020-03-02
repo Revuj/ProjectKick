@@ -24,14 +24,10 @@
   padding-left: 0.5rem;
 }
 
-
-
 /*right content*/
 
 .calendar-content {
-  background-color: #fbda57
-
- ;
+  background-color: #fbda57;
 }
 
 .calendar-change-year {
@@ -39,8 +35,7 @@
 }
 
 .calendar-month {
-  border-bottom: 1px solid #ffe8e2
-
+  border-bottom: 1px solid #ffe8e2;
   font-weight: 700;
 }
 
@@ -56,9 +51,6 @@
 
 .calendar-month > li.active {
   background-color: #162b29
-
-
- 
 }
 
 .calendar-week-list {
