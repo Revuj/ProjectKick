@@ -109,16 +109,46 @@
 #side-issue-container {
   position: fixed;
   top: 64px;
-  width: 10rem;
+  width: 30rem;
   bottom: 0;
   right: 0;
   transition: all 0.3s ease;
-  background: violet;
+  background-color: var(--container-item-color);
+  border-left: 1px solid var(--border-color);
   z-index: -200;
   overflow: hidden;
 }
 
 .is-collapsed-right .main-container {
-  padding-right: 10rem;
+  padding-right: 30rem;
   background: none;
+}
+
+.is-collapsed-right #side-issue-container,
+.add-label,
+.add-assignee {
+  z-index: 200;
+}
+
+#side-issue-header button:hover,
+.add-label:hover,
+.add-assignee:hover {
+  background-color: white;
+}
+
+.assignees li,
+.add-label,
+.add-assignee {
+  width: 40px;
+}
+
+.edit-task,
+.close-side-issue {
+  width: 38px;
+  height: 38px;
+}
+
+.due-date-container .change-due-date {
+  background-color: var(--item-color);
+  color: white;
 }
