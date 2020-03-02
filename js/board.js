@@ -7,6 +7,8 @@ let cancel_add_item_button = document.querySelectorAll(".cancel-add-item");
 let delete_list_button = document.querySelector("#delete-list-button");
 let edit_item_buttons = document.querySelectorAll(".edit-task");
 let save_edit_item = document.querySelector("#edit-task-button");
+let side_issue_header = document.querySelector("#side-issue-header");
+let closeSideIssueButton = document.querySelector(".close-side-issue");
 
 const list_items = document.querySelectorAll(".task-item");
 const lists = document.querySelectorAll(".task-items");
@@ -224,6 +226,64 @@ function mouseLeaveListItem(elem) {
 [...list_items].forEach(elem => mouseOverListItem(elem));
 
 [...list_items].forEach(elem => mouseLeaveListItem(elem));
+
+/* Side Issue Related */
+let sideIssue = document.querySelector("#side-issue");
+let sideIssueButtons = document.querySelectorAll(".task-item");
+let pageWrapper = document.querySelector(".page-wrapper");
+let title = side_issue_header.querySelector(".task-title");
+let editTitleFrom = side_issue_header.querySelector(".edit-issue-title-form");
+let cancelEditTitleButton = side_issue_header.querySelector(
+  ".edit-item-title-cancel"
+);
+
+mouseOverListItem(side_issue_header);
+mouseLeaveListItem(side_issue_header);
+
+side_issue_header
+  .querySelector(".edit-task")
+  .addEventListener("click", event => {
+    editTitleFrom.querySelector("input").value = title.innerHTML;
+    title.classList.toggle("d-none");
+    editTitleFrom.classList.toggle("d-none");
+    side_issue_header.querySelector("p").classList.toggle("d-none");
+  });
+
+closeSideIssueButton.addEventListener("click", event => {
+  pageWrapper.classList.toggle("is-collapsed-right");
+  title.classList.toggle("d-none");
+  editTitleFrom.classList.toggle("d-none");
+  side_issue_header.querySelector("p").classList.toggle("d-none");
+});
+
+cancelEditTitleButton.addEventListener("click", event => {
+  title.classList.toggle("d-none");
+  editTitleFrom.classList.toggle("d-none");
+  side_issue_header.querySelector("p").classList.toggle("d-none");
+});
+
+[...sideIssueButtons].forEach(elem =>
+  elem.addEventListener("click", function() {
+    let taskID = elem.getAttribute("id");
+    let taskTitle = elem.querySelector(".task-title").innerHTML;
+    if (pageWrapper.classList.contains("is-collapsed-right")) {
+      title.classList.remove("d-none");
+      editTitleFrom.classList.add("d-none");
+      side_issue_header.querySelector("p").classList.remove("d-none");
+      if (taskID !== sideIssue.getAttribute("data-task-id")) {
+        sideIssue.setAttribute("data-task-id", taskID);
+        sideIssue.querySelector(".task-title").innerHTML = taskTitle;
+      } else {
+        pageWrapper.classList.toggle("is-collapsed-right");
+      }
+    } else {
+      sideIssue.setAttribute("data-task-id", taskID);
+      sideIssue.querySelector(".task-title").innerHTML = taskTitle;
+
+      pageWrapper.classList.toggle("is-collapsed-right");
+    }
+  })
+);
 
 /*general functions */
 
