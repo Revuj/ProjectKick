@@ -205,6 +205,7 @@ class Calendar {
         });
 
 
+        /*
         this.elements.eventAddBtn.addEventListener('click', e => {
             let fieldValue = this.elements.eventField.value;
             if (!fieldValue) return false;
@@ -214,7 +215,7 @@ class Calendar {
             //do json.stringify para a  storage
             this.elements.eventField.value = '';
             this.drawAll()
-        });
+        });*/
 
 
     }
