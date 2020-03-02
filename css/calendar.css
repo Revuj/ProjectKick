@@ -6,21 +6,6 @@
 
 .event-manager {
   background: #162b29
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   ;
   overflow: hidden;
   height: calc(100vh - 80px);
@@ -46,18 +31,7 @@
 .calendar-content {
   background-color: #fbda57
 
-
-
-
-
-
-
-
-
-
-
-
-  ;
+ ;
 }
 
 .calendar-change-year {
