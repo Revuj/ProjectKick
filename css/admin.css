@@ -1,0 +1,16 @@
+
+
+#chartdiv {
+    margin: auto;
+    width: 85%;
+    height: 30rem;
+    max-height: 40rem;
+    box-shadow: var(--primary-shadow);
+    padding: 2rem;
+
+}
+
+.graph-item {
+    margin: 3rem 0;
+    box-shadow: var(--primary-shadow);
+}
