@@ -1,0 +1,54 @@
+.main-container {
+  margin-top: 2rem;
+}
+
+#issue button:hover,
+.add-label:hover,
+.add-assignee:hover {
+  background: var(--background-hover);
+  color: white;
+}
+
+.assignees li,
+.add-label,
+.add-assignee,
+.comment-author {
+  width: 40px;
+  height: 40px;
+}
+
+.assignees li img,
+.list-item-label {
+  border-radius: 5px;
+}
+
+.edit-task,
+.close-side-issue {
+  width: 38px;
+  height: 38px;
+}
+
+.due-date-container .change-due-date {
+  background-color: var(--item-color);
+  color: white;
+}
+
+.issue-status {
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+}
+
+.task-title {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.comment-author {
+  border-radius: 5px;
+}
+
+#new-comment {
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: white;
+}
