@@ -3,9 +3,12 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap");
 
 html {
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box;         /* Opera/IE 8+ */
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
   font-size: 16px;
   height: 100%;
 }
@@ -40,7 +43,8 @@ td {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  table-layout: fixed; /*same column width*/
+  table-layout: fixed;
+  /*same column width*/
 }
 
 body,
@@ -142,13 +146,13 @@ body {
 }
 
 .white-text {
-  color:white;
+  color: white;
 }
 
 .custom-button {
-    background-color: var(--primary-color);
-    padding:0.5rem;
-    border-radius: 0.25rem;
+  background-color: var(--primary-color);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 /*button animation number 1*/
@@ -165,32 +169,41 @@ body {
   0% {
     transform: rotate(0deg) translate3d(0, 0, 0);
   }
+
   25% {
     transform: rotate(3deg) translate3d(0, 0, 0);
   }
+
   50% {
     transform: rotate(-3deg) translate3d(0, 0, 0);
   }
+
   75% {
     transform: rotate(1deg) translate3d(0, 0, 0);
   }
+
   100% {
     transform: rotate(0deg) translate3d(0, 0, 0);
   }
 }
+
 @keyframes storm {
   0% {
     transform: translate3d(0, 0, 0) translateZ(0);
   }
+
   25% {
     transform: translate3d(4px, 0, 0) translateZ(0);
   }
+
   50% {
     transform: translate3d(-3px, 0, 0) translateZ(0);
   }
+
   75% {
     transform: translate3d(2px, 0, 0) translateZ(0);
   }
+
   100% {
     transform: translate3d(0, 0, 0) translateZ(0);
   }
@@ -233,7 +246,7 @@ body {
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%) scale3d(1, 1, 1);
-          transform: translate(-50%, -50%) scale3d(1, 1, 1);
+  transform: translate(-50%, -50%) scale3d(1, 1, 1);
   -webkit-transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
@@ -264,34 +277,45 @@ body {
 }
 
 
-.inputGroup input:checked ~ label {
+.inputGroup input:checked~label {
   color: #fff;
 }
 
-.inputGroup input:checked ~ label:before {
+.inputGroup input:checked~label:before {
   -webkit-transform: translate(-50%, -50%) scale3d(56, 56, 1);
   transform: translate(-50%, -50%) scale3d(56, 56, 1);
   opacity: 1;
 }
 
 
-.inputGroup input:checked ~ label:after {
+.inputGroup input:checked~label:after {
   background-color: #54E0C7;
   border-color: #54E0C7;
 }
+
 .inputGroup input {
   width: 32px;
   height: 32px;
   -webkit-box-ordinal-group: 2;
-          order: 1;
+  order: 1;
   z-index: 2;
   position: absolute;
   right: 30px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   cursor: pointer;
   visibility: hidden;
+}
+
+.btn-white {
+  color: var(--primary-color);
+  background-color: #fff;
+  border: 1px solid var(--secondary-color);
+}
+
+.btn-white:hover {
+  color: var(--secondary-color);
 }
 
 /*button animation number 2

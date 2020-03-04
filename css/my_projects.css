@@ -1,12 +1,5 @@
 @import url("global.css");
 
-.btn-white {
-  color: #555;
-  background-color: #fff;
-  border: 1px solid black;
-  color: #555;
-}
-
 .main_header_base {
   width: 100%;
 }

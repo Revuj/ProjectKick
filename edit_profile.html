@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Kick | Profile</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+
+  <link rel="stylesheet" href="./css/profile.css" />
+  <link rel="stylesheet" href="./css/navbar.css">
+</head>
+
+<body>
+  <div class="page-wrapper h-100 is-collapsed">
+    <nav class="top-navbar">
+      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
+        <div class="logo">
+          <h4 class="py-3 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
+        </div>
+        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+          <li class="px-5 utility ml-3 notification mb-0">
+            <a href="#"><i class="fas fa-bell"></i></a>
+            <span class="num">4</span>
+            <div class="notification-dropdown">
+              <h6 class="notification-title text-center">notifications</h6>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
+                </div>
+                <div class="notify_info">
+                  <p>Alex commented on the<span>Task Share</span></p>
+                  <span class="notify_time">10 minutes ago</span>
+                </div>
+              </div>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
+                </div>
+                <div class="notify_info">
+                  <p>Alex commented on the<span>Task Share</span></p>
+                  <span class="notify_time">10 minutes ago</span>
+                </div>
+              </div>
+              <div class="notify_item clickable">
+                More(2) ...
+              </div>
+            </div>
+          </li>
+          <!--profile-->
+          <li class="px-2 utility ml-3 mb-0 ">
+            <a href="#"><i class="fas fa-user"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <nav class="sidebar-menu">
+      <ul>
+        <li class="hamburger side-menu-item">
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+        </li>
+        <li class="side-menu-item"><a href="#">
+            <span class="m-2"><i class="fas fa-book"></i></span>
+            <span class="side-menu-item-title">My Work</span>
+          </a>
+        </li>
+        <li class="side-menu-item"><a href="#">
+            <span class="m-2"><i class="far fa-folder"></i></span>
+            <span class="side-menu-item-title">Projects</span>
+          </a>
+        </li>
+        <li class="side-menu-item"><a href="#">
+            <span class="m-2"><i class="fas fa-columns"></i></span>
+            <span class="side-menu-item-title">Panels</span>
+          </a>
+        </li>
+        <li class="side-menu-item"><a href="#" class="active">
+            <span class="m-2"><i class="fas fa-filter"></i></span>
+            <span class="side-menu-item-title">Filters</span>
+          </a>
+        </li>
+        <li class="side-menu-item"><a href="#">
+            <span class="m-2"><i class="fas fa-user-friends"></i></span>
+            <span class="side-menu-item-title">Users</span>
+          </a>
+        </li>
+        <li class="side-menu-item"><a href="#">
+            <span class="m-2"><i class="fas fa-cogs"></i></span>
+            <span class="side-menu-item-title">Settings</span>
+          </a>
+        </li>
+        <li class="side-menu-item"><a href="#">
+            <span class="m-2"><i class="fas fa-exclamation-triangle"></i></i></span>
+            <span class="side-menu-item-title">Urgent</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="main-container container-fluid" id="my_projects">
+      <div class="main-content-container container-fluid px-4">
+        <!-- Page Header -->
+        <div class="page-header row no-gutters py-4">
+          <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+            <h1 class="page-title">User Profile</h1>
+          </div>
+        </div>
+        <!-- End Page Header -->
+        <!-- Default Light Table -->
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card card-small mb-4">
+              <div class="card-header border-bottom text-center">
+                <div class="mb-3 mx-auto">
+                  <img class="rounded-circle" src="assets/profile.png" alt="User Avatar" width="110"> </div>
+                <h4 class="mb-0">Sierra Brooks</h4>
+                <span class="text-muted d-block mb-2">Porto, Portugal</span>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item p-4">
+                  <strong class="text-muted d-block mb-2">Description</strong>
+                  <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui
+                    quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
+                </li>
+                <li class="list-group-item p-4">
+                  <div class="d-flex justify-content-left mb-2">
+                    <span class="mr-1 badge" style="background-color: rgb(10, 214, 250); color:white;">html</span>
+                    <span class="mr-1 badge" style="background-color: rgb(174, 10, 250); color:white;">html</span>
+                    <span class="mr-1 badge" style="background-color: rgb(166, 250, 10); color:white;">html</span>
+                  </div>
+                  <button class="btn btn-white">
+                    <i class="fa fa-tag mr--small"></i>
+                    <span>Add Tag</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card card-small mb-4">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item p-3">
+                  <div class="row">
+                    <div class="col">
+                      <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="feFirstName">First Name</label>
+                            <input type="text" class="form-control" id="feFirstName" placeholder="First Name"
+                              value="Sierra"> </div>
+                          <div class="form-group col-md-6">
+                            <label for="feLastName">Last Name</label>
+                            <input type="text" class="form-control" id="feLastName" placeholder="Last Name"
+                              value="Brooks"> </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="feEmail">Email</label>
+                            <input type="text" class="form-control" id="feEmail" placeholder="Email"
+                              value="sierra@example.com"> </div>
+                          <div class="form-group col-md-6">
+                            <label for="fePhone">Phone</label>
+                            <input type="text" class="form-control" id="fePhone" placeholder="Phone"
+                              value="91299239213"> </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="fePassword">Password</label>
+                            <input type="password" class="form-control" id="fePassword" placeholder="Password"> </div>
+                          <div class="form-group col-md-6">
+                            <label for="feConfirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="feConfirmPassword"
+                              placeholder="Confirm Password"> </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="feInputCity">City</label>
+                            <input type="text" class="form-control" id="feInputCity" placeholder="City" value="Porto">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="feCountry">Country</label>
+                            <input type="text" class="form-control" id="feCountry" placeholder="Country"
+                              value="Portugal">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-12">
+                            <label for="feDescription">Description</label>
+                            <textarea class="form-control" name="feDescription"
+                              rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea>
+                          </div>
+                        </div>
+                        <div class="float-right">
+                          <button type="button" class="btn btn-white" data-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-success">Update</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- End Default Light Table -->
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
