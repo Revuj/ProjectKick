@@ -1,1 +1,6 @@
 @import url("global.css");
+
+.pmd-list-subtitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
