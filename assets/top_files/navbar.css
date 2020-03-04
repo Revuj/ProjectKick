@@ -46,7 +46,7 @@
   box-shadow: 0 1px 1px var(--primary-shadow);
 }
 
-.utility > a {
+.utility>a {
   display: block;
   margin: 0 10px;
   width: 35px;
@@ -58,7 +58,7 @@
   color: var(--primary-color);
 }
 
-.utility > a:hover {
+.utility>a:hover {
   background: var(--primary-color);
   color: #fff;
 }
@@ -71,7 +71,7 @@
   position: relative;
 }
 
-.notification > .num {
+.notification>.num {
   position: absolute;
   top: 0rem;
   left: 2.5rem;
@@ -95,7 +95,7 @@
   color: var(--secondary-color);
 }
 
-.side-menu-item > a {
+.side-menu-item>a {
   position: relative;
   margin-bottom: 1px;
   color: var(--secondary-color);
@@ -104,7 +104,7 @@
   padding: 20px;
 }
 
-.side-menu-item > a:before {
+.side-menu-item>a:before {
   content: "";
   position: absolute;
   top: 0;
@@ -115,14 +115,15 @@
   display: none;
 }
 
-.side-menu-item > a:hover,
-.side-menu-item > a.active {
+.side-menu-item>a:hover,
+.side-menu-item>a.active {
   background: var(--primary-gradient);
   color: #fff;
   text-decoration: none;
 }
-.side-menu-item > a:hover:before,
-.side-menu-item > a.active:before {
+
+.side-menu-item>a:hover:before,
+.side-menu-item>a.active:before {
   display: block;
 }
 
