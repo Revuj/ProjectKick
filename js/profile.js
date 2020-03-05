@@ -11,7 +11,8 @@ const task = new Chart(document.getElementById('doughnut-chart-task'), {
     title: {
       display: true,
       text: 'Tasks'
-    }
+    },
+    responsive: true
   }
 });
 
