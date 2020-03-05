@@ -1,14 +1,45 @@
-#main-nav {
-  background-color: #e9ecef;
+#main-nav,
+#preview {
+  background-color: var(--secondary-color);
+}
+
+#main-nav a {
+  color: var(--primary-color);
 }
 
 #main-page-body {
   background: rgb(255, 255, 255);
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 1) 52%,
-    rgba(211, 230, 244, 1) 70%,
-    rgba(37, 97, 138, 1) 89%,
-    rgba(82, 24, 103, 1) 100%
+    rgba(255, 255, 255, 1) 0%,
+    rgba(237, 245, 225, 1) 79%,
+    rgba(92, 219, 149, 1) 88%
   );
+}
+
+#main-title {
+  color: var(--primary-color);
+}
+
+#description h1 {
+  color: white;
+}
+
+#description button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+#description button:hover {
+  background-color: #edf5e1;
+  color: var(--primary-color);
+}
+
+.container:nth-last-child(2) {
+  margin-bottom: 20rem;
+}
+
+footer {
+  color: white;
+  padding-bottom: 5rem;
 }

@@ -12,7 +12,7 @@
 
 .hamburger {
   height: 100%;
-  background: var(--primary-color);
+  background: #05386b;
   padding: 1rem;
   cursor: pointer;
 }
@@ -32,7 +32,7 @@
 }
 
 .logo {
-  color: var(--primary-color);
+  color: #05386b;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -53,13 +53,13 @@
   height: 35px;
   line-height: 35px;
   text-align: center;
-  border: 1px solid var(--primary-color);
+  border: 1px solid #05386b;
   border-radius: 50%;
-  color: var(--primary-color);
+  color: #05386b;
 }
 
 .utility > a:hover {
-  background: var(--primary-color);
+  background: #05386b;
   color: #fff;
 }
 
@@ -88,7 +88,7 @@
 .sidebar-menu {
   position: fixed;
   top: 0rem;
-  background: var(--primary-color);
+  background: #05386b;
   width: 5rem;
   height: 100%;
   transition: all 0.3s ease;
