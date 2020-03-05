@@ -1,6 +1,7 @@
 /*some resets*/
 
 @import url("https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Oxanium&display=swap");
 
 html {
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -147,6 +148,13 @@ body {
   background-color: var(--primary-color);
   padding: 0.5rem;
   border-radius: 0.25rem;
+  text-transform: uppercase;
+  font-family: Oxanium;
+}
+
+button {
+  text-transform: uppercase;
+  font-family: Oxanium;
 }
 
 /*button animation number 1*/

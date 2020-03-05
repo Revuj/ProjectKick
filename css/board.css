@@ -111,11 +111,11 @@
   top: 64px;
   width: 30rem;
   bottom: 0;
-  right: 0;
+  right: -30rem;
   transition: all 0.3s ease;
   background-color: var(--container-item-color);
   border-left: 1px solid var(--border-color);
-  z-index: -200;
+  z-index: 200;
   overflow: hidden;
 }
 
@@ -127,7 +127,7 @@
 .is-collapsed-right #side-issue-container,
 .add-label,
 .add-assignee {
-  z-index: 200;
+  right: 0;
 }
 
 #side-issue-header button:hover,
