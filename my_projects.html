@@ -464,4 +464,21 @@
   </div>
 </body>
 
+<script>
+  document.querySelector(".hamburger").addEventListener("click", function () {
+    document.querySelector(".page-wrapper").classList.toggle("is-collapsed");
+  });
+
+  document
+    .querySelector(".notification")
+    .addEventListener("click", function () {
+      console.log(document.querySelector(".notification").classList);
+
+      document
+        .querySelector(".notification-dropdown")
+        .classList.toggle("display-block");
+    });
+</script>
+
+
 </html>

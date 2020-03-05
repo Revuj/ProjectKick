@@ -33,7 +33,7 @@
     <nav class="top-navbar">
       <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
         <div class="logo">
-          <h4 class="py-3 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
+          <h4 class="mb-0 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
         </div>
         <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
           <li class="px-5 utility ml-3 notification mb-0">
@@ -255,5 +255,20 @@
     </div>
   </div>
 </body>
+<script>
+  document.querySelector(".hamburger").addEventListener("click", function () {
+    document.querySelector(".page-wrapper").classList.toggle("is-collapsed");
+  });
+
+  document
+    .querySelector(".notification")
+    .addEventListener("click", function () {
+      console.log(document.querySelector(".notification").classList);
+
+      document
+        .querySelector(".notification-dropdown")
+        .classList.toggle("display-block");
+    });
+</script>
 
 </html>
