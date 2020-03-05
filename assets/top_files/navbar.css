@@ -121,6 +121,7 @@
   color: #fff;
   text-decoration: none;
 }
+
 .side-menu-item > a:hover:before,
 .side-menu-item > a.active:before {
   display: block;

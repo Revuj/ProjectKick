@@ -40,7 +40,8 @@ td {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  table-layout: fixed; /*same column width*/
+  table-layout: fixed;
+  /*same column width*/
 }
 
 body,
@@ -143,7 +144,7 @@ body {
 }
 
 .custom-button {
-  background-color: #05386b;
+  background-color: var(--primary-color);
   padding: 0.5rem;
   border-radius: 0.25rem;
 }
@@ -162,32 +163,41 @@ body {
   0% {
     transform: rotate(0deg) translate3d(0, 0, 0);
   }
+
   25% {
     transform: rotate(3deg) translate3d(0, 0, 0);
   }
+
   50% {
     transform: rotate(-3deg) translate3d(0, 0, 0);
   }
+
   75% {
     transform: rotate(1deg) translate3d(0, 0, 0);
   }
+
   100% {
     transform: rotate(0deg) translate3d(0, 0, 0);
   }
 }
+
 @keyframes storm {
   0% {
     transform: translate3d(0, 0, 0) translateZ(0);
   }
+
   25% {
     transform: translate3d(4px, 0, 0) translateZ(0);
   }
+
   50% {
     transform: translate3d(-3px, 0, 0) translateZ(0);
   }
+
   75% {
     transform: translate3d(2px, 0, 0) translateZ(0);
   }
+
   100% {
     transform: translate3d(0, 0, 0) translateZ(0);
   }
@@ -270,6 +280,7 @@ body {
   background-color: #54e0c7;
   border-color: #54e0c7;
 }
+
 .inputGroup input {
   width: 32px;
   height: 32px;
@@ -283,6 +294,16 @@ body {
   transform: translateY(-50%);
   cursor: pointer;
   visibility: hidden;
+}
+
+.btn-white {
+  color: var(--primary-color);
+  background-color: #fff;
+  border: 1px solid var(--secondary-color);
+}
+
+.btn-white:hover {
+  color: var(--secondary-color);
 }
 
 /*button animation number 2
