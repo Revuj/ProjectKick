@@ -53,3 +53,25 @@ const activity = new Chart(document.getElementById('bar-chart-activity'), {
     }
   }
 });
+
+const edit_button = document.querySelector('.edit-button');
+const cancel_button = document.querySelector('#update');
+const update_button = document.querySelector('#cancel');
+const edit_container = document.getElementById('edit');
+const details_container = document.getElementById('details');
+
+edit_button.addEventListener('click', event => {
+  event.preventDefault();
+  if (edit_container.classList.contains('d-none')) {
+    edit_container.classList.toggle('d-none');
+    details_container.classList.toggle('d-none');
+  }
+});
+
+[cancel_button, update_button].forEach(elem => elem.addEventListener('click', event => {
+  event.preventDefault();
+  if (details_container.classList.contains('d-none')) {
+    edit_container.classList.toggle('d-none');
+    details_container.classList.toggle('d-none');
+  }
+}));

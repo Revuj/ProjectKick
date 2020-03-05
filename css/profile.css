@@ -4,3 +4,7 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+.edit-button {
+  background-color: rgba(0, 0, 0, .03);
+}
