@@ -22,3 +22,80 @@
   border-color: var(--secondary-color);
   background-color: var(--secondary-color);
 }
+
+.assignees li {
+  width: 40px;
+  height: 40px;
+}
+
+#issue button:hover,
+.add-label:hover,
+.add-assignee:hover {
+  background: white;
+}
+
+.due-date-container .change-due-date {
+  background-color: var(--item-color);
+  color: white;
+}
+
+.issue-type-counter {
+  background-color: rgb(143, 143, 143);
+  color: white;
+  padding: 0 2px;
+  border-radius: 5px;
+}
+
+.issue {
+  transition: all 0.3s ease;
+}
+
+.issue:hover {
+  background-color: var(--background-hover);
+}
+
+#side-issue-container {
+  position: fixed;
+  top: 64px;
+  width: 20rem;
+  bottom: 0;
+  right: -20rem;
+  transition: all 0.3s ease;
+  background-color: var(--container-item-color);
+  border-left: 1px solid var(--border-color);
+  z-index: 200;
+  overflow: hidden;
+}
+.is-collapsed-right .main-container {
+  padding-right: 15rem;
+  background: none;
+}
+
+.is-collapsed-right #side-issue-container,
+.add-label,
+.add-assignee {
+  right: 0;
+}
+
+#side-issue-header button:hover,
+.add-label:hover,
+.add-assignee:hover {
+  background-color: white;
+}
+
+#side-issue-container .assignees li,
+#side-issue-container .add-label,
+#side-issue-container .add-assignee {
+  width: 40px;
+}
+
+.edit-task,
+.close-side-issue {
+  width: 38px;
+  height: 38px;
+}
+
+.due-date-container .change-due-date {
+  background-color: var(--item-color);
+  color: white;
+}
