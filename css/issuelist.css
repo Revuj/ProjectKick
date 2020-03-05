@@ -1,0 +1,24 @@
+#issues-types li {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid white;
+}
+
+#issues-types li:first-of-type {
+  border-bottom: 3px solid var(--primary-color);
+}
+
+#issues-types li:hover {
+  border-bottom: 3px solid var(--secondary-color);
+}
+
+#filter-buttons button {
+  background-color: var(--primary-color);
+}
+
+#filter-buttons button:hover {
+  border-color: var(--secondary-color);
+  background-color: var(--secondary-color);
+}
