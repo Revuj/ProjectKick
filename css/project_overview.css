@@ -1,0 +1,10 @@
+.project-title {
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.members li {
+  width: 40px;
+  height: 40px;
+}
