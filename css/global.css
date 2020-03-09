@@ -4,9 +4,12 @@
 @import url("https://fonts.googleapis.com/css?family=Oxanium&display=swap");
 
 html {
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box; /* Opera/IE 8+ */
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
   font-size: 16px;
   height: 100%;
 }
@@ -83,7 +86,8 @@ img {
   --container-item-color: rgb(250, 250, 250);
   --item-color: #778899;
   --primary-color: #05386b;
-  --secondary-color: #5cdb95;
+  --accent-color: #5cdb95;
+  --secondary-color: #51a4f7;
   --background-hover: #e9ecef;
 }
 
@@ -274,17 +278,17 @@ button {
   transition: all 500ms ease-in;
 }
 
-.inputGroup input:checked ~ label {
+.inputGroup input:checked~label {
   color: #fff;
 }
 
-.inputGroup input:checked ~ label:before {
+.inputGroup input:checked~label:before {
   -webkit-transform: translate(-50%, -50%) scale3d(56, 56, 1);
   transform: translate(-50%, -50%) scale3d(56, 56, 1);
   opacity: 1;
 }
 
-.inputGroup input:checked ~ label:after {
+.inputGroup input:checked~label:after {
   background-color: #54e0c7;
   border-color: #54e0c7;
 }
@@ -304,14 +308,34 @@ button {
   visibility: hidden;
 }
 
+.btn-success {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.btn-success:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
 .btn-white {
   color: var(--primary-color);
   background-color: #fff;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--accent-color);
 }
 
 .btn-white:hover {
-  color: var(--secondary-color);
+  color: var(--accent-color);
 }
 
 /*button animation number 2

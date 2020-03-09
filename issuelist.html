@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <script src="./js/issueslist.js" defer></script>
+  <script src="./js/issueslist.js" defer></script>
 
 
 </head>
@@ -49,7 +49,7 @@
             <a href="#"><i class="fas fa-bell"></i></a>
             <span class="num">4</span>
             <div class="notification-dropdown">
-              <h6 class = "notification-title text-center">notifications</h6>
+              <h6 class="notification-title text-center">notifications</h6>
               <div class="notify_item clickable">
                 <div class="notify_img">
                   <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
@@ -147,10 +147,12 @@
         <div id="filter-issues" class="border-bottom py-3 my-0">
           <form class="d-flex justify-content-between">
             <div class="form-group mb-0 flex-grow-1 mx-2">
-              <input type="text" class="form-control" name="issues-filter" id="issues-filter" placeholder="Search or filter results...">
+              <input type="text" class="form-control" name="issues-filter" id="issues-filter"
+                placeholder="Search or filter results...">
             </div>
             <div id="filter-buttons" class="">
-              <button type="submit" class="btn btn-primary mx-1">Filters<i class="fas fa-chevron-down ml-3"></i></button>
+              <button type="submit" class="btn btn-primary mx-1">Filters<i
+                  class="fas fa-chevron-down ml-3"></i></button>
               <button type="submit" class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></button>
             </div>
           </form>
@@ -183,18 +185,12 @@
             <div class="assignees-container col-md-4 text-center">
               <ul class="assignees d-flex align-items-center justify-content-center">
                 <li class="mr-2">
-                  <img
-                    src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                    alt="@vitorb19"
-                    draggable="false"
-                  />
+                  <img src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4" alt="@vitorb19"
+                    draggable="false" />
                 </li>
                 <li class="mr-2">
-                  <img
-                    src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                    alt="@vitorb19"
-                    draggable="false"
-                  />
+                  <img src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19"
+                    draggable="false" />
                 </li>
                 <li>
                   <button type="button" class="btn add-assignee">
@@ -203,7 +199,7 @@
                 </li>
               </ul>
             </div>
-            <div class="due-date-container col-md-4 text-right">  
+            <div class="due-date-container col-md-4 text-right">
               <button type="button" class="btn change-due-date">
                 <i class="far fa-clock mr-2"></i>Feb 29
               </button>
@@ -237,11 +233,8 @@
             <div class="assignees-container col-md-4 text-center">
               <ul class="assignees d-flex align-items-center justify-content-center">
                 <li class="mr-2">
-                  <img
-                    src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                    alt="@vitorb19"
-                    draggable="false"
-                  />
+                  <img src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19"
+                    draggable="false" />
                 </li>
                 <li>
                   <button type="button" class="btn add-assignee">
@@ -250,7 +243,7 @@
                 </li>
               </ul>
             </div>
-            <div class="due-date-container col-md-4 text-right">  
+            <div class="due-date-container col-md-4 text-right">
               <button type="button" class="btn change-due-date">
                 <i class="far fa-clock mr-2"></i>Feb 29
               </button>
@@ -278,120 +271,101 @@
             </div>
             <div class="assignees-container col-md-4 text-center">
               <ul class="assignees d-flex align-items-center justify-content-center">
-                  <button type="button" class="btn add-assignee">
-                    Assign a member
-                    <i class="fas fa-plus ml-2"></i>
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <div class="due-date-container col-md-4 text-right">  
-              <button type="button" class="btn change-due-date">
-                <i class="far fa-clock mr-2"></i>Add a due date
-              </button>
-            </div>
-          </div>
+                <button type="button" class="btn add-assignee">
+                  Assign a member
+                  <i class="fas fa-plus ml-2"></i>
+                </button>
         </li>
       </ul>
-       <!-- Sidebar Issue -->
-       <div id="side-issue-container">
-        <div id="side-issue" class="d-flex flex-column h-100 mx-3 py-3">
-          <div id="side-issue-header" class="border-bottom mb-3">
-            <div class="d-flex align-items-start">
-              <h4 class="task-title mr-auto">HELLO</h4>
-              <form class="edit-issue-title-form form-group d-none mr-auto">
-                <div class="form-group text-left">
-                  <input
-                    type="text"
-                    class="form-control"
-                    class="item-title"
-                    placeholder=""
-                  />
-                </div>
-                <div class="d-flex justify-content-between">
-                  <button
-                    type="submit"
-                    class="btn btn-primary edit-item-title btn"
-                  >
-                    Submit
-                  </button>
-                  <button
-                    type="reset"
-                    class="btn btn-primary edit-item-title-cancel"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-              <button type="button" class="btn d-none edit-task mr-1">
-                <i class="fas fa-pencil-alt float-right"></i>
+    </div>
+    <div class="due-date-container col-md-4 text-right">
+      <button type="button" class="btn change-due-date">
+        <i class="far fa-clock mr-2"></i>Add a due date
+      </button>
+    </div>
+  </div>
+  </li>
+  </ul>
+  <!-- Sidebar Issue -->
+  <div id="side-issue-container">
+    <div id="side-issue" class="d-flex flex-column h-100 mx-3 py-3">
+      <div id="side-issue-header" class="border-bottom mb-3">
+        <div class="d-flex align-items-start">
+          <h4 class="task-title mr-auto">HELLO</h4>
+          <form class="edit-issue-title-form form-group d-none mr-auto">
+            <div class="form-group text-left">
+              <input type="text" class="form-control" class="item-title" placeholder="" />
+            </div>
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary edit-item-title btn">
+                Submit
               </button>
-              <button type="button" class="btn close-side-issue">
-                <i class="fas fa-times"></i>
+              <button type="reset" class="btn btn-primary edit-item-title-cancel">
+                Cancel
               </button>
             </div>
-            <p class="w-100">
-              #1 Opened by Revuj
-            </p>
-          </div>
-          <div class="assignees-container">
-            <h6 class="block pb-2">Assignees</h6>
-            <ul class="assignees d-flex align-items-center">
-              <li class="mr-2">
-                <img
-                  src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
-                />
-              </li>
-              <li class="mr-2">
-                <img
-                  src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
-                />
-              </li>
-              <li>
-                <button type="button" class="btn add-assignee">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </li>
-            </ul>
-          </div>
-          <div class="labels-container">
-            <h6 class="block">Labels</h6>
-            <ul class="labels d-flex align-items-center">
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-info">
-                  Iteration 1
-                </h6>
-              </li>
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-warning">
-                  Iteration 2
-                </h6>
-              </li>
-              <li>
-                <button type="button" class="btn add-label">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </li>
-            </ul>
-          </div>
-          <div class="due-date-container">
-            <h6 class="block pb-2">Due Date</h6>
-
-            <button type="button" class="btn change-due-date">
-              <i class="far fa-clock mr-2"></i>Feb 29
-            </button>
-          </div>
-          <button type="button" class="btn btn-danger delete-issue mt-auto">
-            Delete
+          </form>
+          <button type="button" class="btn d-none edit-task mr-1">
+            <i class="fas fa-pencil-alt float-right"></i>
+          </button>
+          <button type="button" class="btn close-side-issue">
+            <i class="fas fa-times"></i>
           </button>
         </div>
+        <p class="w-100">
+          #1 Opened by Revuj
+        </p>
       </div>
+      <div class="assignees-container">
+        <h6 class="block pb-2">Assignees</h6>
+        <ul class="assignees d-flex align-items-center">
+          <li class="mr-2">
+            <img src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4" alt="@vitorb19" draggable="false" />
+          </li>
+          <li class="mr-2">
+            <img src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19" draggable="false" />
+          </li>
+          <li>
+            <button type="button" class="btn add-assignee">
+              <i class="fas fa-plus"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="labels-container">
+        <h6 class="block">Labels</h6>
+        <ul class="labels d-flex align-items-center">
+          <li class="mr-2">
+            <h6 class="mb-0 p-1 list-item-label bg-info">
+              Iteration 1
+            </h6>
+          </li>
+          <li class="mr-2">
+            <h6 class="mb-0 p-1 list-item-label bg-warning">
+              Iteration 2
+            </h6>
+          </li>
+          <li>
+            <button type="button" class="btn add-label">
+              <i class="fas fa-plus"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="due-date-container">
+        <h6 class="block pb-2">Due Date</h6>
+
+        <button type="button" class="btn change-due-date">
+          <i class="far fa-clock mr-2"></i>Feb 29
+        </button>
+      </div>
+      <button type="button" class="btn btn-danger delete-issue mt-auto">
+        Delete
+      </button>
     </div>
-    <!--end of main-container can possible be a section in the future-->
+  </div>
+  </div>
+  <!--end of main-container can possible be a section in the future-->
 
   </div>
   <!--end of page wrapper-->
@@ -406,8 +380,6 @@
 
       document.querySelector('.notification-dropdown').classList.toggle('display-block')
     })
-
-
   </script>
 
 </body>

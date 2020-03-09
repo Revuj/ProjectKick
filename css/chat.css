@@ -15,9 +15,9 @@
   line-height: 20px;
   border-radius: 50%;
   text-align: center;
-  border: 2px solid var(--secondary-color);
+  border: 2px solid var(--accent-color);
   font-weight: bold;
-  background-color: var(--secondary-color);
+  background-color: var(--accent-color);
   color: var(--text-color);
   font-size: 13px;
   float: right;
@@ -34,7 +34,7 @@
 }
 
 .incoming_msg_img {
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--accent-color);
   border-radius: 50%;
   display: inline-block;
   width: 6%;
@@ -68,7 +68,7 @@
 }
 
 .sent_msg p {
-  background: var(--secondary-color) none repeat scroll 0 0;
+  background: var(--accent-color) none repeat scroll 0 0;
   font-size: 14px;
   margin: 0;
   color: #fff;

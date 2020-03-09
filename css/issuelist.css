@@ -11,7 +11,7 @@
 }
 
 #issues-types li:hover {
-  border-bottom: 3px solid var(--secondary-color);
+  border-bottom: 3px solid var(--accent-color);
 }
 
 #filter-buttons button {
@@ -19,8 +19,8 @@
 }
 
 #filter-buttons button:hover {
-  border-color: var(--secondary-color);
-  background-color: var(--secondary-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
 }
 
 .assignees li {

@@ -61,12 +61,12 @@
 }
 
 .utility > a:hover {
-  color: var(--secondary-color);
-  border-color: var(--secondary-color);
+  color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 .utility a:hover i {
-  color: var(--secondary-color);
+  color: var(--accent-color);
 }
 
 .notification {
@@ -119,7 +119,7 @@
 }
 
 .notify_item .notify_info p span {
-  color: var(--secondary-color);
+  color: var(--accent-color);
   font-weight: 500;
   margin-left: 5px;
 }
@@ -131,7 +131,7 @@
 
 .notification-title {
   text-transform: capitalize;
-  background-color: var(--secondary-color);
+  background-color: var(--accent-color);
   padding: 1rem;
   color: #e9ecef;
   letter-spacing: 0.2rem;
@@ -146,7 +146,7 @@
   left: 50%;
   transform: translateX(-50%);
   border: 15px solid;
-  border-color: transparent transparent var(--secondary-color) transparent;
+  border-color: transparent transparent var(--accent-color) transparent;
 }
 
 .notification-dropdown.display-block {
@@ -187,7 +187,7 @@
   left: 0;
   width: 3px;
   height: 100%;
-  background: var(--secondary-color);
+  background: var(--accent-color);
   display: none;
 }
 

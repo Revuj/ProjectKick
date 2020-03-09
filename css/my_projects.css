@@ -62,7 +62,7 @@
 }
 
 .progress-bar {
-  background-color: var(--secondary-color);
+  background-color: var(--accent-color);
 }
 
 .page-link {
@@ -71,7 +71,7 @@
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .page-item.active .page-link {
@@ -88,10 +88,10 @@
 #side-filter-container {
   position: fixed;
   top: 64px;
-  width: 15em;
+  width: 30%;
   bottom: 0;
   right: 0;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease-in;
   background-color: var(--container-item-color);
   border-left: 1px solid var(--border-color);
   z-index: 200;
@@ -115,5 +115,10 @@
     height: auto;
     min-height: 100%;
     border-radius: 0;
+  }
+
+  #side-filter-container {
+    width: 100%;
+    top: 0;
   }
 }
