@@ -87,8 +87,10 @@ img {
   --item-color: #778899;
   --primary-color: #05386b;
   --accent-color: #5cdb95;
-  --secondary-color: #51a4f7;
+  --secondary-color: #678db6;
   --background-hover: #e9ecef;
+  --primary-color-background: #05386b5b;
+  --secondary-color-background: #5cdb9565;
 }
 
 .disable-selection {
@@ -149,16 +151,50 @@ body {
 }
 
 .custom-button {
-  background-color: var(--primary-color);
-  padding: 0.5rem;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
   border-radius: 0.25rem;
-  text-transform: uppercase;
-  font-family: Oxanium;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
 }
 
-button {
+.primary-button {
   text-transform: uppercase;
   font-family: Oxanium;
+  background-color: var(--primary-color);
+}
+
+.primary-button:hover {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+}
+
+.add-button {
+  border-color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  opacity: 0.4;
+}
+
+.add-button:hover {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+
+.due-date-button {
+  border: 2px solid var(--accent-color);
+  background: white;
+  color: black;
+}
+
+.due-date-button:hover {
+  background: var(--accent-color);
+  color: white;
 }
 
 /*button animation number 1*/
@@ -359,7 +395,6 @@ nav .breadcrumb {
 }
 
 .breadcrumb li::after {
-  /* this is the separator between items */
   display: inline-block;
   content: "\00bb";
   margin: 0 0.6em;
@@ -367,17 +402,14 @@ nav .breadcrumb {
 }
 
 .breadcrumb li:last-of-type::after {
-  /* hide separator after the last item */
   display: none;
 }
 .breadcrumb li > * {
-  /* single step */
   display: inline-block;
   font-size: 1rem;
   color: gray;
 }
 .breadcrumb li.current > * {
-  /* selected step */
   color: var(--primary-color);
 }
 
@@ -388,6 +420,22 @@ nav .breadcrumb {
   background: url(https://codyhouse.co/demo/breadcrumbs-multi-steps-indicator/img/cd-custom-separator.svg)
     no-repeat center center;
   vertical-align: middle;
+}
+
+.nav-links li {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid white;
+}
+
+.nav-links .active {
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.nav-links li:hover {
+  border-bottom: 3px solid var(--accent-color);
 }
 
 /*button animation number 2

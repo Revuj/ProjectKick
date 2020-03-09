@@ -146,11 +146,11 @@
         </ol>
       </nav>
       <div id="issue-list-container" class="pt-5 mb-0">
-        <div id="issues-types" class="d-flex border-bottom">
-          <li>Open <span class="issue-type-counter">3</span></li>
+        <ul class="d-flex border-bottom nav-links">
+          <li class="active">Open <span class="issue-type-counter">3</span></li>
           <li>Closed <span class="issue-type-counter">5</span></li>
           <li>All <span class="issue-type-counter">8</span></li>
-        </div>
+        </ul>
         <div id="filter-issues" class="border-bottom py-3 my-0">
           <form class="d-flex justify-content-between">
             <div class="form-group mb-0 flex-grow-1 mx-2">
@@ -158,9 +158,9 @@
                 placeholder="Search or filter results...">
             </div>
             <div id="filter-buttons" class="">
-              <button type="submit" class="btn btn-primary mx-1">Filters<i
+              <button type="submit" class="custom-button primary-button mx-1">Filters<i
                   class="fas fa-chevron-down ml-3"></i></button>
-              <button type="submit" class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></button>
+              <button type="submit" class="custom-button primary-button mr-1"><i class="fas fa-arrow-up"></i></button>
             </div>
           </form>
         </div>
@@ -183,7 +183,7 @@
                   </h6>
                 </li>
                 <li>
-                  <button type="button" class="btn add-assignee">
+                  <button type="button" class="custom-button add-button">
                     <i class="fas fa-plus"></i>
                   </button>
                 </li>
@@ -200,14 +200,14 @@
                     draggable="false" />
                 </li>
                 <li>
-                  <button type="button" class="btn add-assignee">
+                  <button type="button" class="custom-button add-button">
                     <i class="fas fa-plus"></i>
                   </button>
                 </li>
               </ul>
             </div>
             <div class="due-date-container col-md-4 text-right">
-              <button type="button" class="btn change-due-date">
+              <button type="button" class="custom-button due-date-button">
                 <i class="far fa-clock mr-2"></i>Feb 29
               </button>
             </div>
@@ -231,7 +231,7 @@
                   </h6>
                 </li>
                 <li>
-                  <button type="button" class="btn add-assignee">
+                  <button type="button" class="custom-button add-button">
                     <i class="fas fa-plus"></i>
                   </button>
                 </li>
@@ -244,14 +244,14 @@
                     draggable="false" />
                 </li>
                 <li>
-                  <button type="button" class="btn add-assignee">
+                  <button type="button" class="custom-button add-button">
                     <i class="fas fa-plus"></i>
                   </button>
                 </li>
               </ul>
             </div>
             <div class="due-date-container col-md-4 text-right">
-              <button type="button" class="btn change-due-date">
+              <button type="button" class="custom-button due-date-button">
                 <i class="far fa-clock mr-2"></i>Feb 29
               </button>
             </div>
@@ -270,7 +270,7 @@
                   </h6>
                 </li>
                 <li>
-                  <button type="button" class="btn add-assignee">
+                  <button type="button" class="custom-button add-button">
                     <i class="fas fa-plus"></i>
                   </button>
                 </li>
@@ -278,7 +278,7 @@
             </div>
             <div class="assignees-container col-md-4 text-center">
               <ul class="assignees d-flex align-items-center justify-content-center">
-                <button type="button" class="btn add-assignee">
+                <button type="button custom-button" class="custom-button add-button">
                   Assign a member
                   <i class="fas fa-plus ml-2"></i>
                 </button>
@@ -286,7 +286,7 @@
       </ul>
     </div>
     <div class="due-date-container col-md-4 text-right">
-      <button type="button" class="btn change-due-date">
+      <button type="button" class="custom-button due-date-button">
         <i class="far fa-clock mr-2"></i>Add a due date
       </button>
     </div>
@@ -333,7 +333,7 @@
             <img src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19" draggable="false" />
           </li>
           <li>
-            <button type="button" class="btn add-assignee">
+            <button type="button" class="custom-button add-button">
               <i class="fas fa-plus"></i>
             </button>
           </li>
@@ -353,16 +353,14 @@
             </h6>
           </li>
           <li>
-            <button type="button" class="btn add-label">
+            <button type="button" class="custom-button add-button">
               <i class="fas fa-plus"></i>
             </button>
           </li>
         </ul>
       </div>
       <div class="due-date-container">
-        <h6 class="block pb-2">Due Date</h6>
-
-        <button type="button" class="btn change-due-date">
+        <button type="button" class="custom-button due-date-button">
           <i class="far fa-clock mr-2"></i>Feb 29
         </button>
       </div>
