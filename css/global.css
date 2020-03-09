@@ -376,7 +376,7 @@ body {
 
 nav .breadcrumb {
   width: 90%;
-  padding: 0.5em 1em;
+  padding: 0.5em;
   margin: 0;
   background-color: white;
   border-radius: 0.25em;
@@ -420,6 +420,10 @@ nav .breadcrumb {
   background: url(https://codyhouse.co/demo/breadcrumbs-multi-steps-indicator/img/cd-custom-separator.svg)
     no-repeat center center;
   vertical-align: middle;
+}
+
+.nav-links {
+  margin: 0;
 }
 
 .nav-links li {
