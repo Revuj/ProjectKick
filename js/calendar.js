@@ -96,12 +96,12 @@ class Calendar {
         });
 
 
-       let left = (latestDaysInPrevMonth.length + daysInActiveMonth.length ) 
-       let countOfDays = left;
-       if (countOfDays %  this.nrDaysPerWeek !== 0)
-        countOfDays =  left + ( this.nrDaysPerWeek - left %  this.nrDaysPerWeek);
+        let left = (latestDaysInPrevMonth.length + daysInActiveMonth.length)
+        let countOfDays = left;
+        if (countOfDays % this.nrDaysPerWeek !== 0)
+            countOfDays = left + (this.nrDaysPerWeek - left % this.nrDaysPerWeek);
 
-        countOfDays-=left;
+        countOfDays -= left;
 
         let daysInNextMonth = this.range(countOfDays).map((day, idx) => {
             return {
@@ -111,7 +111,7 @@ class Calendar {
                 currentMonth: false
             }
         });
-      
+
 
         let days = [...latestDaysInPrevMonth, ...daysInActiveMonth, ...daysInNextMonth];
 
@@ -125,19 +125,19 @@ class Calendar {
         let daysTemplate = "";
 
 
-        for(let i = 0; i < days.length; i++) {
+        for (let i = 0; i < days.length; i++) {
 
             daysTemplate += "<tr>";
             let j = i;
-            for(; j < i +  this.nrDaysPerWeek && j < days.length ; j++) {
-               // console.log(days[j])
+            for (; j < i + this.nrDaysPerWeek && j < days.length; j++) {
+                // console.log(days[j])
                 let day = days[j];
                 daysTemplate += `<td class=" clickable ${day.currentMonth ? '' : 'another-month'}${day.today ? ' active-day ' : ''}${day.selected ? 'selected-day' : ''}${day.hasEvent ? ' event-day' : ''}" data-day="${day.dayNumber}" data-month="${day.month}" data-year="${day.year}">${days[j].dayNumber}</td>`
             }
-            daysTemplate+="</tr>";
-            i=j-1;
+            daysTemplate += "</tr>";
+            i = j - 1;
         }
-       
+
         this.elements.days.innerHTML = daysTemplate;
     }
 
