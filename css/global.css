@@ -278,17 +278,17 @@ button {
   transition: all 500ms ease-in;
 }
 
-.inputGroup input:checked~label {
+.inputGroup input:checked ~ label {
   color: #fff;
 }
 
-.inputGroup input:checked~label:before {
+.inputGroup input:checked ~ label:before {
   -webkit-transform: translate(-50%, -50%) scale3d(56, 56, 1);
   transform: translate(-50%, -50%) scale3d(56, 56, 1);
   opacity: 1;
 }
 
-.inputGroup input:checked~label:after {
+.inputGroup input:checked ~ label:after {
   background-color: #54e0c7;
   border-color: #54e0c7;
 }
@@ -336,6 +336,58 @@ button {
 
 .btn-white:hover {
   color: var(--accent-color);
+}
+
+nav .breadcrumb {
+  width: 90%;
+  padding: 0.5em 1em;
+  margin: 0;
+  background-color: white;
+  border-radius: 0.25em;
+}
+
+.breadcrumb::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.breadcrumb li {
+  display: inline-block;
+  float: left;
+  margin: 0.5em 0;
+}
+
+.breadcrumb li::after {
+  /* this is the separator between items */
+  display: inline-block;
+  content: "\00bb";
+  margin: 0 0.6em;
+  color: #959fa5;
+}
+
+.breadcrumb li:last-of-type::after {
+  /* hide separator after the last item */
+  display: none;
+}
+.breadcrumb li > * {
+  /* single step */
+  display: inline-block;
+  font-size: 1rem;
+  color: gray;
+}
+.breadcrumb li.current > * {
+  /* selected step */
+  color: var(--primary-color);
+}
+
+.breadcrumb.custom-separator li::after {
+  content: "";
+  height: 16px;
+  width: 16px;
+  background: url(https://codyhouse.co/demo/breadcrumbs-multi-steps-indicator/img/cd-custom-separator.svg)
+    no-repeat center center;
+  vertical-align: middle;
 }
 
 /*button animation number 2

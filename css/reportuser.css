@@ -1,3 +1,5 @@
+@import url("global.css");
+
 #report-user-container {
   background-color: var(--background-hover);
 }
