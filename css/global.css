@@ -415,7 +415,7 @@ nav .breadcrumb {
 }
 .breadcrumb li > * {
   display: inline-block;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: gray;
 }
 .breadcrumb li.current > * {
@@ -449,6 +449,16 @@ nav .breadcrumb {
 
 .nav-links li:hover {
   border-bottom: 3px solid var(--accent-color);
+}
+
+.author-reference {
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.author-reference:hover {
+  color: var(--accent-color);
+  cursor: pointer;
 }
 
 /*button animation number 2

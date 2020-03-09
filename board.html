@@ -162,10 +162,10 @@
           </ol>
         </nav>
         <section
-          class="board-options d-flex flex-row bd-highlight align-items-center mx-2 mt-4"
+          class="board-options d-flex flex-row bd-highlight align-items-center"
         >
           <!-- create a new task-->
-          <div class="p-2 bd-highlight">
+          <div class=" bd-highlight">
             <form id="add-list-form" class="input-group inputArea">
               <input
                 type="text"
@@ -181,33 +181,30 @@
           </div>
 
           <!--most relevant filters-->
-          <div class="bd-highlight">
-            <ul class="filters d-flex flex-row align-items-center">
-              <li class="filter-item ml-3 hover-effect">Work assigned to me</li>
-              <li class="filter-item ml-3 hover-effect">Recenlty updated</li>
-            </ul>
-          </div>
-
-          <!--task searcher-->
-          <div class="p-2 bd-highlight  ml-auto">
-            <form class="form-inline my-2 my-lg-0">
-              <input
-                class="form-control mr-sm-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button
-                class="btn btn-outline-success my-2 my-sm-0"
-                type="submit"
-              >
-                Search
-              </button>
+          <div id="filter-issues" class="py-3 my-0 ml-auto">
+            <form class="d-flex justify-content-between">
+              <div class="form-group mb-0 flex-grow-1 mx-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="issues-filter"
+                  id="issues-filter"
+                  placeholder="Search or filter results..."
+                />
+              </div>
+              <div id="filter-buttons" class="">
+                <button type="submit" class="custom-button primary-button mx-1">
+                  Filters<i class="fas fa-chevron-down ml-3"></i>
+                </button>
+                <button type="submit" class="custom-button primary-button mr-1">
+                  <i class="fas fa-arrow-up"></i>
+                </button>
+              </div>
             </form>
           </div>
         </section>
 
-        <section class="kanban-container mt-4">
+        <section class="kanban-container mt-2">
           <div
             class="kanban-table d-flex flex-row bd-highlight align-items-begin"
           >
@@ -502,7 +499,10 @@
                 />
               </li>
               <li>
-                <button type="button" class="btn add-assignee">
+                <button
+                  type="button"
+                  class="custom-button add-button add-assignee"
+                >
                   <i class="fas fa-plus"></i>
                 </button>
               </li>
@@ -522,7 +522,10 @@
                 </h6>
               </li>
               <li>
-                <button type="button" class="btn add-label">
+                <button
+                  type="button"
+                  class="custom-button add-button add-label"
+                >
                   <i class="fas fa-plus"></i>
                 </button>
               </li>
@@ -531,7 +534,7 @@
           <div class="due-date-container">
             <h6 class="block pb-2">Due Date</h6>
 
-            <button type="button" class="btn change-due-date">
+            <button type="button" class="custom-button due-date-button">
               <i class="far fa-clock mr-2"></i>Feb 29
             </button>
           </div>

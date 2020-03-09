@@ -56,3 +56,7 @@
 #issue-header:hover .edit-button {
   display: inline-block;
 }
+
+.comment-timestamp {
+  opacity: 0.6;
+}

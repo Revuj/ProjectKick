@@ -2,10 +2,6 @@
 
 @import url("global.css");
 
-.board-options {
-  margin-bottom: 1rem;
-}
-
 .filters {
   list-style: none;
   margin-bottom: 0;
@@ -137,9 +133,9 @@
 }
 
 .assignees li,
-.add-label,
-.add-assignee {
+.add-button {
   width: 40px;
+  height: 40px;
 }
 
 .edit-task,
