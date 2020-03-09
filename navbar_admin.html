@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template for pages</title>
+
+    <!-- Owl-Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/navbar.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+
+    <div class="page-wrapper h-100 is-collapsed">
+
+        <nav class="top-navbar">
+
+            <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
+
+                <div class="logo">
+                    <h4 class="mb-0 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
+                </div>
+
+                <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+
+                    <!--notifications-->
+                    <li class="px-5 utility ml-3 notification mb-0">
+                        <a href="#"><i class="fas fa-bell"></i></a>
+                        <span class="num">4</span>
+                        <div class="notification-dropdown">
+                            <h6 class="notification-title text-center">notifications</h6>
+                            <div class="notify_item clickable">
+                                <div class="notify_img">
+                                    <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
+                                </div>
+                                <div class="notify_info">
+                                    <p>Alex commented on the<span>Task Share</span></p>
+                                    <span class="notify_time">10 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="notify_item clickable">
+                                <div class="notify_img">
+                                    <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
+                                </div>
+                                <div class="notify_info">
+                                    <p>Alex commented on the<span>Task Share</span></p>
+                                    <span class="notify_time">10 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="notify_item clickable">
+                                More(2) ...
+                            </div>
+                        </div>
+                    </li>
+                    <!--profile-->
+                    <li class="px-2 utility ml-3 mb-0 ">
+                        <a href="#"><i class="fas fa-user"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 
+      inside a project he sidebar-menu options can be
+      board
+      flux diagram
+      calendar
+      tasks
+      forum
+      back
+      ...
+    -->
+        <nav class="sidebar-menu">
+            <ul>
+                <li class="hamburger side-menu-item">
+                    <div class="hamburger-symbol"></div>
+                    <div class="hamburger-symbol"></div>
+                    <div class="hamburger-symbol"></div>
+                </li>
+                <li class="side-menu-item dropdown"><a href="#">
+                        <span class="m-2"><i class="fas fa-chart-line"></i></span>
+                        <span class="side-menu-item-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="side-menu-item dropdown"><a href="#">
+                        <span class="m-2"><i class="fas fa-folder"></i></span>
+                        <span class="side-menu-item-title">User Reports</span>
+                    </a>
+                </li>
+                <li class="side-menu-item"><a href="#">
+                        <span class="m-2"><i class="fas fa-search"></i></span>
+                        <span class="side-menu-item-title">Search</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!--generic container-->
+        <div class="main-container">
+
+            <h3>The page content is going to be here</h3>
+            <div class="item">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut sapiente adipisci nemo atque eligendi
+                reprehenderit minima blanditiis eum quae aspernatur!
+            </div>
+            <div class="item">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut sapiente adipisci nemo atque eligendi
+                reprehenderit minima blanditiis eum quae aspernatur!
+            </div>
+            <div class="item">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut sapiente adipisci nemo atque eligendi
+                reprehenderit minima blanditiis eum quae aspernatur!
+            </div>
+            <div class="item">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut sapiente adipisci nemo atque eligendi
+                reprehenderit minima blanditiis eum quae aspernatur!
+            </div>
+        </div>
+        <!--end of main-container can possible be a section in the future-->
+
+    </div>
+    <!--end of page wrapper-->
+
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function () {
+            document.querySelector('.page-wrapper').classList.toggle('is-collapsed')
+        })
+
+        document.querySelector('.notification').addEventListener('click', function () {
+            document.querySelector('.notification-dropdown').classList.toggle('display-block')
+        })
+
+
+    </script>
+
+</body>
+
+</html>

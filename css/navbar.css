@@ -163,6 +163,14 @@
   color: gray;
 }
 
+.is-collapsed .side-menu-item {
+  width: 68px;
+}
+
+.side-menu-dropdown .side-menu-item {
+  width: 100%;
+}
+
 .side-menu-item > a {
   position: relative;
   margin-bottom: 1px;
@@ -194,6 +202,7 @@
 .side-menu-item > a.active:before {
   display: block;
 }
+
 
 .main-container {
   width: (100% - 4rem);
@@ -239,4 +248,35 @@
 
 .is-collapsed .logo {
   margin-left: 0;
+}
+
+.side-menu-dropdown {
+  top: 0;
+  left: 10rem;
+}
+
+.is-collapsed .side-menu-dropdown {
+  top: 0;
+  left: 68px;
+}
+
+.side-menu-dropdown {
+  display: none;
+  position: absolute;
+  z-index: 300;
+  color: gray;
+  background: white;
+
+}
+
+.dropdown {
+  position: relative;
+}
+
+.side-menu-dropdown:hover {
+  display: block;
+}
+
+.dropdown:hover .side-menu-dropdown {
+  display: block;
 }
