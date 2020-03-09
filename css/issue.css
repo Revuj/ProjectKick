@@ -4,13 +4,6 @@
   margin-top: 2rem;
 }
 
-#issue button:hover,
-.add-label:hover,
-.add-assignee:hover {
-  background: var(--background-hover);
-  color: white;
-}
-
 .assignees li,
 .add-label,
 .add-assignee,
@@ -54,4 +47,12 @@
   border-radius: 5px;
   border: 1px solid var(--border-color);
   background: white;
+}
+
+#issue-header .edit-button {
+  display: none;
+}
+
+#issue-header:hover .edit-button {
+  display: inline-block;
 }

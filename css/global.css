@@ -197,6 +197,15 @@ body {
   color: white;
 }
 
+.edit-button {
+  background: var(--accent-color);
+  opacity: 0.6;
+}
+
+.edit-button:hover {
+  opacity: 1;
+}
+
 /*button animation number 1*/
 .button-animate:hover {
   animation: rotate 0.7s ease-in-out both;
@@ -376,7 +385,7 @@ body {
 
 nav .breadcrumb {
   width: 90%;
-  padding: 0.5em;
+  padding: 0;
   margin: 0;
   background-color: white;
   border-radius: 0.25em;
