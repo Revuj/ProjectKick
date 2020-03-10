@@ -157,88 +157,91 @@
 
       <!--=======================================CALENDAR ================================================//-->
 
-      <div
-        class="main-container container-fluid calendar disable-selection"
-        id="calendar"
-      >
-        <nav>
-          <ol class="breadcrumb custom-separator">
-            <li class="current"><em>Calendar</em></li>
-          </ol>
-        </nav>
+      <div class="main-container calendar disable-selection" id="calendar">
+        <div class="main-content-container px-4">
+          <nav>
+            <ol class="breadcrumb custom-separator">
+              <li class="current"><em>Calendar</em></li>
+            </ol>
+          </nav>
 
-        <div class="row">
-          <!--=============================ADD & CHECK EVENTS ================================================//-->
+          <div class="row">
+            <!--=============================ADD & CHECK EVENTS ================================================//-->
 
-          <div class="col-md-4 col-sm-8 event-manager py-2">
-            <div class="add-event-day text-left">
-              <button
-                data-toggle="collapse"
-                data-target="#collapseExample"
-                aria-expanded="false"
-                aria-controls="collapseExample"
-                class="button-animate custom-button border border-white white-text"
-              >
-                Add Event
-                <span
-                  class="fa fa-plus-circle cursor-pointer add-event-day-field-btn"
-                ></span>
-              </button>
-              <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                  <input class="form-control" type="text" placeholder="Event" />
-                  <!--coordinator only-->
-                  <div class="inputGroup">
-                    <input type="checkbox" value="" id="defaultCheck1" />
-                    <label for="defaultCheck1">
-                      Meeting
-                    </label>
+            <div class="col-md-4 col-sm-8 event-manager py-2">
+              <div class="add-event-day text-left">
+                <button
+                  data-toggle="collapse"
+                  data-target="#collapseExample"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                  class="button-animate custom-button border border-white white-text"
+                >
+                  Add Event
+                  <span
+                    class="fa fa-plus-circle cursor-pointer add-event-day-field-btn"
+                  ></span>
+                </button>
+                <div class="collapse" id="collapseExample">
+                  <div class="card card-body">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Event"
+                    />
+                    <!--coordinator only-->
+                    <div class="inputGroup">
+                      <input type="checkbox" value="" id="defaultCheck1" />
+                      <label for="defaultCheck1">
+                        Meeting
+                      </label>
+                    </div>
+                    <!--end of coordinator only-->
+                    <button type="submit" class="btn btn-primary mb-2">
+                      Add
+                    </button>
                   </div>
-                  <!--end of coordinator only-->
-                  <button type="submit" class="btn btn-primary mb-2">
-                    Add
-                  </button>
                 </div>
               </div>
-            </div>
 
-            <div class="current-day text-center py-4 white-text">
-              <h1 class="calendar-left-side-day"></h1>
-              <div class="calendar-left-side-day-of-week"></div>
-            </div>
-            <div class="current-day-events text-left white-text mt-4">
-              <div class="h5 mb-3">Current Events:</div>
-              <ul class="current-day-events-list"></ul>
-            </div>
-          </div>
-          <!-- first col-->
-
-          <!--============================= BROWSE THE CALENDAR ================================================//-->
-
-          <div class="col col-md-8 col-sm-4 calendar-content">
-            <div class="text-right calendar-change-year p-3 white-text">
-              <div class="calendar-change-year-slider">
-                <span
-                  class="fa fa-caret-left cursor-pointer calendar-change-year-slider-prev clickable"
-                ></span>
-                <span class="calendar-current-year px-2"></span>
-                <span
-                  class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next clickable"
-                ></span>
+              <div class="current-day text-center py-4 white-text">
+                <h1 class="calendar-left-side-day"></h1>
+                <div class="calendar-left-side-day-of-week"></div>
+              </div>
+              <div class="current-day-events text-left white-text mt-4">
+                <div class="h5 mb-3">Current Events:</div>
+                <ul class="current-day-events-list"></ul>
               </div>
             </div>
-            <div class="calendar-month-list">
-              <ul
-                class="calendar-month d-flex justify-content-between white-text flex-wrap"
-              ></ul>
-            </div>
+            <!-- first col-->
 
-            <table class="table table-borderless text-white">
-              <thead class="calendar-week-list"></thead>
-              <tbody class="calendar-days-list"></tbody>
-            </table>
+            <!--============================= BROWSE THE CALENDAR ================================================//-->
+
+            <div class="col col-md-8 col-sm-4 calendar-content">
+              <div class="text-right calendar-change-year p-3 white-text">
+                <div class="calendar-change-year-slider">
+                  <span
+                    class="fa fa-caret-left cursor-pointer calendar-change-year-slider-prev clickable"
+                  ></span>
+                  <span class="calendar-current-year px-2"></span>
+                  <span
+                    class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next clickable"
+                  ></span>
+                </div>
+              </div>
+              <div class="calendar-month-list">
+                <ul
+                  class="calendar-month d-flex justify-content-between white-text flex-wrap"
+                ></ul>
+              </div>
+
+              <table class="table table-borderless text-white">
+                <thead class="calendar-week-list"></thead>
+                <tbody class="calendar-days-list"></tbody>
+              </table>
+            </div>
+            <!-- second col-->
           </div>
-          <!-- second col-->
         </div>
         <!--end of row-->
       </div>

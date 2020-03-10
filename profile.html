@@ -36,26 +36,10 @@
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-
-  <link rel="stylesheet" href="./css/profile.css" />
-  <link rel="stylesheet" href="./css/navbar.css" />
-  <script src="js/profile.js" defer></script>
+    <link rel="stylesheet" href="./css/profile.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <script src="js/profile.js" defer></script>
+  </head>
 
   <body>
     <div class="page-wrapper h-100 is-collapsed">
@@ -64,11 +48,9 @@
           class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
         >
           <div class="logo">
-            <a class="nostyle" href="index.html">
             <h4 class="mb-0 px-3">
               <i class="fas fa-drafting-compass"></i> Kick
             </h4>
-            </a>
           </div>
           <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
             <li class="px-5 utility ml-3 notification mb-0">
@@ -122,7 +104,7 @@
             <div class="hamburger-symbol"></div>
           </li>
           <li class="side-menu-item dropdown">
-            <a href="my_projects.html">
+            <a class="" href="my_projects.html">
               <span class="m-2"><i class="fas fa-columns"></i></span>
               <span class="side-menu-item-title">Dashboard</span>
             </a>
@@ -148,69 +130,63 @@
         </ul>
       </nav>
 
-      <div class="main-container container-fluid">
-        <nav>
-          <ol class="breadcrumb custom-separator">
-            <li class="current"><em>Profile</em></li>
-          </ol>
-        </nav>
-        <div class="main-content-container container-fluid px-4">
-          <!-- Page Header -->
-          <div class="page-header row no-gutters py-4">
-            <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-              <h1 class="page-title">User Profile</h1>
-            </div>
-          </div>
-        </div>
-        <!-- End Page Header -->
-        <!-- Default Light Table -->
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="card card-small mb-4">
-              <div class="flexbox align-items-center px-20 pt-20 edit-button">
+      <div class="main-container">
+        <div class="main-content-container px-4">
+          <nav>
+            <ol class="breadcrumb custom-separator">
+              <li class="current"><em>Profile</em></li>
+            </ol>
+          </nav>
+          <!-- End Page Header -->
+          <!-- Default Light Table -->
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="card card-small mb-4">
+                <div class="flexbox align-items-center px-20 pt-20 edit-button">
                   <button type="button" class="btn float-right">
                     <i class="fas fa-pencil-alt float-right"></i>
                   </button>
                 </div>
-                <img class="card-img-top" src="assets/profile.png" alt="User Avatar" width="110">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item p-4">
-                  <h4 class="mb-0">Sierra Brooks</h4>
-                  <span class="text-muted d-block mb-2">Porto, Portugal</span>
-                  <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui
-                    quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
-                </li>
-                <li class="list-group-item p-4">
-                  <div class="d-flex justify-content-left mb-2">
-                    <span class="mr-1 badge" style="background-color: rgb(10, 214, 250); color:white;">html</span>
-                    <span class="mr-1 badge" style="background-color: rgb(174, 10, 250); color:white;">html</span>
-                    <span class="mr-1 badge" style="background-color: rgb(166, 250, 10); color:white;">html</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-9" id="details">
-            <div class="card card-small mb-4">
-              <div class="card-header border-bottom">
-                <h6 class="m-0">Account Details</h6>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item p-3">
-                  <div class="row">
-                    <div class="col">
-                      <label class="pmd-list-subtitle">Email</label>
-                      <p class="pmd-list-title">marie@gmail.com</p>
-                    </div>
-                    <div class="col">
-                      <label class="pmd-list-subtitle">Phone</label>
-                      <p class="pmd-list-title">+91 98250</p>
+                <img
+                  class="card-img-top"
+                  src="assets/profile.png"
+                  alt="User Avatar"
+                  width="110"
+                />
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item p-4">
+                    <h4 class="mb-0">Sierra Brooks</h4>
+                    <span class="text-muted d-block mb-2">Porto, Portugal</span>
+                    <span
+                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Odio eaque, quidem, commodi soluta qui quae minima
+                      obcaecati quod dolorum sint alias, possimus illum
+                      assumenda eligendi cumque?</span
+                    >
+                  </li>
+                  <li class="list-group-item p-4">
+                    <div class="d-flex justify-content-left mb-2">
+                      <span
+                        class="mr-1 badge"
+                        style="background-color: rgb(10, 214, 250); color:white;"
+                        >html</span
+                      >
+                      <span
+                        class="mr-1 badge"
+                        style="background-color: rgb(174, 10, 250); color:white;"
+                        >html</span
+                      >
+                      <span
+                        class="mr-1 badge"
+                        style="background-color: rgb(166, 250, 10); color:white;"
+                        >html</span
+                      >
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="col-lg-8" id="details">
+            <div class="col-lg-9" id="details">
               <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
                   <h6 class="m-0">Account Details</h6>
@@ -239,57 +215,110 @@
                       <div class="col-md-12">
                         <canvas id="bar-chart-activity" height="100"></canvas>
                       </div>
-                    </div>        
+                    </div>
                   </li>
                 </ul>
               </div>
             </div>
-          </div>
-          <div class="col-lg-9 d-none" id="edit">
-            <div class="card card-small mb-4">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item p-3">
-                  <div class="row">
-                    <div class="col">
-                      <div id="cancel" class="mb-3">
-                        <button type="button" class="btn">
-                          <i class="fas fa-times"></i>
-                        </button>
-                      </div>
-                      <form class="mt-5">
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="feFirstName">First Name</label>
-                            <input type="text" class="form-control" id="feFirstName" placeholder="First Name"
-                              value="Sierra"> </div>
-                          <div class="form-group col-md-6">
-                            <label for="feLastName">Last Name</label>
-                            <input type="text" class="form-control" id="feLastName" placeholder="Last Name"
-                              value="Brooks"> </div>
+            <div class="col-lg-9 d-none" id="edit">
+              <div class="card card-small mb-4">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item p-3">
+                    <div class="row">
+                      <div class="col">
+                        <div id="cancel" class="mb-3">
+                          <button type="button" class="btn">
+                            <i class="fas fa-times"></i>
+                          </button>
                         </div>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="feEmail">Email</label>
-                            <input type="text" class="form-control" id="feEmail" placeholder="Email"
-                              value="sierra@example.com"> </div>
-                          <div class="form-group col-md-6">
-                            <label for="fePhone">Phone</label>
-                            <input type="text" class="form-control" id="fePhone" placeholder="Phone"
-                              value="91299239213"> </div>
-                        </div>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="fePassword">Password</label>
-                            <input type="password" class="form-control" id="fePassword" placeholder="Password"> </div>
-                          <div class="form-group col-md-6">
-                            <label for="feConfirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control" id="feConfirmPassword"
-                              placeholder="Confirm Password"> </div>
-                        </div>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="feInputCity">City</label>
-                            <input type="text" class="form-control" id="feInputCity" placeholder="City" value="Porto">
+                        <form class="mt-5">
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="feFirstName">First Name</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="feFirstName"
+                                placeholder="First Name"
+                                value="Sierra"
+                              />
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="feLastName">Last Name</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="feLastName"
+                                placeholder="Last Name"
+                                value="Brooks"
+                              />
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="feEmail">Email</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="feEmail"
+                                placeholder="Email"
+                                value="sierra@example.com"
+                              />
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="fePhone">Phone</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="fePhone"
+                                placeholder="Phone"
+                                value="91299239213"
+                              />
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="fePassword">Password</label>
+                              <input
+                                type="password"
+                                class="form-control"
+                                id="fePassword"
+                                placeholder="Password"
+                              />
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="feConfirmPassword"
+                                >Confirm Password</label
+                              >
+                              <input
+                                type="password"
+                                class="form-control"
+                                id="feConfirmPassword"
+                                placeholder="Confirm Password"
+                              />
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="feInputCity">City</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="feInputCity"
+                                placeholder="City"
+                                value="Porto"
+                              />
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="feCountry">Country</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="feCountry"
+                                placeholder="Country"
+                                value="Portugal"
+                              />
+                            </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-12">
@@ -306,26 +335,22 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, com
                           <div class="float-right">
                             <button
                               type="button"
-                              id="cancel"
-                              class="btn btn-white"
+                              id="delete"
+                              class="btn btn-danger"
                               data-dismiss="modal"
                             >
-                              Cancel
+                              Delete Account
                             </button>
                             <button
                               type="button"
                               id="update"
                               class="btn btn-success"
                             >
-                              Update
+                              Update Account
                             </button>
                           </div>
-                        </div>
-                        <div class="float-right">
-                          <button type="button" id="delete" class="btn btn-danger" data-dismiss="modal">Delete Account</button>
-                          <button type="button" id="update" class="btn btn-success">Update Account</button>
-                        </div>
-                      </form>
+                        </form>
+                      </div>
                     </div>
                   </li>
                 </ul>
