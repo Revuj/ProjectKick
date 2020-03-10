@@ -1,489 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Kick | My Projects</title>
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Kick | My Projects</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-  </script>
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+    <link rel="stylesheet" href="./css/my_projects.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <script src="js/my_projects.js" defer></script>
+  </head>
 
-  <link rel="stylesheet" href="./css/my_projects.css" />
-  <link rel="stylesheet" href="./css/navbar.css">
-  <script src="js/my_projects.js" defer></script>
-</head>
-
-<body>
-  <div class="page-wrapper h-100 is-collapsed">
-    <nav class="top-navbar">
-      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
-        <div class="logo">
-          <h4 class="mb-0 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
+  <body>
+    <div class="page-wrapper h-100 is-collapsed">
+      <nav class="top-navbar">
+        <div
+          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
+        >
+          <div class="logo">
+            <a class="nostyle" href="index.html">
+              <h4 class="mb-0 px-3">
+                <i class="fas fa-drafting-compass"></i> Kick
+              </h4>
+            </a>
+          </div>
+          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+            <li class="px-5 utility ml-3 notification mb-0">
+              <a href="#"><i class="fas fa-bell"></i></a>
+              <span class="num">4</span>
+              <div class="notification-dropdown">
+                <h6 class="notification-title text-center">notifications</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  More(2) ...
+                </div>
+              </div>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0 ">
+              <a href="#"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
         </div>
-        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-          <li class="px-5 utility ml-3 notification mb-0">
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <span class="num">4</span>
-            <div class="notification-dropdown">
-              <h6 class="notification-title text-center">notifications</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                More(2) ...
-              </div>
-            </div>
+      </nav>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
           </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 ">
-            <a href="#"><i class="fas fa-user"></i></a>
+          <li class="side-menu-item dropdown">
+            <a class="active" href="my_projects.html">
+              <span class="m-2"><i class="fas fa-columns"></i></span>
+              <span class="side-menu-item-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a href="my_work.html">
+              <span class="m-2"><i class="fas fa-tasks"></i></span>
+              <span class="side-menu-item-title">My Work</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="calendar.html">
+              <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
+              <span class="side-menu-item-title">Calendar</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="searchpage.html">
+              <span class="m-2"><i class="fas fa-search"></i></span>
+              <span class="side-menu-item-title">Search</span>
+            </a>
           </li>
         </ul>
-      </div>
-    </nav>
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-book"></i></span>
-            <span class="side-menu-item-title">My Work</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="far fa-folder"></i></span>
-            <span class="side-menu-item-title">Projects</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-columns"></i></span>
-            <span class="side-menu-item-title">Panels</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#" class="active">
-            <span class="m-2"><i class="fas fa-filter"></i></span>
-            <span class="side-menu-item-title">Filters</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-user-friends"></i></span>
-            <span class="side-menu-item-title">Users</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-cogs"></i></span>
-            <span class="side-menu-item-title">Settings</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-exclamation-triangle"></i></i></span>
-            <span class="side-menu-item-title">Urgent</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="main-container container-fluid" id="my_projects">
-      <nav>
-        <ol class="breadcrumb custom-separator">
-          <li class="current"><em>Dashboard</em></li>
-        </ol>
       </nav>
-      <div class="row mx-1">
-        <div class="d-flex main_header_base">
-          <div class="p-2 flex-grow-1 main_header_left">
-            <h1 class="main_header_title">My Projects</h1>
-          </div>
 
-          <div class="p-2 main_header_right">
-            <button type="button" data-toggle="modal" data-target="#addProjectModal" class="btn btn-success">
-              <i class="fa fa-plus-circle fa-lg"></i>
-              Add Project
-            </button>
-            <button type="button" class="btn show-on-click btn-white">
-              <i class="fa fa-filter"></i>
-              Filters
-            </button>
-          </div>
-        </div>
-        <div class="card-columns">
-          <div class="Card_custom-card--border_5wJKy card">
-            <div class="card-body project_header">
-              <div class="mb-2">
-                <a href="#" class="mr-2"><i class="fa fa-fw fa-star-o"></i></a><a href="/apps/tasks/grid">
-                  Lorem ipsum dolor. </a>
-              </div>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed massa vestibulum, rutrum dui
-                venenatis. </span>
-            </div>
-            <div class="card-footer">
-              <div class="mb-2 progress" style="height: 5px;">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                  style="width: 80%;"></div>
-              </div>
-              <div>
-                Tasks Completed:<span class="text-inverse">36/94</span>
-              </div>
-            </div>
-            <div class="card-footer">
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-left card-footer">
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(82, 10, 250); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(10, 214, 250); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(250, 10, 218); color:white;">html</span>
-            </div>
-          </div>
-          <div class="Card_custom-card--border_5wJKy card">
-            <div class="card-body project_header">
-              <div class="mb-2">
-                <a href="#" class="mr-2"><i class="fa fa-fw fa-star-o"></i></a><a href="/apps/tasks/grid">
-                  Lorem ipsum dolor. </a>
-              </div>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed massa vestibulum, rutrum dui
-                venenatis. </span>
-            </div>
-            <div class="card-footer">
-              <div class="mb-2 progress" style="height: 5px;">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                  style="width: 80%;"></div>
-              </div>
-              <div>
-                Tasks Completed:<span class="text-inverse">36/94</span>
-              </div>
-            </div>
-            <div class="card-footer">
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-left card-footer">
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(250, 10, 10); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(10, 250, 130); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(246, 250, 10); color:white;">html</span>
-            </div>
-          </div>
-          <div class="Card_custom-card--border_5wJKy card">
-            <div class="card-body project_header">
-              <div class="mb-2">
-                <a href="#" class="mr-2"><i class="fa fa-fw fa-star-o"></i></a><a href="/apps/tasks/grid">
-                  Lorem ipsum dolor. </a>
-              </div>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed massa vestibulum, rutrum dui
-                venenatis. </span>
-            </div>
-            <div class="card-footer">
-              <div class="mb-2 progress" style="height: 5px;">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                  style="width: 80%;"></div>
-              </div>
-              <div>
-                Tasks Completed:<span class="text-inverse">36/94</span>
-              </div>
-            </div>
-            <div class="card-footer">
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-left card-footer">
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(250, 10, 170); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(250, 146, 10); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(74, 10, 250); color:white;">html</span>
-            </div>
-          </div>
-          <div class="Card_custom-card--border_5wJKy card">
-            <div class="card-body project_header">
-              <div class="mb-2">
-                <a href="#" class="mr-2"><i class="fa fa-fw fa-star-o"></i></a><a href="/apps/tasks/grid">
-                  Lorem ipsum dolor. </a>
-              </div>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed massa vestibulum, rutrum dui
-                venenatis. </span>
-            </div>
-            <div class="card-footer">
-              <div class="mb-2 progress" style="height: 5px;">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                  style="width: 80%;"></div>
-              </div>
-              <div>
-                Tasks Completed:<span class="text-inverse">36/94</span>
-              </div>
-            </div>
-            <div class="card-footer">
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-left card-footer">
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(66, 44, 4); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(250, 10, 10); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(250, 10, 230); color:white;">html</span>
-            </div>
-          </div>
-          <div class="Card_custom-card--border_5wJKy card">
-            <div class="card-body project_header">
-              <div class="mb-2">
-                <a href="#" class="mr-2"><i class="fa fa-fw fa-star-o"></i></a><a href="/apps/tasks/grid">
-                  Lorem ipsum dolor. </a>
-              </div>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed massa vestibulum, rutrum dui
-                venenatis. </span>
-            </div>
-            <div class="card-footer">
-              <div class="mb-2 progress" style="height: 5px;">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                  style="width: 80%;"></div>
-              </div>
-              <div>
-                Tasks Completed:<span class="text-inverse">36/94</span>
-              </div>
-            </div>
-            <div class="card-footer">
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-              <div class="avatar-image avatar-image--loaded mr-2">
-                <div class="avatar avatar--md avatar-image__image">
-                  <div class="avatar__content">
-                    <img src="assets/profile.png" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-left card-footer">
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(10, 214, 250); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(174, 10, 250); color:white;">html</span>
-              <span class="mb-2 mr-1 badge" style="background-color: rgb(166, 250, 10); color:white;">html</span>
-            </div>
-          </div>
-        </div>
-        <div class="d-flex justify-content-center">
-          <nav class="" aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item">
-                <a href="#" class="page-link" aria-label="Previous"><span aria-hidden="true"><i
-                      class="fa fa-fw fa-angle-left"></i></span><span class="sr-only">Previous</span></a>
-              </li>
-              <li class="page-item active">
-                <a href="#" class="page-link">1</a>
-              </li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item"><a href="#" class="page-link">3</a></li>
-              <li class="page-item">
-                <a href="#" class="page-link" aria-label="Next"><span aria-hidden="true"><i
-                      class="fa fa-fw fa-angle-right"></i></span><span class="sr-only">Next</span></a>
-              </li>
-            </ul>
+      <div class="main-container" id="my_projects">
+        <div class="main-content-container px-4">
+          <nav>
+            <ol class="breadcrumb custom-separator">
+              <li class="current"><em>Dashboard</em></li>
+            </ol>
           </nav>
-        </div>
-
-        <div id="side-filter-container" class="d-none">
-          <div id="side-filter" class="d-flex flex-column h-100 mx-3 py-3">
-            <div id="side-filter-header" class="border-bottom mb-3">
-              <button type="button" class="btn close-side-issue">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-            <form>
-              <div class="form-group">
-                <label for="search">Search</label>
-                <input type="text" class="form-control" id="filter_search" placeholder="Search Input">
-              </div>
-              <div class="form-group">
-                <label for="tags">Tags</label>
-                <input type="text" class="form-control" id="filter_tags" placeholder="Choose Tags">
-              </div>
-              <div class="form-group">
-                <label for="owner">Project Owner</label>
-                <input type="text" class="form-control" id="filter_owner" placeholder="Choose Project Owner">
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div class="modal" id="addProjectModal" tabindex="-1" role="dialog" aria-labelledby="addProjectModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="addProjectModalLabel">Create Project</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+          <div class="row mx-1">
+            <div class="d-flex main_header_base">
+              <div class="py-2 main_header_right">
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#addProjectModal"
+                  class="btn btn-success"
+                >
+                  <i class="fa fa-plus-circle fa-lg"></i>
+                  Add Project
+                </button>
+                <button type="button" class="btn show-on-click btn-white">
+                  <i class="fa fa-filter"></i>
+                  Filters
                 </button>
               </div>
-              <div class="modal-body">
+            </div>
+            <div class="card-columns">
+              <div class="Card_custom-card--border_5wJKy card">
+                <div class="card-body project_header">
+                  <div class="mb-2">
+                    <a href="#" class="mr-2"
+                      ><i class="fa fa-fw fa-star-o"></i></a
+                    ><a href="/apps/tasks/grid"> Lorem ipsum dolor. </a>
+                  </div>
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras sed massa vestibulum, rutrum dui venenatis.
+                  </span>
+                </div>
+                <div class="card-footer">
+                  <div class="mb-2 progress" style="height: 5px;">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="width: 80%;"
+                    ></div>
+                  </div>
+                  <div>
+                    Tasks Completed:<span class="text-inverse">36/94</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-left card-footer">
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(82, 10, 250); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(10, 214, 250); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(250, 10, 218); color:white;"
+                    >html</span
+                  >
+                </div>
+              </div>
+              <div class="Card_custom-card--border_5wJKy card">
+                <div class="card-body project_header">
+                  <div class="mb-2">
+                    <a href="#" class="mr-2"
+                      ><i class="fa fa-fw fa-star-o"></i></a
+                    ><a href="/apps/tasks/grid"> Lorem ipsum dolor. </a>
+                  </div>
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras sed massa vestibulum, rutrum dui venenatis.
+                  </span>
+                </div>
+                <div class="card-footer">
+                  <div class="mb-2 progress" style="height: 5px;">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="width: 80%;"
+                    ></div>
+                  </div>
+                  <div>
+                    Tasks Completed:<span class="text-inverse">36/94</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-left card-footer">
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(250, 10, 10); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(10, 250, 130); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(246, 250, 10); color:white;"
+                    >html</span
+                  >
+                </div>
+              </div>
+              <div class="Card_custom-card--border_5wJKy card">
+                <div class="card-body project_header">
+                  <div class="mb-2">
+                    <a href="#" class="mr-2"
+                      ><i class="fa fa-fw fa-star-o"></i></a
+                    ><a href="/apps/tasks/grid"> Lorem ipsum dolor. </a>
+                  </div>
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras sed massa vestibulum, rutrum dui venenatis.
+                  </span>
+                </div>
+                <div class="card-footer">
+                  <div class="mb-2 progress" style="height: 5px;">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="width: 80%;"
+                    ></div>
+                  </div>
+                  <div>
+                    Tasks Completed:<span class="text-inverse">36/94</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-left card-footer">
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(250, 10, 170); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(250, 146, 10); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(74, 10, 250); color:white;"
+                    >html</span
+                  >
+                </div>
+              </div>
+              <div class="Card_custom-card--border_5wJKy card">
+                <div class="card-body project_header">
+                  <div class="mb-2">
+                    <a href="#" class="mr-2"
+                      ><i class="fa fa-fw fa-star-o"></i></a
+                    ><a href="/apps/tasks/grid"> Lorem ipsum dolor. </a>
+                  </div>
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras sed massa vestibulum, rutrum dui venenatis.
+                  </span>
+                </div>
+                <div class="card-footer">
+                  <div class="mb-2 progress" style="height: 5px;">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="width: 80%;"
+                    ></div>
+                  </div>
+                  <div>
+                    Tasks Completed:<span class="text-inverse">36/94</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-left card-footer">
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(66, 44, 4); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(250, 10, 10); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(250, 10, 230); color:white;"
+                    >html</span
+                  >
+                </div>
+              </div>
+              <div class="Card_custom-card--border_5wJKy card">
+                <div class="card-body project_header">
+                  <div class="mb-2">
+                    <a href="#" class="mr-2"
+                      ><i class="fa fa-fw fa-star-o"></i></a
+                    ><a href="/apps/tasks/grid"> Lorem ipsum dolor. </a>
+                  </div>
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras sed massa vestibulum, rutrum dui venenatis.
+                  </span>
+                </div>
+                <div class="card-footer">
+                  <div class="mb-2 progress" style="height: 5px;">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="width: 80%;"
+                    ></div>
+                  </div>
+                  <div>
+                    Tasks Completed:<span class="text-inverse">36/94</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-image avatar-image--loaded mr-2">
+                    <div class="avatar avatar--md avatar-image__image">
+                      <div class="avatar__content">
+                        <img src="assets/profile.png" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-left card-footer">
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(10, 214, 250); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(174, 10, 250); color:white;"
+                    >html</span
+                  >
+                  <span
+                    class="mb-2 mr-1 badge"
+                    style="background-color: rgb(166, 250, 10); color:white;"
+                    >html</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <nav class="" aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a href="#" class="page-link" aria-label="Previous"
+                      ><span aria-hidden="true"
+                        ><i class="fa fa-fw fa-angle-left"></i></span
+                      ><span class="sr-only">Previous</span></a
+                    >
+                  </li>
+                  <li class="page-item active">
+                    <a href="#" class="page-link">1</a>
+                  </li>
+                  <li class="page-item"><a href="#" class="page-link">2</a></li>
+                  <li class="page-item"><a href="#" class="page-link">3</a></li>
+                  <li class="page-item">
+                    <a href="#" class="page-link" aria-label="Next"
+                      ><span aria-hidden="true"
+                        ><i class="fa fa-fw fa-angle-right"></i></span
+                      ><span class="sr-only">Next</span></a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+            <div id="side-filter-container" class="d-none">
+              <div id="side-filter" class="d-flex flex-column h-100 mx-3 py-3">
+                <div id="side-filter-header" class="border-bottom mb-3">
+                  <button type="button" class="btn close-side-issue">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
                 <form>
                   <div class="form-group">
-                    <label for="project-name" class="col-form-label">Name</label>
-                    <input type="text" class="form-control" id="project-name">
+                    <label for="search">Search</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="filter_search"
+                      placeholder="Search Input"
+                    />
                   </div>
                   <div class="form-group">
-                    <label for="project_description" class="col-form-label">Description</label>
-                    <textarea class="form-control" id="project_description"></textarea>
+                    <label for="tags">Tags</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="filter_tags"
+                      placeholder="Choose Tags"
+                    />
                   </div>
                   <div class="form-group">
-                    <label for="project_tags" class="col-form-label">Tags</label> <br>
-                    <span class="mb-2 mr-1 badge" style="background-color: rgb(10, 214, 250); color:white;">html</span>
-                    <span class="mb-2 mr-1 badge" style="background-color: rgb(174, 10, 250); color:white;">html</span>
-                    <span class="mb-2 mr-1 badge" style="background-color: rgb(166, 250, 10); color:white;">html</span>
-                    <button class="btn btn-white">
-                      <i class="fa fa-tag mr--small"></i>
-                      <span>Add Tag</span>
-                    </button>
+                    <label for="owner">Project Owner</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="filter_owner"
+                      placeholder="Choose Project Owner"
+                    />
                   </div>
                 </form>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Create</button>
+            </div>
+
+            <div
+              class="modal"
+              id="addProjectModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="addProjectModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addProjectModalLabel">
+                      Create Project
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="project-name" class="col-form-label"
+                          >Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="project-name"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="project_description" class="col-form-label"
+                          >Description</label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="project_description"
+                        ></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="project_tags" class="col-form-label"
+                          >Tags</label
+                        >
+                        <br />
+                        <span
+                          class="mb-2 mr-1 badge"
+                          style="background-color: rgb(10, 214, 250); color:white;"
+                          >html</span
+                        >
+                        <span
+                          class="mb-2 mr-1 badge"
+                          style="background-color: rgb(174, 10, 250); color:white;"
+                          >html</span
+                        >
+                        <span
+                          class="mb-2 mr-1 badge"
+                          style="background-color: rgb(166, 250, 10); color:white;"
+                          >html</span
+                        >
+                        <button class="btn btn-white">
+                          <i class="fa fa-tag mr--small"></i>
+                          <span>Add Tag</span>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-white"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-success">
+                      Create
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 
-<script>
-  document.querySelector(".hamburger").addEventListener("click", function () {
-    document.querySelector(".page-wrapper").classList.toggle("is-collapsed");
-  });
-
-  document
-    .querySelector(".notification")
-    .addEventListener("click", function () {
-      console.log(document.querySelector(".notification").classList);
-
-      document
-        .querySelector(".notification-dropdown")
-        .classList.toggle("display-block");
+  <script>
+    document.querySelector(".hamburger").addEventListener("click", function() {
+      document.querySelector(".page-wrapper").classList.toggle("is-collapsed");
     });
-</script>
 
+    document
+      .querySelector(".notification")
+      .addEventListener("click", function() {
+        console.log(document.querySelector(".notification").classList);
 
+        document
+          .querySelector(".notification-dropdown")
+          .classList.toggle("display-block");
+      });
+  </script>
 </html>

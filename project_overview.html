@@ -1,85 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Template for pages</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Template for pages</title>
+    <!-- Owl-Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
+      crossorigin="anonymous"
+    />
 
-  <!-- Owl-Carousel -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <!-- Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/project_overview.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
 
-  <!-- Custom Style-->
-  <link rel="stylesheet" href="./css/project_overview.css">
-  <link rel="stylesheet" href="./css/navbar.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <body>
+    <div class="page-wrapper h-100 is-collapsed">
+      <nav class="top-navbar">
+        <div
+          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
+        >
+          <div class="logo">
+            <h4 class="mb-0 px-3">
+              <i class="fas fa-drafting-compass"></i> Kick
+            </h4>
+          </div>
 
-
-</head>
-
-<body>
-
-
-  <div class="page-wrapper h-100 is-collapsed">
-
-    <nav class="top-navbar">
-
-      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
-
-        <div class="logo">
-          <h4 class="mb-0 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
+          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+            <!--notifications-->
+            <li class="px-5 utility ml-3 notification mb-0">
+              <a href="#"><i class="fas fa-bell"></i></a>
+              <span class="num">4</span>
+              <div class="notification-dropdown">
+                <h6 class="notification-title text-center">notifications</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  More(2) ...
+                </div>
+              </div>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0 ">
+              <a href="#"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
         </div>
+      </nav>
 
-        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-
-          <!--notifications-->
-          <li class="px-5 utility ml-3 notification mb-0">
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <span class="num">4</span>
-            <div class="notification-dropdown">
-              <h6 class = "notification-title text-center">notifications</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                More(2) ...
-              </div>
-            </div>
-          </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 ">
-            <a href="#"><i class="fas fa-user"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- 
+      <!-- 
       inside a project he sidebar-menu options can be
       board
       flux diagram
@@ -89,152 +103,211 @@
       back
       ...
     -->
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-book"></i></span>
-            <span class="side-menu-item-title">My Work</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="far fa-folder"></i></span>
-            <span class="side-menu-item-title">Projects</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-columns"></i></span>
-            <span class="side-menu-item-title">Panels</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#" class="active">
-            <span class="m-2"><i class="fas fa-filter"></i></span>
-            <span class="side-menu-item-title">Filters</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-user-friends"></i></span>
-            <span class="side-menu-item-title">Users</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-cogs"></i></span>
-            <span class="side-menu-item-title">Settings</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-exclamation-triangle"></i></i></span>
-            <span class="side-menu-item-title">Urgent</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <!--generic container-->
-    <div class="main-container container-fluid col-8 mx-auto">
-      <nav>
-        <ol class="breadcrumb custom-separator">
-          <li><a href="#0">lbaw</a></li>
-          <li class="current"><em>Project Overview</em></li>
-        </ol>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </li>
+          <li class="side-menu-item dropdown active">
+            <a href="project_overview.html">
+              <span class="m-2"><i class="fas fa-home"></i> </span>
+              <span class="side-menu-item-title">Project Overview</span>
+            </a>
+            <ul class="side-menu-dropdown">
+              <li class="side-menu-item main-dropdown-title">
+                <a class="active" href="project_overview.html">
+                  <span class="">Project Overview</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a class="" href="project_team.html">
+                  <span class="">Members</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a href="activity.html">
+                  <span class="">Activity</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a href="issuelist.html">
+              <span class="m-2"><i class="far fa-folder"></i></span>
+              <span class="side-menu-item-title">Issues</span>
+            </a>
+            <ul class="side-menu-dropdown">
+              <li class="side-menu-item main-dropdown-title">
+                <a href="issuelist.html">
+                  <span class="">Issues</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a href="issuelist.html">
+                  <span class="">List</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a href="board.html">
+                  <span class="">Boards</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="side-menu-item">
+            <a class="" href="chat.html">
+              <span class="m-2"><i class="far fa-comment-alt"></i></span>
+              <span class="side-menu-item-title">Chat</span>
+            </a>
+          </li>
+        </ul>
       </nav>
-      <div id="project-container">
-        <div id="project" class="d-flex flex-column h-100 mx-3 py-3 text-left">
-          <div id="project-header" class="border-bottom mb-3 d-flex flex-column">
-            <div class="d-flex align-items-start">
-              <p class="mr-auto">
-                <span class="project-creator">
-                    Project created by <span class="author text-primary">Revuj</span></span>
-              </p>
-              <form class="edit-issue-title-form form-group d-none mr-auto">
-                <div class="form-group text-left">
-                  <input
-                    type="text"
-                    class="form-control"
-                    class="item-title"
-                    placeholder=""
-                  />
-                </div>
-                <div class="d-flex justify-content-between">
-                  <button
-                    type="submit"
-                    class="btn btn-primary edit-item-title btn"
-                  >
-                    Submit
+
+      <!--generic container-->
+      <div class="main-container">
+        <div class="main-content-container px-4">
+          <nav>
+            <ol class="breadcrumb custom-separator">
+              <li><a href="#0">lbaw</a></li>
+              <li class="current"><em>Project Overview</em></li>
+            </ol>
+          </nav>
+          <div id="project-container">
+            <div id="project" class="d-flex flex-column h-100 py-3 text-left">
+              <div
+                id="project-header"
+                class="border-bottom mb-3 d-flex flex-column"
+              >
+                <div class="d-flex align-items-start">
+                  <p class="mr-auto">
+                    <span class="project-creator">
+                      Project created by
+                      <span class="author text-primary">Revuj</span></span
+                    >
+                  </p>
+                  <form class="edit-issue-title-form form-group d-none mr-auto">
+                    <div class="form-group text-left">
+                      <input
+                        type="text"
+                        class="form-control"
+                        class="item-title"
+                        placeholder=""
+                      />
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <button
+                        type="submit"
+                        class="btn btn-primary edit-item-title btn"
+                      >
+                        Submit
+                      </button>
+                      <button
+                        type="reset"
+                        class="btn btn-primary edit-item-title-cancel"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </form>
+                  <button type="button" class="btn d-none edit-task mr-1">
+                    <i class="fas fa-pencil-alt float-right"></i>
                   </button>
-                  <button
-                    type="reset"
-                    class="btn btn-primary edit-item-title-cancel"
-                  >
-                    Cancel
-                  </button>
                 </div>
-              </form>
-              <button type="button" class="btn d-none edit-task mr-1">
-                <i class="fas fa-pencil-alt float-right"></i>
-              </button>
+                <h4 class="project-title mr-auto mb-4">Project Kick</h4>
+              </div>
+              <div class="description text-justify">
+                <p>
+                  The purpose of this project is to develop a system for project
+                  management, allowing the clients to create their own workflows
+                  as well as customize them, enabling to plan ahead, monitoring
+                  the work progress and communicate with the team in a flexible
+                  and organized way. In a world where the majority of the
+                  development comes from maintaining and building projects,
+                  having a tool where everything can be managed is now one of
+                  the key elements in projects, playing an important role in its
+                  organization and success. Through this application, users,
+                  within teams, can create customizable lists for their tasks
+                  and issues with items that can be moved through different
+                  lists and have an overview of the lists through a
+                  representation in the form of a table or a Kanban board. For
+                  each task and issue it will be possible to assign them to a
+                  team member, define their due date, label them and search
+                  using different filters. The tasks and issues can also be
+                  commented by any team member, and, if that's not enough, users
+                  can also communicate through discussion forums for each
+                  project. It is worth noticing that every user activity, such
+                  as defining new tasks or completing them, will be registered
+                  so the team can track their progress. With innovative
+                  thinking, a user friendly design, an efficient task management
+                  and a ground breaking discussion forum, this all in one
+                  application can go up against the already established
+                  companies in this business. For each project users are
+                  separated into project developers and project coordinators
+                  that have different permissions. Any authenticated user can be
+                  associated with different teams and create a new project,
+                  becoming its coordinator, and then inviting other users to
+                  work on it. Non authenticated users are only able to read the
+                  main page, where they can read information about the app, and
+                  the sign up page. Teams can have one or more project
+                  coordinators that have special privileges like inviting and
+                  removing members from a project, assign tasks to users and
+                  moderate the project's forum. It is worth noticing that there
+                  will be some users with administrator privileges, being able
+                  to remove any user or team from the web application.
+                </p>
+              </div>
+              <div class="members-container">
+                <h5 class="block pb-2">Members</h5>
+                <ul class="members d-flex">
+                  <li class="mr-2">
+                    <img
+                      src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
+                      alt="@vitorb19"
+                      draggable="false"
+                    />
+                  </li>
+                  <li class="mr-2">
+                    <img
+                      src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                      alt="@vitorb19"
+                      draggable="false"
+                    />
+                  </li>
+                  <li>
+                    <button type="button" class="btn add-assignee">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <h4 class="project-title mr-auto mb-4">Project Kick</h4>
-          </div>
-          <div class="description text-justify">
-            <p>The purpose of this project is to develop a system for project management, allowing the clients to create their own workflows as well as customize them, enabling to plan ahead, monitoring the work progress and communicate with the team in a flexible and organized way.
-                In a world where the majority of the development comes from maintaining and building projects, having a tool where everything can be managed is now one of the key elements in projects, playing an important role in its organization and success.
-                Through this application, users, within teams, can create customizable lists for their tasks and issues with items that can be moved through different lists and have an overview of the lists through a representation in the form of a table or a Kanban board. For each task and issue it will be possible to assign them to a team member, define their due date, label them and search using different filters. The tasks and issues can also be commented by any team member, and, if that's not enough, users can also communicate through discussion forums for each project. It is worth noticing that every user activity, such as defining new tasks or completing them, will be registered so the team can track their progress.
-                With innovative thinking, a user friendly design, an efficient task management and a ground breaking discussion forum, this all in one application can go up against the already established companies in this business.
-                For each project users are separated into project developers and project coordinators that have different permissions. Any authenticated user can be associated with different teams and create a new project, becoming its coordinator, and then inviting other users to work on it. Non authenticated users are only able to read the main page, where they can read information about the app, and the sign up page.
-                Teams can have one or more project coordinators that have special privileges like inviting and removing members from a project, assign tasks to users and moderate the project's forum.
-                It is worth noticing that there will be some users with administrator privileges, being able to remove any user or team from the web application.</p>
-          </div>
-            <div class="members-container">
-              <h5 class="block pb-2">Members</h5>
-              <ul class="members d-flex">
-                <li class="mr-2">
-                  <img
-                    src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                    alt="@vitorb19"
-                    draggable="false"
-                  />
-                </li>
-                <li class="mr-2">
-                  <img
-                    src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                    alt="@vitorb19"
-                    draggable="false"
-                  />
-                </li>
-                <li>
-                  <button type="button" class="btn add-assignee">
-                    <i class="fas fa-plus"></i>
-                  </button>
-                </li>
-              </ul>
           </div>
         </div>
       </div>
+      <!--end of main-container can possible be a section in the future-->
     </div>
-    <!--end of main-container can possible be a section in the future-->
+    <!--end of page wrapper-->
 
-  </div>
-  <!--end of page wrapper-->
+    <script>
+      document
+        .querySelector(".hamburger")
+        .addEventListener("click", function() {
+          document
+            .querySelector(".page-wrapper")
+            .classList.toggle("is-collapsed");
+        });
 
-  <script>
-    document.querySelector('.hamburger').addEventListener('click', function () {
-      document.querySelector('.page-wrapper').classList.toggle('is-collapsed')
-    })
+      document
+        .querySelector(".notification")
+        .addEventListener("click", function() {
+          console.log(document.querySelector(".notification").classList);
 
-    document.querySelector('.notification').addEventListener('click', function () {
-      console.log(document.querySelector('.notification').classList)
-
-      document.querySelector('.notification-dropdown').classList.toggle('display-block')
-    })
-
-
-  </script>
-
-</body>
-
+          document
+            .querySelector(".notification-dropdown")
+            .classList.toggle("display-block");
+        });
+    </script>
+  </body>
 </html>
