@@ -25,6 +25,12 @@
   z-index: 200;
   overflow: hidden;
 }
+
+.is-collapsed-right #side-issue-container,
+.add-label,
+.add-assignee {
+  right: 0;
+}
 .is-collapsed-right .main-container {
   padding-right: 15rem;
   background: none;
