@@ -155,10 +155,28 @@
 						</button>
 					</div>
 				</div>
-				<div id="filter-buttons" class="">
-					<button type="submit" class="btn btn-primary mx-1">Sort by<i class="fas fa-chevron-down ml-3"></i></button>
+				<div id="filter-buttons" class="dropdown">
+						<button
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+							id="dropdownFiltersButton"
+							type="button"
+							type="submit"
+							class="btn btn-primary dropdown-toggle mx-1"
+						>
+							Sort by<i class="fas fa-chevron-down ml-3"></i>
+						</button>
+						<div
+							class="dropdown-menu"
+							aria-labelledby="dropdownFiltersButton"
+						>
+							<a class="dropdown-item" href="#">Due Date</a>
+							<a class="dropdown-item" href="#">Opening Date</a>
+							<a class="dropdown-item" href="#">Assignees</a>
+						</div>
 					<button type="submit" class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></button>
-				</div>
+					</div>
 			</form>
 
 			<div class="row m-2">
