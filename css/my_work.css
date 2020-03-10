@@ -1,4 +1,4 @@
-@import url("global.css");
+@import url('global.css');
 
 #side-filter-container {
   position: fixed;
@@ -58,7 +58,7 @@
 
 .issue {
   transition: all 0.3s ease;
-  padding: .75rem 1.25rem;
+  padding: 0.75rem 1.25rem;
 }
 
 .issue:hover {
@@ -66,14 +66,35 @@
 }
 
 #task-name {
-  border: none;
-  border-bottom: 2px solid var(--secondary-color);
-  border-left: 2px solid var(--secondary-color);
+  border-top: none;
+  border-right: none;
   border-radius: 0%;
 }
 
-@media only screen and (max-width: 768px) {
+#tables-types li {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid white;
+}
 
+#tables-types li.active {
+  border-bottom: 3px solid var(--primary-color);
+}
+
+#tables-types li:hover {
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.tables-type-counter {
+  background-color: rgb(143, 143, 143);
+  color: white;
+  padding: 0 2px;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 768px) {
   .modal-dialog {
     width: 100%;
     height: 100%;
