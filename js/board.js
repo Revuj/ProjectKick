@@ -2,8 +2,6 @@
 let create_list_btn = document.querySelector(".add-list");
 let kanban_table = document.querySelector(".kanban-table");
 let list_to_add_name = document.querySelector(".listCreated");
-let add_item_button = document.querySelectorAll(".add-item");
-let cancel_add_item_button = document.querySelectorAll(".cancel-add-item");
 let delete_list_button = document.querySelector("#delete-list-button");
 let edit_item_buttons = document.querySelectorAll(".edit-task");
 let save_edit_item = document.querySelector("#edit-task-button");
@@ -11,7 +9,7 @@ let side_issue_header = document.querySelector("#side-issue-header");
 let closeSideIssueButton = document.querySelector(".close-side-issue");
 
 let list_items = document.querySelectorAll(".task-item");
-const lists = document.querySelectorAll(".task-items");
+let lists = document.querySelectorAll(".task-items");
 
 const error_color = "red";
 const success_color = "green";
@@ -62,15 +60,15 @@ create_list_btn.addEventListener("click", () => {
   listenAddItem(addItemButtons[addItemButtons.length - 2]);
   listenCancelAddItem(addItemButtons[addItemButtons.length - 1]);
 
-  newList.addEventListener("dragover", function (e) {
+  newList.addEventListener("dragover", function(e) {
     e.preventDefault();
   });
 
-  newList.addEventListener("dragenter", function (e) {
+  newList.addEventListener("dragenter", function(e) {
     e.preventDefault();
   });
 
-  newList.children[1].addEventListener("drop", function (e) {
+  newList.children[1].addEventListener("drop", function(e) {
     console.log(newList);
     this.append(draggedItem);
   });
@@ -103,13 +101,12 @@ function listenAddItem(elem) {
     $(`#${liForm.getAttribute("id")}`).collapse("toggle");
     newItem.setAttribute("draggable", true);
     setDraggable(newItem);
+    openSideIssueListen(newItem);
     mouseOverListItem(newItem);
     mouseLeaveListItem(newItem);
     elem.parentElement.previousElementSibling.lastElementChild.value = "";
   });
 }
-
-[...add_item_button].forEach(elem => listenAddItem(elem));
 
 function listenCancelAddItem(elem) {
   elem.addEventListener("click", event => {
@@ -118,10 +115,8 @@ function listenCancelAddItem(elem) {
   });
 }
 
-[...cancel_add_item_button].forEach(elem => listenCancelAddItem(elem));
-
 /* Allows modal to know which list to delete */
-$("#delete-list-modal").on("show.bs.modal", function (event) {
+$("#delete-list-modal").on("show.bs.modal", function(event) {
   let button = $(event.relatedTarget); // Button that triggered the modal
   let recipient = button.data("list-id"); // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -141,32 +136,36 @@ delete_list_button.addEventListener("click", event => {
 });
 
 function setDraggable(elem) {
-  elem.addEventListener("dragstart", function (e) {
+  elem.addEventListener("dragstart", function(e) {
+    e.stopPropagation();
+    console.log(elem);
+
     draggedItem = elem;
-    setTimeout(function () {
+    setTimeout(function() {
       elem.style.display = "none";
     }, 0);
   });
 
-  elem.addEventListener("dragend", function (e) {
-    setTimeout(function () {
+  elem.addEventListener("dragend", function(e) {
+    setTimeout(function() {
       draggedItem.style.display = "block";
       draggedItem = null;
     }, 0);
   });
 
+  lists = document.querySelectorAll(".task-items");
   for (let j = 0; j < lists.length; j++) {
     const list = lists[j];
 
-    list.addEventListener("dragover", function (e) {
+    list.addEventListener("dragover", function(e) {
       e.preventDefault();
     });
 
-    list.addEventListener("dragenter", function (e) {
+    list.addEventListener("dragenter", function(e) {
       e.preventDefault();
     });
 
-    list.addEventListener("drop", function (e) {
+    list.addEventListener("drop", function(e) {
       console.log("oi");
       console.log(this);
       this.append(draggedItem);
@@ -207,7 +206,7 @@ function mouseLeaveListItem(elem) {
 }
 
 function openSideIssueListen(elem) {
-  elem.addEventListener("click", function () {
+  elem.addEventListener("click", function() {
     let taskID = elem.getAttribute("id");
     let taskTitle = elem.querySelector(".task-title").innerHTML;
     if (pageWrapper.classList.contains("is-collapsed-right")) {
@@ -226,7 +225,7 @@ function openSideIssueListen(elem) {
 
       pageWrapper.classList.toggle("is-collapsed-right");
     }
-  })
+  });
 }
 
 console.log(document.querySelectorAll(".task-item"));
@@ -271,9 +270,7 @@ cancelEditTitleButton.addEventListener("click", event => {
   side_issue_header.querySelector("p").classList.toggle("d-none");
 });
 
-[...sideIssueButtons].forEach(elem =>
-  openSideIssueListen(elem)
-);
+[...sideIssueButtons].forEach(elem => openSideIssueListen(elem));
 
 /*general functions */
 
@@ -303,73 +300,69 @@ function changecolors(type_message, item) {
 }
 
 /*========================  FILTERS ==================================*/
-const input_filter = document.querySelector('#filter-issues')
+const input_filter = document.querySelector("#filter-issues");
 
-input_filter.addEventListener('input', (e) => {
-  filterTasks(tasks_list, e.target.value)
-
-})
+input_filter.addEventListener("input", e => {
+  filterTasks(tasks_list, e.target.value);
+});
 
 const tasks_list = [
   {
-    name: 'Backlog',
+    name: "Backlog",
     tasks: [
       {
         id: 1,
-        title: 'Work assigned to me',
+        title: "Work assigned to me",
         list_counter: 1,
-        creator: 'Revuj',
-        tags: ['Iteration1'],
-        imgCreator: 'https://avatars3.githubusercontent.com/u/41621540?s=40&v=4'
+        creator: "Revuj",
+        tags: ["Iteration1"],
+        imgCreator: "https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
       },
       {
         id: 2,
-        title: 'This is another',
+        title: "This is another",
         list_counter: 2,
-        creator: 'Jpabelha',
-        tags: ['Iteration2'],
-        imgCreator: 'https://avatars2.githubusercontent.com/u/44231794?s=40&v=4'
+        creator: "Jpabelha",
+        tags: ["Iteration2"],
+        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
       }
     ] // end of tasks 1
   }, // first task list
 
   {
-    name: 'Develop',
+    name: "Develop",
     tasks: [
       {
         id: 3,
-        title: 'Work assigned to me',
+        title: "Work assigned to me",
         list_counter: 1,
-        creator: 'Revuj',
-        tags: ['Iteration1', 'Dope'],
-        imgCreator: 'https://avatars3.githubusercontent.com/u/41621540?s=40&v=4'
+        creator: "Revuj",
+        tags: ["Iteration1", "Dope"],
+        imgCreator: "https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
       },
       {
         id: 4,
-        title: 'This is another',
+        title: "This is another",
         list_counter: 2,
-        creator: 'Jpabelha',
-        tags: ['Iteration2'],
-        imgCreator: 'https://avatars2.githubusercontent.com/u/44231794?s=40&v=4'
+        creator: "Jpabelha",
+        tags: ["Iteration2"],
+        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
       }
     ]
   }
-
-
-]
-
+];
 
 function filterTasks(task_list, value) {
+  let filtered = [];
 
-  let filtered = []
+  task_list.forEach(task => {
+    // for each board
 
-  task_list.forEach(task => { // for each board
+    let element = { name: task.name };
 
-    let element = { name: task.name }
-
-
-    element.tasks = task.tasks.filter(element => { // for each task
-      const regex = new RegExp(`^${value}`, 'gi');
+    element.tasks = task.tasks.filter(element => {
+      // for each task
+      const regex = new RegExp(`^${value}`, "gi");
 
       // filter creator
       if (element.creator.match(regex)) return true;
@@ -383,32 +376,32 @@ function filterTasks(task_list, value) {
         if (tags[i].match(regex)) return true;
       }
       return false;
-    })
+    });
 
     filtered.push(element);
-  })
-
+  });
 
   kanban_table.innerHTML = outputKanbanHTML(filtered);
   let list_items = document.querySelectorAll(".task-item");
-  [...list_items].forEach(elem => { mouseOverListItem(elem); mouseLeaveListItem(elem); setDraggable(elem) });
+  [...list_items].forEach(elem => {
+    mouseOverListItem(elem);
+    mouseLeaveListItem(elem);
+    setDraggable(elem);
+  });
 }
 
 function outputKanbanHTML(tasks) {
-
-  let output = ''
+  let output = "";
   for (let i = 0; i < tasks.length; i++) {
-    output += outputTaskListHTML(tasks[i])
+    output += outputTaskListHTML(tasks[i]);
   }
   return output;
 }
 
-
 function outputTaskListHTML(tasksJson) {
-
-  let tasks_list = '';
+  let tasks_list = "";
   tasksJson.tasks.forEach(task => {
-    let tags = '';
+    let tags = "";
 
     /*maybe in the future put here some limit */
     task.tags.forEach(tag => {
@@ -416,8 +409,8 @@ function outputTaskListHTML(tasksJson) {
         <h6 class="mb-0 p-1 list-item-label bg-info ml-1">
         ${tag}
       </h6>
-      `
-    })
+      `;
+    });
 
     tasks_list += `
     <li id=${task.id} class="task-item text-left" draggable="true">
@@ -441,15 +434,14 @@ function outputTaskListHTML(tasksJson) {
         </span>
       </span>
     </li>
-    `
+    `;
   });
-
 
   tasks_list += `
   <li class="add-item-li collapse" id="add-item-${tasksJson.name}">
     <form class="add-item-form form-group">
       <div class="form-group text-left">
-        <label for="item-title">Titletool</label>
+        <label for="item-title">Title</label>
         <input type="text" class="form-control" class="item-title" placeholder="" />
       </div>
       <div class="d-flex justify-content-between">
@@ -458,8 +450,8 @@ function outputTaskListHTML(tasksJson) {
       </div>
     </form>
   </li>
-  `
-  let tasks = ` <ul class="task-items">${tasks_list}</ul>`
+  `;
+  let tasks = ` <ul class="task-items">${tasks_list}</ul>`;
 
   const output = `
   <div class="bd-highlight task" id="task-list-${tasksJson.name}">
@@ -482,8 +474,15 @@ function outputTaskListHTML(tasksJson) {
   return output;
 }
 
-
-kanban_table.innerHTML = outputKanbanHTML(tasks_list)
+kanban_table.innerHTML = outputKanbanHTML(tasks_list);
 list_items = document.querySelectorAll(".task-item");
-[...list_items].forEach(elem => { mouseOverListItem(elem); mouseLeaveListItem(elem); setDraggable(elem); openSideIssueListen(elem) });
-
+[...list_items].forEach(elem => {
+  mouseOverListItem(elem);
+  mouseLeaveListItem(elem);
+  setDraggable(elem);
+  openSideIssueListen(elem);
+});
+let add_item_button = document.querySelectorAll(".add-item");
+let cancel_add_item_button = document.querySelectorAll(".cancel-add-item");
+[...add_item_button].forEach(elem => listenAddItem(elem));
+[...cancel_add_item_button].forEach(elem => listenCancelAddItem(elem));
