@@ -10,7 +10,7 @@ let save_edit_item = document.querySelector("#edit-task-button");
 let side_issue_header = document.querySelector("#side-issue-header");
 let closeSideIssueButton = document.querySelector(".close-side-issue");
 
-const list_items = document.querySelectorAll(".task-item");
+let list_items = document.querySelectorAll(".task-item");
 const lists = document.querySelectorAll(".task-items");
 
 const error_color = "red";
@@ -93,8 +93,7 @@ function listenAddItem(elem) {
     newItem.className = "task-item text-left";
     newItem.setAttribute("draggable", "true");
     newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"> <h6 class="mb-0 py-2 task-title">${title}</h6>
-    <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal" data-target="#edit-task-modal"
-      data-task-id="${id}"><i class="fas fa-pencil-alt float-right"></i></button>
+    <button type="button" class="btn ml-auto d-none edit-task"><i class="fas fa-pencil-alt float-right"></i></button>
       </span>
       <span class="d-flex flex-row align-items-center mx-2 row-2">
         <p class="w-100 mb-2"><span class="list-item-counter">#3</span> <span class="list-item-creator"> opened by
@@ -188,21 +187,6 @@ function dragDrop() {
   })
 );
 
-$("#edit-task-modal").on("show.bs.modal", function (event) {
-  var button = $(event.relatedTarget); // Button that triggered the modal
-  var recipient = button.data("task-id"); // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this);
-  var taskItem = document.querySelector(`.task-item[id="${recipient}"]`);
-  console.log(taskItem);
-  var title = taskItem.querySelector(".task-title").innerHTML;
-  modal.find(".modal-body input").val(title);
-  document
-    .getElementById("edit-task-button")
-    .setAttribute("data-task-id", recipient);
-});
-
 save_edit_item.addEventListener("click", event => {
   let newLabel = document.getElementById("edit-task-label").value;
   let dataTaskLabel = save_edit_item.getAttribute("data-task-id");
@@ -221,6 +205,31 @@ function mouseLeaveListItem(elem) {
     elem.querySelector(".edit-task").classList.add("d-none");
   });
 }
+
+function openSideIssueListen(elem) {
+  elem.addEventListener("click", function () {
+    let taskID = elem.getAttribute("id");
+    let taskTitle = elem.querySelector(".task-title").innerHTML;
+    if (pageWrapper.classList.contains("is-collapsed-right")) {
+      title.classList.remove("d-none");
+      editTitleFrom.classList.add("d-none");
+      side_issue_header.querySelector("p").classList.remove("d-none");
+      if (taskID !== sideIssue.getAttribute("data-task-id")) {
+        sideIssue.setAttribute("data-task-id", taskID);
+        sideIssue.querySelector(".task-title").innerHTML = taskTitle;
+      } else {
+        pageWrapper.classList.toggle("is-collapsed-right");
+      }
+    } else {
+      sideIssue.setAttribute("data-task-id", taskID);
+      sideIssue.querySelector(".task-title").innerHTML = taskTitle;
+
+      pageWrapper.classList.toggle("is-collapsed-right");
+    }
+  })
+}
+
+console.log(document.querySelectorAll(".task-item"));
 
 /* Show edit button when item is hovered */
 [...list_items].forEach(elem => mouseOverListItem(elem));
@@ -263,26 +272,7 @@ cancelEditTitleButton.addEventListener("click", event => {
 });
 
 [...sideIssueButtons].forEach(elem =>
-  elem.addEventListener("click", function () {
-    let taskID = elem.getAttribute("id");
-    let taskTitle = elem.querySelector(".task-title").innerHTML;
-    if (pageWrapper.classList.contains("is-collapsed-right")) {
-      title.classList.remove("d-none");
-      editTitleFrom.classList.add("d-none");
-      side_issue_header.querySelector("p").classList.remove("d-none");
-      if (taskID !== sideIssue.getAttribute("data-task-id")) {
-        sideIssue.setAttribute("data-task-id", taskID);
-        sideIssue.querySelector(".task-title").innerHTML = taskTitle;
-      } else {
-        pageWrapper.classList.toggle("is-collapsed-right");
-      }
-    } else {
-      sideIssue.setAttribute("data-task-id", taskID);
-      sideIssue.querySelector(".task-title").innerHTML = taskTitle;
-
-      pageWrapper.classList.toggle("is-collapsed-right");
-    }
-  })
+  openSideIssueListen(elem)
 );
 
 /*general functions */
@@ -380,16 +370,16 @@ function filterTasks(task_list, value) {
 
     element.tasks = task.tasks.filter(element => { // for each task
       const regex = new RegExp(`^${value}`, 'gi');
-      
+
       // filter creator
-      if(element.creator.match(regex)) return true;
+      if (element.creator.match(regex)) return true;
 
       //filter title
-      if(element.title.match(regex)) return true;
+      if (element.title.match(regex)) return true;
 
       // filter by tags
       let tags = element.tags;
-      for(let i = 0; i < tags.length; i++) {
+      for (let i = 0; i < tags.length; i++) {
         if (tags[i].match(regex)) return true;
       }
       return false;
@@ -400,6 +390,8 @@ function filterTasks(task_list, value) {
 
 
   kanban_table.innerHTML = outputKanbanHTML(filtered);
+  let list_items = document.querySelectorAll(".task-item");
+  [...list_items].forEach(elem => { mouseOverListItem(elem); mouseLeaveListItem(elem); setDraggable(elem) });
 }
 
 function outputKanbanHTML(tasks) {
@@ -420,7 +412,7 @@ function outputTaskListHTML(tasksJson) {
 
     /*maybe in the future put here some limit */
     task.tags.forEach(tag => {
-      tags+= `
+      tags += `
         <h6 class="mb-0 p-1 list-item-label bg-info ml-1">
         ${tag}
       </h6>
@@ -431,8 +423,7 @@ function outputTaskListHTML(tasksJson) {
     <li id=${task.id} class="task-item text-left" draggable="true">
       <div class="d-flex flex-row align-items-center ml-2 row-1">
         <h6 class="mb-0 py-2 task-title">${task.title}</h6>
-        <button type="button" class="btn ml-auto d-none edit-task" data-toggle="modal"
-          data-target="#edit-task-modal" data-task-id="1">
+        <button type="button" class="btn ml-auto d-none edit-task">
           <i class="fas fa-pencil-alt float-right"></i>
         </button>
       </div>
@@ -493,4 +484,6 @@ function outputTaskListHTML(tasksJson) {
 
 
 kanban_table.innerHTML = outputKanbanHTML(tasks_list)
+list_items = document.querySelectorAll(".task-item");
+[...list_items].forEach(elem => { mouseOverListItem(elem); mouseLeaveListItem(elem); setDraggable(elem); openSideIssueListen(elem) });
 
