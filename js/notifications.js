@@ -1,27 +1,61 @@
+let notifications_filters = document.querySelectorAll("#notifications-list-container li");
 
 /* fecth from the database */
 let messages = [
-    { type: 'invitation', sender: 'John', date: '1269558180', team: "xoxo" },
-    { type: 'kicked', sender: 'Tiago', date: '1269558180', team: "wow" },
-    { type: 'task', date: '1269558180', team: "xoxo" },
-    { type: 'meeting', date: '1269558180', team: "lolo" } // system messages and reports to the admin
+    { type: 'invited', sender: 'John', date: 'just now', project: "lbaw2025" },
+    { type: 'invited', sender: 'Abelha', date: '2 days ago', project: "sdis" },
+    { type: 'invited', sender: 'Abelha', date: '1 month ago', project: "iart-proj" },
+    { type: 'kicked', sender: 'Tiago', date: '3 days ago', project: "ltw" },
+    { type: 'assigned', date: '1 minute ago', project: "BDAD", title: "Delivery 1st Project" },
+    { type: 'assigned', date: '1 day ago', project: "BDAD", title: "Normalize database" },
+    { type: 'assigned', date: '2 weeks ago', project: "PPIN", title: "Namaste" },
+    { type: 'issue', date: '1 minute ago', project: "LPOO", title: "Mutation Tests" },
+    { type: 'meeting', date: '1 week ago', project: "LPOO" } // system messages and reports to the admin
 ];
 
-function renderMessages() {
+notifications_filters.forEach(elem => elem.addEventListener("click", event => {
+    let notifications_container = document.querySelector('.notification-container');
+    let notifications = document.querySelector('.notification-container').children;
+    notifications_container.innerHTML = '';
+    let filtered_messages;
+    switch (elem.id) {
+        case "assigned-notifications":
+            filtered_messages = messages.filter(message => message.type == 'assigned')
+            break;
+        case "invited-notifications":
+            filtered_messages = messages.filter(message => message.type == 'invited')
+            break;
+        case "meetings-notifications":
+            filtered_messages = messages.filter(message => message.type == 'meeting')
+            break;
+        case "others-notifications":
+            filtered_messages = messages.filter(message => (message.type == 'kicked' || message.type == 'issue'))
+            break;
+        case "all-notifications":
+            filtered_messages = messages;
+            break;
+    }
+    renderMessages(filtered_messages)
+}))
+
+function renderMessages(messages) {
     messages.forEach(message => {
         let msg;
         switch (message.type) {
-            case 'invitation':
-                msg = new invitation(message.type, message.sender, message.date, message.team);
+            case 'invited':
+                msg = new invited(message.type, message.sender, message.date, message.project);
                 break;
             case 'kicked':
-                msg = new kicked(message.type, message.sender, message.date, message.team);
+                msg = new kicked(message.type, message.sender, message.date, message.project);
                 break;
-            case 'task':
-                msg = new task(message.type, message.date, message.team);
+            case 'assigned':
+                msg = new assigned(message.type, message.date, message.project, message.title);
+                break;
+            case 'issue':
+                msg = new issue(message.type, message.date, message.project, message.title);
                 break;
             case 'meeting':
-                msg = new meeting(message.type, message.date, message.team);
+                msg = new meeting(message.type, message.date, message.project);
                 break;
             default: return;
 
@@ -37,7 +71,8 @@ class message {
 
     constructor(type, date) {
         this.type = type;
-        this.date = this.timestampToDate(date);
+        //this.date = this.timestampToDate(date);
+        this.date = date;
         this.notification_list = document.querySelector('.notification-container');
 
     }
@@ -58,20 +93,21 @@ class message {
 
     /*to add generic classes */
     addClassesToElementList(contentTemplate) {
-        contentTemplate.classList.add("m-2", "p-2", "notification-list-item");
+        contentTemplate.classList.add("m-2", "p-2", "notification-list-item", "border-bottom");
     }
 }
 
 
-class invitation extends message {
-    constructor(type, sender, date, team) {
+class invited extends message {
+    constructor(type, sender, date, project) {
         super(type, date);
         this.sender = sender;
-        this.team = team;
+        this.project = project;
     }
 
     render() {
         let contentTemplate = document.createElement('li');
+        contentTemplate.classList.add("invited-notification");
         this.addClassesToElementList(contentTemplate);
 
         let upperContent = document.createElement('div')
@@ -79,14 +115,14 @@ class invitation extends message {
         upperContent.innerHTML +=
             `<div class = "d-flex align-items-center">
                 <img class = "m-2" src="./assets/profile.png" alt="profile_pic" style="width: 40px">
-                <p>${this.sender} invited you to the team ${this.team}</p>
+                <p><span class="author-reference">${this.sender} </span>invited you to the project <span class="project-reference">${this.project}</span></p>
             </div>
             <p class = "m-2">${this.date}</p>`;
 
         contentTemplate.appendChild(upperContent)
 
-        contentTemplate.innerHTML += `<button type="submit" class="btn btn-primary mx-2">Accept <i class="fas fa-check"></i></button>`
-        contentTemplate.innerHTML += `<button type="submit" class="btn btn-primary mx-2">Deny <i class="fas fa-times"></i></button>`
+        contentTemplate.innerHTML += `<button type="submit" class="custom-button primary-button mx-2">Accept <i class="fas fa-check"></i></button>`
+        contentTemplate.innerHTML += `<button type="submit" class="custom-button secondary-button mx-2">Deny <i class="fas fa-times"></i></button>`
         this.notification_list.appendChild(contentTemplate);
 
     }
@@ -94,15 +130,16 @@ class invitation extends message {
 
 class kicked extends message {
 
-    constructor(type, sender, date, team) {
+    constructor(type, sender, date, project) {
         super(type, date);
         this.sender = sender;
-        this.team = team;
+        this.project = project;
     }
 
     render() {
 
         let contentTemplate = document.createElement('li');
+        contentTemplate.classList.add("kicked-notification");
         this.addClassesToElementList(contentTemplate);
 
         let upperContent = document.createElement('div')
@@ -110,7 +147,7 @@ class kicked extends message {
         upperContent.innerHTML +=
             `<div class = "d-flex align-items-center justify-content-center">
                 <img class = "m-2" src="./assets/profile.png" alt="profile_pic" style="width: 40px">
-                <p>${this.sender} kicked out of the team ${this.team}
+                <p><span class="author-reference">${this.sender} </span>kicked you out of the project <span class="project-reference">${this.project}</span>
             </div>
             <p class = "m-2">${this.date}</p>`;
 
@@ -121,22 +158,50 @@ class kicked extends message {
     }
 }
 
-
-class task extends message {
-    constructor(type, date, team) {
+class assigned extends message {
+    constructor(type, date, project, title) {
         super(type, date);
-        this.team = team;
+        this.project = project;
+        this.title = title;
     }
 
     render() {
 
         let contentTemplate = document.createElement('li');
+        contentTemplate.classList.add("assigned-notification");
         let upperContent = document.createElement('div')
         upperContent.classList.add('d-flex', 'justify-content-between');
-        upperContent.innerHTML += `<p><i class="fas fa-tasks"></i> You have a task to finish for the team ${this.team} until ${this.date}</p>
+        upperContent.innerHTML += `<p> The issue <span class="issue-reference">${this.title}</span> on the project <span class="project-reference">${this.project}</span> has been assigned to you</p>
                                 <p>${this.date}</p>`;
 
         contentTemplate.appendChild(upperContent)
+        contentTemplate.innerHTML += `<a href="issue.html"><button type="submit" class="custom-button primary-button mx-2">Go to Issue</button></a>`
+        this.notification_list.appendChild(contentTemplate);
+        this.addClassesToElementList(contentTemplate);
+        this.notification_list.appendChild(contentTemplate);
+
+    }
+}
+
+class issue extends message {
+    constructor(type, date, project, title) {
+        super(type, date);
+        this.project = project;
+        this.title = title;
+    }
+
+    render() {
+
+        let contentTemplate = document.createElement('li');
+        contentTemplate.classList.add("issue-notification");
+        let upperContent = document.createElement('div')
+        upperContent.classList.add('d-flex', 'justify-content-between');
+        upperContent.innerHTML += `<p><i class="fas fa-issues"></i> The issue <span class="issue-reference">${this.title}</span> on the project <span class="project-reference">${this.project}</span> is reaching it's deadline</p>
+                                <p>${this.date}</p>`;
+
+        contentTemplate.appendChild(upperContent)
+        contentTemplate.innerHTML += `<a href="issue.html"><button type="submit" class="custom-button primary-button mx-2">Go to Issue</button></a>`
+        this.notification_list.appendChild(contentTemplate);
         this.addClassesToElementList(contentTemplate);
         this.notification_list.appendChild(contentTemplate);
 
@@ -144,26 +209,29 @@ class task extends message {
 }
 
 class meeting extends message {
-    constructor(type, date, team) {
+    constructor(type, date, project) {
         super(type, date);
-        this.team = team;
+        this.project = project;
     }
 
     render() {
         let contentTemplate = document.createElement('li');
+        contentTemplate.classList.add("meeting-notification");
         let upperContent = document.createElement('div')
         upperContent.classList.add('d-flex', 'justify-content-between');
-        upperContent.innerHTML += `<p><i class="fas fa-calendar-alt"></i> You have a meeting for ${this.team} at ${this.date}</p>
+        upperContent.innerHTML += `<p><i class="fas fa-calendar-alt"></i> You have a meeting for <span class="project-reference">${this.project}</span> at ${this.date}</p>
                                 <p>${this.date}</p>`;
 
         contentTemplate.appendChild(upperContent)
+        contentTemplate.innerHTML += `<a href="calendar.html"><button type="submit" class="custom-button primary-button mx-2">Go to Calendar</button></a>`
+
         this.addClassesToElementList(contentTemplate);
         this.notification_list.appendChild(contentTemplate);
     }
 }
 
 /*calls */
-renderMessages();
+renderMessages(messages);
 
 
 

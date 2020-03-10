@@ -1,12 +1,5 @@
-
 @import url("global.css");
 
-.notification-container {
-    width:80%;
-    margin:auto;
-}
-
 .notification-list-item {
-    background-color: grey;
-    border-radius: 5px;
+  border-radius: 5px;
 }
