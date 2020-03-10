@@ -14,8 +14,9 @@ let messages = [
 ];
 
 notifications_filters.forEach(elem => elem.addEventListener("click", event => {
+    notifications_filters.forEach(elem => elem.classList.remove("active"));
+    elem.classList.add("active");
     let notifications_container = document.querySelector('.notification-container');
-    let notifications = document.querySelector('.notification-container').children;
     notifications_container.innerHTML = '';
     let filtered_messages;
     switch (elem.id) {
