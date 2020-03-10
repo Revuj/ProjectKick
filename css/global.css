@@ -150,6 +150,16 @@ body {
   color: white;
 }
 
+a.nostyle:link {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+a.nostyle:visited {
+  text-decoration: inherit;
+  color: inherit;
+}
+
 .custom-button {
   display: inline-block;
   font-weight: 400;

@@ -39,6 +39,9 @@
   letter-spacing: 3px;
   font-family: Oxanium;
   text-transform: uppercase;
+  font-style: none;
+  cursor: pointer;
+  z-index: 300;
 }
 
 .top-menu {
