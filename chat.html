@@ -339,7 +339,7 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-white" data-dismiss="modal">
+              <button type="button" class="btn " data-dismiss="modal">
                 Close
               </button>
               <button type="button" class="btn btn-success">Create</button>
@@ -350,18 +350,18 @@
     </div>
   </body>
   <script>
-    document.querySelector(".hamburger").addEventListener("click", function() {
-      document.querySelector(".page-wrapper").classList.toggle("is-collapsed");
+    document.querySelector('.hamburger').addEventListener('click', function() {
+      document.querySelector('.page-wrapper').classList.toggle('is-collapsed');
     });
 
     document
-      .querySelector(".notification")
-      .addEventListener("click", function() {
-        console.log(document.querySelector(".notification").classList);
+      .querySelector('.notification')
+      .addEventListener('click', function() {
+        console.log(document.querySelector('.notification').classList);
 
         document
-          .querySelector(".notification-dropdown")
-          .classList.toggle("display-block");
+          .querySelector('.notification-dropdown')
+          .classList.toggle('display-block');
       });
   </script>
 </html>

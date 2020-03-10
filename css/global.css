@@ -1,7 +1,7 @@
 /*some resets*/
 
-@import url("https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Oxanium&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oxanium&display=swap');
 
 html {
   -webkit-box-sizing: border-box;
@@ -79,8 +79,8 @@ img {
   --primary-gradient: linear-gradient(81deg, #ffa751 0%, #ffe259 66%);
   --mango-gradient: linear-gradient(to right, #ffa751, #ffe259);
   --text-color: #f7f9f9;
-  --Montserrat: "Montserrat", cursive;
-  --Lobster: "Lobster", cursive;
+  --Montserrat: 'Montserrat', cursive;
+  --Lobster: 'Lobster', cursive;
   --primary-shadow: 3px 4px 7px rgba(27, 27, 27, 0.534);
   --border-color: rgba(82, 82, 82, 0.329);
   --container-item-color: rgb(250, 250, 250);
@@ -237,6 +237,10 @@ a.nostyle:visited {
   animation-delay: 0.06s;
 }
 
+.badge {
+  font-size: 13px;
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg) translate3d(0, 0, 0);
@@ -310,7 +314,7 @@ a.nostyle:visited {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  content: "";
+  content: '';
   background-color: #5562eb;
   position: absolute;
   left: 50%;
@@ -326,7 +330,7 @@ a.nostyle:visited {
 .inputGroup label:after {
   width: 32px;
   height: 32px;
-  content: "";
+  content: '';
   border: 2px solid #d1d7dc;
   background-color: #fff;
   background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
@@ -414,7 +418,7 @@ nav .breadcrumb {
 
 .breadcrumb::after {
   clear: both;
-  content: "";
+  content: '';
   display: table;
 }
 
@@ -426,7 +430,7 @@ nav .breadcrumb {
 
 .breadcrumb li::after {
   display: inline-block;
-  content: "\00bb";
+  content: '\00bb';
   margin: 0 0.6em;
   color: #959fa5;
 }
@@ -444,7 +448,7 @@ nav .breadcrumb {
 }
 
 .breadcrumb.custom-separator li::after {
-  content: "";
+  content: '';
   height: 16px;
   width: 16px;
   background: url(https://codyhouse.co/demo/breadcrumbs-multi-steps-indicator/img/cd-custom-separator.svg)
