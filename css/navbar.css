@@ -203,7 +203,6 @@
   display: block;
 }
 
-
 .main-container {
   width: (100% - 4rem);
   margin-left: 12rem;
@@ -260,23 +259,22 @@
   left: 68px;
 }
 
-.side-menu-dropdown {
+.dropdown .main-dropdown-title {
+  display: none;
+}
+
+.is-collapsed .dropdown .main-dropdown-title {
+  display: block;
+}
+
+.is-collapsed .side-menu-dropdown {
   display: none;
   position: absolute;
   z-index: 300;
   color: gray;
   background: white;
-
 }
 
-.dropdown {
-  position: relative;
-}
-
-.side-menu-dropdown:hover {
-  display: block;
-}
-
-.dropdown:hover .side-menu-dropdown {
+.is-collapsed .dropdown:hover .side-menu-dropdown {
   display: block;
 }

@@ -1,85 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Template for pages</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Template for pages</title>
+    <!-- Owl-Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
+      crossorigin="anonymous"
+    />
 
-  <!-- Owl-Carousel -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <!-- Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/issue.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
 
-  <!-- Custom Style-->
-  <link rel="stylesheet" href="./css/issue.css">
-  <link rel="stylesheet" href="./css/navbar.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <body>
+    <div class="page-wrapper h-100 is-collapsed">
+      <nav class="top-navbar">
+        <div
+          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
+        >
+          <div class="logo">
+            <h4 class="mb-0 px-3">
+              <i class="fas fa-drafting-compass"></i> Kick
+            </h4>
+          </div>
 
-
-</head>
-
-<body>
-
-
-  <div class="page-wrapper h-100 is-collapsed">
-
-    <nav class="top-navbar">
-
-      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
-
-        <div class="logo">
-          <h4 class="mb-0 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
+          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+            <!--notifications-->
+            <li class="px-5 utility ml-3 notification mb-0">
+              <a href="#"><i class="fas fa-bell"></i></a>
+              <span class="num">4</span>
+              <div class="notification-dropdown">
+                <h6 class="notification-title text-center">notifications</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  More(2) ...
+                </div>
+              </div>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0 ">
+              <a href="#"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
         </div>
+      </nav>
 
-        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-
-          <!--notifications-->
-          <li class="px-5 utility ml-3 notification mb-0">
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <span class="num">4</span>
-            <div class="notification-dropdown">
-              <h6 class = "notification-title text-center">notifications</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                More(2) ...
-              </div>
-            </div>
-          </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 ">
-            <a href="#"><i class="fas fa-user"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- 
+      <!-- 
       inside a project he sidebar-menu options can be
       board
       flux diagram
@@ -89,142 +103,140 @@
       back
       ...
     -->
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-book"></i></span>
-            <span class="side-menu-item-title">My Work</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="far fa-folder"></i></span>
-            <span class="side-menu-item-title">Projects</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-columns"></i></span>
-            <span class="side-menu-item-title">Panels</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#" class="active">
-            <span class="m-2"><i class="fas fa-filter"></i></span>
-            <span class="side-menu-item-title">Filters</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-user-friends"></i></span>
-            <span class="side-menu-item-title">Users</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-cogs"></i></span>
-            <span class="side-menu-item-title">Settings</span>
-          </a>
-        </li>
-        <li class="side-menu-item"><a href="#">
-            <span class="m-2"><i class="fas fa-exclamation-triangle"></i></i></span>
-            <span class="side-menu-item-title">Urgent</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <!--generic container-->
-    <div class="main-container container-fluid col-8 mt-0 mx-auto">
-      <nav>
-        <ol class="breadcrumb custom-separator">
-          <li><a href="#0">lbaw</a></li>
-          <li><a href="#0">Issues</a></li>
-          <li class="current"><em>#7</em></li>
-        </ol>
-      </nav>
-      <div id="issue-container">
-        <div id="issue" class="d-flex flex-column h-100 text-left">
-          <div id="issue-header" class="mb-0 d-flex flex-column">
-            <div class="d-flex align-items-center border-top border-bottom py-2">
-              <p class="mr-auto mb-0">
-                <span class="bg-success text-light issue-status">Open</span>
-                  Opened 5 days ago by <span class="author-reference">Revuj</span>
-              </p>
-              <button class="custom-button primary-button">
-                Close Issue
-              </button>
-              <form class="edit-issue-title-form form-group d-none mr-auto">
-                <div class="form-group text-left">
-                  <input
-                    type="text"
-                    class="form-control"
-                    class="item-title"
-                    placeholder=""
-                  />
-                </div>
-                <div class="d-flex justify-content-between">
-                  <button
-                    type="submit"
-                    class="btn btn-primary edit-item-title btn"
-                  >
-                    Submit
-                  </button>
-                  <button
-                    type="reset"
-                    class="btn btn-primary edit-item-title-cancel"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-              <button type="button" class="btn d-none edit-task mr-1">
-                <i class="fas fa-pencil-alt float-right"></i>
-              </button>
-            </div>
-            <div class="d-flex align-items-center">
-              <h4 class="task-title mr-auto my-2">Hello, I'm a sexy Issue!</h4>
-              <button type="button" class="custom-button edit-button edit-task mr-1">
-                <i class="ml-auto fas fa-pencil-alt float-right"></i>
-              </button>
-            </div>
-            <ul class="labels d-flex align-items-center">
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-info">
-                  Iteration 1
-                </h6>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a href="project_overview.html">
+              <span class="m-2"><i class="fas fa-home"></i> </span>
+              <span class="side-menu-item-title">Project Overview</span>
+            </a>
+            <ul class="side-menu-dropdown">
+              <li class="side-menu-item main-dropdown-title">
+                <a href="project_overview.html">
+                  <span class="">Project Overview</span>
+                </a>
               </li>
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-warning">
-                  Iteration 2
-                </h6>
+              <li class="side-menu-item">
+                <a class="" href="project_team.html">
+                  <span class="">Members</span>
+                </a>
               </li>
-              <li>
-                <button type="button" class="custom-button add-button">
-                  <i class="fas fa-plus"></i>
-                </button>
+              <li class="side-menu-item">
+                <a href="activity.html">
+                  <span class="">Activity</span>
+                </a>
               </li>
             </ul>
-          </div>
-          <div class="description text-left">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et deserunt velit, eligendi accusantium repellendus minima dolor quis blanditiis voluptatum fuga ab aperiam quaerat praesentium qui consequuntur possimus nihil, ipsum ea?</p>
-          </div>
-          <div class="border-bottom mx-1 d-flex">
-            <div class="assignees-container">
-              <ul class="assignees d-flex align-items-center justify-content-center">
+          </li>
+          <li class="side-menu-item dropdown active">
+            <a href="issuelist.html">
+              <span class="m-2"><i class="far fa-folder"></i></span>
+              <span class="side-menu-item-title">Issues</span>
+            </a>
+            <ul class="side-menu-dropdown">
+              <li class="side-menu-item main-dropdown-title">
+                <a class="active" href="issuelist.html">
+                  <span class="">Issues</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a href="issuelist.html">
+                  <span class="">List</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a href="board.html">
+                  <span class="">Boards</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="side-menu-item">
+            <a href="chat.html">
+              <span class="m-2"><i class="far fa-comment-alt"></i></span>
+              <span class="side-menu-item-title">Chat</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!--generic container-->
+      <div class="main-container container-fluid col-8 mt-0 mx-auto">
+        <nav>
+          <ol class="breadcrumb custom-separator">
+            <li><a href="#0">lbaw</a></li>
+            <li><a href="#0">Issues</a></li>
+            <li class="current"><em>#7</em></li>
+          </ol>
+        </nav>
+        <div id="issue-container">
+          <div id="issue" class="d-flex flex-column h-100 text-left">
+            <div id="issue-header" class="mb-0 d-flex flex-column">
+              <div
+                class="d-flex align-items-center border-top border-bottom py-2"
+              >
+                <p class="mr-auto mb-0">
+                  <span class="bg-success text-light issue-status">Open</span>
+                  Opened 5 days ago by
+                  <span class="author-reference">Revuj</span>
+                </p>
+                <button class="custom-button primary-button">
+                  Close Issue
+                </button>
+                <form class="edit-issue-title-form form-group d-none mr-auto">
+                  <div class="form-group text-left">
+                    <input
+                      type="text"
+                      class="form-control"
+                      class="item-title"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <button
+                      type="submit"
+                      class="btn btn-primary edit-item-title btn"
+                    >
+                      Submit
+                    </button>
+                    <button
+                      type="reset"
+                      class="btn btn-primary edit-item-title-cancel"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+                <button type="button" class="btn d-none edit-task mr-1">
+                  <i class="fas fa-pencil-alt float-right"></i>
+                </button>
+              </div>
+              <div class="d-flex align-items-center">
+                <h4 class="task-title mr-auto my-2">
+                  Hello, I'm a sexy Issue!
+                </h4>
+                <button
+                  type="button"
+                  class="custom-button edit-button edit-task mr-1"
+                >
+                  <i class="ml-auto fas fa-pencil-alt float-right"></i>
+                </button>
+              </div>
+              <ul class="labels d-flex align-items-center">
                 <li class="mr-2">
-                  <img
-                    src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                    alt="@vitorb19"
-                    draggable="false"
-                  />
+                  <h6 class="mb-0 p-1 list-item-label bg-info">
+                    Iteration 1
+                  </h6>
                 </li>
                 <li class="mr-2">
-                  <img
-                    src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                    alt="@vitorb19"
-                    draggable="false"
-                  />
+                  <h6 class="mb-0 p-1 list-item-label bg-warning">
+                    Iteration 2
+                  </h6>
                 </li>
                 <li>
                   <button type="button" class="custom-button add-button">
@@ -233,103 +245,155 @@
                 </li>
               </ul>
             </div>
-            <div class="due-date-container ml-auto">
-              <button type="button" class="custom-button due-date-button">
-                <i class="far fa-clock mr-2"></i>Feb 29
-              </button>
+            <div class="description text-left">
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et
+                deserunt velit, eligendi accusantium repellendus minima dolor
+                quis blanditiis voluptatum fuga ab aperiam quaerat praesentium
+                qui consequuntur possimus nihil, ipsum ea?
+              </p>
             </div>
-          </div>
-          <div class="add-comment-container mt-4">
-            <form class="d-flex">
-              <img
-              class="comment-author"
-              src="https://assets-br.wemystic.com.br/20191112193725/bee-on-flower_1519375600-960x640.jpg"
-              alt=""
-              />
-              <input class="w-100 mx-2 px-2" type="text" name="comment" id="new-comment" placeholder="Write a comment...">
-            </form>
-          </div>
-          <div class="comments-container">
-            <div class="comment d-flex border-bottom mt-4 pb-1">
-              <img
-              class="comment-author"
-              src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-              alt=""
-              />
-              <div class="comment-detail ml-3">
-                <h6><span class="author-reference">Revuj</span> <span class="comment-timestamp ml-1">just now...</span></h6>
-                <p>
-                  Good job Abelha!
-                </p>
+            <div class="border-bottom mx-1 d-flex">
+              <div class="assignees-container">
+                <ul
+                  class="assignees d-flex align-items-center justify-content-center"
+                >
+                  <li class="mr-2">
+                    <img
+                      src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
+                      alt="@vitorb19"
+                      draggable="false"
+                    />
+                  </li>
+                  <li class="mr-2">
+                    <img
+                      src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                      alt="@vitorb19"
+                      draggable="false"
+                    />
+                  </li>
+                  <li>
+                    <button type="button" class="custom-button add-button">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </li>
+                </ul>
               </div>
-              <div class="karma ml-auto mr-3 d-flex flex-column">
-                <i class="fas fa-chevron-up"></i>
-                <p class="mb-0 text-center">1</p>
-                <i class="fas fa-chevron-down"></i>
-              </div>
-            </div>
-            <div class="comment d-flex border-bottom mt-4 pb-1">
-              <img
-              class="comment-author"
-              src="https://assets-br.wemystic.com.br/20191112193725/bee-on-flower_1519375600-960x640.jpg"
-              alt=""
-              />
-              <div class="comment-detail ml-3">
-                <h6 ><span class="author-reference">Abelha</span> <span class="comment-timestamp ml-1">3 hours ago</span></h6>
-                <p>
-                  Almost Done...
-                </p>
-              </div>
-              <div class="karma ml-auto mr-3 d-flex flex-column">
-                <i class="fas fa-chevron-up text-info"></i>
-                <p class="mb-0 text-center">2</p>
-                <i class="fas fa-chevron-down"></i>
+              <div class="due-date-container ml-auto">
+                <button type="button" class="custom-button due-date-button">
+                  <i class="far fa-clock mr-2"></i>Feb 29
+                </button>
               </div>
             </div>
-            <div class="comment d-flex border-bottom mt-4 pb-1">
-              <img
-              class="comment-author"
-              src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-              alt=""
-              />
-              <div class="comment-detail ml-3">
-                <h6 ><span class="author-reference">Vator</span> <span class="comment-timestamp ml-1">2 weeks ago</span></h6>
-                <p>
-                  Hey guys I opened this issue but will never work on it.
-                </p>
-                <p>
-                  Good Luck!
-                </p>
+            <div class="add-comment-container mt-4">
+              <form class="d-flex">
+                <img
+                  class="comment-author"
+                  src="https://assets-br.wemystic.com.br/20191112193725/bee-on-flower_1519375600-960x640.jpg"
+                  alt=""
+                />
+                <input
+                  class="w-100 mx-2 px-2"
+                  type="text"
+                  name="comment"
+                  id="new-comment"
+                  placeholder="Write a comment..."
+                />
+              </form>
+            </div>
+            <div class="comments-container">
+              <div class="comment d-flex border-bottom mt-4 pb-1">
+                <img
+                  class="comment-author"
+                  src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
+                  alt=""
+                />
+                <div class="comment-detail ml-3">
+                  <h6>
+                    <span class="author-reference">Revuj</span>
+                    <span class="comment-timestamp ml-1">just now...</span>
+                  </h6>
+                  <p>
+                    Good job Abelha!
+                  </p>
+                </div>
+                <div class="karma ml-auto mr-3 d-flex flex-column">
+                  <i class="fas fa-chevron-up"></i>
+                  <p class="mb-0 text-center">1</p>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
               </div>
-              <div class="karma ml-auto mr-3 d-flex flex-column">
-                <i class="fas fa-chevron-up"></i>
-                <p class="mb-0 text-center">1</p>
-                <i class="fas fa-chevron-down"></i>
+              <div class="comment d-flex border-bottom mt-4 pb-1">
+                <img
+                  class="comment-author"
+                  src="https://assets-br.wemystic.com.br/20191112193725/bee-on-flower_1519375600-960x640.jpg"
+                  alt=""
+                />
+                <div class="comment-detail ml-3">
+                  <h6>
+                    <span class="author-reference">Abelha</span>
+                    <span class="comment-timestamp ml-1">3 hours ago</span>
+                  </h6>
+                  <p>
+                    Almost Done...
+                  </p>
+                </div>
+                <div class="karma ml-auto mr-3 d-flex flex-column">
+                  <i class="fas fa-chevron-up text-info"></i>
+                  <p class="mb-0 text-center">2</p>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+              <div class="comment d-flex border-bottom mt-4 pb-1">
+                <img
+                  class="comment-author"
+                  src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                  alt=""
+                />
+                <div class="comment-detail ml-3">
+                  <h6>
+                    <span class="author-reference">Vator</span>
+                    <span class="comment-timestamp ml-1">2 weeks ago</span>
+                  </h6>
+                  <p>
+                    Hey guys I opened this issue but will never work on it.
+                  </p>
+                  <p>
+                    Good Luck!
+                  </p>
+                </div>
+                <div class="karma ml-auto mr-3 d-flex flex-column">
+                  <i class="fas fa-chevron-up"></i>
+                  <p class="mb-0 text-center">1</p>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <!--end of main-container can possible be a section in the future-->
     </div>
-    <!--end of main-container can possible be a section in the future-->
+    <!--end of page wrapper-->
 
-  </div>
-  <!--end of page wrapper-->
+    <script>
+      document
+        .querySelector(".hamburger")
+        .addEventListener("click", function() {
+          document
+            .querySelector(".page-wrapper")
+            .classList.toggle("is-collapsed");
+        });
 
-  <script>
-    document.querySelector('.hamburger').addEventListener('click', function () {
-      document.querySelector('.page-wrapper').classList.toggle('is-collapsed')
-    })
+      document
+        .querySelector(".notification")
+        .addEventListener("click", function() {
+          console.log(document.querySelector(".notification").classList);
 
-    document.querySelector('.notification').addEventListener('click', function () {
-      console.log(document.querySelector('.notification').classList)
-
-      document.querySelector('.notification-dropdown').classList.toggle('display-block')
-    })
-
-
-  </script>
-
-</body>
-
+          document
+            .querySelector(".notification-dropdown")
+            .classList.toggle("display-block");
+        });
+    </script>
+  </body>
 </html>
