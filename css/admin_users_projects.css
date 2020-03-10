@@ -1,0 +1,112 @@
+@import url("global.css");
+
+#tables-types li {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid white;
+}
+
+#tables-types li.active {
+  border-bottom: 3px solid var(--primary-color);
+}
+
+#tables-types li:hover {
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.tables-type-counter {
+  background-color: rgb(143, 143, 143);
+  color: white;
+  padding: 0 2px;
+  border-radius: 5px;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: var(--secondary-color);
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  background-color: var(--secondary-color)
+}
+
+.page-link:focus,
+.page-link:hover {
+  text-decoration: none;
+  background-color: var(--secondary-color)
+}
+
+.user-list tbody td>img {
+  position: relative;
+  max-width: 50px;
+  float: left;
+  margin-right: 15px;
+}
+
+.user-list tbody td .user-link {
+  display: block;
+  font-size: 1.25em;
+  padding-top: 3px;
+  margin-left: 60px;
+}
+
+.table {
+  border-collapse: separate;
+}
+
+.table tbody>tr>td {
+  vertical-align: middle;
+  padding: 12px 8px;
+}
+
+.table thead>tr>th span {
+  display: inline-block;
+  padding: 0 5px;
+  padding-bottom: 5px;
+  font-weight: normal;
+}
+
+.table a.table-link {
+  margin: 0 5px;
+  font-size: 1.125em;
+}
+
+.table a.table-link {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+.table a.table-link .danger {
+  background-color: #fe635f;
+  color: var(--text-color);
+}
+
+.table a.table-link .danger:hover {
+  background-color: #dd504c;
+  color: var(--text-color);
+}
+
+.table tbody tr td a {
+  color: var(--secondary-color);
+}
+
+.project-list tbody td .project-link {
+  display: block;
+  font-size: 1.25em;
+  padding-top: 3px;
+}
+
+.progress-bar {
+  background-color: var(--secondary-color);
+}
+
+.project-list tr>td {
+  height: 75px;
+}

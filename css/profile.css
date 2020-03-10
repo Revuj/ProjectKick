@@ -1,10 +1,11 @@
-@import url("global.css");
+@import url('global.css');
 
 .pmd-list-subtitle {
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-.edit-button {
-  background-color: rgba(0, 0, 0, .03);
+#cancel {
+  position: absolute;
+  right: 0;
 }
