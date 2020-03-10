@@ -1,4 +1,4 @@
-@import url("global.css");
+@import url('global.css');
 
 .assignees li {
   width: 40px;
@@ -7,6 +7,7 @@
 
 .issue {
   transition: all 0.3s ease;
+  padding: 0.75rem 1.25rem;
 }
 
 .issue:hover {

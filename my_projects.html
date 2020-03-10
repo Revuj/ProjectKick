@@ -150,7 +150,7 @@
                   <i class="fa fa-plus-circle fa-lg"></i>
                   Add Project
                 </button>
-                <button type="button" class="btn show-on-click btn-white">
+                <button type="button" class="btn show-on-click ">
                   <i class="fa fa-filter"></i>
                   Filters
                 </button>
@@ -627,7 +627,7 @@
                           style="background-color: rgb(166, 250, 10); color:white;"
                           >html</span
                         >
-                        <button class="btn btn-white">
+                        <button class="btn ">
                           <i class="fa fa-tag mr--small"></i>
                           <span>Add Tag</span>
                         </button>
@@ -635,11 +635,7 @@
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-white"
-                      data-dismiss="modal"
-                    >
+                    <button type="button" class="btn " data-dismiss="modal">
                       Close
                     </button>
                     <button type="button" class="btn btn-success">
@@ -656,18 +652,18 @@
   </body>
 
   <script>
-    document.querySelector(".hamburger").addEventListener("click", function() {
-      document.querySelector(".page-wrapper").classList.toggle("is-collapsed");
+    document.querySelector('.hamburger').addEventListener('click', function() {
+      document.querySelector('.page-wrapper').classList.toggle('is-collapsed');
     });
 
     document
-      .querySelector(".notification")
-      .addEventListener("click", function() {
-        console.log(document.querySelector(".notification").classList);
+      .querySelector('.notification')
+      .addEventListener('click', function() {
+        console.log(document.querySelector('.notification').classList);
 
         document
-          .querySelector(".notification-dropdown")
-          .classList.toggle("display-block");
+          .querySelector('.notification-dropdown')
+          .classList.toggle('display-block');
       });
   </script>
 </html>

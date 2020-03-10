@@ -19,13 +19,9 @@ const upcoming_button = document.querySelector(
 today_button.addEventListener('click', event => {
   event.preventDefault();
 
-  const today_list = document.querySelector(
-    'div.m-2:nth-child(4) > div:nth-child(1)'
-  );
+  const today_list = document.querySelector('div.card:nth-child(1)');
   if (today_list.classList.contains('d-none')) {
-    const upcoming_list = document.querySelector(
-      'div.m-2:nth-child(5) > div:nth-child(1)'
-    );
+    const upcoming_list = document.querySelector('div.card:nth-child(2)');
     const today_table = document.querySelector(
       '#tables-types > li:nth-child(1)'
     );
@@ -42,14 +38,9 @@ today_button.addEventListener('click', event => {
 
 upcoming_button.addEventListener('click', event => {
   event.preventDefault();
-
-  const upcoming_list = document.querySelector(
-    'div.m-2:nth-child(5) > div:nth-child(1)'
-  );
+  const upcoming_list = document.querySelector('div.card:nth-child(2)');
   if (upcoming_list.classList.contains('d-none')) {
-    const today_list = document.querySelector(
-      'div.m-2:nth-child(4) > div:nth-child(1)'
-    );
+    const today_list = document.querySelector('div.card:nth-child(1)');
     const today_table = document.querySelector(
       '#tables-types > li:nth-child(1)'
     );
