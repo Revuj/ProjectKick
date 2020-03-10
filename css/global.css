@@ -185,6 +185,17 @@ a.nostyle:visited {
   background-color: var(--accent-color);
 }
 
+.secondary-button {
+  text-transform: uppercase;
+  font-family: Oxanium;
+  background-color: var(--accent-color);
+}
+
+.secondary-button:hover {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+
 .add-button {
   border-color: var(--secondary-color);
   background-color: var(--secondary-color);
@@ -469,6 +480,34 @@ nav .breadcrumb {
 .author-reference:hover {
   color: var(--accent-color);
   cursor: pointer;
+}
+
+.project-reference {
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+}
+
+.project-reference:hover {
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+.issue-reference {
+  color: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.issue-reference:hover {
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.type-counter {
+  background-color: var(--secondary-color);
+  opacity: 0.4;
+  color: white;
+  padding: 0 2px;
+  border-radius: 5px;
 }
 
 /*button animation number 2
