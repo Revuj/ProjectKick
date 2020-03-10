@@ -41,3 +41,7 @@
   width: 38px;
   height: 38px;
 }
+
+#dropdownFiltersButton::after {
+  content: none;
+}

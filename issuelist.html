@@ -23,6 +23,22 @@
     <!-- Font Awesome CDN -->
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
     <!-- Custom Style-->
     <link rel="stylesheet" href="./css/issuelist.css" />
     <link rel="stylesheet" href="./css/navbar.css" />
@@ -194,13 +210,26 @@
                     placeholder="Search or filter results..."
                   />
                 </div>
-                <div id="filter-buttons" class="">
+                <div id="filter-buttons" class="dropdown">
                   <button
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    id="dropdownFiltersButton"
+                    type="button"
                     type="submit"
-                    class="custom-button primary-button mx-1"
+                    class="custom-button primary-button dropdown-toggle mx-1"
                   >
-                    Filters<i class="fas fa-chevron-down ml-3"></i>
+                    Sort by<i class="fas fa-chevron-down ml-3"></i>
                   </button>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownFiltersButton"
+                  >
+                    <a class="dropdown-item" href="#">Due Date</a>
+                    <a class="dropdown-item" href="#">Opening Date</a>
+                    <a class="dropdown-item" href="#">Assignees</a>
+                  </div>
                   <button
                     type="submit"
                     class="custom-button primary-button mr-1"
