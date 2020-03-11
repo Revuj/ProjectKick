@@ -8,6 +8,7 @@
 .chat_ib h5 {
   font-size: 15px;
   margin: 0 0 8px 0;
+  font-weight: 600;
 }
 
 .chat_ib h5 span {
@@ -117,9 +118,39 @@
 .inbox_msg {
   background-color: var(--secondary-color);
   color: var(--text-color);
+  border-radius: 5px 0 0 5px;
+}
+
+.channel_header {
+  
 }
 
 .channel_name {
-  background-color: var(--secondary-color);
-  color: var(--text-color);
+  font-weight: 600;
+}
+
+#create-channel {
+  border-radius: 0 0 0 5px;
+}
+
+#details {
+  border: 1px solid var(--secondary-color);
+  border-radius: 0 5px 5px 0;
+}
+
+.main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: 
+  white;
+  padding: 0 1rem;
+      padding-top: 0px;
+}
+
+.chat-container {
+  margin: 0;
+  margin-top: 0px;
+  padding: 0;
+  flex: 1;
 }

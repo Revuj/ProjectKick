@@ -145,45 +145,44 @@
             <li class="current"><em>Chat</em></li>
           </ol>
         </nav>
-        <div class="p-2 d-flex">
-          <button type="button" data-toggle="modal" data-target="#addChannelModal" class="btn btn-success ml-auto">
-            <i class="fa fa-plus-circle fa-lg"></i>
-            Add Channel
-          </button>
-        </div>
         <!-- End Page Header -->
         <!-- Default Light Table -->
-        <div class="card p-0 m-2">
+        <div class="p-0 m-2 chat-container">
           <div class="row">
             <div class="col-lg-3 pr-0">
-              <div class="inbox_msg h-100">
-                <div class="d-flex headind_channels">
+              <div class="inbox_msg d-flex flex-column h-100">
+                <div class=" headind_channels">
                   <h4 class="w-100 font-weight-bold">Channels</h4>
                 </div>
-                <div class="inbox_chat">
-                  <div class="chat_list active_chat">
-                    <a class="chat_ib">
-                      <h5>#channel1</h5>
-                    </a>
-                  </div>
-                  <div class="chat_list">
-                    <a class="chat_ib">
-                      <h5>#channel2 <span class="unread_msgs">3</span></h5>
-                    </a>
-                  </div>
-                  <div class="chat_list">
-                    <a class="chat_ib">
-                      <h5>#channel3 <span class="unread_msgs">1</span></h5>
-                    </a>
-                  </div>
+                <div class="chat_list active_chat">
+                  <a class="chat_ib">
+                    <h5># developers-team</h5>
+                  </a>
+                </div>
+                <div class="chat_list">
+                  <a class="chat_ib">
+                    <h5># annoucements-hq <span class="unread_msgs">3</span></h5>
+                  </a>
+                </div>
+                <div class="chat_list">
+                  <a class="chat_ib">
+                    <h5># relaxing-room <span class="unread_msgs">1</span></h5>
+                  </a>
+                </div>
+                <div class="mt-auto w-100">
+                  <button id="create-channel" type="button" data-toggle="modal" data-target="#addChannelModal"
+                    class="w-100 btn btn-success">
+                    <i class="fa fa-plus-circle fa-lg"></i>
+                    Add Channel
+                  </button>
                 </div>
               </div>
             </div>
             <div class="col-lg-9 pl-0" id="details">
               <div>
-                <div class="p-2 border-bottom channel_name">
+                <div class="p-2 border-bottom channel_header">
                   <h6 class="m-0">
-                    #channel1 | Small description
+                    <span class="channel_name">#developers-team</span> | Discussions about development details
                   </h6>
                 </div>
                 <div class="mesgs">
