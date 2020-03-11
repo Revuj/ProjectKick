@@ -78,7 +78,7 @@
   border-bottom: none;
 }
 
-.timeline-item::after {
+.timeline-item::after { /*this*/
   content: "";
   width: 20px;
   height: 20px;
@@ -111,11 +111,46 @@
   font-weight: 500;
   margin-bottom: 15px;
   font-size: 1.5rem;
-  margin-left: 1rem;
   text-transform: capitalize;
   margin-top: 1rem;
 }
 
 .author:before {
   content: "Closed by: ";
+}
+
+.time-mobile {
+  display: none;
+  color: var(--primary-color);
+  margin-left : 5px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .timeline::after,
+  .timeline-item::after,
+  .time,
+  .timeline-body:after {
+    display: none;
+  }
+
+  #history {
+    width:100%;
+  }
+
+  .timeline-body {
+    width:100%;
+    margin-left:0;
+  }
+
+  .content {
+    width: 100%;
+    margin:0;
+    padding:10px;
+  }
+
+  .time-mobile{
+    display: block;
+  }
+
 }
