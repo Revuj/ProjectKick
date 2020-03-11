@@ -70,10 +70,30 @@
               </div>
             </div>
           </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 ">
+
+          <li class="px-2 utility ml-3 mb-0 user  ">
             <a href="#"><i class="fas fa-user"></i></a>
+            <div class="user-dropdown">
+              <h6 class="user-title text-center">Profile</h6>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
+                </div>
+                <div class="notify_info">
+                  <p><a class="nostyle" href="profile.html">Me</a></p>
+                </div>
+              </div>
+              <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+              <div class="notify_item clickable d-flex justify-content-center">
+                <p class="m-0" id="dark-mode">Dark Mode</p>
+              </div>
+
+              <div class="notify_item clickable d-flex justify-content-center">
+                <a href="index.html" class="nostyle">Logout</a>
+              </div>
+
           </li>
+
         </ul>
       </div>
     </nav>
@@ -172,12 +192,20 @@
   <!--end of page wrapper-->
 
   <script>
+
+    let user_dropdown = document.querySelector('.user-dropdown');
+    let notification_dropdown = document.querySelector('.notification-dropdown');
+
     document.querySelector('.hamburger').addEventListener('click', function () {
-      document.querySelector('.page-wrapper').classList.toggle('is-collapsed')
+      document.querySelector('.page-wrapper').classList.toggle('is-collapsed');
     })
 
     document.querySelector('.notification').addEventListener('click', function () {
-      document.querySelector('.notification-dropdown').classList.toggle('display-block')
+      document.querySelector('.notification-dropdown').classList.toggle('display-block');
+    })
+
+    document.querySelector('.user').addEventListener('click', function () {
+      document.querySelector('.user-dropdown').classList.toggle('display-block');
     })
 
 
