@@ -58,7 +58,7 @@
 }
 
 .list-item-label {
-  font-size: 0.9em;
+  font-size: 0.9rem;
   border-radius: 5px;
 }
 
@@ -86,7 +86,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .comments-number-container, .due-date-container, .open-description{
+  .comments-number-container, .due-date-container, .issue-status-description{
     display: none;
   }
 
