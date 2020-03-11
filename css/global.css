@@ -91,7 +91,7 @@ img {
   --background-hover: #e9ecef;
   --primary-color-background: #05386b5b;
   --secondary-color-background: #5cdb9565;
-  --closed-color: #bb4242;
+  --close-color: #bb4242;
   --open-color: #52c586;
 }
 
@@ -221,12 +221,13 @@ a.nostyle:visited {
 .close-button {
   border-color: var(--close-color);
   background-color: var(--close-color);
-  opacity: 0.4;
 }
 
 .close-button:hover {
   border-color: var(--close-color);
   background-color: var(--close-color);
+  opacity: 0.7;
+
 }
 
 .add-button {
