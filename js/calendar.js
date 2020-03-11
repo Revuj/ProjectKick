@@ -5,8 +5,12 @@ class Calendar {
 
         this.availableMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         this.available_weel_days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        this.week_days_mobile = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
         this.noEventMsg = 'No Events. Do you want to add some?';
+
+        this.x = window.matchMedia("(max-width:700px)");
+
 
         this.nrDaysPerWeek = 7;
 
@@ -155,21 +159,37 @@ class Calendar {
         this.elements.month.innerHTML = monthTemplate;
     }
 
+    chooseWeekDays(x) {
+        let weekTemplate = "";
+        let week_var;
+
+        if (x.matches) { // If media query matches
+            week_var = this.week_days_mobile;
+        } else {
+            week_var = this.available_weel_days;
+        }
+
+        week_var.forEach(week => {
+            weekTemplate += `<th>${week.slice(0, 3)}</th>`
+        });
+
+        this.elements.week.innerHTML = weekTemplate;
+
+    }
+
     /*
     * draw days of the week
     * to change its appearance change the weekTemplate variable
     */
     drawWeekDays() {
-        let weekTemplate = "";
-        this.available_weel_days.forEach(week => {
-            weekTemplate += `<th>${week.slice(0, 3)}</th>`
-        });
-
-        this.elements.week.innerHTML = weekTemplate;
+        this.chooseWeekDays(this.x);
     }
 
     // maybe por em funcoes diferentes ....
     addEventListeners() {
+
+        this.x.addListener(this.chooseWeekDays);
+
         this.elements.prevYear.addEventListener('click', e => {
             let calendar = this.getCalendar();
             this.updateTime(calendar.pYear);

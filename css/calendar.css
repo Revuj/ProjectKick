@@ -67,9 +67,14 @@
 }
 
 .another-month {
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 [data-toggle='buttons'] > .btn > input[type='radio'] {
   display: none;
+}
+
+.calendar-content {
+  border-radius: 0 5px 5px 0;
+  border: 1px solid var(--secondary-color);
 }
