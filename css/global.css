@@ -91,6 +91,8 @@ img {
   --background-hover: #e9ecef;
   --primary-color-background: #05386b5b;
   --secondary-color-background: #5cdb9565;
+  --closed-color: #bb4242;
+  --open-color: #52c586;
 }
 
 .disable-selection {
@@ -150,6 +152,15 @@ body {
   color: white;
 }
 
+.smaller-text { 
+  font-size: 0.9rem;
+}
+
+.label {
+  font-size: 0.9rem;
+  border-radius: 5px;
+}
+
 a.nostyle:link {
   text-decoration: inherit;
   color: inherit;
@@ -194,6 +205,28 @@ a.nostyle:visited {
 .secondary-button:hover {
   border-color: var(--primary-color);
   background-color: var(--primary-color);
+}
+
+.open-button {
+  border-color: var(--open-color);
+  background-color: var(--open-color);
+  opacity: 0.4;
+}
+
+.open-button:hover {
+  border-color: var(--open-color);
+  background-color: var(--open-color);
+}
+
+.close-button {
+  border-color: var(--close-color);
+  background-color: var(--close-color);
+  opacity: 0.4;
+}
+
+.close-button:hover {
+  border-color: var(--close-color);
+  background-color: var(--close-color);
 }
 
 .add-button {
