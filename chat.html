@@ -167,126 +167,119 @@
               <li class="current"><em>Chat</em></li>
             </ol>
           </nav>
+          <div class="p-2 d-flex">
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#addChannelModal"
+              class="btn btn-success ml-auto"
+            >
+              <i class="fa fa-plus-circle fa-lg"></i>
+              Add Channel
+            </button>
+          </div>
           <!-- End Page Header -->
           <!-- Default Light Table -->
-          <div class="row">
-            <div class="col-lg-3">
-              <div class="card inbox_msg">
-                <div class="d-flex card-header headind_channels">
-                  <h4 class="w-100">Channels</h4>
-                  <button
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#addChannelModal"
-                    class="btn btn-success flex-shrink-1"
-                  >
-                    <i class="fa fa-plus-circle fa-lg"></i>
-                  </button>
-                </div>
-                <div class="inbox_chat">
-                  <div class="chat_list active_chat">
-                    <a class="chat_ib">
-                      <h5>#channel1</h5>
-                    </a>
+          <div class="card p-0 m-2">
+            <div class="row">
+              <div class="col-lg-3 pr-0">
+                <div class="inbox_msg h-100">
+                  <div class="d-flex headind_channels">
+                    <h4 class="w-100 font-weight-bold">Channels</h4>
                   </div>
-                  <div class="chat_list">
-                    <a class="chat_ib">
-                      <h5>#channel2 <span class="unread_msgs">3</span></h5>
-                    </a>
-                  </div>
-                  <div class="chat_list">
-                    <a class="chat_ib">
-                      <h5>#channel3 <span class="unread_msgs">1</span></h5>
-                    </a>
+                  <div class="inbox_chat">
+                    <div class="chat_list active_chat">
+                      <a class="chat_ib">
+                        <h5>#channel1</h5>
+                      </a>
+                    </div>
+                    <div class="chat_list">
+                      <a class="chat_ib">
+                        <h5>#channel2 <span class="unread_msgs">3</span></h5>
+                      </a>
+                    </div>
+                    <div class="chat_list">
+                      <a class="chat_ib">
+                        <h5>#channel3 <span class="unread_msgs">1</span></h5>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-9" id="details">
-              <div class="card card-small">
-                <div class="card-header border-bottom">
-                  <h6 class="m-0 channel_name">
-                    #channel1 | Small description
-                  </h6>
-                </div>
-                <div class="mesgs">
-                  <div class="msg_history">
-                    <div class="incoming_msg">
-                      <div class="incoming_msg_img">
-                        <img
-                          src="assets/profile.png"
-                          class="rounded-circle"
-                          alt="sunil"
-                        />
+              <div class="col-lg-9 pl-0" id="details">
+                <div>
+                  <div class="p-2 border-bottom channel_name">
+                    <h6 class="m-0">
+                      #channel1 | Small description
+                    </h6>
+                  </div>
+                  <div class="mesgs">
+                    <div class="msg_history">
+                      <div class="incoming_msg">
+                        <div class="incoming_msg_img">
+                          <img src="assets/profile.png" alt="sunil" />
+                        </div>
+                        <div class="received_msg">
+                          <div class="received_withd_msg">
+                            <p>
+                              Test which is a new approach to have all solutions
+                            </p>
+                            <span class="time_date"> 11:01 AM | June 9</span>
+                          </div>
+                        </div>
                       </div>
-                      <div class="received_msg">
-                        <div class="received_withd_msg">
+                      <div class="outgoing_msg">
+                        <div class="sent_msg">
                           <p>
                             Test which is a new approach to have all solutions
                           </p>
                           <span class="time_date"> 11:01 AM | June 9</span>
                         </div>
                       </div>
-                    </div>
-                    <div class="outgoing_msg">
-                      <div class="sent_msg">
-                        <p>
-                          Test which is a new approach to have all solutions
-                        </p>
-                        <span class="time_date"> 11:01 AM | June 9</span>
-                      </div>
-                    </div>
-                    <div class="incoming_msg">
-                      <div class="incoming_msg_img">
-                        <img
-                          src="assets/profile.png"
-                          class="rounded-circle"
-                          alt="sunil"
-                        />
-                      </div>
-                      <div class="received_msg">
-                        <div class="received_withd_msg">
-                          <p>Test, which is a new approach to have</p>
-                          <span class="time_date"> 11:01 AM | Yesterday</span>
+                      <div class="incoming_msg">
+                        <div class="incoming_msg_img">
+                          <img src="assets/profile.png" alt="sunil" />
+                        </div>
+                        <div class="received_msg">
+                          <div class="received_withd_msg">
+                            <p>Test, which is a new approach to have</p>
+                            <span class="time_date"> 11:01 AM | Yesterday</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="outgoing_msg">
-                      <div class="sent_msg">
-                        <p>Apollo University, Delhi, India Test</p>
-                        <span class="time_date"> 11:01 AM | Today</span>
-                      </div>
-                    </div>
-                    <div class="incoming_msg">
-                      <div class="incoming_msg_img">
-                        <img
-                          src="assets/profile.png"
-                          class="rounded-circle"
-                          alt="sunil"
-                        />
-                      </div>
-                      <div class="received_msg">
-                        <div class="received_withd_msg">
-                          <p>
-                            We work directly with our designers and suppliers,
-                            and sell direct to you, which means quality,
-                            exclusive products, at a price anyone can afford.
-                          </p>
+                      <div class="outgoing_msg">
+                        <div class="sent_msg">
+                          <p>Apollo University, Delhi, India Test</p>
                           <span class="time_date"> 11:01 AM | Today</span>
                         </div>
                       </div>
+                      <div class="incoming_msg">
+                        <div class="incoming_msg_img">
+                          <img src="assets/profile.png" alt="sunil" />
+                        </div>
+                        <div class="received_msg">
+                          <div class="received_withd_msg">
+                            <p>
+                              We work directly with our designers and suppliers,
+                              and sell direct to you, which means quality,
+                              exclusive products, at a price anyone can afford.
+                            </p>
+                            <span class="time_date"> 11:01 AM | Today</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="type_msg mt-3">
-                    <div class="input_msg_write">
-                      <input
-                        type="text"
-                        class="write_msg"
-                        placeholder="Type a message"
-                      />
-                      <button class="msg_send_btn" type="button">
-                        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                      </button>
+                    <div class="type_msg mt-3">
+                      <div class="input_msg_write">
+                        <input
+                          type="text"
+                          class="write_msg"
+                          placeholder="Type a message"
+                        />
+                        <button class="msg_send_btn" type="button">
+                          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

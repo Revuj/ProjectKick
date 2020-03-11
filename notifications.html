@@ -166,7 +166,7 @@
               </li>
             </ul>
           </div>
-          <ul class="notification-container"></ul>
+          <ul class="card p-0 m-2 notification-container"></ul>
         </div>
       </div>
       <!--end of main-container can possible be a section in the future-->
@@ -175,19 +175,19 @@
 
     <script>
       document
-        .querySelector(".hamburger")
-        .addEventListener("click", function() {
+        .querySelector('.hamburger')
+        .addEventListener('click', function() {
           document
-            .querySelector(".page-wrapper")
-            .classList.toggle("is-collapsed");
+            .querySelector('.page-wrapper')
+            .classList.toggle('is-collapsed');
         });
 
       document
-        .querySelector(".notification")
-        .addEventListener("click", function() {
+        .querySelector('.notification')
+        .addEventListener('click', function() {
           document
-            .querySelector(".notification-dropdown")
-            .classList.toggle("display-block");
+            .querySelector('.notification-dropdown')
+            .classList.toggle('display-block');
         });
     </script>
 

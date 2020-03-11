@@ -1,4 +1,4 @@
-@import url("global.css");
+@import url('global.css');
 
 #tables-types li {
   list-style: none;
@@ -34,16 +34,16 @@
 
 .page-item.active .page-link {
   z-index: 1;
-  background-color: var(--secondary-color)
+  background-color: var(--secondary-color);
 }
 
 .page-link:focus,
 .page-link:hover {
   text-decoration: none;
-  background-color: var(--secondary-color)
+  background-color: var(--secondary-color);
 }
 
-.user-list tbody td>img {
+.user-list tbody td > img {
   position: relative;
   max-width: 50px;
   float: left;
@@ -61,12 +61,12 @@
   border-collapse: separate;
 }
 
-.table tbody>tr>td {
+.table tbody > tr > td {
   vertical-align: middle;
   padding: 12px 8px;
 }
 
-.table thead>tr>th span {
+.table thead > tr > th span {
   display: inline-block;
   padding: 0 5px;
   padding-bottom: 5px;
@@ -107,6 +107,6 @@
   background-color: var(--secondary-color);
 }
 
-.project-list tr>td {
+.project-list tr > td {
   height: 75px;
 }

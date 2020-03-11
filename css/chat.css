@@ -1,4 +1,4 @@
-@import url("global.css");
+@import url('global.css');
 
 .headind_channels {
   padding: 10px 10px;
@@ -34,8 +34,6 @@
 }
 
 .incoming_msg_img {
-  border: 1px solid var(--accent-color);
-  border-radius: 50%;
   display: inline-block;
   width: 6%;
 }
@@ -68,10 +66,10 @@
 }
 
 .sent_msg p {
-  background: var(--accent-color) none repeat scroll 0 0;
+  background: var(--secondary-color) none repeat scroll 0 0;
   font-size: 14px;
   margin: 0;
-  color: #fff;
+  color: var(--text-color);
   padding: 5px 10px 5px 12px;
   width: 100%;
 }
@@ -114,4 +112,14 @@
 .msg_history {
   height: 600px;
   overflow-y: auto;
+}
+
+.inbox_msg {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.channel_name {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
 }
