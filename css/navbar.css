@@ -101,7 +101,6 @@
   position: absolute;
   left: -66.6%;
   top: 150%;
-  display: none;
 }
 
 .user-dropdown {
@@ -113,7 +112,6 @@
   position: absolute;
   left: -5rem;
   top: 150%;
-  display: none;
 }
 
 .notify_item {

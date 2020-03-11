@@ -45,7 +45,7 @@
           <li class="px-5 utility ml-3 notification mb-0">
             <a href="#"><i class="fas fa-bell"></i></a>
             <span class="num">4</span>
-            <div class="notification-dropdown">
+            <div class="notification-dropdown d-none">
               <h6 class="notification-title text-center">notifications</h6>
               <div class="notify_item clickable">
                 <div class="notify_img">
@@ -73,7 +73,7 @@
 
           <li class="px-2 utility ml-3 mb-0 user  ">
             <a href="#"><i class="fas fa-user"></i></a>
-            <div class="user-dropdown">
+            <div class="user-dropdown d-none">
               <h6 class="user-title text-center">Profile</h6>
               <div class="notify_item clickable">
                 <div class="notify_img">
@@ -201,11 +201,15 @@
     })
 
     document.querySelector('.notification').addEventListener('click', function () {
-      document.querySelector('.notification-dropdown').classList.toggle('display-block');
+      notification_dropdown.classList.toggle('d-none');
+      if (!user_dropdown.classList.contains("d-none"))
+        user_dropdown.classList.add("d-none")
     })
 
     document.querySelector('.user').addEventListener('click', function () {
-      document.querySelector('.user-dropdown').classList.toggle('display-block');
+      user_dropdown.classList.toggle('d-none');
+      if (!notification_dropdown.classList.contains("d-none"))
+        notification_dropdown.classList.add("d-none")
     })
 
 
