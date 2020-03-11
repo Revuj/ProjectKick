@@ -186,7 +186,7 @@ a.nostyle:visited {
 }
 
 .primary-button {
-  text-transform: uppercase;
+  text-transform: uppercase;  
   font-family: Oxanium;
   background-color: var(--primary-color);
 }

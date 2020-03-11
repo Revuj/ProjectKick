@@ -66,6 +66,10 @@
   font-size: 0.9rem;
 }
 
+.issue-header .due-date-container {
+  color: var(--secondary-color);  
+}
+
 #issue-list p {
   margin-bottom: 0;
 }

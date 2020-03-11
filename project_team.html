@@ -1,548 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>Kick | Team</title>
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Kick | Team</title>
 
-    <link rel="stylesheet" href="./css/project_team.css" />
-    <link rel="stylesheet" href="./css/navbar.css" />
-  </head>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <body>
-    <div class="page-wrapper h-100 is-collapsed">
-      <nav class="top-navbar">
-        <div
-          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
-        >
-          <div class="logo">
-            <h4 class="mb-0 px-3">
-              <i class="fas fa-drafting-compass"></i> Kick
-            </h4>
-          </div>
-          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-            <li class="px-5 utility ml-3 notification mb-0">
-              <a href="#"><i class="fas fa-bell"></i></a>
-              <span class="num">4</span>
-              <div class="notification-dropdown">
-                <h6 class="notification-title text-center">notifications</h6>
-                <div class="notify_item clickable">
-                  <div class="notify_img">
-                    <img
-                      src="./assets/profile.png"
-                      alt="profile_pic"
-                      style="width: 50px"
-                    />
-                  </div>
-                  <div class="notify_info">
-                    <p>Alex commented on the<span>Task Share</span></p>
-                    <span class="notify_time">10 minutes ago</span>
-                  </div>
+  <link rel="stylesheet" href="./css/project_team.css" />
+  <link rel="stylesheet" href="./css/navbar.css" />
+</head>
+
+<body>
+  <div class="page-wrapper h-100 is-collapsed">
+    <nav class="top-navbar">
+      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
+        <div class="logo">
+          <h4 class="mb-0 px-3">
+            <i class="fas fa-drafting-compass"></i> Kick
+          </h4>
+        </div>
+        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+          <li class="px-5 utility ml-3 notification mb-0">
+            <a href="#"><i class="fas fa-bell"></i></a>
+            <span class="num">4</span>
+            <div class="notification-dropdown d-none">
+              <h6 class="notification-title text-center">notifications</h6>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
                 </div>
-                <div class="notify_item clickable">
-                  <div class="notify_img">
-                    <img
-                      src="./assets/profile.png"
-                      alt="profile_pic"
-                      style="width: 50px"
-                    />
-                  </div>
-                  <div class="notify_info">
-                    <p>Alex commented on the<span>Task Share</span></p>
-                    <span class="notify_time">10 minutes ago</span>
-                  </div>
-                </div>
-                <div class="notify_item clickable">
-                  More(2) ...
+                <div class="notify_info">
+                  <p>Alex commented on the<span>Task Share</span></p>
+                  <span class="notify_time">10 minutes ago</span>
                 </div>
               </div>
-            </li>
-            <!--profile-->
-            <li class="px-2 utility ml-3 mb-0 ">
-              <a href="#"><i class="fas fa-user"></i></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <nav class="sidebar-menu">
-        <ul>
-          <li class="hamburger side-menu-item">
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
+                </div>
+                <div class="notify_info">
+                  <p>Alex commented on the<span>Task Share</span></p>
+                  <span class="notify_time">10 minutes ago</span>
+                </div>
+              </div>
+              <div class="notify_item clickable">
+                More(2) ...
+              </div>
+            </div>
           </li>
-          <li class="side-menu-item dropdown active">
-            <a href="project_overview.html">
-              <span class="m-2"><i class="fas fa-home"></i> </span>
-              <span class="side-menu-item-title">Project Overview</span>
-            </a>
-            <ul class="side-menu-dropdown">
-              <li class="side-menu-item main-dropdown-title">
-                <a href="project_overview.html">
-                  <span class="">Project Overview</span>
-                </a>
-              </li>
-              <li class="side-menu-item">
-                <a class="active" href="project_team.html">
-                  <span class="">Members</span>
-                </a>
-              </li>
-              <li class="side-menu-item">
-                <a href="activity.html">
-                  <span class="">Activity</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="side-menu-item dropdown">
-            <a href="issuelist.html">
-              <span class="m-2"><i class="far fa-folder"></i></span>
-              <span class="side-menu-item-title">Issues</span>
-            </a>
-            <ul class="side-menu-dropdown">
-              <li class="side-menu-item main-dropdown-title">
-                <a href="issuelist.html">
-                  <span class="">Issues</span>
-                </a>
-              </li>
-              <li class="side-menu-item">
-                <a href="issuelist.html">
-                  <span class="">List</span>
-                </a>
-              </li>
-              <li class="side-menu-item">
-                <a href="board.html">
-                  <span class="">Boards</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="side-menu-item">
-            <a href="chat.html">
-              <span class="m-2"><i class="far fa-comment-alt"></i></span>
-              <span class="side-menu-item-title">Chat</span>
-            </a>
+          <!--profile-->
+          <li class="px-2 utility ml-3 mb-0 ">
+            <a href="#"><i class="fas fa-user"></i></a>
           </li>
         </ul>
-      </nav>
+      </div>
+    </nav>
+    <nav class="sidebar-menu">
+      <ul>
+        <li class="hamburger side-menu-item">
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+        </li>
+        <li class="side-menu-item dropdown active">
+          <a href="project_overview.html">
+            <span class="m-2"><i class="fas fa-home"></i> </span>
+            <span class="side-menu-item-title">Project Overview</span>
+          </a>
+          <ul class="side-menu-dropdown">
+            <li class="side-menu-item main-dropdown-title">
+              <a href="project_overview.html">
+                <span class="">Project Overview</span>
+              </a>
+            </li>
+            <li class="side-menu-item">
+              <a class="active" href="project_team.html">
+                <span class="">Members</span>
+              </a>
+            </li>
+            <li class="side-menu-item">
+              <a href="activity.html">
+                <span class="">Activity</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="side-menu-item dropdown">
+          <a href="issuelist.html">
+            <span class="m-2"><i class="far fa-folder"></i></span>
+            <span class="side-menu-item-title">Issues</span>
+          </a>
+          <ul class="side-menu-dropdown">
+            <li class="side-menu-item main-dropdown-title">
+              <a href="issuelist.html">
+                <span class="">Issues</span>
+              </a>
+            </li>
+            <li class="side-menu-item">
+              <a href="issuelist.html">
+                <span class="">List</span>
+              </a>
+            </li>
+            <li class="side-menu-item">
+              <a href="board.html">
+                <span class="">Boards</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="side-menu-item">
+          <a href="chat.html">
+            <span class="m-2"><i class="far fa-comment-alt"></i></span>
+            <span class="side-menu-item-title">Chat</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-      <div class="main-container" id="my_work">
-        <div class="main-content-container px-4">
-          <nav>
-            <ol class="breadcrumb custom-separator">
-              <li><a href="#0">lbaw</a></li>
-              <li><a href="#0">Project Overview</a></li>
-              <li class="current"><em>Project Members</em></li>
-            </ol>
-          </nav>
-          <div class="p-2 d-flex">
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#addMemberModal"
-              class="btn btn-success ml-auto "
-            >
-              <i class="fa fa-plus-circle fa-lg"></i>
-              Add Member
+    <div class="main-container" id="my_work">
+      <div class="main-content-container px-4">
+        <nav>
+          <ol class="breadcrumb custom-separator">
+            <li><a href="#0">lbaw</a></li>
+            <li><a href="#0">Project Overview</a></li>
+            <li class="current"><em>Project Members</em></li>
+          </ol>
+        </nav>
+        <div class="p-2 d-flex">
+          <button type="button" data-toggle="modal" data-target="#addMemberModal" class="btn btn-success ml-auto ">
+            <i class="fa fa-plus-circle fa-lg"></i>
+            Add Member
+          </button>
+        </div>
+        <form class="p-2 d-flex">
+          <div class="mw-20 input-group mr-auto w-50">
+            <input type="text" class="form-control" placeholder="Search or filter results..." />
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+          <div id="filter-buttons" class="dropdown">
+            <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownFiltersButton"
+              type="button" type="submit" class="btn btn-primary dropdown-toggle mx-1">
+              Sort by<i class="fas fa-chevron-down ml-3"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownFiltersButton">
+              <a class="dropdown-item" href="#">Due Date</a>
+              <a class="dropdown-item" href="#">Opening Date</a>
+              <a class="dropdown-item" href="#">Assignees</a>
+            </div>
+            <button type="submit" class="btn btn-primary mr-1">
+              <i class="fas fa-arrow-up"></i>
             </button>
           </div>
-          <form class="p-2 d-flex">
-            <div class="mw-20 input-group mr-auto w-50">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Search or filter results..."
-              />
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </div>
-            <div id="filter-buttons" class="dropdown">
-              <button
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                id="dropdownFiltersButton"
-                type="button"
-                type="submit"
-                class="btn btn-primary dropdown-toggle mx-1"
-              >
-                Sort by<i class="fas fa-chevron-down ml-3"></i>
-              </button>
-              <div
-                class="dropdown-menu"
-                aria-labelledby="dropdownFiltersButton"
-              >
-                <a class="dropdown-item" href="#">Due Date</a>
-                <a class="dropdown-item" href="#">Opening Date</a>
-                <a class="dropdown-item" href="#">Assignees</a>
-              </div>
-              <button type="submit" class="btn btn-primary mr-1">
-                <i class="fas fa-arrow-up"></i>
-              </button>
-            </div>
-          </form>
-          <div class="row m-2">
-            <div class="mx-auto">
-              <div class="card">
-                <div class="main-box clearfix">
-                  <div class="table-responsive">
-                    <table class="table user-list">
-                      <thead class="card-header">
-                        <tr>
-                          <th style="width: 40%">User</th>
-                          <th style="width: 20%">Joined</th>
-                          <th style="width: 20%">Email</th>
-                          <th style="width: 20%">&nbsp;</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <img src="assets/profile.png" alt="" />
-                            <a href="#" class="user-link">Mila Kunis</a>
-                            <span class="user-subhead"
-                              >Project Coordinator</span
-                            >
-                          </td>
-                          <td>
-                            2013/08/08
-                          </td>
-                          <td>
-                            <a href="#">mila@kunis.com</a>
-                          </td>
-                          <td class="pr-0 mr-0">
-                            <a href="#" class="table-link ml-5">
-                              <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="#" class="table-link danger">
-                              <i class="fa fa-sign-out"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="assets/profile.png" alt="" />
-                            <a href="#" class="user-link">George Clooney</a>
-                            <span class="user-subhead">Project Developer</span>
-                          </td>
-                          <td>
-                            2013/08/12
-                          </td>
+        </form>
+        <div class="row m-2">
+          <div class="mx-auto">
+            <div class="card">
+              <div class="main-box clearfix">
+                <div class="table-responsive">
+                  <table class="table user-list">
+                    <thead class="card-header">
+                      <tr>
+                        <th style="width: 40%">User</th>
+                        <th style="width: 20%">Joined</th>
+                        <th style="width: 20%">Email</th>
+                        <th style="width: 20%">&nbsp;</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src="assets/profile.png" alt="" />
+                          <a href="#" class="user-link">Mila Kunis</a>
+                          <span class="user-subhead">Project Coordinator</span>
+                        </td>
+                        <td>
+                          2013/08/08
+                        </td>
+                        <td>
+                          <a href="#">mila@kunis.com</a>
+                        </td>
+                        <td class="pr-0 mr-0">
+                          <a href="#" class="table-link ml-5">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <i class="fa fa-sign-out"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src="assets/profile.png" alt="" />
+                          <a href="#" class="user-link">George Clooney</a>
+                          <span class="user-subhead">Project Developer</span>
+                        </td>
+                        <td>
+                          2013/08/12
+                        </td>
 
-                          <td>
-                            <a href="#">marlon@brando.com</a>
-                          </td>
-                          <td class="pr-0 mr-0">
-                            <a href="#" class="table-link ml-5">
-                              <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="#" class="table-link danger">
-                              <i class="fa fa-trash-o"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="assets/profile.png" alt="" />
-                            <a href="#" class="user-link">Ryan Gossling</a>
-                            <span class="user-subhead">Project Developer</span>
-                          </td>
-                          <td>
-                            2013/03/03
-                          </td>
+                        <td>
+                          <a href="#">marlon@brando.com</a>
+                        </td>
+                        <td class="pr-0 mr-0">
+                          <a href="#" class="table-link ml-5">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <i class="fa fa-trash-o"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src="assets/profile.png" alt="" />
+                          <a href="#" class="user-link">Ryan Gossling</a>
+                          <span class="user-subhead">Project Developer</span>
+                        </td>
+                        <td>
+                          2013/03/03
+                        </td>
 
-                          <td>
-                            <a href="#">jack@nicholson</a>
-                          </td>
-                          <td class="pr-0 mr-0">
-                            <a href="#" class="table-link ml-5">
-                              <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="#" class="table-link danger">
-                              <i class="fa fa-trash-o"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="assets/profile.png" alt="" />
-                            <a href="#" class="user-link">Emma Watson</a>
-                            <span class="user-subhead">Project Developer</span>
-                          </td>
-                          <td>
-                            2004/01/24
-                          </td>
-                          <td>
-                            <a href="#">humphrey@bogart.com</a>
-                          </td>
-                          <td class="pr-0 mr-0">
-                            <a href="#" class="table-link ml-5">
-                              <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="#" class="table-link danger">
-                              <i class="fa fa-trash-o"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="assets/profile.png" alt="" />
-                            <a href="#" class="user-link">Robert Downey Jr.</a>
-                            <span class="user-subhead"
-                              >Project Coordinator</span
-                            >
-                          </td>
-                          <td>
-                            2013/12/31
-                          </td>
+                        <td>
+                          <a href="#">jack@nicholson</a>
+                        </td>
+                        <td class="pr-0 mr-0">
+                          <a href="#" class="table-link ml-5">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <i class="fa fa-trash-o"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src="assets/profile.png" alt="" />
+                          <a href="#" class="user-link">Emma Watson</a>
+                          <span class="user-subhead">Project Developer</span>
+                        </td>
+                        <td>
+                          2004/01/24
+                        </td>
+                        <td>
+                          <a href="#">humphrey@bogart.com</a>
+                        </td>
+                        <td class="pr-0 mr-0">
+                          <a href="#" class="table-link ml-5">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <i class="fa fa-trash-o"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src="assets/profile.png" alt="" />
+                          <a href="#" class="user-link">Robert Downey Jr.</a>
+                          <span class="user-subhead">Project Coordinator</span>
+                        </td>
+                        <td>
+                          2013/12/31
+                        </td>
 
-                          <td>
-                            <a href="#">spencer@tracy</a>
-                          </td>
-                          <td class="pr-0 mr-0">
-                            <a href="#" class="table-link ml-5">
-                              <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="#" class="table-link danger">
-                              <i class="fa fa-sign-out"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="assets/profile.png" alt="" />
-                            <a href="#" class="user-link">Mila Kunis</a>
-                            <span class="user-subhead"
-                              >Project Coordinator</span
-                            >
-                          </td>
-                          <td>
-                            2013/08/08
-                          </td>
+                        <td>
+                          <a href="#">spencer@tracy</a>
+                        </td>
+                        <td class="pr-0 mr-0">
+                          <a href="#" class="table-link ml-5">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <i class="fa fa-sign-out"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src="assets/profile.png" alt="" />
+                          <a href="#" class="user-link">Mila Kunis</a>
+                          <span class="user-subhead">Project Coordinator</span>
+                        </td>
+                        <td>
+                          2013/08/08
+                        </td>
 
-                          <td>
-                            <a href="#">mila@kunis.com</a>
-                          </td>
-                          <td class="pr-0 mr-0">
-                            <a href="#" class="table-link ml-5">
-                              <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="#" class="table-link danger">
-                              <i class="fa fa-sign-out"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="assets/profile.png" alt="" />
-                            <a href="#" class="user-link">George Clooney</a>
-                            <span class="user-subhead">Project Developer</span>
-                          </td>
-                          <td>
-                            2013/08/12
-                          </td>
+                        <td>
+                          <a href="#">mila@kunis.com</a>
+                        </td>
+                        <td class="pr-0 mr-0">
+                          <a href="#" class="table-link ml-5">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <i class="fa fa-sign-out"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src="assets/profile.png" alt="" />
+                          <a href="#" class="user-link">George Clooney</a>
+                          <span class="user-subhead">Project Developer</span>
+                        </td>
+                        <td>
+                          2013/08/12
+                        </td>
 
-                          <td>
-                            <a href="#">marlon@brando.com</a>
-                          </td>
-                          <td class="pr-0 mr-0">
-                            <a href="#" class="table-link ml-5">
-                              <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="#" class="table-link danger">
-                              <i class="fa fa-trash-o"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="assets/profile.png" alt="" />
-                            <a href="#" class="user-link">Ryan Gossling</a>
-                            <span class="user-subhead">Project Developer</span>
-                          </td>
-                          <td>
-                            2013/03/03
-                          </td>
+                        <td>
+                          <a href="#">marlon@brando.com</a>
+                        </td>
+                        <td class="pr-0 mr-0">
+                          <a href="#" class="table-link ml-5">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <i class="fa fa-trash-o"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src="assets/profile.png" alt="" />
+                          <a href="#" class="user-link">Ryan Gossling</a>
+                          <span class="user-subhead">Project Developer</span>
+                        </td>
+                        <td>
+                          2013/03/03
+                        </td>
 
-                          <td>
-                            <a href="#">jack@nicholson</a>
-                          </td>
-                          <td class="pr-0 mr-0">
-                            <a href="#" class="table-link ml-5">
-                              <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="#" class="table-link danger">
-                              <i class="fa fa-trash-o"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="assets/profile.png" alt="" />
-                            <a href="#" class="user-link">Emma Watson</a>
-                            <span class="user-subhead">Project Developer</span>
-                          </td>
-                          <td>
-                            2004/01/24
-                          </td>
+                        <td>
+                          <a href="#">jack@nicholson</a>
+                        </td>
+                        <td class="pr-0 mr-0">
+                          <a href="#" class="table-link ml-5">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <i class="fa fa-trash-o"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src="assets/profile.png" alt="" />
+                          <a href="#" class="user-link">Emma Watson</a>
+                          <span class="user-subhead">Project Developer</span>
+                        </td>
+                        <td>
+                          2004/01/24
+                        </td>
 
-                          <td>
-                            <a href="#">humphrey@bogart.com</a>
-                          </td>
-                          <td class="pr-0 mr-0">
-                            <a href="#" class="table-link ml-5">
-                              <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="#" class="table-link danger">
-                              <i class="fa fa-trash-o"></i>
-                            </a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                        <td>
+                          <a href="#">humphrey@bogart.com</a>
+                        </td>
+                        <td class="pr-0 mr-0">
+                          <a href="#" class="table-link ml-5">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <i class="fa fa-trash-o"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
+            </div>
 
-              <div class="d-flex mt-3">
-                <nav class="" aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a href="#" class="page-link" aria-label="Previous"
-                        ><span aria-hidden="true"
-                          ><i class="fa fa-fw fa-angle-left"></i></span
-                        ><span class="sr-only">Previous</span></a
-                      >
-                    </li>
-                    <li class="page-item active">
-                      <a href="#" class="page-link">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a href="#" class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a href="#" class="page-link" aria-label="Next"
-                        ><span aria-hidden="true"
-                          ><i class="fa fa-fw fa-angle-right"></i></span
-                        ><span class="sr-only">Next</span></a
-                      >
-                    </li>
-                  </ul>
-                </nav>
-              </div>
+            <div class="d-flex mt-3">
+              <nav class="" aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a href="#" class="page-link" aria-label="Previous"><span aria-hidden="true"><i
+                          class="fa fa-fw fa-angle-left"></i></span><span class="sr-only">Previous</span></a>
+                  </li>
+                  <li class="page-item active">
+                    <a href="#" class="page-link">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a href="#" class="page-link">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a href="#" class="page-link">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a href="#" class="page-link" aria-label="Next"><span aria-hidden="true"><i
+                          class="fa fa-fw fa-angle-right"></i></span><span class="sr-only">Next</span></a>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
+        </div>
 
-          <div
-            class="modal"
-            id="addMemberModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="addMemberModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="addMemberModalLabel">
-                    Add Member
-                  </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="form-group">
-                      <label for="email" class="col-form-label"
-                        >Email adress</label
-                      >
-                      <input type="text" class="form-control" id="email" />
+        <div class="modal" id="addMemberModal" tabindex="-1" role="dialog" aria-labelledby="addMemberModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addMemberModalLabel">
+                  Add Member
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="email" class="col-form-label">Email adress</label>
+                    <input type="text" class="form-control" id="email" />
+                  </div>
+                  <div class="form-group">
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-success">
+                        <input type="radio" name="options" id="option1" />
+                        Project Developer
+                      </label>
+                      <label class="btn btn-success">
+                        <input type="radio" name="options" id="option2" />
+                        Project Coordinator
+                      </label>
                     </div>
-                    <div class="form-group">
-                      <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success">
-                          <input type="radio" name="options" id="option1" />
-                          Project Developer
-                        </label>
-                        <label class="btn btn-success">
-                          <input type="radio" name="options" id="option2" />
-                          Project Coordinator
-                        </label>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn " data-dismiss="modal">
-                    Close
-                  </button>
-                  <button type="button" class="btn btn-success">
-                    Add Member
-                  </button>
-                </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn " data-dismiss="modal">
+                  Close
+                </button>
+                <button type="button" class="btn btn-success">
+                  Add Member
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 
-  <script>
-    document.querySelector('.hamburger').addEventListener('click', function() {
-      document.querySelector('.page-wrapper').classList.toggle('is-collapsed');
+<script>
+  document.querySelector('.hamburger').addEventListener('click', function () {
+    document.querySelector('.page-wrapper').classList.toggle('is-collapsed');
+  });
+
+  document
+    .querySelector('.notification')
+    .addEventListener('click', function () {
+      console.log(document.querySelector('.notification').classList);
+
+      document
+        .querySelector('.notification-dropdown')
+        .classList.toggle('display-block');
     });
+</script>
 
-    document
-      .querySelector('.notification')
-      .addEventListener('click', function() {
-        console.log(document.querySelector('.notification').classList);
-
-        document
-          .querySelector('.notification-dropdown')
-          .classList.toggle('display-block');
-      });
-  </script>
 </html>
