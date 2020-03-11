@@ -1,8 +1,8 @@
 @import url('global.css');
 
 .assignees li {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
 }
 
 .issue {
@@ -33,7 +33,7 @@
   right: 0;
 }
 .is-collapsed-right .main-container {
-  padding-right: 15rem;
+  padding-right: 20rem;
   background: none;
 }
 
@@ -52,3 +52,42 @@
 #dropdownFiltersButton::after {
   content: none;
 }
+
+.task-title {
+  font-weight: 600;
+}
+
+.list-item-label {
+  font-size: 0.9em;
+  border-radius: 5px;
+}
+
+.issue-status, .issue-header .due-date-container {
+  font-size: 0.9rem;
+}
+
+#issue-list p {
+  margin-bottom: 0;
+}
+
+.closed-issues-filter .issue.open {
+  display: none;
+}
+.closed-issues-filter .issue.closed {
+  display: block;
+}
+
+.open-issues-filter .issue.closed {
+  display: none;
+}
+
+.open-issues-filter .issue.open {
+  display: block;
+}
+
+@media only screen and (max-width: 600px) {
+  .comments-number-container, .due-date-container, .open-description{
+    display: none;
+  }
+
+} 
