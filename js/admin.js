@@ -62,13 +62,13 @@ am4core.ready(function () {
     // Themes end
 
     // Create map instance
-    var chart = am4core.create("chartdiv", am4maps.MapChart);
+    let chart = am4core.create("chartdiv", am4maps.MapChart);
 
-    var title = chart.titles.create();
+    let title = chart.titles.create();
     title.text = "[bold font-size: 20] Users Distribution";
     title.textAlign = "middle";
 
-    var mapData = [
+    let mapData = [
         { "id": "AF", "name": "Afghanistan", "value": 32358260, "color": chart.colors.getIndex(0) },
         { "id": "AL", "name": "Albania", "value": 3215988, "color": chart.colors.getIndex(1) },
         { "id": "DZ", "name": "Algeria", "value": 35980193, "color": chart.colors.getIndex(2) },
@@ -247,36 +247,55 @@ am4core.ready(function () {
     chart.projection = new am4maps.projections.Miller();
 
     // Create map polygon series 
-    var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+    let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
     polygonSeries.exclude = ["AQ"];
     polygonSeries.useGeodata = true;
     polygonSeries.nonScalingStroke = true;
     polygonSeries.strokeWidth = 0.5;
     polygonSeries.calculateVisualCenter = true;
 
-    var imageSeries = chart.series.push(new am4maps.MapImageSeries());
+    let imageSeries = chart.series.push(new am4maps.MapImageSeries());
     imageSeries.data = mapData;
     imageSeries.dataFields.value = "value";
 
-    var imageTemplate = imageSeries.mapImages.template;
+    let imageTemplate = imageSeries.mapImages.template;
     imageTemplate.nonScaling = true
 
-    var circle = imageTemplate.createChild(am4core.Circle);
+    let circle = imageTemplate.createChild(am4core.Circle);
     circle.fillOpacity = 0.7;
     circle.propertyFields.fill = "color";
     circle.tooltipText = "{name}: [bold]{value}[/]";
 
+    // media query event handler
 
     imageSeries.heatRules.push({
         "target": circle,
         "property": "radius",
         "min": 4,
-        "max": 30,
         "dataField": "value"
     })
 
+    console.log(imageSeries.heatRules)
+
+    function changeMediaQuery(changed) {
+        if (changed.matches) {
+            imageSeries.heatRules['_values'][0]['max'] = 30;
+
+        } else {
+            imageSeries.heatRules['max'] = 10;
+        }
+
+    }
+
+    const mq = window.matchMedia("(max-width: 500px)");
+
+    changeMediaQuery(mq);
+
+    mq.addListener(changeMediaQuery);
+
+
     imageTemplate.adapter.add("latitude", function (latitude, target) {
-        var polygon = polygonSeries.getPolygonById(target.dataItem.dataContext.id);
+        let polygon = polygonSeries.getPolygonById(target.dataItem.dataContext.id);
         if (polygon) {
             return polygon.visualLatitude;
         }
@@ -284,7 +303,7 @@ am4core.ready(function () {
     })
 
     imageTemplate.adapter.add("longitude", function (longitude, target) {
-        var polygon = polygonSeries.getPolygonById(target.dataItem.dataContext.id);
+        let polygon = polygonSeries.getPolygonById(target.dataItem.dataContext.id);
         if (polygon) {
             return polygon.visualLongitude;
         }
@@ -294,3 +313,4 @@ am4core.ready(function () {
 
 
 }); // end am4core.ready()
+
