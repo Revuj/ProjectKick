@@ -27,13 +27,12 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-  <!-- Custom Style-->
-  <link rel="stylesheet" href="./css/issuelist.css" />
-  <link rel="stylesheet" href="./css/navbar.css" />
-
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
+  <!-- Custom Style-->
+  <link rel="stylesheet" href="./css/issuelist.css" />
+  <link rel="stylesheet" href="./css/navbar.css" />
   <script src="./js/issueslist.js" defer></script>
 </head>
 
@@ -172,6 +171,10 @@
             <li id="open-issues-filter" class="active">Open <span class="type-counter">3</span></li>
             <li id="closed-issues-filter">Closed <span class="type-counter">5</span></li>
             <li id="all-issues-filter">All <span class="type-counter">8</span></li>
+            <button type="button" data-toggle="modal" data-target="#addTaskModal" class="btn btn-success ml-auto ">
+              <i class="fa fa-plus-circle fa-lg"></i>
+              Add Task
+            </button>
           </ul>
           <div id="filter-issues" class="border-bottom py-3 my-0">
             <form class="d-flex justify-content-between">
@@ -405,6 +408,52 @@
         <button type="button" class="btn btn-danger delete-issue mt-auto">
           Delete
         </button>
+
+
+      </div>
+    </div>
+    <div class="modal" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-row">
+                <div class="col">
+                  <label for="board-name" class="col-form-label">Select Board</label>
+                  <input type="text" class="form-control" id="board-name" />
+                </div>
+              </div>
+              <div class="form-group mt-4">
+                <input type="text" class="form-control" id="task-name" placeholder="What needs to be done?" />
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <label for="task-assignment" class="col-form-label">Who should do this?</label>
+                  <input type="text" class="form-control" id="task-assignment" />
+                </div>
+                <div class="col">
+                  <label for="task-due-date" class="col-form-label">Due Date</label>
+                  <input type="date" class="form-control" id="task-due-date" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn " data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-success">
+              Add Task
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
