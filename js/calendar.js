@@ -7,7 +7,7 @@ class Calendar {
         this.available_weel_days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         this.week_days_mobile = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-        this.noEventMsg = 'No Events. Do you want to add some?';
+        this.noEventMsg = 'You have no events for this day.';
 
         this.x = window.matchMedia("(max-width:800px)");
 

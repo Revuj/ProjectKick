@@ -1,90 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>calendar</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>calendar</title>
+    <!-- Owl-Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
+      crossorigin="anonymous"
+    />
 
-  <!-- Owl-Carousel -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <!-- Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/calendar.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <script src="./js/calendar.js" defer></script>
+  </head>
 
-  <!-- Custom Style-->
-  <link rel="stylesheet" href="./css/calendar.css" />
-  <link rel="stylesheet" href="./css/navbar.css" />
-  <script src="./js/calendar.js" defer></script>
-</head>
+  <body>
+    <div class="page-wrapper h-100 is-collapsed">
+      <nav class="top-navbar">
+        <div
+          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
+        >
+          <div class="logo">
+            <h4 class="py-3 px-3">
+              <i class="fas fa-drafting-compass"></i> Kick
+            </h4>
+          </div>
 
-<body>
-  <div class="page-wrapper h-100 is-collapsed">
-    <nav class="top-navbar">
-      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
-        <div class="logo">
-          <h4 class="py-3 px-3">
-            <i class="fas fa-drafting-compass"></i> Kick
-          </h4>
+          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+            <!--notifications-->
+            <li class="px-5 utility ml-3 notification mb-0">
+              <a href="#"><i class="fas fa-bell"></i></a>
+              <span class="num">4</span>
+              <div class="notification-dropdown d-none">
+                <h6 class="notification-title text-center">notifications</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  More(2) ...
+                </div>
+              </div>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0 ">
+              <a href="#"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
         </div>
+      </nav>
 
-        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-          <!--notifications-->
-          <li class="px-5 utility ml-3 notification mb-0">
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <span class="num">4</span>
-            <div class="notification-dropdown d-none">
-              <h6 class="notification-title text-center">notifications</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                More(2) ...
-              </div>
-            </div>
-          </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 ">
-            <a href="#"><i class="fas fa-user"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- 
+      <!-- 
       inside a project he sidebar-menu options can be
       board
       flux diagram
@@ -94,174 +120,200 @@
       back
       ...
     -->
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a href="my_projects.html">
-            <span class="m-2"><i class="fas fa-columns"></i></span>
-            <span class="side-menu-item-title">Dashboard</span>
-          </a>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a href="my_work.html">
-            <span class="m-2"><i class="fas fa-tasks"></i></span>
-            <span class="side-menu-item-title">My Work</span>
-          </a>
-        </li>
-        <li class="side-menu-item">
-          <a class="active" href="calendar.html">
-            <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
-            <span class="side-menu-item-title">Calendar</span>
-          </a>
-        </li>
-        <li class="side-menu-item">
-          <a href="searchpage.html">
-            <span class="m-2"><i class="fas fa-search"></i></span>
-            <span class="side-menu-item-title">Search</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a href="my_projects.html">
+              <span class="m-2"><i class="fas fa-columns"></i></span>
+              <span class="side-menu-item-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a href="my_work.html">
+              <span class="m-2"><i class="fas fa-tasks"></i></span>
+              <span class="side-menu-item-title">My Work</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a class="active" href="calendar.html">
+              <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
+              <span class="side-menu-item-title">Calendar</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="searchpage.html">
+              <span class="m-2"><i class="fas fa-search"></i></span>
+              <span class="side-menu-item-title">Search</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-    <!--=======================================CALENDAR ================================================//-->
+      <!--=======================================CALENDAR ================================================//-->
 
-    <div class="main-container calendar disable-selection" id="calendar">
-      <div class="main-content-container px-4">
-        <nav>
-          <ol class="breadcrumb custom-separator">
-            <li class="current"><em>Calendar</em></li>
-          </ol>
-        </nav>
-        <div class="p-2 d-flex row">
-          <button type="button" data-toggle="modal" data-target="#addEventModal" class="btn btn-success ml-auto">
-            <i class="fa fa-plus-circle fa-lg"></i>
-            Add Event
-          </button>
-        </div>
-
-        <div class="p-2">
-          <div class="row">
-            <!--=============================ADD & CHECK EVENTS ================================================//-->
-            <div class="col-md-4 col-sm-8 event-manager">
-              <div class="add-event-day text-left">
-                <div class="collapse" id="collapseExample">
-                  <div class="card card-body">
-                    <input class="form-control" type="text" placeholder="Event" />
-                    <!--coordinator only-->
-                    <div class="inputGroup">
-                      <input type="checkbox" value="" id="defaultCheck1" />
-                      <label for="defaultCheck1">
-                        Meeting
-                      </label>
+      <div class="main-container calendar disable-selection" id="calendar">
+        <div class="main-content-container px-4">
+          <nav>
+            <ol class="breadcrumb custom-separator">
+              <li class="current"><em>Calendar</em></li>
+            </ol>
+          </nav>
+          <div class="p-2">
+            <div class="row">
+              <!--=============================ADD & CHECK EVENTS ================================================//-->
+              <div
+                class="col-md-4 col-sm-8 event-manager p-0 d-flex flex-column"
+              >
+                <div class="add-event-day text-left">
+                  <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Event"
+                      />
+                      <!--coordinator only-->
+                      <div class="inputGroup">
+                        <input type="checkbox" value="" id="defaultCheck1" />
+                        <label for="defaultCheck1">
+                          Meeting
+                        </label>
+                      </div>
+                      <!--end of coordinator only-->
+                      <button type="submit" class="btn btn-primary mb-2">
+                        Add
+                      </button>
                     </div>
-                    <!--end of coordinator only-->
-                    <button type="submit" class="btn btn-primary mb-2">
-                      Add
-                    </button>
                   </div>
                 </div>
-              </div>
 
-              <div class="current-day text-center py-4 white-text">
-                <h1 class="calendar-left-side-day"></h1>
-                <div class="calendar-left-side-day-of-week"></div>
-              </div>
-              <div class="current-day-events text-left white-text py-4">
-                <div class="h5 mb-3">Current Events:</div>
-                <ul class="current-day-events-list"></ul>
-              </div>
-            </div>
-            <!-- first col-->
-
-            <!--============================= BROWSE THE CALENDAR ================================================//-->
-
-            <div class="col col-md-8 col-sm-4 calendar-content">
-              <div class="text-right calendar-change-year p-3">
-                <div class="calendar-change-year-slider">
-                  <span class="fa fa-caret-left cursor-pointer calendar-change-year-slider-prev clickable"></span>
-                  <span class="calendar-current-year px-2"></span>
-                  <span class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next clickable"></span>
+                <div class="current-day text-center py-4 white-text">
+                  <h1 class="calendar-left-side-day"></h1>
+                  <div class="calendar-left-side-day-of-week"></div>
                 </div>
-              </div>
-              <div class="calendar-month-list">
-                <ul class="calendar-month d-flex justify-content-between flex-wrap"></ul>
-              </div>
-
-              <table class="table table-borderless">
-                <thead class="calendar-week-list"></thead>
-                <tbody class="calendar-days-list"></tbody>
-              </table>
-            </div>
-            <!-- second col-->
-          </div>
-        </div>
-        <div class="modal" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="addEventModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="addEventModalLabel">
+                <div class="current-day-events text-left px-2 white-text py-4">
+                  <div class="h5 mb-3">Current Events:</div>
+                  <ul class="current-day-events-list"></ul>
+                </div>
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#addEventModal"
+                  class="btn btn-success add-event-button ml-auto mt-auto w-100"
+                >
+                  <i class="fa fa-plus-circle fa-lg"></i>
                   Add Event
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <form>
-                  <div class="form-group">
-                    <label for="event-name" class="col-form-label">Event Name</label>
-                    <input type="text" class="form-control" id="event-name" />
+              <!-- first col-->
+
+              <!--============================= BROWSE THE CALENDAR ================================================//-->
+
+              <div class="col col-md-8 col-sm-4 calendar-content">
+                <div class="text-right calendar-change-year p-3">
+                  <div class="calendar-change-year-slider">
+                    <span
+                      class="fa fa-caret-left cursor-pointer calendar-change-year-slider-prev clickable"
+                    ></span>
+                    <span class="calendar-current-year px-2"></span>
+                    <span
+                      class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next clickable"
+                    ></span>
                   </div>
-                  <div class="form-group">
-                    <div class="btn-group" data-toggle="buttons">
-                      <label class="btn btn-success">
-                        <input type="radio" name="options" id="option1" />
-                        Meeting
-                      </label>
-                      <label class="btn btn-success">
-                        <input type="radio" name="options" id="option2" />
-                        Deadline
-                      </label>
+                </div>
+                <div class="calendar-month-list">
+                  <ul
+                    class="calendar-month d-flex justify-content-between flex-wrap"
+                  ></ul>
+                </div>
+
+                <table class="table table-borderless">
+                  <thead class="calendar-week-list"></thead>
+                  <tbody class="calendar-days-list"></tbody>
+                </table>
+              </div>
+              <!-- second col-->
+            </div>
+          </div>
+          <div
+            class="modal"
+            id="addEventModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="addEventModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addEventModalLabel">
+                    Add Event
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="event-name" class="col-form-label"
+                        >Event Name</label
+                      >
+                      <input type="text" class="form-control" id="event-name" />
                     </div>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn " data-dismiss="modal">
-                  Close
-                </button>
-                <button type="button" class="btn btn-success">
-                  Add Member
-                </button>
+                    <div class="form-group">
+                      <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-success">
+                          <input type="radio" name="options" id="option1" />
+                          Meeting
+                        </label>
+                        <label class="btn btn-success">
+                          <input type="radio" name="options" id="option2" />
+                          Deadline
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn " data-dismiss="modal">
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-success">
+                    Add Member
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <!--end of row-->
       </div>
-      <!--end of row-->
     </div>
-  </div>
-</body>
-<script>
-  document.querySelector('.hamburger').addEventListener('click', function () {
-    document.querySelector('.page-wrapper').classList.toggle('is-collapsed');
-  });
-
-  document
-    .querySelector('.notification')
-    .addEventListener('click', function () {
-      console.log(document.querySelector('.notification').classList);
-
-      document
-        .querySelector('.notification-dropdown')
-        .classList.toggle('display-block');
+  </body>
+  <script>
+    document.querySelector(".hamburger").addEventListener("click", function() {
+      document.querySelector(".page-wrapper").classList.toggle("is-collapsed");
     });
-</script>
 
+    document
+      .querySelector(".notification")
+      .addEventListener("click", function() {
+        console.log(document.querySelector(".notification").classList);
+
+        document
+          .querySelector(".notification-dropdown")
+          .classList.toggle("display-block");
+      });
+  </script>
 </html>

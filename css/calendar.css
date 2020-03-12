@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 /*left content*/
 
@@ -70,11 +70,15 @@
   opacity: 0.5;
 }
 
-[data-toggle='buttons'] > .btn > input[type='radio'] {
+[data-toggle="buttons"] > .btn > input[type="radio"] {
   display: none;
 }
 
 .calendar-content {
   border-radius: 0 5px 5px 0;
   border: 1px solid var(--secondary-color);
+}
+
+.add-event-button {
+  border-radius: 0;
 }
