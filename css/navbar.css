@@ -8,7 +8,7 @@
   padding-left: 4rem;
   background: var(--primary-color);
   top: 0;
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .hamburger {
@@ -101,7 +101,7 @@
   position: absolute;
   left: -17rem;
   top: 150%;
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .user-dropdown {
@@ -189,7 +189,7 @@
   height: 100%;
   transition: all 0.3s ease;
   color: gray;
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .is-collapsed .side-menu-item {
