@@ -42,10 +42,11 @@
     <script src="js/profile.js" defer></script>
   </head>
 
-<<<<<<< HEAD
   <link rel="stylesheet" href="./css/profile.css" />
   <link rel="stylesheet" href="./css/navbar.css" />
   <script src="js/profile.js" defer></script>
+    <script src="./js/navbar.js" defer></script>
+
 </head>
 
 <body>
@@ -75,37 +76,6 @@
                 <div class="notify_info">
                   <p>Alex commented on the<span>Task Share</span></p>
                   <span class="notify_time">10 minutes ago</span>
-=======
-  <body>
-    <div class="page-wrapper h-100 is-collapsed">
-      <nav class="top-navbar">
-        <div
-          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
-        >
-          <div class="logo">
-            <h4 class="mb-0 px-3">
-              <i class="fas fa-drafting-compass"></i> Kick
-            </h4>
-          </div>
-          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-            <li class="px-5 utility ml-3 notification mb-0">
-              <a href="#"><i class="fas fa-bell"></i></a>
-              <span class="num">4</span>
-              <div class="notification-dropdown d-none">
-                <h6 class="notification-title text-center">notifications</h6>
-                <div class="notify_item clickable">
-                  <div class="notify_img">
-                    <img
-                      src="./assets/profile.png"
-                      alt="profile_pic"
-                      style="width: 50px"
-                    />
-                  </div>
-                  <div class="notify_info">
-                    <p>Alex commented on the<span>Task Share</span></p>
-                    <span class="notify_time">10 minutes ago</span>
-                  </div>
->>>>>>> e2631eee7ee5fb1bf7c9cd3876109898a70a62c5
                 </div>
                 <div class="notify_item clickable">
                   <div class="notify_img">
@@ -126,8 +96,27 @@
               </div>
             </li>
             <!--profile-->
-            <li class="px-2 utility ml-3 mb-0 ">
+            <li class="px-2 utility ml-3 mb-0 user  ">
               <a href="#"><i class="fas fa-user"></i></a>
+              <div class="user-dropdown d-none">
+                <h6 class="user-title text-center">Profile</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
+                  </div>
+                  <div class="notify_info">
+                    <p><a class="nostyle" href="profile.html">Me</a></p>
+                  </div>
+                </div>
+                <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+                <div class="notify_item clickable d-flex justify-content-center">
+                  <p class="m-0" id="dark-mode">Dark Mode</p>
+                </div>
+  
+                <div class="notify_item clickable d-flex justify-content-center">
+                  <a href="index.html" class="nostyle">Logout</a>
+                </div>
+  
             </li>
           </ul>
         </div>
@@ -495,24 +484,5 @@
             document.querySelector('.page-wrapper').classList.toggle('is-collapsed')
         }))
 
-  document
-    .querySelector(".notification")
-    .addEventListener("click", function () {
-      console.log(document.querySelector(".notification").classList);
-
-      document
-        .querySelector(".notification-dropdown")
-        .classList.toggle("display-block");
-    });
-
-    document
-      .querySelector('.notification')
-      .addEventListener('click', function() {
-        console.log(document.querySelector('.notification').classList);
-
-        document
-          .querySelector('.notification-dropdown')
-          .classList.toggle('display-block');
-      });
   </script>
 </html>

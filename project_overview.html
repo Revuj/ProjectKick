@@ -33,6 +33,8 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+
+    <script src="./js/navbar.js" defer></script>
   </head>
 
   <body>
@@ -93,8 +95,27 @@
               </div>
             </li>
             <!--profile-->
-            <li class="px-2 utility ml-3 mb-0 ">
+            <li class="px-2 utility ml-3 mb-0 user  ">
               <a href="#"><i class="fas fa-user"></i></a>
+              <div class="user-dropdown d-none">
+                <h6 class="user-title text-center">Profile</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
+                  </div>
+                  <div class="notify_info">
+                    <p><a class="nostyle" href="profile.html">Me</a></p>
+                  </div>
+                </div>
+                <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+                <div class="notify_item clickable d-flex justify-content-center">
+                  <p class="m-0" id="dark-mode">Dark Mode</p>
+                </div>
+  
+                <div class="notify_item clickable d-flex justify-content-center">
+                  <a href="index.html" class="nostyle">Logout</a>
+                </div>
+  
             </li>
           </ul>
         </div>
@@ -454,25 +475,6 @@
             .classList.toggle("is-collapsed");
         })
       );
-
-      let user_dropdown = document.querySelector(".user-dropdown");
-      let notification_dropdown = document.querySelector(
-        ".notification-dropdown"
-      );
-
-      document
-        .querySelector(".notification")
-        .addEventListener("click", function() {
-          notification_dropdown.classList.toggle("d-none");
-          if (!user_dropdown.classList.contains("d-none"))
-            user_dropdown.classList.add("d-none");
-        });
-
-      document.querySelector(".user").addEventListener("click", function() {
-        user_dropdown.classList.toggle("d-none");
-        if (!notification_dropdown.classList.contains("d-none"))
-          notification_dropdown.classList.add("d-none");
-      });
     </script>
   </body>
 </html>
