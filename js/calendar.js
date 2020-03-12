@@ -9,7 +9,7 @@ class Calendar {
 
         this.noEventMsg = 'No Events. Do you want to add some?';
 
-        this.x = window.matchMedia("(max-width:700px)");
+        this.x = window.matchMedia("(max-width:800px)");
 
 
         this.nrDaysPerWeek = 7;
@@ -163,11 +163,14 @@ class Calendar {
         let weekTemplate = "";
         let week_var;
 
+
+
         if (x.matches) { // If media query matches
             week_var = this.week_days_mobile;
         } else {
             week_var = this.available_weel_days;
         }
+
 
         week_var.forEach(week => {
             weekTemplate += `<th>${week.slice(0, 3)}</th>`
@@ -188,7 +191,9 @@ class Calendar {
     // maybe por em funcoes diferentes ....
     addEventListeners() {
 
-        this.x.addListener(this.chooseWeekDays);
+
+        this.x.addListener(this.chooseWeekDays.bind(this))
+
 
         this.elements.prevYear.addEventListener('click', e => {
             let calendar = this.getCalendar();
@@ -297,9 +302,4 @@ class Calendar {
     }
 }
 
-
-(function () {
-    new Calendar({
-        id: "calendar"
-    })
-})();
+let calendar = new Calendar({ id: "calendar" });
