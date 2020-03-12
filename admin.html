@@ -79,6 +79,23 @@
               </h4>
             </a>
           </div>
+          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+                      <!--profile-->
+          <li class="px-2 utility ml-3 mb-0 user">
+            <a href="#"><i class="fas fa-user"></i></a>
+            <div class="user-dropdown d-none">
+              <h6 class="user-title text-center">Profile</h6>
+              <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+              <div class="notify_item clickable d-flex justify-content-center">
+                <p class="m-0" id="dark-mode">Dark Mode</p>
+              </div>
+
+              <div class="notify_item clickable d-flex justify-content-center">
+                <a href="index.html" class="nostyle">Logout</a>
+              </div>
+
+          </li>
+          </ul>
         </div>
       </nav>
 
@@ -330,14 +347,11 @@
       })
     );
 
-    document
-      .querySelector(".notification")
-      .addEventListener("click", function() {
-        console.log(document.querySelector(".notification").classList);
 
-        document
-          .querySelector(".notification-dropdown")
-          .classList.toggle("display-block");
-      });
+      let user_dropdown = document.querySelector('.user-dropdown');
+      console.log(document.querySelector('.user'))
+      document.querySelector('.user').addEventListener('click', function () {
+      user_dropdown.classList.toggle('d-none');
+      })
   </script>
 </html>
