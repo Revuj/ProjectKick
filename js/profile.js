@@ -134,8 +134,8 @@ const edit_button = document.querySelector('.edit-button');
 const cancel_button = document.querySelector('#cancel');
 const update_button = document.querySelector('#update');
 const edit_container = document.getElementById('edit');
-const details_container = document.getElementById('details');
-const user_card = document.querySelector('.col-lg-3 > div:nth-child(1)');
+const details_container = document.getElementById('details'); 
+const user_card = document.querySelector('#user');
 
 edit_button.addEventListener('click', event => {
   event.preventDefault();

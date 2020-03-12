@@ -117,8 +117,8 @@
         </nav>
         <!-- Default Light Table -->
         <div class="row">
-          <div class="col-lg-4">
-            <div class="card card-small mb-4">
+          <div class="col-md-3">
+            <div id = "user" class="card card-small mb-4">
               <div class="edit-button d-none">
                 <button type="button" class="btn float-right">
                   <i class="fas fa-pencil-alt float-right"></i>
@@ -126,26 +126,35 @@
               </div>
               <img class="card-img-top" src="assets/profile.png" alt="User Avatar" width="110">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item p-4">
-                  <h4 class="mb-0">Sierra Brooks</h4>
-                  <span class="text-muted d-block mb-2">Porto, Portugal</span>
-                  <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui
+                <li class="list-group-item p-2">
+                  <h4 class="mb-0 mt-2">Sierra Brooks</h4>
+                  <span class="text-muted d-block mb-1">Porto, Portugal</span>
+                  <span class = "smaller-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui
                     quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
                 </li>
-                <li class="list-group-item p-4">
-                  <div class="d-sm-flex justify-content-left mb-2">
-                    <span class="mt-1 mr-1 p-2 badge" style="background-color: rgb(10, 214, 250); color:white;">html
-                      <i class="fa fa-times" aria-hidden="true"></i></span>
-                    <span class="mt-1 mr-1 p-2 badge" style="background-color: rgb(174, 10, 250); color:white;">html
-                      <i class="fa fa-times" aria-hidden="true"></i></span>
-                    <span class="mt-1 mr-1 p-2 badge" style="background-color: rgb(166, 250, 10); color:white;">html
-                      <i class="fa fa-times" aria-hidden="true"></i></span>
-                  </div>
+                <li class="list-group-item p-2">
+                  <ul class="labels d-flex justify-content-center mx-2">
+                    <li class="mr-2">
+                      <h6 class="mb-0 px-1 list-item-label bg-success">
+                        Html
+                      </h6>
+                    </li>
+                    <li class="mr-2">
+                      <h6 class="mb-0 px-1 list-item-label bg-warning">
+                        Css
+                      </h6>
+                      <li class="mr-2">
+                        <h6 class="mb-0 px-1 list-item-label bg-danger">
+                          Javascript
+                        </h6>
+                      </li>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="col-lg-8" id="details">
+          <div class="col-md-9" id="details">
             <div class="card card-small mb-4">
               <div class="card-header border-bottom">
                 <h6 class="m-0">Account Details</h6>
@@ -179,7 +188,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-lg-9 d-none" id="edit">
+          <div class="col-md-8 d-none" id="edit">
             <div class="card card-small mb-4">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item pt-0">
@@ -213,31 +222,7 @@
                               value="91299239213">
                           </div>
                         </div>
-                        <form class="mt-5">
-                          <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label for="feFirstName">First Name</label>
-                              <input type="text" class="form-control" id="feFirstName" placeholder="First Name"
-                                value="Sierra" />
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label for="feLastName">Last Name</label>
-                              <input type="text" class="form-control" id="feLastName" placeholder="Last Name"
-                                value="Brooks" />
-                            </div>
-                          </div>
-                          <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label for="feEmail">Email</label>
-                              <input type="text" class="form-control" id="feEmail" placeholder="Email"
-                                value="sierra@example.com" />
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label for="fePhone">Phone</label>
-                              <input type="text" class="form-control" id="fePhone" placeholder="Phone"
-                                value="91299239213" />
-                            </div>
-                          </div>
+                       
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="fePassword">Password</label>
@@ -265,7 +250,7 @@
                             <div class="form-group col-md-12">
                               <label for="feDescription">Description</label>
                               <textarea class="form-control" name="feDescription" rows="5">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea>
                             </div>
                           </div>
 
