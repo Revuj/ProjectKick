@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 #cancel {
   position: absolute;
@@ -9,4 +9,14 @@
   position: absolute;
   right: 0;
   background-color: transparent !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .profile-edit-buttons {
+    flex-direction: column;
+  }
+
+  .profile-edit-buttons button {
+    margin-bottom: 1rem;
+  }
 }
