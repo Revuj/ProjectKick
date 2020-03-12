@@ -60,15 +60,15 @@ create_list_btn.addEventListener("click", () => {
   listenAddItem(addItemButtons[addItemButtons.length - 2]);
   listenCancelAddItem(addItemButtons[addItemButtons.length - 1]);
 
-  newList.addEventListener("dragover", function(e) {
+  newList.addEventListener("dragover", function (e) {
     e.preventDefault();
   });
 
-  newList.addEventListener("dragenter", function(e) {
+  newList.addEventListener("dragenter", function (e) {
     e.preventDefault();
   });
 
-  newList.children[1].addEventListener("drop", function(e) {
+  newList.children[1].addEventListener("drop", function (e) {
     console.log(newList);
     this.append(draggedItem);
   });
@@ -116,7 +116,7 @@ function listenCancelAddItem(elem) {
 }
 
 /* Allows modal to know which list to delete */
-$("#delete-list-modal").on("show.bs.modal", function(event) {
+$("#delete-list-modal").on("show.bs.modal", function (event) {
   let button = $(event.relatedTarget); // Button that triggered the modal
   let recipient = button.data("list-id"); // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -136,18 +136,18 @@ delete_list_button.addEventListener("click", event => {
 });
 
 function setDraggable(elem) {
-  elem.addEventListener("dragstart", function(e) {
+  elem.addEventListener("dragstart", function (e) {
     e.stopPropagation();
     console.log(elem);
 
     draggedItem = elem;
-    setTimeout(function() {
+    setTimeout(function () {
       elem.style.display = "none";
     }, 0);
   });
 
-  elem.addEventListener("dragend", function(e) {
-    setTimeout(function() {
+  elem.addEventListener("dragend", function (e) {
+    setTimeout(function () {
       draggedItem.style.display = "block";
       draggedItem = null;
     }, 0);
@@ -157,15 +157,15 @@ function setDraggable(elem) {
   for (let j = 0; j < lists.length; j++) {
     const list = lists[j];
 
-    list.addEventListener("dragover", function(e) {
+    list.addEventListener("dragover", function (e) {
       e.preventDefault();
     });
 
-    list.addEventListener("dragenter", function(e) {
+    list.addEventListener("dragenter", function (e) {
       e.preventDefault();
     });
 
-    list.addEventListener("drop", function(e) {
+    list.addEventListener("drop", function (e) {
       console.log("oi");
       console.log(this);
       this.append(draggedItem);
@@ -206,7 +206,7 @@ function mouseLeaveListItem(elem) {
 }
 
 function openSideIssueListen(elem) {
-  elem.addEventListener("click", function() {
+  elem.addEventListener("click", function () {
     let taskID = elem.getAttribute("id");
     let taskTitle = elem.querySelector(".task-title").innerHTML;
     if (pageWrapper.classList.contains("is-collapsed-right")) {
@@ -325,15 +325,71 @@ const tasks_list = [
         creator: "Jpabelha",
         tags: ["Iteration2"],
         imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      }
+      },
+      {
+        id: 3,
+        title: "This is another",
+        list_counter: 3,
+        creator: "Jpabelha",
+        tags: ["Iteration2"],
+        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+      },
+      {
+        id: 4,
+        title: "This is another",
+        list_counter: 4,
+        creator: "Jpabelha",
+        tags: ["Iteration2"],
+        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+      },
+      {
+        id: 5,
+        title: "This is another",
+        list_counter: 5,
+        creator: "Jpabelha",
+        tags: ["Iteration2"],
+        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+      },
+      {
+        id: 6,
+        title: "This is another",
+        list_counter: 6,
+        creator: "Jpabelha",
+        tags: ["Iteration2"],
+        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+      },
+      {
+        id: 7,
+        title: "This is another",
+        list_counter: 7,
+        creator: "Jpabelha",
+        tags: ["Iteration2"],
+        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+      },
+      {
+        id: 8,
+        title: "This is another",
+        list_counter: 8,
+        creator: "Jpabelha",
+        tags: ["Iteration2"],
+        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+      },
+      {
+        id: 9,
+        title: "This is another",
+        list_counter: 9,
+        creator: "Jpabelha",
+        tags: ["Iteration2"],
+        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+      },
     ] // end of tasks 1
   }, // first task list
 
   {
-    name: "Develop",
+    name: "To Do",
     tasks: [
       {
-        id: 3,
+        id: 10,
         title: "Work assigned to me",
         list_counter: 1,
         creator: "Revuj",
@@ -341,13 +397,31 @@ const tasks_list = [
         imgCreator: "https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
       },
       {
-        id: 4,
+        id: 11,
         title: "This is another",
         list_counter: 2,
         creator: "Jpabelha",
         tags: ["Iteration2"],
         imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
       }
+    ]
+  },
+
+  {
+    name: "Doing",
+    tasks: [
+    ]
+  },
+
+  {
+    name: "Needing bug fixed",
+    tasks: [
+    ]
+  },
+
+  {
+    name: "Closed",
+    tasks: [
     ]
   }
 ];
