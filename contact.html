@@ -27,22 +27,16 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
-  <!-- Custom Style-->
-  <link rel="stylesheet" href="./css/navbar.css" />
-
-  <!--TO USED THE MAP-->
-  <!-- Resources -->
-  <script src="https://www.amcharts.com/lib/4/core.js"></script>
-  <script src="https://www.amcharts.com/lib/4/maps.js"></script>
-  <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
   <!--custom style-->
-  <link rel="stylesheet" href="./css/admin.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+    
+  <!-- Custom Style-->
+  <link rel="stylesheet" href="./css/navbar.css" />
+  <link rel="stylesheet" href="./css/contact.css" />
 </head>
 
 <body>
@@ -93,16 +87,6 @@
       </div>
     </nav>
 
-    <!-- 
-      inside a project he sidebar-menu options can be
-      board
-      flux diagram
-      calendar
-      tasks
-      forum
-      back
-      ...
-    -->
     <nav class="sidebar-menu">
       <ul>
         <li class="hamburger side-menu-item">
@@ -130,43 +114,38 @@
         </li>
       </ul>
     </nav>
-    <h1 style="text-align:center; margin-top: 85px">Contact us</h1>
-    <div class="container">
-        <div class="well well-md">
-          <form class="form-horizontal" action="" method="post">
-            <fieldset>
-              <div class="form-group">
-                <label class="col-md-3 control-label" for="name" style=" font-size:15pt">Name</label>
-                <div class="col-md-9">
-                  <input id="name" name="name" type="text" placeholder="Please enter your name" class="form-control">
-                </div>
+
+    
+    <div class="main-container">
+      <div id="contact-us" class="px-3">
+        <h4 id="contact-us-title" class="task-title pb-2 border-bottom mt-5 mb-0">Contact us</h4>
+        <form id="contact-us-form" class="border-bottom py-4 p-3">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name">
             </div>
-              <div class="form-group">
-                <label class="col-md-3 control-label" for="email" style="font-size:15pt">E-mail</label>
-                <div class="col-md-9">
-                  <input id="email" name="email" type="text" placeholder="Please enter your email" class="form-control">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-3 control-label" for="message" style="font-size:15pt">Message</label>
-                <div class="col-md-9">
-                  <textarea class="form-control" id="message" name="message"
-                    placeholder="Please enter your message here..." rows="5"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-12 text-left">
-                  <a href="profile.html" class="btn btn-info btn-lg" role="button">Submit</a>
-                </div>
-              </div>
-            </fieldset>
-            </form>
+
+            <div class="form-group col-sm-12">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" id="email" placeholder="Enter your email">
+            </div>
+
+            <div class="form-group col-sm-12">
+              <label for="message">Please enter your message here...</label>
+              <textarea class="form-control" id="message" rows="3"></textarea>
+          </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+
+      </div>
+
     </div>
-  </div>
-        
+
   </div>
 
-  <script src="./js/admin.js"></script>
 </body>
 <script>
   document.querySelector(".hamburger").addEventListener("click", function () {
