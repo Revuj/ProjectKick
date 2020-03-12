@@ -64,9 +64,10 @@ am4core.ready(function () {
     // Create map instance
     let chart = am4core.create("chartdiv", am4maps.MapChart);
 
-    let title = chart.titles.create();
-    title.text = "[bold font-size: 20] Users Distribution";
-    title.textAlign = "middle";
+
+    let label = chart.chartContainer.createChild(am4core.Label);
+    label.text = "User Distribution";
+    label.align = "left";
 
     let mapData = [
         { "id": "AF", "name": "Afghanistan", "value": 32358260, "color": chart.colors.getIndex(0) },
@@ -272,17 +273,23 @@ am4core.ready(function () {
         "target": circle,
         "property": "radius",
         "min": 4,
+        "max" : 10,
         "dataField": "value"
     })
 
-    console.log(imageSeries.heatRules)
+    chart.homeZoomLevel = 1;
+
+
 
     function changeMediaQuery(changed) {
         if (changed.matches) {
-            imageSeries.heatRules['_values'][0]['max'] = 30;
+            
+            chart.homeZoomLevel = 1.2;
 
         } else {
-            imageSeries.heatRules['max'] = 10;
+            
+            chart.homeZoomLevel = 1;
+          
         }
 
     }
@@ -292,7 +299,6 @@ am4core.ready(function () {
     changeMediaQuery(mq);
 
     mq.addListener(changeMediaQuery);
-
 
     imageTemplate.adapter.add("latitude", function (latitude, target) {
         let polygon = polygonSeries.getPolygonById(target.dataItem.dataContext.id);
@@ -309,6 +315,23 @@ am4core.ready(function () {
         }
         return longitude;
     })
+
+    // Create a zoom control
+var zoomControl = new am4maps.ZoomControl();
+chart.zoomControl = zoomControl;
+zoomControl.slider.height = 100;
+
+var home = chart.chartContainer.createChild(am4core.Button);
+home.label.text = "Home";
+home.align = "right";
+home.events.on("hit", function(ev) {
+  chart.goHome();
+});
+
+
+
+
+
 
 
 
