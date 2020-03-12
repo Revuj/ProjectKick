@@ -1,6 +1,6 @@
 /* css related to the page board*/
 
-@import url("global.css");
+@import url('global.css');
 
 .filters {
   list-style: none;
@@ -148,4 +148,9 @@
 .due-date-container .change-due-date {
   background-color: var(--item-color);
   color: white;
+}
+
+.list-item-label {
+  font-size: 0.9em;
+  border-radius: 5px;
 }

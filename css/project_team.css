@@ -85,6 +85,40 @@
   display: none;
 }
 
+.btn-outline-primary.active {
+  color: var(--text-color) !important;
+  background-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:hover {
+  color: var(--text-color) !important;
+  background-color: var(--primary-color) !important;
+}
+
+.table a.table-link .danger {
+  padding: 0.375rem 0.75rem;
+  background-color: #fe635f;
+  color: var(--text-color);
+}
+
+.table a.table-link .danger:hover {
+  background-color: #dd504c;
+  color: var(--text-color);
+}
+
+.info button {
+  display: none;
+}
+
+.info:hover button {
+  display: inline;
+}
+
 @media only screen and (max-width: 768px) {
   .modal-dialog {
     width: 100%;
@@ -102,5 +136,58 @@
   #side-filter-container {
     width: 100%;
     top: 0;
+  }
+
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  table td img {
+    display: none;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+
+  table td:last-child {
+    width: 100%;
+  }
+
+  table tr:first-child {
+    border-top: 3px solid #ddd;
+  }
+
+  .row {
+    margin: 0 !important;
   }
 }

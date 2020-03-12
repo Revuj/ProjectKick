@@ -1,13 +1,3 @@
-const filter_sidebar = document.querySelector('#side-filter-container');
-const close_filter_sidebar = document.querySelector('.close-side-issue');
-const page_wrapper = document.querySelector('.page-wrapper');
-
-close_filter_sidebar.addEventListener('click', event => {
-  event.preventDefault();
-  page_wrapper.classList.toggle('is-collapsed-right');
-  filter_sidebar.classList.toggle('d-none');
-});
-
 const active_button = document.querySelector('#tables-types > li:nth-child(1)');
 const finished_button = document.querySelector(
   '#tables-types > li:nth-child(2)'

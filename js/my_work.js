@@ -19,9 +19,9 @@ const upcoming_button = document.querySelector(
 today_button.addEventListener('click', event => {
   event.preventDefault();
 
-  const today_list = document.querySelector('div.card:nth-child(1)');
+  const today_list = document.querySelector('#today');
   if (today_list.classList.contains('d-none')) {
-    const upcoming_list = document.querySelector('div.card:nth-child(2)');
+    const upcoming_list = document.querySelector('#upcoming');
 
     today_list.classList.remove('d-none');
     upcoming_list.classList.add('d-none');
@@ -32,9 +32,9 @@ today_button.addEventListener('click', event => {
 
 upcoming_button.addEventListener('click', event => {
   event.preventDefault();
-  const upcoming_list = document.querySelector('div.card:nth-child(2)');
+  const upcoming_list = document.querySelector('#upcoming');
   if (upcoming_list.classList.contains('d-none')) {
-    const today_list = document.querySelector('div.card:nth-child(1)');
+    const today_list = document.querySelector('#today');
 
     upcoming_list.classList.remove('d-none');
     today_list.classList.add('d-none');

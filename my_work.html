@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Kick | My Work</title>
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Kick | My Work</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+    <link rel="stylesheet" href="./css/my_work.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <script src="js/my_work.js" defer></script>
+  </head>
 
   <link rel="stylesheet" href="./css/my_work.css" />
   <link rel="stylesheet" href="./css/navbar.css" />
@@ -51,341 +68,410 @@
                   <p>Alex commented on the<span>Task Share</span></p>
                   <span class="notify_time">10 minutes ago</span>
                 </div>
-              </div>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
                 </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
+                <div class="notify_item clickable">
+                  More(2) ...
                 </div>
               </div>
-              <div class="notify_item clickable">
-                More(2) ...
-              </div>
-            </div>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0 ">
+              <a href="#"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
           </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 ">
-            <a href="#"><i class="fas fa-user"></i></a>
+          <li class="side-menu-item dropdown">
+            <a href="my_projects.html">
+              <span class="m-2"><i class="fas fa-columns"></i></span>
+              <span class="side-menu-item-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a class="active" href="my_work.html">
+              <span class="m-2"><i class="fas fa-tasks"></i></span>
+              <span class="side-menu-item-title">My Work</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="calendar.html">
+              <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
+              <span class="side-menu-item-title">Calendar</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="searchpage.html">
+              <span class="m-2"><i class="fas fa-search"></i></span>
+              <span class="side-menu-item-title">Search</span>
+            </a>
           </li>
         </ul>
-      </div>
-    </nav>
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a href="my_projects.html">
-            <span class="m-2"><i class="fas fa-columns"></i></span>
-            <span class="side-menu-item-title">Dashboard</span>
-          </a>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a class="active" href="my_work.html">
-            <span class="m-2"><i class="fas fa-tasks"></i></span>
-            <span class="side-menu-item-title">My Work</span>
-          </a>
-        </li>
-        <li class="side-menu-item">
-          <a href="calendar.html">
-            <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
-            <span class="side-menu-item-title">Calendar</span>
-          </a>
-        </li>
-        <li class="side-menu-item">
-          <a href="searchpage.html">
-            <span class="m-2"><i class="fas fa-search"></i></span>
-            <span class="side-menu-item-title">Search</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      </nav>
 
-    <div class="main-container" id="my_work">
-      <div class="main-content-container px-4">
-        <nav>
-          <ol class="breadcrumb custom-separator">
-            <li class="current"><em>My Work</em></li>
-          </ol>
-        </nav>
-        <div id="tables-types" class="d-flex border-bottom nav-links p-2">
-          <li class="active">
-            Today <span class="tables-type-counter">2</span>
-          </li>
-          <li>Upcoming <span class="tables-type-counter">3</span></li>
-          <button type="button" data-toggle="modal" data-target="#addTaskModal" class="btn btn-success ml-auto ">
-            <i class="fa fa-plus-circle fa-lg"></i>
-            Add Task
-          </button>
-        </div>
-        <form class="p-2 d-flex">
-          <div class="mw-20 input-group mr-auto w-50">
-            <input type="text" class="form-control" placeholder="Search or filter results..." />
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="button">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </div>
-          <div id="filter-buttons">
-            <button type="submit" class="btn btn-primary mx-1">
-              Sort by<i class="fas fa-chevron-down ml-3"></i>
-            </button>
-            <button type="submit" class="btn btn-primary ">
-              <i class="fas fa-arrow-up"></i>
+      <div class="main-container" id="my_work">
+        <div class="main-content-container px-4">
+          <nav>
+            <ol class="breadcrumb custom-separator">
+              <li class="current"><em>My Work</em></li>
+            </ol>
+          </nav>
+          <div id="tables-types" class="d-flex border-bottom nav-links pb-2">
+            <li class="active">
+              Today <span class="tables-type-counter">2</span>
+            </li>
+            <li>Upcoming <span class="tables-type-counter">3</span></li>
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#addTaskModal"
+              class="btn btn-success ml-auto "
+            >
+              <i class="fa fa-plus-circle fa-lg"></i>
+              Add Task
             </button>
           </div>
-        </form>
-        <div class="m-2">
-          <div class="card">
-            <div class="card-header">To do - Project 1</div>
-            <ul id="card issue-list">
-              <li class="issue border-bottom card-content">
-                <h6 class="task-title font-weight-bold">homepage</h6>
-                <p>#7 Opened by Vitor Barbosa</p>
-                <div class="row mx-1">
-                  <div class="labels-container col-md-4 text-center px-0">
-                    <ul class="labels d-flex align-items-center justify-content-begin">
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(58, 38, 2); color:white;">html <i
-                          class="fa fa-times" aria-hidden="true"></i></span>
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(10, 250, 30); color:white;">html <i
-                          class="fa fa-times" aria-hidden="true"></i></span>
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(226, 172, 172); color:white;">html
-                        <i class="fa fa-times" aria-hidden="true"></i></span>
-                      <li>
-                        <button type="button" class="custom-button add-button">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="assignees-container col-md-4 text-center">
-                    <ul class="assignees d-flex align-items-center justify-content-center">
-                      <li class="mr-2">
-                        <img src="assets/profile.png" alt="@vitorb19" draggable="false" />
-                      </li>
-                      <li class="mr-2">
-                        <img src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19"
-                          draggable="false" />
-                      </li>
-                      <li>
-                        <button type="button" class="custom-button add-button">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="due-date-container col-md-4 text-right">
-                    <button type="button" class="custom-button due-date-button">
-                      <i class="far fa-clock mr-2"></i>Feb 29
-                    </button>
-                  </div>
+          <div id="filter-issues" class="border-bottom py-3 my-0">
+            <form class="d-flex justify-content-between">
+              <div class="form-group mb-0 flex-grow-1 mx-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="issues-filter"
+                  id="issues-filter"
+                  placeholder="Search or filter results..."
+                />
+              </div>
+              <div id="filter-buttons" class="dropdown">
+                <button
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  id="dropdownFiltersButton"
+                  type="button"
+                  type="submit"
+                  class="custom-button primary-button dropdown-toggle mx-1"
+                >
+                  Sort by<i class="fas fa-chevron-down ml-3"></i>
+                </button>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="dropdownFiltersButton"
+                >
+                  <a class="dropdown-item" href="#">Due Date</a>
+                  <a class="dropdown-item" href="#">Opening Date</a>
+                  <a class="dropdown-item" href="#">Assignees</a>
                 </div>
-              </li>
-              <li class="issue border-bottom">
-                <h6 class="task-title font-weight-bold">homepage</h6>
-                <p>#7 Opened by Vitor Barbosa</p>
-                <div class="row mx-1">
-                  <div class="labels-container col-md-4 text-center px-0">
-                    <ul class="labels d-flex align-items-center justify-content-begin">
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(250, 186, 10); color:white;">html
-                        <i class="fa fa-times" aria-hidden="true"></i></span>
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(250, 10, 102); color:white;">html
-                        <i class="fa fa-times" aria-hidden="true"></i></span>
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(10, 214, 250); color:white;">html
-                        <i class="fa fa-times" aria-hidden="true"></i></span>
-                      <li>
-                        <button type="button" class="custom-button add-button">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="assignees-container col-md-4 text-center">
-                    <ul class="assignees d-flex align-items-center justify-content-center">
-                      <li class="mr-2">
-                        <img src="assets/profile.png" alt="@vitorb19" draggable="false" />
-                      </li>
-                      <li class="mr-2">
-                        <img src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19"
-                          draggable="false" />
-                      </li>
-                      <li>
-                        <button type="button" class="custom-button add-button">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="due-date-container col-md-4 text-right">
-                    <button type="button" class="custom-button due-date-button">
-                      <i class="far fa-clock mr-2"></i>Feb 29
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="card d-none">
-            <div class="card-header">To do - Project 1</div>
-            <ul id="issue-list">
-              <li class="issue border-bottom">
-                <h6 class="task-title font-weight-bold">boards</h6>
-                <p>#8 Opened by Abelha</p>
-                <div class="row mx-1">
-                  <div class="labels-container col-md-4 text-center px-0">
-                    <ul class="labels d-flex align-items-center justify-content-begin">
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(10, 24, 250); color:white;">html <i
-                          class="fa fa-times" aria-hidden="true"></i></span>
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(200, 214, 2); color:white;">html <i
-                          class="fa fa-times" aria-hidden="true"></i></span>
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(50, 100, 50); color:white;">html <i
-                          class="fa fa-times" aria-hidden="true"></i></span>
-                      <li>
-                        <button type="button" class="custom-button add-button">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="assignees-container col-md-4 text-center">
-                    <ul class="assignees d-flex align-items-center justify-content-center">
-                      <li class="mr-2">
-                        <img src="assets/profile.png" alt="@vitorb19" draggable="false" />
-                      </li>
-                      <li>
-                        <button type="button" class="custom-button add-button">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="due-date-container col-md-4 text-right">
-                    <button type="button" class="custom-button due-date-button">
-                      <i class="far fa-clock mr-2"></i>Feb 29
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <div class="card-header">Errors - Project 2</div>
-            <ul id="card issue-list">
-              <li class="issue border-bottom card-content">
-                <h6 class="task-title font-weight-bold">homepage</h6>
-                <p>#7 Opened by Vitor Barbosa</p>
-                <div class="row mx-1">
-                  <div class="labels-container col-md-4 text-center px-0">
-                    <ul class="labels d-flex align-items-center justify-content-begin">
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(25, 214, 10); color:white;">html <i
-                          class="fa fa-times" aria-hidden="true"></i></span>
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(201, 24, 50); color:white;">html <i
-                          class="fa fa-times" aria-hidden="true"></i></span>
-                      <span class="mb-0 mr-1 p-2 badge" style="background-color: rgb(250, 10, 170); color:white;">html
-                        <i class="fa fa-times" aria-hidden="true"></i></span>
-                      <li>
-                        <button type="button" class="custom-button add-button">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="assignees-container col-md-4 text-center">
-                    <ul class="assignees d-flex align-items-center justify-content-center">
-                      <li class="mr-2">
-                        <img src="assets/profile.png" alt="@vitorb19" draggable="false" />
-                      </li>
-                      <li>
-                        <button type="button" class="custom-button add-button">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="due-date-container col-md-4 text-right">
-                    <button type="button" class="custom-button due-date-button">
-                      <i class="far fa-clock mr-2"></i>Feb 29
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="modal" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                <button type="submit" class="custom-button primary-button">
+                  <i class="fas fa-arrow-up"></i>
                 </button>
               </div>
-              <div class="modal-body">
-                <form>
-                  <div class="form-row">
-                    <div class="col">
-                      <label for="project-name" class="col-form-label">Select Project</label>
-                      <input type="text" class="form-control" id="project-name" />
-                    </div>
-                    <div class="col d-none">
-                      <label for="task-list" class="col-form-label">Task List</label>
-                      <input type="text" class="form-control" id="task-list" />
-                    </div>
-                  </div>
-                  <div class="form-group mt-4">
-                    <input type="text" class="form-control" id="task-name" placeholder="What needs to be done?" />
-                  </div>
-                  <div class="form-row">
-                    <div class="col">
-                      <label for="task-assignment" class="col-form-label">Who should do this?</label>
-                      <input type="text" class="form-control" id="task-assignment" />
-                    </div>
-                    <div class="col">
-                      <label for="task-due-date" class="col-form-label">Due Date</label>
-                      <input type="date" class="form-control" id="task-due-date" />
-                    </div>
-                  </div>
-                </form>
+            </form>
+          </div>
+          <ul id="today" class="issue-list mx-2">
+            <li class="issue open px-2 border-bottom">
+              <div class="issue-header d-flex align-items-center">
+                <a href="issue.html" class="task-title nostyle">boards</a>
+                <ul class="labels d-flex justify-content-center mx-2">
+                  <li class="mr-2">
+                    <h6 class="mb-0 px-1 list-item-label bg-success">
+                      Doing
+                    </h6>
+                  </li>
+                </ul>
+                <a
+                  href="issue.html"
+                  class="nostyle comments-number-container ml-auto"
+                >
+                  <i class="fas fa-comments mr-2"></i>2
+                </a>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn " data-dismiss="modal">
-                  Close
-                </button>
-                <button type="button" class="btn btn-success">
-                  Add Task
-                </button>
+              <div class="d-flex issue-status">
+                <p>
+                  #8<span class="open-description">
+                    Opened by <span class="author-reference">Abelha</span> 5
+                    days ago</span
+                  >
+                </p>
+                <div class="assignees-container ml-auto text-center">
+                  <ul class="assignees d-flex ">
+                    <li class="mr-2">
+                      <img
+                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                        alt="@vitorb19"
+                        draggable="false"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="issue open px-2 border-bottom">
+              <div class="issue-header d-flex align-items-center">
+                <a href="issue.html" class="task-title nostyle"
+                  >finish design</a
+                >
+                <ul class="labels d-flex justify-content-center mx-2">
+                  <li class="mr-2">
+                    <h6 class="mb-0 px-1 list-item-label bg-success">
+                      Doing
+                    </h6>
+                  </li>
+                  <li class="mr-2">
+                    <h6 class="mb-0 px-1 list-item-label bg-warning">
+                      Iteration 2
+                    </h6>
+                  </li>
+                </ul>
+                <div class="due-date-container text-right">
+                  <i class="fas fa-calendar-alt mr-2"></i>Feb 29, 2020
+                </div>
+                <a
+                  href="issue.html"
+                  class="nostyle comments-number-container ml-auto"
+                >
+                  <i class="fas fa-comments mr-2"></i>5
+                </a>
+              </div>
+              <div class="d-flex issue-status">
+                <p>
+                  #13<span class="open-description">
+                    Opened by <span class="author-reference">Revuj</span> 1 hour
+                    ago</span
+                  >
+                </p>
+                <div class="assignees-container ml-auto text-center">
+                  <ul class="assignees d-flex ">
+                    <li class="mr-2">
+                      <img
+                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                        alt="@vitorb19"
+                        draggable="false"
+                      />
+                    </li>
+                    <li class="mr-2">
+                      <img
+                        src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
+                        alt="@vitorb19"
+                        draggable="false"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <ul id="upcoming" class="issue-list d-none mx-2">
+            <li class="issue open px-2 border-bottom">
+              <div class="issue-header d-flex align-items-center">
+                <a href="issue.html" class="task-title nostyle"
+                  >normalize database</a
+                >
+                <ul class="labels d-flex justify-content-center mx-2">
+                  <li class="mr-2">
+                    <h6 class="mb-0 px-1 list-item-label bg-warning">
+                      Iteration 4
+                    </h6>
+                  </li>
+                </ul>
+                <div class="due-date-container text-right">
+                  <i class="fas fa-calendar-alt mr-2"></i>Mar 13, 2020
+                </div>
+                <a
+                  href="issue.html"
+                  class="nostyle comments-number-container ml-auto"
+                >
+                  <i class="fas fa-comments mr-2"></i>2
+                </a>
+              </div>
+              <div class="d-flex issue-status">
+                <p>
+                  #15
+                  <span class="open-description"
+                    >Opened by <span class="author-reference">Vator</span> 2
+                    days ago</span
+                  >
+                </p>
+                <div class="assignees-container ml-auto text-center">
+                  <ul class="assignees d-flex "></ul>
+                </div>
+              </div>
+            </li>
+            <li class="issue closed px-2 border-bottom">
+              <div class="issue-header d-flex align-items-center">
+                <a href="issue.html" class="task-title nostyle"
+                  >make pages responsive</a
+                >
+                <ul class="labels d-flex justify-content-center mx-2">
+                  <li class="mr-2">
+                    <h6 class="mb-0 px-1 list-item-label bg-success">
+                      Doing
+                    </h6>
+                  </li>
+                  <li class="mr-2">
+                    <h6 class="mb-0 px-1 list-item-label bg-warning">
+                      Iteration 3
+                    </h6>
+                  </li>
+                </ul>
+                <div class="due-date-container text-right">
+                  <i class="fas fa-calendar-alt mr-2"></i>Feb 29, 2020
+                </div>
+                <a
+                  href="issue.html"
+                  class="nostyle comments-number-container ml-auto"
+                >
+                  <i class="fas fa-comments mr-2"></i>2
+                </a>
+              </div>
+              <div class="d-flex issue-status">
+                <p>
+                  #10
+                  <span class="open-description"
+                    >Opened by <span class="author-reference">Abelha</span> 4
+                    days ago</span
+                  >
+                </p>
+                <div class="assignees-container ml-auto text-center">
+                  <ul class="assignees d-flex ">
+                    <li class="mr-2">
+                      <img
+                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                        alt="@vitorb19"
+                        draggable="false"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <div
+            class="modal"
+            id="addTaskModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="addTaskModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-row">
+                      <div class="col">
+                        <label for="project-name" class="col-form-label"
+                          >Select Project</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="project-name"
+                        />
+                      </div>
+                      <div class="col d-none">
+                        <label for="task-list" class="col-form-label"
+                          >Task List</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="task-list"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group mt-4">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="task-name"
+                        placeholder="What needs to be done?"
+                      />
+                    </div>
+                    <div class="form-row">
+                      <div class="col">
+                        <label for="task-assignment" class="col-form-label"
+                          >Who should do this?</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="task-assignment"
+                        />
+                      </div>
+                      <div class="col">
+                        <label for="task-due-date" class="col-form-label"
+                          >Due Date</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="task-due-date"
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn " data-dismiss="modal">
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-success">
+                    Add Task
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 
-<script>
-  document.querySelector('.hamburger').addEventListener('click', function () {
-    document.querySelector('.page-wrapper').classList.toggle('is-collapsed');
-  });
-
-  document
-    .querySelector('.notification')
-    .addEventListener('click', function () {
-      console.log(document.querySelector('.notification').classList);
-
-      document
-        .querySelector('.notification-dropdown')
-        .classList.toggle('display-block');
+  <script>
+    document.querySelector('.hamburger').addEventListener('click', function() {
+      document.querySelector('.page-wrapper').classList.toggle('is-collapsed');
     });
-</script>
 
+    document
+      .querySelector('.notification')
+      .addEventListener('click', function() {
+        console.log(document.querySelector('.notification').classList);
+
+        document
+          .querySelector('.notification-dropdown')
+          .classList.toggle('display-block');
+      });
+  </script>
 </html>
