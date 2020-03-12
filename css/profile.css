@@ -29,3 +29,13 @@
   font-size: 0.9em;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 768px) {
+  .profile-edit-buttons {
+    flex-wrap: wrap;
+  }
+
+  .profile-edit-buttons div :first-child {
+    display: none;
+  }
+}

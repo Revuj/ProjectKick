@@ -42,8 +42,9 @@
       crossorigin="anonymous"
     />
     <!-- Custom Style-->
-    <link rel="stylesheet" href="./css/issuelist.css" />
     <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/issuelist.css" />
+
     <script src="./js/issueslist.js" defer></script>
     <script src="./js/navbar.js" defer></script>
   </head>
@@ -213,12 +214,12 @@
                 data-target="#addTaskModal"
                 class="btn btn-success ml-auto "
               >
-                <i class="fa fa-plus-circle fa-lg"></i> Add Task
+                <i class="fa fa-plus-circle fa-lg"></i> <span>Add Task</span>
               </button>
             </ul>
             <div id="filter-issues" class="border-bottom py-3 my-0">
-              <form class="d-flex justify-content-between">
-                <div class="form-group mb-0 flex-grow-1 mx-2">
+              <form class="d-md-flex justify-content-between">
+                <div class="form-group mb-0 flex-grow-1">
                   <input
                     type="text"
                     class="form-control"
@@ -235,7 +236,7 @@
                     id="dropdownFiltersButton"
                     type="button"
                     type="submit"
-                    class="custom-button primary-button dropdown-toggle mx-1"
+                    class="custom-button primary-button dropdown-toggle"
                   >
                     Sort by<i class="fas fa-chevron-down ml-3"></i>
                   </button>
@@ -247,10 +248,7 @@
                     <a class="dropdown-item" href="#">Opening Date</a>
                     <a class="dropdown-item" href="#">Assignees</a>
                   </div>
-                  <button
-                    type="submit"
-                    class="custom-button primary-button mr-1"
-                  >
+                  <button type="submit" class="custom-button primary-button">
                     <i class="fas fa-arrow-up"></i>
                   </button>
                 </div>
@@ -596,24 +594,31 @@
     </div>
     <!--end of page wrapper-->
     <script>
-      let hamburger_menus = document.querySelectorAll(".hamburger");
+      let hamburger_menus = document.querySelectorAll('.hamburger');
       hamburger_menus.forEach(elem =>
-        elem.addEventListener("click", function() {
+        elem.addEventListener('click', function() {
           document
-            .querySelector(".page-wrapper")
-            .classList.toggle("is-collapsed");
+            .querySelector('.page-wrapper')
+            .classList.toggle('is-collapsed');
         })
       );
-
-      let nav_links = document.querySelectorAll(".nav-links li");
-      let issue_list = document.querySelector("#issue-list");
+      document
+        .querySelector('.notification')
+        .addEventListener('click', function() {
+          console.log(document.querySelector('.notification').classList);
+          document
+            .querySelector('.notification-dropdown')
+            .classList.toggle('display-block');
+        });
+      let nav_links = document.querySelectorAll('.nav-links li');
+      let issue_list = document.querySelector('#issue-list');
       [...nav_links].forEach(elem =>
-        elem.addEventListener("click", event => {
+        elem.addEventListener('click', event => {
           nav_links.forEach(elem => {
-            elem.classList.remove("active");
+            elem.classList.remove('active');
             issue_list.classList.remove(elem.id);
           });
-          elem.classList.add("active");
+          elem.classList.add('active');
           console.log(elem.id);
           issue_list.classList.add(elem.id);
         })

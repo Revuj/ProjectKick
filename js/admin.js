@@ -42,6 +42,11 @@ new Chart(document.getElementById('line-chart'), {
     ]
   },
   options: {
+    title: {
+      display: true,
+      text: 'Numbers last 12 months'
+    },
+
     legend: {
       display: false
     }

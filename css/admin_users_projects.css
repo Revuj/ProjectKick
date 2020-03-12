@@ -151,3 +151,17 @@
     margin-left: auto !important;
   }
 }
+
+@media screen and (max-width: 768px) {
+  #tables-types .btn-success span {
+    display: none;
+  }
+
+  #filter-issues {
+    flex-direction: column !important;
+  }
+
+  #filter-buttons {
+    margin-top: 10px;
+  }
+}

@@ -97,3 +97,22 @@
     top: 0;
   }
 }
+
+@media screen and (max-width: 768px) {
+  input.button {
+    text-indent: -9000px;
+    text-transform: capitalize;
+  }
+
+  #tables-types .btn-success span {
+    display: none;
+  }
+
+  #filter-issues {
+    flex-direction: column !important;
+  }
+
+  #filter-buttons {
+    margin-top: 10px;
+  }
+}

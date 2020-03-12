@@ -40,6 +40,7 @@
     ></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="js/libs/chartjs-plugin-doughnutlabel.min.js"></script>
 
     <!-- Custom Style-->
     <link rel="stylesheet" href="./css/navbar.css" />
@@ -287,25 +288,6 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <<<<<<< HEAD
-                      <td>Mark Otto</td>
-                      <td>12-3-2019</td>
-                    </tr>
-                    <tr>
-                      <td>Mark Otto</td>
-                      <td>12-3-2019</td>
-                    </tr>
-                    <tr>
-                      <td>Mark Otto</td>
-                      <td>12-3-2019</td>
-                    </tr>
-                    <tr>
-                      <td>Mark Otto</td>
-                      <td>12-3-2019</td>
-                    </tr>
-                    <tr>
-                      <td>Mark Otto</td>
-                      =======
                       <td data-label="Users">Mark Otto</td>
                       <td data-label="Date">12-3-2019</td>
                     </tr>
@@ -323,8 +305,7 @@
                     </tr>
                     <tr>
                       <td data-label="Users">Mark Otto</td>
-                      >>>>>>> e2631eee7ee5fb1bf7c9cd3876109898a70a62c5
-                      <td>12-3-2019</td>
+                      <td data-label="Date">12-3-2019</td>
                     </tr>
                   </tbody>
                 </table>
@@ -338,20 +319,23 @@
     <script src="./js/admin.js"></script>
   </body>
   <script>
-    let hamburger_menus = document.querySelectorAll(".hamburger");
+    let hamburger_menus = document.querySelectorAll('.hamburger');
     hamburger_menus.forEach(elem =>
-      elem.addEventListener("click", function() {
+      elem.addEventListener('click', function() {
         document
-          .querySelector(".page-wrapper")
-          .classList.toggle("is-collapsed");
+          .querySelector('.page-wrapper')
+          .classList.toggle('is-collapsed');
       })
     );
 
+    document
+      .querySelector('.notification')
+      .addEventListener('click', function() {
+        console.log(document.querySelector('.notification').classList);
 
-      let user_dropdown = document.querySelector('.user-dropdown');
-      console.log(document.querySelector('.user'))
-      document.querySelector('.user').addEventListener('click', function () {
-      user_dropdown.classList.toggle('d-none');
-      })
+        document
+          .querySelector('.notification-dropdown')
+          .classList.toggle('display-block');
+      });
   </script>
 </html>

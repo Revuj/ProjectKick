@@ -73,6 +73,20 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  #tables-types .btn-success span {
+    display: none;
+  }
+
+  #filter-issues {
+    flex-direction: column !important;
+  }
+
+  #filter-buttons {
+    margin-top: 10px;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .comments-number-container,
   .due-date-container,

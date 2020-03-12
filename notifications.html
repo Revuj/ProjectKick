@@ -56,7 +56,7 @@
 
           <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
             <!--notifications-->
-            <li class="px-5 utility ml-3 notification mb-0">
+            <li class="utility notification mb-0">
               <a href="#"><i class="fas fa-bell"></i></a>
               <span class="num">4</span>
               <div class="notification-dropdown d-none">
@@ -118,17 +118,6 @@
           </ul>
         </div>
       </nav>
-
-      <!-- 
-      inside a project he sidebar-menu options can be
-      board
-      flux diagram
-      calendar
-      tasks
-      forum
-      back
-      ...
-    -->
       <nav class="sidebar-menu">
         <ul>
           <li class="hamburger side-menu-item">
@@ -137,7 +126,7 @@
             <div class="hamburger-symbol"></div>
           </li>
           <li class="side-menu-item dropdown">
-            <a href="my_projects.html">
+            <a class="active" href="my_projects.html">
               <span class="m-2"><i class="fas fa-columns"></i></span>
               <span class="side-menu-item-title">Dashboard</span>
             </a>
@@ -172,7 +161,7 @@
             </ol>
           </nav>
           <div id="notifications-list-container" class="pt-1 mb-0">
-            <ul class="d-flex nav-links">
+            <ul class="d-flex border-bottom nav-links p-2">
               <li id="assigned-notifications">
                 Assigned <span class="type-counter">3</span>
               </li>
@@ -198,21 +187,21 @@
     <!--end of page wrapper-->
 
     <script>
-      let hamburger_menus = document.querySelectorAll(".hamburger");
+      let hamburger_menus = document.querySelectorAll('.hamburger');
       hamburger_menus.forEach(elem =>
-        elem.addEventListener("click", function() {
+        elem.addEventListener('click', function() {
           document
-            .querySelector(".page-wrapper")
-            .classList.toggle("is-collapsed");
+            .querySelector('.page-wrapper')
+            .classList.toggle('is-collapsed');
         })
       );
 
       document
-        .querySelector(".notification")
-        .addEventListener("click", function() {
+        .querySelector('.notification')
+        .addEventListener('click', function() {
           document
-            .querySelector(".notification-dropdown")
-            .classList.toggle("display-block");
+            .querySelector('.notification-dropdown')
+            .classList.toggle('display-block');
         });
     </script>
 

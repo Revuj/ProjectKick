@@ -134,7 +134,7 @@ const edit_button = document.querySelector('.edit-button');
 const cancel_button = document.querySelector('#cancel');
 const update_button = document.querySelector('#update');
 const edit_container = document.getElementById('edit');
-const details_container = document.getElementById('details'); 
+const details_container = document.getElementById('details');
 const user_card = document.querySelector('#user');
 
 edit_button.addEventListener('click', event => {
@@ -154,13 +154,3 @@ edit_button.addEventListener('click', event => {
     }
   })
 );
-
-user_card.addEventListener('mouseover', event => {
-  event.preventDefault();
-  user_card.querySelector('.edit-button').classList.remove('d-none');
-});
-
-user_card.addEventListener('mouseleave', event => {
-  event.preventDefault();
-  user_card.querySelector('.edit-button').classList.add('d-none');
-});

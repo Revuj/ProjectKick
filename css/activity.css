@@ -1,4 +1,4 @@
-@import url("global.css");
+@import url('global.css');
 
 .main-section {
   background-color: #92a6e2;
@@ -20,9 +20,8 @@
   margin-left: 3rem;
 }
 
-
 .timeline::after {
-  content: "";
+  content: '';
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -42,9 +41,8 @@
 }
 
 .timeline-author:before {
-  content: "Closed by: ";
+  content: 'Closed by: ';
 }
-
 
 .timeline {
   margin: auto;
@@ -59,10 +57,10 @@
 }
 
 .timeline-body:after {
-  content: "";
+  content: '';
   width: 4px;
   height: 100%;
-  background-color: var(--secondary-color); 
+  background-color: var(--secondary-color);
   position: absolute;
   left: 0px;
   border-radius: 8px;
@@ -78,8 +76,9 @@
   border-bottom: none;
 }
 
-.timeline-item::after { /*this*/
-  content: "";
+.timeline-item::after {
+  /*this*/
+  content: '';
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -116,17 +115,16 @@
 }
 
 .author:before {
-  content: "Closed by: ";
+  content: 'Closed by: ';
 }
 
 .time-mobile {
   display: none;
   color: var(--primary-color);
-  margin-left : 5px;
+  margin-left: 5px;
 }
 
 @media only screen and (max-width: 600px) {
-
   .timeline::after,
   .timeline-item::after,
   .time,
@@ -135,22 +133,27 @@
   }
 
   #history {
-    width:100%;
+    width: 100%;
   }
 
   .timeline-body {
-    width:100%;
-    margin-left:0;
+    width: 100%;
+    margin-left: 0;
   }
 
   .content {
     width: 100%;
-    margin:0;
-    padding:10px;
+    margin: 0;
+    padding: 10px;
   }
 
-  .time-mobile{
+  .time-mobile {
     display: block;
   }
+}
 
+@media screen and (max-width: 768px) {
+  .tables-type-counter {
+    display: none !important;
+  }
 }

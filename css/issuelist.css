@@ -62,12 +62,13 @@
   border-radius: 5px;
 }
 
-.issue-status, .issue-header .due-date-container {
+.issue-status,
+.issue-header .due-date-container {
   font-size: 0.9rem;
 }
 
 .issue-header .due-date-container {
-  color: var(--secondary-color);  
+  color: var(--secondary-color);
 }
 
 #issue-list p {
@@ -89,9 +90,24 @@
   display: block;
 }
 
-@media only screen and (max-width: 600px) {
-  .comments-number-container, .due-date-container, .issue-status-description{
+@media screen and (max-width: 768px) {
+  .nav-links .btn-success span {
     display: none;
   }
 
-} 
+  #filter-issues {
+    flex-direction: column !important;
+  }
+
+  #filter-buttons {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .comments-number-container,
+  .due-date-container,
+  .issue-status-description {
+    display: none;
+  }
+}

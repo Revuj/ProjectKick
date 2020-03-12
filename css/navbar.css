@@ -1,4 +1,4 @@
-@import url("global.css");
+@import url('global.css');
 
 .top-navbar {
   width: calc(100%);
@@ -8,7 +8,7 @@
   padding-left: 4rem;
   background: var(--primary-color);
   top: 0;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .hamburger {
@@ -101,7 +101,7 @@
   position: absolute;
   left: -17rem;
   top: 150%;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .user-dropdown {
@@ -157,7 +157,7 @@
 }
 
 .notification-dropdown:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -30px;
   left: 85%;
@@ -167,7 +167,7 @@
 }
 
 .user-dropdown:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -30px;
   left: 70%;
@@ -189,7 +189,7 @@
   height: 100%;
   transition: all 0.3s ease;
   color: gray;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .is-collapsed .side-menu-item {
@@ -210,7 +210,7 @@
 }
 
 .side-menu-item > a:before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
