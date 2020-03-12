@@ -1,4 +1,4 @@
-@import url("global.css");
+@import url('global.css');
 
 .project-title {
   font-weight: 500;
@@ -6,7 +6,37 @@
   color: var(--primary-color);
 }
 
-.members li {
+.assignees li {
   width: 40px;
   height: 40px;
+}
+
+.task-title {
+  font-weight: 600;
+}
+
+.chat_ib p {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.chat_ib p span {
+  width: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  border: 2px solid var(--accent-color);
+  font-weight: bold;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  font-size: 13px;
+  float: right;
+}
+
+.progress-bar {
+  background-color: var(--secondary-color) !important;
+}
+
+.project-section {
+  margin-bottom: 30px;
 }
