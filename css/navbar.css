@@ -80,7 +80,7 @@
 .notification > .num {
   position: absolute;
   top: 0rem;
-  left: 5rem;
+  left: 2rem;
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
@@ -98,7 +98,7 @@
   border-radius: 5px;
   box-shadow: var(--primary-shadow);
   position: absolute;
-  left: -66.6%;
+  left: -17rem;
   top: 150%;
 }
 
@@ -158,7 +158,7 @@
   content: "";
   position: absolute;
   top: -30px;
-  left: 50%;
+  left: 85%;
   transform: translateX(-50%);
   border: 15px solid;
   border-color: transparent transparent var(--accent-color) transparent;
@@ -344,5 +344,13 @@
   .main-container,
   .logo {
     margin-left: 0;
+  }
+
+  .notification-dropdown {
+    left: -13rem;
+  }
+
+  .notification-dropdown:before {
+    left: 67%;
   }
 }
