@@ -1,3 +1,5 @@
+@import url('global.css');
+
 #main-nav,
 #preview {
   background-color: var(--accent-color);
@@ -8,16 +10,6 @@
   color: var(--primary-color);
   font-family: Oxanium;
   text-transform: uppercase;
-}
-
-#main-page-body {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(237, 245, 225, 1) 79%,
-    rgba(92, 219, 149, 1) 88%
-  );
 }
 
 #main-title {
@@ -45,6 +37,12 @@
 }
 
 footer {
+  background-color: var(--primary-color);
   color: white;
-  padding-bottom: 5rem;
+}
+
+footer a,
+footer a:hover {
+  text-decoration: none;
+  color: white;
 }
