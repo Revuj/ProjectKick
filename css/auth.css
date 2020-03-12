@@ -1,9 +1,25 @@
-
 @import url('global.css');
 
 #signup-form {
-    display: none;
+  display: none;
 }
 
+#login-form > form > div > p,
+#login-form > form > p > a {
+  color: var(--accent-color);
+}
 
+#signup-form > form > p > a {
+  color: var(--accent-color);
+}
 
+@media screen and (max-width: 740px) {
+  #login-form,
+  #signup-form {
+    padding-right: 15px !important;
+  }
+
+  .container.shadow-lg {
+    box-shadow: none !important;
+  }
+}

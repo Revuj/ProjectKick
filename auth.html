@@ -40,7 +40,13 @@
 
   <body>
     <div class="container mt-5 shadow-lg rounded">
-      <h4 class="py-3 px-3"><i class="fas fa-drafting-compass"></i> Kick</h4>
+      <div class="logo py-3 px-3">
+        <a class="nostyle" href="index.html">
+          <h4 class="mb-0 px-3">
+            <i class="fas fa-drafting-compass"></i> Kick
+          </h4>
+        </a>
+      </div>
 
       <div class="row">
         <!-- carousel part-->
@@ -108,14 +114,7 @@
         <!--login form-->
         <div id="login-form" class="col-md-6 col-sm-8 login-form py-4 pr-5">
           <form class="d-flex flex-column">
-            <button
-              type="button"
-              class="btn-gradient ml-auto"
-              onClick="showSignup()"
-            >
-              Sign Up
-            </button>
-
+            <h3>Login your account</h3>
             <div class="form-group mt-3">
               <label for="exampleInputEmail1">Email address</label>
               <input
@@ -136,31 +135,30 @@
                 id="exampleInputPassword1"
               />
             </div>
-            <div class="form-group form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="exampleCheck1"
-              />
-              <label class="form-check-label" for="exampleCheck1"
-                >Check me out</label
-              >
+            <div class="d-flex">
+              <div class="form-group form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label class="form-check-label" for="exampleCheck1"
+                  >Check me out</label
+                >
+              </div>
+              <p class="ml-auto">Forgot Password?</p>
             </div>
-            <button type="submit" class="btn-gradient">Login</button>
+            <button type="submit" class="btn btn-success">Login</button>
+            <p class="text-center mt-2">
+              Don't have an account? <a onClick="showSignup()"> Sign Up</a>
+            </p>
           </form>
         </div>
 
         <!--signup form-->
         <div id="signup-form" class="col-md-6 col-sm-8 signup-form py-4 pr-5">
           <form class="d-flex flex-column">
-            <button
-              type="button"
-              class="btn-gradient ml-auto"
-              onClick="showLogin()"
-            >
-              Login
-            </button>
-
+            <h3>Create an account</h3>
             <div class="form-group mt-3">
               <label for="exampleInputEmail1">Email address</label>
               <input
@@ -189,17 +187,10 @@
                 id="exampleInputPassword1"
               />
             </div>
-            <div class="form-group form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="exampleCheck1"
-              />
-              <label class="form-check-label" for="exampleCheck1"
-                >Check me out</label
-              >
-            </div>
-            <button type="submit" class="btn-gradient">Sign Up</button>
+            <button type="submit" class="btn btn-success">Sign up</button>
+            <p class="text-center mt-2">
+              Already have an account? <a onClick="showLogin()"> Log in</a>
+            </p>
           </form>
         </div>
       </div>
