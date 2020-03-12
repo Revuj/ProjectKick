@@ -1,81 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Template for pages</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Template for pages</title>
+    <!-- Owl-Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
+      crossorigin="anonymous"
+    />
 
-  <!-- Owl-Carousel -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <!-- Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/notification.css" />
 
-  <!-- Custom Style-->
-  <link rel="stylesheet" href="./css/navbar.css" />
-  <link rel="stylesheet" href="./css/notification.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-</head>
+  <body>
+    <div class="page-wrapper h-100 is-collapsed">
+      <nav class="top-navbar">
+        <div
+          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
+        >
+          <div class="hamburger mobile side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </div>
+          <div class="logo">
+            <a class="nostyle" href="index.html">
+              <h4 class="mb-0 px-3">
+                <i class="fas fa-drafting-compass"></i> Kick
+              </h4>
+            </a>
+          </div>
 
-<body>
-  <div class="page-wrapper h-100 is-collapsed">
-    <nav class="top-navbar">
-      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
-        <div class="logo">
-          <a class="nostyle" href="index.html">
-            <h4 class="mb-0 px-3">
-              <i class="fas fa-drafting-compass"></i> Kick
-            </h4>
-          </a>
+          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+            <!--notifications-->
+            <li class="px-5 utility ml-3 notification mb-0">
+              <a href="#"><i class="fas fa-bell"></i></a>
+              <span class="num">4</span>
+              <div class="notification-dropdown d-none">
+                <h6 class="notification-title text-center">notifications</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  More(2) ...
+                </div>
+              </div>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0 ">
+              <a href="#"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
         </div>
+      </nav>
 
-        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-          <!--notifications-->
-          <li class="px-5 utility ml-3 notification mb-0">
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <span class="num">4</span>
-            <div class="notification-dropdown d-none">
-              <h6 class="notification-title text-center">notifications</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                More(2) ...
-              </div>
-            </div>
-          </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 ">
-            <a href="#"><i class="fas fa-user"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- 
+      <!-- 
       inside a project he sidebar-menu options can be
       board
       flux diagram
@@ -85,93 +110,93 @@
       back
       ...
     -->
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a href="my_projects.html">
-            <span class="m-2"><i class="fas fa-columns"></i></span>
-            <span class="side-menu-item-title">Dashboard</span>
-          </a>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a href="my_work.html">
-            <span class="m-2"><i class="fas fa-tasks"></i></span>
-            <span class="side-menu-item-title">My Work</span>
-          </a>
-        </li>
-        <li class="side-menu-item">
-          <a href="calendar.html">
-            <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
-            <span class="side-menu-item-title">Calendar</span>
-          </a>
-        </li>
-        <li class="side-menu-item">
-          <a href="searchpage.html">
-            <span class="m-2"><i class="fas fa-search"></i></span>
-            <span class="side-menu-item-title">Search</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a href="my_projects.html">
+              <span class="m-2"><i class="fas fa-columns"></i></span>
+              <span class="side-menu-item-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a href="my_work.html">
+              <span class="m-2"><i class="fas fa-tasks"></i></span>
+              <span class="side-menu-item-title">My Work</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="calendar.html">
+              <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
+              <span class="side-menu-item-title">Calendar</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="searchpage.html">
+              <span class="m-2"><i class="fas fa-search"></i></span>
+              <span class="side-menu-item-title">Search</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-    <!--generic container-->
-    <div class="main-container">
-      <div class="main-content-container px-4">
-        <nav>
-          <ol class="breadcrumb custom-separator">
-            <li class="current"><em>Notifications</em></li>
-          </ol>
-        </nav>
-        <div id="notifications-list-container" class="pt-1 mb-0">
-          <ul class="d-flex nav-links">
-            <li id="assigned-notifications">
-              Assigned <span class="type-counter">3</span>
-            </li>
-            <li id="invited-notifications">
-              Invited <span class="type-counter">3</span>
-            </li>
-            <li id="meetings-notifications">
-              Meetings <span class="type-counter">1</span>
-            </li>
-            <li id="others-notifications">
-              Others <span class="type-counter">2</span>
-            </li>
-            <li id="all-notifications" class="active">
-              All <span class="type-counter">9</span>
-            </li>
-          </ul>
+      <!--generic container-->
+      <div class="main-container">
+        <div class="main-content-container px-4">
+          <nav>
+            <ol class="breadcrumb custom-separator">
+              <li class="current"><em>Notifications</em></li>
+            </ol>
+          </nav>
+          <div id="notifications-list-container" class="pt-1 mb-0">
+            <ul class="d-flex nav-links">
+              <li id="assigned-notifications">
+                Assigned <span class="type-counter">3</span>
+              </li>
+              <li id="invited-notifications">
+                Invited <span class="type-counter">3</span>
+              </li>
+              <li id="meetings-notifications">
+                Meetings <span class="type-counter">1</span>
+              </li>
+              <li id="others-notifications">
+                Others <span class="type-counter">2</span>
+              </li>
+              <li id="all-notifications" class="active">
+                All <span class="type-counter">9</span>
+              </li>
+            </ul>
+          </div>
+          <ul class="p-0 m-2 notification-container"></ul>
         </div>
-        <ul class="p-0 m-2 notification-container"></ul>
       </div>
+      <!--end of main-container can possible be a section in the future-->
     </div>
-    <!--end of main-container can possible be a section in the future-->
-  </div>
-  <!--end of page wrapper-->
+    <!--end of page wrapper-->
 
-  <script>
-    document
-      .querySelector('.hamburger')
-      .addEventListener('click', function () {
-        document
-          .querySelector('.page-wrapper')
-          .classList.toggle('is-collapsed');
-      });
+    <script>
+      let hamburger_menus = document.querySelectorAll(".hamburger");
+      hamburger_menus.forEach(elem =>
+        elem.addEventListener("click", function() {
+          document
+            .querySelector(".page-wrapper")
+            .classList.toggle("is-collapsed");
+        })
+      );
 
-    document
-      .querySelector('.notification')
-      .addEventListener('click', function () {
-        document
-          .querySelector('.notification-dropdown')
-          .classList.toggle('display-block');
-      });
-  </script>
+      document
+        .querySelector(".notification")
+        .addEventListener("click", function() {
+          document
+            .querySelector(".notification-dropdown")
+            .classList.toggle("display-block");
+        });
+    </script>
 
-  <script src="./js/notifications.js"></script>
-</body>
-
+    <script src="./js/notifications.js"></script>
+  </body>
 </html>

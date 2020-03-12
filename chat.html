@@ -45,7 +45,12 @@
       <nav class="top-navbar">
         <div
           class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
-        >
+        >                  
+        <div class="hamburger mobile side-menu-item">
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+      </div>
           <div class="logo">
             <a class="nostyle" href="index.html">
               <h4 class="mb-0 px-3">
@@ -384,9 +389,10 @@
     </div>
   </body>
   <script>
-    document.querySelector(".hamburger").addEventListener("click", function() {
-      document.querySelector(".page-wrapper").classList.toggle("is-collapsed");
-    });
+            let hamburger_menus = document.querySelectorAll('.hamburger');
+        hamburger_menus.forEach(elem => elem.addEventListener('click', function () {
+            document.querySelector('.page-wrapper').classList.toggle('is-collapsed')
+        }))
 
     document
       .querySelector(".notification")

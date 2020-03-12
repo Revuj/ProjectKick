@@ -1,99 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admin | Dashboard</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Admin | Dashboard</title>
+    <!-- Owl-Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
+      crossorigin="anonymous"
+    />
 
-  <!-- Owl-Carousel -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <!-- Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/navbar.css" />
 
-  <!-- Custom Style-->
-  <link rel="stylesheet" href="./css/navbar.css" />
+    <!--TO USED THE MAP-->
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
-  <!--TO USED THE MAP-->
-  <!-- Resources -->
-  <script src="https://www.amcharts.com/lib/4/core.js"></script>
-  <script src="https://www.amcharts.com/lib/4/maps.js"></script>
-  <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <!--custom style-->
+    <link rel="stylesheet" href="./css/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
 
-  <!--custom style-->
-  <link rel="stylesheet" href="./css/admin.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-</head>
+  <body>
+    <div class="page-wrapper h-100 is-collapsed">
+      <nav class="top-navbar">
+        <div
+          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
+        >
+          <div class="hamburger mobile side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </div>
+          <div class="logo">
+            <h4 class="py-3 px-3">
+              <i class="fas fa-drafting-compass"></i> Kick
+            </h4>
+          </div>
 
-<body>
-  <div class="page-wrapper h-100 is-collapsed">
-    <nav class="top-navbar">
-      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
-        <div class="logo">
-          <h4 class="py-3 px-3">
-            <i class="fas fa-drafting-compass"></i> Kick
-          </h4>
+          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+            <!--notifications-->
+            <li class="px-5 utility ml-3 notification mb-0">
+              <a href="#"><i class="fas fa-bell"></i></a>
+              <span class="num">4</span>
+              <div class="notification-dropdown d-none">
+                <h6 class="notification-title text-center">notifications</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  More(2) ...
+                </div>
+              </div>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0 ">
+              <a href="#"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
         </div>
+      </nav>
 
-        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-          <!--notifications-->
-          <li class="px-5 utility ml-3 notification mb-0">
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <span class="num">4</span>
-            <div class="notification-dropdown d-none">
-              <h6 class="notification-title text-center">notifications</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                More(2) ...
-              </div>
-            </div>
-          </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 ">
-            <a href="#"><i class="fas fa-user"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- 
+      <!-- 
       inside a project he sidebar-menu options can be
       board
       flux diagram
@@ -103,228 +134,232 @@
       back
       ...
     -->
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a class="active" href="admin.html">
-            <span class="m-2"><i class="fas fa-chart-line"></i></span>
-            <span class="side-menu-item-title">Dashboard</span>
-          </a>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a href="user_reports.html">
-            <span class="m-2"><i class="fas fa-folder"></i></span>
-            <span class="side-menu-item-title">User Reports</span>
-          </a>
-        </li>
-        <li class="side-menu-item">
-          <a href="admin_users_projects.html">
-            <span class="m-2"><i class="fas fa-search"></i></span>
-            <span class="side-menu-item-title">Search</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a class="active" href="admin.html">
+              <span class="m-2"><i class="fas fa-chart-line"></i></span>
+              <span class="side-menu-item-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a href="user_reports.html">
+              <span class="m-2"><i class="fas fa-folder"></i></span>
+              <span class="side-menu-item-title">User Reports</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="admin_users_projects.html">
+              <span class="m-2"><i class="fas fa-search"></i></span>
+              <span class="side-menu-item-title">Search</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-    <div class="main-container">
-      <div class="main-content-container px-4">
-        <div class="row">
-          <div class="col-xl-12 col-lg-9 col-md-8 ml-auto">
-            <div class="row pt-md-5 mt-md-3 mb-5">
-              <div class="col-xl-3 col-sm-6 p-2">
-                <div class="card card-common">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <i class="fas fa-project-diagram fa-3x text-info"></i>
-                      <div class="text-right text-secondary">
-                        <h5>Project Number</h5>
-                        <h3>135,000</h3>
+      <div class="main-container">
+        <div class="main-content-container px-4">
+          <div class="row">
+            <div class="col-xl-12 col-lg-9 col-md-8 ml-auto">
+              <div class="row pt-md-5 mt-md-3 mb-5">
+                <div class="col-xl-3 col-sm-6 p-2">
+                  <div class="card card-common">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <i class="fas fa-project-diagram fa-3x text-info"></i>
+                        <div class="text-right text-secondary">
+                          <h5>Project Number</h5>
+                          <h3>135,000</h3>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="card-footer text-secondary">
-                    <i class="fas fa-sync mr-3"></i>
-                    <span>Updated Now</span>
+                    <div class="card-footer text-secondary">
+                      <i class="fas fa-sync mr-3"></i>
+                      <span>Updated Now</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 p-2">
-                <div class="card card-common">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <i class="fas fa-tasks fa-3x text-success"></i>
-                      <div class="text-right text-secondary">
-                        <h5 class="h5">Closed tasks</h5>
-                        <h3>39,000</h3>
+                <div class="col-xl-3 col-sm-6 p-2">
+                  <div class="card card-common">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <i class="fas fa-tasks fa-3x text-success"></i>
+                        <div class="text-right text-secondary">
+                          <h5 class="h5">Closed tasks</h5>
+                          <h3>39,000</h3>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="card-footer text-secondary">
-                    <i class="fas fa-sync mr-3"></i>
-                    <span>Updated Now</span>
+                    <div class="card-footer text-secondary">
+                      <i class="fas fa-sync mr-3"></i>
+                      <span>Updated Now</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 p-2">
-                <div class="card card-common">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <i class="fas fa-users fa-3x text-info"></i>
-                      <div class="text-right text-secondary">
-                        <h5>Users</h5>
-                        <h3>15,000</h3>
+                <div class="col-xl-3 col-sm-6 p-2">
+                  <div class="card card-common">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <i class="fas fa-users fa-3x text-info"></i>
+                        <div class="text-right text-secondary">
+                          <h5>Users</h5>
+                          <h3>15,000</h3>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="card-footer text-secondary">
-                    <i class="fas fa-sync mr-3"></i>
-                    <span>Updated Now</span>
+                    <div class="card-footer text-secondary">
+                      <i class="fas fa-sync mr-3"></i>
+                      <span>Updated Now</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 p-2">
-                <div class="card card-common">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <i class="fas fa-chart-line fa-3x text-danger"></i>
-                      <div class="text-right text-secondary">
-                        <h5>Closed Reports</h5>
-                        <h3>45,000</h3>
+                <div class="col-xl-3 col-sm-6 p-2">
+                  <div class="card card-common">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <i class="fas fa-chart-line fa-3x text-danger"></i>
+                        <div class="text-right text-secondary">
+                          <h5>Closed Reports</h5>
+                          <h3>45,000</h3>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="card-footer text-secondary">
-                    <i class="fas fa-sync mr-3"></i>
-                    <span>Updated Now</span>
+                    <div class="card-footer text-secondary">
+                      <i class="fas fa-sync mr-3"></i>
+                      <span>Updated Now</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- end of row-->
+          <!-- end of row-->
 
-        <!--earth -->
-        <div id="chartdiv"></div>
+          <!--earth -->
+          <div id="chartdiv"></div>
 
-        <!--EVOLUTION GRAPH-->
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-6 col-md-6">
-              <canvas class="graph-item" id="line-chart"></canvas>
-            </div>
-            <div class="col-xs-6 col-md-6">
-              <canvas class="graph-item" id="doughnut-chart"></canvas>
+          <!--EVOLUTION GRAPH-->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <canvas class="graph-item" id="line-chart"></canvas>
+              </div>
+              <div class="col-xs-6 col-md-6">
+                <canvas class="graph-item" id="doughnut-chart"></canvas>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-6 col-md-6">
-              <table class="table table-striped">
-                <caption>
-                  Banned users
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="col-xs-6 col-md-6">
-              <table class="table table-striped">
-                <caption>
-                  New users
-                </caption>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <table class="table table-striped">
+                  <caption>
+                    Banned users
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Start Date</th>
+                      <th scope="col">End date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-xs-6 col-md-6">
+                <table class="table table-striped">
+                  <caption>
+                    New users
+                  </caption>
 
-                <thead>
-                  <tr>
-                    <th scope="col">Users</th>
-                    <th scope="col">Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                  <tr>
-                    <td>Mark Otto</td>
-                    <td>12-3-2019</td>
-                  </tr>
-                </tbody>
-              </table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Users</th>
+                      <th scope="col">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                    <tr>
+                      <td>Mark Otto</td>
+                      <td>12-3-2019</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="./js/admin.js"></script>
-</body>
-<script>
-  document.querySelector(".hamburger").addEventListener("click", function () {
-    document.querySelector(".page-wrapper").classList.toggle("is-collapsed");
-  });
+    <script src="./js/admin.js"></script>
+  </body>
+  <script>
+    let hamburger_menus = document.querySelectorAll(".hamburger");
+    hamburger_menus.forEach(elem =>
+      elem.addEventListener("click", function() {
+        document
+          .querySelector(".page-wrapper")
+          .classList.toggle("is-collapsed");
+      })
+    );
 
-  document
-    .querySelector(".notification")
-    .addEventListener("click", function () {
-      console.log(document.querySelector(".notification").classList);
+    document
+      .querySelector(".notification")
+      .addEventListener("click", function() {
+        console.log(document.querySelector(".notification").classList);
 
-      document
-        .querySelector(".notification-dropdown")
-        .classList.toggle("display-block");
-    });
-</script>
-
+        document
+          .querySelector(".notification-dropdown")
+          .classList.toggle("display-block");
+      });
+  </script>
 </html>
