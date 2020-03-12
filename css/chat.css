@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 .headind_channels {
   padding: 10px 10px;
@@ -122,7 +122,6 @@
 }
 
 .channel_header {
-  
 }
 
 .channel_name {
@@ -138,14 +137,10 @@
   border-radius: 0 5px 5px 0;
 }
 
-.main-container {
+.main-content-container {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: 
-  white;
-  padding: 0 1rem;
-      padding-top: 0px;
 }
 
 .chat-container {
@@ -153,4 +148,15 @@
   margin-top: 0px;
   padding: 0;
   flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 1000px) {
+  #details,
+  #create-channel,
+  .inbox_msg {
+    border-radius: 0;
+  }
 }
