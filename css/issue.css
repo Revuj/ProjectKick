@@ -13,6 +13,10 @@
   border-radius: 5px;
 }
 
+.main-container .main-content-container {
+  max-width: 1080px;
+}
+
 .edit-task,
 .close-side-issue {
   width: 38px;
@@ -57,7 +61,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .issue-status-description{
+  .issue-status-description {
     display: none;
   }
 
@@ -70,5 +74,4 @@
     margin-left: 0;
     margin-top: 2rem;
   }
-
-} 
+}
