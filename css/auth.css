@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 #signup-form {
   display: none;
@@ -11,6 +11,12 @@
 
 #signup-form > form > p > a {
   color: var(--accent-color);
+}
+
+#login-button,
+#signup-button {
+  width: 7rem;
+  padding: 0 auto;
 }
 
 @media screen and (max-width: 740px) {

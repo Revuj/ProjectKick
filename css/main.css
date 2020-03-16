@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 #main-nav,
 #preview {
@@ -30,10 +30,6 @@
 #description button:hover {
   background-color: #edf5e1;
   color: var(--primary-color);
-}
-
-.container:nth-last-child(2) {
-  margin-bottom: 20rem;
 }
 
 footer {
