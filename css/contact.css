@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 #contact-us {
   width: 80%;
@@ -7,6 +7,16 @@
 
 #contact-us-form {
   background-color: var(--background-hover);
+}
+
+.page-wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
 }
 
 @media only screen and (max-width: 600px) {
