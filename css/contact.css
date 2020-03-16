@@ -6,7 +6,10 @@
 }
 
 #contact-us-form {
-  background-color: var(--background-hover);
+  border-radius: 3px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 40px;
 }
 
 .page-wrapper {
@@ -17,6 +20,10 @@
 footer {
   position: absolute;
   bottom: 0;
+}
+
+label {
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 600px) {

@@ -470,8 +470,8 @@ a.nostyle:visited {
 }
 
 .btn-success:hover {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
+  background-color: #3f9c69;
+  border-color: #3f9c69;
 }
 
 .btn-primary {
