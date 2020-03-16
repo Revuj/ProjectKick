@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 .assignees li {
   width: 20px;
@@ -30,6 +30,10 @@
 .issue-status,
 .issue-header .due-date-container {
   font-size: 0.9rem;
+}
+
+.task-title {
+  font-weight: 600;
 }
 
 .issue-list p {
