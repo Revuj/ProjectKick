@@ -138,7 +138,7 @@ img {
 
 body {
   font-family: var(--Montserrat);
-  background-color: var(--background-color);
+  background-color: white;
 }
 
 footer {
@@ -222,7 +222,7 @@ a.nostyle:visited {
 .open-button {
   border-color: var(--open-color);
   background-color: var(--open-color);
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 .open-button:hover {
@@ -291,7 +291,7 @@ a.nostyle:visited {
   margin: 0;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
-  border-bottom: 3px solid var(--background-color);
+  border-bottom: 3px solid inherit;
 }
 
 #tables-types li.active {
@@ -498,7 +498,7 @@ nav .breadcrumb {
   width: 90%;
   padding: 0;
   margin: 0;
-  background-color: var(--background-color);
+  background-color: white;
   border-radius: 0.25em;
   font-size: 0.8rem;
 }
@@ -556,7 +556,7 @@ nav .breadcrumb {
   margin: 0;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
-  border-bottom: 3px solid var(--background-color);
+  border-bottom: 3px solid inherit;
 }
 
 .nav-links .active {

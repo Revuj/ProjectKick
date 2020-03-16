@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 .user-list tbody td > img {
   position: relative;
@@ -81,7 +81,7 @@
   background-color: var(--secondary-color);
 }
 
-[data-toggle='buttons'] > .btn > input[type='radio'] {
+[data-toggle="buttons"] > .btn > input[type="radio"] {
   display: none;
 }
 
@@ -117,6 +117,26 @@
 
 .info:hover button {
   display: inline;
+}
+
+.user-list .close-button {
+  background-color: white;
+  color: black;
+  border: 3px solid var(--close-color);
+}
+
+.close-button i {
+  color: var(--close-color);
+}
+
+.user-list .open-button {
+  background-color: white;
+  color: black;
+  border: 3px solid var(--open-color);
+}
+
+.open-button i {
+  color: var(--open-color);
 }
 
 @media only screen and (max-width: 768px) {

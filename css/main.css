@@ -1,5 +1,9 @@
 @import url("global.css");
 
+body {
+  background-color: var(--background-color);
+}
+
 .main-container {
   height: 100%;
 }
