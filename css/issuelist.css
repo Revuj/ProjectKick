@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 .assignees li {
   width: 20px;
@@ -88,6 +88,11 @@
 
 .open-issues-filter .issue.open {
   display: block;
+}
+
+.comments-number-container i {
+  opacity: 0.6;
+  font-size: 1.2rem;
 }
 
 @media screen and (max-width: 768px) {
