@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 .main-section {
   background-color: #92a6e2;
@@ -21,7 +21,7 @@
 }
 
 .timeline::after {
-  content: '';
+  content: "";
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -40,10 +40,6 @@
   text-transform: capitalize;
 }
 
-.timeline-author:before {
-  content: 'Closed by: ';
-}
-
 .timeline {
   margin: auto;
   margin-top: 30px;
@@ -57,7 +53,7 @@
 }
 
 .timeline-body:after {
-  content: '';
+  content: "";
   width: 4px;
   height: 100%;
   background-color: var(--secondary-color);
@@ -78,7 +74,7 @@
 
 .timeline-item::after {
   /*this*/
-  content: '';
+  content: "";
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -101,27 +97,26 @@
 
 .content {
   margin: 0px 40px;
-  border: 1px solid var(--secondary-color);
+  border-bottom: 1px solid rgb(222, 226, 230);
   padding: 0 1rem;
-  border-radius: 5px;
 }
 
 .content .title {
-  font-weight: 500;
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-  text-transform: capitalize;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
   margin-top: 1rem;
-}
-
-.author:before {
-  content: 'Closed by: ';
 }
 
 .time-mobile {
   display: none;
   color: var(--primary-color);
   margin-left: 5px;
+}
+
+.status {
+  padding: 0.1rem 0.2rem;
+  border-radius: 5px;
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
