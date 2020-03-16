@@ -1,4 +1,4 @@
-@import url('global.css');
+@import url("global.css");
 
 .top-navbar {
   width: calc(100%);
@@ -157,7 +157,7 @@
 }
 
 .notification-dropdown:before {
-  content: '';
+  content: "";
   position: absolute;
   top: -30px;
   left: 85%;
@@ -167,7 +167,7 @@
 }
 
 .user-dropdown:before {
-  content: '';
+  content: "";
   position: absolute;
   top: -30px;
   left: 70%;
@@ -209,15 +209,34 @@
   padding: 20px;
 }
 
-.side-menu-item > a:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 3px;
-  height: 100%;
-  background: var(--accent-color);
-  display: none;
+.is-collapsed .side-menu-item.active .side-menu-dropdown a {
+  color: gray;
+}
+
+.is-collapsed .side-menu-item.active .side-menu-dropdown a:hover {
+  color: white;
+}
+
+.is-collapsed .side-menu-item.active .side-menu-dropdown a.active {
+  color: #fff;
+}
+
+.side-menu-item.active {
+  background: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+}
+
+.side-menu-item.active {
+  border-left: 3px solid var(--accent-color);
+}
+
+.side-menu-item.active > a {
+  font-weight: 700;
+}
+
+.side-menu-item.active a {
+  color: #fff;
 }
 
 .side-menu-item > a:hover,
@@ -225,11 +244,11 @@
   background: var(--primary-color);
   color: #fff;
   text-decoration: none;
+  font-weight: 700;
 }
 
-.side-menu-item > a:hover:before,
-.side-menu-item > a.active:before {
-  display: block;
+.side-menu-item > a:hover,
+.side-menu-item > a.active {
 }
 
 .main-container {
@@ -290,7 +309,7 @@
 
 .is-collapsed .side-menu-dropdown {
   top: 0;
-  left: 4.5rem;
+  left: 4.3rem;
 }
 
 .dropdown .main-dropdown-title {
@@ -307,6 +326,7 @@
   z-index: 300;
   color: gray;
   background: white;
+  background-color: var(--container-item-color);
 }
 
 .is-collapsed .dropdown:hover .side-menu-dropdown {
