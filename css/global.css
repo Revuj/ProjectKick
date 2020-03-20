@@ -1,6 +1,6 @@
 /*some resets*/
 
-@import url("https://fonts.googleapis.com/css?family=Merriweather&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Oxanium&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 
 html {
@@ -196,12 +196,12 @@ a.nostyle:visited {
 }
 
 .title {
-  font-family: "Merriweather", serif;
+  font-family: "Oxanium", serif;
 }
 
 .primary-button {
   text-transform: uppercase;
-  font-family: "Merriweather", serif;
+  font-family: "Oxanium", serif;
   background-color: var(--primary-color);
 }
 
@@ -212,7 +212,7 @@ a.nostyle:visited {
 
 .secondary-button {
   text-transform: uppercase;
-  font-family: "Merriweather", serif;
+  font-family: "Oxanium", serif;
   background-color: var(--accent-color);
 }
 
@@ -494,7 +494,7 @@ a.nostyle:visited {
 
 .btn-success {
   text-transform: uppercase;
-  font-family: "Merriweather", serif;
+  font-family: "Oxanium", serif;
   background-color: var(--accent-color);
   border-color: var(--accent-color);
 }
