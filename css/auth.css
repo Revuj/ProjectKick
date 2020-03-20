@@ -1,5 +1,10 @@
 @import url("global.css");
 
+.logo {
+  font-family: Oxanium;
+  text-transform: uppercase;
+}
+
 #signup-form {
   display: none;
 }

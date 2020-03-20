@@ -95,27 +95,31 @@
             </li>
             <!--profile-->
             <li class="px-2 utility ml-3 mb-0 user  ">
-                <a href="#"><i class="fas fa-user"></i></a>
-                <div class="user-dropdown d-none">
-                  <h6 class="user-title text-center">Profile</h6>
-                  <div class="notify_item clickable">
-                    <div class="notify_img">
-                      <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
-                    </div>
-                    <div class="notify_info">
-                      <p><a class="nostyle" href="profile.html">Me</a></p>
-                    </div>
+              <a href="#"><i class="fas fa-user"></i></a>
+              <div class="user-dropdown d-none">
+                <h6 class="user-title text-center">Profile</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 40px"
+                    />
                   </div>
-                  <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
-                  <div class="notify_item clickable d-flex">
-                    <p class="m-0" id="dark-mode">Dark Mode</p>
+                  <div class="notify_info">
+                    <p><a class="nostyle" href="profile.html">Me</a></p>
                   </div>
-    
-                  <div class="notify_item clickable d-flex">
-                    <a href="index.html" class="nostyle">Logout</a>
-                  </div>
-    
-              </li>
+                </div>
+                <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+                <div class="notify_item clickable d-flex">
+                  <p class="m-0" id="dark-mode">Dark Mode</p>
+                </div>
+
+                <div class="notify_item clickable d-flex">
+                  <a href="index.html" class="nostyle">Logout</a>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </nav>
@@ -160,7 +164,7 @@
         <div id="report-user-container" class="px-3">
           <h4
             id="user-report-title"
-            class="task-title pb-2 border-bottom mt-5 mb-0"
+            class="title task-title pb-2 border-bottom mt-5 mb-0"
           >
             Report a User
           </h4>
@@ -192,14 +196,21 @@
                 <label for="report-annexes"
                   >Input any relevant file for the report analysis.</label
                 >
-                <input
-                  type="file"
-                  class="form-control-file"
-                  id="report-annexes"
-                />
+                <div class="col-sm-6 pl-0">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="file02" />
+                    <label class="custom-file-label" for="file02"
+                      >Choose file</label
+                    >
+                  </div>
+                </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-success">
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       </div>

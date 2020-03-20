@@ -1,9 +1,13 @@
-@import url('global.css');
+@import url("global.css");
 
 .project-title {
   font-weight: 500;
   font-size: 2rem;
   color: var(--primary-color);
+}
+
+.description {
+  font-size: 1.4rem;
 }
 
 .assignees li {
@@ -39,4 +43,10 @@
 
 .project-section {
   margin-bottom: 30px;
+}
+
+#task-name {
+  border-top: none;
+  border-right: none;
+  border-radius: 0%;
 }

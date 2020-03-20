@@ -1,8 +1,8 @@
 @import url("global.css");
 
 .assignees li {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 .issue {
@@ -93,26 +93,4 @@
 .comments-number-container i {
   opacity: 0.6;
   font-size: 1.2rem;
-}
-
-@media screen and (max-width: 768px) {
-  .nav-links .btn-success span {
-    display: none;
-  }
-
-  #filter-issues {
-    flex-direction: column !important;
-  }
-
-  #filter-buttons {
-    margin-top: 10px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .comments-number-container,
-  .due-date-container,
-  .issue-status-description {
-    display: none;
-  }
 }

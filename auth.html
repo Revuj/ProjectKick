@@ -22,10 +22,6 @@
 
     <!-- Font Awesome CDN -->
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
-
-    <!-- Custom Style-->
-    <link rel="stylesheet" href="./css/auth.css" />
-
     <!--custom css-->
     <link
       rel="stylesheet"
@@ -34,7 +30,7 @@
       crossorigin="anonymous"
     />
 
-    <!-- Main Javascript file -->
+    <link rel="stylesheet" href="./css/auth.css" />
     <script src="js/index.js"></script>
   </head>
 
@@ -136,12 +132,13 @@
               />
             </div>
             <div class="d-flex">
-              <p class="ml-auto">Forgot Password?</p>
+              <p class="ml-auto mb-2">Forgot Password?</p>
             </div>
-
-            <button type="submit" class="btn btn-success" id="login-button">
-              <a href="my_projects.html" class="nostyle">Login</a>
-            </button>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-success" id="login-button">
+                <a href="my_projects.html" class="nostyle">Login</a>
+              </button>
+            </div>
             <p class="text-center mt-2">
               Don't have an account? <a onClick="showSignup()"> Sign Up</a>
             </p>
@@ -180,9 +177,11 @@
                 id="exampleInputPassword1"
               />
             </div>
-            <button type="submit" class="btn btn-success" id="signup-button">
-              Sign up
-            </button>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-success" id="signup-button">
+                Sign up
+              </button>
+            </div>
             <p class="text-center mt-2">
               Already have an account? <a onClick="showLogin()"> Log in</a>
             </p>

@@ -1,314 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Template for pages</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Template for pages</title>
+    <!-- Owl-Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
+      crossorigin="anonymous"
+    />
 
-  <!-- Owl-Carousel -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <!-- Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
 
-  <!-- Custom Style-->
-  <link rel="stylesheet" href="./css/navbar.css">
-  <link rel="stylesheet" href="./css/activity.css">
-
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/activity.css" />
     <script src="./js/navbar.js" defer></script>
+  </head>
 
-
-</head>
-
-<body>
-
-
-  <div class="page-wrapper h-100 is-collapsed">
-
-    <nav class="top-navbar">
-      <div
-        class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
-      >
-        <div class="hamburger mobile side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </div>
-        <div class="logo">
-          <a class="nostyle" href="my_projects.html">
-            <h4 class="mb-0 px-3">
-              <i class="fas fa-drafting-compass"></i> Kick
-            </h4>
-          </a>
-        </div>
-
-        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-          <!--notifications-->
-          <li class="utility notification mb-0">
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <span class="num">4</span>
-            <div class="notification-dropdown d-none">
-              <h6 class="notification-title text-center">notifications</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img
-                    src="./assets/profile.png"
-                    alt="profile_pic"
-                    style="width: 50px"
-                  />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img
-                    src="./assets/profile.png"
-                    alt="profile_pic"
-                    style="width: 50px"
-                  />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                More(2) ...
-              </div>
-            </div>
-          </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 user  ">
-            <a href="#"><i class="fas fa-user"></i></a>
-            <div class="user-dropdown d-none">
-              <h6 class="user-title text-center">Profile</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
-                </div>
-                <div class="notify_info">
-                  <p><a class="nostyle" href="profile.html">Me</a></p>
-                </div>
-              </div>
-              <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
-              <div class="notify_item clickable d-flex">
-                <p class="m-0" id="dark-mode">Dark Mode</p>
-              </div>
-
-              <div class="notify_item clickable d-flex">
-                <a href="index.html" class="nostyle">Logout</a>
-              </div>
-
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item dropdown active"><a href="project_overview.html">
-            <span class="m-2"><i class="fas fa-home"></i> </span>
-            <span class="side-menu-item-title">Project Overview</span>
-          </a>
-          <ul class="side-menu-dropdown">
-            <li class="side-menu-item main-dropdown-title">
-              <a href="project_overview.html">
-                <span class="">Project Overview</span>
-              </a>
-            </li>
-            <li class="side-menu-item">
-              <a href="project_team.html">
-                <span class="">Members</span>
-              </a>
-            </li>
-            <li class="side-menu-item">
-              <a class="active" href="activity.html">
-                <span class="">Activity</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="side-menu-item dropdown"><a href="issuelist.html">
-            <span class="m-2"><i class="far fa-folder"></i></span>
-            <span class="side-menu-item-title">Issues</span>
-          </a>
-          <ul class="side-menu-dropdown">
-            <li class="side-menu-item main-dropdown-title">
-              <a href="issuelist.html">
-                <span class="">Issues</span>
-              </a>
-            </li>
-            <li class="side-menu-item">
-              <a href="issuelist.html">
-                <span class="">List</span>
-              </a>
-            </li>
-            <li class="side-menu-item">
-              <a href="board.html">
-                <span class="">Boards</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="side-menu-item"><a href="chat.html">
-            <span class="m-2"><i class="far fa-comment-alt"></i></span>
-            <span class="side-menu-item-title">Chat</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <!--generic container-->
-    <div class="main-container">
-      <div class="main-content-container px-4">
-        <nav>
-          <ol class="breadcrumb custom-separator">
-            <li><a href="#0">lbaw</a></li>
-            <li><a href="#0">Project Overview</a></li>
-            <li class="current">Activity</li>
-          </ol>
-        </nav>
-
-        <!--filters-->
-        <div id="tables-types" class="d-flex border-bottom nav-links">
-          <li class="active">
-            Today <span class="tables-type-counter">2</span>
-          </li>
-          <li>This week <span class="tables-type-counter">3</span></li>
-          <li>This Month <span class="tables-type-counter">3</span></li>
-          <li>All <span class="tables-type-counter">332</span></li>
-
-        </div>
-        <!--end of fiters-->
-
-
-        <!--history-->
-        <div id="history">
-          <div class="timeline-body mt-4">
-
-            <div class="timeline-item">
-              <p class="time">Now</p>
-              <div class="content">
-
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="title text-left">
-                    Normalize database
-                  </div>
-                  <div class="time-mobile">
-                    Now
-                  </div>
-
-                </div>
-
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illum, harum iusto
-                  quaerat accusamus quis odio a asperiores, enim delectus, ea veritatis itaque architecto nisi!</p>
-                <p class="author text-right"><span class="status open bg-success">Opened</span> by <span class="author-reference text-right">Vator</span></p>
-
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <p class="time">5 min</p>
-              <div class="content">
-
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="title text-left">
-                    Finish Design
-                  </div>
-                  <div class="time-mobile">
-                    Now
-                  </div>
-
-                </div>
-
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illum, harum iusto
-                  quaerat accusamus quis odio a asperiores, enim delectus, ea veritatis itaque architecto nisi!</p>
-                <p class="author text-right"><span class="status open bg-success">Opened</span> by <span class="author-reference text-right">Revuj</span></p>
-
-              </div>
-            </div>            <div class="timeline-item">
-              <p class="time">Now</p>
-              <div class="content">
-
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="title text-left">
-                    Deliver a2
-                  </div>
-                  <div class="time-mobile">
-                    3 h
-                  </div>
-
-                </div>
-
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illum, harum iusto
-                  quaerat accusamus quis odio a asperiores, enim delectus, ea veritatis itaque architecto nisi!</p>
-                  <p class="author text-right"><span class="status closed bg-danger">Closed</span> by <span class="author-reference text-right">Abelha</span></p>
-
-
-              </div>
-            </div>            <div class="timeline-item">
-              <p class="time">Now</p>
-              <div class="content">
-
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="title text-left">
-                    Deliver a2
-                  </div>
-                  <div class="time-mobile">
-                    Now
-                  </div>
-
-                </div>
-
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illum, harum iusto
-                  quaerat accusamus quis odio a asperiores, enim delectus, ea veritatis itaque architecto nisi!</p>
-                <p class="author text-right">Commented</span> by <span class="author-reference text-right">Vator</span></p>
-
-              </div>
-            </div>
-
+  <body>
+    <div class="page-wrapper h-100 is-collapsed">
+      <nav class="top-navbar">
+        <div
+          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
+        >
+          <div class="hamburger mobile side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </div>
+          <div class="logo">
+            <a class="nostyle" href="my_projects.html">
+              <h4 class="mb-0 px-3">
+                <i class="fas fa-drafting-compass"></i> Kick
+              </h4>
+            </a>
           </div>
 
+          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+            <!--notifications-->
+            <li class="utility notification mb-0">
+              <a href="#"><i class="fas fa-bell"></i></a>
+              <span class="num">4</span>
+              <div class="notification-dropdown d-none">
+                <h6 class="notification-title text-center">notifications</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  More(2) ...
+                </div>
+              </div>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0 user  ">
+              <a href="#"><i class="fas fa-user"></i></a>
+              <div class="user-dropdown d-none">
+                <h6 class="user-title text-center">Profile</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 40px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p><a class="nostyle" href="profile.html">Me</a></p>
+                  </div>
+                </div>
+                <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+                <div class="notify_item clickable d-flex">
+                  <p class="m-0" id="dark-mode">Dark Mode</p>
+                </div>
 
+                <div class="notify_item clickable d-flex">
+                  <a href="index.html" class="nostyle">Logout</a>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
+      </nav>
 
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </li>
+          <li class="side-menu-item dropdown active">
+            <a href="project_overview.html">
+              <span class="m-2"><i class="fas fa-home"></i> </span>
+              <span class="side-menu-item-title">Project Overview</span>
+            </a>
+            <ul class="side-menu-dropdown">
+              <li class="side-menu-item main-dropdown-title">
+                <a href="project_overview.html">
+                  <span class="">Project Overview</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a href="project_team.html">
+                  <span class="">Members</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a class="active" href="activity.html">
+                  <span class="">Activity</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a href="issuelist.html">
+              <span class="m-2"><i class="far fa-folder"></i></span>
+              <span class="side-menu-item-title">Issues</span>
+            </a>
+            <ul class="side-menu-dropdown">
+              <li class="side-menu-item main-dropdown-title">
+                <a href="issuelist.html">
+                  <span class="">Issues</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a href="issuelist.html">
+                  <span class="">List</span>
+                </a>
+              </li>
+              <li class="side-menu-item">
+                <a href="board.html">
+                  <span class="">Boards</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="side-menu-item">
+            <a href="chat.html">
+              <span class="m-2"><i class="far fa-comment-alt"></i></span>
+              <span class="side-menu-item-title">Chat</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
+      <!--generic container-->
+      <div class="main-container">
+        <div class="main-content-container px-4">
+          <nav>
+            <ol class="breadcrumb custom-separator">
+              <li><a href="#0">lbaw</a></li>
+              <li><a href="#0">Project Overview</a></li>
+              <li class="current">Activity</li>
+            </ol>
+          </nav>
+
+          <!--filters-->
+          <div id="tables-types" class="d-flex border-bottom nav-links">
+            <li class="active">
+              Today <span class="tables-type-counter">2</span>
+            </li>
+            <li>This week <span class="tables-type-counter">3</span></li>
+            <li>This Month <span class="tables-type-counter">3</span></li>
+            <li>All <span class="tables-type-counter">332</span></li>
+          </div>
+          <!--end of fiters-->
+
+          <!--history-->
+          <div id="history">
+            <div class="timeline-body mt-4">
+              <div class="timeline-item">
+                <p class="time">Now</p>
+                <div class="content">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="title text-left">
+                      Normalize database
+                    </div>
+                    <div class="time-mobile">
+                      Now
+                    </div>
+                  </div>
+
+                  <p class="text-left">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+                    illum, harum iusto quaerat accusamus quis odio a asperiores,
+                    enim delectus, ea veritatis itaque architecto nisi!
+                  </p>
+                  <p class="author text-right p-2">
+                    <span class="status open bg-success">Opened</span> by
+                    <span class="author-reference text-right">Vator</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <p class="time">5 min</p>
+                <div class="content">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="title text-left">
+                      Finish Design
+                    </div>
+                    <div class="time-mobile">
+                      Now
+                    </div>
+                  </div>
+
+                  <p class="text-left">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+                    illum, harum iusto quaerat accusamus quis odio a asperiores,
+                    enim delectus, ea veritatis itaque architecto nisi!
+                  </p>
+                  <p class="author text-right p-2">
+                    <span class="status open bg-success">Opened</span> by
+                    <span class="author-reference text-right">Revuj</span>
+                  </p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <p class="time">Now</p>
+                <div class="content">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="title text-left">
+                      Deliver a2
+                    </div>
+                    <div class="time-mobile">
+                      3 h
+                    </div>
+                  </div>
+
+                  <p class="text-left">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+                    illum, harum iusto quaerat accusamus quis odio a asperiores,
+                    enim delectus, ea veritatis itaque architecto nisi!
+                  </p>
+                  <p class="author text-right p-2">
+                    <span class="status closed bg-danger">Closed</span> by
+                    <span class="author-reference text-right">Abelha</span>
+                  </p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <p class="time">Now</p>
+                <div class="content">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="title text-left">
+                      Deliver a2
+                    </div>
+                    <div class="time-mobile">
+                      Now
+                    </div>
+                  </div>
+
+                  <p class="text-left">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+                    illum, harum iusto quaerat accusamus quis odio a asperiores,
+                    enim delectus, ea veritatis itaque architecto nisi!
+                  </p>
+                  <p class="author text-right p-2">
+                    <span class="status open bg-info">Commented</span>
+                    by
+                    <span class="author-reference text-right">Vator</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end of main-container can possible be a section in the future-->
       </div>
-      <!--end of main-container can possible be a section in the future-->
-
+      <!--end of page wrapper-->
     </div>
-    <!--end of page wrapper-->
-
-
-</body>
-
-<script>
-          let hamburger_menus = document.querySelectorAll('.hamburger');
-        hamburger_menus.forEach(elem => elem.addEventListener('click', function () {
-            document.querySelector('.page-wrapper').classList.toggle('is-collapsed')
-        }))
-
-
-
-</script>
-
+  </body>
+  <script>
+    let hamburger_menus = document.querySelectorAll(".hamburger");
+    hamburger_menus.forEach(elem =>
+      elem.addEventListener("click", function() {
+        document
+          .querySelector(".page-wrapper")
+          .classList.toggle("is-collapsed");
+      })
+    );
+  </script>
 </html>
