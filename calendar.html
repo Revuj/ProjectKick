@@ -117,7 +117,11 @@
                 <h6 class="user-title text-center">Profile</h6>
                 <div class="notify_item clickable">
                   <div class="notify_img">
-                    <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 40px"
+                    />
                   </div>
                   <div class="notify_info">
                     <p><a class="nostyle" href="profile.html">Me</a></p>
@@ -127,11 +131,11 @@
                 <div class="notify_item clickable d-flex">
                   <p class="m-0" id="dark-mode">Dark Mode</p>
                 </div>
-  
+
                 <div class="notify_item clickable d-flex">
                   <a href="index.html" class="nostyle">Logout</a>
                 </div>
-  
+              </div>
             </li>
           </ul>
         </div>
@@ -192,45 +196,22 @@
           </nav>
           <div class="align-items-end w-100 d-flex">
             <button
-            type="button"
-            data-toggle="modal"
-            data-target="#addEventModal"
-            class="btn btn-success ml-auto"
-          >
-            <i class="fa fa-plus-circle fa-lg"></i>
-            <span>Add Event</span>
-          </button>
+              type="button"
+              data-toggle="modal"
+              data-target="#addEventModal"
+              class="btn btn-success ml-auto"
+            >
+              <i class="fa fa-plus-circle fa-lg"></i>
+              <span>Add Event</span>
+            </button>
           </div>
-          
+
           <div class="my-2">
             <div class="row container-fluid mx-0 px-0">
               <!--=============================ADD & CHECK EVENTS ================================================//-->
               <div
                 class="col-md-4 col-sm-8 event-manager p-0 d-flex flex-column"
               >
-                <div class="add-event-day text-left">
-                  <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
-                      <input
-                        class="form-control"
-                        type="text"
-                        placeholder="Event"
-                      />
-                      <!--coordinator only-->
-                      <div class="inputGroup">
-                        <input type="checkbox" value="" id="defaultCheck1" />
-                        <label for="defaultCheck1">
-                          Meeting
-                        </label>
-                      </div>
-                      <!--end of coordinator only-->
-                      <button type="submit" class="btn btn-primary mb-2">
-                        Add
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
                 <div class="current-day text-center py-4 white-text">
                   <h1 class="calendar-left-side-day"></h1>
                   <div class="calendar-left-side-day-of-week"></div>
@@ -303,13 +284,13 @@
                     </div>
                     <div class="form-group">
                       <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success">
+                        <label class="btn btn-outline-primary">
                           <input type="radio" name="options" id="option1" />
                           Meeting
                         </label>
-                        <label class="btn btn-success">
+                        <label class="btn btn-outline-primary">
                           <input type="radio" name="options" id="option2" />
-                          Deadline
+                          Personal
                         </label>
                       </div>
                     </div>
@@ -320,7 +301,7 @@
                     Close
                   </button>
                   <button type="button" class="btn btn-success">
-                    Add Member
+                    Add Event
                   </button>
                 </div>
               </div>

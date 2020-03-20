@@ -82,3 +82,18 @@
 .add-event-button {
   border-radius: 0;
 }
+
+.btn-outline-primary.active {
+  color: var(--text-color) !important;
+  background-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:hover {
+  color: var(--text-color) !important;
+  background-color: var(--primary-color) !important;
+}
