@@ -199,14 +199,14 @@
           </nav>
           <div id="issue-list-container" class="pt-1 mb-0">
             <ul class="d-flex border-bottom nav-links pb-2">
-              <li id="open-issues-filter" class="letactive">
-                Open <span class="type-counter">3</span>
+              <li id="open-issues" class="active">
+                Open <span class="type-counter">2</span>
               </li>
-              <li id="closed-issues-filter">
-                Closed <span class="type-counter">5</span>
+              <li id="closed-issues">
+                Closed <span class="type-counter">1</span>
               </li>
-              <li id="all-issues-filter">
-                All <span class="type-counter">8</span>
+              <li id="all-issues">
+                All <span class="type-counter">3</span>
               </li>
               <button
                 type="button"
@@ -257,7 +257,7 @@
             </div>
           </div>
           
-          <ul id="issue-list" class="mx-2 open-issues-filter">
+          <ul id="issue-list" class="mx-2">
             <!--
             <li class="issue open px-2 border-bottom">
               <div class="issue-header d-flex align-items-center">
@@ -622,20 +622,7 @@
             .querySelector('.notification-dropdown')
             .classList.toggle('display-block');
         });
-        
-      let nav_links = document.querySelectorAll('.nav-links li');
-      let issue_list = document.querySelector('#issue-list');
-      [...nav_links].forEach(elem =>
-        elem.addEventListener('click', event => {
-          nav_links.forEach(elem => {
-            elem.classList.remove('active');
-            issue_list.classList.remove(elem.id);
-          });
-          elem.classList.add('active');
-          console.log(elem.id);
-          issue_list.classList.add(elem.id);
-        })
-      );
+      
     </script>
   </body>
 </html>

@@ -75,21 +75,6 @@
   margin-bottom: 0;
 }
 
-.closed-issues-filter .issue.open {
-  display: none;
-}
-.closed-issues-filter .issue.closed {
-  display: block;
-}
-
-.open-issues-filter .issue.closed {
-  display: none;
-}
-
-.open-issues-filter .issue.open {
-  display: block;
-}
-
 .comments-number-container i {
   opacity: 0.6;
   font-size: 1.2rem;
