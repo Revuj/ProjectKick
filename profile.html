@@ -37,129 +37,132 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="js/libs/chartjs-plugin-doughnutlabel.min.js"></script>
 
-  <link rel="stylesheet" href="./css/profile.css" />
-  <link rel="stylesheet" href="./css/navbar.css" />
-  <script src="js/profile.js" defer></script>
+    <link rel="stylesheet" href="./css/profile.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <script src="js/profile.js" defer></script>
     <script src="./js/navbar.js" defer></script>
+  </head>
 
-</head>
+  <body>
+    <div class="page-wrapper h-100 is-collapsed">
+      <nav class="top-navbar">
+        <div
+          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
+        >
+          <div class="hamburger mobile side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+          </div>
+          <div class="logo">
+            <a class="nostyle" href="index.html">
+              <h4 class="mb-0 px-3">
+                <i class="fas fa-drafting-compass"></i> Kick
+              </h4>
+            </a>
+          </div>
 
-<body>
-  <div class="page-wrapper h-100 is-collapsed">
-    <nav class="top-navbar">
-      <div
-        class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
-      >
-        <div class="hamburger mobile side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
+          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+            <!--notifications-->
+            <li class="utility notification mb-0">
+              <a href="#"><i class="fas fa-bell"></i></a>
+              <span class="num">4</span>
+              <div class="notification-dropdown d-none">
+                <h6 class="notification-title text-center">notifications</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 50px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p>Alex commented on the<span>Task Share</span></p>
+                    <span class="notify_time">10 minutes ago</span>
+                  </div>
+                </div>
+                <div class="notify_item clickable">
+                  More(2) ...
+                </div>
+              </div>
+            </li>
+            <!--profile-->
+            <li class="px-2 utility ml-3 mb-0 user  ">
+              <a href="#"><i class="fas fa-user"></i></a>
+              <div class="user-dropdown d-none">
+                <h6 class="user-title text-center">Profile</h6>
+                <div class="notify_item clickable">
+                  <div class="notify_img">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 40px"
+                    />
+                  </div>
+                  <div class="notify_info">
+                    <p><a class="nostyle" href="profile.html">Me</a></p>
+                  </div>
+                </div>
+                <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+                <div class="notify_item clickable d-flex">
+                  <p class="m-0" id="dark-mode">Dark Mode</p>
+                </div>
+
+                <div class="notify_item clickable d-flex">
+                  <a href="index.html" class="nostyle">Logout</a>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
-        <div class="logo">
-          <a class="nostyle" href="index.html">
-            <h4 class="mb-0 px-3">
-              <i class="fas fa-drafting-compass"></i> Kick
-            </h4>
-          </a>
-        </div>
-
-        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-          <!--notifications-->
-          <li class="utility notification mb-0">
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <span class="num">4</span>
-            <div class="notification-dropdown d-none">
-              <h6 class="notification-title text-center">notifications</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img
-                    src="./assets/profile.png"
-                    alt="profile_pic"
-                    style="width: 50px"
-                  />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img
-                    src="./assets/profile.png"
-                    alt="profile_pic"
-                    style="width: 50px"
-                  />
-                </div>
-                <div class="notify_info">
-                  <p>Alex commented on the<span>Task Share</span></p>
-                  <span class="notify_time">10 minutes ago</span>
-                </div>
-              </div>
-              <div class="notify_item clickable">
-                More(2) ...
-              </div>
-            </div>
+      </nav>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="hamburger side-menu-item">
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
+            <div class="hamburger-symbol"></div>
           </li>
-          <!--profile-->
-          <li class="px-2 utility ml-3 mb-0 user  ">
-            <a href="#"><i class="fas fa-user"></i></a>
-            <div class="user-dropdown d-none">
-              <h6 class="user-title text-center">Profile</h6>
-              <div class="notify_item clickable">
-                <div class="notify_img">
-                  <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
-                </div>
-                <div class="notify_info">
-                  <p><a class="nostyle" href="profile.html">Me</a></p>
-                </div>
-              </div>
-              <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
-              <div class="notify_item clickable d-flex">
-                <p class="m-0" id="dark-mode">Dark Mode</p>
-              </div>
-
-              <div class="notify_item clickable d-flex">
-                <a href="index.html" class="nostyle">Logout</a>
-              </div>
-
+          <li class="side-menu-item dropdown">
+            <a href="my_projects.html">
+              <span class="m-2"><i class="fas fa-columns"></i></span>
+              <span class="side-menu-item-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="side-menu-item dropdown">
+            <a class="active" href="my_work.html">
+              <span class="m-2"><i class="fas fa-tasks"></i></span>
+              <span class="side-menu-item-title">My Work</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="calendar.html">
+              <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
+              <span class="side-menu-item-title">Calendar</span>
+            </a>
+          </li>
+          <li class="side-menu-item">
+            <a href="searchpage.html">
+              <span class="m-2"><i class="fas fa-search"></i></span>
+              <span class="side-menu-item-title">Search</span>
+            </a>
           </li>
         </ul>
-      </div>
-    </nav>
-    <nav class="sidebar-menu">
-      <ul>
-        <li class="hamburger side-menu-item">
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-          <div class="hamburger-symbol"></div>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a href="my_projects.html">
-            <span class="m-2"><i class="fas fa-columns"></i></span>
-            <span class="side-menu-item-title">Dashboard</span>
-          </a>
-        </li>
-        <li class="side-menu-item dropdown">
-          <a class="active" href="my_work.html">
-            <span class="m-2"><i class="fas fa-tasks"></i></span>
-            <span class="side-menu-item-title">My Work</span>
-          </a>
-        </li>
-        <li class="side-menu-item">
-          <a href="calendar.html">
-            <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
-            <span class="side-menu-item-title">Calendar</span>
-          </a>
-        </li>
-        <li class="side-menu-item">
-          <a href="searchpage.html">
-            <span class="m-2"><i class="fas fa-search"></i></span>
-            <span class="side-menu-item-title">Search</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      </nav>
       <div class="main-container">
         <div class="main-content-container px-4">
           <nav>
@@ -182,40 +185,34 @@
                   alt="User Avatar"
                   width="110"
                 />
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush mt-2">
                   <li class="list-group-item p-2">
-                    <h4 class="mb-0 mt-2">Sierra Brooks</h4>
+                    <h4 class="title mb-0 mt-2">Sierra Brooks</h4>
                     <span class="text-muted d-block mb-1">Porto, Portugal</span>
-                    <span class="smaller-text"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Odio eaque, quidem, commodi soluta qui quae minima
-                      obcaecati quod dolorum sint alias, possimus illum
-                      assumenda eligendi cumque?</span
-                    >
-                  </li>
-                  <li class="list-group-item p-2">
-                    <ul
-                      class="labels d-flex flex-wrap justify-content-center mx-2"
-                    >
-                      <li class="mr-2">
-                        <h6 class="mb-0 px-1 list-item-label bg-success">
-                          Html
-                        </h6>
-                      </li>
-                      <li class="mr-2">
-                        <h6 class="mb-0 px-1 list-item-label bg-warning">
-                          Css
-                        </h6>
-                      </li>
-
-                      <li class="mr-2">
-                        <h6 class="mb-0 px-1 list-item-label bg-danger">
-                          Javascript
-                        </h6>
-                      </li>
-                    </ul>
+                    <div class="mb-4 mt-3">
+                      <span class="smaller-text"
+                        >Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit. Odio eaque, quidem, commodi soluta qui quae minima
+                        obcaecati quod dolorum sint alias, possimus illum
+                        assumenda eligendi cumque?</span
+                      >
+                    </div>
                   </li>
                 </ul>
+                <div class="d-flex justify-content-left card-footer">
+                  <ul class="labels d-flex justify-content-center mx-2">
+                    <li class="mr-2">
+                      <h6 class="mb-0 px-1 list-item-label bg-success">
+                        lbaw
+                      </h6>
+                    </li>
+                    <li class="mr-2">
+                      <h6 class="mb-0 px-1 list-item-label bg-warning">
+                        html
+                      </h6>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="col-md-8" id="details">
@@ -254,17 +251,15 @@
             </div>
             <div class="col-md-8 d-none" id="edit">
               <div class="card card-small mb-4">
+                <div class="card-header border-bottom d-flex">
+                  <h6 class="m-0">Edit Account</h6>
+                  <i class="fas fa-times ml-auto"></i>
+                </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item pt-0">
                     <div class="row">
                       <div class="col">
-                        <div id="cancel" class="mb-3 d-flex w-100 pl-3 mt-3 align-items-start">
-                          <h5 class="mr-auto font-weight-bold">Edit</h5>
-                          <button type="button" class="btn">
-                            <i class="fas fa-times"></i>
-                          </button>
-                        </div>
-                        <form class="mt-5">
+                        <form class="mt-3">
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="feFirstName">First Name</label>
@@ -361,7 +356,8 @@
                                 class="form-control"
                                 name="feDescription"
                                 rows="5"
-                              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea
+                              >
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea
                               >
                             </div>
                           </div>
@@ -449,26 +445,25 @@
         </div>
       </div>
     </div>
-  </div>
-</body>
-<script>
-  let hamburger_menus = document.querySelectorAll('.hamburger');
-  hamburger_menus.forEach(elem =>
-    elem.addEventListener('click', function() {
-      document
-        .querySelector('.page-wrapper')
-        .classList.toggle('is-collapsed');
-    })
-  );
+  </body>
+  <script>
+    let hamburger_menus = document.querySelectorAll(".hamburger");
+    hamburger_menus.forEach(elem =>
+      elem.addEventListener("click", function() {
+        document
+          .querySelector(".page-wrapper")
+          .classList.toggle("is-collapsed");
+      })
+    );
 
-  document
-    .querySelector('.notification')
-    .addEventListener('click', function() {
-      console.log(document.querySelector('.notification').classList);
+    document
+      .querySelector(".notification")
+      .addEventListener("click", function() {
+        console.log(document.querySelector(".notification").classList);
 
-      document
-        .querySelector('.notification-dropdown')
-        .classList.toggle('display-block');
-    });
-</script>
+        document
+          .querySelector(".notification-dropdown")
+          .classList.toggle("display-block");
+      });
+  </script>
 </html>

@@ -1,5 +1,9 @@
-@import url('global.css');
+@import url("global.css");
 
+.card-header a {
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
 .avatar-image {
   display: inline-block;
   position: relative;
@@ -78,6 +82,10 @@
   border-radius: 5px;
 }
 
+#description {
+  margin-bottom: 40px;
+}
+
 @media only screen and (max-width: 768px) {
   .modal-dialog {
     width: 100%;
@@ -95,24 +103,5 @@
   #side-filter-container {
     width: 100%;
     top: 0;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  input.button {
-    text-indent: -9000px;
-    text-transform: capitalize;
-  }
-
-  #tables-types .btn-success span {
-    display: none;
-  }
-
-  #filter-issues {
-    flex-direction: column !important;
-  }
-
-  #filter-buttons {
-    margin-top: 10px;
   }
 }

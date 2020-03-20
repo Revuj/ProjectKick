@@ -23,10 +23,6 @@
     <!-- Font Awesome CDN -->
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-    <!-- Custom Style-->
-    <link rel="stylesheet" href="./css/project_overview.css" />
-    <link rel="stylesheet" href="./css/navbar.css" />
-
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -34,6 +30,9 @@
       crossorigin="anonymous"
     />
 
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./css/project_overview.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
     <script src="./js/navbar.js" defer></script>
   </head>
 
@@ -101,7 +100,11 @@
                 <h6 class="user-title text-center">Profile</h6>
                 <div class="notify_item clickable">
                   <div class="notify_img">
-                    <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
+                    <img
+                      src="./assets/profile.png"
+                      alt="profile_pic"
+                      style="width: 40px"
+                    />
                   </div>
                   <div class="notify_info">
                     <p><a class="nostyle" href="profile.html">Me</a></p>
@@ -111,11 +114,11 @@
                 <div class="notify_item clickable d-flex">
                   <p class="m-0" id="dark-mode">Dark Mode</p>
                 </div>
-  
+
                 <div class="notify_item clickable d-flex">
                   <a href="index.html" class="nostyle">Logout</a>
                 </div>
-  
+              </div>
             </li>
           </ul>
         </div>
@@ -208,48 +211,23 @@
                 id="project-header"
                 class="border-bottom mb-3 d-flex flex-row align-items-center"
               >
-                <h4 class="project-title mr-auto mb-4">Project Kick</h4>
+                <h3 class="title project-title mr-auto mb-2">Project Kick</h3>
                 <div class="d-flex align-items-start">
                   <p class="mr-auto">
                     <span class="project-creator">
                       Project created by
-                      <span class="author-reference text-primary">Revuj</span></span
+                      <span class="author-reference text-primary"
+                        >Revuj</span
+                      ></span
                     >
                   </p>
-                  <form class="edit-issue-title-form form-group d-none mr-auto">
-                    <div class="form-group text-left">
-                      <input
-                        type="text"
-                        class="form-control"
-                        class="item-title"
-                        placeholder=""
-                      />
-                    </div>
-                    <div class="d-flex justify-content-between">
-                      <button
-                        type="submit"
-                        class="btn btn-primary edit-item-title btn"
-                      >
-                        Submit
-                      </button>
-                      <button
-                        type="reset"
-                        class="btn btn-primary edit-item-title-cancel"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </form>
-                  <button type="button" class="btn d-none edit-task mr-1">
-                    <i class="fas fa-pencil-alt float-right"></i>
-                  </button>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-7">
                   <div class="project-section general-info">
                     <div class="d-flex mb-2">
-                      <h4 class="flex-grow-1">Description</h4>
+                      <h4 class="flex-grow-1 description">Description</h4>
                       <button
                         type="button"
                         class="custom-button edit-button edit-task mr-1"
@@ -260,7 +238,7 @@
                         ></i>
                       </button>
                     </div>
-                    <p class="text-justify">
+                    <p class="mb-4">
                       The purpose of this project is to develop a system for
                       project management, allowing the clients to create their
                       own workflows as well as customize them, enabling to plan
@@ -278,128 +256,63 @@
                     </p>
 
                     <div class="row">
-                      <div class="col-sm-8">
-                        <div class="row">
-                          <div class="col">
-                            <label>Created</label>
-                            <p class="font-weight-bold">2017/11/02</p>
-                            <label>Duration</label>
-                            <p class="font-weight-bold">
-                              90 days
-                              <span class="text-muted"
-                                ><small>(50 days remaining)</small></span
-                              >
-                            </p>
-                            <label>Status</label> <br />
-                            <span class="badge badge-success">Active</span>
-                          </div>
-                          <div class="col">
-                            <label>Progress</label>
-                            <div class="mb-2 progress" style="height: 5px;">
-                              <div
-                                class="progress-bar"
-                                role="progressbar"
-                                aria-valuenow="80"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                style="width: 80%;"
-                              ></div>
-                            </div>
-                            <p>
-                              Tasks Completed:<span class="text-inverse"
-                                >36/94</span
-                              >
-                            </p>
-                            <label>Project Members</label>
-                            <ul class="assignees d-flex align-items-center">
-                              <li class="mr-2">
-                                <img
-                                  src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                                  alt="@vitorb19"
-                                  draggable="false"
-                                />
-                              </li>
-                              <li class="mr-2">
-                                <img
-                                  src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                                  alt="@vitorb19"
-                                  draggable="false"
-                                />
-                              </li>
-                            </ul>
-                          </div>
+                      <div class="col">
+                        <label>Created</label>
+                        <p class="font-weight-bold mb-4">2017/11/02</p>
+                        <label>Duration</label>
+                        <p class="font-weight-bold mb-4">
+                          90 days
+                          <span class="text-muted"
+                            ><small>(50 days remaining)</small></span
+                          >
+                        </p>
+                        <label>Status</label> <br />
+                        <span class="badge badge-success">Active</span>
+                      </div>
+                      <div class="col">
+                        <label>Progress</label>
+                        <div class="mb-2 progress" style="height: 5px;">
+                          <div
+                            class="progress-bar"
+                            role="progressbar"
+                            aria-valuenow="80"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            style="width: 80%;"
+                          ></div>
                         </div>
+                        <p class="mb-4">
+                          Tasks Completed:<span class="text-inverse"
+                            >36/94</span
+                          >
+                        </p>
+                        <label>Project Members</label>
+                        <ul class="assignees d-flex align-items-center">
+                          <li class="mr-2">
+                            <img
+                              src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
+                              alt="@vitorb19"
+                              draggable="false"
+                            />
+                          </li>
+                          <li class="mr-2">
+                            <img
+                              src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
+                              alt="@vitorb19"
+                              draggable="false"
+                            />
+                          </li>
+                        </ul>
                       </div>
                     </div>
-                  </div>
-                  <div class="project-section activity">
-                    <h4>Recent Activity</h4>
-                    <ul class="list-unstyled project-activity-list">
-                      <li>
-                        <div class="border-bottom mb-3 pb-2">
-                          <div class="content">
-                            <div
-                              class="d-flex justify-content-between align-items-center"
-                            >
-                              <h6 class="title text-left">
-                                title for section1
-                              </h6>
-                            </div>
-
-                            <p class="text-left">
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Est illum, harum iusto quaerat accusamus
-                              quis odio a asperiores, enim delectus, ea
-                              veritatis itaque architecto nisi!
-                            </p>
-                          </div>
-                          <small class="text-muted">Jorge A. 2m ago</small>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="border-bottom">
-                          <div class="content">
-                            <div
-                              class="d-flex justify-content-between align-items-center"
-                            >
-                              <h6 class="title text-left">
-                                title for section1
-                              </h6>
-                            </div>
-
-                            <p class="text-left">
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Est illum, harum iusto quaerat accusamus
-                              quis odio a asperiores, enim delectus, ea
-                              veritatis itaque architecto nisi!
-                            </p>
-                          </div>
-                          <small class="text-muted">Jorge A. 2m ago</small>
-                        </div>
-                      </li>
-                    </ul>
                   </div>
                 </div>
                 <div class="col-md-5">
                   <div class="card mb-3">
-                    <div class="card-header clearfix">
+                    <div class="card-header">
                       <i class="fa fa-tasks"></i> <span>Recent Issues</span>
-                      <div class="btn-group widget-header-toolbar">
-                        <a
-                          href="#"
-                          title="Expand/Collapse"
-                          class="btn btn-link btn-toggle-expand"
-                          ><i class="fa fa-ios-arrow-up"></i
-                        ></a>
-                        <a
-                          href="#"
-                          title="Remove"
-                          class="btn btn-link btn-remove"
-                          ><i class="fa fa-ios-close-empty"></i
-                        ></a>
-                      </div>
                     </div>
-                    <div class="p-3">
+                    <div class="card-body">
                       <ul class="list-unstyled simple-todo-list">
                         <li>
                           <a href="issue.html" class="task-title nostyle"
@@ -428,11 +341,11 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-header clearfix">
+                  <div class="card mb-3">
+                    <div class="card-header">
                       <i class="fa fa-comment-alt"></i> <span>Channels</span>
                     </div>
-                    <div class="p-3">
+                    <div class="card-body">
                       <div class="chat_list active_chat">
                         <a class="chat_ib">
                           <p># developers-team</p>

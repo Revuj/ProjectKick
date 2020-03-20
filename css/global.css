@@ -1,7 +1,7 @@
 /*some resets*/
 
-@import url("https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Oxanium&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Merriweather&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 
 html {
   -webkit-box-sizing: border-box;
@@ -84,15 +84,13 @@ img {
   --primary-gradient: linear-gradient(81deg, #ffa751 0%, #ffe259 66%);
   --mango-gradient: linear-gradient(to right, #ffa751, #ffe259);
   --text-color: #f7f9f9;
-  --Montserrat: "Montserrat", cursive;
-  --Lobster: "Lobster", cursive;
   --primary-shadow: 3px 4px 7px rgba(27, 27, 27, 0.534);
   --border-color: rgba(82, 82, 82, 0.329);
   --container-item-color: rgb(250, 250, 250);
   --item-color: #778899;
   --primary-color: #05386b;
   --accent-color: #52c586;
-  --secondary-color: #678db6;
+  --secondary-color: #4c739e;
   --background-hover: #e9ecef;
   --background-color: #f9f9f9;
   --primary-color-background: #05386b5b;
@@ -137,7 +135,7 @@ img {
 }
 
 body {
-  font-family: var(--Montserrat);
+  font-family: "Lato", sans-serif;
   background-color: white;
 }
 
@@ -197,9 +195,13 @@ a.nostyle:visited {
   transition: all 0.3s ease;
 }
 
+.title {
+  font-family: "Merriweather", serif;
+}
+
 .primary-button {
   text-transform: uppercase;
-  font-family: Oxanium;
+  font-family: "Merriweather", serif;
   background-color: var(--primary-color);
 }
 
@@ -210,7 +212,7 @@ a.nostyle:visited {
 
 .secondary-button {
   text-transform: uppercase;
-  font-family: Oxanium;
+  font-family: "Merriweather", serif;
   background-color: var(--accent-color);
 }
 
@@ -304,7 +306,7 @@ a.nostyle:visited {
 
 .tables-type-counter {
   background-color: var(--secondary-color);
-  opacity: 0.4;
+  opacity: 0.8;
   color: white;
   padding: 0 3px;
   border-radius: 5px;
@@ -324,6 +326,32 @@ a.nostyle:visited {
     min-height: 100%;
     border-radius: 0;
     z-index: 100;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  input.button {
+    text-indent: -9000px;
+    text-transform: capitalize;
+  }
+
+  #tables-types .btn-success span {
+    display: none;
+  }
+
+  #filter-issues {
+    display: block;
+  }
+
+  #filter-buttons {
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+  }
+
+  #dropdownFiltersButton {
+    margin-right: 4px !important;
+    margin-left: 0 !important;
   }
 }
 
@@ -465,6 +493,8 @@ a.nostyle:visited {
 }
 
 .btn-success {
+  text-transform: uppercase;
+  font-family: "Merriweather", serif;
   background-color: var(--accent-color);
   border-color: var(--accent-color);
 }
@@ -601,7 +631,7 @@ nav .breadcrumb {
 
 .type-counter {
   background-color: var(--secondary-color);
-  opacity: 0.4;
+  opacity: 0.8;
   color: white;
   padding: 0 2px;
   border-radius: 5px;

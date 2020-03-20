@@ -28,6 +28,10 @@
   padding: 12px 8px;
 }
 
+.table thead > tr > th {
+  border-top: none !important;
+}
+
 .table thead > tr > th span {
   display: inline-block;
   padding: 0 5px;

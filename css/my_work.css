@@ -1,8 +1,8 @@
 @import url("global.css");
 
 .assignees li {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 .tables-type-counter {
@@ -40,61 +40,17 @@
   margin-bottom: 0;
 }
 
+.issue-header .due-date-container {
+  color: var(--secondary-color);
+}
+
 #task-name {
   border-top: none;
   border-right: none;
   border-radius: 0%;
 }
 
-#tables-types li {
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem 1rem;
-  transition: all 0.3s ease;
-  border-bottom: 3px solid white;
-}
-
-#tables-types li.active {
-  border-bottom: 3px solid var(--primary-color);
-}
-
-#tables-types li:hover {
-  border-bottom: 3px solid var(--accent-color);
-}
-
-@media only screen and (max-width: 768px) {
-  .modal-dialog {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  .modal-content {
-    height: auto;
-    min-height: 100%;
-    border-radius: 0;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #tables-types .btn-success span {
-    display: none;
-  }
-
-  #filter-issues {
-    flex-direction: column !important;
-  }
-
-  #filter-buttons {
-    margin-top: 10px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .comments-number-container,
-  .due-date-container,
-  .open-description {
-    display: none;
-  }
+.comments-number-container i {
+  opacity: 0.6;
+  font-size: 1.2rem;
 }

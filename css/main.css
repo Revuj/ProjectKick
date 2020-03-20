@@ -23,13 +23,13 @@ body {
 
 #main-nav a {
   color: var(--primary-color);
-  font-family: Oxanium;
+  font-family: "Merriweather", serif;
   text-transform: uppercase;
 }
 
 #main-title {
   color: var(--primary-color);
-  font-family: Oxanium;
+  font-family: "Merriweather", serif;
   text-transform: uppercase;
 }
 
@@ -40,11 +40,6 @@ body {
 #description button {
   background-color: var(--primary-color);
   color: white;
-}
-
-#description button:hover {
-  background-color: #edf5e1;
-  color: var(--primary-color);
 }
 
 #about-title {

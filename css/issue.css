@@ -8,7 +8,6 @@
   height: 40px;
 }
 
-.assignees li img,
 .list-item-label {
   border-radius: 5px;
 }
@@ -35,7 +34,7 @@
 
 .task-title {
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 .comment-author {
