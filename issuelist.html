@@ -199,7 +199,7 @@
           </nav>
           <div id="issue-list-container" class="pt-1 mb-0">
             <ul class="d-flex border-bottom nav-links pb-2">
-              <li id="open-issues-filter" class="active">
+              <li id="open-issues-filter" class="letactive">
                 Open <span class="type-counter">3</span>
               </li>
               <li id="closed-issues-filter">
@@ -217,6 +217,7 @@
                 <i class="fa fa-plus-circle fa-lg"></i> <span>Add Task</span>
               </button>
             </ul>
+            
             <div id="filter-issues" class="border-bottom py-3 my-0">
               <form class="d-md-flex justify-content-between">
                 <div class="form-group mb-0 flex-grow-1">
@@ -248,14 +249,16 @@
                     <a class="dropdown-item" href="#">Opening Date</a>
                     <a class="dropdown-item" href="#">Assignees</a>
                   </div>
-                  <button type="submit" class="custom-button primary-button">
+                  <button id = "asc-button" class="custom-button primary-button">
                     <i class="fas fa-arrow-up"></i>
                   </button>
                 </div>
               </form>
             </div>
           </div>
+          
           <ul id="issue-list" class="mx-2 open-issues-filter">
+            <!--
             <li class="issue open px-2 border-bottom">
               <div class="issue-header d-flex align-items-center">
                 <a href="issue.html" class="task-title nostyle">boards</a>
@@ -343,6 +346,8 @@
                 </div>
               </div>
             </li>
+
+
             <li class="issue open px-2 border-bottom">
               <div class="issue-header d-flex align-items-center">
                 <a href="issue.html" class="task-title nostyle"
@@ -355,6 +360,8 @@
                     </h6>
                   </li>
                 </ul>
+
+                
                 <div class="due-date-container text-right">
                   <i class="fas fa-calendar-alt mr-2"></i>Mar 13, 2020
                 </div>
@@ -378,6 +385,8 @@
                 </div>
               </div>
             </li>
+
+
             <li class="issue closed px-2 border-bottom">
               <div class="issue-header d-flex align-items-center">
                 <a href="issue.html" class="task-title nostyle"
@@ -423,7 +432,10 @@
                 </div>
               </div>
             </li>
-          </ul>
+
+
+            
+          </ul> -ends here-->
         </div>
       </div>
       <!--end of main-container can possible be a section in the future-->
@@ -610,6 +622,7 @@
             .querySelector('.notification-dropdown')
             .classList.toggle('display-block');
         });
+        
       let nav_links = document.querySelectorAll('.nav-links li');
       let issue_list = document.querySelector('#issue-list');
       [...nav_links].forEach(elem =>
