@@ -73,7 +73,6 @@
                     <img
                       src="./assets/profile.png"
                       alt="profile_pic"
-                      style="width: 50px"
                     />
                   </div>
                   <div class="notify_info">
@@ -86,7 +85,6 @@
                     <img
                       src="./assets/profile.png"
                       alt="profile_pic"
-                      style="width: 50px"
                     />
                   </div>
                   <div class="notify_info">
@@ -195,10 +193,21 @@
               <li class="current">Chat</li>
             </ol>
           </nav>
+          <div class="align-items-end w-100 d-flex">
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#addChannelModal"
+              class="btn btn-success ml-auto"
+            >
+              <i class="fa fa-plus-circle fa-lg"></i>
+              <span>Add Channel</span>
+            </button>
+          </div>
           <!-- End Page Header -->
           <!-- Default Light Table -->
-          <div class="p-0 m-2 chat-container">
-            <div class="row h-100">
+          <div class="p-0 my-2 chat-container">
+            <div class="row container-fluid mx-0 px-0 h-100">
               <div class="col-lg-3 px-0 channels">
                 <div class="inbox_msg d-flex flex-column h-100">
                   <div class=" headind_channels">
@@ -223,18 +232,6 @@
                       </h5>
                     </a>
                   </div>
-                  <div class="mt-auto w-100">
-                    <button
-                      id="create-channel"
-                      type="button"
-                      data-toggle="modal"
-                      data-target="#addChannelModal"
-                      class="w-100 btn btn-success"
-                    >
-                      <i class="fa fa-plus-circle fa-lg"></i>
-                      Add Channel
-                    </button>
-                  </div>
                 </div>
               </div>
               <div class="col-lg-9 px-0 h-100 d-flex flex-column" id="details">
@@ -245,98 +242,154 @@
                   </h6>
                 </div>
                   <div class="mesgs d-flex flex-column">
-                    <div class="msg_history px-1">
-                      <div class="incoming_msg">
+                    <div class="msg_history pt-1 px-1">
+                      <div class="incoming_msg d-flex align-items-start">
+                        <div class="incoming_msg_img">
+                          <img src="https://ca.slack-edge.com/TUX9PC2RG-UV9KNC82Y-g039f4971eb1-512" alt="sunil" />
+                        </div>
+                        <div class="message d-flex flex-column align-items-start">
+                            <div class="message-header"><span class="author">Bruno Sousa</span><span class="time_date"> 17:12 PM | 3 Days Ago</span></div>
+                            <div class="message-content">
+                              <p>
+                                Boas pessoal,
+                              </p>
+                              <p>
+                                Dado que não é possível fazer "atendimento" presencial, estou aqui disponível para vos ajudar com os projetos / tirar duvidas das 13h às 15h. Podem por as duvidas aqui ou por mensagem.
+                              </p>
+                              <p>
+                                Se preferirem também podemos fazer por videoconferência, mandem mensagem que eu mando um link do Google Hangouts (ou outro que preferirem).
+                              </p>
+                              <p>
+                                Cumprimentos
+                              </p>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="incoming_msg d-flex align-items-start">
+                        <div class="incoming_msg_img">
+                          <img src="https://ca.slack-edge.com/TUX9PC2RG-UUZKPEREX-ccd6e784fe8b-512" alt="sunil" />
+                        </div>
+                        <div class="message d-flex flex-column align-items-start">
+                            <div class="message-header"><span class="author">João Varela</span><span class="time_date"> 11:01 AM | Yesterday</span></div>
+                            <div class="message-content">
+                              <p>
+                                Boa noite. Nesta situação de erro, até que tokens devemos ignorar?
+                              </p>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="incoming_msg d-flex align-items-start">
                         <div class="incoming_msg_img">
                           <img src="assets/profile.png" alt="sunil" />
                         </div>
-                        <div class="received_msg">
-                          <div class="received_withd_msg">
-                            <p>
-                              Test which is a new approach to have all solutions
-                            </p>
-                            <span class="time_date"> 11:01 AM | June 9</span>
-                          </div>
+                        <div class="message d-flex flex-column align-items-start">
+                            <div class="message-header"><span class="author">André Esteves</span><span class="time_date"> 16:45 PM | Yesterday</span></div>
+                            <div class="message-content">
+                              <p>
+                                Boas. Neste caso devem ignorar todos o tokens até à “{” e a execução continua a partir daí.
+                              </p>
+                              <p>
+                                A mensagem de erro deve ser apropriada, neste caso seria algo do género a dizer que falta o parentesis “)”
+                              </p>
+                            </div>
                         </div>
                       </div>
-                      <div class="outgoing_msg">
-                        <div class="sent_msg">
-                          <p>
-                            Test which is a new approach to have all solutions
-                          </p>
-                          <span class="time_date"> 11:01 AM | June 9</span>
+                      <div class="incoming_msg d-flex align-items-start">
+                        <div class="incoming_msg_img">
+                          <img src="https://ca.slack-edge.com/TUX9PC2RG-UUZKPEREX-ccd6e784fe8b-512" alt="sunil" />
+                        </div>
+                        <div class="message d-flex flex-column align-items-start">
+                            <div class="message-header"><span class="author">João Varela</span><span class="time_date"> 17:12 PM | Yesterday</span></div>
+                            <div class="message-content">
+                              <p>
+                                Muito Obrigado!
+                              </p>
+                              <p>
+                                Abraço
+                              </p>
+                            </div>
                         </div>
                       </div>
-                      <div class="incoming_msg">
+                      <div class="incoming_msg d-flex align-items-start">
                         <div class="incoming_msg_img">
                           <img src="assets/profile.png" alt="sunil" />
                         </div>
-                        <div class="received_msg">
-                          <div class="received_withd_msg">
-                            <p>Test, which is a new approach to have</p>
-                            <span class="time_date"> 11:01 AM | Yesterday</span>
-                          </div>
+                        <div class="message d-flex flex-column align-items-start">
+                            <div class="message-header"><span class="author">André Esteves</span><span class="time_date"> 9:45 PM | Today</span></div>
+                            <div class="message-content">
+                              <p>
+                                Bom dia
+                              </p>
+                              <p>
+                                Assim que puderem entrem na call sff:
+                              </p>
+                              <p>
+                                https://meet.google.com/dxd-uksj-vbx
+                              </p>
+                            </div>
                         </div>
                       </div>
-                      <div class="outgoing_msg">
-                        <div class="sent_msg">
-                          <p>Apollo University, Delhi, India Test</p>
-                          <span class="time_date"> 11:01 AM | Today</span>
-                        </div>
-                      </div>
-                      <div class="incoming_msg">
+                      <div class="incoming_msg d-flex align-items-start">
                         <div class="incoming_msg_img">
-                          <img src="assets/profile.png" alt="sunil" />
+                          <img src="https://ca.slack-edge.com/TUX9PC2RG-UUZKPEREX-ccd6e784fe8b-512" alt="sunil" />
                         </div>
-                        <div class="received_msg">
-                          <div class="received_withd_msg">
-                            <p>
-                              We work directly with our designers and suppliers,
-                              and sell direct to you, which means quality,
-                              exclusive products, at a price anyone can afford.
-                            </p>
-                            <span class="time_date"> 11:01 AM | Today</span>
-                          </div>
-                        </div>
-                        <div class="received_msg">
-                          <div class="received_withd_msg">
-                            <p>
-                              We work directly with our designers and suppliers,
-                              and sell direct to you, which means quality,
-                              exclusive products, at a price anyone can afford.
-                            </p>
-                            <span class="time_date"> 11:01 AM | Today</span>
-                          </div>
-                        </div>
-                        <div class="received_msg">
-                          <div class="received_withd_msg">
-                            <p>
-                              We work directly with our designers and suppliers,
-                              and sell direct to you, which means quality,
-                              exclusive products, at a price anyone can afford.
-                            </p>
-                            <span class="time_date"> 11:01 AM | Today</span>
-                          </div>
-                        </div>
-                        <div class="received_msg">
-                          <div class="received_withd_msg">
-                            <p>
-                              We work directly with our designers and suppliers,
-                              and sell direct to you, which means quality,
-                              exclusive products, at a price anyone can afford.
-                            </p>
-                            <span class="time_date"> 11:01 AM | Today</span>
-                          </div>
-                        </div>
-                        <div class="received_msg">
-                          <div class="received_withd_msg">
-                            <p>
-                              Sorry, something was wrong with my chat.
-                            </p>
-                            <span class="time_date"> 11:01 AM | Today</span>
-                          </div>
+                        <div class="message d-flex flex-column align-items-start">
+                            <div class="message-header"><span class="author">João Varela</span><span class="time_date"> 10:40 PM | Today</span></div>
+                            <div class="message-content">
+                              <p>
+                                André Esteves Neste caso devo detetar a troca dos parentísis mas devo fazer parse do body do while?
+                              </p>
+                            </div>
                         </div>
                       </div>
+                      <div class="incoming_msg d-flex align-items-start">
+                        <div class="incoming_msg_img">
+                          <img src="https://ca.slack-edge.com/TUX9PC2RG-UUZKPEREX-ccd6e784fe8b-512" alt="sunil" />
+                        </div>
+                        <div class="message d-flex flex-column align-items-start">
+                            <div class="message-header"><span class="author">João Varela</span><span class="time_date"> 10:43 PM | Today</span></div>
+                            <div class="message-content">
+                              <p>
+                                Já agora, sempre ficou combinado alguma coisa para podermos falar com o professor sobre a gramática?
+                              </p>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="incoming_msg d-flex align-items-start">
+                        <div class="incoming_msg_img">
+                          <img src="https://ca.slack-edge.com/TUX9PC2RG-UVDA734P8-eacc4ba7d71f-512" alt="sunil" />
+                        </div>
+                        <div class="message d-flex flex-column align-items-start">
+                            <div class="message-header"><span class="author">Manuel Serafim</span><span class="time_date"> 17:19 PM | Today</span></div>
+                            <div class="message-content">
+                              <p>
+                                Professor, antes de ser introduzido o gradle nos usavamos o combo jjtree/javacc/javac para compilar.
+                              </p>
+                              <p>
+                                Deparei-me com a seguinte situacao estranha com error checking e funcoes "static":
+                              </p>
+                              <p>
+                                error checking static = gradle nao compila / jjtree&javacc&javac compila
+                              </p>
+                              <p>
+                                error checking normal = gradle compila / jjtree&javacc&javac nao compila
+                              </p>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="incoming_msg d-flex align-items-start">
+                        <div class="incoming_msg_img">
+                          <img src="https://ca.slack-edge.com/TUX9PC2RG-UVDA734P8-eacc4ba7d71f-512" alt="sunil" />
+                        </div>
+                        <div class="message d-flex flex-column align-items-start">
+                            <div class="message-header"><span class="author">Manuel Serafim</span><span class="time_date"> 17:50 PM | Today</span></div>
+                            <div class="message-content">
+                              <p>
+                                Tiago Carvalho seria possivel rever connosco hoje a gramatica? ela ja se encontra LL(1) e passa todos os testes
+                              </p>
+                            </div>
+                        </div>
+                      </div>                    
                     </div>
                     <div class="type_msg">
                       <div class="input_msg_write px-1">

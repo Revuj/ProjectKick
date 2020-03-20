@@ -38,9 +38,20 @@
   color: var(--text-color);
 }
 
+.incoming_msg {
+  margin-bottom: 1rem;
+}
+
 .incoming_msg_img {
   display: inline-block;
-  width: 6%;
+  width: 40px;
+  margin: 0 0.5rem;
+  padding-top: 8px;
+}
+
+.incoming_msg_img img {
+  border-radius: 5px;
+  max-width: 40px;
 }
 
 .received_msg {
@@ -59,11 +70,14 @@
   width: 100%;
 }
 
+.message-header {
+  height: fit-content;
+}
+
 .time_date {
   color: #747474;
-  display: block;
   font-size: 12px;
-  margin: 8px 0 0;
+  vertical-align: bottom;
 }
 
 .mesgs {
@@ -149,13 +163,23 @@
 }
 
 .chat-container {
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 160px);
   margin: 0;
   margin-top: 0px;
   padding: 0;
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+.author {
+  font-weight: 600;
+  font-size: 0.9em;
+  vertical-align: bottom;
+}
+
+.message-content {
+  font-size: 0.9em;
 }
 
 @media only screen and (max-width: 1000px) {
