@@ -162,16 +162,18 @@
 
       <div class="main-container">
         <div id="report-user-container" class="px-3">
-          <h4
+          <h3
             id="user-report-title"
-            class="title task-title pb-2 border-bottom mt-5 mb-0"
+            class="title task-title pb-2 border-bottom mt-5 mb-0 font-weight-bold"
           >
             Report a User
-          </h4>
+          </h3>
           <form id="report-user-form" class="border-bottom py-4 p-3">
             <div class="row">
               <div class="form-group col-sm-12">
-                <label for="user-reported">User to Report</label>
+                <label for="user-reported" class="font-weight-bold"
+                  >User to Report</label
+                >
                 <input
                   type="text"
                   class="form-control"
@@ -183,7 +185,7 @@
                 >
               </div>
               <div class="form-group col-sm-12">
-                <label for="report-description"
+                <label for="report-description" class="font-weight-bold"
                   >Why are you reporting this user?</label
                 >
                 <textarea
@@ -193,7 +195,7 @@
                 ></textarea>
               </div>
               <div class="form-group col-sm-12">
-                <label for="report-annexes"
+                <label for="report-annexes" class="font-weight-bold"
                   >Input any relevant file for the report analysis.</label
                 >
                 <div class="col-sm-6 pl-0">
@@ -207,7 +209,7 @@
               </div>
             </div>
             <div class="d-flex justify-content-end">
-              <button type="submit" class="btn btn-success">
+              <button id="submit-report" type="submit" class="btn btn-success">
                 Submit
               </button>
             </div>
