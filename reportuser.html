@@ -132,25 +132,25 @@
             <div class="hamburger-symbol"></div>
           </li>
           <li class="side-menu-item dropdown">
-            <a href="#">
+            <a href="my_projects.html">
               <span class="m-2"><i class="fas fa-columns"></i></span>
               <span class="side-menu-item-title">Dashboard</span>
             </a>
           </li>
           <li class="side-menu-item dropdown">
-            <a href="#">
+            <a href="my_work.html">
               <span class="m-2"><i class="fas fa-tasks"></i></span>
               <span class="side-menu-item-title">My Work</span>
             </a>
           </li>
           <li class="side-menu-item">
-            <a href="#">
+            <a href="calendar.html">
               <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
               <span class="side-menu-item-title">Calendar</span>
             </a>
           </li>
           <li class="side-menu-item">
-            <a href="#">
+            <a href="searchpage.html">
               <span class="m-2"><i class="fas fa-search"></i></span>
               <span class="side-menu-item-title">Search</span>
             </a>
@@ -226,13 +226,14 @@
         ".notification-dropdown"
       );
 
-      document
-        .querySelector(".hamburger")
-        .addEventListener("click", function() {
+      let hamburger_menus = document.querySelectorAll(".hamburger");
+      hamburger_menus.forEach(elem =>
+        elem.addEventListener("click", function() {
           document
             .querySelector(".page-wrapper")
             .classList.toggle("is-collapsed");
-        });
+        })
+      );
 
       document
         .querySelector(".notification")
