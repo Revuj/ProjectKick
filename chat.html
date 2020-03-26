@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="./css/chat.css" />
     <link rel="stylesheet" href="./css/navbar.css" />
     <script src="./js/navbar.js" defer></script>
+    <script src="js/index.js" defer></script>
 
   </head>
 
@@ -113,6 +114,11 @@
                 <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
                 <div class="notify_item clickable d-flex">
                   <p class="m-0" id="dark-mode">Dark Mode</p>
+                  <span class="mt-2 mr-4">
+                    <label id="switch" class="switch">
+                    <input type="checkbox" onchange="toggleTheme()" id="slider">
+                    <span class="slider round"></span>
+                  </span>
                 </div>
   
                 <div class="notify_item clickable d-flex">
@@ -241,7 +247,7 @@
                     Discussions about development details
                   </h6>
                 </div>
-                  <div class="mesgs d-flex flex-column">
+                  <div class="mesgs d-flex flex-column justify-content-between">
                     <div class="msg_history pt-1 px-1">
                       <div class="incoming_msg d-flex align-items-start">
                         <div class="incoming_msg_img">
@@ -391,11 +397,11 @@
                         </div>
                       </div>                    
                     </div>
-                    <div class="type_msg">
-                      <div class="input_msg_write px-1">
+                    <div class="type_msg mt-auto">
+                      <div class="input_msg_write">
                         <input
                           type="text"
-                          class="write_msg"
+                          class="write_msg pl-2"
                           placeholder="Type a message"
                         />
                         <button class="msg_send_btn" type="button">

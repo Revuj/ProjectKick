@@ -35,7 +35,6 @@
 
 .active_chat {
   background: var(--primary-color);
-  color: var(--text-color);
 }
 
 .incoming_msg {
@@ -136,11 +135,8 @@
 
 .inbox_msg {
   background-color: var(--secondary-color);
-  color: var(--text-color);
+  color: #f7f9f9;
   border-radius: 5px 0 0 5px;
-}
-
-.channel_header {
 }
 
 .channel_name {
@@ -154,6 +150,7 @@
 #details {
   border: 1px solid var(--secondary-color);
   border-radius: 0 5px 5px 0;
+  background-color: var(--secondary-background-color);
 }
 
 .main-content-container {

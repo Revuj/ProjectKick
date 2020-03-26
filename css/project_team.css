@@ -1,5 +1,9 @@
 @import url("global.css");
 
+body {
+  color: var(--text-color);
+}
+
 .user-list tbody td > img {
   position: relative;
   max-width: 50px;
@@ -21,6 +25,7 @@
 
 .table {
   border-collapse: separate;
+  color: var(--text-color);
 }
 
 .table tbody > tr > td {

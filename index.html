@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="./css/auth.css" />
     <link rel="stylesheet" href="./css/main.css" />
     <!-- Main Javascript file -->
-    <script src="js/index.js"></script>
+    <script src="js/index.js" defer></script>
   </head>
 
   <body>
@@ -79,6 +79,11 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li> -->
         </ul>
+        <span class="mt-2 mr-4">
+          <label id="switch" class="switch">
+          <input type="checkbox" onchange="toggleTheme()" id="slider">
+          <span class="slider round"></span>
+        </span>
         <a href="auth.html" class="btn mr-4">Login</a>
         <a href="auth.html" class="btn mr-4">Signup</a>
       </div>

@@ -17,13 +17,33 @@
   min-width: 400px;
   border-radius: 5px;
   margin-right: 1rem;
+  margin-bottom: 1rem;
   border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.dark .task {
+  border-color: var(--accent-color);
+  background-color: #4e4f50;
 }
 
 .task-list-title {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.5rem;
   background-color: var(--background-hover);
+}
+
+.dark .task-list-title {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.kanban-table .btn {
+  color: var(--text-color);
+}
+
+.task-list-title h6 {
+  font-weight: 600;
 }
 
 .main-container {
@@ -51,6 +71,7 @@
   border-radius: 5px;
   border: 1px solid var(--border-color);
   transition: 0.3s;
+  color: var(--container-text-color);
 }
 
 .task-item:hover {
@@ -123,13 +144,13 @@
 
 .is-collapsed-right .main-container {
   padding-right: 20rem;
-  background: none;
 }
 
 .is-collapsed-right #side-issue-container,
 .add-label,
 .add-assignee {
   right: 0;
+  color: var(--container-text-color);
 }
 
 #side-issue-header button:hover,

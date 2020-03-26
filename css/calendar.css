@@ -1,7 +1,6 @@
 @import url("global.css");
 
 /*left content*/
-
 .event-manager {
   background-color: var(--secondary-color);
   overflow: hidden;
@@ -43,7 +42,7 @@
 .calendar-month > li.active {
   border-radius: 0.5rem;
   background-color: var(--primary-color);
-  color: var(--text-color);
+  color: #f0f0f0;
 }
 
 .calendar-week-list {
@@ -54,10 +53,10 @@
   margin-bottom: 1rem;
 }
 
-.active-day {
+.active-day.selected-day {
   border-radius: 0.5rem;
   background-color: var(--primary-color);
-  color: var(--text-color);
+  color: #f0f0f0;
 }
 
 .calendar-days-list > tr > td:hover {
@@ -77,6 +76,11 @@
 .calendar-content {
   border-radius: 0 5px 5px 0;
   border: 1px solid var(--secondary-color);
+  background-color: var(--secondary-background-color);
+}
+
+.calendar-content td {
+  color: var(--text-color);
 }
 
 .add-event-button {

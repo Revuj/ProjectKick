@@ -102,6 +102,7 @@
   left: -17rem;
   top: 150%;
   z-index: 1000;
+  color: var(--container-text-color);
 }
 
 .user-dropdown {
@@ -113,6 +114,7 @@
   position: absolute;
   left: -5rem;
   top: 150%;
+  color: var(--container-text-color);
 }
 
 .notify_item {
@@ -257,6 +259,7 @@
   padding-top: 64px;
   transition: all 0.3s ease;
   z-index: -100;
+  background-color: var(--background-color);
 }
 
 .main-container .item {

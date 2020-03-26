@@ -65,7 +65,6 @@
 
 .timeline-item {
   position: relative;
-  border-bottom: 2px solid white;
 }
 
 .timeline-item:last-child {

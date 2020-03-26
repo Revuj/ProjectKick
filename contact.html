@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="./css/contact.css" />
 
   <script src="./js/navbar.js" defer></script>
+  <script src="js/index.js" defer></script>
 
 </head>
 
@@ -82,6 +83,11 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li> -->
         </ul>
+        <span class="mt-2 mr-4">
+          <label id="switch" class="switch">
+          <input type="checkbox" onchange="toggleTheme()" id="slider">
+          <span class="slider round"></span>
+        </span>
         <a href="auth.html" class="btn mr-4">Login</a>
         <a href="auth.html" class="btn mr-4">Signup</a>
       </div>
@@ -89,8 +95,8 @@
       <div class="main-container">
         <div class="main-content-container px-2">
         <div id="contact-us" class="text-left">
-          <h3 id="contact-us-title" class="title task-title pb-2 border-bottom mt-5 mb-0 font-weight-bold">Contact us</h3>
-          <form id="contact-us-form" class="border-bottom py-4 p-3">
+          <h3 id="contact-us-title" class="title task-title pb-2 mt-5 mb-0 font-weight-bold">Contact us</h3>
+          <form id="contact-us-form" class="py-4 p-3">
             <div class="row">
               <div class="form-group col-sm-12">
                 <label for="name">Name</label>

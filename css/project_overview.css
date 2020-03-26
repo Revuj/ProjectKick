@@ -1,5 +1,9 @@
 @import url("global.css");
 
+.card {
+  color: var(--container-text-color);
+}
+
 .project-title {
   font-weight: 500;
   font-size: 2rem;

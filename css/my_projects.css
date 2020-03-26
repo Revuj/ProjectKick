@@ -1,5 +1,13 @@
 @import url("global.css");
 
+body {
+  background: var(--background-color);
+}
+
+.card {
+  color: var(--container-text-color);
+}
+
 .card-header a {
   font-size: 1.2rem;
   font-weight: bolder;

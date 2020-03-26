@@ -4,6 +4,14 @@ body {
   background-color: var(--background-color);
 }
 
+.container {
+  background-color: var(--accent-color);
+}
+
+#main-page-body .container {
+  background-color: var(--background-color);
+}
+
 .main-container {
   height: 100%;
 }
@@ -22,7 +30,7 @@ body {
 }
 
 #main-nav a {
-  color: var(--primary-color);
+  color: white;
   font-family: "Oxanium", serif;
   text-transform: uppercase;
 }
@@ -85,6 +93,7 @@ body {
   background: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 40px;
+  color: var(--container-text-color);
 }
 
 footer {

@@ -19,7 +19,7 @@
 }
 
 .issue:hover {
-  background-color: var(--background-hover);
+  background-color: var(--secondary-background-color);
 }
 
 .list-item-label {

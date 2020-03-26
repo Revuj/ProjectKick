@@ -47,6 +47,8 @@
 
     <script src="./js/issueslist.js" defer></script>
     <script src="./js/navbar.js" defer></script>
+    <script src="js/index.js" defer></script>
+
   </head>
   <body>
     <div class="page-wrapper h-100 is-collapsed">
@@ -121,6 +123,11 @@
                 <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
                 <div class="notify_item clickable d-flex">
                   <p class="m-0" id="dark-mode">Dark Mode</p>
+                  <span class="mt-2 mr-4">
+                    <label id="switch" class="switch">
+                    <input type="checkbox" onchange="toggleTheme()" id="slider">
+                    <span class="slider round"></span>
+                  </span>
                 </div>
   
                 <div class="notify_item clickable d-flex">
