@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="./css/navbar.css" />
     <link rel="stylesheet" href="./css/reportuser.css" />
     <script src="./js/navbar.js" defer></script>
+    <script src="js/index.js" defer></script>
   </head>
 
   <body>
@@ -113,6 +114,11 @@
                 <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
                 <div class="notify_item clickable d-flex">
                   <p class="m-0" id="dark-mode">Dark Mode</p>
+                  <span class="mt-2 mr-4">
+                    <label id="switch" class="switch">
+                    <input type="checkbox" onchange="toggleTheme()" id="slider">
+                    <span class="slider round"></span>
+                  </span>
                 </div>
 
                 <div class="notify_item clickable d-flex">
@@ -164,11 +170,11 @@
         <div id="report-user-container" class="px-3">
           <h3
             id="user-report-title"
-            class="title task-title pb-2 border-bottom mt-5 mb-0 font-weight-bold"
+            class="title task-title pb-2 mt-5 mb-0 font-weight-bold"
           >
             Report a User
           </h3>
-          <form id="report-user-form" class="border-bottom py-4 p-3">
+          <form id="report-user-form" class="py-4 p-3">
             <div class="row">
               <div class="form-group col-sm-12">
                 <label for="user-reported" class="font-weight-bold"

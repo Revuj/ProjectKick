@@ -4,9 +4,14 @@ body {
   background-color: var(--background-color);
 }
 
+#user-report-title {
+  color: white;
+}
+
 #report-user-container {
   width: 80%;
   margin: auto;
+  color: var(--container-text-color);
 }
 
 #report-user-form {
