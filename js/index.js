@@ -36,3 +36,37 @@ function toggleTheme() {
     setTheme("light");
   }
 })();
+
+// function to set the collapsed as true or false
+function setCollapsed(collapsed) {
+  localStorage.setItem("collapsed", collapsed);
+  if (collapsed === "true")
+    document.querySelector(".page-wrapper").classList.add("is-collapsed");
+  else document.querySelector(".page-wrapper").classList.remove("is-collapsed");
+}
+
+// function to toggle between collapsed and non collapsed
+function toggleCollapse() {
+  if (localStorage.getItem("collapsed") === "true") {
+    setCollapsed("false");
+  } else {
+    setCollapsed("true");
+  }
+}
+
+// function to collapse side navbar
+let hamburger_menus = document.querySelectorAll(".hamburger");
+hamburger_menus.forEach(elem =>
+  elem.addEventListener("click", function() {
+    toggleCollapse();
+  })
+);
+
+// Immediately invoked function to set the collapse on initial load
+(function() {
+  if (localStorage.getItem("collapsed") === "false") {
+    setCollapsed("false");
+  } else {
+    setCollapsed("true");
+  }
+})();
