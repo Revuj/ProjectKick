@@ -232,15 +232,6 @@
         ".notification-dropdown"
       );
 
-      let hamburger_menus = document.querySelectorAll(".hamburger");
-      hamburger_menus.forEach(elem =>
-        elem.addEventListener("click", function() {
-          document
-            .querySelector(".page-wrapper")
-            .classList.toggle("is-collapsed");
-        })
-      );
-
       document
         .querySelector(".notification")
         .addEventListener("click", function() {

@@ -41,6 +41,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="js/libs/chartjs-plugin-doughnutlabel.min.js"></script>
+    <script src="js/index.js" defer></script>
 
     <!--TO USED THE MAP-->
     <!-- Resources -->
@@ -318,24 +319,4 @@
 
     <script src="./js/admin.js"></script>
   </body>
-  <script>
-    let hamburger_menus = document.querySelectorAll('.hamburger');
-    hamburger_menus.forEach(elem =>
-      elem.addEventListener('click', function() {
-        document
-          .querySelector('.page-wrapper')
-          .classList.toggle('is-collapsed');
-      })
-    );
-
-    document
-      .querySelector('.notification')
-      .addEventListener('click', function() {
-        console.log(document.querySelector('.notification').classList);
-
-        document
-          .querySelector('.notification-dropdown')
-          .classList.toggle('display-block');
-      });
-  </script>
 </html>
