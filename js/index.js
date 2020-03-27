@@ -26,11 +26,11 @@ function toggleTheme() {
   }
 }
 // Immediately invoked function to set the theme on initial load
-(function() {
+(function () {
   if (localStorage.getItem("theme") === "dark") {
     try {
       document.getElementById("slider").checked = true;
-    } catch {}
+    } catch { }
     setTheme("dark");
   } else {
     setTheme("light");
@@ -39,10 +39,12 @@ function toggleTheme() {
 
 // function to set the collapsed as true or false
 function setCollapsed(collapsed) {
+  let element = document.querySelector(".page-wrapper");
+  if (element === null) return;
   localStorage.setItem("collapsed", collapsed);
   if (collapsed === "true")
-    document.querySelector(".page-wrapper").classList.add("is-collapsed");
-  else document.querySelector(".page-wrapper").classList.remove("is-collapsed");
+    element.classList.add("is-collapsed");
+  else element.classList.remove("is-collapsed");
 }
 
 // function to toggle between collapsed and non collapsed
@@ -57,13 +59,13 @@ function toggleCollapse() {
 // function to collapse side navbar
 let hamburger_menus = document.querySelectorAll(".hamburger");
 hamburger_menus.forEach(elem =>
-  elem.addEventListener("click", function() {
+  elem.addEventListener("click", function () {
     toggleCollapse();
   })
 );
 
 // Immediately invoked function to set the collapse on initial load
-(function() {
+(function () {
   if (localStorage.getItem("collapsed") === "false") {
     setCollapsed("false");
   } else {
