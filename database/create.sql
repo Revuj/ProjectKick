@@ -49,7 +49,7 @@ CREATE TABLE "user" (
     country_id integer NOT NULL REFERENCES country  ON DELETE CASCADE
                                                      ON UPDATE CASCADE,
     creation_date timestamp with time zone DEFAULT now() NOT NULL,
-    is_deleted bool DEFAULT false NOT NULL
+    is_banned bool DEFAULT false NOT NULL
 );
 
 CREATE TABLE project (
