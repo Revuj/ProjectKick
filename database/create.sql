@@ -48,7 +48,8 @@ CREATE TABLE "user" (
     is_admin bool DEFAULT false NOT NULL,
     country_id integer NOT NULL REFERENCES country  ON DELETE CASCADE
                                                      ON UPDATE CASCADE,
-    creation_date timestamp with time zone DEFAULT now() NOT NULL
+    creation_date timestamp with time zone DEFAULT now() NOT NULL,
+    is_deleted bool DEFAULT false NOT NULL
 );
 
 CREATE TABLE project (
