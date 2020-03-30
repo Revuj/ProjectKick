@@ -63,7 +63,7 @@ CREATE TABLE project (
 
 CREATE TABLE member_status (
     id SERIAL PRIMARY KEY,
-    role project_role NOT NULL,
+    role project_role DEFAULT 'developer' NOT NULL,
     entrance_date timestamp with time zone DEFAULT now() NOT NULL,
     departure_date timestamp with time zone CHECK (departure_date > entrance_date),
     user_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE
@@ -86,6 +86,7 @@ CREATE TABLE issue (
     creation_date timestamp with time zone DEFAULT now() NOT NULL,
     due_date timestamp with time zone CHECK (due_date > creation_date),
     is_completed boolean DEFAULT false NOT NULL,
+    closed_date timestamp with time zone CHECK (closed_date > creation_date),
     issue_list_id integer NOT NULL REFERENCES issue_list ON DELETE CASCADE
                                                      ON UPDATE CASCADE,
     author_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE
@@ -108,6 +109,7 @@ CREATE TABLE channel (
     id SERIAL PRIMARY KEY,
     name text NOT NULL,
     description text,
+    creation_date timestamp with time zone DEFAULT now() NOT NULL,
     project_id integer NOT NULL REFERENCES project ON DELETE CASCADE
                                                      ON UPDATE CASCADE
 );
@@ -193,7 +195,7 @@ CREATE TABLE vote (
                                                      ON UPDATE CASCADE,
     comment_id integer  NOT NULL REFERENCES comment ON DELETE CASCADE
                                                      ON UPDATE CASCADE,
-    upvote boolean,
+    upvote boolean NOT NULL,
     
     PRIMARY KEY (
         user_id,
