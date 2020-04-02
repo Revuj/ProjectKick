@@ -50,7 +50,8 @@ CREATE TABLE "user" (
     country_id integer NOT NULL REFERENCES country  ON DELETE CASCADE
                                                      ON UPDATE CASCADE,
     creation_date timestamp with time zone DEFAULT now() NOT NULL,
-    is_banned bool DEFAULT false NOT NULL
+    is_banned bool DEFAULT false NOT NULL,
+    search TSVECTOR
 );
 
 CREATE TABLE project (
@@ -60,7 +61,8 @@ CREATE TABLE project (
     creation_date timestamp with time zone DEFAULT now() NOT NULL,
     finish_date timestamp with time zone CHECK (finish_date > creation_date),
     author_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE
-                                                     ON UPDATE CASCADE
+                                                     ON UPDATE CASCADE,
+    search TSVECTOR
 );
 
 CREATE TABLE member_status (
@@ -94,7 +96,8 @@ CREATE TABLE issue (
     author_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE
                                                      ON UPDATE CASCADE,
     complete_id integer REFERENCES "user" ON DELETE CASCADE
-                                                     ON UPDATE CASCADE
+                                                     ON UPDATE CASCADE,
+    search TSVECTOR
 );
 
 CREATE TABLE "comment" (
@@ -217,7 +220,8 @@ CREATE TABLE tag (
     id SERIAL PRIMARY KEY,
     name text NOT NULL,
     color_id integer NOT NULL REFERENCES color  ON DELETE CASCADE
-                                                     ON UPDATE CASCADE
+                                                     ON UPDATE CASCADE,
+    search TSVECTOR
 );
 
 CREATE TABLE user_tag (
