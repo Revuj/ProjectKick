@@ -41,6 +41,7 @@ CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     email text UNIQUE CHECK (email LIKE '%@%.%_') NOT NULL,
     username text UNIQUE NOT NULL,
+    password text NOT NULL CHECK (length(password) > 6),
     name text NOT NULL,
     phone_number text UNIQUE,
     photo_path text,
@@ -128,8 +129,7 @@ CREATE TABLE message (
 CREATE TABLE "event" (
     id SERIAL PRIMARY KEY,
     title text NOT NULL,
-    start_date timestamp with time zone NOT NULL,
-    end_date timestamp with time zone CHECK (end_date > start_date)
+    start_date timestamp with time zone NOT NULL
 );
 
 CREATE TABLE event_meeting (
