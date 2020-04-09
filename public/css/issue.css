@@ -1,0 +1,76 @@
+@import url("global.css");
+
+.assignees li,
+.add-label,
+.add-assignee,
+.comment-author {
+  width: 40px;
+  height: 40px;
+}
+
+.list-item-label {
+  border-radius: 5px;
+}
+
+.main-container .main-content-container {
+  max-width: 1080px;
+}
+
+.edit-task,
+.close-side-issue {
+  width: 38px;
+  height: 38px;
+}
+
+.due-date-container .change-due-date {
+  background-color: var(--item-color);
+  color: white;
+}
+
+.issue-status {
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+}
+
+.task-title {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.comment-author {
+  border-radius: 5px;
+}
+
+#new-comment {
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: white;
+}
+
+#issue-header .edit-button {
+  display: none;
+}
+
+#issue-header:hover .edit-button {
+  display: inline-block;
+}
+
+.comment-timestamp {
+  opacity: 0.6;
+}
+
+@media only screen and (max-width: 600px) {
+  .issue-status-description {
+    display: none;
+  }
+
+  .members-and-duedate {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #issue .due-date-container {
+    margin-left: 0;
+    margin-top: 2rem;
+  }
+}

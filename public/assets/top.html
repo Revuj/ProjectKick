@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/board.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>top</title>
+
+    <!-- Owl-Carousel -->
+    <link rel="stylesheet" href="./top_files/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="./top_files/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous">
+
+    <!-- Font Awesome CDN -->
+    <script src="./top_files/23412c6a8d.js.download"></script><link rel="stylesheet" href="./top_files/free.min.css" media="all"><link rel="stylesheet" href="./top_files/free-v4-shims.min.css" media="all">
+
+    <!-- Custom Style-->
+    <link rel="stylesheet" href="./top_files/board.css">
+    <link rel="stylesheet" href="./top_files/navbar.css">
+
+    <!--custom css-->
+    <link rel="stylesheet" href="./top_files/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--custom js-->
+    <script src="./top_files/board.js.download" defer=""></script>
+  </head>
+
+  <body cz-shortcut-listen="true">
+    <div class="page-wrapper h-100">
+  
+        <nav class="top-navbar">
+    
+          <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
+    
+            <div class="logo">
+              <h4 class="py-3 px-3"><i class="fas fa-drafting-compass" aria-hidden="true"></i> Kick</h4>
+            </div>
+    
+              <ul class="d-flex align-items-end align-items-center mb-0">
+              
+                <!--notifications-->
+                <li class="px-2 utility ml-3 notification mb-0">
+                    <a href="http://127.0.0.1:5500/board.html#"><i class="fas fa-bell" aria-hidden="true"></i></a>
+                    <span class="num">4</span>
+                </li>
+                <!--profile-->
+                <li class="px-2 utility ml-3 mb-0">
+                  <a href="http://127.0.0.1:5500/board.html#"><i class="fas fa-user" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+          </div>
+        </nav>
+    
+        <!-- 
+          inside a project he sidebar-menu options can be
+          board
+          flux diagram
+          calendar
+          tasks
+          forum
+          back
+          ...
+        -->
+        <nav class="sidebar-menu">
+          <ul>
+            <li class="hamburger side-menu-item">
+                <div class="hamburger-symbol"></div>
+                <div class="hamburger-symbol"></div>
+                <div class="hamburger-symbol"></div>
+            </li>
+            <li class="side-menu-item"><a href="http://127.0.0.1:5500/board.html#">
+              <span class="m-2"><i class="fas fa-book" aria-hidden="true"></i></span>
+              <span class="side-menu-item-title">My Work</span>
+              </a>
+            </li>
+            <li class="side-menu-item"><a href="http://127.0.0.1:5500/board.html#">
+              <span class="m-2"><i class="far fa-folder" aria-hidden="true"></i></span>
+              <span class="side-menu-item-title">Projects</span>
+              </a>
+            </li>
+            <li class="side-menu-item"><a href="http://127.0.0.1:5500/board.html#">
+              <span class="m-2"><i class="fas fa-columns" aria-hidden="true"></i></span>
+              <span class="side-menu-item-title">Panels</span>
+              </a>
+            </li>
+            <li class="side-menu-item"><a href="http://127.0.0.1:5500/board.html#" class="active">
+              <span class="m-2"><i class="fas fa-filter" aria-hidden="true"></i></span>
+              <span class="side-menu-item-title">Filters</span>
+              </a>
+            </li>
+            <li class="side-menu-item"><a href="http://127.0.0.1:5500/board.html#">
+              <span class="m-2"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
+              <span class="side-menu-item-title">Users</span>
+              </a>
+            </li>
+            <li class="side-menu-item"><a href="http://127.0.0.1:5500/board.html#">
+              <span class="m-2"><i class="fas fa-cogs" aria-hidden="true"></i></span>
+              <span class="side-menu-item-title">Settings</span>
+              </a>
+            </li>
+            <li class="side-menu-item"><a href="http://127.0.0.1:5500/board.html#">
+              <span class="m-2"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i></span>
+              <span class="side-menu-item-title">Urgent</span>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    
+         
+
+      <!--generic container-->
+      <div class="main-container h-100">
+        <!-- <div class="text-left d-flex flex-row">
+          <h5>Project Name</h5>
+          <ul class="d-flex ml-4 board-members">
+            <li class="mr-3 text-center">RV</li>
+            <li class="mr-3 text-center">JA</li>
+          </ul>
+        </div> -->
+        <section class="board-options d-flex flex-row bd-highlight mb-3 align-items-center m-4 h-100">
+          <!-- create a new task-->
+          <div class="p-2 bd-highlight">
+            <div class="input-group inputArea">
+              <input type="text" class="form-control listCreated" placeholder="Enter Todos">
+              <div class="input-group-append">
+                <button class="btn btn-secondary add-to-backlog" type="button">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+    
+          <!--most relevant filters-->
+          <div class="bd-highlight">
+            <ul class="filters d-flex flex-row align-items-center">
+              <li class="filter-item ml-3 hover-effect">Work assigned to me</li>
+              <li class="filter-item ml-3 hover-effect">Recenlty updated</li>
+            </ul>
+          </div>
+    
+          <!--task searcher-->
+          <div class="p-2 bd-highlight  ml-auto">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </section>
+    
+        <section class="kanban-table container-fluid mt-5 h-100">
+          <div class="d-flex flex-row bd-highlight mb-3 align-items-begin h-100">
+            <div class="bd-highlight task h-100">
+              <div>
+              <h6 class="task-title text-left p-3"><i class="fa fa-fw fa-caret-right" aria-hidden="true"></i>Backlog<i class="fas fa-plus float-right pl-4 pr-3" aria-hidden="true"></i><i class="fas fa-trash-alt float-right" aria-hidden="true"></i></h6>
+            </div>
+              <ul class="task-items">
+                <li class="task-item hover-effect" draggable="true">
+                  Work assigned to me
+                </li>
+                <li class="task-item hover-effect" draggable="true">
+                  Work assigned to me
+                </li>
+              </ul>
+            </div>
+            <!--end of backlog-->
+    
+            <div class="bd-highlight task">
+              <h6 class="task-title text-left p-3"><i class="fa fa-fw fa-caret-right" aria-hidden="true"></i>To Develop<i class="fas fa-plus float-right pl-4 pr-3" aria-hidden="true"></i><i class="fas fa-trash-alt float-right" aria-hidden="true"></i></h6>
+              <ul class="task-items">
+                <li class="task-item hover-effect" draggable="true">
+                  Work assigned to me
+                </li>
+                <li class="task-item hover-effect" draggable="true">
+                  Work assigned to me
+                </li>
+                <li class="task-item hover-effect" draggable="true">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
+                  qui, nesciunt voluptate, rem placeat fugiat sint impedit nam
+                  possimus sapiente ipsum facilis dolorum inventore tempora?
+                </li>
+              </ul>
+            </div>
+            <!--end of backlog-->
+    
+            <div class="bd-highlight task">
+              <h6 class="task-title text-left p-3"><i class="fa fa-fw fa-caret-right" aria-hidden="true"></i>Developing<i class="fas fa-plus float-right pl-4 pr-3" aria-hidden="true"></i><i class="fas fa-trash-alt float-right" aria-hidden="true"></i></h6>
+              <ul class="task-items">
+                <li class="task-item hover-effect" draggable="true">
+                  Work assigned to me
+                </li>
+                <li class="task-item hover-effect" draggable="true">
+                  Work assigned to me
+                </li>
+                <li class="task-item hover-effect" draggable="true">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
+                  qui, nesciunt voluptate, rem placeat fugiat sint impedit nam
+                  possimus sapiente ipsum facilis dolorum inventore tempora?
+                </li>
+              </ul>
+            </div>
+            <!--end of backlog-->
+    
+            <div class="bd-highlight task">
+              <h6 class="task-title text-left p-3"><i class="fa fa-fw fa-caret-right" aria-hidden="true"></i>Done<i class="fas fa-plus float-right pl-4 pr-3" aria-hidden="true"></i><i class="fas fa-trash-alt float-right" aria-hidden="true"></i></h6>
+              <ul class="task-items"></ul>
+            </div>
+            <!--end of backlog-->
+          </div>
+        </section>
+      </div> <!--end of main-container can possible be a section in the future-->
+    
+    </div> <!--end of page wrapper-->
+  <!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>

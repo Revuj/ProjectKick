@@ -1,0 +1,29 @@
+@import url("global.css");
+
+.notification-list-item {
+  border-radius: 5px;
+}
+
+.timestamp {
+  opacity: 0.8;
+}
+
+.nav-links {
+  border-bottom: 1px solid #dee2e6;
+}
+
+@media only screen and (max-width: 600px) {
+  .timestamp {
+    display: none;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    border: none;
+  }
+
+  .notification-container button {
+    margin-bottom: 1rem;
+  }
+
+} 

@@ -1,0 +1,182 @@
+/* css related to the page board*/
+
+@import url("global.css");
+
+.filters {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+#main-nav {
+  background-color: var(--container-item-color);
+}
+
+.task {
+  background-color: var(--container-item-color);
+  width: 400px;
+  min-width: 400px;
+  border-radius: 5px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.dark .task {
+  border-color: var(--accent-color);
+  background-color: #4e4f50;
+}
+
+.task-list-title {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  background-color: var(--background-hover);
+}
+
+.dark .task-list-title {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.kanban-table .btn {
+  color: var(--text-color);
+}
+
+.task-list-title h6 {
+  font-weight: 600;
+}
+
+.main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 0 1rem;
+}
+
+.task-items {
+  padding: 10px;
+  width: 100%;
+  height: calc(100% - 52px);
+  list-style: none;
+  overflow-y: auto;
+}
+
+.task-item,
+.add-item-li {
+  background: white;
+  padding: 0.4rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  transition: 0.3s;
+  color: var(--container-text-color);
+}
+
+.task-item:hover {
+  background: var(--background-hover);
+}
+
+.board-members li {
+  background-color: #6c757d;
+  color: white;
+  border-radius: 5px;
+  height: 28px;
+  width: 28px;
+}
+
+.task-title .fa-plus {
+  background-color: white;
+  padding: 0.5em;
+  vertical-align: middle;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+
+.task-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.kanban-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.kanban-table {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.edit-task {
+  display: none;
+  background-color: white;
+}
+
+.list-item-counter,
+.list-item-creator,
+.list-item-label {
+  font-size: 0.9em;
+}
+
+.list-item-author {
+  width: 25px;
+  height: 25px;
+}
+
+#side-issue-container {
+  position: fixed;
+  top: 64px;
+  width: 20rem;
+  bottom: 0;
+  right: -20rem;
+  transition: all 0.3s ease;
+  background-color: var(--container-item-color);
+  border-left: 1px solid var(--border-color);
+  z-index: 200;
+  overflow: hidden;
+}
+
+.is-collapsed-right .main-container {
+  padding-right: 20rem;
+}
+
+.is-collapsed-right #side-issue-container,
+.add-label,
+.add-assignee {
+  right: 0;
+  color: var(--container-text-color);
+}
+
+#side-issue-header button:hover,
+.add-label:hover,
+.add-assignee:hover {
+  background-color: white;
+}
+
+.assignees li,
+.add-button {
+  width: 40px;
+  height: 40px;
+}
+
+.edit-task,
+.close-side-issue {
+  width: 38px;
+  height: 38px;
+}
+
+.due-date-container .change-due-date {
+  background-color: var(--item-color);
+  color: white;
+}
+
+.list-item-label {
+  font-size: 0.9em;
+  border-radius: 5px;
+}

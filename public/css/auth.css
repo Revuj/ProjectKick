@@ -1,0 +1,45 @@
+@import url("global.css");
+
+body {
+  color: var(--container-text-color);
+  background-color: var(--background-color);
+}
+
+.logo {
+  font-family: Oxanium;
+  text-transform: uppercase;
+}
+
+#signup-form {
+  display: none;
+}
+
+.container {
+  background-color: white;
+}
+
+#login-form > form > div > p,
+#login-form > form > p > a {
+  color: var(--accent-color);
+}
+
+#signup-form > form > p > a {
+  color: var(--accent-color);
+}
+
+#login-button,
+#signup-button {
+  width: 7rem;
+  padding: 0 auto;
+}
+
+@media screen and (max-width: 740px) {
+  #login-form,
+  #signup-form {
+    padding-right: 15px !important;
+  }
+
+  .container.shadow-lg {
+    box-shadow: none !important;
+  }
+}

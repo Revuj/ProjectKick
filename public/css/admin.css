@@ -1,0 +1,68 @@
+#chartdiv {
+  margin: auto;
+  width: 85%;
+  height: 30rem;
+  max-height: 40rem;
+  box-shadow: var(--primary-shadow);
+  padding: 2rem;
+}
+
+.graph-item {
+  margin: 3rem 0;
+}
+
+@media only screen and (max-width: 600px) {
+  #chartdiv {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  table td img {
+    display: none;
+  }
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+
+  table td:last-child {
+    width: 100%;
+  }
+
+  table tr:first-child {
+    border-top: 3px solid #ddd;
+  }
+}

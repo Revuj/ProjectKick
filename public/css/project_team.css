@@ -1,0 +1,240 @@
+@import url("global.css");
+
+body {
+  color: var(--text-color);
+}
+
+.user-list tbody td > img {
+  position: relative;
+  max-width: 50px;
+  float: left;
+  margin-right: 15px;
+}
+
+.user-list tbody td .user-link {
+  display: block;
+  font-size: 1.25em;
+  padding-top: 3px;
+  margin-left: 60px;
+}
+
+.user-list tbody td .user-subhead {
+  font-size: 0.875em;
+  font-style: italic;
+}
+
+.table {
+  border-collapse: separate;
+  color: var(--text-color);
+}
+
+.table tbody > tr > td {
+  vertical-align: middle;
+  padding: 12px 8px;
+}
+
+.table thead > tr > th {
+  border-top: none !important;
+}
+
+.table thead > tr > th span {
+  display: inline-block;
+  padding: 0 5px;
+  padding-bottom: 5px;
+  font-weight: normal;
+}
+
+.table a.table-link {
+  margin: 0 5px;
+  font-size: 1.125em;
+}
+
+.table a.table-link {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+.table a.table-link.danger {
+  color: #fe635f;
+}
+
+.table a.table-link.danger:hover {
+  color: #dd504c;
+}
+
+.table tbody tr td a {
+  color: var(--secondary-color);
+}
+
+.progress-bar {
+  background-color: var(--accent-color);
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: var(--secondary-color);
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  background-color: var(--secondary-color);
+}
+
+.page-link:focus,
+.page-link:hover {
+  text-decoration: none;
+  background-color: var(--secondary-color);
+}
+
+[data-toggle="buttons"] > .btn > input[type="radio"] {
+  display: none;
+}
+
+.btn-outline-primary.active {
+  color: var(--text-color) !important;
+  background-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:hover {
+  color: var(--text-color) !important;
+  background-color: var(--primary-color) !important;
+}
+
+.table a.table-link .danger {
+  padding: 0.375rem 0.75rem;
+  background-color: #fe635f;
+  color: var(--text-color);
+}
+
+.table a.table-link .danger:hover {
+  background-color: #dd504c;
+  color: var(--text-color);
+}
+
+.info button {
+  display: none;
+}
+
+.info:hover button {
+  display: inline;
+}
+
+.user-list .close-button {
+  background-color: white;
+  color: black;
+  border: 3px solid var(--close-color);
+}
+
+.close-button i {
+  color: var(--close-color);
+}
+
+.user-list .open-button {
+  background-color: white;
+  color: black;
+  border: 3px solid var(--open-color);
+}
+
+.open-button i {
+  color: var(--open-color);
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-dialog {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .modal-content {
+    height: auto;
+    min-height: 100%;
+    border-radius: 0;
+  }
+
+  #side-filter-container {
+    width: 100%;
+    top: 0;
+  }
+
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  table td img {
+    display: none;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+
+  table td:last-child {
+    width: 100%;
+  }
+
+  table tr:first-child {
+    border-top: 3px solid #ddd;
+  }
+
+  .row {
+    margin: 0 !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #tables-types .btn-success span {
+    display: none;
+  }
+
+  #filter-issues {
+    flex-direction: column !important;
+  }
+
+  #filter-buttons {
+    margin-top: 10px;
+  }
+
+  .tables-type-counter {
+    display: none !important;
+  }
+}

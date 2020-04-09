@@ -1,0 +1,103 @@
+@import url("global.css");
+
+/*left content*/
+.event-manager {
+  background-color: var(--secondary-color);
+  overflow: hidden;
+}
+
+.calendar-left-side-day {
+  font-size: 5rem;
+}
+
+.calendar-left-side-day-of-week {
+  font-size: 1.25rem;
+}
+
+.current-day-events-list > li {
+  padding-left: 0.5rem;
+}
+
+/*right content*/
+.calendar-change-year {
+  font-size: 1.25rem;
+}
+
+.calendar-month {
+  border-bottom: 1px solid #ffe8e2;
+  font-weight: 700;
+}
+
+.calendar-month > li {
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.calendar-month > li:hover {
+  border-radius: 0.5rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.calendar-month > li.active {
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+  color: #f0f0f0;
+}
+
+.calendar-week-list {
+  font-weight: 700;
+}
+
+.calendar-week-list > th {
+  margin-bottom: 1rem;
+}
+
+.active-day.selected-day {
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+  color: #f0f0f0;
+}
+
+.calendar-days-list > tr > td:hover {
+  border-radius: 0.5rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.another-month {
+  opacity: 0.5;
+}
+
+[data-toggle="buttons"] > .btn > input[type="radio"] {
+  display: none;
+}
+
+.calendar-content {
+  border-radius: 0 5px 5px 0;
+  border: 1px solid var(--secondary-color);
+  background-color: var(--secondary-background-color);
+}
+
+.calendar-content td {
+  color: var(--text-color);
+}
+
+.add-event-button {
+  border-radius: 0;
+}
+
+.btn-outline-primary.active {
+  color: var(--text-color) !important;
+  background-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:hover {
+  color: var(--text-color) !important;
+  background-color: var(--primary-color) !important;
+}

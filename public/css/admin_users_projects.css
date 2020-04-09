@@ -1,0 +1,182 @@
+@import url("global.css");
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: var(--secondary-color);
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  background-color: var(--secondary-color);
+}
+
+.page-link:focus,
+.page-link:hover {
+  text-decoration: none;
+  background-color: var(--secondary-color);
+}
+
+.user-list tbody td > img {
+  position: relative;
+  max-width: 50px;
+  float: left;
+  margin-right: 15px;
+}
+
+.user-list tbody td .user-link {
+  display: block;
+  font-size: 1.25em;
+  padding-top: 3px;
+  margin-left: 60px;
+}
+
+.table {
+  border-collapse: separate;
+}
+
+.table tbody > tr > td {
+  vertical-align: middle;
+  padding: 12px 8px;
+}
+
+.table thead > tr > th {
+  border-top: none !important;
+}
+
+.table thead > tr > th span {
+  display: inline-block;
+  padding: 0 5px;
+  padding-bottom: 5px;
+  font-weight: normal;
+}
+
+.table a.table-link {
+  margin: 0 5px;
+  font-size: 1.125em;
+}
+
+.table a.table-link {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+.table tbody tr td a {
+  color: var(--secondary-color);
+}
+
+.project-list tbody td .project-link {
+  display: block;
+  font-size: 1.25em;
+  padding-top: 3px;
+}
+
+.progress-bar {
+  background-color: var(--secondary-color);
+}
+
+.align-center {
+  text-align: center;
+}
+
+.user-list .close-button,
+.project-list .close-button {
+  background-color: white;
+  color: black;
+  border: 3px solid var(--close-color);
+}
+
+.close-button i {
+  color: var(--close-color);
+}
+
+.user-list .open-button,
+.project-list .open-button {
+  background-color: white;
+  color: black;
+  border: 3px solid var(--open-color);
+}
+
+.open-button i {
+  color: var(--open-color);
+}
+
+@media only screen and (max-width: 768px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  table td img {
+    display: none;
+  }
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+
+  table td:last-child {
+    width: 100%;
+  }
+
+  table tr:first-child {
+    border-top: 3px solid #ddd;
+  }
+
+  .row {
+    margin: 0 !important;
+  }
+
+  .align-center {
+    text-align: end;
+  }
+
+  .progress {
+    width: 50%;
+    margin-left: auto !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #tables-types .btn-success span {
+    display: none;
+  }
+
+  #filter-issues {
+    flex-direction: column !important;
+  }
+
+  #filter-buttons {
+    margin-top: 10px;
+  }
+}

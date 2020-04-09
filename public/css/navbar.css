@@ -1,0 +1,382 @@
+@import url("global.css");
+
+.top-navbar {
+  width: calc(100%);
+  height: 4rem;
+  display: flex;
+  position: fixed;
+  padding-left: 4rem;
+  background: var(--primary-color);
+  top: 0;
+  z-index: 1000;
+}
+
+.hamburger {
+  height: 100%;
+  background: var(--container-item-color);
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.hamburger-symbol {
+  width: 2rem;
+  height: 4px;
+  background: gray;
+  margin: 5px 0;
+  border-radius: 5px;
+  transition: all 200ms ease-out;
+  color: gray;
+}
+
+.is-collapsed .hamburger-symbol:first-child,
+.is-collapsed .hamburger-symbol:nth-child(3) {
+  transform: translateX(5px);
+}
+
+.logo {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-family: "Oxanium", serif;
+  text-transform: uppercase;
+  font-style: none;
+  cursor: pointer;
+  z-index: 300;
+}
+
+.top-menu {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px var(--primary-shadow);
+}
+
+.utility > a {
+  display: block;
+  margin: 0 10px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 50%;
+  color: white;
+}
+
+.utility > a:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.utility a:hover i {
+  color: var(--accent-color);
+}
+
+.user,
+.notification {
+  position: relative;
+}
+
+.notification > .num {
+  position: absolute;
+  top: 0rem;
+  left: 2rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #ff2c72;
+  color: #fff;
+  text-align: center;
+  line-height: 1rem;
+  font-size: 0.8rem;
+}
+
+.notification-dropdown {
+  width: 22rem;
+  height: auto;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: var(--primary-shadow);
+  position: absolute;
+  left: -17rem;
+  top: 150%;
+  z-index: 1000;
+  color: var(--container-text-color);
+}
+
+.user-dropdown {
+  width: 10rem;
+  height: auto;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: var(--primary-shadow);
+  position: absolute;
+  left: -5rem;
+  top: 150%;
+  color: var(--container-text-color);
+}
+
+.notify_item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.notify_item:last-child {
+  border-bottom: 10px;
+}
+
+.notify_item .notify_img {
+  margin-right: 15px;
+}
+
+.notify_item .notify_info p {
+  margin-bottom: 5px;
+}
+
+.notify_item .notify_info p span {
+  color: var(--accent-color);
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.notify_time {
+  color: var(--primary-color);
+  font-size: 12px;
+}
+
+.notification-title,
+.user-title {
+  text-transform: capitalize;
+  background-color: var(--accent-color);
+  padding: 1rem;
+  color: #e9ecef;
+  letter-spacing: 0.2rem;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.notification-dropdown:before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 85%;
+  transform: translateX(-50%);
+  border: 15px solid;
+  border-color: transparent transparent var(--accent-color) transparent;
+}
+
+.user-dropdown:before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 70%;
+  transform: translateX(-50%);
+  border: 15px solid;
+  border-color: transparent transparent var(--accent-color) transparent;
+}
+
+.notification-dropdown.display-block,
+.user-dropdown.display-block {
+  display: block;
+}
+
+.sidebar-menu {
+  position: fixed;
+  top: 0rem;
+  background: var(--container-item-color);
+  width: 13rem;
+  height: 100%;
+  transition: all 0.3s ease;
+  color: gray;
+  z-index: 1000;
+}
+
+.is-collapsed .side-menu-item {
+  width: 4.5rem;
+}
+
+.side-menu-dropdown .side-menu-item {
+  width: 100%;
+}
+
+.side-menu-item > a {
+  position: relative;
+  margin-bottom: 1px;
+  color: gray;
+  white-space: nowrap;
+  display: block;
+  padding: 20px;
+}
+
+.is-collapsed .side-menu-item.active .side-menu-dropdown a {
+  color: gray;
+}
+
+.is-collapsed .side-menu-item.active .side-menu-dropdown a:hover {
+  color: white;
+}
+
+.is-collapsed .side-menu-item.active .side-menu-dropdown a.active {
+  color: #fff;
+}
+
+.side-menu-item.active {
+  background: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+}
+
+.side-menu-item.active {
+  border-left: 3px solid var(--accent-color);
+}
+
+.side-menu-item.active > a {
+  font-weight: 700;
+}
+
+.side-menu-item.active a {
+  color: #fff;
+}
+
+.side-menu-item > a:hover,
+.side-menu-item > a.active {
+  background: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.side-menu-item > a:hover,
+.side-menu-item > a.active {
+}
+
+.main-container {
+  height: 100%;
+  margin-left: 13.5rem;
+  padding-top: 64px;
+  transition: all 0.3s ease;
+  z-index: -100;
+  background-color: var(--background-color);
+}
+
+.main-container .item {
+  background: whitesmoke;
+  margin-bottom: 10px;
+  padding: 15px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.is-collapsed .main-container {
+  margin-left: 4.5rem;
+}
+
+.main-content-container {
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.is-collapsed .sidebar-menu {
+  width: 4.5rem;
+}
+
+.is-collapsed .side-menu-item {
+  text-align: center;
+}
+
+.is-collapsed .side-menu-item .icon {
+  margin: 0;
+}
+
+.is-collapsed .side-menu-item-title {
+  display: none;
+}
+
+.logo {
+  margin-left: 9rem;
+  transition: all 0.3s ease;
+}
+
+.is-collapsed .logo {
+  margin-left: 0;
+}
+
+.side-menu-dropdown {
+  top: 0;
+  left: 10rem;
+}
+
+.is-collapsed .side-menu-dropdown {
+  top: 0;
+  left: 4.3rem;
+}
+
+.dropdown .main-dropdown-title {
+  display: none;
+}
+
+.is-collapsed .dropdown .main-dropdown-title {
+  display: block;
+}
+
+.is-collapsed .side-menu-dropdown {
+  display: none;
+  position: absolute;
+  z-index: 300;
+  color: gray;
+  background: white;
+  background-color: var(--container-item-color);
+}
+
+.is-collapsed .dropdown:hover .side-menu-dropdown {
+  display: block;
+}
+
+.hamburger.mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-content-container {
+    /* max-width: 100%; */
+    padding: auto 0;
+  }
+
+  .is-collapsed .main-container {
+    margin-left: 0;
+  }
+
+  .top-navbar,
+  .top-menu {
+    padding: 0;
+  }
+
+  .is-collapsed .sidebar-menu {
+    width: 0;
+  }
+
+  .is-collapsed .side-menu-item {
+    display: none;
+  }
+
+  .hamburger.mobile {
+    display: block;
+  }
+
+  .main-container,
+  .logo {
+    margin-left: 0;
+  }
+
+  .notification-dropdown {
+    left: -13rem;
+  }
+
+  .notification-dropdown:before {
+    left: 67%;
+  }
+}

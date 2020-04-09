@@ -1,0 +1,41 @@
+@import url('global.css');
+
+#cancel {
+  position: absolute;
+  right: 0;
+}
+
+.edit-button {
+  position: absolute;
+  right: 0;
+  background-color: transparent !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .profile-edit-buttons {
+    flex-direction: column;
+  }
+
+  .profile-edit-buttons button {
+    margin-bottom: 1rem;
+  }
+}
+
+#bar-chart-activity {
+  min-height: 110px;
+}
+
+.list-item-label {
+  font-size: 0.9em;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-edit-buttons {
+    flex-wrap: wrap;
+  }
+
+  .profile-edit-buttons div :first-child {
+    display: none;
+  }
+}

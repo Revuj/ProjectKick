@@ -1,0 +1,56 @@
+@import url("global.css");
+
+.assignees li {
+  width: 30px;
+  height: 30px;
+}
+
+.tables-type-counter {
+  background-color: var(--secondary-color);
+  opacity: 0.4;
+  color: white;
+  padding: 0 2px;
+  border-radius: 5px;
+}
+
+.issue {
+  transition: all 0.3s ease;
+  padding: 0.75rem 1.25rem;
+}
+
+.issue:hover {
+  background-color: var(--secondary-background-color);
+}
+
+.list-item-label {
+  font-size: 0.9em;
+  border-radius: 5px;
+}
+
+.issue-status,
+.issue-header .due-date-container {
+  font-size: 0.9rem;
+}
+
+.task-title {
+  font-weight: 600;
+}
+
+.issue-list p {
+  margin-bottom: 0;
+}
+
+.issue-header .due-date-container {
+  color: var(--secondary-color);
+}
+
+#task-name {
+  border-top: none;
+  border-right: none;
+  border-radius: 0%;
+}
+
+.comments-number-container i {
+  opacity: 0.6;
+  font-size: 1.2rem;
+}
