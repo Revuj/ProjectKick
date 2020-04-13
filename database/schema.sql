@@ -309,6 +309,14 @@ END
 $BODY$
 LANGUAGE 'plpgsql';
 
+CREATE OR REPLACE FUNCTION add_project_creator() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO member_status(id, role, entrance_date, departure_date, user_id, project_id)
+    VALUES(DEFAULT, 'coordinator', CURRENT_DATE, NULL, New.author_id, New.id);
+    RETURN NEW;
+END
+$$ LANGUAGE 'plpgsql';
+
 CREATE OR REPLACE FUNCTION only_coordinator()
 RETURNS TRIGGER AS
 $BODY$
@@ -424,6 +432,7 @@ CREATE OR REPLACE FUNCTION project_search_update() RETURNS TRIGGER AS $$
 $$ LANGUAGE 'plpgsql';
 
 DROP TRIGGER IF EXISTS vote_ownComment ON vote;
+DROP TRIGGER IF EXISTS add_project_creator ON project;
 DROP TRIGGER IF EXISTS only_coordinator ON member_status;
 DROP TRIGGER IF EXISTS user_remove_assigns ON member_status;
 DROP TRIGGER IF EXISTS not_admin ON member_status;
@@ -441,6 +450,10 @@ CREATE TRIGGER vote_ownComment
     FOR EACH ROW
         EXECUTE PROCEDURE vote_ownComment();
 
+CREATE TRIGGER add_project_creator
+    AFTER INSERT ON project
+    FOR EACH ROW
+    EXECUTE PROCEDURE add_project_creator();
 
 CREATE TRIGGER only_coordinator
     BEFORE UPDATE OF departure_date ON member_status
