@@ -431,6 +431,38 @@ CREATE OR REPLACE FUNCTION project_search_update() RETURNS TRIGGER AS $$
     END
 $$ LANGUAGE 'plpgsql';
 
+DROP VIEW IF EXISTS issue_search_fields;
+CREATE VIEW issue_search_fields
+AS
+SELECT issue.id, issue.author_id AS author_id, setweight(to_tsvector(coalesce(issue.name,'')), 'A') AS name, 
+setweight(to_tsvector(coalesce(issue.description, '')), 'C') AS description, 
+setweight(to_tsvector(coalesce(STRING_AGG (tag.name, ' '), '')), 'B') AS tags
+from issue
+LEFT OUTER JOIN issue_tag
+ON issue.id = issue_tag.issue_id
+LEFT OUTER JOIN tag
+ON issue_tag.tag_id = tag.id
+group by issue.id
+order by issue.id;
+
+
+CREATE OR REPLACE FUNCTION issue_search_update() RETURNS TRIGGER AS $$
+BEGIN
+
+    IF TG_OP = 'INSERT' OR (TG_OP = 'UPDATE' AND (OLD.name <> NEW.name OR OLD.description <> NEW.description )) THEN
+        UPDATE issue
+        SET search = (SELECT result_search FROM 
+            (SELECT name || description || tags
+            AS result_search 
+            FROM issue_search_fields WHERE id = NEW.id)
+        AS subquery)
+        WHERE id = NEW.id;
+    END IF;
+
+  RETURN NEW;
+END
+$$ LANGUAGE 'plpgsql';
+
 DROP TRIGGER IF EXISTS vote_ownComment ON vote;
 DROP TRIGGER IF EXISTS add_project_creator ON project;
 DROP TRIGGER IF EXISTS only_coordinator ON member_status;
@@ -444,6 +476,8 @@ DROP TRIGGER IF EXISTS insert_user_search ON "user";
 DROP TRIGGER IF EXISTS update_user_search ON "user";
 DROP TRIGGER IF EXISTS insert_project_search ON project;
 DROP TRIGGER IF EXISTS update_project_search ON project;
+DROP TRIGGER IF EXISTS insert_issue_search ON issue;
+DROP TRIGGER IF EXISTS update_issue_search ON issue;
 
 CREATE TRIGGER vote_ownComment
     BEFORE INSERT OR UPDATE OF user_id, comment_id ON vote
@@ -509,3 +543,13 @@ CREATE TRIGGER update_project_search
     AFTER UPDATE ON project
     FOR EACH ROW
     EXECUTE PROCEDURE project_search_update();
+
+CREATE TRIGGER insert_issue_search 
+    AFTER INSERT ON issue
+    FOR EACH ROW 
+    EXECUTE PROCEDURE issue_search_update();
+
+CREATE TRIGGER update_issue_search 
+    AFTER UPDATE ON issue
+    FOR EACH ROW 
+    EXECUTE PROCEDURE issue_search_update();
