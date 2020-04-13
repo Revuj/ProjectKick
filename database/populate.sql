@@ -1939,6 +1939,38 @@ insert into "event" (id, title, start_date) values (DEFAULT, 'tempus vivamus', '
 insert into "event" (id, title, start_date) values (DEFAULT, 'consectetuer eget', '2022-04-09 23:40:29');
 insert into "event" (id, title, start_date) values (DEFAULT, 'quis augue luctus', '2021-03-03 02:27:13');
 
+insert into event_personal(event_id, user_id) values (1, 1);
+insert into event_personal(event_id, user_id) values (2, 2);
+insert into event_personal(event_id, user_id) values (3, 3);
+insert into event_personal(event_id, user_id) values (4, 4);
+insert into event_personal(event_id, user_id) values (5, 5);
+insert into event_personal(event_id,user_id) values (6, 6);
+insert into event_personal(event_id, user_id) values (7, 7);
+insert into event_personal(event_id, user_id) values (8, 8);
+insert into event_personal(event_id, user_id) values (9, 9);
+insert into event_personal(event_id, user_id) values (10, 10);
+insert into event_personal(event_id, user_id) values (11, 11);
+insert into event_personal(event_id, user_id) values (12, 12);
+insert into event_personal(event_id, user_id) values (13, 13);
+insert into event_personal(event_id, user_id) values (14, 14);
+insert into event_personal(event_id, user_id) values (15, 15);
+insert into event_personal(event_id, user_id) values (16, 16);
+insert into event_personal(event_id, user_id) values (17, 17);
+insert into event_personal(event_id, user_id) values (17, 17);
+insert into event_personal(event_id, user_id) values (18, 18);
+insert into event_personal(event_id, user_id) values (19, 19);
+
+insert into event_meeting(event_id, project_id) values (20, 1);
+insert into event_meeting(event_id, project_id) values (21, 2);
+insert into event_meeting(event_id, project_id) values (22, 3);
+insert into event_meeting(event_id, project_id) values (23, 4);
+insert into event_meeting(event_id, project_id) values (24, 5);
+insert into event_meeting(event_id, project_id) values (25, 6);
+insert into event_meeting(event_id, project_id) values (26, 7);
+insert into event_meeting(event_id, project_id) values (27, 8);
+insert into event_meeting(event_id, project_id) values (28, 9);
+insert into event_meeting(event_id, project_id) values (29, 10);
+
 insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-06-03 07:30:55', 'sit amet eros suspendisse accumsan tortor quis turpis sed ante', 22, 15);
 insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-07-19 12:12:39', 'nec nisi volutpat eleifend donec ut dolor morbi vel', 16, 27);
 insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-03-01 05:54:01', 'tortor duis mattis egestas metus aenean fermentum donec ut mauris', 29, 2);
