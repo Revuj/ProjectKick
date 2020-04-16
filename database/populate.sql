@@ -338,7 +338,6 @@ insert into project (id, name, description, creation_date, finish_date, author_i
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Veribet', 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
 
 Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', '2022-07-29 10:48:46', '2023-05-09 20:21:43', 19);
-insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Opela', '', '2022-01-09 03:49:02', null, 1);
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Konklux', 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.', '2021-12-29 18:51:41', null, 1);
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'It', 'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.
 
