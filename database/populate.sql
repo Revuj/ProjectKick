@@ -239,7 +239,7 @@ insert into country (id, name) values (DEFAULT, 'YE');
 insert into country (id, name) values (DEFAULT, 'ZM');
 insert into country (id, name) values (DEFAULT, 'ZW');
 
-insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'cjanacek0@bing.com', 'admin', 'HI5YC1dtC', 'admin', '920-704-7512', 1, true, 75, '2018-12-01 02:22:06', false);
+insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'cjanacek0@bing.com', 'admin', 'HI5YC1dtC', 'admin', '920-704-7512', 1, false, 75, '2018-12-01 02:22:06', false);
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'bajean1@mozilla.org', 'bajean1', 'qByRzSXy1', 'Brade Ajean', '734-576-9520', 2, false, 60, '2019-02-02 17:14:42', false);
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'ybray2@earthlink.net', 'ybray2', '2XuE25Gafxa', 'Yolanda Bray', '638-996-8661', 3, false, 40, '2018-11-12 21:21:20', true);
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'bharvison3@uiuc.edu', 'bharvison3', 'pGp4RW0', 'Britt Harvison', '180-499-5004', 4, false, 93, '2019-04-09 13:32:41', false);
@@ -338,6 +338,7 @@ insert into project (id, name, description, creation_date, finish_date, author_i
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Veribet', 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
 
 Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', '2022-07-29 10:48:46', '2023-05-09 20:21:43', 19);
+insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Opela', '', '2022-01-09 03:49:02', null, 1);
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Konklux', 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.', '2021-12-29 18:51:41', null, 1);
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'It', 'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.
 
@@ -1955,10 +1956,8 @@ insert into event_personal(event_id, user_id) values (14, 14);
 insert into event_personal(event_id, user_id) values (15, 15);
 insert into event_personal(event_id, user_id) values (16, 16);
 insert into event_personal(event_id, user_id) values (17, 17);
-insert into event_personal(event_id, user_id) values (17, 17);
 insert into event_personal(event_id, user_id) values (18, 18);
 insert into event_personal(event_id, user_id) values (19, 19);
-
 insert into event_meeting(event_id, project_id) values (20, 1);
 insert into event_meeting(event_id, project_id) values (21, 2);
 insert into event_meeting(event_id, project_id) values (22, 3);
