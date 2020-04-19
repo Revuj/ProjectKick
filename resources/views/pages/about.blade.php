@@ -1,4 +1,4 @@
-@extends('layouts.app', ['hide_navbar' => true, 'hide_footer' => false])
+@extends('layouts.app', ['hide_navbar' => true, 'hide_footer' => false, 'sidebar' => 'none'])
 
 @section('title', 'Kick | About us')
 

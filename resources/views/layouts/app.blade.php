@@ -26,6 +26,10 @@
       @if(empty($hide_navbar))
             @include('inc.navbar')
       @endif
+
+      @if($sidebar != 'none')
+        @include('inc.sidebar_' . $sidebar)
+      @endif
       <noscript>
           <span class="warning">Warning:&nbsp;</span><i>JavaScript</i> is currently disabled and is required to fully experience this website
       </noscript>

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true])
+@extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true, 'sidebar' => 'user'])
 
 @section('title', 'Kick | My Projects')
 
@@ -22,7 +22,7 @@
 
     <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/my_projects.js')}}" defer></script>
-    
+
 @endsection
 
 @section('style')
