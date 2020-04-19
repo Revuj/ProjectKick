@@ -34,12 +34,17 @@ Route::post('register', 'Auth\RegisterController@register');
 
 */
 
-Route::get('/', 'HomePageController');
-Route::get('/contact', 'Contact');
-Route::get('/about', 'About');
+//Route::get('/', 'HomePageController');
+//Route::get('/contact', 'Contact');
+//Route::get('/about', 'About');
+
+//Route::get('/report', 'Report');
+
+Route::get('/', 'PageController@index');
+Route::get('/contact', 'PageController@contact');
+Route::get('/about', 'PageController@about');
 
 
-Route::get('/report', 'Report');
 
 
 
