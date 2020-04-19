@@ -44,6 +44,9 @@ Route::get('/', 'PageController@index');
 Route::get('/contact', 'PageController@contact');
 Route::get('/about', 'PageController@about');
 
+//
+Route::get('/user/{id}', 'UserController@index');
+
 
 
 

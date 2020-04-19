@@ -24,7 +24,7 @@
                     <h6 class="notification-title text-center">notifications</h6>
                     <div class="notify_item clickable">
                         <div class="notify_img">
-                            <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
+                            <img src="{{asset('assets/profile.png')}}" alt="profile_pic" style="width: 50px">
                         </div>
                         <div class="notify_info">
                             <p>Alex commented on the<span>Task Share</span></p>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="notify_item clickable">
                         <div class="notify_img">
-                            <img src="./assets/profile.png" alt="profile_pic" style="width: 50px">
+                            <img src="{{asset('assets/profile.png')}}" alt="profile_pic" style="width: 50px">
                         </div>
                         <div class="notify_info">
                             <p>Alex commented on the<span>Task Share</span></p>
