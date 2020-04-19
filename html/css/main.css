@@ -12,7 +12,7 @@ body {
   background-color: var(--background-color);
 }
 
-.main-container {
+.main-container, .page-wrapper {
   height: 100%;
 }
 
