@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index($id) {
-        return view('pages.user');
+        return view('pages.user.user');
+    }
+
+    public function projects($id) {
+        return view('pages.user.projects');
     }
 }

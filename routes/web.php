@@ -46,6 +46,8 @@ Route::get('/about', 'PageController@about');
 Route::get('/authenticate', 'PageController@authenticate');
 
 Route::get('/users/{id}', 'UserController@index');
+Route::get('/users/{id}/projects', "UserController@projects");
+
 
 // Issues
 Route::get('/issues/{id}', 'IssueController@show');
@@ -60,5 +62,9 @@ Route::get('/users/{id}/notifications', 'NotificationController@show');
 // Chat
 Route::get('/chat/{id}', 'ChatController@show');
 
+
+
 //Project
-Route::get('/projects/{project_id}/activity', 'ProjectController@activity');
+Route::get('/projects/{id}', 'ProjectController@index');
+Route::get('/projects/{id}/activity', 'ProjectController@activity');
+Route::get('/projects/{id}/members', 'ProjectController@members');
