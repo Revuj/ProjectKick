@@ -38,123 +38,123 @@
 
 @section('content')
 <div class="main-content-container px-4" id="calendar">
-          <nav>
-            <ol class="breadcrumb custom-separator">
-              <li class="current">Calendar</li>
-            </ol>
-          </nav>
-          <div class="align-items-end w-100 d-flex">
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#addEventModal"
-              class="btn btn-success ml-auto"
-            >
-              <i class="fa fa-plus-circle fa-lg"></i>
-              <span>Add Event</span>
-            </button>
-          </div>
+  <nav>
+    <ol class="breadcrumb custom-separator">
+      <li class="current">Calendar</li>
+    </ol>
+  </nav>
+  <div class="align-items-end w-100 d-flex">
+    <button
+      type="button"
+      data-toggle="modal"
+      data-target="#addEventModal"
+      class="btn btn-success ml-auto"
+    >
+      <i class="fa fa-plus-circle fa-lg"></i>
+      <span>Add Event</span>
+    </button>
+  </div>
 
-          <div class="my-2">
-            <div class="row container-fluid mx-0 px-0">
-              <!--=============================ADD & CHECK EVENTS ================================================//-->
-              <div
-                class="col-md-4 col-sm-8 event-manager p-0 d-flex flex-column"
-              >
-                <div class="current-day text-center py-4 white-text">
-                  <h1 class="calendar-left-side-day"></h1>
-                  <div class="calendar-left-side-day-of-week"></div>
-                </div>
-                <div class="current-day-events text-left px-4 white-text py-4">
-                  <div class="h5 mb-3">Current Events:</div>
-                  <ul class="current-day-events-list"></ul>
-                </div>
-              </div>
-              <!-- first col-->
+  <div class="my-2">
+    <div class="row container-fluid mx-0 px-0">
+      <!--=============================ADD & CHECK EVENTS ================================================//-->
+      <div
+        class="col-md-4 col-sm-8 event-manager p-0 d-flex flex-column"
+      >
+        <div class="current-day text-center py-4 white-text">
+          <h1 class="calendar-left-side-day"></h1>
+          <div class="calendar-left-side-day-of-week"></div>
+        </div>
+        <div class="current-day-events text-left px-4 white-text py-4">
+          <div class="h5 mb-3">Current Events:</div>
+          <ul class="current-day-events-list"></ul>
+        </div>
+      </div>
+      <!-- first col-->
 
-              <!--============================= BROWSE THE CALENDAR ================================================//-->
+      <!--============================= BROWSE THE CALENDAR ================================================//-->
 
-              <div class="col col-md-8 col-sm-4 calendar-content">
-                <div class="text-right calendar-change-year p-3">
-                  <div class="calendar-change-year-slider">
-                    <span
-                      class="fa fa-caret-left cursor-pointer calendar-change-year-slider-prev clickable"
-                    ></span>
-                    <span class="calendar-current-year px-2"></span>
-                    <span
-                      class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next clickable"
-                    ></span>
-                  </div>
-                </div>
-                <div class="calendar-month-list">
-                  <ul
-                    class="calendar-month d-flex justify-content-between flex-wrap"
-                  ></ul>
-                </div>
-
-                <table class="table table-borderless">
-                  <thead class="calendar-week-list"></thead>
-                  <tbody class="calendar-days-list"></tbody>
-                </table>
-              </div>
-              <!-- second col-->
-            </div>
-          </div>
-          <div
-            class="modal"
-            id="addEventModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="addEventModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="addEventModalLabel">
-                    Add Event
-                  </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="form-group">
-                      <label for="event-name" class="col-form-label"
-                        >Event Name</label
-                      >
-                      <input type="text" class="form-control" id="event-name" />
-                    </div>
-                    <div class="form-group">
-                      <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-outline-primary">
-                          <input type="radio" name="options" id="option1" />
-                          Meeting
-                        </label>
-                        <label class="btn btn-outline-primary">
-                          <input type="radio" name="options" id="option2" />
-                          Personal
-                        </label>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn " data-dismiss="modal">
-                    Close
-                  </button>
-                  <button type="button" class="btn btn-success">
-                    Add Event
-                  </button>
-                </div>
-              </div>
-            </div>
+      <div class="col col-md-8 col-sm-4 calendar-content">
+        <div class="text-right calendar-change-year p-3">
+          <div class="calendar-change-year-slider">
+            <span
+              class="fa fa-caret-left cursor-pointer calendar-change-year-slider-prev clickable"
+            ></span>
+            <span class="calendar-current-year px-2"></span>
+            <span
+              class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next clickable"
+            ></span>
           </div>
         </div>
+        <div class="calendar-month-list">
+          <ul
+            class="calendar-month d-flex justify-content-between flex-wrap"
+          ></ul>
+        </div>
+
+        <table class="table table-borderless">
+          <thead class="calendar-week-list"></thead>
+          <tbody class="calendar-days-list"></tbody>
+        </table>
+      </div>
+      <!-- second col-->
+    </div>
+  </div>
+  <div
+    class="modal"
+    id="addEventModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="addEventModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addEventModalLabel">
+            Add Event
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="event-name" class="col-form-label"
+                >Event Name</label
+              >
+              <input type="text" class="form-control" id="event-name" />
+            </div>
+            <div class="form-group">
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-outline-primary">
+                  <input type="radio" name="options" id="option1" />
+                  Meeting
+                </label>
+                <label class="btn btn-outline-primary">
+                  <input type="radio" name="options" id="option2" />
+                  Personal
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn " data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-success">
+            Add Event
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
