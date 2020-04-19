@@ -45,12 +45,15 @@ Route::get('/contact', 'PageController@contact');
 Route::get('/about', 'PageController@about');
 Route::get('/authenticate', 'PageController@authenticate');
 
-Route::get('/user/{id}', 'UserController@index');
+Route::get('/users/{id}', 'UserController@index');
 
 // Issues
 Route::get('/issues/{id}', 'IssueController@show');
 Route::get('/projects/{id}/issuelist', 'IssueController@showList');
 Route::get('/projects/{id}/board', 'IssueController@showBoard');
 Route::get('/users/{id}/issues', 'IssueController@showUserIssues');
+
+// Events & Notifications
+Route::get('/users/{id}/calendar', 'EventController@show');
 
 //Route::get('/user_dashboard', 'UserDashboardController@show');

@@ -19,11 +19,11 @@ use Illuminate\Database\Eloquent\Model;
 class Issue extends Model
 {
     // Don't add create and update timestamps in database.
-    public $timestamps  = false;
-    
+    public $timestamps = false;
+
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'issue';
@@ -31,33 +31,35 @@ class Issue extends Model
     /**
      * @var array
      */
-    protected $protected = [ 'id', 'creation_date' ]; 
+    protected $protected = ['id', 'creation_date'];
 
-    /**
-     * @return 
-     */
     public function issueList()
     {
         return $this->belongsTo(IssueList::class, 'issue_list_id');
     }
 
-    public function author() {
+    public function author()
+    {
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    public function completed() {
+    public function completed()
+    {
         return $this->belongsTo(User::class, 'completed_id');
     }
 
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class, 'issue_tag', 'issue_id', 'tag_id');
     }
 
-    public function assignTo() {
+    public function assignTo()
+    {
         return $this->belongsToMany(User::class, 'assigned_user', 'user_id', 'issue_id');
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class, 'issue_id');
     }
 
