@@ -55,5 +55,8 @@ Route::get('/users/{id}/issues', 'IssueController@showUserIssues');
 
 //Route::get('/user_dashboard', 'UserDashboardController@show');
 
+
 //Project
-Route::get('/projects/{project_id}/activity', 'ProjectController@activity');
+Route::get('/projects/{id}', 'ProjectController@index');
+Route::get('/projects/{id}/activity', 'ProjectController@activity');
+Route::get('/projects/{id}/members', 'ProjectController@members');

@@ -11,4 +11,14 @@ class ProjectController extends Controller
         return view('pages.project.activity');
     }
 
+    public function index($project_id)
+    {
+        return view('pages.project.overview');
+    }
+
+    public function members($project_id)
+    {
+        return view('pages.project.members');    
+    }
+
 }
