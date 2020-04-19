@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class PageController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('pages.homepage');
-    } 
+    }
 
     public function contact()
     {
@@ -18,6 +17,11 @@ class PageController extends Controller
     public function about()
     {
         return view('pages.about');
+    }
+
+    public function authenticate()
+    {
+        return view('pages.authenticate');
     }
 
 }
