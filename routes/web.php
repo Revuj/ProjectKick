@@ -45,4 +45,7 @@ Route::get('/contact', 'PageController@contact');
 Route::get('/about', 'PageController@about');
 Route::get('/authenticate', 'PageController@authenticate');
 
+// Issues
+Route::get('/issues/{id}', 'IssueController@show');
+
 //Route::get('/user_dashboard', 'UserDashboardController@show');
