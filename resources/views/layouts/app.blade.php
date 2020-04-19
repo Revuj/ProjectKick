@@ -10,7 +10,7 @@
 
     <title>@yield('title')</title>
     @yield('script')
-    
+
     @yield('style')
 
     <script type="text/javascript">
@@ -32,8 +32,10 @@
 
       <div class="main-container">
         @yield('content')
-      </div> 
+        @if(empty($hide_footer))
+            @include('inc.footer')
+        @endif
+      </div>
     </div>
-
   </body>
 </html>

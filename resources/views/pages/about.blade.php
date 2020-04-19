@@ -1,4 +1,4 @@
-@extends('layouts.app', ['hide_navbar' => true])
+@extends('layouts.app', ['hide_navbar' => true, 'hide_footer' => false])
 
 @section('title', 'Kick | About us')
 
@@ -152,7 +152,7 @@
                     </div>
                   </div>
                 </div>
-              </div>              
+              </div>
               <div class="col-md-6 pl-0 pr-1 py-2">
                 <div class="team-member">
                   <div class="team-member-header d-flex">
@@ -166,7 +166,7 @@
                     </div>
                   </div>
                 </div>
-              </div>              
+              </div>
               <div class="col-md-6 pr-0 py-2">
                 <div class="team-member">
                   <div class="team-member-header d-flex">
@@ -207,4 +207,3 @@
     </div>
   </div>
 @endsection
-

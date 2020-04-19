@@ -1,4 +1,4 @@
-@extends('layouts.app', ['hide_navbar' => true])
+@extends('layouts.app', ['hide_navbar' => true, 'hide_footer' => false])
 
 @section('title', 'Kick')
 
@@ -252,24 +252,6 @@
             </div>
           </div>
         </div>
-
-        <footer >
-        <div class="d-flex justify-content-around align-items-center footer-content">
-        <p class="p-3 m-0">
-          &#x00A9 2020 Project Kick
-        </p>
-        <p class="p-3 m-0">
-        <a href="about.html">
-          About
-        </a>
-      </p>
-      <p class="p-3 m-0">
-        <a href="contact">
-          Contact Us
-        </a>
-      </p>
-    </div>
-      </footer>
     </section>
 
     <script

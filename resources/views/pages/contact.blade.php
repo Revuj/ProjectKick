@@ -1,4 +1,4 @@
-@extends('layouts.app', ['hide_navbar' => true])
+@extends('layouts.app', ['hide_navbar' => true, 'hide_footer' => false])
 
 @section('title', 'Kick | Contact us')
 
@@ -26,7 +26,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="{{asset('js/index.js')}}" defer></script>
-  
+
 
 @endsection
 
@@ -90,12 +90,12 @@
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter your name">
               </div>
-  
+
               <div class="form-group col-sm-12">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" placeholder="Enter your email">
               </div>
-  
+
               <div class="form-group col-sm-12">
                 <label for="message">Please enter your message here...</label>
                 <textarea class="form-control" id="message" rows="3"></textarea>
@@ -105,32 +105,12 @@
             <button id="submit-contact" type="submit" class="btn btn-success">Submit</button>
           </div>
           </form>
-  
+
         </div>
-  
+
       </div>
-      
-      <footer >
-        <div class="d-flex justify-content-around align-items-center footer-content">
-        <p class="p-3 m-0">
-          &#x00A9 2020 Project Kick
-        </p>
-        <p class="p-3 m-0">
-        <a href="about.html">
-          About
-        </a>
-      </p>
-      <p class="p-3 m-0">
-        <a href=contact>
-          Contact Us
-        </a>
-      </p>
-    </div>
-      </footer>
       </div>
   </div>
 
 
 @endsection
-
-
