@@ -1,6 +1,6 @@
 @extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true])
 
-@section('title', 'Kick | Project Team')
+@section('title', 'Kick | Team members')
 
 @section('script')
 <script

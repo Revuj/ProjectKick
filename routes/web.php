@@ -46,6 +46,8 @@ Route::get('/about', 'PageController@about');
 Route::get('/authenticate', 'PageController@authenticate');
 
 Route::get('/users/{id}', 'UserController@index');
+Route::get('/users/{id}/projects', "UserController@projects");
+
 
 // Issues
 Route::get('/issues/{id}', 'IssueController@show');
@@ -57,6 +59,7 @@ Route::get('/users/{id}/issues', 'IssueController@showUserIssues');
 Route::get('/users/{id}/calendar', 'EventController@show');
 
 //Route::get('/user_dashboard', 'UserDashboardController@show');
+
 
 
 //Project
