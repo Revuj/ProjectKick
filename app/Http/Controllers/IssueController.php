@@ -11,16 +11,16 @@ class IssueController extends Controller
 
     public function showList($id)
     {
-        return view('pages.issueList');
+        return view('pages.issue-list');
     }
 
     public function showBoard($id)
     {
-        return view('pages.issueBoard');
+        return view('pages.issue-board');
     }
 
     public function showUserIssues($id)
     {
-        return view('pages.userIssues');
+        return view('pages.user-issues');
     }
 }
