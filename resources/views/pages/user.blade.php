@@ -21,7 +21,7 @@
     ></script>
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <script src="js/libs/chartjs-plugin-doughnutlabel.min.js"></script>
+    <script src="{{asset('js/libs/chartjs-plugin-doughnutlabel.min.js')}}"></script>
 
     <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/profile.js')}}" defer></script>

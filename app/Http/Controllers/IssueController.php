@@ -8,4 +8,19 @@ class IssueController extends Controller
     {
         return view('pages.issue');
     }
+
+    public function showList($id)
+    {
+        return view('pages.issueList');
+    }
+
+    public function showBoard($id)
+    {
+        return view('pages.issueBoard');
+    }
+
+    public function showUserIssues($id)
+    {
+        return view('pages.userIssues');
+    }
 }
