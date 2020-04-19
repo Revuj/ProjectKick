@@ -57,3 +57,6 @@ Route::get('/users/{id}/issues', 'IssueController@showUserIssues');
 Route::get('/users/{id}/calendar', 'EventController@show');
 
 //Route::get('/user_dashboard', 'UserDashboardController@show');
+
+//Project
+Route::get('/projects/{project_id}/activity', 'ProjectController@activity');
