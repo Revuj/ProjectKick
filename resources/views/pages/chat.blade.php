@@ -130,7 +130,7 @@
               </div>
               <div class="incoming_msg d-flex align-items-start">
                 <div class="incoming_msg_img">
-                  <img src="assets/profile.png" alt="sunil" />
+                  <img src="{{asset('assets/profile.png')}}" alt="sunil" />
                 </div>
                 <div class="message d-flex flex-column align-items-start">
                     <div class="message-header"><span class="author">André Esteves</span><span class="time_date"> 16:45 PM | Yesterday</span></div>
@@ -162,7 +162,7 @@
               </div>
               <div class="incoming_msg d-flex align-items-start">
                 <div class="incoming_msg_img">
-                  <img src="assets/profile.png" alt="sunil" />
+                  <img src="{{asset('assets/profile.png')}}" alt="sunil" />
                 </div>
                 <div class="message d-flex flex-column align-items-start">
                     <div class="message-header"><span class="author">André Esteves</span><span class="time_date"> 9:45 PM | Today</span></div>
