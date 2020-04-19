@@ -22,7 +22,7 @@
 
   </head>
   <body>
-    <div class="page-wrapper is-collapsed">
+    <div class="page-wrapper h-100 is-collapsed">
       @if(empty($hide_navbar))
             @include('inc.navbar')
       @endif
