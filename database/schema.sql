@@ -1,4 +1,5 @@
 -- Tables
+DROP VIEW IF EXISTS issue_search_fields;
 DROP TABLE IF EXISTS member_status;
 DROP TABLE IF EXISTS message;
 DROP TABLE IF EXISTS event_meeting;
@@ -270,7 +271,7 @@ CREATE INDEX member_status_fk ON member_status USING btree (user_id, project_id)
 CREATE INDEX departure_date_not_null ON member_status USING btree (departure_date)
 WHERE departure_date is NULL;
 
-CREATE INDEX comment_fk ON “comment” USING btree (issue_id, user_id);
+CREATE INDEX comment_fk ON "comment" USING btree (issue_id, user_id);
 
 CREATE INDEX comment_creation_fk ON "comment" USING btree (creation_date);
 
@@ -288,26 +289,21 @@ CREATE INDEX event_meeting_fk ON event_meeting USING btree (project_id);
 
 CREATE INDEX event_personal_fk ON event_personal USING btree (user_id);
 
-CREATE INDEX users_search_index ON “user” USING gin(search);
+CREATE INDEX users_search_index ON "user" USING gin(search);
 
 CREATE INDEX project_search_index ON project USING gin(search);
 
 CREATE INDEX issues_search_index ON issue USING gist(search);
 
-CREATE FUNCTION vote_ownComment()
-RETURNS TRIGGER AS
-$BODY$
 
+
+CREATE OR REPLACE FUNCTION add_project_creator() RETURNS TRIGGER AS $$
 BEGIN
-     IF NEW.user_id = (SELECT "user".ID FROM "comment" INNER JOIN "user" ON "comment".user_id = "user".ID
-        WHERE "comment".ID = NEW.comment_id) THEN
-        RAISE EXCEPTION "You cannot vote your own comment"
-    END IF;
+    INSERT INTO member_status(id, role, entrance_date, departure_date, user_id, project_id)
+    VALUES(DEFAULT, 'coordinator', CURRENT_DATE, NULL, New.author_id, New.id);
     RETURN NEW;
 END
-
-$BODY$
-LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql';
 
 CREATE OR REPLACE FUNCTION only_coordinator()
 RETURNS TRIGGER AS
@@ -375,7 +371,7 @@ END;
 $BODY$
 language plpgsql;
 
-CREATE FUNCTION time_comment()
+CREATE OR REPLACE FUNCTION time_comment()
 RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -387,7 +383,7 @@ END;
 $BODY$
 language 'plpgsql';
 
-CREATE FUNCTION time_message()
+CREATE OR REPLACE FUNCTION time_message()
 RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -423,7 +419,38 @@ CREATE OR REPLACE FUNCTION project_search_update() RETURNS TRIGGER AS $$
     END
 $$ LANGUAGE 'plpgsql';
 
-DROP TRIGGER IF EXISTS vote_ownComment ON vote;
+CREATE VIEW issue_search_fields
+AS
+SELECT issue.id, issue.author_id AS author_id, setweight(to_tsvector(coalesce(issue.name,'')), 'A') AS name, 
+setweight(to_tsvector(coalesce(issue.description, '')), 'C') AS description, 
+setweight(to_tsvector(coalesce(STRING_AGG (tag.name, ' '), '')), 'B') AS tags
+from issue
+LEFT OUTER JOIN issue_tag
+ON issue.id = issue_tag.issue_id
+LEFT OUTER JOIN tag
+ON issue_tag.tag_id = tag.id
+group by issue.id
+order by issue.id;
+
+
+CREATE OR REPLACE FUNCTION issue_search_update() RETURNS TRIGGER AS $$
+BEGIN
+
+    IF TG_OP = 'INSERT' OR (TG_OP = 'UPDATE' AND (OLD.name <> NEW.name OR OLD.description <> NEW.description )) THEN
+        UPDATE issue
+        SET search = (SELECT result_search FROM 
+            (SELECT name || description || tags
+            AS result_search 
+            FROM issue_search_fields WHERE id = NEW.id)
+        AS subquery)
+        WHERE id = NEW.id;
+    END IF;
+
+  RETURN NEW;
+END
+$$ LANGUAGE 'plpgsql';
+
+DROP TRIGGER IF EXISTS add_project_creator ON project;
 DROP TRIGGER IF EXISTS only_coordinator ON member_status;
 DROP TRIGGER IF EXISTS user_remove_assigns ON member_status;
 DROP TRIGGER IF EXISTS not_admin ON member_status;
@@ -435,12 +462,14 @@ DROP TRIGGER IF EXISTS insert_user_search ON "user";
 DROP TRIGGER IF EXISTS update_user_search ON "user";
 DROP TRIGGER IF EXISTS insert_project_search ON project;
 DROP TRIGGER IF EXISTS update_project_search ON project;
+DROP TRIGGER IF EXISTS insert_issue_search ON issue;
+DROP TRIGGER IF EXISTS update_issue_search ON issue;
 
-CREATE TRIGGER vote_ownComment
-    BEFORE INSERT OR UPDATE OF user_id, comment_id ON vote
+
+CREATE TRIGGER add_project_creator
+    AFTER INSERT ON project
     FOR EACH ROW
-        EXECUTE PROCEDURE vote_ownComment();
-
+    EXECUTE PROCEDURE add_project_creator();
 
 CREATE TRIGGER only_coordinator
     BEFORE UPDATE OF departure_date ON member_status
@@ -496,3 +525,13 @@ CREATE TRIGGER update_project_search
     AFTER UPDATE ON project
     FOR EACH ROW
     EXECUTE PROCEDURE project_search_update();
+
+CREATE TRIGGER insert_issue_search 
+    AFTER INSERT ON issue
+    FOR EACH ROW 
+    EXECUTE PROCEDURE issue_search_update();
+
+CREATE TRIGGER update_issue_search 
+    AFTER UPDATE ON issue
+    FOR EACH ROW 
+    EXECUTE PROCEDURE issue_search_update();
