@@ -55,8 +55,10 @@ Route::get('/users/{id}/issues', 'IssueController@showUserIssues');
 
 // Events & Notifications
 Route::get('/users/{id}/calendar', 'EventController@show');
+Route::get('/users/{id}/notifications', 'NotificationController@show');
 
-//Route::get('/user_dashboard', 'UserDashboardController@show');
+// Chat
+Route::get('/chat/{id}', 'ChatController@show');
 
 //Project
 Route::get('/projects/{project_id}/activity', 'ProjectController@activity');
