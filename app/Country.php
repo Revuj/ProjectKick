@@ -9,11 +9,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Country extends Model
 {
+
+    protected $table = 'country';
+
     protected $fillable = [
-        'country'
+        'country',
     ];
 
-    public function users() {
+    public function users()
+    {
         $this->hasMany(User::class, 'country_id');
     }
 }

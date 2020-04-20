@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * id
@@ -23,7 +23,7 @@ class User extends Authenticatable
     use Notifiable;
 
     // Don't add create and update timestamps in database.
-    public $timestamps  = false;
+    public $timestamps = false;
 
     protected $table = "user";
 
@@ -33,7 +33,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone_number', 'photo_path', 'username'
+        'name', 'email', 'password', 'phone_number', 'photo_path', 'username',
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token' ,'is_deleted', 'is_admin', 'search'
+        'password', 'remember_token', 'is_deleted', 'is_admin', 'search',
     ];
 
     /**
@@ -52,82 +52,91 @@ class User extends Authenticatable
      */
     protected $casts = [
         'is_admin' => 'boolean',
-        'is_deleted' => 'boolean'
+        'is_deleted' => 'boolean',
     ];
 
     /**
      * The country of the user
      */
-    public function country() {
-        return $this->belongsTo(Country::class, 'country_id');
+    public function country()
+    {
+        return $this->hasOne(Country::class, 'id');
     }
 
     /**
      * The member status of the user
      */
-    public function projectsStatus() {
-        return $this->hasMany(MemberStatus::class, 'user_id'); 
+    public function projectsStatus()
+    {
+        return $this->hasMany(MemberStatus::class, 'user_id');
     }
 
     /**
-     * 
+     *
      */
-    public function projectAuthorships() {
+    public function projectAuthorships()
+    {
         return $this->hasMany(Project::class, 'project_id');
     }
 
     /**
-     * 
+     *
      */
-    public function issueAuthorships() {
+    public function issueAuthorships()
+    {
         return $this->hasMany(Issue::class, 'author_id');
     }
 
     /**
-     * 
+     *
      */
-    public function completedIssue() {
-        return $this->hasMany(Issue::class, 'completed_id');
-    }
-
-      /**
-     * 
-     */
-    public function assignedIssues() {
-        return $this->belongsToMany(Issue::class, 'assigned_user', 'user_id', 'issue_id');
+    public function completedIssues()
+    {
+        return $this->hasMany(Issue::class, 'complete_id');
     }
 
     /**
-     * 
+     *
      */
-    public function tags() {
+    public function assignedIssues()
+    {
+        return $this->hasMany(Issue::class, 'assigned_user', 'user_id', 'issue_id');
+    }
+
+    /**
+     *
+     */
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class, 'user_tag', 'user_id', 'tag_id');
     }
 
     /**
-     * 
+     *
      */
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class, 'user_id');
     }
 
     /**
-     * 
+     *
      */
-    public function messages() {
+    public function messages()
+    {
         return $this->hasMany(Message::class, 'user_id');
     }
 
-    public function reports() {
+    public function reports()
+    {
         $this->hasMany(Report::class, 'reports_id');
     }
 
-    public function reported() {
+    public function reported()
+    {
         $this->hasMany(Report::class, 'reported_id');
     }
 
-
     /* fazer ligacao para os eventos e notifications e vote*/
-
 
 }

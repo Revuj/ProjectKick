@@ -1,4 +1,5 @@
-const task = new Chart(document.getElementById('doughnut-chart-task'), {
+const chartTask = document.getElementById('doughnut-chart-task')
+const task = new Chart(chartTask, {
   type: 'doughnut',
   data: {
     labels: ['Completed', 'Today', 'Upcoming'],
@@ -21,7 +22,7 @@ const task = new Chart(document.getElementById('doughnut-chart-task'), {
             }
           },
           {
-            text: '37',
+            text: '69',
             font: {
               size: '50'
             }
@@ -29,7 +30,7 @@ const task = new Chart(document.getElementById('doughnut-chart-task'), {
         ]
       }
     },
-    font: function(context) {
+    font: function (context) {
       var width = context.chart.width;
       var size = Math.round(width / 32);
       return {
@@ -74,7 +75,7 @@ const projects = new Chart(document.getElementById('doughnut-chart-project'), {
         ]
       }
     },
-    font: function(context) {
+    font: function (context) {
       var width = context.chart.width;
       var size = Math.round(width / 32);
       return {
@@ -119,7 +120,7 @@ const activity = new Chart(document.getElementById('bar-chart-activity'), {
     legend: {
       display: false
     },
-    font: function(context) {
+    font: function (context) {
       var width = context.chart.width;
       var size = Math.round(width / 32);
       return {

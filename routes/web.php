@@ -45,8 +45,11 @@ Route::get('/contact', 'PageController@contact');
 Route::get('/about', 'PageController@about');
 Route::get('/authenticate', 'PageController@authenticate');
 
-Route::get('/users/{id}', 'UserController@index');
+// User
+Route::get('/users/{id}', 'UserController@profile');
 Route::get('/users/{id}/projects', "UserController@projects");
+Route::delete('/api/users/{id}', 'UserController@delete');
+Route::post('/api/users/{id}', 'UserController@update');
 
 // Issues
 Route::get('/issues/{id}', 'IssueController@show');

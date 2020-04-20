@@ -2,7 +2,6 @@
 
 @section('title', 'Kick | Profile ')
 
-
 @section('script')
 <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -64,8 +63,8 @@
                 />
                 <ul class="list-group list-group-flush mt-2">
                   <li class="list-group-item p-2">
-                    <h4 class="title mb-0 mt-2">Sierra Brooks</h4>
-                    <span class="text-muted d-block mb-1">Porto, Portugal</span>
+                    <h4 class="title mb-0 mt-2">{{ $username }}</h4>
+                    <span class="text-muted d-block mb-1">Porto, {{ $country }}</span>
                     <div class="mb-4 mt-3">
                       <span class="smaller-text"
                         >Lorem ipsum dolor sit amet consectetur adipisicing
@@ -102,19 +101,19 @@
                     <div class="row">
                       <div class="col">
                         <label>Email</label>
-                        <p class="font-weight-bold">marie@gmail.com</p>
+                        <p class="font-weight-bold">{{ $email }}</p>
                       </div>
                       <div class="col">
                         <label>Phone</label>
-                        <p class="font-weight-bold">+91 98250</p>
+                        <p class="font-weight-bold">{{ $phone_number }}</p>
                       </div>
                     </div>
                     <div class="row py-3">
                       <div class="col-md-6 py-3">
-                        <canvas id="doughnut-chart-task"></canvas>
+                        <canvas data-assigned-issues="{{ $assigned_issues }}" data-completed-issues="{{ $completed_issues }}" id="doughnut-chart-task"></canvas>
                       </div>
                       <div class="col-md-6 py-3">
-                        <canvas id="doughnut-chart-project"></canvas>
+                        <canvas  data-open-projects="{{ $open_projects }}" data-closed-projects="{{ $closed_projects }}" id="doughnut-chart-project"></canvas>
                       </div>
                     </div>
                     <div class="row my-10">
@@ -145,7 +144,7 @@
                                 class="form-control"
                                 id="feFirstName"
                                 placeholder="First Name"
-                                value="Sierra"
+                                value="{{ $first_name }}"
                               />
                             </div>
                             <div class="form-group col-md-6">
@@ -155,7 +154,7 @@
                                 class="form-control"
                                 id="feLastName"
                                 placeholder="Last Name"
-                                value="Brooks"
+                                value="{{ $last_name }}"
                               />
                             </div>
                           </div>
@@ -167,7 +166,7 @@
                                 class="form-control"
                                 id="feEmail"
                                 placeholder="Email"
-                                value="sierra@example.com"
+                                value="{{ $email }}"
                               />
                             </div>
                             <div class="form-group col-md-6">
@@ -177,7 +176,7 @@
                                 class="form-control"
                                 id="fePhone"
                                 placeholder="Phone"
-                                value="91299239213"
+                                value="{{ $phone_number }}"
                               />
                             </div>
                           </div>
@@ -206,11 +205,11 @@
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-6">
-                              <label for="feInputCity">City</label>
+                              <label for="feCity">City</label>
                               <input
                                 type="text"
                                 class="form-control"
-                                id="feInputCity"
+                                id="feCity"
                                 placeholder="City"
                                 value="Porto"
                               />
@@ -222,7 +221,7 @@
                                 class="form-control"
                                 id="feCountry"
                                 placeholder="Country"
-                                value="Portugal"
+                                value="{{ $country }}"
                               />
                             </div>
                           </div>
@@ -230,6 +229,7 @@
                             <div class="form-group col-md-12">
                               <label for="feDescription">Description</label>
                               <textarea
+                                id="feDescription"
                                 class="form-control"
                                 name="feDescription"
                                 rows="5"
@@ -241,7 +241,6 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, com
                           <div class="d-md-flex profile-edit-buttons">
                             <button
                               type="button"
-                              id="delete"
                               class="mr-auto custom-button close-button"
                               data-toggle="modal"
                               data-target="#deleteModal"
@@ -307,14 +306,15 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, com
               </p>
             </div>
             <div class="modal-footer">
-              <button type="button" id = "cancel" class="btn " data-dismiss="modal">
+              <button type="button" id = "cancel" class="btn" data-dismiss="modal">
                 Cancel
               </button>
-              <button
-                type="button"
-                id="delete"
-                class="custom-button close-button"
-              >
+                <button
+                  type="submit"
+                  id="delete"
+                  class="custom-button close-button"
+                  data-user="{{ $user_id }}"
+                >
                 Delete Account
               </button>
             </div>

@@ -1,11 +1,13 @@
-const task = new Chart(document.getElementById('doughnut-chart-task'), {
+const taskChart = document.getElementById('doughnut-chart-task');
+
+const task = new Chart(taskChart, {
   type: 'doughnut',
   data: {
     labels: ['Completed', 'Today', 'Upcoming'],
     datasets: [
       {
         backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
-        data: [25, 2, 10]
+        data: [taskChart.dataset.completedIssues, 0, taskChart.dataset.assignedIssues]
       }
     ]
   },
@@ -21,7 +23,7 @@ const task = new Chart(document.getElementById('doughnut-chart-task'), {
             }
           },
           {
-            text: '37',
+            text: parseInt(taskChart.dataset.completedIssues) + parseInt(taskChart.dataset.assignedIssues),
             font: {
               size: '50'
             }
@@ -29,7 +31,7 @@ const task = new Chart(document.getElementById('doughnut-chart-task'), {
         ]
       }
     },
-    font: function(context) {
+    font: function (context) {
       var width = context.chart.width;
       var size = Math.round(width / 32);
       return {
@@ -43,14 +45,15 @@ const task = new Chart(document.getElementById('doughnut-chart-task'), {
   }
 });
 
-const projects = new Chart(document.getElementById('doughnut-chart-project'), {
+const projectsChart = document.getElementById('doughnut-chart-project');
+const projects = new Chart(projectsChart, {
   type: 'doughnut',
   data: {
     labels: ['Finished', 'Active'],
     datasets: [
       {
         backgroundColor: ['#3e95cd', '#8e5ea2'],
-        data: [2, 24]
+        data: [projectsChart.dataset.closedProjects, projectsChart.dataset.openProjects]
       }
     ]
   },
@@ -66,7 +69,7 @@ const projects = new Chart(document.getElementById('doughnut-chart-project'), {
             }
           },
           {
-            text: '26',
+            text: parseInt(projectsChart.dataset.closedProjects) + parseInt(projectsChart.dataset.openProjects),
             font: {
               size: '50'
             }
@@ -74,7 +77,7 @@ const projects = new Chart(document.getElementById('doughnut-chart-project'), {
         ]
       }
     },
-    font: function(context) {
+    font: function (context) {
       var width = context.chart.width;
       var size = Math.round(width / 32);
       return {
@@ -88,17 +91,21 @@ const projects = new Chart(document.getElementById('doughnut-chart-project'), {
   }
 });
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+var x = new Date();
 const activity = new Chart(document.getElementById('bar-chart-activity'), {
   type: 'bar',
   data: {
     labels: [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday'
+      monthNames[x.getMonth() - 6],
+      monthNames[x.getMonth() - 5],
+      monthNames[x.getMonth() - 4],
+      monthNames[x.getMonth() - 3],
+      monthNames[x.getMonth() - 2],
+      monthNames[x.getMonth() - 1],
+      monthNames[x.getMonth()]
     ],
     datasets: [
       {
@@ -119,7 +126,7 @@ const activity = new Chart(document.getElementById('bar-chart-activity'), {
     legend: {
       display: false
     },
-    font: function(context) {
+    font: function (context) {
       var width = context.chart.width;
       var size = Math.round(width / 32);
       return {
@@ -154,3 +161,46 @@ edit_button.addEventListener('click', event => {
     }
   })
 );
+
+
+const deleteButton = document.getElementById("delete");
+deleteButton.addEventListener('click', deleteUser);
+
+function deleteHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response);
+  window.location.replace("/");
+}
+
+function deleteUser(e) {
+  e.preventDefault();
+  console.log(deleteButton);
+  let id = deleteButton.dataset.user;
+  console.log(id);
+  sendAjaxRequest("delete", `../api/users/${id}`, {}, deleteHandler);
+}
+
+const updateButton = document.getElementById("update");
+updateButton.addEventListener('click', updateUser);
+
+function updateHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response);
+}
+
+function updateUser(e) {
+  e.preventDefault();
+  console.log(updateButton);
+  let id = deleteButton.dataset.user;
+  let firstName = document.getElementById("feFirstName").value;
+  let lastName = document.getElementById("feLastName").value;
+  let email = document.getElementById("feEmail").value;
+  let phone = document.getElementById("fePhone").value;
+  let password = document.getElementById("fePassword").value;
+  let confirmPassword = document.getElementById("feConfirmPassword").value;
+  let city = document.getElementById("feCity").value;
+  let description = document.getElementById("feDescription").value;
+
+  console.log({ firstName, lastName, email, phone, password, confirmPassword, city, description });
+  sendAjaxRequest("post", `../api/users/${id}`, { firstName, lastName, email, phone, password, confirmPassword, city, description }, updateHandler);
+}
