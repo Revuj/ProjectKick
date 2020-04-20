@@ -1,4 +1,5 @@
 -- Tables
+DROP VIEW IF EXISTS issue_search_fields;
 DROP TABLE IF EXISTS member_status;
 DROP TABLE IF EXISTS message;
 DROP TABLE IF EXISTS event_meeting;
@@ -65,8 +66,7 @@ CREATE TABLE project (
     search TSVECTOR
 );
 
-CREATE TABLE 
- (
+CREATE TABLE member_status (
     id SERIAL PRIMARY KEY,
     role project_role DEFAULT 'developer' NOT NULL,
     entrance_date timestamp with time zone DEFAULT now() NOT NULL,
@@ -130,63 +130,6 @@ CREATE TABLE message (
                                                      ON UPDATE CASCADE
 );
 
-CREATE TABLE "event" (
-    id SERIAL PRIMARY KEY,
-    title text NOT NULL,
-    start_date timestamp with time zone NOT NULL
-);
-
-CREATE TABLE event_meeting (
-    event_id integer  NOT NULL PRIMARY KEY REFERENCES "event"  ON DELETE CASCADE
-                                                     ON UPDATE CASCADE,
-    project_id integer NOT NULL REFERENCES project  ON DELETE CASCADE
-                                                     ON UPDATE CASCADE
-);
-
-CREATE TABLE event_personal (
-    event_id integer NOT NULL PRIMARY KEY REFERENCES "event"  ON DELETE CASCADE
-                                                     ON UPDATE CASCADE,
-    user_id integer  NOT NULL REFERENCES "user" ON DELETE CASCADE
-                                                     ON UPDATE CASCADE
-);
-
-CREATE TABLE notification (
-    id SERIAL PRIMARY KEY,
-    "date" timestamp with time zone DEFAULT now() NOT NULL,
-    description text,
-    receiver_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE
-                                                     ON UPDATE CASCADE,
-    sender_id integer NOT NULL REFERENCES "user"  ON DELETE CASCADE
-                                                     ON UPDATE CASCADE CHECK (sender_id <> receiver_id)
-);
-
-CREATE TABLE notification_kick (
-    notification_id integer PRIMARY KEY REFERENCES notification  ON DELETE CASCADE
-                                                     ON UPDATE CASCADE,
-    project_id integer NOT NULL REFERENCES project ON DELETE CASCADE
-                                                     ON UPDATE CASCADE
-);
-
-CREATE TABLE notification_invite (
-    notification_id integer PRIMARY KEY REFERENCES notification ON DELETE CASCADE
-                                                     ON UPDATE CASCADE,
-    project_id integer NOT NULL REFERENCES project ON DELETE CASCADE
-                                                     ON UPDATE CASCADE
-);
-
-CREATE TABLE notification_assign (
-    notification_id integer PRIMARY KEY REFERENCES notification ON DELETE CASCADE
-                                                     ON UPDATE CASCADE,
-    issue_id integer NOT NULL REFERENCES issue ON DELETE CASCADE
-                                                     ON UPDATE CASCADE
-);
-
-CREATE TABLE notification_event (
-    notification_id integer PRIMARY KEY REFERENCES notification ON DELETE CASCADE
-                                                     ON UPDATE CASCADE,
-    event_id integer NOT NULL REFERENCES "event" ON DELETE CASCADE
-                                                     ON UPDATE CASCADE
-);
 
 create table color (
     id SERIAL PRIMARY KEY,
@@ -194,19 +137,6 @@ create table color (
     CONSTRAINT CK_color CHECK (rgb_code ~ '^[a-fA-F0-9]{8}$')
 );
 
-
-CREATE TABLE vote (
-    user_id integer NOT NULL REFERENCES "user"  ON DELETE CASCADE
-                                                     ON UPDATE CASCADE,
-    comment_id integer  NOT NULL REFERENCES comment ON DELETE CASCADE
-                                                     ON UPDATE CASCADE,
-    upvote boolean NOT NULL,
-
-    PRIMARY KEY (
-        user_id,
-        comment_id
-    )
-);
 
 CREATE TABLE report (
     id SERIAL PRIMARY KEY,
@@ -271,7 +201,7 @@ CREATE INDEX member_status_fk ON member_status USING btree (user_id, project_id)
 CREATE INDEX departure_date_not_null ON member_status USING btree (departure_date)
 WHERE departure_date is NULL;
 
-CREATE INDEX comment_fk ON “comment” USING btree (issue_id, user_id);
+CREATE INDEX comment_fk ON "comment" USING btree (issue_id, user_id);
 
 CREATE INDEX comment_creation_fk ON "comment" USING btree (creation_date);
 
@@ -283,32 +213,21 @@ CREATE INDEX message_fk ON message USING btree (channel_id, user_id);
 
 CREATE INDEX message_creation_fk ON message USING btree ("date");
 
-CREATE INDEX event_date_fk ON "event" USING btree (start_date);
-
-CREATE INDEX event_meeting_fk ON event_meeting USING btree (project_id);
-
-CREATE INDEX event_personal_fk ON event_personal USING btree (user_id);
-
-CREATE INDEX users_search_index ON “user” USING gin(search);
+CREATE INDEX users_search_index ON "user" USING gin(search);
 
 CREATE INDEX project_search_index ON project USING gin(search);
 
 CREATE INDEX issues_search_index ON issue USING gist(search);
 
-CREATE FUNCTION vote_ownComment()
-RETURNS TRIGGER AS
-$BODY$
 
+
+CREATE OR REPLACE FUNCTION add_project_creator() RETURNS TRIGGER AS $$
 BEGIN
-     IF NEW.user_id = (SELECT "user".ID FROM "comment" INNER JOIN "user" ON "comment".user_id = "user".ID
-        WHERE "comment".ID = NEW.comment_id) THEN
-        RAISE EXCEPTION "You cannot vote your own comment"
-    END IF;
+    INSERT INTO member_status(id, role, entrance_date, departure_date, user_id, project_id)
+    VALUES(DEFAULT, 'coordinator', CURRENT_DATE, NULL, New.author_id, New.id);
     RETURN NEW;
 END
-
-$BODY$
-LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql';
 
 CREATE OR REPLACE FUNCTION only_coordinator()
 RETURNS TRIGGER AS
@@ -364,19 +283,7 @@ END;
 $BODY$
 language plpgsql;
 
-CREATE OR REPLACE FUNCTION event_start_date()
-RETURNS TRIGGER AS
-$BODY$
-BEGIN
-IF NEW.start_date < Now() THEN
-    RAISE EXCEPTION 'Event start date cannot be in the past';
-END IF;
-RETURN NEW;
-END;
-$BODY$
-language plpgsql;
-
-CREATE FUNCTION time_comment()
+CREATE OR REPLACE FUNCTION time_comment()
 RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -388,7 +295,7 @@ END;
 $BODY$
 language 'plpgsql';
 
-CREATE FUNCTION time_message()
+CREATE OR REPLACE FUNCTION time_message()
 RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -424,7 +331,38 @@ CREATE OR REPLACE FUNCTION project_search_update() RETURNS TRIGGER AS $$
     END
 $$ LANGUAGE 'plpgsql';
 
-DROP TRIGGER IF EXISTS vote_ownComment ON vote;
+CREATE VIEW issue_search_fields
+AS
+SELECT issue.id, issue.author_id AS author_id, setweight(to_tsvector(coalesce(issue.name,'')), 'A') AS name, 
+setweight(to_tsvector(coalesce(issue.description, '')), 'C') AS description, 
+setweight(to_tsvector(coalesce(STRING_AGG (tag.name, ' '), '')), 'B') AS tags
+from issue
+LEFT OUTER JOIN issue_tag
+ON issue.id = issue_tag.issue_id
+LEFT OUTER JOIN tag
+ON issue_tag.tag_id = tag.id
+group by issue.id
+order by issue.id;
+
+
+CREATE OR REPLACE FUNCTION issue_search_update() RETURNS TRIGGER AS $$
+BEGIN
+
+    IF TG_OP = 'INSERT' OR (TG_OP = 'UPDATE' AND (OLD.name <> NEW.name OR OLD.description <> NEW.description )) THEN
+        UPDATE issue
+        SET search = (SELECT result_search FROM 
+            (SELECT name || description || tags
+            AS result_search 
+            FROM issue_search_fields WHERE id = NEW.id)
+        AS subquery)
+        WHERE id = NEW.id;
+    END IF;
+
+  RETURN NEW;
+END
+$$ LANGUAGE 'plpgsql';
+
+DROP TRIGGER IF EXISTS add_project_creator ON project;
 DROP TRIGGER IF EXISTS only_coordinator ON member_status;
 DROP TRIGGER IF EXISTS user_remove_assigns ON member_status;
 DROP TRIGGER IF EXISTS not_admin ON member_status;
@@ -436,12 +374,14 @@ DROP TRIGGER IF EXISTS insert_user_search ON "user";
 DROP TRIGGER IF EXISTS update_user_search ON "user";
 DROP TRIGGER IF EXISTS insert_project_search ON project;
 DROP TRIGGER IF EXISTS update_project_search ON project;
+DROP TRIGGER IF EXISTS insert_issue_search ON issue;
+DROP TRIGGER IF EXISTS update_issue_search ON issue;
 
-CREATE TRIGGER vote_ownComment
-    BEFORE INSERT OR UPDATE OF user_id, comment_id ON vote
+
+CREATE TRIGGER add_project_creator
+    AFTER INSERT ON project
     FOR EACH ROW
-        EXECUTE PROCEDURE vote_ownComment();
-
+    EXECUTE PROCEDURE add_project_creator();
 
 CREATE TRIGGER only_coordinator
     BEFORE UPDATE OF departure_date ON member_status
@@ -462,11 +402,6 @@ CREATE TRIGGER not_admin_project
     BEFORE INSERT ON project
     FOR EACH ROW
     EXECUTE PROCEDURE not_admin_project();
-
-CREATE TRIGGER event_start_date
-    BEFORE INSERT OR UPDATE ON "event"
-    FOR EACH ROW
-    EXECUTE PROCEDURE event_start_date();
 
 CREATE TRIGGER time_comment
     BEFORE INSERT OR UPDATE ON "comment"
@@ -498,8 +433,23 @@ CREATE TRIGGER update_project_search
     FOR EACH ROW
     EXECUTE PROCEDURE project_search_update();
 
+CREATE TRIGGER insert_issue_search 
+    AFTER INSERT ON issue
+    FOR EACH ROW 
+    EXECUTE PROCEDURE issue_search_update();
+
+CREATE TRIGGER update_issue_search 
+    AFTER UPDATE ON issue
+    FOR EACH ROW 
+    EXECUTE PROCEDURE issue_search_update();
+```
 
 
+### 5.2 Database population
+
+<a href="https://git.fe.up.pt/lbaw/lbaw1920/lbaw2025/-/blob/master/database/populate.sql">Database population</a>
+
+```sql
 insert into country (id, name) values (DEFAULT, 'AF');
 insert into country (id, name) values (DEFAULT, 'AL');
 insert into country (id, name) values (DEFAULT, 'DZ');
@@ -771,8 +721,6 @@ insert into "user" (id, email, username, password, name, phone_number, photo_pat
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'vbrambellr@lulu.com', 'vbrambellr', '1hJOs5FT', 'Vinita Brambell', '970-150-6223', 28, false, 22, '2018-07-03 21:34:44', false);
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'kbrentnalls@t-online.de', 'kbrentnalls', 'uUVRoDsV', 'Kelli Brentnall', '700-992-1174', 29, false, 116, '2019-03-20 05:19:49', false);
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'lchmielt@webmd.com', 'lchmielt', 'qNLdSGv', 'Lucille Chmiel', '436-184-2954', 30, false, 4, '2019-10-13 09:24:01', false);
-insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'john@example.com', 'johnExampleMan', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'John Doe', '436-000-2954', 30, false, 4, '2020-1-13 09:24:01', false);
-
 
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Zaam-Dox', 'Fusce consequat. Nulla nisl. Nunc nisl.', '2023-01-08 06:33:51', '2023-06-02 17:39:06', 3);
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Voyatouch', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.
@@ -2362,253 +2310,6 @@ insert into message (id, content, "date", channel_id, user_id) values (DEFAULT, 
 insert into message (id, content, "date", channel_id, user_id) values (DEFAULT, 'integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac', '2021-02-17 20:29:05', 34, 22);
 insert into message (id, content, "date", channel_id, user_id) values (DEFAULT, 'rutrum nulla tellus in', '2022-05-21 21:04:14', 29, 30);
 
-insert into "event" (id, title, start_date) values (DEFAULT, 'vestibulum', '2022-05-02 01:58:18');
-insert into "event" (id, title, start_date) values (DEFAULT, 'potenti', '2020-10-31 20:27:28');
-insert into "event" (id, title, start_date) values (DEFAULT, 'quam nec dui', '2020-05-08 11:32:46');
-insert into "event" (id, title, start_date) values (DEFAULT, 'id', '2022-03-19 21:23:53');
-insert into "event" (id, title, start_date) values (DEFAULT, 'ac', '2020-09-02 13:39:49');
-insert into "event" (id, title, start_date) values (DEFAULT, 'ipsum aliquam', '2022-10-04 22:47:11');
-insert into "event" (id, title, start_date) values (DEFAULT, 'posuere metus vitae', '2020-09-17 21:38:31');
-insert into "event" (id, title, start_date) values (DEFAULT, 'pretium', '2022-07-27 14:23:23');
-insert into "event" (id, title, start_date) values (DEFAULT, 'pede malesuada in', '2020-11-25 05:16:59');
-insert into "event" (id, title, start_date) values (DEFAULT, 'nibh', '2021-09-10 13:32:40');
-insert into "event" (id, title, start_date) values (DEFAULT, 'montes', '2022-12-23 10:54:44');
-insert into "event" (id, title, start_date) values (DEFAULT, 'et ultrices', '2023-03-10 11:37:19');
-insert into "event" (id, title, start_date) values (DEFAULT, 'blandit lacinia', '2023-01-28 06:11:03');
-insert into "event" (id, title, start_date) values (DEFAULT, 'felis sed', '2020-09-17 02:55:21');
-insert into "event" (id, title, start_date) values (DEFAULT, 'in sagittis', '2022-05-11 18:28:59');
-insert into "event" (id, title, start_date) values (DEFAULT, 'sociis natoque penatibus', '2022-06-02 14:38:18');
-insert into "event" (id, title, start_date) values (DEFAULT, 'massa tempor convallis', '2023-01-03 00:27:48');
-insert into "event" (id, title, start_date) values (DEFAULT, 'iaculis', '2022-08-04 01:44:44');
-insert into "event" (id, title, start_date) values (DEFAULT, 'suscipit a', '2022-01-29 23:09:31');
-insert into "event" (id, title, start_date) values (DEFAULT, 'sem', '2022-06-12 02:29:34');
-insert into "event" (id, title, start_date) values (DEFAULT, 'sem sed', '2022-08-29 05:12:08');
-insert into "event" (id, title, start_date) values (DEFAULT, 'lacinia', '2020-06-05 12:38:00');
-insert into "event" (id, title, start_date) values (DEFAULT, 'sem', '2021-05-16 21:20:54');
-insert into "event" (id, title, start_date) values (DEFAULT, 'volutpat in congue', '2020-06-21 02:17:14');
-insert into "event" (id, title, start_date) values (DEFAULT, 'viverra diam vitae', '2020-10-09 10:07:13');
-insert into "event" (id, title, start_date) values (DEFAULT, 'arcu adipiscing', '2021-03-23 01:24:53');
-insert into "event" (id, title, start_date) values (DEFAULT, 'nulla neque', '2021-03-26 02:37:58');
-insert into "event" (id, title, start_date) values (DEFAULT, 'posuere', '2022-09-02 17:12:29');
-insert into "event" (id, title, start_date) values (DEFAULT, 'at turpis a', '2023-01-10 05:08:18');
-insert into "event" (id, title, start_date) values (DEFAULT, 'ante vivamus tortor', '2022-11-08 22:58:29');
-insert into "event" (id, title, start_date) values (DEFAULT, 'nisl ut', '2022-01-12 13:43:09');
-insert into "event" (id, title, start_date) values (DEFAULT, 'at', '2022-05-20 21:08:47');
-insert into "event" (id, title, start_date) values (DEFAULT, 'massa id', '2021-01-30 05:55:13');
-insert into "event" (id, title, start_date) values (DEFAULT, 'integer ac', '2020-04-04 16:47:27');
-insert into "event" (id, title, start_date) values (DEFAULT, 'amet diam in', '2022-04-24 22:57:17');
-insert into "event" (id, title, start_date) values (DEFAULT, 'viverra eget', '2021-11-21 04:37:03');
-insert into "event" (id, title, start_date) values (DEFAULT, 'faucibus', '2023-01-26 10:48:12');
-insert into "event" (id, title, start_date) values (DEFAULT, 'sed', '2020-04-20 05:05:31');
-insert into "event" (id, title, start_date) values (DEFAULT, 'ornare', '2021-02-18 06:56:53');
-insert into "event" (id, title, start_date) values (DEFAULT, 'tellus', '2022-05-23 14:42:34');
-insert into "event" (id, title, start_date) values (DEFAULT, 'eget', '2021-08-01 05:49:44');
-insert into "event" (id, title, start_date) values (DEFAULT, 'turpis adipiscing lorem', '2022-04-05 03:47:30');
-insert into "event" (id, title, start_date) values (DEFAULT, 'pulvinar', '2022-11-23 08:51:37');
-insert into "event" (id, title, start_date) values (DEFAULT, 'est', '2022-05-31 02:41:01');
-insert into "event" (id, title, start_date) values (DEFAULT, 'velit', '2020-09-28 20:16:12');
-insert into "event" (id, title, start_date) values (DEFAULT, 'donec odio justo', '2021-04-22 10:41:35');
-insert into "event" (id, title, start_date) values (DEFAULT, 'vitae', '2020-11-24 16:00:19');
-insert into "event" (id, title, start_date) values (DEFAULT, 'sagittis', '2022-12-27 03:01:45');
-insert into "event" (id, title, start_date) values (DEFAULT, 'aliquam', '2021-05-16 09:39:28');
-insert into "event" (id, title, start_date) values (DEFAULT, 'pretium iaculis', '2020-10-16 19:42:49');
-insert into "event" (id, title, start_date) values (DEFAULT, 'justo in', '2022-08-21 22:51:12');
-insert into "event" (id, title, start_date) values (DEFAULT, 'cubilia curae donec', '2022-03-04 20:05:10');
-insert into "event" (id, title, start_date) values (DEFAULT, 'ultrices vel augue', '2020-05-02 17:36:11');
-insert into "event" (id, title, start_date) values (DEFAULT, 'in', '2021-12-30 18:34:58');
-insert into "event" (id, title, start_date) values (DEFAULT, 'nunc', '2021-11-05 06:36:00');
-insert into "event" (id, title, start_date) values (DEFAULT, 'proin', '2021-12-28 16:05:06');
-insert into "event" (id, title, start_date) values (DEFAULT, 'nisl', '2021-01-08 12:59:06');
-insert into "event" (id, title, start_date) values (DEFAULT, 'aliquam', '2020-08-03 18:18:49');
-insert into "event" (id, title, start_date) values (DEFAULT, 'morbi', '2020-09-18 17:42:57');
-insert into "event" (id, title, start_date) values (DEFAULT, 'sapien cursus vestibulum', '2020-08-10 19:58:09');
-insert into "event" (id, title, start_date) values (DEFAULT, 'eget vulputate', '2021-10-20 20:34:07');
-insert into "event" (id, title, start_date) values (DEFAULT, 'vel ipsum', '2021-12-27 09:36:21');
-insert into "event" (id, title, start_date) values (DEFAULT, 'cursus urna', '2020-08-04 03:05:05');
-insert into "event" (id, title, start_date) values (DEFAULT, 'quisque arcu', '2022-09-25 11:07:34');
-insert into "event" (id, title, start_date) values (DEFAULT, 'massa volutpat convallis', '2022-03-31 14:07:46');
-insert into "event" (id, title, start_date) values (DEFAULT, 'mi in porttitor', '2022-08-29 22:19:24');
-insert into "event" (id, title, start_date) values (DEFAULT, 'vestibulum quam', '2022-05-02 12:44:19');
-insert into "event" (id, title, start_date) values (DEFAULT, 'aliquam erat volutpat', '2020-12-30 20:49:55');
-insert into "event" (id, title, start_date) values (DEFAULT, 'odio justo sollicitudin', '2022-05-05 01:17:33');
-insert into "event" (id, title, start_date) values (DEFAULT, 'integer ac', '2020-05-09 13:08:10');
-insert into "event" (id, title, start_date) values (DEFAULT, 'nec', '2023-03-16 19:36:52');
-insert into "event" (id, title, start_date) values (DEFAULT, 'sed', '2021-03-11 05:44:56');
-insert into "event" (id, title, start_date) values (DEFAULT, 'mi', '2022-04-02 05:56:47');
-insert into "event" (id, title, start_date) values (DEFAULT, 'orci luctus', '2022-01-12 07:25:01');
-insert into "event" (id, title, start_date) values (DEFAULT, 'nec nisi', '2020-08-11 00:59:31');
-insert into "event" (id, title, start_date) values (DEFAULT, 'primis in', '2022-10-05 07:02:32');
-insert into "event" (id, title, start_date) values (DEFAULT, 'ultrices aliquet maecenas', '2020-04-19 02:28:13');
-insert into "event" (id, title, start_date) values (DEFAULT, 'tempus vivamus', '2022-10-29 01:10:57');
-insert into "event" (id, title, start_date) values (DEFAULT, 'consectetuer eget', '2022-04-09 23:40:29');
-insert into "event" (id, title, start_date) values (DEFAULT, 'quis augue luctus', '2021-03-03 02:27:13');
-
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-06-03 07:30:55', 'sit amet eros suspendisse accumsan tortor quis turpis sed ante', 22, 15);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-07-19 12:12:39', 'nec nisi volutpat eleifend donec ut dolor morbi vel', 16, 27);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-03-01 05:54:01', 'tortor duis mattis egestas metus aenean fermentum donec ut mauris', 29, 2);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-08-08 07:34:08', 'erat vestibulum sed magna at nunc commodo placerat', 28, 29);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-03-29 06:27:16', 'cum sociis natoque penatibus et magnis dis', 20, 6);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-06-25 19:27:09', 'integer non velit donec diam neque vestibulum eget', 14, 10);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-09-12 11:04:17', 'aliquam sit amet diam in magna bibendum imperdiet nullam orci', 1, 9);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-02-25 22:43:31', 'cras mi pede malesuada in imperdiet et commodo', 8, 16);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-10-13 14:54:58', 'in tempus sit amet sem fusce consequat nulla nisl nunc', 27, 4);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-02-18 12:56:27', 'posuere cubilia curae duis faucibus accumsan odio', 2, 18);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2023-01-08 11:51:47', 'vulputate justo in blandit ultrices enim lorem ipsum dolor', 2, 1);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-02-20 09:43:37', 'sagittis sapien cum sociis natoque penatibus et', 23, 21);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2023-03-10 10:55:33', 'mi integer ac neque duis bibendum morbi non quam', 2, 29);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-08-21 23:37:47', 'commodo vulputate justo in blandit ultrices enim lorem', 21, 12);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-06-29 13:41:34', 'nec condimentum neque sapien placerat ante', 20, 7);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-09-12 00:33:25', 'eget orci vehicula condimentum curabitur in libero', 24, 21);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-08-07 05:27:17', 'justo nec condimentum neque sapien placerat ante nulla', 12, 16);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-08-25 18:08:17', 'erat eros viverra eget congue eget semper rutrum nulla nunc', 21, 7);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-12-13 18:20:13', 'turpis enim blandit mi in porttitor', 17, 28);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-09-05 17:03:11', 'luctus tincidunt nulla mollis molestie lorem quisque ut', 13, 14);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-12-28 18:26:21', 'bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt', 7, 16);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-08-17 02:18:39', 'nibh in quis justo maecenas rhoncus aliquam', 15, 7);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-11-15 09:33:22', 'mauris eget massa tempor convallis nulla neque libero convallis', 4, 21);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-07-23 00:19:26', 'ante vel ipsum praesent blandit lacinia', 25, 1);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-01-17 22:04:26', 'diam neque vestibulum eget vulputate ut ultrices vel', 19, 14);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-11-06 10:50:07', 'eu massa donec dapibus duis at velit', 21, 8);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-01-28 20:11:52', 'cubilia curae duis faucibus accumsan odio curabitur convallis duis', 19, 30);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-09-12 06:41:50', 'in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem', 11, 8);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2023-02-05 02:23:14', 'ligula pellentesque ultrices phasellus id sapien', 24, 9);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-02-19 07:56:38', 'ultricies eu nibh quisque id justo', 25, 10);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-02-08 16:00:37', 'lacinia sapien quis libero nullam sit amet turpis elementum ligula', 19, 3);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-06-08 04:42:23', 'fringilla rhoncus mauris enim leo rhoncus', 28, 23);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-06-22 14:21:21', 'magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum', 2, 1);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-06-07 07:46:39', 'venenatis turpis enim blandit mi in porttitor', 21, 27);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-05-05 22:37:11', 'duis at velit eu est congue elementum in hac habitasse', 30, 6);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-10-08 22:21:51', 'id ornare imperdiet sapien urna pretium nisl ut volutpat', 21, 28);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-01-22 09:58:56', 'proin eu mi nulla ac enim in tempor turpis nec', 3, 8);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-01-19 12:59:13', 'nibh in quis justo maecenas rhoncus aliquam lacus morbi', 2, 23);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-08-08 15:11:52', 'ultrices posuere cubilia curae mauris viverra diam vitae', 18, 4);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-11-06 08:32:40', 'sed vel enim sit amet nunc viverra dapibus nulla suscipit', 6, 28);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-08-27 05:35:39', 'nec molestie sed justo pellentesque viverra pede ac', 16, 15);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-12-03 09:04:42', 'potenti in eleifend quam a odio', 13, 2);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-10-24 08:10:55', 'quam nec dui luctus rutrum nulla tellus', 17, 14);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-05-18 12:44:00', 'nibh fusce lacus purus aliquet at feugiat non pretium', 3, 2);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2023-03-12 07:30:33', 'nisl venenatis lacinia aenean sit amet justo morbi ut odio', 26, 3);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-07-05 02:12:10', 'turpis adipiscing lorem vitae mattis nibh ligula', 17, 26);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-02-08 12:39:59', 'lacus morbi quis tortor id nulla ultrices aliquet maecenas', 11, 20);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-03-16 11:54:39', 'in eleifend quam a odio in hac habitasse platea', 4, 30);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-01-12 21:48:51', 'tempus vivamus in felis eu sapien', 18, 4);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-01-03 22:57:58', 'justo morbi ut odio cras mi pede malesuada', 26, 11);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2023-02-18 06:49:02', 'elit sodales scelerisque mauris sit amet', 11, 25);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2023-02-27 11:13:00', 'pellentesque at nulla suspendisse potenti cras in purus eu', 14, 24);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-10-28 01:36:56', 'velit vivamus vel nulla eget eros elementum pellentesque quisque porta', 7, 2);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-09-30 11:35:48', 'et tempus semper est quam pharetra magna ac consequat metus', 3, 22);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-03-10 23:54:38', 'nulla sed accumsan felis ut at dolor', 5, 21);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-08-08 00:51:11', 'quam turpis adipiscing lorem vitae mattis', 7, 5);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-04-07 19:34:55', 'at feugiat non pretium quis lectus suspendisse potenti in', 17, 14);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-03-22 11:22:33', 'justo maecenas rhoncus aliquam lacus morbi quis tortor', 15, 21);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-01-01 23:31:54', 'consequat lectus in est risus auctor sed tristique in tempus', 2, 21);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-12-20 19:36:36', 'tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum', 30, 10);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-08-17 07:23:33', 'turpis integer aliquet massa id lobortis convallis tortor risus', 4, 1);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-01-18 08:47:19', 'dis parturient montes nascetur ridiculus mus etiam vel augue', 19, 3);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-05-29 13:05:37', 'consequat metus sapien ut nunc vestibulum ante ipsum primis in', 6, 23);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-09-25 01:52:32', 'morbi ut odio cras mi pede malesuada', 12, 6);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-09-20 22:05:27', 'vivamus tortor duis mattis egestas metus aenean', 17, 16);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-09-04 17:21:53', 'nisl venenatis lacinia aenean sit amet justo morbi ut odio', 18, 27);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2023-02-12 14:36:02', 'volutpat erat quisque erat eros viverra eget congue eget semper', 7, 26);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-01-24 20:00:13', 'vitae consectetuer eget rutrum at lorem', 29, 4);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-04-20 20:07:48', 'sed ante vivamus tortor duis mattis', 20, 13);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-10-13 19:02:56', 'aenean fermentum donec ut mauris eget massa', 14, 13);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-06-01 12:42:30', 'ut volutpat sapien arcu sed augue aliquam erat', 22, 5);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-12-12 04:58:10', 'pellentesque ultrices mattis odio donec vitae nisi', 21, 25);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-01-05 07:42:50', 'ridiculus mus etiam vel augue vestibulum rutrum rutrum', 4, 11);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-06-23 08:39:36', 'urna pretium nisl ut volutpat sapien arcu sed', 27, 2);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-08-25 14:14:22', 'ac tellus semper interdum mauris ullamcorper purus sit amet', 14, 25);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-11-12 12:13:54', 'sed vestibulum sit amet cursus id turpis integer', 11, 30);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-09-18 09:28:57', 'iaculis congue vivamus metus arcu adipiscing', 12, 7);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2020-08-04 19:13:48', 'tempus sit amet sem fusce consequat nulla nisl nunc nisl', 25, 23);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2021-06-11 14:28:27', 'in purus eu magna vulputate luctus cum sociis natoque penatibus', 12, 28);
-insert into notification (id, "date", description, receiver_id, sender_id) values (DEFAULT, '2022-06-14 06:31:57', 'consequat lectus in est risus auctor sed', 20, 28);
-
-insert into notification_kick (notification_id, project_id) values (1, 45);
-insert into notification_kick (notification_id, project_id) values (2, 24);
-insert into notification_kick (notification_id, project_id) values (3, 40);
-insert into notification_kick (notification_id, project_id) values (4, 11);
-insert into notification_kick (notification_id, project_id) values (5, 4);
-insert into notification_kick (notification_id, project_id) values (6, 42);
-insert into notification_kick (notification_id, project_id) values (7, 49);
-insert into notification_kick (notification_id, project_id) values (8, 16);
-insert into notification_kick (notification_id, project_id) values (9, 6);
-insert into notification_kick (notification_id, project_id) values (10, 30);
-insert into notification_kick (notification_id, project_id) values (11, 10);
-insert into notification_kick (notification_id, project_id) values (12, 50);
-insert into notification_kick (notification_id, project_id) values (13, 6);
-insert into notification_kick (notification_id, project_id) values (14, 12);
-insert into notification_kick (notification_id, project_id) values (15, 40);
-insert into notification_kick (notification_id, project_id) values (16, 15);
-insert into notification_kick (notification_id, project_id) values (17, 38);
-insert into notification_kick (notification_id, project_id) values (18, 2);
-insert into notification_kick (notification_id, project_id) values (19, 26);
-insert into notification_kick (notification_id, project_id) values (20, 15);
-
-insert into notification_invite (notification_id, project_id) values (21, 26);
-insert into notification_invite (notification_id, project_id) values (22, 10);
-insert into notification_invite (notification_id, project_id) values (23, 9);
-insert into notification_invite (notification_id, project_id) values (24, 29);
-insert into notification_invite (notification_id, project_id) values (25, 34);
-insert into notification_invite (notification_id, project_id) values (26, 7);
-insert into notification_invite (notification_id, project_id) values (27, 30);
-insert into notification_invite (notification_id, project_id) values (28, 2);
-insert into notification_invite (notification_id, project_id) values (29, 49);
-insert into notification_invite (notification_id, project_id) values (30, 4);
-insert into notification_invite (notification_id, project_id) values (31, 46);
-insert into notification_invite (notification_id, project_id) values (32, 44);
-insert into notification_invite (notification_id, project_id) values (33, 20);
-insert into notification_invite (notification_id, project_id) values (34, 48);
-insert into notification_invite (notification_id, project_id) values (35, 37);
-insert into notification_invite (notification_id, project_id) values (36, 1);
-insert into notification_invite (notification_id, project_id) values (37, 6);
-insert into notification_invite (notification_id, project_id) values (38, 17);
-insert into notification_invite (notification_id, project_id) values (39, 35);
-insert into notification_invite (notification_id, project_id) values (40, 42);
-
-insert into notification_assign (notification_id, issue_id) values (41, 48);
-insert into notification_assign (notification_id, issue_id) values (42, 444);
-insert into notification_assign (notification_id, issue_id) values (43, 230);
-insert into notification_assign (notification_id, issue_id) values (44, 12);
-insert into notification_assign (notification_id, issue_id) values (45, 199);
-insert into notification_assign (notification_id, issue_id) values (46, 269);
-insert into notification_assign (notification_id, issue_id) values (47, 30);
-insert into notification_assign (notification_id, issue_id) values (48, 479);
-insert into notification_assign (notification_id, issue_id) values (49, 182);
-insert into notification_assign (notification_id, issue_id) values (50, 370);
-insert into notification_assign (notification_id, issue_id) values (51, 373);
-insert into notification_assign (notification_id, issue_id) values (52, 207);
-insert into notification_assign (notification_id, issue_id) values (53, 104);
-insert into notification_assign (notification_id, issue_id) values (54, 425);
-insert into notification_assign (notification_id, issue_id) values (55, 363);
-insert into notification_assign (notification_id, issue_id) values (56, 128);
-insert into notification_assign (notification_id, issue_id) values (57, 215);
-insert into notification_assign (notification_id, issue_id) values (58, 189);
-insert into notification_assign (notification_id, issue_id) values (59, 272);
-insert into notification_assign (notification_id, issue_id) values (60, 485);
-
-insert into notification_event (notification_id, event_id) values (61, 24);
-insert into notification_event (notification_id, event_id) values (62, 20);
-insert into notification_event (notification_id, event_id) values (63, 76);
-insert into notification_event (notification_id, event_id) values (64, 47);
-insert into notification_event (notification_id, event_id) values (65, 25);
-insert into notification_event (notification_id, event_id) values (66, 19);
-insert into notification_event (notification_id, event_id) values (67, 42);
-insert into notification_event (notification_id, event_id) values (68, 51);
-insert into notification_event (notification_id, event_id) values (69, 42);
-insert into notification_event (notification_id, event_id) values (70, 24);
-insert into notification_event (notification_id, event_id) values (71, 29);
-insert into notification_event (notification_id, event_id) values (72, 31);
-insert into notification_event (notification_id, event_id) values (73, 54);
-insert into notification_event (notification_id, event_id) values (74, 29);
-insert into notification_event (notification_id, event_id) values (75, 26);
-insert into notification_event (notification_id, event_id) values (76, 43);
-insert into notification_event (notification_id, event_id) values (77, 30);
-insert into notification_event (notification_id, event_id) values (78, 34);
-insert into notification_event (notification_id, event_id) values (79, 24);
-insert into notification_event (notification_id, event_id) values (80, 75);
-
-
 insert into color (id, rgb_code) values (DEFAULT, 'FDFFFCEF');
 insert into color (id, rgb_code) values (DEFAULT, 'FFCFFFFD');
 insert into color (id, rgb_code) values (DEFAULT, 'FFCFFEFD');
@@ -2639,37 +2340,6 @@ insert into color (id, rgb_code) values (DEFAULT, 'FFFFEFFF');
 insert into color (id, rgb_code) values (DEFAULT, 'EECFEFBD');
 insert into color (id, rgb_code) values (DEFAULT, 'DFFFDD3E');
 insert into color (id, rgb_code) values (DEFAULT, 'FFDFFFFD');
-
-insert into vote (user_id, comment_id, upvote) values (28, 32, true);
-insert into vote (user_id, comment_id, upvote) values (18, 37, true);
-insert into vote (user_id, comment_id, upvote) values (7, 36, false);
-insert into vote (user_id, comment_id, upvote) values (6, 78, false);
-insert into vote (user_id, comment_id, upvote) values (8, 9, false);
-insert into vote (user_id, comment_id, upvote) values (22, 83, false);
-insert into vote (user_id, comment_id, upvote) values (23, 81, true);
-insert into vote (user_id, comment_id, upvote) values (20, 8, true);
-insert into vote (user_id, comment_id, upvote) values (21, 86, false);
-insert into vote (user_id, comment_id, upvote) values (14, 7, false);
-insert into vote (user_id, comment_id, upvote) values (23, 52, false);
-insert into vote (user_id, comment_id, upvote) values (27, 50, true);
-insert into vote (user_id, comment_id, upvote) values (21, 27, false);
-insert into vote (user_id, comment_id, upvote) values (22, 97, true);
-insert into vote (user_id, comment_id, upvote) values (16, 57, false);
-insert into vote (user_id, comment_id, upvote) values (9, 12, true);
-insert into vote (user_id, comment_id, upvote) values (25, 90, true);
-insert into vote (user_id, comment_id, upvote) values (2, 38, true);
-insert into vote (user_id, comment_id, upvote) values (5, 55, false);
-insert into vote (user_id, comment_id, upvote) values (10, 64, false);
-insert into vote (user_id, comment_id, upvote) values (2, 83, false);
-insert into vote (user_id, comment_id, upvote) values (8, 60, true);
-insert into vote (user_id, comment_id, upvote) values (8, 69, true);
-insert into vote (user_id, comment_id, upvote) values (2, 63, false);
-insert into vote (user_id, comment_id, upvote) values (15, 33, true);
-insert into vote (user_id, comment_id, upvote) values (19, 100, true);
-insert into vote (user_id, comment_id, upvote) values (23, 38, false);
-insert into vote (user_id, comment_id, upvote) values (23, 25, false);
-insert into vote (user_id, comment_id, upvote) values (22, 36, true);
-insert into vote (user_id, comment_id, upvote) values (24, 50, true);
 
 
 insert into report (id, description, reports_id, reported_id) values (DEFAULT, 'eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus', 18, 20);
@@ -3374,4 +3044,3 @@ insert into assigned_user (user_id, issue_id) values (5, 310);
 insert into assigned_user (user_id, issue_id) values (7, 181);
 insert into assigned_user (user_id, issue_id) values (7, 248);
 insert into assigned_user (user_id, issue_id) values (13, 287);
-
