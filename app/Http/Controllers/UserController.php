@@ -42,8 +42,9 @@ class UserController extends Controller
         $open_projects = count($projects->where('finish_date', null)->get());
         $closed_projects = $projects_count - $open_projects;
         $description = $user->description;
+        $projects = $user->projectsStatus()->join('project', 'project.id', '=', 'member_status.project_id')->join('user', 'user.id', '=', 'project.author_id')->get();
 
-        return view('pages.user.profile', ['editable' => $editable, 'username' => $username, 'user_id' => $user_id, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'phone_number' => $phone_number, 'country' => $country, 'assigned_issues' => $assigned_issues, 'completed_issues' => $completed_issues, 'closed_projects' => $closed_projects, 'open_projects' => $open_projects, 'description' => $description]);
+        return view('pages.user.profile', ['editable' => $editable, 'username' => $username, 'user_id' => $user_id, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'phone_number' => $phone_number, 'country' => $country, 'assigned_issues' => $assigned_issues, 'completed_issues' => $completed_issues, 'projects' => $projects, 'closed_projects' => $closed_projects, 'open_projects' => $open_projects, 'description' => $description]);
     }
 
     public function projects($id)

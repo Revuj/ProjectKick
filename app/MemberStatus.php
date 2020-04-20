@@ -14,13 +14,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MemberStatus extends Model
 {
-    
+
     // Don't add create and update timestamps in database.
-    public $timestamps  = false;
-    
+    public $timestamps = false;
+
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'member_status';
@@ -28,22 +28,22 @@ class MemberStatus extends Model
     /**
      * @var array
      */
-    protected $fillable = [ 'role', 'departure_date', 'user_id', 'project_id'];
-    
+    protected $fillable = ['role', 'departure_date', 'user_id', 'project_id'];
+
     /**
-     * @return 
+     * @return
      */
     public function project()
     {
-        return $this->belongsTo(Project::class, 'project_id');
+        return $this->hasOne(Project::class, 'id');
     }
 
     /**
-     * @return 
+     * @return
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasOne(User::class, 'id');
     }
 
 }

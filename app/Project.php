@@ -15,11 +15,11 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     // Don't add create and update timestamps in database.
-    public $timestamps  = false;
+    public $timestamps = false;
 
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'project';
@@ -27,7 +27,7 @@ class Project extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'description','finish_date', 'author_id'];
+    protected $fillable = ['name', 'description', 'finish_date', 'author_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -35,20 +35,19 @@ class Project extends Model
      * @var array
      */
     protected $hidden = [
-        'search'
+        'search',
     ];
-    
-    
+
     /**
-     * @return 
+     * @return
      */
     public function author()
     {
-        return $this->belongsTo(User::class, 'author_id');
+        return $this->hasOne(User::class, 'author_id');
     }
 
     /**
-     * @return 
+     * @return
      */
     public function channels()
     {
@@ -56,7 +55,7 @@ class Project extends Model
     }
 
     /**
-     * @return 
+     * @return
      */
     public function issueLists()
     {
@@ -64,7 +63,7 @@ class Project extends Model
     }
 
     /**
-     * @return 
+     * @return
      */
     public function memberStatus()
     {
@@ -73,8 +72,4 @@ class Project extends Model
 
     // add part of notifications
 
-
-
-    
-    
 }

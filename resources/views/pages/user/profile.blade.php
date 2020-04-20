@@ -67,8 +67,10 @@
                   <li class="list-group-item p-2">
                     <h4 id="username" class="title mb-0 mt-2">{{ $username }}</h4>
                     <span id="country" class="text-muted d-block mb-1">Porto, {{ $country }}</span>
+                    <span id="email" class="font-weight-light smaller-text"><i class="far fa-envelope mr-1"></i>{{ $email }}</span>
+                    <div id="phone_number" class="font-weight-light smaller-text"><i class="fas fa-phone mr-1"></i>{{ $phone_number }}</div>
                     <div class="mb-4 mt-3">
-                      <span id="description" class="smaller-text"
+                      <span id="description" class=""
                         >{{ $description }}</span
                       >
                     </div>
@@ -97,15 +99,36 @@
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item p-3">
-                    <div class="row">
-                      <div class="col">
-                        <label>Email</label>
-                        <p id="email" class="font-weight-bold">{{ $email }}</p>
-                      </div>
-                      <div class="col">
-                        <label>Phone</label>
-                        <p id="phone_number" class="font-weight-bold">{{ $phone_number }}</p>
-                      </div>
+                    <div class="row my-10 mx-1 pb-3 border-bottom">
+                      @foreach ($projects as $project)
+                      <ul class="col-md-6 px-2">
+                        <li id={{ $project->id }} class="project-item text-left" draggable="true">
+                          <div class="d-flex flex-row align-items-center ml-2 row-1">
+                            <h6 class="mb-0 py-2 project-title title"><i class="fas fa-book"></i> {{ $project->name }}</h6>
+                            <button type="button" class="btn ml-auto d-none edit-task">
+                              <i class="fas fa-pencil-alt float-right"></i>
+                            </button>
+                          </div>
+                          <span class="d-flex flex-row align-items-center mx-2 row-2">
+                            <p class="w-100 mb-1">
+                              <span class="list-project-creator"> By <span class="author-reference">{{ $project->username }}</span> on {{\Carbon\Carbon::parse($project->creation_date)->format('M Y') }}</span>
+                            </p>
+                          </span>
+                          <span class="d-flex flex-row align-items-center mx-2 row-3">
+                            <?php $count = 0; ?>
+                            @foreach (\App\MemberStatus::where('project_id', '=', $project->id)->join('user', 'user.id', '=', 'member_status.user_id')->get() as $member)
+                              <?php if($count == 3) break; ?>  
+                                <span>{{ $member->user_id }}</span>
+                              <?php $count++; ?>
+                            @endforeach
+                            <span class="list-project-author ml-auto"><img
+                                src="#" alt=""
+                                draggable="false" />
+                            </span>
+                          </span>
+                        </li>
+                      </ul>
+                      @endforeach
                     </div>
                     <div class="row py-3">
                       <div class="col-md-6 py-3">
@@ -113,11 +136,6 @@
                       </div>
                       <div class="col-md-6 py-3">
                         <canvas  data-open-projects="{{ $open_projects }}" data-closed-projects="{{ $closed_projects }}" id="doughnut-chart-project"></canvas>
-                      </div>
-                    </div>
-                    <div class="row my-10">
-                      <div class="col-md-12">
-                        <canvas id="bar-chart-activity"></canvas>
                       </div>
                     </div>
                   </li>
