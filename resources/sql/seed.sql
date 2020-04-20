@@ -46,7 +46,8 @@ CREATE TABLE "user" (
     name text NOT NULL,
     phone_number text UNIQUE,
     photo_path text,
-    is_deleted bool DEFAULT false NOT NULL,
+    description text DEFAULT null,
+    deleted_at timestamp DEFAULT null,
     is_admin bool DEFAULT false NOT NULL,
     country_id integer NOT NULL REFERENCES country  ON DELETE CASCADE
                                                      ON UPDATE CASCADE,

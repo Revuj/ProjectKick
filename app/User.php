@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -22,6 +23,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    use SoftDeletes;
+
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
@@ -33,7 +36,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone_number', 'photo_path', 'username',
+        'name', 'email', 'password', 'phone_number', 'photo_path', 'username', 'description',
     ];
 
     /**

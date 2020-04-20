@@ -50,11 +50,13 @@
           <div class="row">
             <div class="col-md-4">
               <div  class="card card-small mb-4 user">
-                <div class="edit-button">
-                  <button type="button" class="btn float-right">
-                    <i class="fas fa-pencil-alt float-right"></i>
-                  </button>
-                </div>
+                @if ($editable)
+                  <div class="edit-button">
+                    <button type="button" class="btn float-right">
+                      <i class="fas fa-pencil-alt float-right"></i>
+                    </button>
+                  </div>
+                @endif
                 <img
                   class="card-img-top"
                   src="{{asset('assets/profile.png')}}"
@@ -63,14 +65,11 @@
                 />
                 <ul class="list-group list-group-flush mt-2">
                   <li class="list-group-item p-2">
-                    <h4 class="title mb-0 mt-2">{{ $username }}</h4>
-                    <span class="text-muted d-block mb-1">Porto, {{ $country }}</span>
+                    <h4 id="username" class="title mb-0 mt-2">{{ $username }}</h4>
+                    <span id="country" class="text-muted d-block mb-1">Porto, {{ $country }}</span>
                     <div class="mb-4 mt-3">
-                      <span class="smaller-text"
-                        >Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Odio eaque, quidem, commodi soluta qui quae minima
-                        obcaecati quod dolorum sint alias, possimus illum
-                        assumenda eligendi cumque?</span
+                      <span id="description" class="smaller-text"
+                        >{{ $description }}</span
                       >
                     </div>
                   </li>
@@ -101,11 +100,11 @@
                     <div class="row">
                       <div class="col">
                         <label>Email</label>
-                        <p class="font-weight-bold">{{ $email }}</p>
+                        <p id="email" class="font-weight-bold">{{ $email }}</p>
                       </div>
                       <div class="col">
                         <label>Phone</label>
-                        <p class="font-weight-bold">{{ $phone_number }}</p>
+                        <p id="phone_number" class="font-weight-bold">{{ $phone_number }}</p>
                       </div>
                     </div>
                     <div class="row py-3">
@@ -129,7 +128,9 @@
               <div class="card card-small mb-4">
                 <div class="card-header border-bottom d-flex">
                   <h6 class="m-0">Edit Account</h6>
-                  <i class="fas fa-times ml-auto"></i>
+                  <button class="btn p-0 ml-auto" id="close-edit">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item pt-0">
@@ -137,6 +138,16 @@
                       <div class="col">
                         <form class="mt-3">
                           <div class="form-row">
+                            <div class="form-group col-md-12 w-50">
+                              <label for="feFirstName">Username</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="feUsername"
+                                placeholder="username"
+                                value="{{ $username }}"
+                              />
+                            </div>
                             <div class="form-group col-md-6">
                               <label for="feFirstName">First Name</label>
                               <input
@@ -234,8 +245,8 @@
                                 name="feDescription"
                                 rows="5"
                               >
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea
-                              >
+                                {{ $description }}
+                              </textarea>
                             </div>
                           </div>
                           <div class="d-md-flex profile-edit-buttons">
@@ -250,7 +261,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, com
                             <div>
                               <button
                                 type="button"
-                                class="btn "
+                                class="btn cancel"
                                 data-dismiss="modal"
                               >
                                 Cancel
@@ -306,7 +317,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, com
               </p>
             </div>
             <div class="modal-footer">
-              <button type="button" id = "cancel" class="btn" data-dismiss="modal">
+              <button type="button" id = "cancel" class="btn cancel" data-dismiss="modal">
                 Cancel
               </button>
                 <button

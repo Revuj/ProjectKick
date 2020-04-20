@@ -138,30 +138,22 @@ const activity = new Chart(document.getElementById('bar-chart-activity'), {
 });
 
 const edit_button = document.querySelector('.edit-button');
-const cancel_button = document.querySelector('#cancel');
+const cancel_buttons = document.querySelectorAll('.cancel');
 const update_button = document.querySelector('#update');
+const close_button = document.querySelector('#close-edit');
 const edit_container = document.getElementById('edit');
 const details_container = document.getElementById('details');
 const user_card = document.querySelector('#user');
 
-edit_button.addEventListener('click', event => {
+[...cancel_buttons, edit_button, update_button, close_button].forEach(elem =>
+  elem.addEventListener('click', toggleEditSection
+  ));
+
+function toggleEditSection(event) {
   event.preventDefault();
-  if (edit_container.classList.contains('d-none')) {
-    edit_container.classList.toggle('d-none');
-    details_container.classList.toggle('d-none');
-  }
-});
-
-[cancel_button, update_button].forEach(elem =>
-  elem.addEventListener('click', event => {
-    event.preventDefault();
-    if (details_container.classList.contains('d-none')) {
-      edit_container.classList.toggle('d-none');
-      details_container.classList.toggle('d-none');
-    }
-  })
-);
-
+  edit_container.classList.toggle('d-none');
+  details_container.classList.toggle('d-none');
+}
 
 const deleteButton = document.getElementById("delete");
 deleteButton.addEventListener('click', deleteUser);
@@ -186,12 +178,17 @@ updateButton.addEventListener('click', updateUser);
 function updateHandler() {
   const response = JSON.parse(this.responseText);
   console.log(response);
+  document.getElementById("username").innerHTML = response.username;
+  document.getElementById("email").innerHTML = response.email;
+  document.getElementById("phone_number").innerHTML = response.phone_number;
+  document.getElementById("description").innerHTML = response.description;
 }
 
 function updateUser(e) {
   e.preventDefault();
   console.log(updateButton);
   let id = deleteButton.dataset.user;
+  let username = document.getElementById("feUsername").value;
   let firstName = document.getElementById("feFirstName").value;
   let lastName = document.getElementById("feLastName").value;
   let email = document.getElementById("feEmail").value;
@@ -201,6 +198,6 @@ function updateUser(e) {
   let city = document.getElementById("feCity").value;
   let description = document.getElementById("feDescription").value;
 
-  console.log({ firstName, lastName, email, phone, password, confirmPassword, city, description });
-  sendAjaxRequest("post", `../api/users/${id}`, { firstName, lastName, email, phone, password, confirmPassword, city, description }, updateHandler);
+  console.log({ username, firstName, lastName, email, phone, password, confirmPassword, city, description });
+  sendAjaxRequest("post", `../api/users/${id}`, { username, firstName, lastName, email, phone, password, confirmPassword, city, description }, updateHandler);
 }

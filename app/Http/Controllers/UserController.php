@@ -10,15 +10,18 @@ class UserController extends Controller
 {
     public function profile($id)
     {
-        $user = User::find($id);
+        // depende se queremos mostrar o perfil de utilizadores apagados ou não
+        $user = User::withTrashed()->find($id);
         if ($user == null) {
             abort(404);
         }
 
+        // only lets authenticated user edit it's own profile
         $editable = true;
         if (!Auth::check()) {
             $editable = false;
         }
+        $editable = true; // while authentication is not implemented
 
         $username = $user->username;
         $user_id = $user->id;
@@ -38,8 +41,9 @@ class UserController extends Controller
         $projects_count = count($projects->get());
         $open_projects = count($projects->where('finish_date', null)->get());
         $closed_projects = $projects_count - $open_projects;
+        $description = $user->description;
 
-        return view('pages.user.profile', ['username' => $username, 'user_id' => $user_id, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'phone_number' => $phone_number, 'country' => $country, 'assigned_issues' => $assigned_issues, 'completed_issues' => $completed_issues, 'closed_projects' => $closed_projects, 'open_projects' => $open_projects]);
+        return view('pages.user.profile', ['editable' => $editable, 'username' => $username, 'user_id' => $user_id, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'phone_number' => $phone_number, 'country' => $country, 'assigned_issues' => $assigned_issues, 'completed_issues' => $completed_issues, 'closed_projects' => $closed_projects, 'open_projects' => $open_projects, 'description' => $description]);
     }
 
     public function projects($id)
@@ -55,9 +59,19 @@ class UserController extends Controller
             abort(404);
         }
 
+        $user->username = $request->input('username');
         $user->name = $request->input('firstName') . ' ' . $request->input('lastName');
         $user->email = $request->input('email');
         $user->phone_number = $request->input('phone');
+        $user->description = $request->input('description');
+        $password = $request->input('password');
+        if (strlen($password) > 0) {
+            if ($password == $request->input('confirmPassword')) {
+                //calculate hash and update password
+            } else {
+                //passwords don't match
+            }
+        }
 
         $user->save();
 
