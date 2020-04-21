@@ -25,7 +25,7 @@ Auth::routes();
 // auth user permission
 Route::group(['middleware' => ['auth']], function() {
 
-    Route::get('users/{id}', 'UserController@index');
+    Route::get('users/{id}', 'User\UserController@index');
 
     //user role permissions
     Route::group(['middleware' => ['auth.user'], 
