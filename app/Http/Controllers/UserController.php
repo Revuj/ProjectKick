@@ -43,8 +43,9 @@ class UserController extends Controller
         $closed_projects = $projects_count - $open_projects;
         $description = $user->description;
         $projects = $user->projectsStatus()->join('project', 'project.id', '=', 'member_status.project_id')->join('user', 'user.id', '=', 'project.author_id')->get();
+        $photo_path = $user->photo_path;
 
-        return view('pages.user.profile', ['editable' => $editable, 'username' => $username, 'user_id' => $user_id, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'phone_number' => $phone_number, 'country' => $country, 'assigned_issues' => $assigned_issues, 'completed_issues' => $completed_issues, 'projects' => $projects, 'closed_projects' => $closed_projects, 'open_projects' => $open_projects, 'description' => $description]);
+        return view('pages.user.profile', ['editable' => $editable, 'username' => $username, 'user_id' => $user_id, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'phone_number' => $phone_number, 'country' => $country, 'assigned_issues' => $assigned_issues, 'completed_issues' => $completed_issues, 'projects' => $projects, 'closed_projects' => $closed_projects, 'open_projects' => $open_projects, 'description' => $description, 'photo_path' => $photo_path]);
     }
 
     public function projects($id)
@@ -72,6 +73,20 @@ class UserController extends Controller
             } else {
                 //passwords don't match
             }
+        }
+
+        $user->save();
+
+        return $user;
+
+    }
+
+    public function updatePhoto(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($user == null) {
+            abort(404);
         }
 
         $user->save();

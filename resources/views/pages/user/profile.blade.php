@@ -51,15 +51,16 @@
             <div class="col-md-4">
               <div  class="card card-small mb-4 user">
                 @if ($editable)
-                  <div class="edit-button">
-                    <button type="button" class="btn float-right">
-                      <i class="fas fa-pencil-alt float-right"></i>
-                    </button>
-                  </div>
-                @endif
+                  <form class="edit-photo" method="post" enctype="multipart/form-data">
+                    <label for="upload-photo">
+                        <i class="fas fa-pencil-alt float-right p-2"></i>
+                    </label>
+                    <input type="file" name="photo" id="upload-photo" />
+                  </form>
+                  @endif
                 <img
                   class="card-img-top"
-                  src="{{asset('assets/profile.png')}}"
+                  src="{{asset('assets/avatars/' . $photo_path . '.png')}}"
                   alt="User Avatar"
                   width="110"
                 />
@@ -94,15 +95,22 @@
             </div>
             <div class="col-md-8" id="details">
               <div class="card card-small mb-4">
-                <div class="card-header border-bottom">
+                <div class="card-header border-bottom d-flex align-items-center">
                   <h6 class="m-0">Account Details</h6>
+                  @if ($editable)
+                    <div class="edit-button">
+                      <button type="button" class="btn float-right">
+                        <i class="fas fa-pencil-alt float-right"></i>
+                      </button>
+                    </div>
+                  @endif
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item p-3">
                     <div class="row my-10 mx-1 pb-3 border-bottom">
                       @foreach ($projects as $project)
-                      <ul class="col-md-6 px-2">
-                        <li id={{ $project->id }} class="project-item text-left" draggable="true">
+                      <ul id={{ $project->id }} class="col-md-6 p-2 project clickable">
+                        <li class="project-item text-left" draggable="true">
                           <div class="d-flex flex-row align-items-center ml-2 row-1">
                             <h6 class="mb-0 py-2 project-title title"><i class="fas fa-book"></i> {{ $project->name }}</h6>
                             <button type="button" class="btn ml-auto d-none edit-task">
@@ -114,17 +122,20 @@
                               <span class="list-project-creator"> By <span class="author-reference">{{ $project->username }}</span> on {{\Carbon\Carbon::parse($project->creation_date)->format('M Y') }}</span>
                             </p>
                           </span>
-                          <span class="d-flex flex-row align-items-center mx-2 row-3">
+                          <span class="d-flex flex-row-reverse  mx-2 row-3">
                             <?php $count = 0; ?>
                             @foreach (\App\MemberStatus::where('project_id', '=', $project->id)->join('user', 'user.id', '=', 'member_status.user_id')->get() as $member)
-                              <?php if($count == 3) break; ?>  
-                                <span>{{ $member->user_id }}</span>
+                              <?php if($count == 3) {
+                                      echo '<span class="project-member align-self-end">' . '. . .' . '</span>';
+                                      break; 
+                              }
+                              ?>  
+                              <span class="project-member"><img
+                                src="{{asset('assets/avatars/' . $photo_path . '.png')}}" alt=""
+                                draggable="false" />
+                              </span>
                               <?php $count++; ?>
                             @endforeach
-                            <span class="list-project-author ml-auto"><img
-                                src="#" alt=""
-                                draggable="false" />
-                            </span>
                           </span>
                         </li>
                       </ul>
@@ -144,7 +155,7 @@
             </div>
             <div class="col-md-8 d-none" id="edit">
               <div class="card card-small mb-4">
-                <div class="card-header border-bottom d-flex">
+                <div class="card-header border-bottom d-flex align-items-center">
                   <h6 class="m-0">Edit Account</h6>
                   <button class="btn p-0 ml-auto" id="close-edit">
                     <i class="fas fa-times"></i>
@@ -348,6 +359,37 @@
               </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div id="uploadModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">File upload form</h4>
+            </div>
+            <div class="modal-body">
+              <!-- Form -->
+              <form id="upload_profile_image" method="post" action="#" enctype="multipart/form-data">
+                <input type="file" name="fileUpload" >
+                <button
+                  type="submit"
+                  id="update-photo"
+                  class="btn btn-success"
+                >
+                  Update Photo
+                </button>
+              </form>
+      
+              <!-- Preview-->
+              <div id='preview'></div>
+            </div>
+       
+          </div>
+      
         </div>
       </div>
 

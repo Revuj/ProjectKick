@@ -4,7 +4,7 @@
   right: 0;
 }
 
-.edit-button {
+.edit-button, .edit-photo {
   position: absolute;
   right: 0;
   background-color: transparent !important;
@@ -24,6 +24,26 @@
   border: 1px solid var(--border-color);
   padding: 0.5rem;
   background: var(--background-color);
+}
+
+.project-member {
+  margin-left: 0.5rem;
+}
+
+.project-member img {
+  border-radius: 3px;
+  width: 30px;
+  height: 30px;
+}
+
+label {
+  cursor: pointer;
+}
+
+#upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 @media screen and (max-width: 768px) {

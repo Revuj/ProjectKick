@@ -46,7 +46,7 @@ const task = new Chart(taskChart, {
 });
 
 const projectsChart = document.getElementById('doughnut-chart-project');
-const projects = new Chart(projectsChart, {
+const projectsData = new Chart(projectsChart, {
   type: 'doughnut',
   data: {
     labels: ['Finished', 'Active'],
@@ -91,51 +91,11 @@ const projects = new Chart(projectsChart, {
   }
 });
 
-const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
-var x = new Date();
-const activity = new Chart(document.getElementById('bar-chart-activity'), {
-  type: 'bar',
-  data: {
-    labels: [
-      monthNames[x.getMonth() - 6],
-      monthNames[x.getMonth() - 5],
-      monthNames[x.getMonth() - 4],
-      monthNames[x.getMonth() - 3],
-      monthNames[x.getMonth() - 2],
-      monthNames[x.getMonth() - 1],
-      monthNames[x.getMonth()]
-    ],
-    datasets: [
-      {
-        backgroundColor: [
-          '#3e95cd',
-          '#3e95cd',
-          '#3e95cd',
-          '#3e95cd',
-          '#3e95cd',
-          '#3e95cd',
-          '#3e95cd'
-        ],
-        data: [30, 10, 20, 50, 5, 0, 0]
-      }
-    ]
-  },
-  options: {
-    legend: {
-      display: false
-    },
-    font: function (context) {
-      var width = context.chart.width;
-      var size = Math.round(width / 32);
-      return {
-        size: size,
-        weight: 600
-      };
-    }
-  }
-});
+const projects = document.getElementsByClassName('project');
+[...projects].forEach(elem => elem.addEventListener('click', event => {
+  console.log(elem);
+  window.location.href = `/projects/${elem.id}`;
+}))
 
 const edit_button = document.querySelector('.edit-button');
 const cancel_buttons = document.querySelectorAll('.cancel');
@@ -175,7 +135,7 @@ function deleteUser(e) {
 const updateButton = document.getElementById("update");
 updateButton.addEventListener('click', updateUser);
 
-function updateHandler() {
+function updateUserHandler() {
   const response = JSON.parse(this.responseText);
   console.log(response);
   document.getElementById("username").innerHTML = response.username;
@@ -199,5 +159,21 @@ function updateUser(e) {
   let description = document.getElementById("feDescription").value;
 
   console.log({ username, firstName, lastName, email, phone, password, confirmPassword, city, description });
-  sendAjaxRequest("post", `../api/users/${id}`, { username, firstName, lastName, email, phone, password, confirmPassword, city, description }, updateHandler);
+  sendAjaxRequest("post", `../api/users/${id}`, { username, firstName, lastName, email, phone, password, confirmPassword, city, description }, updateUserHandler);
+}
+
+
+function updatePhotoHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response);
+}
+
+let uploadForm = document.querySelector(".edit-photo");
+let fileInput = document.getElementById("upload-photo");
+
+fileInput.addEventListener('change', uploadPhoto);
+console.log(fileInput);
+
+function uploadPhoto() {
+
 }

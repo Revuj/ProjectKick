@@ -50,6 +50,7 @@ Route::get('/users/{id}', 'UserController@profile');
 Route::get('/users/{id}/projects', "UserController@projects");
 Route::delete('/api/users/{id}', 'UserController@delete');
 Route::post('/api/users/{id}', 'UserController@update');
+Route::post('/api/users/{id}/photo', 'UserController@updatePhoto');
 
 // Issues
 Route::get('/issues/{id}', 'IssueController@show');
