@@ -1,5 +1,8 @@
 @extends('layouts.app', ['hide_navbar' => true, 'hide_footer' => true, 'sidebar' => 'none'])
 
+@section('title', 'Kick | Reset Password')
+
+
 @section('script')
   <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
