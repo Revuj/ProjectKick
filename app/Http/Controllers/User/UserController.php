@@ -1,8 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller;
+
 
 use App\User;
+use Validator;
+use Auth;
+
 
 class UserController extends Controller
 {
@@ -17,4 +22,6 @@ class UserController extends Controller
     {
         return view('pages.user.projects');
     }
+
+
 }

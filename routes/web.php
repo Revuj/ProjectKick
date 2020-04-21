@@ -11,61 +11,66 @@
 |
  */
 
-/*
-Route::get('/', 'Auth\LoginController@home');
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
-
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
-
-// Authentication
-
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
-
- */
-
-//Route::get('/', 'HomePageController');
-//Route::get('/contact', 'Contact');
-//Route::get('/about', 'About');
-
 Route::get('/report', 'Report');
 
-Route::get('/', 'PageController@index');
+//======================= static pages ==================================
+Route::get('/', 'PageController@index')->name('home');
 Route::get('/contact', 'PageController@contact');
 Route::get('/about', 'PageController@about');
-Route::get('/authenticate', 'PageController@authenticate');
 
-Route::get('/users/{id}', 'UserController@index');
-Route::get('/users/{id}/projects', "UserController@projects");
+//========================== authentication =============================
+Auth::routes();
+// ================== user and admin pages ==============================
 
-// Issues
-Route::get('/issues/{id}', 'IssueController@show');
-Route::get('/projects/{id}/issuelist', 'IssueController@showList');
-Route::get('/projects/{id}/board', 'IssueController@showBoard');
-Route::get('/users/{id}/issues', 'IssueController@showUserIssues');
+// auth user permission
+Route::group(['middleware' => ['auth']], function() {
 
-// Events & Notifications
-Route::get('/users/{id}/calendar', 'EventController@show');
-Route::get('/users/{id}/notifications', 'NotificationController@show');
+    Route::get('users/{id}', 'UserController@index');
 
-// Chat
-Route::get('/chat/{id}', 'ChatController@show');
+    //user role permissions
+    Route::group(['middleware' => ['auth.user'], 
+                  'namespace' => 'User'],  function() {
+        
+        //user
+        Route::prefix('users')-> group (function() {
+            Route::get('/{id}/projects', "UserController@projects");
+            Route::get('/{id}/issues', 'IssueController@showUserIssues');
+            Route::get('/{id}/calendar', 'EventController@show');
+            Route::get('/{id}/notifications', 'NotificationController@show');
+        });
 
-//Project
-Route::get('/projects/{id}', 'ProjectController@index');
-Route::get('/projects/{id}/activity', 'ProjectController@activity');
-Route::get('/projects/{id}/members', 'ProjectController@members');
+    
+        // Issues
+        Route::get('/issues/{id}', 'IssueController@show');
+ 
+    
+        // Chat
+        Route::get('/chat/{id}', 'ChatController@show');
+    
+        //Project
+        Route::prefix('projects') ->group(function() {
+            Route::get('/{id}', 'ProjectController@index');
+            Route::get('/{id}/activity', 'ProjectController@activity');
+            Route::get('/{id}/members', 'ProjectController@members');
+            Route::get('/{id}/issuelist', 'IssueController@showList');
+            Route::get('/{id}/board', 'IssueController@showBoard');
+        });
+    
+    });
+    
+    // admin permissions
+    Route::group(['middleware' => ['auth.admin'],
+                  'namespace' => 'Admin',
+                  'prefix' => "admin"], function(){
+        Route::get('/{id}', 'AdminController@dashboard');
+        Route::get('/search', 'AdminController@search');
+    } );
 
-//Administrator
-Route::get('/admin', 'AdminController@dashboard');
-Route::get('/admin/search', 'AdminController@search');
+});
+
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
