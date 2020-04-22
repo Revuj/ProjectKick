@@ -48,11 +48,6 @@ class UserController extends Controller
         return view('pages.user.profile', ['editable' => $editable, 'username' => $username, 'user_id' => $user_id, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'phone_number' => $phone_number, 'country' => $country, 'assigned_issues' => $assigned_issues, 'completed_issues' => $completed_issues, 'projects' => $projects, 'closed_projects' => $closed_projects, 'open_projects' => $open_projects, 'description' => $description, 'photo_path' => $photo_path]);
     }
 
-    public function projects($id)
-    {
-        return view('pages.user.projects');
-    }
-
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -109,5 +104,33 @@ class UserController extends Controller
         $user->delete($id);
 
         return $user;
+    }
+
+    public function projects($id)
+    {
+
+        $user = User::find($id);
+
+        if ($user == null) {
+            abort(404);
+        }
+
+        // only lets project coordinator edit the project
+        // falta verificar se é o coordenador
+        $editable = true;
+        if (!Auth::check()) {
+            $editable = false;
+        }
+
+        // $projects = $user->projectsStatus()->withCount(['project', 'issues'])->get();
+
+        $projects = $user->projectsStatus()
+            ->join('project', 'project.id', '=', 'member_status.project_id')
+            ->join('user', 'user.id', '=', 'project.author_id')
+            ->select('project.id', 'project.name', 'project.creation_date', 'project.finish_date', 'project.description')
+            ->get();
+
+        $editable = true; // while authentication is not implemented
+        return view('pages.user.projects', ['editable' => $editable, 'projects' => $projects, 'user_id' => $id]);
     }
 }

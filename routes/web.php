@@ -69,6 +69,8 @@ Route::get('/chat/{id}', 'ChatController@show');
 Route::get('/projects/{id}', 'ProjectController@index');
 Route::get('/projects/{id}/activity', 'ProjectController@activity');
 Route::get('/projects/{id}/members', 'ProjectController@members');
+Route::put('/api/projects', 'ProjectController@create');
+Route::delete('/api/projects/{id}', 'ProjectController@delete');
 
 //Administrator
 Route::get('/admin', 'AdminController@dashboard');

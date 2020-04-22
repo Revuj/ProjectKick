@@ -12,33 +12,33 @@ use Illuminate\Database\Eloquent\Model;
 class IssueList extends Model
 {
     // Don't add create and update timestamps in database.
-    public $timestamps  = false;
+    public $timestamps = false;
 
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
-    protected $table = 'issue';
+    protected $table = 'issue_list';
 
     /**
      * @var array
      */
-    protected $fillable = [ 'name', 'id_project' ]; 
+    protected $fillable = ['name', 'id_project'];
 
     /**
-     * @return 
+     * @return
      */
-    public function issueList()
+    public function project()
     {
-        return $this->belongsTo(Project::class, 'id_project');
+        return $this->belongsTo(Project::class, 'project_id');
     }
 
     /**
-     * @return 
+     * @return
      */
     public function issues()
     {
-        return $this->hasMany(Issue::class,'issue_list_id');
+        return $this->hasMany(Issue::class, 'issue_list_id');
     }
 }

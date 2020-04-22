@@ -131,7 +131,7 @@
                               }
                               ?>  
                               <span class="project-member"><img
-                                src="{{asset('assets/avatars/' . $photo_path . '.png')}}" alt=""
+                                src="{{asset('assets/avatars/' . $member->photo_path . '.png')}}" alt=""
                                 draggable="false" />
                               </span>
                               <?php $count++; ?>

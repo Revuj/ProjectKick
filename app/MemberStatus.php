@@ -33,17 +33,16 @@ class MemberStatus extends Model
     /**
      * @return
      */
-    public function project()
-    {
-        return $this->hasOne(Project::class, 'id');
-    }
-
-    /**
-     * @return
-     */
     public function user()
     {
         return $this->hasOne(User::class, 'id');
     }
 
+    /**
+     * @return
+     */
+    public function project()
+    {
+        return $this->hasOne(Project::class, 'id');
+    }
 }

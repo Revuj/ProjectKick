@@ -43,7 +43,7 @@ class Project extends Model
      */
     public function author()
     {
-        return $this->hasOne(User::class, 'author_id');
+        return $this->belongsTo(User::class, 'id');
     }
 
     /**
@@ -59,7 +59,15 @@ class Project extends Model
      */
     public function issueLists()
     {
-        return $this->hasMany(IssueList::class, 'id_project');
+        return $this->hasMany(IssueList::class, 'project_id');
+    }
+
+    /**
+     * Get all the issuelists for the project.
+     */
+    public function issues()
+    {
+        return $this->hasManyThrough('App\Issue', 'App\IssueList');
     }
 
     /**
