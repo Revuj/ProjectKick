@@ -122,7 +122,8 @@ class UserController extends Controller
             $editable = false;
         }
 
-        // $projects = $user->projectsStatus()->withCount(['project', 'issues'])->get();
+        // teoricamente isto funcionaria num mundo ideal (eu adicionei alguns hasManyThrough mas se calhar depois apaguei pq nao tava a funcionar e não)
+        // $projects = $user->projectsStatus()->withCount(['project', issueList, 'issues'])->get();
 
         $projects = $user->projectsStatus()
             ->join('project', 'project.id', '=', 'member_status.project_id')
