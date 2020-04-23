@@ -53,9 +53,9 @@
           <div class="row">
             <div class="col-md-4">
               <div  class="card card-small mb-4 user">
-                @if ($editable)
-                <i class="d-none fas fa-pencil-alt float-right p-2" id="edit-photo-button" data-toggle="modal" data-target="#editImageModal"></i>
-                 @endif
+                @can('own', [$user, User::class])
+                  <i class="d-none fas fa-pencil-alt float-right p-2" id="edit-photo-button" data-toggle="modal" data-target="#editImageModal"></i>
+                @endcan
                 <img
                   class="card-img-top"
                   src="{{asset('assets/avatars/' . $photo_path . '.png')}}"
@@ -95,13 +95,13 @@
               <div class="card card-small mb-4">
                 <div class="card-header border-bottom d-flex align-items-center">
                   <h6 class="m-0">Account Details</h6>
-                  @if ($editable)
+                  @can('own', [$user, User::class])
                     <div class="edit-button">
                       <button type="button" class="btn float-right">
                         <i class="fas fa-pencil-alt float-right"></i>
                       </button>
                     </div>
-                  @endif
+                  @endcan
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item p-3">

@@ -34,6 +34,8 @@
           <span class="warning">Warning:&nbsp;</span><i>JavaScript</i> is currently disabled and is required to fully experience this website
       </noscript>
 
+      <!--@include('inc.messages')-->
+
       <div class="main-container">
         @yield('content')
       </div>

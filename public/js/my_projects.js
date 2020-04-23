@@ -52,13 +52,13 @@ function createProjectHandler() {
   project_card.classList.add("card", "project");
   project_card.id = id;
   project_card.innerHTML =
-    `<div class="card-header">
+    `<div class="card-header d-flex align-items-center">
       <a
         class="text-decoration-none title"
         href="project_overview.html"
         >${ name}
       </a>
-      <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="{{ $project->id }}">
+      <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="${id}">
       <i class="fas fa-trash-alt"></i>
       </button>
       <br />
@@ -123,7 +123,7 @@ function deleteHandler() {
 
 function deleteProject(e) {
   e.preventDefault();
-  let id = deleteButton.dataset.project;
+  let id = document.querySelector(".delete-project-button").dataset.project;
   console.log(id);
   sendAjaxRequest("delete", `/api/projects/${id}`, {}, deleteHandler);
 }

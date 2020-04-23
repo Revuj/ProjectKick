@@ -83,7 +83,13 @@
           </div>
 
           <div class="notify_item clickable d-flex">
-            <a href="index.html" class="nostyle">Logout</a>
+          <!-- quick fix -->
+          <a class = "nostyle" href="{{ url('/logout') }}" 
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            Logout
+          </a>
+            <form id="logout-form" action="{{ url('/logout') }}"  method="POST" style="display: none;">{{ csrf_field() }}</form>
           </div>
         </div>
       </li>

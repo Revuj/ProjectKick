@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,18 +12,12 @@ class UserController extends Controller
 {
     public function profile($id)
     {
+        $this->authorize('view', [User::findOrFail($id), User::class]);
         // depende se queremos mostrar o perfil de utilizadores apagados ou não
         $user = User::withTrashed()->find($id);
         if ($user == null) {
             abort(404);
         }
-
-        // only lets authenticated user edit it's own profile
-        $editable = true;
-        if (!Auth::check()) {
-            $editable = false;
-        }
-        $editable = true; // while authentication is not implemented
 
         $username = $user->username;
         $user_id = $user->id;
@@ -45,13 +41,14 @@ class UserController extends Controller
         $projects = $user->projectsStatus()->join('project', 'project.id', '=', 'member_status.project_id')->join('user', 'user.id', '=', 'project.author_id')->get();
         $photo_path = $user->photo_path;
 
-        return view('pages.user.profile', ['editable' => $editable, 'username' => $username, 'user_id' => $user_id, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'phone_number' => $phone_number, 'country' => $country, 'assigned_issues' => $assigned_issues, 'completed_issues' => $completed_issues, 'projects' => $projects, 'closed_projects' => $closed_projects, 'open_projects' => $open_projects, 'description' => $description, 'photo_path' => $photo_path]);
+        return view('pages.user.profile', ['username' => $username, 'user_id' => $user_id, 'user' => $user, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'phone_number' => $phone_number, 'country' => $country, 'assigned_issues' => $assigned_issues, 'completed_issues' => $completed_issues, 'projects' => $projects, 'closed_projects' => $closed_projects, 'open_projects' => $open_projects, 'description' => $description, 'photo_path' => $photo_path]);
     }
 
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $this->authorize('own', [User::findOrFail($id), User::class]);
 
+        $user = User::find($id);
         if ($user == null) {
             abort(404);
         }
@@ -78,6 +75,8 @@ class UserController extends Controller
 
     public function updatePhoto(Request $request, $id)
     {
+        $this->authorize('own', [User::findOrFail($id), User::class]);
+
         $folderPath = public_path('/assets/avatars/');
 
         $image_parts = explode(";base64,", $request->base64data);
@@ -105,6 +104,8 @@ class UserController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', [User::findOrFail($id), User::class]);
+
         $user = User::find($id);
         if ($user == null) {
             abort(404);
@@ -144,4 +145,5 @@ class UserController extends Controller
         $editable = true; // while authentication is not implemented
         return view('pages.user.projects', ['editable' => $editable, 'projects' => $projects, 'user_id' => $id, 'user_photo_path' => $user->photo_path]);
     }
+
 }

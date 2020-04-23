@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+
+
 
 class LoginController extends Controller
 {
@@ -20,12 +25,17 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/cards';
+
+    public function redirectTo() {
+        
+        if (Auth::user()->is_admin) {
+            return '/admin/' . Auth::id() ;
+        } else if (!Auth::user()->is_admin) {
+            return '/users/' . Auth::id() . '/projects';
+        } else {
+            return '/';
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -41,8 +51,44 @@ class LoginController extends Controller
         return $request->user();
     }
 
+    protected function credentials(Request $request)
+    {
+        return array_merge(
+            $request->only($this->username(), 'password'),
+            ['is_banned' => false]
+        );
+    }
+    
+    public function username() {
+        $loginType = request()->input('username');
+        $this->username = filter_var($loginType, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        request()->merge([$this->username => $loginType]);
+        return property_exists($this, 'username') ? $this->username : 'email';
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $messages = [
+            'username.required' => 'Email or username cannot be empty',
+            'email.exists' => 'Email or username already registered',
+            'username.exists' => 'Username is already registered',
+            'password.required' => 'Password cannot be empty',
+        ];
+
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+            'email' => 'string|exists:users',
+        ], $messages);
+    }
+
+    /*
+     * In case of failure redirect
+     
     public function home() {
         return redirect('login');
     }
+    */
+
 
 }

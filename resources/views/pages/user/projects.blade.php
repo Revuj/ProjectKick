@@ -118,7 +118,7 @@
                       href="project_overview.html"
                       >{{ $project->name }}
                     </a>
-                    <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="{{ $project->id }}">
+                    <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" id="{{ $project->id }}">
                       <i class="fas fa-trash-alt"></i>
                     </button>
                     <br />
@@ -284,7 +284,6 @@
                 </button>
                 <button
                   id="delete-project-button"
-                  data-project="{{ $project->id }}"
                   type="button"
                   data-dismiss="modal"
                   class="btn btn-primary btn-danger"
