@@ -126,6 +126,10 @@ class User extends Authenticatable
         $this->hasMany(Report::class, 'reported_id');
     }
 
+    public function isAdmin() {
+        return $this->attributes['is_admin'] ;
+    }
+
 
     /* fazer ligacao para os eventos e notifications e vote*/
 
