@@ -106,7 +106,7 @@ const details_container = document.getElementById('details');
 const user_card = document.querySelector('#user');
 const edit_photo = document.querySelector('#edit-photo-button');
 
-[...cancel_buttons, edit_button, update_button, close_button].forEach(elem =>
+[...cancel_buttons, edit_button, close_button].forEach(elem =>
   elem.addEventListener('click', toggleEditSection
   ));
 
@@ -148,7 +148,6 @@ function updateUserHandler() {
 
 function updateUser(e) {
   e.preventDefault();
-  console.log(updateButton);
   let id = deleteButton.dataset.user;
   let username = document.getElementById("feUsername").value;
   let firstName = document.getElementById("feFirstName").value;
@@ -160,14 +159,41 @@ function updateUser(e) {
   let city = document.getElementById("feCity").value;
   let description = document.getElementById("feDescription").value;
 
-  console.log({ username, firstName, lastName, email, phone, password, confirmPassword, city, description });
-  sendAjaxRequest("post", `../api/users/${id}`, { username, firstName, lastName, email, phone, password, confirmPassword, city, description }, updateUserHandler);
-}
+  fetch(`../api/users/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({ username, firstName, lastName, email, phone, password, confirmPassword, city, description }),
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    }
+  }).then((res) => {
+    if (res.ok) {
+      console.log('oioioioioi');
+      res.json().then(data => {
+        document.getElementById("username").innerHTML = data.username;
+        document.getElementById("email").innerHTML = data.email;
+        document.getElementById("phone_number").innerHTML = data.phone_number;
+        document.getElementById("description").innerHTML = data.description;
+      });
+      edit_container.classList.toggle('d-none');
+      details_container.classList.toggle('d-none');
+      edit_photo.classList.toggle('d-none');
+    } else if (res.status == 400) {
+      res.json().then(data => {
+        let error = document.getElementById("error-message");
+        error.textContent = data.message;
+        error.classList.toggle('d-none');
+        setTimeout(function () {
+          let error = document.getElementById("error-message");
+          error.textContent = "";
+          error.classList.toggle('d-none');
+        }, 3000);
+      });
+    } else console.log(res.status);
+  })
 
-
-function updatePhotoHandler() {
-  const response = JSON.parse(this.responseText);
-  console.log(response);
+  //console.log({ username, firstName, lastName, email, phone, password, confirmPassword, city, description });
+  //sendAjaxRequest("post", `../api/users/${id}`, { username, firstName, lastName, email, phone, password, confirmPassword, city, description }, updateUserHandler);
 }
 
 
@@ -218,7 +244,6 @@ save_button.addEventListener('click', event => {
     reader.readAsDataURL(blob);
     reader.onloadend = () => {
       let base64data = reader.result;
-      console.log('oioii');
       fetch(`../api/users/${image.dataset.user}/photo`, {
         method: 'POST',
         body: JSON.stringify({

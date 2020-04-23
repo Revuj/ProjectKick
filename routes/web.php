@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/users/{id}', 'User\UserController@profile');
     Route::delete('/api/users/{id}', 'User\UserController@delete');
-    Route::post('/api/users/{id}', 'User\UserController@update');
+    Route::put('/api/users/{id}', 'User\UserController@update');
     Route::post('/api/users/{id}/photo', 'User\UserController@updatePhoto');
 
     //user role permissions

@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
@@ -48,29 +50,39 @@ class UserController extends Controller
     {
         $this->authorize('own', [User::findOrFail($id), User::class]);
 
-        $user = User::find($id);
-        if ($user == null) {
-            abort(404);
-        }
+        try {
+            $user = User::findOrFail($id);
+            $user->username = $request->input('username');
+            $user->name = $request->input('firstName') . ' ' . $request->input('lastName');
+            $user->email = $request->input('email');
+            $user->phone_number = $request->input('phone');
+            $user->description = $request->input('description');
+            $password = $request->input('password');
+            if (strlen($password) > 0) {
+                if ($password == $request->input('confirmPassword')) {
+                    $user->password = password_hash($password, PASSWORD_DEFAULT);
+                } else {
+                    return response()->json([
+                        'message' => 'Passwords dont match.'
+                    ], 400);
+                }
+            }
 
-        $user->username = $request->input('username');
-        $user->name = $request->input('firstName') . ' ' . $request->input('lastName');
-        $user->email = $request->input('email');
-        $user->phone_number = $request->input('phone');
-        $user->description = $request->input('description');
-        $password = $request->input('password');
-        if (strlen($password) > 0) {
-            if ($password == $request->input('confirmPassword')) {
-                //calculate hash and update password
-            } else {
-                //passwords don't match
+            $user->save();
+            return $user;
+        } catch (ModelNotFoundException $err) {
+            return response()->json([], 404);
+        } catch (QueryException $err) {
+            if ($err->getCode() == 23514) {
+                return response()->json([
+                    'message' => 'Invalid password length.'
+                ], 400);
+            } else if ($err->getCode() == 23505) {
+                return response()->json([
+                    'message' => 'Invalid username/email.'
+                ], 400);
             }
         }
-
-        $user->save();
-
-        return $user;
-
     }
 
     public function updatePhoto(Request $request, $id)
@@ -98,7 +110,9 @@ class UserController extends Controller
         } catch (ModelNotFoundException $err) {
             return response()->json([], 404);
         } catch (QueryException $err) {
-            return response()->json([], 400);
+            return response()->json([
+                'message' => 'Unable to update profile photo'
+            ], 400);
         }
     }
 
@@ -122,7 +136,6 @@ class UserController extends Controller
 
     public function projects($id)
     {
-
         $user = User::find($id);
 
         if ($user == null) {

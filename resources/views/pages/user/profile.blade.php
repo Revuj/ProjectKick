@@ -153,6 +153,7 @@
                 </ul>
               </div>
             </div>
+            @if ($editable)
             <div class="col-md-8 d-none" id="edit">
               <div class="card card-small mb-4">
                 <div class="card-header border-bottom d-flex align-items-center">
@@ -278,6 +279,9 @@
                               </textarea>
                             </div>
                           </div>
+                          <div class="form-row">
+                            <p id="error-message" class="d-none m-2" style="color:red;"></p>
+                          </div>
                           <div class="d-md-flex profile-edit-buttons">
                             <button
                               type="button"
@@ -311,10 +315,13 @@
                 </ul>
               </div>
             </div>
+            @endif
           </div>
           <!-- End Default Light Table -->
         </div>
       </div>
+
+      @if ($editable)
       <div
         class="modal"
         id="deleteModal"
@@ -418,5 +425,5 @@
           </div>
         </div>
       </div>
-
+      @endif
 @endsection
