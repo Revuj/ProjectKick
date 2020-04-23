@@ -305,7 +305,7 @@
           role="dialog"
           aria-labelledby="addProjectModalLabel"
           aria-hidden="true"
-          data-photo="{{ $projects[0]->photo_path }}"
+          data-photo="{{ $user_photo_path }}"
         >
           <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -77,7 +77,7 @@ class UserController extends Controller
     }
 
     public function updatePhoto(Request $request, $id)
-    {        
+    {
         $folderPath = public_path('/assets/avatars/');
 
         $image_parts = explode(";base64,", $request->base64data);
@@ -91,10 +91,10 @@ class UserController extends Controller
 
         try {
             $user = User::findOrFail($id);
-            $user->photo_path = $unique_id;    
+            $user->photo_path = $unique_id;
             $user->save();
             return response()->json([
-                "photo" => $user->photo_path
+                "photo" => $user->photo_path,
             ], 200);
         } catch (ModelNotFoundException $err) {
             return response()->json([], 404);
@@ -138,10 +138,10 @@ class UserController extends Controller
         $projects = $user->projectsStatus()
             ->join('project', 'project.id', '=', 'member_status.project_id')
             ->join('user', 'user.id', '=', 'project.author_id')
-            ->select('project.id', 'project.name', 'project.creation_date', 'project.finish_date', 'project.description', 'user.photo_path')
+            ->select('project.id', 'project.name', 'project.creation_date', 'project.finish_date', 'project.description')
             ->get();
 
         $editable = true; // while authentication is not implemented
-        return view('pages.user.projects', ['editable' => $editable, 'projects' => $projects, 'user_id' => $id]);
+        return view('pages.user.projects', ['editable' => $editable, 'projects' => $projects, 'user_id' => $id, 'user_photo_path' => $user->photo_path]);
     }
 }
