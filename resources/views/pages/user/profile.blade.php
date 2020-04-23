@@ -3,7 +3,7 @@
 @section('title', 'Kick | Profile ')
 
 @section('script')
-<script
+    <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
       crossorigin="anonymous"
@@ -21,6 +21,7 @@
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="{{asset('js/libs/chartjs-plugin-doughnutlabel.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js" integrity="sha256-CgvH7sz3tHhkiVKh05kSUgG97YtzYNnWt6OXcmYzqHY=" crossorigin="anonymous"></script>
 
     <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/profile.js')}}" defer></script>
@@ -34,6 +35,8 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" integrity="sha256-jKV9n9bkk/CTP8zbtEtnKaKf+ehRovOYeKoyfthwbC8=" crossorigin="anonymous" />
+    <link  href="{{asset('css/libs/crooper.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}"/>
 @endsection
@@ -51,18 +54,13 @@
             <div class="col-md-4">
               <div  class="card card-small mb-4 user">
                 @if ($editable)
-                  <form class="edit-photo" method="post" enctype="multipart/form-data">
-                    <label for="upload-photo">
-                        <i class="fas fa-pencil-alt float-right p-2"></i>
-                    </label>
-                    <input type="file" name="photo" id="upload-photo" />
-                  </form>
-                  @endif
+                <i class="d-none fas fa-pencil-alt float-right p-2" id="edit-photo-button" data-toggle="modal" data-target="#editImageModal"></i>
+                 @endif
                 <img
                   class="card-img-top"
                   src="{{asset('assets/avatars/' . $photo_path . '.png')}}"
                   alt="User Avatar"
-                  width="110"
+                  data-user="{{ $user_id }}"
                 />
                 <ul class="list-group list-group-flush mt-2">
                   <li class="list-group-item p-2">
@@ -337,7 +335,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>
+              <p class="text-left">
                 If you do not think you will use Project Kick again and would
                 like your account deleted, we can take care of this for you.
                 Keep in mind that you will not be able to reactivate your
@@ -346,7 +344,7 @@
               </p>
             </div>
             <div class="modal-footer">
-              <button type="button" id = "cancel" class="btn cancel" data-dismiss="modal">
+              <button type="button" class="btn cancel" data-dismiss="modal">
                 Cancel
               </button>
                 <button
@@ -361,35 +359,61 @@
           </div>
         </div>
       </div>
-
-      <div id="uploadModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
       
-          <!-- Modal content-->
+      <div
+        class="modal"
+        id="editImageModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="editImageModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">File upload form</h4>
+              <h5 class="modal-title" id="editImageModalLabel">Edit Account Photo</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="modal-body">
-              <!-- Form -->
-              <form id="upload_profile_image" method="post" action="#" enctype="multipart/form-data">
-                <input type="file" name="fileUpload" >
-                <button
-                  type="submit"
-                  id="update-photo"
-                  class="btn btn-success"
-                >
-                  Update Photo
-                </button>
-              </form>
-      
-              <!-- Preview-->
-              <div id='preview'></div>
+              <img
+                id="profile-photo"
+                class="card-img-top"
+                src="{{asset('assets/avatars/' . $photo_path . '.png')}}"
+                alt="User Avatar"
+                style="width: 271px; height: 271px;"
+                data-user="{{ $user_id }}"
+              />
+              <p class="mt-2 text-left">
+                Upload a new photo:
+              </p>
+              <div class="col-sm-8 pl-0 mt-1">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="file02" accept="image/*"/>
+                  <label class="custom-file-label text-left" for="file02"
+                    >Choose file</label>
+                </div>
+              </div>
             </div>
-       
+            <div class="modal-footer">
+              <button type="button" class="btn cancel" data-dismiss="modal">
+                Cancel
+              </button>
+              <button
+                type="button"
+                id="save"
+                class="btn btn-success"
+              >
+                Save Photo
+              </button>
+            </div>
           </div>
-      
         </div>
       </div>
 

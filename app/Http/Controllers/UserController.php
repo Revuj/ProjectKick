@@ -78,17 +78,30 @@ class UserController extends Controller
     }
 
     public function updatePhoto(Request $request, $id)
-    {
-        $user = User::find($id);
+    {        
+        $folderPath = public_path('/assets/avatars/');
 
-        if ($user == null) {
-            abort(404);
+        $image_parts = explode(";base64,", $request->base64data);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $unique_id = uniqid();
+        $file = $folderPath . $unique_id . '.png';
+
+        file_put_contents($file, $image_base64);
+
+        try {
+            $user = User::findOrFail($id);
+            $user->photo_path = $unique_id;    
+            $user->save();
+            return response()->json([
+                "photo" => $user->photo_path
+            ], 200);
+        } catch (ModelNotFoundException $err) {
+            return response()->json([], 404);
+        } catch (QueryException $err) {
+            return response()->json([], 400);
         }
-
-        $user->save();
-
-        return $user;
-
     }
 
     public function delete($id)
