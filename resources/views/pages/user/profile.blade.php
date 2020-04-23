@@ -105,7 +105,8 @@
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item p-3">
-                    <div class="row my-10 mx-1 pb-3 border-bottom">
+                  <h4 class="m-3 pb-2 border-bottom">Projects</h4>
+                    <div class="row my-10 mx-1 pb-3">
                       @foreach ($projects as $project)
                       <ul id={{ $project->id }} class="col-md-6 p-2 project clickable">
                         <li class="project-item text-left" draggable="true">
@@ -139,6 +140,7 @@
                       </ul>
                       @endforeach
                     </div>
+                    <h4 class="m-3 pb-2 border-bottom">Activity</h4>
                     <div class="row py-3">
                       <div class="col-md-6 py-3">
                         <canvas data-assigned-issues="{{ $assigned_issues }}" data-completed-issues="{{ $completed_issues }}" id="doughnut-chart-task"></canvas>
