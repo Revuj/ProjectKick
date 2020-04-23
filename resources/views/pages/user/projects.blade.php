@@ -118,7 +118,7 @@
                       href="project_overview.html"
                       >{{ $project->name }}
                     </a>
-                    <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" id="{{ $project->id }}">
+                    <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="{{ $project->id }}">
                       <i class="fas fa-trash-alt"></i>
                     </button>
                     <br />
@@ -137,8 +137,12 @@
                           aria-valuenow="80"
                           aria-valuemin="0"
                           aria-valuemax="100"
-                          style="width: {{count($project->project->issues()->where('is_completed', '=', 'false')->get()) / count($project->project->issues()->get()) * 100}}%;"
-                        ></div>
+                          @if (count($project->project->issues()->get()) > 0)
+                            style="width: {{count($project->project->issues()->where('is_completed', '=', 'false')->get()) / count($project->project->issues()->get()) * 100}}%;"
+                          @else
+                            style="width: 0%;"
+                          @endif
+                          ></div>
                       </div>
                       <div>
                         Tasks Completed:<span class="text-inverse"> {{ count($project->project->issues()->where('is_completed', '=', 'false')->get()) }}/{{ count($project->project->issues()->get()) }}</span>

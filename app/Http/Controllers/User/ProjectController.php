@@ -37,9 +37,6 @@ class ProjectController extends Controller
 
     public function delete($id)
     {
-
-        $this->authorize('delete', [User::findOrFail($id), User::class]);
-
         $project = Project::find($id);
         if ($project == null) {
             abort(404);
