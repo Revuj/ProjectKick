@@ -104,6 +104,7 @@ const close_button = document.querySelector('#close-edit');
 const edit_container = document.getElementById('edit');
 const details_container = document.getElementById('details');
 const user_card = document.querySelector('#user');
+const edit_photo = document.querySelector('#edit-photo-button');
 
 [...cancel_buttons, edit_button, update_button, close_button].forEach(elem =>
   elem.addEventListener('click', toggleEditSection
@@ -113,6 +114,7 @@ function toggleEditSection(event) {
   event.preventDefault();
   edit_container.classList.toggle('d-none');
   details_container.classList.toggle('d-none');
+  edit_photo.classList.toggle('d-none');
 }
 
 const deleteButton = document.getElementById("delete");
@@ -168,12 +170,74 @@ function updatePhotoHandler() {
   console.log(response);
 }
 
-let uploadForm = document.querySelector(".edit-photo");
-let fileInput = document.getElementById("upload-photo");
 
-fileInput.addEventListener('change', uploadPhoto);
-console.log(fileInput);
+let $modal = $('#editImageModal');
+let image = document.querySelector('img.card-img-top:nth-child(1)');
+const fileInput = document.querySelector("#file02");
+let cropper;
 
-function uploadPhoto() {
+$modal.on('shown.bs.modal', function () {
+  cropper = new Cropper(image, {
+    viewMode: 2,
+    aspectRatio: 1,
+    movable: true,
+  });
+}).on('hidden.bs.modal', function () {
+  cropper.destroy();
+  cropper = null;
+});
 
-}
+
+fileInput.addEventListener('change', event => {
+  let input = event.srcElement;
+  let filename = input.files[0].name;
+  let label = document.querySelector('.custom-file-label');
+  label.textContent = filename;
+});
+
+fileInput.addEventListener('change', () => {
+  if (fileInput.files && fileInput.files[0]) {
+    let reader = new FileReader();
+
+    reader.onload = function (e) {
+      image.setAttribute('src', e.target.result);
+      cropper.replace(e.target.result);
+    }
+
+    reader.readAsDataURL(fileInput.files[0]);
+  }
+});
+
+const save_button = document.querySelector('#save');
+
+save_button.addEventListener('click', event => {
+  event.preventDefault();
+  cropper.getCroppedCanvas().toBlob((blob) => {
+    url = URL.createObjectURL(blob);
+    let reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onloadend = () => {
+      let base64data = reader.result;
+      console.log('oioii');
+      fetch(`../api/users/${image.dataset.user}/photo`, {
+        method: 'POST',
+        body: JSON.stringify({
+          base64data
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        }
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then(data => {
+            let profile_image = document.querySelector('img.card-img-top:nth-child(2)');
+            profile_image.setAttribute('src', `../assets/avatars/${data.photo}.png`);
+            image.setAttribute('src', `../assets/avatars/${data.photo}.png`);
+            $modal.modal('hide');
+          });
+        }
+      })
+    }
+  });
+});
