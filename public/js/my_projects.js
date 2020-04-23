@@ -32,11 +32,15 @@ finished_button.addEventListener('click', event => {
 });
 
 
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Augt', 'Sep', 'Oct', 'Nov', 'Dec'];
+let now = new Date();
 
 const create_button = document.getElementById("create-project");
+let createModal = document.getElementById("addProjectModal");
 
 function createProjectHandler() {
   const response = JSON.parse(this.responseText);
+  $('#addProjectModal').modal('hide')
   console.log(response);
   let name = response.name;
   let id = response.id;
@@ -53,10 +57,11 @@ function createProjectHandler() {
         class="text-decoration-none title"
         href="project_overview.html"
         >${ name}
-
       </a>
+      <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="{{ $project->id }}">
+      <i class="fas fa-trash-alt"></i>
+      </button>
       <br />
-      <span class="font-weight-lighter">Created at </span>
       </div>
       <div class="card-body">
         <span id="description">
@@ -72,17 +77,26 @@ function createProjectHandler() {
             aria-valuenow="80"
             aria-valuemin="0"
             aria-valuemax="100"
-            style="width: 80%;">
+            style="width: 0%;">
           </div>
         </div>
         <div>
-          Tasks Completed:<span class="text-inverse">36/94</span>
+          Tasks Completed:<span class="text-inverse"> 0/0</span>
         </div>
         </div>
         <div class="mt-3 project-members">
+        <div class="avatar-image avatar-image--loaded mr-2">
+          <div class="avatar avatar--md avatar-image__image">
+            <div class="avatar__content">
+            <img src="../../assets/avatars/${createModal.dataset.photo}.png" alt="" />
+            </div>
+          </div>
+        </div>
         </div>
     </div>
-    <div class="d-flex justify-content-left card-footer"></div>`
+    <div class="d-flex justify-content-left card-footer">
+      <span class="font-weight-lighter">Created at ${months[now.getMonth()]} ${now.getDay()} ${now.getYear() + 1900}</span>
+    </div>`
 
   active_projects.appendChild(project_card);
 }
@@ -98,7 +112,7 @@ create_button.addEventListener('click', event => {
 
 
 const deleteButton = document.getElementById("delete-project-button");
-deleteButton.addEventListener('click', deleteUser);
+deleteButton.addEventListener('click', deleteProject);
 
 function deleteHandler() {
   const response = JSON.parse(this.responseText);
@@ -107,7 +121,7 @@ function deleteHandler() {
   project.remove();
 }
 
-function deleteUser(e) {
+function deleteProject(e) {
   e.preventDefault();
   let id = deleteButton.dataset.project;
   console.log(id);

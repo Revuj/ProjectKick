@@ -137,11 +137,11 @@
                           aria-valuenow="80"
                           aria-valuemin="0"
                           aria-valuemax="100"
-                          style="width: 80%;"
+                          style="width: {{count($project->project->issues()->where('is_completed', '=', 'false')->get()) / count($project->project->issues()->get()) * 100}}%;"
                         ></div>
                       </div>
                       <div>
-                        Tasks Completed:<span class="text-inverse">36/94</span>
+                        Tasks Completed:<span class="text-inverse"> {{ count($project->project->issues()->where('is_completed', '=', 'false')->get()) }}/{{ count($project->project->issues()->get()) }}</span>
                       </div>
                     </div>
                     <div class="mt-3 project-members">
@@ -157,7 +157,7 @@
                     </div>
                   </div>
                   <div class="d-flex justify-content-left card-footer">
-                    <span class="font-weight-lighter">Created at {{ \Carbon\Carbon::parse($project->creation_date)->format('D M Y') }}</span> 
+                    <span class="font-weight-lighter">Created at {{ \Carbon\Carbon::parse($project->creation_date)->format('M d Y') }}</span> 
                   </div>
                 </div>
               @endif
@@ -213,14 +213,14 @@
                   </div>
     
                   <div class="d-flex justify-content-left card-footer">
-                    <span class="font-weight-lighter">Created at {{ \Carbon\Carbon::parse($project->creation_date)->format('D M Y') }}</span> 
+                    <span class="font-weight-lighter">Created at {{ \Carbon\Carbon::parse($project->creation_date)->format('M d Y') }}</span> 
                   </div>
                 </div>
               @endif
             @endforeach
           </div>
           <div class="d-flex p-2">
-            <nav class="" aria-label="Page navigation example">
+            {{-- <nav class="" aria-label="Page navigation example">
               <ul class="pagination">
                 <li class="page-item">
                   <a href="#" class="page-link" aria-label="Previous"
@@ -242,7 +242,7 @@
                   >
                 </li>
               </ul>
-            </nav>
+            </nav> --}}
           </div>
         </div>
 
@@ -305,6 +305,7 @@
           role="dialog"
           aria-labelledby="addProjectModalLabel"
           aria-hidden="true"
+          data-photo="{{ $projects[0]->photo_path }}"
         >
           <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -123,19 +122,11 @@ class UserController extends Controller
             $editable = false;
         }
 
-        // teoricamente isto funcionaria num mundo ideal (eu adicionei alguns hasManyThrough mas se calhar depois apaguei pq nao tava a funcionar e não)
-        //$projects = $user->projectsStatus()->withCount(['project', 'issuelist', 'issues'])->get();
-
         $projects = $user->projectsStatus()
             ->join('project', 'project.id', '=', 'member_status.project_id')
             ->join('user', 'user.id', '=', 'project.author_id')
-            ->join('issue_list', 'issue_list.project_id', '=', 'project.id')
-            ->join('issue', 'issue.issue_list_id', '=', 'issue_list.id')
-            ->select('issue.is_completed', DB::raw('count(*) as total'))
-            ->groupBy('issue.is_completed')
+            ->select('project.id', 'project.name', 'project.creation_date', 'project.finish_date', 'project.description', 'user.photo_path')
             ->get();
-            
-        dd($projects);
 
         $editable = true; // while authentication is not implemented
         return view('pages.user.projects', ['editable' => $editable, 'projects' => $projects, 'user_id' => $id]);
