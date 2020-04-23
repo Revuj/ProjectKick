@@ -102,7 +102,7 @@
             <hr class="my-4" />
             <form
                 class="container text-center col-md-12"
-                action="auth.html"
+                action="{{ route('register') }}"
             >
                 <div class="form-group row justify-content-center">
                 <input

@@ -77,7 +77,7 @@
 
           <div class="form-group mt-3">
             <label for="email_register">{{ __('Email Address') }}</label>
-            <input name = "email" type="email" class="form-control @error('email') is-invalid @enderror" id="email_register" />
+            <input name = "email" type="email" class="form-control @error('email') is-invalid @enderror" id="email_register" value="{{app('request')->input('email')}}"/>
             @if ($errors->has('email'))
               <span class="text-danger">
                 {{ $errors->first('email') }}

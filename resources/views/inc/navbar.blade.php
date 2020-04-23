@@ -69,7 +69,7 @@
               />
             </div>
             <div class="notify_info">
-              <p><a class="nostyle" href="profile.html">Me</a></p>
+              <p><a class="nostyle" href=".">{{ Auth::user()->username }}</a></p>
             </div>
           </div>
           <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
