@@ -425,5 +425,5 @@
           </div>
         </div>
       </div>
-      @can('own', [$user, User::class])
+      @endcan
 @endsection
