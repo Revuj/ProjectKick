@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\User;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -37,6 +37,9 @@ class ProjectController extends Controller
 
     public function delete($id)
     {
+
+        $this->authorize('delete', [User::findOrFail($id), User::class]);
+
         $project = Project::find($id);
         if ($project == null) {
             abort(404);

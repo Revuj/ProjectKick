@@ -136,6 +136,8 @@ class UserController extends Controller
 
     public function projects($id)
     {
+        $this->authorize('own', [User::findOrFail($id), User::class]);
+
         $user = User::find($id);
 
         if ($user == null) {
