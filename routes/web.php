@@ -14,9 +14,13 @@
 Route::get('/report', 'Report');
 
 //======================= static pages ==================================
-Route::get('/', 'PageController@index')->name('home');
-Route::get('/contact', 'PageController@contact');
-Route::get('/about', 'PageController@about');
+
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/', 'PageController@index')->name('home');
+    Route::get('/contact', 'PageController@contact');
+    Route::get('/about', 'PageController@about');
+});
+
 
 //========================== authentication =============================
 Auth::routes();
