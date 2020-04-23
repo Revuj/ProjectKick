@@ -5,10 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\QueryException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
@@ -63,7 +63,7 @@ class UserController extends Controller
                     $user->password = password_hash($password, PASSWORD_DEFAULT);
                 } else {
                     return response()->json([
-                        'message' => 'Passwords dont match.'
+                        'message' => 'Passwords dont match.',
                     ], 400);
                 }
             }
@@ -75,11 +75,11 @@ class UserController extends Controller
         } catch (QueryException $err) {
             if ($err->getCode() == 23514) {
                 return response()->json([
-                    'message' => 'Invalid password length.'
+                    'message' => 'Invalid password length.',
                 ], 400);
             } else if ($err->getCode() == 23505) {
                 return response()->json([
-                    'message' => 'Invalid username/email.'
+                    'message' => 'Invalid username/email.',
                 ], 400);
             }
         }
@@ -111,7 +111,7 @@ class UserController extends Controller
             return response()->json([], 404);
         } catch (QueryException $err) {
             return response()->json([
-                'message' => 'Unable to update profile photo'
+                'message' => 'Unable to update profile photo',
             ], 400);
         }
     }

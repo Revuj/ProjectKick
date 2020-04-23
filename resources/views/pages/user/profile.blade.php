@@ -153,7 +153,7 @@
                 </ul>
               </div>
             </div>
-            @if ($editable)
+            @can('own', [$user, User::class])
             <div class="col-md-8 d-none" id="edit">
               <div class="card card-small mb-4">
                 <div class="card-header border-bottom d-flex align-items-center">
@@ -315,13 +315,13 @@
                 </ul>
               </div>
             </div>
-            @endif
+            @endcan
           </div>
           <!-- End Default Light Table -->
         </div>
       </div>
 
-      @if ($editable)
+      @can('own', [$user, User::class])
       <div
         class="modal"
         id="deleteModal"
@@ -425,5 +425,5 @@
           </div>
         </div>
       </div>
-      @endif
+      @can('own', [$user, User::class])
 @endsection
