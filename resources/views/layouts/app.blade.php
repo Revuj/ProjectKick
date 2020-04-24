@@ -38,10 +38,10 @@
 
       <div class="main-container">
         @yield('content')
+        @if(empty($hide_footer))
+          @include('inc.footer')
+        @endif
       </div>
     </div>
-    @if(empty($hide_footer))
-            @include('inc.footer')
-    @endif
   </body>
 </html>
