@@ -25,16 +25,14 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-
-    public function redirectTo() {
-        
-        if (Auth::user()->is_admin) {
-            return '/admin/' . Auth::id() ;
-        } else if (!Auth::user()->is_admin) {
-            return '/users/' . Auth::id() . '/projects';
-        } else {
-            return '/';
+    
+    protected function authenticated(Request $request, $user)
+    {
+        if ( $user->is_admin ) {// do your magic here
+        return redirect('/admin/' . Auth::id() );
         }
+
+        return redirect('/users/' . Auth::id() . '/projects');
     }
 
     /**
