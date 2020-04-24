@@ -50,13 +50,13 @@ label {
   max-width: 480px;
 }
 
-.modal-dialog { 
+#editImageModal.modal-dialog { 
   max-width: 100%; 
   width: auto !important; 
   display: inline-block; 
 }
 
-.modal{
+#editImageModal.modal{
   text-align: center;
 }
 

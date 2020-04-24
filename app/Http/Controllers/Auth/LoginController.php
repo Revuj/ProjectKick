@@ -76,7 +76,7 @@ class LoginController extends Controller
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
-            'email' => 'string|exists:users',
+            'email' => 'string|exists:user',
         ], $messages);
     }
 
