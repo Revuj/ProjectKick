@@ -391,14 +391,16 @@
               </button>
             </div>
             <div class="modal-body">
-              <img
-                id="profile-photo"
-                class="card-img-top"
-                src="{{asset('assets/avatars/' . $photo_path . '.png')}}"
-                alt="User Avatar"
-                style="width: 271px; height: 271px;"
-                data-user="{{ $user_id }}"
-              />
+              <div id="imag-wrapper">
+                <img
+                  id="profile-photo"
+                  class="card-img-top"
+                  src="{{asset('assets/avatars/' . $photo_path . '.png')}}"
+                  alt="User Avatar"
+                  style="width: 271px; height: 271px;"
+                  data-user="{{ $user_id }}"
+                />
+              </div>
               <p class="mt-2 text-left">
                 Upload a new photo:
               </p>

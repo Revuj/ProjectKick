@@ -209,6 +209,8 @@ $modal.on('shown.bs.modal', function () {
 }).on('hidden.bs.modal', function () {
   cropper.destroy();
   cropper = null;
+  let label = document.querySelector('.custom-file-label');
+  label.textContent = "Choose file";
 });
 
 
@@ -256,10 +258,23 @@ save_button.addEventListener('click', event => {
       }).then((res) => {
         if (res.ok) {
           res.json().then(data => {
+            console.log(data.photo);
             let profile_image = document.querySelector('img.card-img-top:nth-child(2)');
             profile_image.setAttribute('src', `/assets/avatars/${data.photo}.png`);
-            document.querySelector('#profile-photo').src = `/assets/avatars/${data.photo}.png`;
+
             $modal.modal('hide');
+
+            document.querySelector('#profile-photo').remove();
+            document.getElementById('imag-wrapper').innerHTML = `
+              <img
+                id="profile-photo"
+                class="card-img-top"
+                src="/assets/avatars/${data.photo}.png"
+                alt="User Avatar"
+                style="width: 271px; height: 271px;"
+                data-user="${image.dataset.user}"
+              />
+            `;
           });
         }
       })
