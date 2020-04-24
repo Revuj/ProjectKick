@@ -131,7 +131,7 @@ function deleteUser(e) {
   console.log(deleteButton);
   let id = deleteButton.dataset.user;
   console.log(id);
-  sendAjaxRequest("delete", `../api/users/${id}`, {}, deleteHandler);
+  sendAjaxRequest("delete", `/api/users/${id}`, {}, deleteHandler);
 }
 
 const updateButton = document.getElementById("update");
@@ -159,7 +159,7 @@ function updateUser(e) {
   let city = document.getElementById("feCity").value;
   let description = document.getElementById("feDescription").value;
 
-  fetch(`../api/users/${id}`, {
+  fetch(`/api/users/${id}`, {
     method: 'PUT',
     body: JSON.stringify({ username, firstName, lastName, email, phone, password, confirmPassword, city, description }),
     headers: {
@@ -168,7 +168,6 @@ function updateUser(e) {
     }
   }).then((res) => {
     if (res.ok) {
-      console.log('oioioioioi');
       res.json().then(data => {
         document.getElementById("username").innerHTML = data.username;
         document.getElementById("email").innerHTML = data.email;
@@ -198,12 +197,11 @@ function updateUser(e) {
 
 
 let $modal = $('#editImageModal');
-let image = document.querySelector('img.card-img-top:nth-child(1)');
 const fileInput = document.querySelector("#file02");
 let cropper;
 
 $modal.on('shown.bs.modal', function () {
-  cropper = new Cropper(image, {
+  cropper = new Cropper(document.querySelector('#profile-photo'), {
     viewMode: 2,
     aspectRatio: 1,
     movable: true,
@@ -226,7 +224,7 @@ fileInput.addEventListener('change', () => {
     let reader = new FileReader();
 
     reader.onload = function (e) {
-      image.setAttribute('src', e.target.result);
+      document.querySelector('#profile-photo').setAttribute('src', e.target.result);
       cropper.replace(e.target.result);
     }
 
@@ -244,7 +242,9 @@ save_button.addEventListener('click', event => {
     reader.readAsDataURL(blob);
     reader.onloadend = () => {
       let base64data = reader.result;
-      fetch(`../api/users/${image.dataset.user}/photo`, {
+      let image = document.querySelector('#profile-photo');
+
+      fetch(`/api/users/${image.dataset.user}/photo`, {
         method: 'POST',
         body: JSON.stringify({
           base64data
@@ -257,8 +257,8 @@ save_button.addEventListener('click', event => {
         if (res.ok) {
           res.json().then(data => {
             let profile_image = document.querySelector('img.card-img-top:nth-child(2)');
-            profile_image.setAttribute('src', `../assets/avatars/${data.photo}.png`);
-            image.setAttribute('src', `../assets/avatars/${data.photo}.png`);
+            profile_image.setAttribute('src', `/assets/avatars/${data.photo}.png`);
+            document.querySelector('#profile-photo').src = `/assets/avatars/${data.photo}.png`;
             $modal.modal('hide');
           });
         }
