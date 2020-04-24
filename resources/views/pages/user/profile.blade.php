@@ -118,7 +118,7 @@
                           </div>
                           <span class="d-flex flex-row align-items-center mx-2 row-2">
                             <p class="w-100 mb-1">
-                              <span class="list-project-creator"> By <span class="author-reference">{{ $project->username }}</span> on {{\Carbon\Carbon::parse($project->creation_date)->format('M Y') }}</span>
+                              <span class="list-project-creator"> By <span class="author-reference">{{ \App\User::where('user.id', '=', $project->author_id)->get()[0]->username }}</span> on {{\Carbon\Carbon::parse($project->creation_date)->format('M Y') }}</span>
                             </p>
                           </span>
                           <span class="d-flex flex-row-reverse  mx-2 row-3">
