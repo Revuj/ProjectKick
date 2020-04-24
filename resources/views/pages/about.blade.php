@@ -157,7 +157,7 @@
                 <div class="team-member">
                   <div class="team-member-header d-flex">
                     <div class="notify_img">
-                      <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/377990_116130815167757_1079811342_n.jpg?_nc_cat=102&_nc_sid=85a577&_nc_ohc=OO0T2RC-8kEAX8V0xHH&_nc_ht=scontent.fopo2-1.fna&oh=4eb548b92071b4158c91374d556655b2&oe=5E949C66" alt="profile_pic" style="width: 100px; height: 100px">
+                      <img src="./assets/profile.png" alt="profile_pic" style="width: 100px; height: 100px">
                     </div>
                     <div class="ml-4 text-left">
                       <h6 class="mb-2 font-weight-bold">Vator Barbosa</h6>
