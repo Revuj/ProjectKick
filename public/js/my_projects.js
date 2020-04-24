@@ -37,6 +37,7 @@ let now = new Date();
 
 const create_button = document.getElementById("create-project");
 let createModal = document.getElementById("addProjectModal");
+let toDelete;
 
 function createProjectHandler() {
   const response = JSON.parse(this.responseText);
@@ -59,7 +60,7 @@ function createProjectHandler() {
         >${ name}
       </a>
       <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="${id}">
-      <i class="fas fa-trash-alt"></i>
+        <i class="fas fa-trash-alt"></i>
       </button>
       <br />
       </div>
@@ -99,6 +100,9 @@ function createProjectHandler() {
     </div>`
 
   active_projects.appendChild(project_card);
+  project_card.querySelector('.delete-project-button').addEventListener('click', () => {
+    toDelete = id;
+  })
 }
 
 
@@ -110,6 +114,11 @@ create_button.addEventListener('click', event => {
   sendAjaxRequest("put", `/api/projects`, { name, description, author_id }, createProjectHandler);
 });
 
+
+let deleteButtons = document.getElementsByClassName("delete-project-button");
+[...deleteButtons].forEach(elem => elem.addEventListener('click', () => {
+  toDelete = elem.dataset.project;
+}))
 
 const deleteButton = document.getElementById("delete-project-button");
 deleteButton.addEventListener('click', deleteProject);
@@ -123,7 +132,6 @@ function deleteHandler() {
 
 function deleteProject(e) {
   e.preventDefault();
-  let id = document.querySelector(".delete-project-button").dataset.project;
-  console.log(id);
-  sendAjaxRequest("delete", `/api/projects/${id}`, {}, deleteHandler);
+  console.log(toDelete);
+  sendAjaxRequest("delete", `/api/projects/${toDelete}`, {}, deleteHandler);
 }
