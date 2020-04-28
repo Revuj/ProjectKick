@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function profile($id)
     {
-        $this->authorize('view', [User::findOrFail($id), User::class]);
+        $this->authorize('view', User::findOrFail($id));
         // depende se queremos mostrar o perfil de utilizadores apagados ou não
         $user = User::withTrashed()->find($id);
         if ($user == null) {
@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->authorize('own', [User::findOrFail($id), User::class]);
+        $this->authorize('own', User::findOrFail($id));
 
         try {
             $user = User::findOrFail($id);
@@ -86,7 +86,7 @@ class UserController extends Controller
 
     public function updatePhoto(Request $request, $id)
     {
-        $this->authorize('own', [User::findOrFail($id), User::class]);
+        $this->authorize('own', User::findOrFail($id));
 
         $folderPath = public_path('/assets/avatars/');
 
@@ -117,7 +117,7 @@ class UserController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', [User::findOrFail($id), User::class]);
+        $this->authorize('own', User::findOrFail($id));
 
         $user = User::find($id);
         if ($user == null) {
@@ -135,7 +135,7 @@ class UserController extends Controller
 
     public function projects($id)
     {
-        $this->authorize('own', [User::findOrFail($id), User::class]);
+        $this->authorize('own', User::findOrFail($id));
 
         $user = User::find($id);
 

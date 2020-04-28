@@ -126,7 +126,7 @@
                   <div class="card-body">
                     <span id="description">
                       <span>
-                        {{ $project->description }}
+                        {{ $project->description }} 
                       </span>
                     </span>
                     <div>
@@ -177,9 +177,11 @@
                       href="project_overview.html"
                       >{{ $project->name }}
                     </a>
+                    @can('delete', $project)
                     <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="{{ $project->id }}">
                       <i class="fas fa-trash-alt"></i>
                     </button>
+                    @endcan
                     <br />
                   </div>
                   <div class="card-body">
