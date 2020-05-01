@@ -160,19 +160,49 @@ class UserController extends Controller
         return view('pages.user.projects', ['editable' => $editable, 'projects' => $projects, 'user_id' => $id, 'user_photo_path' => $user->photo_path]);
     }
 
+    private function sortFunction($projects, $sortableTrait, $order = 'ASC') {
+
+        $sortCol = 'project.';
+        if ($sortableTrait ==='Opening Date') {
+            $sortCol =  $sortCol.'creation_date';
+        }
+        else if ($sortableTrait === 'Due Date') {
+           $sortCol =  $sortCol.'finish_date';
+        }
+        else if ($sortableTrait === 'Name') {
+            $sortCol =  $sortCol.'name';
+        }
+        else return $projects;
+
+
+        return $projects->orderBy($sortCol, $order);
+    }
+
+    private function filterResults($projects, $request) {
+        $search = $request->input('search');
+
+        if(!empty($search))
+            return $projects::FTS($search);
+            
+        return $projects; 
+    }
+
+
     public function fetchSort(Request $request, $id) {
        
        $sortableTrait = $request->input('option');
+       $order = ($request->input('order') === 'true') ? 'ASC' : 'DESC'; 
 
-       
        $user = User::find($id); 
        $projects = $user->projectsStatus()
        ->join('project', 'project.id', '=', 'member_status.project_id')
        ->join('user', 'user.id', '=', 'project.author_id')
-       ->select('project.id', 'project.name', 'project.creation_date', 'project.finish_date', 'project.description', 'project.search')->get();
-       //$proj = $projects::search('fourth:1')->get();
+       ->select('project.id', 'project.name', 'project.creation_date', 'project.finish_date', 'project.description', 'project.search');
 
-       return response()->json($sortableTrait);
+       $filter = $this->filterResults($projects, $request);
+       $sorted = $this->sortFunction($filter, $sortableTrait, $order);
+
+       return response()->json($sorted->get());
     }
 
     

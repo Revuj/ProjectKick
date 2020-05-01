@@ -80,7 +80,7 @@
             
 
                 <div id="searchbar" type="text">
-                <input name = "issues-filter" class ="form control" id="issues-filter" type="text" placeholder= "Search or query for a project ..." />
+                <input name = "project-filter" class ="form control" id="project-filter" type="text" placeholder= "Search or query for a project ..." />
 
                 <button id="searchbarbutton">
                     <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -119,7 +119,7 @@
                 <select class="custom-button primary-button h-100 mx-1" name="filter-select" id="filter-select">
                 <option class = "primary-button custom-button" value="due-date">Due Date</option>
                 <option class = "primary-button custom-button" value="opening-date">Opening Date</option>
-                <option class = "primary-button custom-button" value="assignees">Assignees</option>
+                <option class = "primary-button custom-button" value="name">Name</option>
                 </select>
 
                 <button type = "button" id = "orderType" class="custom-button primary-button">

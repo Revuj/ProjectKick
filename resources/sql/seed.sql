@@ -491,7 +491,7 @@ insert into country (id, name) values (DEFAULT, 'AG');
 insert into country (id, name) values (DEFAULT, 'AR');
 insert into country (id, name) values (DEFAULT, 'AM');
 insert into country (id, name) values (DEFAULT, 'AW');
-insert into country (id, name) values (DEFAULT, 'AU');
+insert into country (id, name) values (DEFAULT, 'AU');fp
 insert into country (id, name) values (DEFAULT, 'AT');
 insert into country (id, name) values (DEFAULT, 'AZ');
 insert into country (id, name) values (DEFAULT, 'BS');

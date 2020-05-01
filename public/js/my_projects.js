@@ -5,6 +5,7 @@ const finished_button = document.querySelector(
 
 active_button.addEventListener('click', event => {
   event.preventDefault();
+  current_project_state = true;
 
   const active_list = document.querySelector('div.p-2:nth-child(4)');
   if (active_list.classList.contains('d-none')) {
@@ -19,6 +20,7 @@ active_button.addEventListener('click', event => {
 
 finished_button.addEventListener('click', event => {
   event.preventDefault();
+  current_project_state = false;
   const finished_list = document.querySelector('div.p-2:nth-child(5)');
   if (finished_list.classList.contains('d-none')) {
     const active_list = document.querySelector('div.p-2:nth-child(4)');
@@ -136,10 +138,18 @@ function deleteProject(e) {
   sendAjaxRequest("delete", `/api/projects/${toDelete}`, {}, deleteHandler);
 }
 
-// ======
+// ====== query, asc/desc, typeofSort, active
 let sortAsc = true;
 let degree = 0;
 let arrow = document.querySelector('#orderType')
+let selectable = document.querySelector('#filter-select')
+let project_text = document.querySelector('#project-filter');
+let button_search = document.querySelector('#searchbarbutton'); 
+
+button_search.addEventListener('click', (e) => {
+  e.preventDefault();
+  console.log(project_text.value)
+})
 
 function sorting() {
   const response = JSON.parse(this.responseText);
@@ -147,23 +157,33 @@ function sorting() {
 }
 
 
-arrow.addEventListener('click', function(e) {
+arrow.addEventListener('click', function (e) {
   e.preventDefault();
-  degree = (degree + 180) %  360;
-  arrow.style.transform = "rotateX(0deg) rotate(" + degree+ "deg)";
+  let option = selectable.options[selectable.selectedIndex].text
+  console.log(option)
   let author_id = create_button.dataset.user;
+
+  degree = (degree + 180) % 360;
+  arrow.style.transform = "rotateX(0deg) rotate(" + degree + "deg)";
+
   sortAsc = !sortAsc;
+
   let url = `/api/users/${author_id}/sort`;
-  sendAjaxRequest("get", url, {'sort' : sortAsc}, sorting);
+  sendAjaxRequest("post", url, {
+  'option': option,
+  'order': sortAsc,
+  }, sorting);
 
 })
 
-document.querySelector('#filter-select').addEventListener('change', function (e) {
+selectable.addEventListener('change', function (e) {
 
   let option = this.options[this.selectedIndex].text
   let author_id = create_button.dataset.user;
-  console.log(author_id);
+
   let url = `/api/users/${author_id}/sort`;
-  console.log(url)
-  sendAjaxRequest("get", url, {'option': option}, sorting);
+  sendAjaxRequest("post", url, {
+     'option': option,
+     'order': sortAsc 
+    }, sorting);
 });

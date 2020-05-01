@@ -83,6 +83,10 @@ function encodeForAjax(data) {
 }
 
 function sendAjaxRequest(method, url, data, handler) {
+
+  if (method === 'get') {
+    sendGetRequest(url, data, handler);
+  }
   let request = new XMLHttpRequest();
   console.log({ method, url, data, handler });
   request.open(method, url, true);
@@ -90,4 +94,13 @@ function sendAjaxRequest(method, url, data, handler) {
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.addEventListener('load', handler);
   request.send(encodeForAjax(data));
+}
+
+function sendGetRequest(url ,data, handler) {
+  let request = new XMLHttpRequest();
+  console.log()
+  request.open("get", `${url}?` + encodeForAjax(data), true);
+  request.addEventListener('load', handler);
+  request.send();
+
 }

@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{id}/notifications', 'NotificationController@show');
         });
         //[this]
-        Route::get('/api/users/{id}/sort', 'UserController@fetchSort');
+        Route::post('/api/users/{id}/sort', 'UserController@fetchSort');
 
 
         // Issues
