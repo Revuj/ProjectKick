@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{id}/calendar', 'EventController@show');
             Route::get('/{id}/notifications', 'NotificationController@show');
         });
+        //[this]
+        Route::get('/api/users/{id}/sort', 'UserController@fetchSort');
+
 
         // Issues
         Route::get('/issues/{id}', 'IssueController@show');

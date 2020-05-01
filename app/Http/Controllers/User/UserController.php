@@ -153,11 +153,29 @@ class UserController extends Controller
         $projects = $user->projectsStatus()
             ->join('project', 'project.id', '=', 'member_status.project_id')
             ->join('user', 'user.id', '=', 'project.author_id')
-            ->select('project.id', 'project.name', 'project.creation_date', 'project.finish_date', 'project.description')
-            ->get();
+            ->select('project.id', 'project.name', 'project.creation_date', 'project.finish_date', 'project.description', 'project.search')
+            ->paginate(6);
 
         $editable = true; // while authentication is not implemented
         return view('pages.user.projects', ['editable' => $editable, 'projects' => $projects, 'user_id' => $id, 'user_photo_path' => $user->photo_path]);
     }
+
+    public function fetchSort(Request $request, $id) {
+       
+       $sortableTrait = $request->input('option');
+
+       
+       $user = User::find($id); 
+       $projects = $user->projectsStatus()
+       ->join('project', 'project.id', '=', 'member_status.project_id')
+       ->join('user', 'user.id', '=', 'project.author_id')
+       ->select('project.id', 'project.name', 'project.creation_date', 'project.finish_date', 'project.description', 'project.search')->get();
+       //$proj = $projects::search('fourth:1')->get();
+
+       return response()->json($sortableTrait);
+    }
+
+    
+
 
 }

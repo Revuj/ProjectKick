@@ -135,3 +135,35 @@ function deleteProject(e) {
   console.log(toDelete);
   sendAjaxRequest("delete", `/api/projects/${toDelete}`, {}, deleteHandler);
 }
+
+// ======
+let sortAsc = true;
+let degree = 0;
+let arrow = document.querySelector('#orderType')
+
+function sorting() {
+  const response = JSON.parse(this.responseText);
+  console.log(response)
+}
+
+
+arrow.addEventListener('click', function(e) {
+  e.preventDefault();
+  degree = (degree + 180) %  360;
+  arrow.style.transform = "rotateX(0deg) rotate(" + degree+ "deg)";
+  let author_id = create_button.dataset.user;
+  sortAsc = !sortAsc;
+  let url = `/api/users/${author_id}/sort`;
+  sendAjaxRequest("get", url, {'sort' : sortAsc}, sorting);
+
+})
+
+document.querySelector('#filter-select').addEventListener('change', function (e) {
+
+  let option = this.options[this.selectedIndex].text
+  let author_id = create_button.dataset.user;
+  console.log(author_id);
+  let url = `/api/users/${author_id}/sort`;
+  console.log(url)
+  sendAjaxRequest("get", url, {'option': option}, sorting);
+});

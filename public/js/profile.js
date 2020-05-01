@@ -227,7 +227,7 @@ fileInput.addEventListener('change', () => {
 
     reader.onload = function (e) {
       document.querySelector('#profile-photo').setAttribute('src', e.target.result);
-      cropper.replace(e.target.result);
+      cropper.replface(e.target.result);
     }
 
     reader.readAsDataURL(fileInput.files[0]);
