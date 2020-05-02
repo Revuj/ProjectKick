@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
         });
         //[this]
         Route::post('/api/users/{id}/sort', 'UserController@fetchSort');
-
+        Route::post('/api/users/{id}/projects', 'UserController@filterProjects');
 
         // Issues
         Route::get('/issues/{id}', 'IssueController@show');
