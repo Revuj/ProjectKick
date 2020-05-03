@@ -144,11 +144,26 @@ let degree = 0;
 let arrow = document.querySelector('#orderType')
 let selectable = document.querySelector('#filter-select')
 let project_text = document.querySelector('#project-filter');
-let button_search = document.querySelector('#searchbarbutton'); 
+let button_search = document.querySelector('#searchbarbutton');
+
+function searchHandler() {
+  const response = JSON.parse(this.responseText);
+  let projects = document.querySelectorAll(".project");
+  if (response.length === 0) {
+    projects.forEach(elem => { elem.style.display = "inline-block" });
+    return;
+  }
+  projects.forEach(elem => { elem.style.display = "none" });
+  response.forEach(elem => document.getElementById(elem.id).style.display = "inline-block");
+}
 
 button_search.addEventListener('click', (e) => {
   e.preventDefault();
   console.log(project_text.value)
+  let search = project_text.value
+  let author_id = create_button.dataset.user;
+  let url = `/api/users/${author_id}/projects`;
+  sendAjaxRequest("post", url, { search }, searchHandler);
 })
 
 function sorting() {
@@ -170,8 +185,8 @@ arrow.addEventListener('click', function (e) {
 
   let url = `/api/users/${author_id}/sort`;
   sendAjaxRequest("post", url, {
-  'option': option,
-  'order': sortAsc,
+    'option': option,
+    'order': sortAsc,
   }, sorting);
 
 })
@@ -183,7 +198,7 @@ selectable.addEventListener('change', function (e) {
 
   let url = `/api/users/${author_id}/sort`;
   sendAjaxRequest("post", url, {
-     'option': option,
-     'order': sortAsc 
-    }, sorting);
+    'option': option,
+    'order': sortAsc
+  }, sorting);
 });

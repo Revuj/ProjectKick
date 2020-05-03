@@ -130,9 +130,10 @@
 
 
           </div>
-          <div class="p-2 card-columns" id="active-projects">
+          <div class="p-2 card-columns row" id="active-projects">
             @foreach ($projects as $project)
               @if ($project->finish_date == null)
+              <div class="card-container col-lg-4 col-md-6 col-sm-12 p-1">
                 <div class="card project" id="{{ $project->id }}">
                   <div class="card-header d-flex align-items-center">
                     <a
@@ -186,6 +187,7 @@
                     <span class="font-weight-lighter">Created at {{ \Carbon\Carbon::parse($project->creation_date)->format('M d Y') }}</span> 
                   </div>
                 </div>
+              </div>
               @endif
             @endforeach
           </div>

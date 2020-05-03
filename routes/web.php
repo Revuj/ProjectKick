@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/api/users/{id}/sort', 'UserController@fetchSort');
         Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
 
+        Route::post('/api/users/{id}/projects', 'UserController@filterProjects');
 
         // Issues
         Route::get('/issues/{id}', 'IssueController@show');
