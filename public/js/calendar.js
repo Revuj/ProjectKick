@@ -31,16 +31,37 @@ class Calendar {
             nextYear: this.getFirstElementInsideIdByClassName('calendar-change-year-slider-next')
         };
 
-        this.eventList = {}; // no futuro ter aqui JSON.parse para ir buscar os eventos atuais
+        this.eventList = [{ title: "test", start_date: "2020-4-3" }, { title: "anotha one", start_date: "2020-4-4" }]; // no futuro ter aqui JSON.parse para ir buscar os eventos atuais
 
         this.date = +new Date();
         this.init();
     }
 
-    init() {
-        if (!this.identifier.id) return false;
+    async init() {
         this.addEventListeners();
         this.drawAll();
+        let calendar = this.getCalendar();
+        if (!this.identifier.id) return false;
+
+        let id = document.getElementById("calendar-content").dataset.user;
+        let url = `/api/users/${id}/events`;
+        let month = calendar.active.month;
+        let year = calendar.active.year;
+        console.log({ month, year })
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            },
+            body: encodeForAjax({ month, year })
+        });
+        this.eventList = await response.json();
+        console.log(this.eventList);
+    }
+
+    addEvent(event) {
+        this.eventList.push(event);
     }
 
     // draw Methods
@@ -55,12 +76,20 @@ class Calendar {
 
     drawEvents() {
         let calendar = this.getCalendar();
-        let eventList = this.eventList[calendar.active.formatted] || [this.noEventMsg];
+        console.log(calendar.active.formatted);
+        console.log("all")
+        console.log(this.eventList)
+        let eventList = this.eventList.filter(event => event.start_date == (calendar.active.formatted));
+        console.log("filtered")
+        console.log(eventList)
         let eventTemplate = "";
         eventList.forEach(item => {
-            eventTemplate += `<li>${item}</li>`;
+            eventTemplate += `<li>${item.title}</li>`;
         });
-
+        if (eventList.length == 0) {
+            eventTemplate += `<li>${this.noEventMsg}</li>`
+        }
+        console.log(this.elements.eventList);
         this.elements.eventList.innerHTML = eventTemplate;
     }
 
@@ -290,7 +319,9 @@ class Calendar {
     }
 
     getFormattedDate(date) {
-        return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+        let month = ("0" + (date.getMonth() + 1)).slice(-2)
+        let day = ("0" + date.getDate()).slice(-2)
+        return `${date.getFullYear()}-${month}-${day}`;
     }
 
     range(number) {
@@ -303,3 +334,29 @@ class Calendar {
 }
 
 let calendar = new Calendar({ id: "calendar" });
+let addEventButton = document.getElementById("add-event");
+
+addEventButton.addEventListener("click", event => {
+    let title = document.getElementById("event-name").value;
+    let date = calendar.getCalendar().active.formatted;
+    let url = `/api/events`;
+    let user = document.getElementById("calendar-content").dataset.user;
+    console.log({ title, date });
+    sendAjaxRequest("post", url, { title, "type": "personal", date, user }, createEventHandler);
+})
+
+function createEventHandler() {
+    $('#addEventModal').modal('hide');
+    const response = JSON.parse(this.responseText);
+    console.log(response)
+    calendar.addEvent(response);
+    calendar.drawEvents();
+}
+
+// Ajax functions
+function encodeForAjax(data) {
+    if (data == null) return null;
+    return Object.keys(data).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&');
+}

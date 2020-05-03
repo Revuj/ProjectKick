@@ -134,7 +134,7 @@ CREATE TABLE message (
 CREATE TABLE "event" (
     id SERIAL PRIMARY KEY,
     title text NOT NULL,
-    start_date timestamp with time zone NOT NULL
+    start_date date DEFAULT now() NOT NULL
 );
 
 CREATE TABLE event_meeting (

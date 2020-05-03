@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::prefix('users')->group(function () {
             Route::get('/{id}/projects', "UserController@projects");
             Route::get('/{id}/issues', 'IssueController@showUserIssues');
-            Route::get('/{id}/calendar', 'EventController@show');
+            Route::get('/{id}/calendar', 'UserController@calendar');
             Route::get('/{id}/notifications', 'NotificationController@show');
         });
         //[this]
@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
 
         Route::post('/api/users/{id}/projects', 'UserController@filterProjects');
+        Route::post('/api/users/{id}/events', 'UserController@events');
 
         // Issues
         Route::get('/issues/{id}', 'IssueController@show');
@@ -68,6 +69,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{id}/chats', 'ProjectController@show');
 
         });
+
+        // Events
+        Route::post('/api/events', 'EventController@create');
 
     });
 

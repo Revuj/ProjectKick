@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventPersonal extends Model
 {
+    use Traits\HasCompositePrimaryKey;
     /**
      * The table associated with the model.
      *
@@ -14,6 +15,10 @@ class EventPersonal extends Model
     protected $table = 'event_personal';
 
     protected $with = ['event', 'user'];
+
+    protected $primaryKey = array('event_id', 'user_id');
+
+    public $incrementing = false;
 
     /**
      * Indicates if the model should be timestamped.
@@ -30,5 +35,19 @@ class EventPersonal extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    protected static function find($id, $columns = ['*'])
+    {
+        $me = new self;
+        $query = $me->newQuery();
+        $i = 0;
+
+        foreach ($me->getKeyName() as $key) {
+            $query->where($key, '=', $id[$i]);
+            $i++;
+        }
+
+        return $query->first($columns);
     }
 }

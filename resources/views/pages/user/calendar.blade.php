@@ -55,7 +55,7 @@
     </button>
   </div>
 
-  <div class="my-2">
+  <div class="my-2" id="calendar-content" data-user="{{ $user_id }}">
     <div class="row container-fluid mx-0 px-0">
       <!--=============================ADD & CHECK EVENTS ================================================//-->
       <div
@@ -67,7 +67,7 @@
         </div>
         <div class="current-day-events text-left px-4 white-text py-4">
           <div class="h5 mb-3">Current Events:</div>
-          <ul class="current-day-events-list"></ul>
+          <ul class="current-day-events-list"><li>"oi</li></ul>
         </div>
       </div>
       <!-- first col-->
@@ -149,7 +149,7 @@
           <button type="button" class="btn " data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-success">
+          <button type="button" class="btn btn-success" id="add-event">
             Add Event
           </button>
         </div>

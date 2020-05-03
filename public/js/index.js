@@ -86,6 +86,7 @@ function sendAjaxRequest(method, url, data, handler) {
 
   if (method === 'get') {
     sendGetRequest(url, data, handler);
+    return;
   }
   let request = new XMLHttpRequest();
   console.log({ method, url, data, handler });
@@ -96,7 +97,7 @@ function sendAjaxRequest(method, url, data, handler) {
   request.send(encodeForAjax(data));
 }
 
-function sendGetRequest(url ,data, handler) {
+function sendGetRequest(url, data, handler) {
   let request = new XMLHttpRequest();
   console.log()
   request.open("get", `${url}?` + encodeForAjax(data), true);

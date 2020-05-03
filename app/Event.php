@@ -11,7 +11,7 @@ class Event extends Model
      *
      * @var string
      */
-    protected $table = 'event';
+    protected $table = "event";
 
     /**
      * Indicates if the model should be timestamped.

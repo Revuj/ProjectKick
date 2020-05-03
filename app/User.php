@@ -140,6 +140,11 @@ class User extends Authenticatable
         $this->hasMany(Report::class, 'reported_id');
     }
 
+    public function personalEvents()
+    {
+        $this->hasMany(EventPersonal::class, 'user_id');
+    }
+
     /* fazer ligacao para os eventos e notifications e vote*/
 
 }

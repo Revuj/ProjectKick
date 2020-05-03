@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use DB;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -217,6 +218,44 @@ class UserController extends Controller
             ->select('project.id');
 
         return $projects->get();
+    }
+
+    public function calendar($id)
+    {
+        $this->authorize('own', User::findOrFail($id));
+
+        $user = User::find($id);
+
+        if ($user == null) {
+            abort(404);
+        }
+
+        // only lets project coordinator edit the project
+        // falta verificar se é o coordenador
+        $editable = true;
+        if (!Auth::check()) {
+            $editable = false;
+        }
+
+        $editable = true; // while authentication is not implemented
+        return view('pages.user.calendar', ['user_id' => $id]);
+    }
+
+    public function events(Request $request, $id)
+    {
+        $this->authorize('own', User::findOrFail($id));
+        $user = User::find($id);
+        if ($user == null) {
+            abort(404);
+        }
+        $month = $request->input("month");
+        $year = $request->input("year");
+        $events = DB::table('event_personal')
+            ->join('event', 'event.id', '=', 'event_personal.event_id')
+            ->where('event_personal.user_id', '=', $id)
+            ->select('event.title', 'event.start_date');
+
+        return $events->get();
     }
 
 }
