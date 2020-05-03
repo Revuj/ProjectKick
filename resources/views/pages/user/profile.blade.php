@@ -224,7 +224,7 @@
 
                           <div class="form-row">
                             <div class="form-group col-md-6">
-                              <label for="fePassword">Password</label>
+                              <label for="fePassword">Passseword</label>
                               <input
                                 type="password"
                                 class="form-control"

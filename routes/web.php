@@ -45,13 +45,15 @@ Route::group(['middleware' => ['auth']], function () {
         });
         //[this]
         Route::post('/api/users/{id}/sort', 'UserController@fetchSort');
+        Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
 
 
         // Issues
         Route::get('/issues/{id}', 'IssueController@show');
 
         // Chat
-        Route::get('/chat/{id}', 'ChatController@show');
+        Route::put('/api/project/{id}/chat', 'ChatController@create');
+
 
         //Project
         Route::put('/api/projects', 'ProjectController@create');
@@ -62,6 +64,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{id}/members', 'ProjectController@members');
             Route::get('/{id}/issuelist', 'IssueController@showList');
             Route::get('/{id}/board', 'IssueController@showBoard');
+            Route::get('/{id}/chats', 'ProjectController@show');
+
         });
 
     });

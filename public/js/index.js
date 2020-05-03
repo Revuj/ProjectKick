@@ -104,3 +104,7 @@ function sendGetRequest(url ,data, handler) {
   request.send();
 
 }
+
+function emptyInput(input) {
+  input.value = '';
+}

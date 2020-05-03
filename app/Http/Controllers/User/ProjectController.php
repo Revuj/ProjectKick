@@ -56,4 +56,33 @@ class ProjectController extends Controller
         return $project;
     }
 
+    public function show($id)
+    {
+        $project = Project::findOrFail($id);
+        $channelsDB = $project->channels();
+        $channels = array();
+        foreach($channelsDB->get() as $channel) {
+            $messages = $channel->messages()
+            ->join('user', 'user.id', '=', 'message.user_id')
+            ->select('user.username', 'date', 'content', 'photo_path')
+            -> orderBy('date')->get();
+
+            $channels[]  =  [ 
+                'channel_id' => $channel->id,
+                'channel_name' => $channel->name,
+                'channel_description' => $channel->description,
+                'messages' => $messages
+            ];
+
+        }
+
+        $first_channel = array_shift($channels);
+        $project_id = $id;
+
+
+        //dd($channels);
+        return view('pages.chat', compact('first_channel', 'channels', 'project_id'));
+      
+    }
+
 }
