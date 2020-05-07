@@ -297,18 +297,18 @@
               <div class="modal-body">
                 <form>
                   <div class="form-group">
-                    <label for="email" class="col-form-label">Username</label>
-                    <input type="text" class="form-control" id="email" />
+                    <label for="username" class="col-form-label">Username</label>
+                    <input type="text" class="form-control" id="username" />
                   </div>
                   <div class="form-group">
                     <div class="btn-group" data-toggle="buttons">
                       <label class="btn btn-outline-primary">
-                        <input type="radio" name="options" id="option1" />
-                        Project Developer
+                        <input type="radio" name="role" id="developer" checked="checked"/>
+                        <span>Project Developer</span>
                       </label>
                       <label class="btn btn-outline-primary">
-                        <input type="radio" name="options" id="option2" />
-                        Project Coordinator
+                        <input type="radio" name="role" id="coordinator" />
+                        <span>Project Coordinator</span>
                       </label>
                     </div>
                   </div>
@@ -318,7 +318,7 @@
                 <button type="button" class="btn " data-dismiss="modal">
                   Close
                 </button>
-                <button type="button" class="btn btn-success">
+                <button type="button" class="btn btn-success" id="add-member" data-project="{{ $project->id }}">
                   Add Member
                 </button>
               </div>

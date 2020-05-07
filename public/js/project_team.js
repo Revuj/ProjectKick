@@ -9,6 +9,8 @@ const all_button = document.querySelector(
   '#tables-types > li:nth-child(3)'
 );
 
+const addMemberButton = document.getElementById("add-member");
+
 let developer_list = document.querySelector('#developers');
 let coordinator_list = document.querySelector('#coordinators');
 let all_list = document.querySelector('#all');
@@ -73,3 +75,23 @@ user_infos.forEach(elem =>
     promote.classList.add('d-none');
   })
 );
+
+addMemberButton.addEventListener("click", () => {
+  let username = document.getElementById("username").value;
+  let roleRadio = document.getElementsByName("role");
+  let role = "";
+  if (roleRadio["0"].checked)
+    role = "developer"
+  else
+    role = "coordinator";
+
+  let id = addMemberButton.dataset.project;
+  console.log({ id, username, role });
+  sendAjaxRequest("post", `/api/projects/${id}/members`, { username, role }, inviteMemberHandler);
+})
+
+function inviteMemberHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response)
+  // mostrar mensagem se utilizador não existir
+}

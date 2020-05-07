@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\MemberStatus;
 use App\Project;
 use App\User;
 use Illuminate\Http\Request;
@@ -87,6 +88,30 @@ class ProjectController extends Controller
         $project->save();
 
         return $project;
+    }
+
+    public function invite(Request $request, $id)
+    {
+        // verificar que é coordenador
+
+        $project = Project::find($id);
+        if ($project == null) {
+            abort(404);
+        }
+
+        $username = $request->input("username");
+        $role = $request->input("role");
+        $user = User::where("username", "=", $username)->first();
+
+        // estou a adicionar logo mas no futuro deveria ser um convite
+        $membership = new MemberStatus();
+        $membership->role = $role;
+        $membership->user_id = $user->id;
+        $membership->project_id = $id;
+
+        $membership->save();
+
+        return $membership;
     }
 
 }
