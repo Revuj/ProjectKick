@@ -10,6 +10,7 @@ const all_button = document.querySelector(
 );
 
 const addMemberButton = document.getElementById("add-member");
+const removeMemberButton = document.getElementById("remove-member");
 
 let developer_list = document.querySelector('#developers');
 let coordinator_list = document.querySelector('#coordinators');
@@ -95,3 +96,35 @@ function inviteMemberHandler() {
   console.log(response)
   // mostrar mensagem se utilizador não existir
 }
+
+removeMemberButton.addEventListener("click", () => {
+  let user = removeMemberButton.dataset.user;
+  let id = addMemberButton.dataset.project;
+  console.log({ id, user });
+  sendAjaxRequest("delete", `/api/projects/${id}/members`, { user }, removeMemberHandler);
+})
+
+function removeMemberHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response)
+  let id = response.user_id;
+  let elements = document.getElementsByClassName(`user_${id}`);
+  [...elements].forEach(elem => elem.parentNode.removeChild(elem));
+  let role = response.role;
+  if (role === "developer")
+    document.getElementById("developers-counter").innerHTML = parseInt(document.getElementById("developers-counter").innerHTML) - 1;
+  else if (role === "coordinator")
+    document.getElementById("coordinators-counter").innerHTML = parseInt(document.getElementById("coordinators-counter").innerHTML) - 1;
+
+  document.getElementById("total-counter").innerHTML = parseInt(document.getElementById("total-counter").innerHTML) - 1;
+
+}
+
+$('#remove-member-modal').on('show.bs.modal', function (event) {
+  let button = $(event.relatedTarget)
+  let username = button.data('username')
+  let user = button.data('user')
+  let modal = $(this)
+  modal.find('#user-to-remove').text(username)
+  removeMemberButton.dataset.user = user;
+})

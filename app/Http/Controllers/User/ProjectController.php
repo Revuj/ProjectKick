@@ -114,4 +114,19 @@ class ProjectController extends Controller
         return $membership;
     }
 
+    public function remove(Request $request, $id)
+    {
+        $this->authorize('delete', Project::find($id));
+        $project = Project::find($id);
+        if ($project == null) {
+            abort(404);
+        }
+
+        $user_id = $request->input("user");
+        $membership = MemberStatus::where("user_id", "=", $user_id)->where("project_id", "=", $id)->first();
+        $membership->delete();
+
+        return $membership;
+    }
+
 }

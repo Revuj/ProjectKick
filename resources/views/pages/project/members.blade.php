@@ -60,10 +60,10 @@
           </nav>
           <div id="tables-types" class="d-flex border-bottom nav-links pb-2">
             <li class="active">
-              Developer <span class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'developer')->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span>
+              Developer <span id="developers-counter" class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'developer')->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span>
             </li>
-            <li>Coordinator <span class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'coordinator')->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span></li>
-            <li>All <span class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span></li>
+            <li>Coordinator <span id="coordinators-counter" class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'coordinator')->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span></li>
+            <li>All <span id="total-counter" class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span></li>
             <button
               type="button"
               data-toggle="modal"
@@ -134,7 +134,7 @@
                     </thead>
                     <tbody>
                       @foreach (\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'developer')->join('user', 'user.id', '=', 'member_status.user_id')->get() as $member)
-                        <tr>
+                        <tr class="user_{{$member->user_id}}">
                           <td data-label="User">
                             <img src="{{asset('assets/avatars/' . $member->photo_path . '.png')}}" alt="" />
                             <a href="#" class="user-link">{{ $member->username }}</a>
@@ -148,7 +148,7 @@
                           </td>
                           <td align="center">
                             <a href="#" class="table-link">
-                              <button class="custom-button close-button">
+                              <button class="custom-button close-button" data-toggle="modal" data-target="#remove-member-modal" data-user="{{ $member->user_id }}" data-username="{{ $member->username }}">
                                 <i class="fa fa-trash fa"></i>
                                 Remove
                               </button>
@@ -185,7 +185,7 @@
                     </thead>
                     <tbody>
                       @foreach (\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'coordinator')->join('user', 'user.id', '=', 'member_status.user_id')->get() as $member)
-                        <tr>
+                        <tr class="user_{{$member->user_id}}">
                           <td data-label="User">
                             <img src="{{asset('assets/avatars/' . $member->photo_path . '.png')}}" alt="" />
                             <a href="#" class="user-link">{{ $member->username }}</a>
@@ -199,7 +199,7 @@
                           </td>
                           <td align="center">
                             <a href="#" class="table-link">
-                              <button class="custom-button close-button">
+                              <button class="custom-button close-button"  data-toggle="modal" data-target="#remove-member-modal" data-user="{{ $member->user_id }}" data-username="{{ $member->username }}">
                                 <i class="fa fa-trash fa"></i>
                                 Remove
                               </button>
@@ -236,7 +236,7 @@
                     </thead>
                     <tbody>
                       @foreach (\App\MemberStatus::where('project_id', '=', $project->id)->join('user', 'user.id', '=', 'member_status.user_id')->get() as $member)
-                        <tr>
+                        <tr class="user_{{$member->user_id}}">
                           <td data-label="User">
                             <img src="{{asset('assets/avatars/' . $member->photo_path . '.png')}}" alt="" />
                             <a href="#" class="user-link">{{ $member->username }}</a>
@@ -250,7 +250,7 @@
                           </td>
                           <td align="center">
                             <a href="#" class="table-link">
-                              <button class="custom-button close-button">
+                              <button class="custom-button close-button"  data-toggle="modal" data-target="#remove-member-modal" data-user="{{ $member->user_id }}" data-username="{{ $member->username }}">
                                 <i class="fa fa-trash fa"></i>
                                 Remove
                               </button>
@@ -318,12 +318,62 @@
                 <button type="button" class="btn " data-dismiss="modal">
                   Close
                 </button>
-                <button type="button" class="btn btn-success" id="add-member" data-project="{{ $project->id }}">
+                <button type="button" class="btn btn-success" id="add-member" data-project="{{ $project->id }}" data-dismiss="modal">
                   Add Member
                 </button>
               </div>
             </div>
           </div>
         </div>
+        
+
+        <!-- Remove Member modal -->
+        <div
+          class="modal fade"
+          id="remove-member-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Remove <span id="user-to-remove"> from the project?</span></h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-left">
+                <p>
+                  This action will remove the member you select from the project. Are you sure you want to continue?
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  id="remove-member"
+                  type="button"
+                  data-dismiss="modal"
+                  class="btn btn-primary btn-danger"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 @endsection
