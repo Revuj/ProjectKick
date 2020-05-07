@@ -21,6 +21,8 @@
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
     <script src="{{asset('js/index.js')}}" defer></script>
+    <script src="{{asset('js/project.js')}}" defer></script>
+
     
 @endsection
 
@@ -62,13 +64,13 @@
                 id="project-header"
                 class="border-bottom mb-3 d-flex flex-row align-items-center"
               >
-                <h3 class="title project-title mr-auto mb-2">Project Kick</h3>
+                <h3 id="project-title" class="title project-title mr-auto mb-2 pr-2">{{ $project->name }}</h3>
                 <div class="d-flex align-items-start">
                   <p class="mr-auto">
                     <span class="project-creator">
                       Project created by
                       <span class="author-reference text-primary"
-                        >Revuj</span
+                        >{{ $author->username }}</span
                       ></span
                     >
                   </p>
@@ -80,36 +82,32 @@
                     <div class="d-flex mb-2">
                       <h4 class="flex-grow-1 description">Description</h4>
                       <button
+                        id="edit-project"
                         type="button"
-                        class="custom-button edit-button edit-task mr-1"
+                        class="custom-button edit-button mr-1"
                       >
                         <i
                           class="ml-auto fas fa-pencil-alt float-right"
                           aria-hidden="true"
                         ></i>
                       </button>
+                      <button
+                        id="save-project"
+                        type="button"
+                        class="custom-button edit-button mr-1"
+                        data-project="{{ $project->id }}"
+                      >
+                      <i class="ml-auto far fa-save float-right"></i>
+                      </button>
                     </div>
-                    <p class="mb-4">
-                      The purpose of this project is to develop a system for
-                      project management, allowing the clients to create their
-                      own workflows as well as customize them, enabling to plan
-                      ahead, monitoring the work progress and communicate with
-                      the team in a flexible and organized way. In a world where
-                      the majority of the development comes from maintaining and
-                      building projects, having a tool where everything can be
-                      managed is now one of the key elements in projects,
-                      playing an important role in its organization and success.
-                      Through this application, users, within teams, can create
-                      customizable lists for their tasks and issues with items
-                      that can be moved through different lists and have an
-                      overview of the lists through a representation in the form
-                      of a table or a Kanban board.
+                    <p class="mb-4" id="project-description">
+                      {{ $project->description }}
                     </p>
 
                     <div class="row">
                       <div class="col">
                         <label>Created</label>
-                        <p class="font-weight-bold mb-4">2017/11/02</p>
+                        <p class="font-weight-bold mb-4">{{ \Carbon\Carbon::parse($project->creation_date)->format('M d Y') }}</p>
                         <label>Duration</label>
                         <p class="font-weight-bold mb-4">
                           90 days
@@ -129,30 +127,25 @@
                             aria-valuenow="80"
                             aria-valuemin="0"
                             aria-valuemax="100"
-                            style="width: 80%;"
+                            @if (count($project->issues()->get()) > 0)
+                              style="width: {{count($project->issues()->where('is_completed', '=', 'false')->get()) / count($project->issues()->get()) * 100}}%;"
+                             @else
+                              style="width: 0%;"
+                            @endif
                           ></div>
                         </div>
                         <p class="mb-4">
                           Tasks Completed:<span class="text-inverse"
-                            >36/94</span
+                            > {{ count($project->issues()->where('is_completed', '=', 'false')->get()) }}/{{ count($project->issues()->get()) }}</span
                           >
                         </p>
                         <label>Project Members</label>
                         <ul class="assignees d-flex align-items-center">
-                          <li class="mr-2">
-                            <img
-                              src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                              alt="@vitorb19"
-                              draggable="false"
-                            />
-                          </li>
-                          <li class="mr-2">
-                            <img
-                              src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                              alt="@vitorb19"
-                              draggable="false"
-                            />
-                          </li>
+                          @foreach (\App\MemberStatus::where('project_id', '=', $project->id)->join('user', 'user.id', '=', 'member_status.user_id')->get() as $member)
+                            <li class="mr-2">
+                                <img src="{{asset('assets/avatars/' . $member->photo_path . '.png')}}" alt="" />
+                            </li>
+                          @endforeach
                         </ul>
                       </div>
                     </div>

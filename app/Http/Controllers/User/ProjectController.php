@@ -5,9 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Project;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
 
 class ProjectController extends Controller
 {
@@ -18,9 +16,17 @@ class ProjectController extends Controller
     }
 
     public function index($id)
-    {   
-         $this->authorize('view', Project::find($id));
-        return view('pages.project.overview');
+    {
+        $project = Project::find($id);
+        $this->authorize('view', $project);
+
+        if ($project == null) {
+            abort(404);
+        }
+
+        $author = User::find($project->author_id);
+
+        return view('pages.project.overview', ['project' => $project, 'author' => $author]);
     }
 
     public function members($id)
@@ -56,33 +62,24 @@ class ProjectController extends Controller
         return $project;
     }
 
-    public function show($id)
+    public function update(Request $request, $id)
     {
-        $project = Project::findOrFail($id);
-        $channelsDB = $project->channels();
-        $channels = array();
-        foreach($channelsDB->get() as $channel) {
-            $messages = $channel->messages()
-            ->join('user', 'user.id', '=', 'message.user_id')
-            ->select('user.username', 'date', 'content', 'photo_path')
-            -> orderBy('date')->get();
+        // verificar que é coordenador
 
-            $channels[]  =  [ 
-                'channel_id' => $channel->id,
-                'channel_name' => $channel->name,
-                'channel_description' => $channel->description,
-                'messages' => $messages
-            ];
-
+        $project = Project::find($id);
+        if ($project == null) {
+            abort(404);
         }
 
-        $first_channel = array_shift($channels);
-        $project_id = $id;
+        $title = $request->input("title");
+        $description = $request->input("description");
 
+        $project->name = $title;
+        $project->description = $description;
 
-        //dd($channels);
-        return view('pages.chat', compact('first_channel', 'channels', 'project_id'));
-      
+        $project->save();
+
+        return $project;
     }
 
 }

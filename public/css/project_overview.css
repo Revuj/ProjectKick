@@ -28,6 +28,10 @@
   font-weight: 600;
 }
 
+#save-project {
+  display: none;
+}
+
 .chat_ib p span {
   width: 20px;
   line-height: 20px;
