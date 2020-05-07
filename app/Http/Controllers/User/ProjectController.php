@@ -31,8 +31,15 @@ class ProjectController extends Controller
 
     public function members($id)
     {
-        $this->authorize('checkMembers', Project::find($id));
-        return view('pages.project.members');
+        // verificar se é coordenador para poder remover/convidar
+        $project = Project::find($id);
+        $this->authorize('checkMembers', $project);
+
+        if ($project == null) {
+            abort(404);
+        }
+
+        return view('pages.project.members', ["project" => $project]);
     }
 
     public function create(Request $request)

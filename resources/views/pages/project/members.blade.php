@@ -60,9 +60,10 @@
           </nav>
           <div id="tables-types" class="d-flex border-bottom nav-links pb-2">
             <li class="active">
-              Developer <span class="tables-type-counter">6</span>
+              Developer <span class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'developer')->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span>
             </li>
-            <li>Coordinator <span class="tables-type-counter">3</span></li>
+            <li>Coordinator <span class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'coordinator')->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span></li>
+            <li>All <span class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span></li>
             <button
               type="button"
               data-toggle="modal"
@@ -132,167 +133,35 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td data-label="User">
-                          <img src="{{asset('assets/profile.png')}}" alt="" />
-                          <a href="#" class="user-link">George Clooney</a>
-                          <span class="user-subhead">Project Developer</span>
-                        </td>
-                        <td data-label="Joined">
-                          2013/08/12
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">marlon@brando.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa"></i>
-                              Remove
-                            </button>
-                          </a>
-                          <a href="#" class="table-link">
-                            <button class="custom-button open-button ">
-                              <i class="fa fa-arrow-alt-circle-up"></i>
-                              Promote
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                        <img src="{{asset('assets/profile.png')}}" alt="" />                          <a href="#" class="user-link">Ryan Gossling</a>
-                          <span class="user-subhead">Project Developer</span>
-                        </td>
-                        <td data-label="Joined">
-                          2013/03/03
-                        </td>
-
-                        <td data-label="Email">
-                          <a href="#">jack@nicholson</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa"></i>
-                              Remove
-                            </button>
-                          </a>
-                          <a href="#" class="table-link">
-                            <button class="custom-button open-button ">
-                              <i class="fa fa-arrow-alt-circle-up"></i>
-                              Promote
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                        <img src="{{asset('assets/profile.png')}}" alt="" />                          <a href="#" class="user-link">Emma Watson</a>
-                          <span class="user-subhead">Project Developer</span>
-                        </td>
-                        <td data-label="Joined">
-                          2004/01/24
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">humphrey@bogart.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa"></i>
-                              Remove
-                            </button>
-                          </a>
-                          <a href="#" class="table-link">
-                            <button class="custom-button open-button ">
-                              <i class="fa fa-arrow-alt-circle-up"></i>
-                              Promote
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                        <img src="{{asset('assets/profile.png')}}" alt="" />                          <a href="#" class="user-link">George Clooney</a>
-                          <span class="user-subhead">Project Developer</span>
-                        </td>
-                        <td data-label="Joined">
-                          2013/08/12
-                        </td>
-
-                        <td data-label="Email">
-                          <a href="#">marlon@brando.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa"></i>
-                              Remove
-                            </button>
-                          </a>
-                          <a href="#" class="table-link">
-                            <button class="custom-button open-button ">
-                              <i class="fa fa-arrow-alt-circle-up"></i>
-                              Promote
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                        <img src="{{asset('assets/profile.png')}}" alt="" />                          <a href="#" class="user-link">Ryan Gossling</a>
-                          <span class="user-subhead">Project Developer</span>
-                        </td>
-                        <td data-label="Joined">
-                          2013/03/03
-                        </td>
-
-                        <td data-label="Email">
-                          <a href="#">jack@nicholson</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa"></i>
-                              Remove
-                            </button>
-                          </a>
-                          <a href="#" class="table-link">
-                            <button class="custom-button open-button ">
-                              <i class="fa fa-arrow-alt-circle-up"></i>
-                              Promote
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                        <img src="{{asset('assets/profile.png')}}" alt="" />                          <a href="#" class="user-link">Emma Watson</a>
-                          <span class="user-subhead">Project Developer</span>
-                        </td>
-                        <td data-label="Joined">
-                          2004/01/24
-                        </td>
-
-                        <td data-label="Email">
-                          <a href="#">humphrey@bogart.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa"></i>
-                              Remove
-                            </button>
-                          </a>
-                          <a href="#" class="table-link">
-                            <button class="custom-button open-button ">
-                              <i class="fa fa-arrow-alt-circle-up"></i>
-                              Promote
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
+                      @foreach (\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'developer')->join('user', 'user.id', '=', 'member_status.user_id')->get() as $member)
+                        <tr>
+                          <td data-label="User">
+                            <img src="{{asset('assets/avatars/' . $member->photo_path . '.png')}}" alt="" />
+                            <a href="#" class="user-link">{{ $member->username }}</a>
+                            <span class="user-subhead">{{ $member->role }}</span>
+                          </td>
+                          <td data-label="Joined">
+                            {{ \Carbon\Carbon::parse($member->entrance_date)->format('M d Y') }}
+                          </td>
+                          <td data-label="Email">
+                            <a href="#">{{ $member->email }}</a>
+                          </td>
+                          <td align="center">
+                            <a href="#" class="table-link">
+                              <button class="custom-button close-button">
+                                <i class="fa fa-trash fa"></i>
+                                Remove
+                              </button>
+                            </a>
+                            <a href="#" class="table-link">
+                              <button class="custom-button open-button ">
+                                <i class="fa fa-arrow-alt-circle-up"></i>
+                                Promote
+                              </button>
+                            </a>
+                          </td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -300,7 +169,7 @@
                   <table class="table user-list">
                     <thead>
                       <tr>
-                        <th class="font-weight-bold" style="width: 40%">
+                        <th class="font-weight-bold" style="width: 30%">
                           User
                         </th>
                         <th class="font-weight-bold" style="width: 20%">
@@ -309,108 +178,96 @@
                         <th class="font-weight-bold" style="width: 20%">
                           Email
                         </th>
-                        <th class="font-weight-bold" style="width: 20%">
+                        <th class="font-weight-bold" style="width: 30%">
                           &nbsp;
                         </th>
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach (\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'coordinator')->join('user', 'user.id', '=', 'member_status.user_id')->get() as $member)
+                        <tr>
+                          <td data-label="User">
+                            <img src="{{asset('assets/avatars/' . $member->photo_path . '.png')}}" alt="" />
+                            <a href="#" class="user-link">{{ $member->username }}</a>
+                            <span class="user-subhead">{{ $member->role }}</span>
+                          </td>
+                          <td data-label="Joined">
+                            {{ \Carbon\Carbon::parse($member->entrance_date)->format('M d Y') }}
+                          </td>
+                          <td data-label="Email">
+                            <a href="#">{{ $member->email }}</a>
+                          </td>
+                          <td align="center">
+                            <a href="#" class="table-link">
+                              <button class="custom-button close-button">
+                                <i class="fa fa-trash fa"></i>
+                                Remove
+                              </button>
+                            </a>
+                            <a href="#" class="table-link">
+                              <button class="custom-button open-button ">
+                                <i class="fa fa-arrow-alt-circle-up"></i>
+                                Promote
+                              </button>
+                            </a>
+                          </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-responsive d-none" id="all">
+                  <table class="table user-list">
+                    <thead>
                       <tr>
-                        <td data-label="User">
-                        <img src="{{asset('assets/profile.png')}}" alt="" />                          <a href="#" class="user-link">Mila Kunis</a>
-                          <span class="user-subhead">Project Coordinator</span>
-                        </td>
-                        <td data-label="Joined">
-                          2013/08/08
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">mila@kunis.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-sign-out fa"></i>
-                              Leave
-                            </button>
-                          </a>
-                        </td>
+                        <th class="font-weight-bold" style="width: 30%">
+                          User
+                        </th>
+                        <th class="font-weight-bold" style="width: 20%">
+                          Joined
+                        </th>
+                        <th class="font-weight-bold" style="width: 20%">
+                          Email
+                        </th>
+                        <th class="font-weight-bold" style="width: 30%">
+                          &nbsp;
+                        </th>
                       </tr>
-                      <tr>
-                        <td data-label="User">
-                        <img src="{{asset('assets/profile.png')}}" alt="" />                          <a href="#" class="user-link">Robert Downey Jr.</a>
-                          <span class="user-subhead">Project Coordinator </span>
-                        </td>
-                        <td data-label="Joined">
-                          2013/12/31
-                        </td>
-
-                        <td data-label="Email">
-                          <a href="#">spencer@tracy</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-sign-out fa"></i>
-                              Leave
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                        <img src="{{asset('assets/profile.png')}}" alt="" />                          <a href="#" class="user-link">Mila Kunis</a>
-                          <span class="user-subhead">Project Coordinator</span>
-                        </td>
-                        <td data-label="Joined">
-                          2013/08/08
-                        </td>
-
-                        <td data-label="Email">
-                          <a href="#">mila@kunis.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-sign-out fa"></i>
-                              Leave
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach (\App\MemberStatus::where('project_id', '=', $project->id)->join('user', 'user.id', '=', 'member_status.user_id')->get() as $member)
+                        <tr>
+                          <td data-label="User">
+                            <img src="{{asset('assets/avatars/' . $member->photo_path . '.png')}}" alt="" />
+                            <a href="#" class="user-link">{{ $member->username }}</a>
+                            <span class="user-subhead">{{ $member->role }}</span>
+                          </td>
+                          <td data-label="Joined">
+                            {{ \Carbon\Carbon::parse($member->entrance_date)->format('M d Y') }}
+                          </td>
+                          <td data-label="Email">
+                            <a href="#">{{ $member->email }}</a>
+                          </td>
+                          <td align="center">
+                            <a href="#" class="table-link">
+                              <button class="custom-button close-button">
+                                <i class="fa fa-trash fa"></i>
+                                Remove
+                              </button>
+                            </a>
+                            <a href="#" class="table-link">
+                              <button class="custom-button open-button ">
+                                <i class="fa fa-arrow-alt-circle-up"></i>
+                                Promote
+                              </button>
+                            </a>
+                          </td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
               </div>
-            </div>
-
-            <div class="d-flex mt-3">
-              <nav class="" aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a href="#" class="page-link" aria-label="Previous"
-                      ><span aria-hidden="true"
-                        ><i class="fa fa-fw fa-angle-left"></i></span
-                      ><span class="sr-only">Previous</span></a
-                    >
-                  </li>
-                  <li class="page-item active">
-                    <a href="#" class="page-link">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link" aria-label="Next"
-                      ><span aria-hidden="true"
-                        ><i class="fa fa-fw fa-angle-right"></i></span
-                      ><span class="sr-only">Next</span></a
-                    >
-                  </li>
-                </ul>
-              </nav>
             </div>
           </div>
         </div>
