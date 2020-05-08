@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use App\Channel;
 use App\Project;
 use App\User;
-
+use App\Events\ChatCreated;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Validator;
@@ -24,26 +24,20 @@ class ChatController extends Controller
             'name' => 'required|max:255'
         ])->validate(); */
        
-
-        try {
             $chat = new Channel();
             $chat->name = $request->input('name');
             $chat->description = $request->input('description');
             $chat->creation_date = Carbon::now()->toDateTimeString();
             $chat->project_id = $id;
 
-            $chat->save();
-            return response()->json([
-                $chat
-            ]);
+            $users = Project::find($id)->memberStatus()->join('user', 'user.id', '=', 'member_status.project_id');
 
-        } catch (ModelNotFoundException $err) {
-            return response()->json([], 404);
-        } catch (QueryException $err) {
-            return response()->json([
-                'message' => 'Unable to create a new chat',
-            ], 400);
-        }
+        
+            //broadcast(new ChatCreated(Project::findOrFail($id)))->toOthers();
+           // return $chat;
+
+           return response()->json([$users]);
+            
     }
 
 }

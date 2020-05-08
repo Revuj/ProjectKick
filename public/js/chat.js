@@ -168,7 +168,8 @@ function newChatHandler() {
         // show error on screen
     }
     else {
-        addChatTemplate(response[0]);
+        //addChatTemplate(response[0]);
+        console.log(response);
     }
 }
 

@@ -32,9 +32,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/api/users/{id}', 'User\UserController@update');
     Route::post('/api/users/{id}/photo', 'User\UserController@updatePhoto');
 
+
     //user role permissions
     Route::group(['middleware' => ['auth.user'],
         'namespace' => 'User'], function () {
+
 
         //user
         Route::prefix('users')->group(function () {
