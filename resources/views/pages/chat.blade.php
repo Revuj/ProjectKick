@@ -34,11 +34,15 @@
     <script src="{{asset('js/navbar.js')}}" defer></script>
     <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/chat.js')}}" defer></script>
+    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+
+
 @endsection
 
 
 @section('content')
-<!
+
+
 <div class="main-content-container px-4">
   <nav>
     <ol class="breadcrumb custom-separator">
@@ -127,7 +131,7 @@
                         @endif
                         </div>
                         <div class="message d-flex flex-column align-items-start">  <!--17:12 PM | 3 Days Ago--> 
-                            <div class="message-header"><span class="author">{{ $message['username']}}</span><span class="time_date px-2"> {{ $message['date']}} </span></div>
+                            <div class="message-header"><span class="author">{{ $message['username']}}</span><span class="time_date px-2"> {{date('d M Y, h:i a', strtotime($message['date']))}} </span></div>
                             <div class="message-content">
                               {{ $message['content']}}
                             </div>

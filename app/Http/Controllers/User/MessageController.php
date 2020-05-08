@@ -10,35 +10,33 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
+use App\MyEvent;
 
 
 
 
 class MessageController extends Controller
 {
+    
     public function create(Request $request, $id) {
-        try {
+  
 
-            $message = new Message();
-            $message->content = $request->input('content');
-            $message->date = Carbon::now()->toDateTimeString();
-            $message->channel_id = $request->input('channel_id');
-            $message->user_id = Auth::id();
-            $user = User::select('username', 'photo_path')
-            ->where('id', $message->user_id)->first();
-            
-            //$message->save();
-            return response()->json([ 
-                $message, $user
-            ]);
+    $message = new Message();
+    $message->content = $request->input('content');
+    $message->date = Carbon::now()->toDateTimeString();
+    $message->channel_id = $request->input('channel_id');
+    $message->user_id = Auth::id();
+    $user = User::select('username', 'photo_path')
+    ->where('id', $message->user_id)->first();
 
-        } catch (ModelNotFoundException $err) {
-            return response()->json([], 404);
-        } catch (QueryException $err) {
-            return response()->json([
-                'message' => 'Unable to send message',
-            ], 400);
-        }
+    event(new MyEvent('hello world'));
+
+    
+    //$message->save();
+    //return response()->json([ 
+        //  $message, $user
+    //]);
+
     }
 
 }

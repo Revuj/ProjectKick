@@ -43,6 +43,7 @@ available_chats.forEach(chat =>
 /**
  *  sends message when click on button
  */
+/*
 if (sendButton !== null) {
     sendButton.addEventListener('click', (e) => {
         let content = message.value
@@ -55,6 +56,7 @@ if (sendButton !== null) {
 /**
  * sends message when pressed enter
  */
+
 if (message !== null) {
     message.addEventListener('keyup', () => {
         if (event.keyCode === ENTER_KEY_CODE) {
@@ -63,7 +65,6 @@ if (message !== null) {
         }
     });
 }
-
 /**
  * ajax request to create a new message
  */
@@ -82,13 +83,17 @@ function requestCreateMsg() {
  * response handler to the new message request
  */
 function messageHandler() {
+
+     
+
+    /*
     const response = JSON.parse(this.responseText);
     if ('message' in response) {
         // show error on screen
     }
     else {
         drawMessageTemplate(response[0], response[1]);
-    }
+    }*/
 }
 
 // missing images
@@ -198,6 +203,25 @@ function addChatTemplate(chat) {
     new_chat.addEventListener('click', changeChat);
 
 }
+
+
+
+Pusher.logToConsole = true;
+var pusher = new Pusher('7d3a9c163bd45174c885', {
+    cluster: 'eu',
+    forceTLS: true
+  });
+
+var channel = pusher.subscribe('my-channel');
+
+channel.bind('my-event', function(data) {
+    alert(JSON.stringify(data));
+});
+
+  
+
+ 
+
 
 
 
