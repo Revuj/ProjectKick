@@ -24,11 +24,11 @@ class MessageController extends Controller
         $user = User::select('username', 'photo_path')
             ->where('id', $message->user_id)->first();
 
-        $event = new MessageEvent($message);
+        $event = new MessageEvent('hi');
 
         event($event);
 
-        $message->save();
+       // $message->save();
 
         return response()->json([
             $message, $user,

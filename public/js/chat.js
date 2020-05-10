@@ -213,7 +213,7 @@ var pusher = new Pusher('7d3a9c163bd45174c885', {
 });
 
 var channel = pusher.subscribe('groups.' + active_chat.getAttribute('data-chat'));
-
+//Notification.requestPermission();
 // event name
 channel.bind('my-event', function (data) {
     alert(JSON.stringify(data));
@@ -222,6 +222,7 @@ channel.bind('my-event', function (data) {
 channel.bind('pusher:subscription_error', function (status) {
     console.log(status);
 });
+
 
 
 

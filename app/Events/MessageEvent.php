@@ -7,8 +7,10 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class MessageEvent
+
+class MessageEvent  implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -31,7 +33,7 @@ class MessageEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('groups.' . $this->message->channel_id);
+        return ['groups.8'];
     }
 
     public function broadcastAs()

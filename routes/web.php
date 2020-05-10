@@ -32,11 +32,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/api/users/{id}', 'User\UserController@update');
     Route::post('/api/users/{id}/photo', 'User\UserController@updatePhoto');
 
-    Route::put('/api/chat/{channel_id}/messages', 'User\MessageController@create'); // add regex to this
 
     //user role permissions
     Route::group(['middleware' => ['auth.user'],
         'namespace' => 'User'], function () {
+
+        Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
 
         //user
         Route::prefix('users')->group(function () {
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{id}/issuelist', 'IssueController@showList');
             Route::get('/{id}/board', 'IssueController@showBoard');
             Route::get('/{id}/chats', 'ProjectController@show');
+
 
         });
 
