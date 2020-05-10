@@ -24,6 +24,7 @@ Route::group(['middleware' => ['guest']], function () {
 Auth::routes();
 // ================== user and admin pages ==============================
 
+
 // auth user permission
 Route::group(['middleware' => ['auth']], function () {
 
@@ -32,10 +33,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/api/users/{id}', 'User\UserController@update');
     Route::post('/api/users/{id}/photo', 'User\UserController@updatePhoto');
 
+    Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
+
+
 
     //user role permissions
     Route::group(['middleware' => ['auth.user'],
         'namespace' => 'User'], function () {
+        
 
 
         //user
@@ -47,7 +52,6 @@ Route::group(['middleware' => ['auth']], function () {
         });
         //[this]
         Route::post('/api/users/{id}/sort', 'UserController@fetchSort');
-        Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
 
         Route::post('/api/users/{id}/projects', 'UserController@filterProjects');
         Route::post('/api/users/{id}/events', 'UserController@events');

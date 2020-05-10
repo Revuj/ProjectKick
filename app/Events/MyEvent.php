@@ -22,7 +22,7 @@ class MyEvent implements ShouldBroadcast
 
   public function broadcastOn()
   {
-      return ['my-channel'];
+      return new PrivateChannel('groups.' . $this->message->channel_id);
   }
 
   public function broadcastAs()

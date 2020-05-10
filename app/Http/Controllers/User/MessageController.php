@@ -29,7 +29,11 @@ class MessageController extends Controller
     $user = User::select('username', 'photo_path')
     ->where('id', $message->user_id)->first();
 
-    event(new MyEvent('hello world'));
+    //event(new MyEvent($message));
+
+    event(new MyEvent($message));
+
+    
 
     
     //$message->save();

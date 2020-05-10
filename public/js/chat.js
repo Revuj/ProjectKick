@@ -5,14 +5,14 @@ const sendButton = document.querySelector('.msg_send_btn');
 const message = document.querySelector('#messageToSend');
 const create_chat_btn = document.querySelector('#create-chat');
 let project_id = create_chat_btn.getAttribute('data-project');
-
+let active_chat = document.querySelector('.active_chat');
 
 /**
  * Swaps visible chats when one is clicked
  */
 function changeChat() {
     let chat = this;
-    let active_chat = document.querySelector('.active_chat');
+    active_chat = document.querySelector('.active_chat');
     if (active_chat == chat) return;
 
     let currently_active_id = active_chat.getAttribute('data-chat');
@@ -69,13 +69,12 @@ if (message !== null) {
  * ajax request to create a new message
  */
 function requestCreateMsg() {
-    const active_chat = document.querySelector('.active_chat').getAttribute('data-chat')
-    let url = `/api/chat/${active_chat}/messages`;
-    console.log(active_chat);
+    const active = document.querySelector('.active_chat').getAttribute('data-chat')
+    let url = `/api/chat/${active}/messages`;
 
     sendAjaxRequest('put', url, {
         'content': message.value,
-        'channel_id': active_chat
+        'channel_id': active
     }, messageHandler);
 }
 
@@ -213,11 +212,17 @@ var pusher = new Pusher('7d3a9c163bd45174c885', {
     forceTLS: true
   });
 
-var channel = pusher.subscribe('my-channel');
+var channel = pusher.subscribe('groups.' + active_chat.getAttribute('data-chat'));
 
+// event name
 channel.bind('my-event', function(data) {
     alert(JSON.stringify(data));
 });
+
+channel.bind('pusher:subscription_error', function(status) {
+    console.log(status);
+});
+
 
   
 
