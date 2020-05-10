@@ -209,10 +209,15 @@ function addChatTemplate(chat) {
 Pusher.logToConsole = true;
 var pusher = new Pusher('7d3a9c163bd45174c885', {
     cluster: 'eu',
-    forceTLS: true
+    forceTLS: true,
+    auth: {
+        headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        }
+    },
 });
 
-var channel = pusher.subscribe('groups.' + active_chat.getAttribute('data-chat'));
+var channel = pusher.subscribe('private-groups.' + active_chat.getAttribute('data-chat'));
 //Notification.requestPermission();
 // event name
 channel.bind('my-event', function (data) {

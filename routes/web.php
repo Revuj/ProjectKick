@@ -32,7 +32,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/api/users/{id}', 'User\UserController@update');
     Route::post('/api/users/{id}/photo', 'User\UserController@updatePhoto');
 
-
     //user role permissions
     Route::group(['middleware' => ['auth.user'],
         'namespace' => 'User'], function () {
@@ -72,11 +71,12 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{id}/board', 'IssueController@showBoard');
             Route::get('/{id}/chats', 'ProjectController@show');
 
-
         });
 
         // Events
         Route::post('/api/events', 'EventController@create');
+
+        Route::post('/pusher/auth', 'NotificationController@authorizeUser');
 
     });
 

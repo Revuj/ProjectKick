@@ -11,12 +11,12 @@
 |
  */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
+Broadcast::channel('user.{userId}', function ($user, $id) {
     //return (int) $user->id === (int) $id;
     return true;
 });
 
-Broadcast::channel('groups.{id}', function ($user, $group) {
+Broadcast::channel('private-groups.{id}', function ($user, $group) {
     // return $group->hasUser($user->id);
     return true;
 });
