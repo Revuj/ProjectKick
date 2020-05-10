@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-     /**
+    public $timestamps = false;
+
+    /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'message';
@@ -16,17 +18,18 @@ class Message extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'description','project_id']; 
+    protected $fillable = ['name', 'description', 'project_id'];
 
     /**
-     * @return 
+     * @return
      */
     public function channel()
     {
         return $this->belongsTo(Channel::class, 'channel_id');
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 

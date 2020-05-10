@@ -9,15 +9,14 @@
 | application supports. The given channel authorization callbacks are
 | used to check if an authenticated user can listen to the channel.
 |
-*/
+ */
 
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     //return (int) $user->id === (int) $id;
     return true;
 });
 
-
 Broadcast::channel('groups.{id}', function ($user, $group) {
-   // return $group->hasUser($user->id);
-   return true;
+    // return $group->hasUser($user->id);
+    return true;
 });

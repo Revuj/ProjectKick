@@ -83,7 +83,7 @@ function requestCreateMsg() {
  */
 function messageHandler() {
 
-     
+
 
     /*
     const response = JSON.parse(this.responseText);
@@ -210,23 +210,23 @@ Pusher.logToConsole = true;
 var pusher = new Pusher('7d3a9c163bd45174c885', {
     cluster: 'eu',
     forceTLS: true
-  });
+});
 
 var channel = pusher.subscribe('groups.' + active_chat.getAttribute('data-chat'));
 
 // event name
-channel.bind('my-event', function(data) {
+channel.bind('my-event', function (data) {
     alert(JSON.stringify(data));
 });
 
-channel.bind('pusher:subscription_error', function(status) {
+channel.bind('pusher:subscription_error', function (status) {
     console.log(status);
 });
 
 
-  
 
- 
+
+
 
 
 
