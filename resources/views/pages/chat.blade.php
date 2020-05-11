@@ -123,7 +123,7 @@
 
         </div>
           <div class="mesgs d-flex flex-column justify-content-between">
-            <div class="msg_history pt-1 px-1">
+            <div class="msg_history pt-1 px-1 d-flex flex-column">
             
             <div id = "chat-msg{{$first_channel['channel_id']}}">
             @if(!empty($first_channel))
