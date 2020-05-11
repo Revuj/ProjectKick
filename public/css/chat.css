@@ -9,9 +9,13 @@
   overflow: hidden;
 }
 
+
+.chat_ib {
+  padding: 0;
+}
+
 .chat_ib h5 {
   font-size: 15px;
-  margin: 0 0 8px 0;
   font-weight: 600;
 }
 
@@ -30,8 +34,23 @@
 
 .chat_list {
   margin: 0;
-  padding: 18px 16px 10px;
+  padding-left: 1rem;
+  height: 4rem;
 }
+
+.chat_list:hover {
+  background: var(--primary-color);
+  opacity: 0.6;
+}
+
+.delete-channel-button {
+  display: none;
+}
+
+.chat_list:hover  .delete-channel-button {
+  display: inline-block;
+}
+
 
 .active_chat {
   background: var(--primary-color);

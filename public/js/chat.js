@@ -8,6 +8,7 @@ let project_id = create_chat_btn.getAttribute('data-project');
 let active_chat = document.querySelector('.active_chat');
 
 let channels = []
+let toDelete;
 
 Pusher.logToConsole = true;
 var pusher = new Pusher('7d3a9c163bd45174c885', {
@@ -28,6 +29,8 @@ function subscribeToChannels() {
 }
 
 function bindAtiveChannel() {
+    if (active_chat == null)
+        return;
     channels[active_chat.getAttribute('data-chat')].bind('my-event', function (data) {
         alert(JSON.stringify(data));
     });
@@ -45,30 +48,30 @@ function changeChat() {
     active_chat = document.querySelector('.active_chat');
     if (active_chat == chat) return;
 
-    let currently_active_id = active_chat.getAttribute('data-chat');
+    if (active_chat != null) {
+        let currently_active_id = active_chat.getAttribute('data-chat');
+        channels[currently_active_id].unbind('my-event');
+        let currently_active_description = document.getElementById('chat-info' + currently_active_id);
+        let currently_active_chat = document.getElementById('chat-msg' + currently_active_id);
+        currently_active_description.classList.add('d-none');
+        currently_active_chat.classList.add('d-none');
+        active_chat.classList.remove('active_chat');
+    }
+
     let new_active_id = chat.getAttribute('data-chat')
 
-    channels[currently_active_id].unbind('my-event');
     channels[new_active_id].bind('my-event', function (data) {
         alert(JSON.stringify(data));
     });
 
 
-
-    let currently_active_description = document.getElementById('chat-info' + currently_active_id);
     let new_active_description = document.getElementById('chat-info' + new_active_id);
-
-    let currently_active_chat = document.getElementById('chat-msg' + currently_active_id);
     let new_ative_chat_msg = document.getElementById('chat-msg' + new_active_id);
-
-    currently_active_description.classList.add('d-none');
-    currently_active_chat.classList.add('d-none');
 
 
     new_active_description.classList.remove('d-none');
     new_ative_chat_msg.classList.remove('d-none');
 
-    active_chat.classList.remove('active_chat');
     chat.classList.add('active_chat');
 
 }
@@ -219,12 +222,16 @@ function addChatTemplate(chat) {
     /*add to the left side */
     let inbox = document.querySelector('.inbox_msg');
     let inbox_template = document.createElement('div');
-    inbox_template.classList.add('clickable', 'chat_list');
+    inbox_template.classList.add('clickable', 'chat_list', 'd-flex', 'justify-content-between', 'align-items-center');
     inbox_template.dataset.chat = `${chat['id']}`;
+    inbox_template.id = `${chat['id']}`;
     let innerHTML = `
       <a class="chat_ib">
         <h5># ${chat['name']}</h5>
-      </a>`;
+      </a>
+      <button type="button" class="btn delete-channel-button ml-auto text-white " data-toggle="modal" data-target="#delete-channel-modal" data-channel="${id}">
+                <i class="fas fa-trash-alt"></i>
+    </button>`;
     inbox_template.insertAdjacentHTML("beforeend", innerHTML);
     inbox.appendChild(inbox_template);
 
@@ -251,10 +258,41 @@ function addChatTemplate(chat) {
     let new_chat = document.querySelector(`div[data-chat = "${chat["id"]}" ]`);
     console.log(new_chat)
     new_chat.addEventListener('click', changeChat.bind(new_chat), false);
+
+    // bind new chat
+    changeChat.apply(new_chat);
+
+    let deleteButtons = document.getElementsByClassName("delete-channel-button")
+    deleteButtons[deleteButtons.length - 1].addEventListener('click', (e) => {
+        e.stopPropagation();
+        $('#delete-channel-modal').modal('show');
+        toDelete = deleteButtons[deleteButtons.length - 1].dataset.channel;
+    });
 }
 
+// Delete channel
+let deleteButtons = document.getElementsByClassName("delete-channel-button");
+[...deleteButtons].forEach(elem => elem.addEventListener('click', (e) => {
+    e.stopPropagation();
+    $('#delete-channel-modal').modal('show');
+    toDelete = elem.dataset.channel;
+}))
 
+const deleteButton = document.getElementById("delete-channel-button");
+deleteButton.addEventListener('click', deleteChannel);
 
+function deleteHandler() {
+    const response = JSON.parse(this.responseText);
+    let id = response.id;
+    let channel = document.getElementById(id);
+    channel.remove();
+}
+
+function deleteChannel(e) {
+    e.preventDefault();
+    console.log(toDelete);
+    sendAjaxRequest("delete", `/api/channels/${toDelete}`, {}, deleteHandler);
+}
 
 //Notification.requestPermission();
 

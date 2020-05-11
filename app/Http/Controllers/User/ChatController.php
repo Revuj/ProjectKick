@@ -1,20 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\User;
-use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 
 use App\Channel;
-use App\Project;
+use App\Http\Controllers\Controller;
 use App\User;
-use App\Events\ChatCreated;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
-
-
 
 class ChatController extends Controller
 {
@@ -28,32 +22,41 @@ class ChatController extends Controller
         ]);
     }
 
-    public function create(Request $request, $id) {
+    public function create(Request $request, $id)
+    {
 
         /*
         Validator::make($request->all(), [
-            'name' => 'required|max:255'
+        'name' => 'required|max:255'
         ])->validate(); */
-        
-       
+
         $chat = Channel::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'creation_date' => Carbon::now()->toDateTimeString(),
-            'project_id' => $id
+            'project_id' => $id,
         ]);
 
         return response()->json([$chat]);
 
+        //$users = Project::find($id)->memberStatus()->join('user', 'user.id', '=', 'member_status.project_id');
+        //event(new ChatCreated($id));
 
-       
+    }
 
-          
+    public function delete($id)
+    {
+        //verificar se é coordenador
+        $channel = Channel::find($id);
 
-            //$users = Project::find($id)->memberStatus()->join('user', 'user.id', '=', 'member_status.project_id');
-           //event(new ChatCreated($id));
+        //$this->authorize('delete', $channel);
+        if ($channel == null) {
+            abort(404);
+        }
 
-            
+        $channel->delete($id);
+
+        return $channel;
     }
 
 }

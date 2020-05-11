@@ -73,19 +73,25 @@
             <h4 class="w-100 font-weight-bold">Channels</h4>
           </div>
           @if(!empty($first_channel))
-          <div data-chat = "{{$first_channel['channel_id'] }}" class="clickable chat_list active_chat">
+          <div id="{{$first_channel['channel_id'] }}" data-chat = "{{$first_channel['channel_id'] }}" class="clickable chat_list active_chat d-flex justify-content-between align-items-center">
               <a class="chat_ib">
-                <h5># {{ $first_channel['channel_name'] }}</h5>
+                <h5 ># {{ $first_channel['channel_name'] }}</h5>
               </a>
+              <button type="button" class="btn delete-channel-button ml-auto text-white " data-toggle="modal" data-target="#delete-channel-modal" data-channel="{{$first_channel['channel_id'] }}">
+                <i class="fas fa-trash-alt"></i>
+              </button>
           </div>
           @endif
 
           @if(count($channels))
             @foreach($channels as $channel)
-              <div data-chat = "{{$channel['channel_id'] }}" class="clickable chat_list">
+              <div id="{{$channel['channel_id'] }}" data-chat = "{{$channel['channel_id'] }}" class="clickable chat_list d-flex justify-content-between align-items-center">
                 <a class="chat_ib">
-                  <h5># {{ $channel['channel_name'] }}</h5>
+                  <h5 ># {{ $channel['channel_name'] }}</h5>
                 </a>
+                <button type="button" class="btn delete-channel-button ml-auto text-white" data-toggle="modal" data-target="#delete-channel-modal" data-channel="{{$channel['channel_id'] }}">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
               </div>
             @endforeach
           @endif
@@ -242,5 +248,54 @@
       </div>
 </div>
   </div>
+</div>
+
+<!-- Delete list modal -->
+<div
+class="modal fade"
+id="delete-channel-modal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-left">
+      <p>
+        Are you sure you want to delete this channel?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+      >
+        Close
+      </button>
+      <button
+        id="delete-channel-button"
+        type="button"
+        data-dismiss="modal"
+        class="btn btn-primary btn-danger"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+</div>
 </div>
 @endsection

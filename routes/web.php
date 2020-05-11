@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Chat
         Route::put('/api/project/{id}/chat', 'ChatController@create');
+        Route::delete('/api/channels/{id}', 'ChatController@delete');
 
         //Project
         Route::put('/api/projects', 'ProjectController@create');
