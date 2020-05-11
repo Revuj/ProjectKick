@@ -1,6 +1,6 @@
 
 const ENTER_KEY_CODE = 13;
-const available_chats = document.querySelectorAll('.chat_list');
+let available_chats = document.querySelectorAll('.chat_list');
 const sendButton = document.querySelector('.msg_send_btn');
 const message = document.querySelector('#messageToSend');
 const create_chat_btn = document.querySelector('#create-chat');
@@ -41,6 +41,7 @@ bindAtiveChannel()
  */
 function changeChat() {
     let chat = this;
+    console.log(this);
     active_chat = document.querySelector('.active_chat');
     if (active_chat == chat) return;
 
@@ -217,37 +218,39 @@ function addChatTemplate(chat) {
     channels[id] = pusher.subscribe('private-groups.' + id);
     /*add to the left side */
     let inbox = document.querySelector('.inbox_msg');
-    const inbox_template = `
-    <div data-chat = "${chat['id']}" class="clickable chat_list">
+    let inbox_template = document.createElement('div');
+    inbox_template.classList.add('clickable', 'chat_list');
+    inbox_template.dataset.chat = `${chat['id']}`;
+    let innerHTML = `
       <a class="chat_ib">
         <h5># ${chat['name']}</h5>
-      </a>
-    </div>
-    `;
-    inbox.innerHTML += inbox_template;
+      </a>`;
+    inbox_template.insertAdjacentHTML("beforeend", innerHTML);
+    inbox.appendChild(inbox_template);
 
     let channel_header = document.querySelector('.channel_header');
-    const header_template = `
-    <h6 class="m-0 d-none" id = "chat-info${chat['id']}">
+    let header = document.createElement('div');
+    header.classList.add('m-0', 'd-none');
+    header.id = `chat-info${chat['id']}`
+    innerHTML = `
         <span class="channel_name">#  ${chat['name']}  | </span> 
-        <span class="channel_description"> ${chat['description']} </span>
-     </h6>
-    `;
-    channel_header.innerHTML += header_template;
+        <span class="channel_description"> ${chat['description']} </span> `;
+
+    header.insertAdjacentHTML("beforeend", innerHTML);
+    channel_header.appendChild(header);
 
     let msg_history = document.createElement('div');
     msg_history.id = `chat-msg${id}`;
-    msg_history.classList.add('d-none'); 
+    msg_history.classList.add('d-none');
 
     let typer = document.querySelector('.type_msg');
     document.querySelector('.msg_history').insertBefore(msg_history, typer);
 
 
     /*add listenners */
-   let new_chat = document.querySelector(`div[data-chat = "${chat["id"]}" ]`);
-    //new_chat.addEventListener('click', changeChat.bind(new_chat), false);
-
-
+    let new_chat = document.querySelector(`div[data-chat = "${chat["id"]}" ]`);
+    console.log(new_chat)
+    new_chat.addEventListener('click', changeChat.bind(new_chat), false);
 }
 
 
@@ -262,7 +265,7 @@ function confirmExit() {
 
     for (let key in channels) {
         // check if the property/key is defined in the object itself, not in parent
-        if (channels.hasOwnProperty(key)) {           
+        if (channels.hasOwnProperty(key)) {
             channels[key].unsubscribe('private-groups.' + key);
         }
     }
