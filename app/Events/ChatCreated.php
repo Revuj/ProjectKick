@@ -1,31 +1,30 @@
 <?php
 
+
 namespace App\Events;
-use App\Project; 
-use App\User;
 
+use App\Message;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
-class ChatCreated implements ShouldBroadcast
+class ChatCreated implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $team; /*represents a group*/
+    public $users;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Project $project)
+    public function __construct($users)
     {
-        $this->team  = $project;
+        $this->users  = $users;
     }
 
     /**
@@ -34,14 +33,13 @@ class ChatCreated implements ShouldBroadcast
      * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn() {
-        $channels = [];
-        $users = $this->team->memberStatus()->join('user', 'user.id', '=', 'member_status.project_id');
 
+        return new PrivateChannel('new_project.' . $this->users);
+    
+    }
 
-        foreach ($users as $user) {
-            array_push($channels, new PrivateChannel('users.' . $user->id));
-        }
-
-        return $channels;
+    public function broadcastAs()
+    {
+        return 'create-chat';
     }
 }

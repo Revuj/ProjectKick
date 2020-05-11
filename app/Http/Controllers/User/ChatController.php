@@ -32,11 +32,9 @@ class ChatController extends Controller
 
             $users = Project::find($id)->memberStatus()->join('user', 'user.id', '=', 'member_status.project_id');
 
-        
-            //broadcast(new ChatCreated(Project::findOrFail($id)))->toOthers();
-           // return $chat;
+           //event(new ChatCreated($id));
 
-           return response()->json([$users]);
+           return response()->json([$chat]);
             
     }
 

@@ -7,6 +7,35 @@ const create_chat_btn = document.querySelector('#create-chat');
 let project_id = create_chat_btn.getAttribute('data-project');
 let active_chat = document.querySelector('.active_chat');
 
+let channels = []
+
+Pusher.logToConsole = true;
+var pusher = new Pusher('7d3a9c163bd45174c885', {
+    cluster: 'eu',
+    forceTLS: true,
+    auth: {
+        headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        }
+    },
+});
+
+function subscribeToChannels() {
+    available_chats.forEach(chat => {
+        let id = chat.getAttribute('data-chat');
+        channels[id] = pusher.subscribe('private-groups.' + id);
+    })
+}
+
+function bindAtiveChannel() {
+    channels[active_chat.getAttribute('data-chat')].bind('my-event', function (data) {
+        alert(JSON.stringify(data));
+    });
+}
+
+subscribeToChannels()
+bindAtiveChannel()
+
 /**
  * Swaps visible chats when one is clicked
  */
@@ -17,6 +46,13 @@ function changeChat() {
 
     let currently_active_id = active_chat.getAttribute('data-chat');
     let new_active_id = chat.getAttribute('data-chat')
+
+    channels[currently_active_id].unbind('my-event');
+    channels[new_active_id].bind('my-event', function (data) {
+        alert(JSON.stringify(data));
+    });
+
+
 
     let currently_active_description = document.getElementById('chat-info' + currently_active_id);
     let new_active_description = document.getElementById('chat-info' + new_active_id);
@@ -167,7 +203,7 @@ function newChatHandler() {
         // show error on screen
     }
     else {
-        //addChatTemplate(response[0]);
+        addChatTemplate(response[0]);
         console.log(response);
     }
 }
@@ -206,27 +242,30 @@ function addChatTemplate(chat) {
 
 
 
-Pusher.logToConsole = true;
-var pusher = new Pusher('7d3a9c163bd45174c885', {
-    cluster: 'eu',
-    forceTLS: true,
-    auth: {
-        headers: {
-            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-        }
-    },
-});
 
-var channel = pusher.subscribe('private-groups.' + active_chat.getAttribute('data-chat'));
 //Notification.requestPermission();
-// event name
-channel.bind('my-event', function (data) {
-    alert(JSON.stringify(data));
-});
 
+/*
 channel.bind('pusher:subscription_error', function (status) {
     console.log(status);
-});
+});*/
+
+window.onbeforeunload = confirmExit;
+
+function confirmExit() {
+
+    for (let key in channels) {
+        // check if the property/key is defined in the object itself, not in parent
+        if (channels.hasOwnProperty(key)) {           
+            channels[key].unsubscribe('private-groups.' + key);
+        }
+    }
+    return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+
+}
+
+
+
 
 
 
