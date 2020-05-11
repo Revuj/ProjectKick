@@ -20,7 +20,7 @@ class Channel extends Model
     /**
      * @var array
     */
-    protected $fillable = [ 'content', 'project_id']; 
+    protected $fillable = [ 'name', 'description', 'creation_date', 'project_id' ]; 
 
     /**
      * @return 

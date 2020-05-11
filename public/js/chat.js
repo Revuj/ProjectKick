@@ -79,7 +79,6 @@ available_chats.forEach(chat =>
 /**
  *  sends message when click on button
  */
-/*
 if (sendButton !== null) {
     sendButton.addEventListener('click', (e) => {
         let content = message.value
@@ -200,7 +199,7 @@ function requestNewChat(name, description) {
 function newChatHandler() {
     const response = JSON.parse(this.responseText);
     if ('message' in response) {
-        // show error on screen
+        alert(response['message']);
     }
     else {
         addChatTemplate(response[0]);
@@ -213,7 +212,9 @@ function newChatHandler() {
  * @param {chat data} chat
  */
 function addChatTemplate(chat) {
+    let id = chat['id'];
 
+    channels[id] = pusher.subscribe('private-groups.' + id);
     /*add to the left side */
     let inbox = document.querySelector('.inbox_msg');
     const inbox_template = `
@@ -234,9 +235,18 @@ function addChatTemplate(chat) {
     `;
     channel_header.innerHTML += header_template;
 
+    let msg_history = document.createElement('div');
+    msg_history.id = `chat-msg${id}`;
+    msg_history.classList.add('d-none'); 
+
+    let typer = document.querySelector('.type_msg');
+    document.querySelector('.msg_history').insertBefore(msg_history, typer);
+
+
     /*add listenners */
-    let new_chat = document.querySelector(`div[data-chat = "${chat["id"]}" ]`);
-    new_chat.addEventListener('click', changeChat);
+   let new_chat = document.querySelector(`div[data-chat = "${chat["id"]}" ]`);
+    //new_chat.addEventListener('click', changeChat.bind(new_chat), false);
+
 
 }
 
@@ -245,10 +255,6 @@ function addChatTemplate(chat) {
 
 //Notification.requestPermission();
 
-/*
-channel.bind('pusher:subscription_error', function (status) {
-    console.log(status);
-});*/
 
 window.onbeforeunload = confirmExit;
 
