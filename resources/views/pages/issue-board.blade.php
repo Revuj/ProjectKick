@@ -50,7 +50,7 @@
         >
           <div id="filter-issues" class="py-3 my-0 flex-grow-1">
             <form class="d-flex justify-content-between">
-              <div class="form-group mb-0 flex-grow-1 mx-2">
+              <div class="form-group mb-0 flex-grow-1 mr-2">
                 <input
                   type="text"
                   class="form-control"
