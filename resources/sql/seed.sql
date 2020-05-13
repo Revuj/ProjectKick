@@ -151,6 +151,45 @@ CREATE TABLE event_personal (
                                                      ON UPDATE CASCADE
 );
 
+CREATE TABLE notification (
+    id SERIAL PRIMARY KEY,
+    "date" timestamp with time zone DEFAULT now() NOT NULL,
+    description text,
+    receiver_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE
+                                                     ON UPDATE CASCADE,
+    sender_id integer NOT NULL REFERENCES "user"  ON DELETE CASCADE
+                                                     ON UPDATE CASCADE CHECK (sender_id <> receiver_id)
+);
+
+CREATE TABLE notification_kick (
+    notification_id integer PRIMARY KEY REFERENCES notification  ON DELETE CASCADE
+                                                     ON UPDATE CASCADE,
+    project_id integer NOT NULL REFERENCES project ON DELETE CASCADE
+                                                     ON UPDATE CASCADE
+);
+
+CREATE TABLE notification_invite (
+    notification_id integer PRIMARY KEY REFERENCES notification ON DELETE CASCADE
+                                                     ON UPDATE CASCADE,
+    project_id integer NOT NULL REFERENCES project ON DELETE CASCADE
+                                                     ON UPDATE CASCADE
+);
+
+CREATE TABLE notification_assign (
+    notification_id integer PRIMARY KEY REFERENCES notification ON DELETE CASCADE
+                                                     ON UPDATE CASCADE,
+    issue_id integer NOT NULL REFERENCES issue ON DELETE CASCADE
+                                                     ON UPDATE CASCADE
+);
+
+CREATE TABLE notification_event (
+    notification_id integer PRIMARY KEY REFERENCES notification ON DELETE CASCADE
+                                                     ON UPDATE CASCADE,
+    event_id integer NOT NULL REFERENCES "event" ON DELETE CASCADE
+                                                     ON UPDATE CASCADE
+);
+
+
 create table color (
     id SERIAL PRIMARY KEY,
     rgb_code VARCHAR NOT NULL,

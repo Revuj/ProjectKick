@@ -14,8 +14,6 @@ class EventPersonal extends Model
      */
     protected $table = 'event_personal';
 
-    protected $with = ['event', 'user'];
-
     protected $primaryKey = array('event_id', 'user_id');
 
     public $incrementing = false;
