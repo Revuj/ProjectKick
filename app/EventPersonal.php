@@ -36,18 +36,4 @@ class EventPersonal extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    protected static function find($id, $columns = ['*'])
-    {
-        $me = new self;
-        $query = $me->newQuery();
-        $i = 0;
-
-        foreach ($me->getKeyName() as $key) {
-            $query->where($key, '=', $id[$i]);
-            $i++;
-        }
-
-        return $query->first($columns);
-    }
 }
