@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\Invitation;
 use App\Events\KickedOut;
 use App\Http\Controllers\Controller;
 use App\MemberStatus;
 use App\Notification;
+use App\NotificationInvite;
 use App\NotificationKick;
 use App\Project;
 use App\User;
@@ -103,9 +105,9 @@ class ProjectController extends Controller
             abort(404);
         }
 
-        $username = $request->input("username");
+        $receiver = $request->input("receiver");
         $role = $request->input("role");
-        $user = User::where("username", "=", $username)->first();
+        $user = User::where("username", "=", $receiver)->first();
 
         // estou a adicionar logo mas no futuro deveria ser um convite
         $membership = new MemberStatus();
@@ -114,6 +116,24 @@ class ProjectController extends Controller
         $membership->project_id = $id;
 
         $membership->save();
+
+        $user_id = $user->id;
+        $sender_id = $request->input("senderId");
+
+        $event = new Invitation($request->input('projectName'), $request->input('senderUsername'), $user_id, Carbon::now()->toDateTimeString());
+        event($event);
+
+        $notification = new Notification();
+        $notification->date = Carbon::now()->toDateTimeString();
+        $notification->description = "";
+        $notification->receiver_id = $user_id;
+        $notification->sender_id = $sender_id;
+        $notification->save();
+
+        $notificationKick = new NotificationInvite();
+        $notificationKick->notification_id = $notification->id;
+        $notificationKick->project_id = $id;
+        $notificationKick->save();
 
         return $membership;
     }

@@ -3,37 +3,35 @@
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 /**
- * Invitation to a project notification
+ * Kicked out of a project notification
  */
 class Invitation implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $message;
-    private $type;
-    private $id;
     private $project;
-
+    private $sender;
+    private $receiver;
+    private $date;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message, $type, $id, $project)
+    public function __construct($project, $sender, $receiver, $date)
     {
-        $this->message = $message;
-        $this->type = $type;
-        $this->id = $id;
         $this->project = $project;
+        $this->sender = $sender;
+        $this->receiver = $receiver;
+        $this->date = $date;
     }
 
     /**
@@ -43,11 +41,11 @@ class Invitation implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('invite.' . $this->id);
+        return new PrivateChannel('invited.' . $this->receiver);
     }
 
     public function broadcastAs()
     {
-        return 'invite';
+        return 'invitation';
     }
 }
