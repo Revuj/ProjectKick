@@ -53,7 +53,7 @@
 <div class="main-content-container px-4">
           <nav>
             <ol class="breadcrumb custom-separator">
-              <li><a href="#0">lbaw</a></li>
+              <li><a href="#0" id="project-name">{{ $project->name }}</a></li>
               <li><a href="#0">Project Overview</a></li>
               <li class="current">Project Members</li>
             </ol>
