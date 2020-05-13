@@ -10,6 +10,8 @@
 
     <title>@yield('title')</title>
     @yield('script')
+    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+
 
     @yield('style')
 

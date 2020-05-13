@@ -19,7 +19,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
-    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
     <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/project_team.js')}}" defer></script>
 

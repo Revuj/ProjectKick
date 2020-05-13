@@ -34,8 +34,6 @@
     <script src="{{asset('js/navbar.js')}}" defer></script>
     <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/chat.js')}}" defer></script>
-    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
-
 
 @endsection
 
