@@ -114,8 +114,7 @@ class ProjectController extends Controller
         $membership->role = $role;
         $membership->user_id = $user->id;
         $membership->project_id = $id;
-
-        $membership->save();
+        // $membership->save();
 
         $user_id = $user->id;
         $sender_id = $request->input("senderId");

@@ -216,7 +216,7 @@ class kicked extends message {
     let contentTemplate = document.createElement("li");
     contentTemplate.classList.add("kicked-notification");
 
-    contentTemplate.innerHTML =  `
+    contentTemplate.innerHTML = `
     <li class = "kicked-notification">
       <div class = "d-flex justify-content-between">
         <div class = "d-flex align-items-center justify-content-center">
@@ -299,12 +299,3 @@ class meeting extends message {
   }
 }
 
-/*calls */
-renderMessages(messages);
-kicking_channel.bind('kicked-out', (data) => {
-    alert(JSON.stringify(data));
-    const new_kicked = new kicked('kicked', data['sender'], data['date'], date['project']).getNewElement();
-    others.prepend(new_kicked);
-    all.preprend(new_kicked);
-
-})

@@ -117,16 +117,24 @@ const user_id = document.querySelector('ul').getAttribute('data-user');
 console.log(user_id);
 Pusher.logToConsole = true;
 var pusher = new Pusher('7d3a9c163bd45174c885', {
-    cluster: 'eu',
-    forceTLS: true,
-    auth: {
-        headers: {
-            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-        }
-    },
+  cluster: 'eu',
+  forceTLS: true,
+  auth: {
+    headers: {
+      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+    }
+  },
 });
 
-let kicking_channel = pusher.subscribe('kicked.' + user_id);
+let kicking_channel = pusher.subscribe('private-kicked.' + user_id);
+
+kicking_channel.bind('kicked-out', (data) => {
+  alert(JSON.stringify(data));
+  const new_kicked = new kicked('kicked', data['sender'], data['date'], date['project']).getNewElement();
+  others.prepend(new_kicked);
+  all.preprend(new_kicked);
+
+})
 
 
 
