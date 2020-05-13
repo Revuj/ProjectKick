@@ -110,10 +110,10 @@ class ProjectController extends Controller
         $user = User::where("username", "=", $receiver)->first();
 
         // estou a adicionar logo mas no futuro deveria ser um convite
-        // $membership = new MemberStatus();
-        // $membership->role = $role;
-        // $membership->user_id = $user->id;
-        // $membership->project_id = $id;
+        $membership = new MemberStatus();
+        $membership->role = $role;
+        $membership->user_id = $user->id;
+        $membership->project_id = $id;
         // $membership->save();
 
         $user_id = $user->id;
