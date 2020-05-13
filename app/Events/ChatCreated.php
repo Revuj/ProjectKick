@@ -42,4 +42,6 @@ class ChatCreated implements ShouldBroadcastNow
     {
         return 'create-chat';
     }
+
+    
 }

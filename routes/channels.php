@@ -20,3 +20,24 @@ Broadcast::channel('private-groups.{id}', function ($user, $group) {
     // return $group->hasUser($user->id);
     return true;
 });
+
+Broadcast::channel('kicked.{id}', function ($user, $group) {
+    // return $group->hasUser($user->id);
+    return true;
+});
+
+Broadcast::channel('invite.{id}', function ($user, $group) {
+    // return $group->hasUser($user->id);
+    return true;
+});
+
+Broadcast::channel('assign.{id}', function ($user, $group) {
+    // return $group->hasUser($user->id);
+    return true;
+});
+
+Broadcast::channel('eventNotification.{id}', function ($user, $group) {
+    // return $group->hasUser($user->id);
+    return true;
+});
+
