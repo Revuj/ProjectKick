@@ -4,17 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EventMeeting extends Model
+class NotificationInvite extends Model
 {
-    use Traits\HasCompositePrimaryKey;
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'event_meeting';
-
-    protected $primaryKey = array('event_id', 'project_id');
+    protected $table = 'notification_invite';
 
     public $incrementing = false;
 
@@ -25,9 +22,9 @@ class EventMeeting extends Model
      */
     public $timestamps = false;
 
-    public function event()
+    public function notification()
     {
-        return $this->belongsTo(Event::class, 'event_id');
+        return $this->belongsTo(Notification::class, 'notification_id');
     }
 
     public function project()
