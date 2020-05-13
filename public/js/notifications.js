@@ -2,6 +2,10 @@ let notifications_filters = document.querySelectorAll(
   "#notifications-list-container li"
 );
 
+const others = document.getElementById('others-notifications');
+const all = document.getElementById('all-notifications');
+
+
 /* fecth from the database */
 let messages = [
   { type: "invited", sender: "John", date: "just now", project: "lbaw2025" },
@@ -207,6 +211,24 @@ class kicked extends message {
     this.addClassesToElementList(contentTemplate);
     this.notification_list.appendChild(contentTemplate);
   }
+
+  getNewElement() {
+    let contentTemplate = document.createElement("li");
+    contentTemplate.classList.add("kicked-notification");
+
+    contentTemplate.innerHTML =  `
+    <li class = "kicked-notification">
+      <div class = "d-flex justify-content-between">
+        <div class = "d-flex align-items-center justify-content-center">
+          <img class = "m-2" src="./assets/profile.png" alt="profile_pic" style="width: 40px">
+          <p><span class="author-reference">${this.sender} </span>kicked you out of the project <span class="project-reference">${this.project}</span>
+        </div>
+        <p class="timestamp smaller-text m-2">${this.date}</p>
+      </div>
+    </li>
+    `;
+    return contentTemplate;
+  }
 }
 
 class assigned extends message {
@@ -279,3 +301,10 @@ class meeting extends message {
 
 /*calls */
 renderMessages(messages);
+kicking_channel.bind('kicked-out', (data) => {
+    alert(JSON.stringify(data));
+    const new_kicked = new kicked('kicked', data['sender'], data['date'], date['project']).getNewElement();
+    others.prepend(new_kicked);
+    all.preprend(new_kicked);
+
+})

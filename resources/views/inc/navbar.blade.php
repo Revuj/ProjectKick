@@ -17,7 +17,7 @@
       </a>
     </div>
 
-    <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+    <ul data-user ="{{ Auth::user()->id }}" class="d-flex align-items-end align-items-center mb-0 mr-3">
       <!--notifications-->
       <li class="utility notification mb-0">
         <a href="#"><i class="fas fa-bell"></i></a>
