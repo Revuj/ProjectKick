@@ -102,8 +102,9 @@ removeMemberButton.addEventListener("click", () => {
   let id = addMemberButton.dataset.project;
   let project = document.getElementById('project-name');
   let username = document.getElementById('auth-username');
+  let sender = username.dataset.id;
   console.log({ id, user });
-  sendAjaxRequest("delete", `/api/projects/${id}/members`, { user, project, username }, removeMemberHandler);
+  sendAjaxRequest("delete", `/api/projects/${id}/members`, { user, project, username, 'project_id': id, sender }, removeMemberHandler);
 })
 
 function removeMemberHandler() {

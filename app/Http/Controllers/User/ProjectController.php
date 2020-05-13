@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Events\KickedOut;
 use App\Http\Controllers\Controller;
 use App\MemberStatus;
+use App\Notification;
+use App\NotificationKick;
 use App\Project;
 use App\User;
 use Carbon\Carbon;
@@ -125,11 +127,24 @@ class ProjectController extends Controller
         }
 
         $user_id = $request->input("user");
+        $sender_id = $request->input("sender");
         $membership = MemberStatus::where("user_id", "=", $user_id)->where("project_id", "=", $id)->first();
         $membership->delete();
 
         $event = new KickedOut($request->input('project'), $request->input('username'), $user_id, Carbon::now()->toDateTimeString());
         event($event);
+
+        $notification = new Notification();
+        $notification->date = Carbon::now()->toDateTimeString();
+        $notification->description = "";
+        $notification->receiver_id = $user_id;
+        $notification->sender_id = $sender_id;
+        $notification->save();
+
+        $notificationKick = new NotificationKick();
+        $notificationKick->notification_id = $notification->id;
+        $notificationKick->project_id = $id;
+        $notificationKick->save();
 
         return $membership;
     }
