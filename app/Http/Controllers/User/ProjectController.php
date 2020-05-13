@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\KickedOut;
 use App\Http\Controllers\Controller;
 use App\MemberStatus;
 use App\Project;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -126,6 +128,9 @@ class ProjectController extends Controller
         $membership = MemberStatus::where("user_id", "=", $user_id)->where("project_id", "=", $id)->first();
         $membership->delete();
 
+        $event = new KickedOut($request->input('project'), $request->input('username'), $user_id, Carbon::now()->toDateTimeString());
+        event($event);
+
         return $membership;
     }
 
@@ -134,17 +139,17 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
         $channelsDB = $project->channels();
         $channels = array();
-        foreach($channelsDB->get() as $channel) {
+        foreach ($channelsDB->get() as $channel) {
             $messages = $channel->messages()
-            ->join('user', 'user.id', '=', 'message.user_id')
-            ->select('user.username', 'date', 'content', 'photo_path')
-            -> orderBy('date')->get();
+                ->join('user', 'user.id', '=', 'message.user_id')
+                ->select('user.username', 'date', 'content', 'photo_path')
+                ->orderBy('date')->get();
 
-            $channels[]  =  [ 
+            $channels[] = [
                 'channel_id' => $channel->id,
                 'channel_name' => $channel->name,
                 'channel_description' => $channel->description,
-                'messages' => $messages
+                'messages' => $messages,
             ];
 
         }
@@ -152,10 +157,9 @@ class ProjectController extends Controller
         $first_channel = array_shift($channels);
         $project_id = $id;
 
-
         //dd($channels);
         return view('pages.chat', compact('first_channel', 'channels', 'project_id'));
-      
-    }   
+
+    }
 
 }

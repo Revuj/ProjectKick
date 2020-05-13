@@ -3,36 +3,35 @@
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 /**
  * Kicked out of a project notification
  */
-class KickedOut implements  ShouldBroadcast
+class KickedOut implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $message;
-    private $type;
-    private $id;
     private $project;
+    private $sender;
+    private $receiver;
+    private $date;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message, $type, $id, $project)
+    public function __construct($project, $sender, $receiver, $date)
     {
-        $this->message = $message;
-        $this->type = $type;
-        $this->id = $id;
         $this->project = $project;
+        $this->sender = $sender;
+        $this->receiver = $receiver;
+        $this->date = $date;
     }
 
     /**
@@ -42,7 +41,7 @@ class KickedOut implements  ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('kicked.' . $this->id);
+        return new PrivateChannel('kicked.' . $this->receiver);
     }
 
     public function broadcastAs()

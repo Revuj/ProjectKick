@@ -100,8 +100,10 @@ function inviteMemberHandler() {
 removeMemberButton.addEventListener("click", () => {
   let user = removeMemberButton.dataset.user;
   let id = addMemberButton.dataset.project;
+  let project = document.getElementById('project-name');
+  let username = document.getElementById('auth-username');
   console.log({ id, user });
-  sendAjaxRequest("delete", `/api/projects/${id}/members`, { user }, removeMemberHandler);
+  sendAjaxRequest("delete", `/api/projects/${id}/members`, { user, project, username }, removeMemberHandler);
 })
 
 function removeMemberHandler() {
