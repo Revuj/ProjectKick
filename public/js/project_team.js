@@ -78,7 +78,7 @@ user_infos.forEach(elem =>
 );
 
 addMemberButton.addEventListener("click", () => {
-  let username = document.getElementById("username").value;
+  let receiver = document.getElementById("username").value;
   let roleRadio = document.getElementsByName("role");
   let role = "";
   if (roleRadio["0"].checked)
@@ -87,8 +87,12 @@ addMemberButton.addEventListener("click", () => {
     role = "coordinator";
 
   let id = addMemberButton.dataset.project;
-  console.log({ id, username, role });
-  sendAjaxRequest("post", `/api/projects/${id}/members`, { username, role }, inviteMemberHandler);
+  let projectName = document.getElementById('project-name').innerHTML;
+  let senderUsername = document.getElementById('auth-username');
+  let senderId = senderUsername.dataset.id;
+  senderUsername = senderUsername.innerHTML;
+  console.log({ id, receiver, role, projectName, senderUsername, senderId });
+  sendAjaxRequest("post", `/api/projects/${id}/members`, { receiver, role, projectName, senderUsername, senderId }, inviteMemberHandler);
 })
 
 function inviteMemberHandler() {
@@ -100,11 +104,12 @@ function inviteMemberHandler() {
 removeMemberButton.addEventListener("click", () => {
   let user = removeMemberButton.dataset.user;
   let id = addMemberButton.dataset.project;
-  let project = document.getElementById('project-name');
+  let project = document.getElementById('project-name').innerHTML;
   let username = document.getElementById('auth-username');
   let sender = username.dataset.id;
-  console.log({ id, user });
-  sendAjaxRequest("delete", `/api/projects/${id}/members`, { user, project, username, 'project_id': id, sender }, removeMemberHandler);
+  username = username.innerHTML;
+  console.log({ id, user, project, username, 'project_id': id, sender });
+  sendAjaxRequest("delete", `/api/projects/${id}/members`, { user, project, username, sender }, removeMemberHandler);
 })
 
 function removeMemberHandler() {
