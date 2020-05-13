@@ -130,11 +130,18 @@ let kicking_channel = pusher.subscribe('private-kicked.' + user_id);
 
 kicking_channel.bind('kicked-out', (data) => {
   alert(JSON.stringify(data));
-  const new_kicked = new kicked('kicked', data['sender'], data['date'], date['project']).getNewElement();
-  others.prepend(new_kicked);
-  all.preprend(new_kicked);
+  //const new_kicked = new kicked('kicked', data['sender'], data['date'], date['project']).getNewElement();
+  //others.prepend(new_kicked);
+  //all.preprend(new_kicked);
 
-})
+});
+
+let invitation_channel = pusher.subscribe('private-invited.' + user_id);
+
+invitation_channel.bind('invitation', (data)=> {
+  alert(JSON.stringify(data));
+
+});
 
 
 
