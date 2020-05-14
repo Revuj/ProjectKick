@@ -18,7 +18,12 @@ class IssueController extends Controller
 
     public function showList($id)
     {
-        return view('pages.issue-list');
+        $project = Project::find($id);
+        if ($project == null) {
+            abort(404);
+        }
+
+        return view('pages.project.issue-list', ['issueLists' => $project->issueLists()->get(), 'project' => $project]);
     }
 
     public function showBoard($id)

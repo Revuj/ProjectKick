@@ -41,7 +41,7 @@
 <div class="main-content-container px-4">
           <nav>
             <ol class="breadcrumb custom-separator">
-              <li><a href="#0">lbaw</a></li>
+              <li><a href="#0" id="project-name" data-project={{ $project->id }}>{{ $project->name }}</a></li>
               <li><a href="#0">Issues</a></li>
               <li class="current">List</li>
             </ol>
@@ -107,183 +107,56 @@
           </div>
 
           <ul id="issue-list" class="mx-2">
-            <!--
-            <li class="issue open px-2 border-bottom">
-              <div class="issue-header d-flex align-items-center">
-                <a href="issue.html" class="task-title nostyle title">boards</a>
-                <ul class="labels d-flex justify-content-center mx-2">
-                  <li class="mr-2">
-                    <h6 class="mb-0 px-1 list-item-label bg-success">Doing</h6>
-                  </li>
-                </ul>
-                <a
-                  href="issue.html"
-                  class="nostyle comments-number-container ml-auto"
-                >
-                  <i class="fas fa-comments mr-2"></i>2
-                </a>
-              </div>
-              <div class="d-flex issue-status mt-1">
-                <p>
-                  #8<span class="issue-status-description">
-                    Opened by <span class="author-reference">Abelha</span> 5
-                    days ago</span
-                  >
-                </p>
-                <div class="assignees-container ml-auto text-center">
-                  <ul class="assignees d-flex ">
-                    <li class="mr-2">
-                      <img
-                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                        alt="@vitorb19"
-                        draggable="false"
-                      />
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li class="issue open px-2 border-bottom">
-              <div class="issue-header d-flex align-items-center">
-                <a href="issue.html" class="task-title nostyle title"
-                  >finish design</a
-                >
-                <ul class="labels d-flex justify-content-center mx-2">
-                  <li class="mr-2">
-                    <h6 class="mb-0 px-1 list-item-label bg-success">Doing</h6>
-                  </li>
-                  <li class="mr-2">
-                    <h6 class="mb-0 px-1 list-item-label bg-warning">
-                      Iteration 2
-                    </h6>
-                  </li>
-                </ul>
-                <div class="due-date-container text-right">
-                  <i class="fas fa-calendar-alt mr-2"></i>Feb 29, 2020
-                </div>
-                <a
-                  href="issue.html"
-                  class="nostyle comments-number-container ml-auto"
-                >
-                  <i class="fas fa-comments mr-2"></i>5
-                </a>
-              </div>
-              <div class="d-flex issue-status mt-1">
-                <p>
-                  #13<span class="open-description">
-                    Opened by <span class="author-reference">Revuj</span> 1 hour
-                    ago</span
-                  >
-                </p>
-                <div class="assignees-container ml-auto text-center">
-                  <ul class="assignees d-flex ">
-                    <li class="mr-2">
-                      <img
-                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                        alt="@vitorb19"
-                        draggable="false"
-                      />
-                    </li>
-                    <li class="mr-2">
-                      <img
-                        src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                        alt="@vitorb19"
-                        draggable="false"
-                      />
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-
-
-            <li class="issue open px-2 border-bottom">
-              <div class="issue-header d-flex align-items-center">
-                <a href="issue.html" class="task-title nostyle title"
-                  >normalize database</a
-                >
-                <ul class="labels d-flex justify-content-center mx-2">
-                  <li class="mr-2">
-                    <h6 class="mb-0 px-1 list-item-label bg-warning">
-                      Iteration 4
-                    </h6>
-                  </li>
-                </ul>
-
-
-                <div class="due-date-container text-right">
-                  <i class="fas fa-calendar-alt mr-2"></i>Mar 13, 2020
-                </div>
-                <a
-                  href="issue.html"
-                  class="nostyle comments-number-container ml-auto"
-                >
-                  <i class="fas fa-comments mr-2"></i>2
-                </a>
-              </div>
-              <div class="d-flex issue-status mt-1">
-                <p>
-                  #15
-                  <span class="open-description"
-                    >Opened by <span class="author-reference">Vator</span> 2
-                    days ago</span
-                  >
-                </p>
-                <div class="assignees-container ml-auto text-center">
-                  <ul class="assignees d-flex "></ul>
-                </div>
-              </div>
-            </li>
-
-
-            <li class="issue closed px-2 border-bottom">
-              <div class="issue-header d-flex align-items-center">
-                <a href="issue.html" class="task-title nostyle title"
-                  >make pages responsive</a
-                >
-                <ul class="labels d-flex justify-content-center mx-2">
-                  <li class="mr-2">
-                    <h6 class="mb-0 px-1 list-item-label bg-success">Doing</h6>
-                  </li>
-                  <li class="mr-2">
-                    <h6 class="mb-0 px-1 list-item-label bg-warning">
-                      Iteration 3
-                    </h6>
-                  </li>
-                </ul>
-                <div class="due-date-container text-right">
-                  <i class="fas fa-calendar-alt mr-2"></i>Feb 29, 2020
-                </div>
-                <a
-                  href="issue.html"
-                  class="nostyle comments-number-container ml-auto"
-                >
-                  <i class="fas fa-comments mr-2"></i>2
-                </a>
-              </div>
-              <div class="d-flex issue-status mt-1">
-                <p>
-                  #10<span class="open-description"
-                    >Opened by <span class="author-reference">Abelha</span> 4
-                    days ago</span
-                  >
-                </p>
-                <div class="assignees-container ml-auto text-center">
-                  <ul class="assignees d-flex ">
-                    <li class="mr-2">
-                      <img
-                        src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                        alt="@vitorb19"
-                        draggable="false"
-                      />
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-
-
-          -->
+            @foreach ($issueLists as $list)
+              @foreach ($list->issues()->get() as $issue)
+              @if ($issue->is_completed)
+                <li class="issue closed px-2 border-bottom">
+              @else
+                <li class="issue open px-2 border-bottom">
+              @endif
+                  <div class="issue-header d-flex align-items-center">
+                    <a href="issue.html" class="task-title nostyle">{{ $issue->name }}</a>
+                      <ul class="labels d-flex justify-content-center mx-2">
+                      @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)                        
+                          <li class="mr-2">
+                            <h6  style="background-color:#{{ $issueTag->color->rgb_code }}" class="mb-0 px-1 list-item-label">{{ $issueTag->name }}</h6>
+                          </li>              
+                      @endforeach
+                      </ul>
+                      @if ($issue->due_date != null)
+                        <div class="due-date-container text-right">
+                          <i class="fas fa-calendar-alt mr-2"></i>{{ \Carbon\Carbon::parse($issue->due_date)->format('M d Y') }}
+                        </div>
+                      @endif
+                    <a href="issue.html" class="nostyle comments-number-container ml-auto">
+                      <i class="fas fa-comments mr-2"></i>{{ count($issue->comments) }}
+                    </a>
+                  </div>
+                  <div class="d-flex issue-status align-items-end">
+                    <p>
+                      #{{ $issue->id }}<span class="issue-status-description">
+                        Opened by <span class="author-reference">{{ \App\User::find($issue->author_id)->username }}</span>
+                         {{ \Carbon\Carbon::parse($issue->creation_date)->format('M d Y') }}
+                        </span>
+                    </p>
+            
+                    <div class="assignees-container mt-2 ml-auto text-center">
+                      <ul class="assignees d-flex ">
+                        @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
+                          <li class="mr-2">
+                            <img
+                              src="{{asset('assets/avatars/' . "profile". '.png')}}"
+                              alt="{{ $assignee->username }}"
+                              draggable="false"
+                            />
+                          </li>
+                        @endforeach
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              @endforeach
+            @endforeach
           </ul>
         </div>
       </div>

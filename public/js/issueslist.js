@@ -49,7 +49,7 @@ cancelEditTitleButton.addEventListener("click", event => {
 });
 
 [...sideIssueButtons].forEach(elem =>
-  elem.addEventListener("click", function() {
+  elem.addEventListener("click", function () {
     let taskID = elem.getAttribute("id");
     //console.log(elem);
     let taskTitle = elem.querySelector(".task-title").innerHTML;
@@ -247,7 +247,7 @@ function sortBySingleProperty(property, order = "asc") {
   if (order === "desc") {
     sort_order = -1;
   }
-  return function(a, b) {
+  return function (a, b) {
     if (a[property] === "null") return 1;
     if (a[property] < b[property]) {
       return -1 * sort_order;
@@ -264,7 +264,7 @@ function sortByPropertyArray(property, order = "asc") {
   if (order === "desc") {
     sort_order = -1;
   }
-  return function(a, b) {
+  return function (a, b) {
     if (a[property] === "null") return 1;
     if (a[property].length < b[property].length) {
       return -1 * sort_order;
@@ -348,4 +348,4 @@ function issueoutputHTML(issue) {
 }
 
 /*parameter deve ser a issues ja filtradas para o tipo open, close ou all */
-renderIssues(issues);
+//renderIssues(issues);

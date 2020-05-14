@@ -58,8 +58,10 @@
 }
 
 .list-item-label {
-  font-size: 0.9rem;
+  font-size: 0.9em;
   border-radius: 5px;
+  font-weight: 600;
+  color:white;
 }
 
 .issue-status,
