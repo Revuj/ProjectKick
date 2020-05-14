@@ -107,6 +107,13 @@
                     </button>
                   </div>
                   <span class="issue-description d-none">{{ $issue->description }}</span>
+                  <span class="issue-due-date d-none">
+                    @if ($issue->due_date == null)
+                      none
+                    @else
+                      {{ \Carbon\Carbon::parse($issue->due_date)->format('M d Y') }}
+                    @endif
+                  </span>
                   <span class="d-flex flex-row align-items-center mx-2 row-2">
                     <p class="w-100 mb-2">
                       <span class="list-item-counter">#{{ $issue->id }}</span>
@@ -123,7 +130,7 @@
                     </span>
                     <span class="d-flex flex-row-reverse mx-2 row-3">
                       @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
-                        <span class="list-item-author ml-2"><img
+                        <span class="assignee ml-2"><img
                           src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
                           draggable="false" />
                         </span>
@@ -306,28 +313,6 @@
           <div class="assignees-container mt-3">
             <h6 class="block pb-2 font-weight-bold">Assignees</h6>
             <ul class="assignees d-flex align-items-center">
-              <li class="mr-2">
-                <img
-                  src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
-                />
-              </li>
-              <li class="mr-2">
-                <img
-                  src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
-                />
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="custom-button add-button add-assignee"
-                >
-                  <i class="fas fa-plus"></i>
-                </button>
-              </li>
             </ul>
           </div>
           <div class="labels-container mt-3">
@@ -357,7 +342,7 @@
             <h6 class="block pb-2 font-weight-bold">Due Date</h6>
 
             <button type="button" class="custom-button due-date-button">
-              <i class="far fa-clock mr-2"></i>Feb 29
+              <i class="far fa-clock mr-2"></i><span id="due-date"></span>
             </button>
           </div>
           <button

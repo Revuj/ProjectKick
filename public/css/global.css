@@ -679,7 +679,7 @@ nav .breadcrumb {
 .author-reference {
   color: rgb(63, 91, 214);
   transition: all 0.3s ease;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .author-reference:hover {

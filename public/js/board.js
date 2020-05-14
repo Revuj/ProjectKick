@@ -109,6 +109,7 @@ function createIssueHandler() {
   console.log(response);
   let id = response[0]['id'];
   let title = response[0]['name'];
+  let description = response[0]['description'];
   let username = response[1]['username'];
   let liForm = issue.parentElement.parentElement.parentElement;
   let list = liForm.parentElement;
@@ -118,10 +119,12 @@ function createIssueHandler() {
   newItem.setAttribute("draggable", "true");
   newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"> <h6 class="mb-0 py-2 task-title">${title}</h6>
   <button type="button" class="btn ml-auto d-none edit-task"><i class="fas fa-pencil-alt float-right"></i></button>
+    <span class="issue-description d-none">${description}</span>
+    <span class="issue-due-date d-none">none</span>
     </span>
     <span class="d-flex flex-row align-items-center mx-2 row-2">
       <p class="w-100 mb-2"><span class="list-item-counter">#${id}</span> <span class="list-item-creator"> opened by
-          ${username}</span></p>
+      <span class="author-reference">${username}</span></span></p>
     </span>`;
 
   list.insertBefore(newItem, liForm);
@@ -260,6 +263,9 @@ function openSideIssueListen(elem) {
     let taskTitle = elem.querySelector(".task-title").innerHTML;
     let authorName = elem.querySelector(".author-reference").innerHTML;
     let description = elem.querySelector(".issue-description").innerHTML;
+    let dueDate = elem.querySelector(".issue-due-date").innerHTML;
+    let assignees = elem.querySelectorAll(".assignee");
+    let labels = elem.querySelectorAll(".list-item-label");
     if (pageWrapper.classList.contains("is-collapsed-right")) {
       title.classList.remove("d-none");
       editTitleFrom.classList.add("d-none");
@@ -269,6 +275,7 @@ function openSideIssueListen(elem) {
         sideIssue.querySelector(".task-title").innerHTML = taskTitle;
         sideIssue.querySelector("#issue-author").innerHTML = authorName;
         sideIssue.querySelector("#issue-description").innerHTML = description;
+        sideIssue.querySelector("#due-date").innerHTML = dueDate;
       } else {
         pageWrapper.classList.toggle("is-collapsed-right");
       }
@@ -277,9 +284,51 @@ function openSideIssueListen(elem) {
       sideIssue.querySelector(".task-title").innerHTML = taskTitle;
       sideIssue.querySelector("#issue-author").innerHTML = authorName;
       sideIssue.querySelector("#issue-description").innerHTML = description;
+      sideIssue.querySelector("#due-date").innerHTML = dueDate;
       pageWrapper.classList.toggle("is-collapsed-right");
     }
     delete_issue_button.dataset.issueId = taskID;
+
+    let sideBarAssignees = document.querySelector(".assignees");
+    sideBarAssignees.innerHTML = "";
+    assignees.forEach(elem => {
+      sideBarAssignees.innerHTML += `
+      <li class="mr-2">
+        ${elem.innerHTML}
+      </li>
+      `;
+    });
+    sideBarAssignees.innerHTML += `
+    <li>
+      <button
+        type="button"
+        class="custom-button add-button add-assignee"
+      >
+        <i class="fas fa-plus"></i>
+      </button>
+    </li>`
+
+    let sideBarLabels = document.querySelector(".labels");
+    sideBarLabels.innerHTML = "";
+    labels.forEach(elem => {
+      sideBarLabels.innerHTML += `
+      <li class="mr-2">
+        <h6 class="mb-0 p-1 list-item-label bg-info">
+          ${elem.innerHTML}
+        </h6>
+      </li>
+      `;
+    });
+    sideBarLabels.innerHTML += `
+    <li>
+      <button
+        type="button"
+        class="custom-button add-button add-label"
+      >
+        <i class="fas fa-plus"></i>
+      </button>
+    </li>
+    `
   });
 }
 
