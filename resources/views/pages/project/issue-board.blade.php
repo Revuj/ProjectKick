@@ -82,6 +82,61 @@
           <div
             class="kanban-table d-flex flex-row bd-highlight align-items-begin"
           >
+            @foreach ($issueLists as $list)
+            <div class="bd-highlight task" id="task-list-{{ $list->name }}">
+              <div class="task-list-title d-flex align-items-center py-0">
+                <h6 class="mr-auto my-0 text-left p-3">
+                  <i class="fa fa-fw fa-caret-right"></i>{{ $list->name }}
+                </h6>
+                <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-{{ $list->id }}"
+                  aria-expanded="false" aria-controls="add-item">
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal"
+                 data-list-id="task-list-{{ $list->name }}">
+                 <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+              <ul class="task-items">
+              @foreach ($list->issues()->get() as $issue)
+                <li id={{ $issue->id }} class="task-item text-left" draggable="true">
+                  <div class="d-flex flex-row align-items-center ml-2 row-1">
+                    <h6 class="mb-0 py-2 task-title title">{{ $issue->name }}</h6>
+                    <button type="button" class="btn ml-auto d-none edit-task">
+                      <i class="fas fa-pencil-alt float-right"></i>
+                    </button>
+                  </div>
+                  <span class="d-flex flex-row align-items-center mx-2 row-2">
+                    <p class="w-100 mb-2">
+                      <span class="list-item-counter">#{{ $issue->id }}</span>
+                      <span class="author-reference">{{ \App\User::find($issue->author_id)->username }}</span>
+                    </p>
+                  </span>
+                  <span class="d-flex flex-row-reverse mx-2 row-3">
+                    @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
+                      <span class="list-item-author ml-2"><img
+                        src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
+                        draggable="false" />
+                      </span>
+                    @endforeach
+                  </span>
+                </li>
+              @endforeach
+              <li class="add-item-li collapse" id="add-item-{{ $list->id }}">
+                <form class="add-item-form form-group">
+                  <div class="form-group text-left">
+                    <label for="item-title">Title</label>
+                    <input type="text" class="form-control" class="item-title" placeholder="" />
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary add-item btn">Submit</button>
+                    <button type="reset" class="btn btn-primary cancel-add-item">Cancel</button>
+                  </div>
+                </form>
+              </li>
+              </ul>
+            </div>
+            @endforeach
             <!--end of backlog-->
           </div>
         </section>

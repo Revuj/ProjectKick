@@ -7,6 +7,7 @@ let edit_item_buttons = document.querySelectorAll(".edit-task");
 let save_edit_item = document.querySelector("#edit-task-button");
 let side_issue_header = document.querySelector("#side-issue-header");
 let closeSideIssueButton = document.querySelector(".close-side-issue");
+let addIssueButtons = document.getElementsByClassName("add-issue");
 
 let list_items = document.querySelectorAll(".task-item");
 let lists = document.querySelectorAll(".task-items");
@@ -27,7 +28,7 @@ create_list_btn.addEventListener("click", () => {
   }
 
   let newList = document.createElement("div");
-  newList.className = "bd-highlight task h-100";
+  newList.className = "bd-highlight task";
   newList.id = `task-list-${list_to_add_name.value}`;
   newList.innerHTML = `              
 		<div class="task-list-title d-flex align-items-center py-0">
@@ -60,15 +61,15 @@ create_list_btn.addEventListener("click", () => {
   listenAddItem(addItemButtons[addItemButtons.length - 2]);
   listenCancelAddItem(addItemButtons[addItemButtons.length - 1]);
 
-  newList.addEventListener("dragover", function(e) {
+  newList.addEventListener("dragover", function (e) {
     e.preventDefault();
   });
 
-  newList.addEventListener("dragenter", function(e) {
+  newList.addEventListener("dragenter", function (e) {
     e.preventDefault();
   });
 
-  newList.children[1].addEventListener("drop", function(e) {
+  newList.children[1].addEventListener("drop", function (e) {
     console.log(newList);
     this.append(draggedItem);
   });
@@ -116,7 +117,7 @@ function listenCancelAddItem(elem) {
 }
 
 /* Allows modal to know which list to delete */
-$("#delete-list-modal").on("show.bs.modal", function(event) {
+$("#delete-list-modal").on("show.bs.modal", function (event) {
   let button = $(event.relatedTarget); // Button that triggered the modal
   let recipient = button.data("list-id"); // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -136,18 +137,18 @@ delete_list_button.addEventListener("click", event => {
 });
 
 function setDraggable(elem) {
-  elem.addEventListener("dragstart", function(e) {
+  elem.addEventListener("dragstart", function (e) {
     e.stopPropagation();
     console.log(elem);
 
     draggedItem = elem;
-    setTimeout(function() {
+    setTimeout(function () {
       elem.style.display = "none";
     }, 0);
   });
 
-  elem.addEventListener("dragend", function(e) {
-    setTimeout(function() {
+  elem.addEventListener("dragend", function (e) {
+    setTimeout(function () {
       draggedItem.style.display = "block";
       draggedItem = null;
     }, 0);
@@ -157,15 +158,15 @@ function setDraggable(elem) {
   for (let j = 0; j < lists.length; j++) {
     const list = lists[j];
 
-    list.addEventListener("dragover", function(e) {
+    list.addEventListener("dragover", function (e) {
       e.preventDefault();
     });
 
-    list.addEventListener("dragenter", function(e) {
+    list.addEventListener("dragenter", function (e) {
       e.preventDefault();
     });
 
-    list.addEventListener("drop", function(e) {
+    list.addEventListener("drop", function (e) {
       console.log("oi");
       console.log(this);
       this.append(draggedItem);
@@ -206,7 +207,8 @@ function mouseLeaveListItem(elem) {
 }
 
 function openSideIssueListen(elem) {
-  elem.addEventListener("click", function() {
+  elem.addEventListener("click", function () {
+    console.log(elem);
     let taskID = elem.getAttribute("id");
     let taskTitle = elem.querySelector(".task-title").innerHTML;
     if (pageWrapper.classList.contains("is-collapsed-right")) {
@@ -545,13 +547,12 @@ function outputTaskListHTML(tasksJson) {
   return output;
 }
 
-kanban_table.innerHTML = outputKanbanHTML(tasks_list);
-list_items = document.querySelectorAll(".task-item");
+// kanban_table.innerHTML = outputKanbanHTML(tasks_list);
+list_items = document.getElementsByClassName("task-item");
 [...list_items].forEach(elem => {
   mouseOverListItem(elem);
   mouseLeaveListItem(elem);
   setDraggable(elem);
-  openSideIssueListen(elem);
 });
 let add_item_button = document.querySelectorAll(".add-item");
 let cancel_add_item_button = document.querySelectorAll(".cancel-add-item");
