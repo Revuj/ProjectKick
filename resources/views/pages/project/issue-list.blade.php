@@ -110,9 +110,9 @@
             @foreach ($issueLists as $list)
               @foreach ($list->issues()->get() as $issue)
               @if ($issue->is_completed)
-                <li class="issue closed px-2 border-bottom">
+                <li id={{ $issue->id }} class="issue closed px-2 border-bottom">
               @else
-                <li class="issue open px-2 border-bottom">
+                <li id={{ $issue->id }} class="issue open px-2 border-bottom">
               @endif
                 <span class="issue-description d-none">{{ $issue->description }}</span>
                 <span class="issue-due-date d-none">

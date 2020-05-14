@@ -127,6 +127,23 @@ function openSideIssueListen(elem) {
   });
 }
 
+/* Delete Issue */
+delete_issue_button.addEventListener("click", event => {
+  let issue_id = delete_issue_button.getAttribute("data-issue-id");
+  let url = `/api/issues/${issue_id}`;
+  console.log({ issue_id })
+  sendAjaxRequest("delete", url, { 'issue': issue_id }, deleteIssueHandler);
+  pageWrapper.classList.toggle("is-collapsed-right");
+});
+
+function deleteIssueHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response);
+  let issue_id = response['id'];
+  let issue = document.getElementById(issue_id);
+  issue.parentElement.removeChild(issue);
+}
+
 /************ some function that may be used in other files in the future *******************/
 let current_date = new Date().toISOString().slice(0, 10);
 
