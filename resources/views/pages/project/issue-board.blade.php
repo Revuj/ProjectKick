@@ -40,7 +40,7 @@
 @section('content')
 <nav>
           <ol class="breadcrumb custom-separator">
-            <li><a href="#0">lbaw</a></li>
+            <li><a href="#0" id="project-name" data-project={{ $project->id }}>{{ $project->name }}</a></li>
             <li><a href="#0">Issues</a></li>
             <li class="current">Boards</li>
           </ol>
@@ -83,7 +83,7 @@
             class="kanban-table d-flex flex-row bd-highlight align-items-begin"
           >
             @foreach ($issueLists as $list)
-            <div class="bd-highlight task" id="task-list-{{ $list->name }}">
+            <div class="bd-highlight task" id="task-list-{{ $list->id }}">
               <div class="task-list-title d-flex align-items-center py-0">
                 <h6 class="mr-auto my-0 text-left p-3">
                   <i class="fa fa-fw fa-caret-right"></i>{{ $list->name }}
@@ -93,7 +93,7 @@
                   <i class="fas fa-plus"></i>
                 </button>
                 <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal"
-                 data-list-id="task-list-{{ $list->name }}">
+                 data-list-id="task-list-{{ $list->id }}">
                  <i class="fas fa-trash-alt"></i>
                 </button>
               </div>

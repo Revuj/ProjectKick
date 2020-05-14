@@ -27,6 +27,15 @@ create_list_btn.addEventListener("click", () => {
     return;
   }
 
+  let id = document.getElementById("project-name").dataset.project;
+  let url = `/api/projects/${id}/list`;
+  sendAjaxRequest("post", url, { 'name': list_to_add_name.value }, createListHandler);
+});
+
+function createListHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response)
+
   let newList = document.createElement("div");
   newList.className = "bd-highlight task";
   newList.id = `task-list-${list_to_add_name.value}`;
@@ -73,7 +82,7 @@ create_list_btn.addEventListener("click", () => {
     console.log(newList);
     this.append(draggedItem);
   });
-});
+}
 
 function listenAddItem(elem) {
   elem.addEventListener("click", event => {
@@ -308,122 +317,6 @@ input_filter.addEventListener("input", e => {
   filterTasks(tasks_list, e.target.value);
 });
 
-const tasks_list = [
-  {
-    name: "Backlog",
-    tasks: [
-      {
-        id: 1,
-        title: "Work assigned to me",
-        list_counter: 1,
-        creator: "Revuj",
-        tags: ["Iteration1"],
-        imgCreator: "https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-      },
-      {
-        id: 2,
-        title: "This is another",
-        list_counter: 2,
-        creator: "Jpabelha",
-        tags: ["Iteration2"],
-        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      },
-      {
-        id: 3,
-        title: "This is another",
-        list_counter: 3,
-        creator: "Jpabelha",
-        tags: ["Iteration2"],
-        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      },
-      {
-        id: 4,
-        title: "This is another",
-        list_counter: 4,
-        creator: "Jpabelha",
-        tags: ["Iteration2"],
-        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      },
-      {
-        id: 5,
-        title: "This is another",
-        list_counter: 5,
-        creator: "Jpabelha",
-        tags: ["Iteration2"],
-        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      },
-      {
-        id: 6,
-        title: "This is another",
-        list_counter: 6,
-        creator: "Jpabelha",
-        tags: ["Iteration2"],
-        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      },
-      {
-        id: 7,
-        title: "This is another",
-        list_counter: 7,
-        creator: "Jpabelha",
-        tags: ["Iteration2"],
-        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      },
-      {
-        id: 8,
-        title: "This is another",
-        list_counter: 8,
-        creator: "Jpabelha",
-        tags: ["Iteration2"],
-        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      },
-      {
-        id: 9,
-        title: "This is another",
-        list_counter: 9,
-        creator: "Jpabelha",
-        tags: ["Iteration2"],
-        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      }
-    ] // end of tasks 1
-  }, // first task list
-
-  {
-    name: "To Do",
-    tasks: [
-      {
-        id: 10,
-        title: "Work assigned to me",
-        list_counter: 1,
-        creator: "Revuj",
-        tags: ["Iteration1", "Dope"],
-        imgCreator: "https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-      },
-      {
-        id: 11,
-        title: "This is another",
-        list_counter: 2,
-        creator: "Jpabelha",
-        tags: ["Iteration2"],
-        imgCreator: "https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-      }
-    ]
-  },
-
-  {
-    name: "Doing",
-    tasks: []
-  },
-
-  {
-    name: "Needing bug fixed",
-    tasks: []
-  },
-
-  {
-    name: "Closed",
-    tasks: []
-  }
-];
 
 function filterTasks(task_list, value) {
   let filtered = [];
@@ -463,91 +356,7 @@ function filterTasks(task_list, value) {
   });
 }
 
-function outputKanbanHTML(tasks) {
-  let output = "";
-  for (let i = 0; i < tasks.length; i++) {
-    output += outputTaskListHTML(tasks[i]);
-  }
-  return output;
-}
 
-function outputTaskListHTML(tasksJson) {
-  let tasks_list = "";
-  tasksJson.tasks.forEach(task => {
-    let tags = "";
-
-    /*maybe in the future put here some limit */
-    task.tags.forEach(tag => {
-      tags += `
-        <h6 class="mb-0 p-1 list-item-label bg-info ml-1">
-        ${tag}
-      </h6>
-      `;
-    });
-
-    tasks_list += `
-    <li id=${task.id} class="task-item text-left" draggable="true">
-      <div class="d-flex flex-row align-items-center ml-2 row-1">
-        <h6 class="mb-0 py-2 task-title title">${task.title}</h6>
-        <button type="button" class="btn ml-auto d-none edit-task">
-          <i class="fas fa-pencil-alt float-right"></i>
-        </button>
-      </div>
-      <span class="d-flex flex-row align-items-center mx-2 row-2">
-        <p class="w-100 mb-2">
-          <span class="list-item-counter">#${task.list_counter}</span>
-          <span class="list-item-creator"> Opened by ${task.creator}</span>
-        </p>
-      </span>
-      <span class="d-flex flex-row align-items-center mx-2 row-3">
-        ${tags}
-        <span class="list-item-author ml-auto"><img
-            src="${task.imgCreator}" alt="@${task.creator}"
-            draggable="false" />
-        </span>
-      </span>
-    </li>
-    `;
-  });
-
-  tasks_list += `
-  <li class="add-item-li collapse" id="add-item-${tasksJson.name}">
-    <form class="add-item-form form-group">
-      <div class="form-group text-left">
-        <label for="item-title">Title</label>
-        <input type="text" class="form-control" class="item-title" placeholder="" />
-      </div>
-      <div class="d-flex justify-content-between">
-        <button type="submit" class="btn btn-primary add-item btn">Submit</button>
-        <button type="reset" class="btn btn-primary cancel-add-item">Cancel</button>
-      </div>
-    </form>
-  </li>
-  `;
-  let tasks = ` <ul class="task-items">${tasks_list}</ul>`;
-
-  const output = `
-  <div class="bd-highlight task" id="task-list-${tasksJson.name}">
-    <div class="task-list-title d-flex align-items-center py-0">
-      <h6 class="mr-auto my-0 text-left p-3">
-        <i class="fa fa-fw fa-caret-right"></i>${tasksJson.name}
-      </h6>
-      <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-${tasksJson.name}"
-        aria-expanded="false" aria-controls="add-item">
-        <i class="fas fa-plus"></i>
-      </button>
-      <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal"
-       data-list-id="task-list-${tasksJson.name}">
-       <i class="fas fa-trash-alt"></i>
-      </button>
-    </div>
-    ${tasks}
-  </div>
-  `;
-  return output;
-}
-
-// kanban_table.innerHTML = outputKanbanHTML(tasks_list);
 list_items = document.getElementsByClassName("task-item");
 [...list_items].forEach(elem => {
   mouseOverListItem(elem);

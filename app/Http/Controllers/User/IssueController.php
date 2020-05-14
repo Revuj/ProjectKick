@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\IssueList;
 use App\Project;
+use Illuminate\Http\Request;
 
 class IssueController extends Controller
 {
@@ -24,11 +26,23 @@ class IssueController extends Controller
             abort(404);
         }
 
-        return view('pages.project.issue-board', ['issueLists' => $project->issueLists()->get()]);
+        return view('pages.project.issue-board', ['issueLists' => $project->issueLists()->get(), 'project' => $project]);
     }
 
     public function showUserIssues($id)
     {
         return view('pages.user-issues');
+    }
+
+    public function addList(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+
+        $issueList = new IssueList();
+        $issueList->name = $request->input('name');
+        $issueList->project_id = $id;
+        $issueList->save();
+
+        return $issueList;
     }
 }

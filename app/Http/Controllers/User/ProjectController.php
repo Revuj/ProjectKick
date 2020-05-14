@@ -195,5 +195,4 @@ class ProjectController extends Controller
         return view('pages.chat', compact('first_channel', 'channels', 'project_id'));
 
     }
-
 }

@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/api/projects/{id}', 'ProjectController@update');
         Route::post('/api/projects/{id}/members', 'ProjectController@invite');
         Route::delete('/api/projects/{id}/members', 'ProjectController@remove');
+        Route::post('/api/projects/{id}/list', 'IssueController@addList');
         Route::prefix('projects')->group(function () {
             Route::get('/{id}', 'ProjectController@index');
             Route::get('/{id}/activity', 'ProjectController@activity');
