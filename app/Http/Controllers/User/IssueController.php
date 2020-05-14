@@ -23,7 +23,19 @@ class IssueController extends Controller
             abort(404);
         }
 
-        return view('pages.project.issue-list', ['issueLists' => $project->issueLists()->get(), 'project' => $project]);
+        $openIssues = 0;
+        $closedIssues = 0;
+        foreach ($project->issueLists()->get() as $list) {
+            foreach ($list->issues()->get() as $issue) {
+                if ($issue->is_completed == true) {
+                    $closedIssues++;
+                } else {
+                    $openIssues++;
+                }
+            }
+        }
+
+        return view('pages.project.issue-list', ['issueLists' => $project->issueLists()->get(), 'project' => $project, 'openIssues' => $openIssues, 'closedIssues' => $closedIssues]);
     }
 
     public function showBoard($id)

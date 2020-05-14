@@ -22,7 +22,6 @@ console.log(all_list);
 
 developer_button.addEventListener('click', event => {
   event.preventDefault();
-
   if (developer_list.classList.contains('d-none')) {
     all_list.classList.add('d-none');
     all_button.classList.remove('active');
@@ -62,7 +61,6 @@ console.log(user_infos);
 
 user_infos.forEach(elem =>
   elem.addEventListener('mouseover', event => {
-    console.log('oioi');
     event.preventDefault();
     let promote = elem.querySelector('.promote button');
     promote.classList.remove('d-none');

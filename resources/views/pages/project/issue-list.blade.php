@@ -49,13 +49,13 @@
           <div id="issue-list-container" class="pt-1 mb-0">
             <ul class="d-flex border-bottom nav-links pb-2">
               <li id="open-issues" class="active">
-                Open <span class="type-counter">2</span>
+              Open <span class="type-counter">{{ $openIssues }}</span>
               </li>
               <li id="closed-issues">
-                Closed <span class="type-counter">1</span>
+                Closed <span class="type-counter">{{ $closedIssues }}</span>
               </li>
               <li id="all-issues">
-                All <span class="type-counter">3</span>
+                All <span class="type-counter">{{ $openIssues + $closedIssues}}</span>
               </li>
               <button
                 type="button"
@@ -110,7 +110,7 @@
             @foreach ($issueLists as $list)
               @foreach ($list->issues()->get() as $issue)
               @if ($issue->is_completed)
-                <li id={{ $issue->id }} class="issue closed px-2 border-bottom">
+                <li id={{ $issue->id }} class="issue closed d-none px-2 border-bottom">
               @else
                 <li id={{ $issue->id }} class="issue open px-2 border-bottom">
               @endif
@@ -127,7 +127,8 @@
                       <ul class="d-flex justify-content-center mx-2">
                       @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)                        
                           <li class="mr-2">
-                            <h6  style="background-color:#{{ $issueTag->color->rgb_code }}" class="mb-0 px-1 list-item-label">{{ $issueTag->name }}</h6>
+                            <h6 class="mb-0 px-1 list-item-label bg-info">{{ $issueTag->name }}</h6>
+                            {{-- <h6  style="background-color:#{{ $issueTag->color->rgb_code }}" class="mb-0 px-1 list-item-label">{{ $issueTag->name }}</h6> --}}
                           </li>              
                       @endforeach
                       </ul>

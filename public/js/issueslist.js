@@ -266,22 +266,19 @@ let issues = [
       elem.classList.remove("active");
     });
     elem.classList.add("active");
-    issue_list.innerHTML = "";
-    let filtered_issues;
-
+    let issues = document.getElementsByClassName("issue");
+    console.log(issues);
     switch (elem.id) {
       case "open-issues":
-        filtered_issues = issues.filter(issue => issue.is_completed == "true");
+        [...issues].forEach(elem => { if (!elem.classList.contains("open")) elem.classList.add("d-none"); else elem.classList.remove("d-none") });
         break;
       case "closed-issues":
-        filtered_issues = issues.filter(issue => issue.is_completed == "false");
+        [...issues].forEach(elem => { if (!elem.classList.contains("closed")) elem.classList.add("d-none"); else elem.classList.remove("d-none") });
         break;
       case "all-issues":
-        filtered_issues = issues;
+        [...issues].forEach(elem => elem.classList.remove("d-none"));
         break;
     }
-
-    renderIssues(filtered_issues);
   });
 });
 

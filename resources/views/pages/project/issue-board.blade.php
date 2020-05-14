@@ -123,9 +123,12 @@
                   <span class="d-flex justify-content-between ml-2">
                     <span class="d-flex flex-row">
                       @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)
-                      <h6 style="background-color:#{{ $issueTag->color->rgb_code }}" class="mb-0 p-1 list-item-label mr-1">
+                      {{-- <h6 style="background-color:#{{ $issueTag->color->rgb_code }}" class="mb-0 p-1 list-item-label mr-1">
                         {{ $issueTag->name }}
-                      </h6>                
+                      </h6>                 --}}
+                      <h6 class="mb-0 p-1 list-item-label mr-1 bg-info">
+                        {{ $issueTag->name }}
+                      </h6> 
                       @endforeach
                     </span>
                     <span class="d-flex flex-row-reverse mx-2 row-3">
