@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Issues
         Route::get('/issues/{id}', 'IssueController@show');
+        Route::delete('/api/issues/{id}', 'IssueController@delete');
+        Route::post('/api/issues', 'IssueController@create');
 
         // Chat
         Route::put('/api/project/{id}/chat', 'ChatController@create');

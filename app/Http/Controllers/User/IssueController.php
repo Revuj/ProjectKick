@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Issue;
 use App\IssueList;
 use App\Project;
 use Illuminate\Http\Request;
@@ -32,6 +33,24 @@ class IssueController extends Controller
     public function showUserIssues($id)
     {
         return view('pages.user-issues');
+    }
+
+    public function delete(Request $request, $id)
+    {
+        $issue = Issue::findOrFail($id);
+        $issue->delete();
+        return $issue;
+    }
+
+    public function create(Request $request)
+    {
+        $issue = new Issue();
+        $issue->name = $request->input('title');
+        $issue->author_id = $request->input('author');
+        $issue->description = $request->input('description');
+        $issue->issue_list_id = $request->input('list');
+        $issue->save();
+        return response()->json($issue);
     }
 
     public function addList(Request $request, $id)

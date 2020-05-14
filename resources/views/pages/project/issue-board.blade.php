@@ -349,6 +349,7 @@
             </button>
           </div>
           <button
+            id="delete-issue-button"
             type="button"
             class="custom-button close-button delete-issue mt-auto"
           >

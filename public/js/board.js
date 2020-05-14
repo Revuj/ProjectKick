@@ -3,6 +3,7 @@ let create_list_btn = document.querySelector(".add-list");
 let kanban_table = document.querySelector(".kanban-table");
 let list_to_add_name = document.querySelector(".listCreated");
 let delete_list_button = document.querySelector("#delete-list-button");
+let delete_issue_button = document.querySelector("#delete-issue-button");
 let edit_item_buttons = document.querySelectorAll(".edit-task");
 let save_edit_item = document.querySelector("#edit-task-button");
 let side_issue_header = document.querySelector("#side-issue-header");
@@ -84,38 +85,53 @@ function createListHandler() {
   });
 }
 
+let issue = null;
 function listenAddItem(elem) {
   elem.addEventListener("click", event => {
     event.preventDefault();
     event.stopPropagation();
     let title =
       elem.parentElement.previousElementSibling.lastElementChild.value;
-    let liForm = elem.parentElement.parentElement.parentElement;
-    let list = liForm.parentElement;
-    let newItem = document.createElement("li");
-    // eventualmente este id deve vir da database (após a inserção com ajax)
-    let id = Math.random()
-      .toString(36)
-      .substr(2, 9);
-    newItem.id = id;
-    newItem.className = "task-item text-left";
-    newItem.setAttribute("draggable", "true");
-    newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"> <h6 class="mb-0 py-2 task-title">${title}</h6>
-    <button type="button" class="btn ml-auto d-none edit-task"><i class="fas fa-pencil-alt float-right"></i></button>
-      </span>
-      <span class="d-flex flex-row align-items-center mx-2 row-2">
-        <p class="w-100 mb-2"><span class="list-item-counter">#3</span> <span class="list-item-creator"> opened by
-            Revuj</span></p>
-      </span>`;
-    list.insertBefore(newItem, liForm);
+    issue = elem;
+    let author = document.getElementById("auth-username").dataset.id;
+    let liForm = issue.parentElement.parentElement.parentElement;
+    let list = liForm.id.split("-").splice(-1)[0];
+    let url = `/api/issues`;
+    console.log({ title, author, list })
     $(`#${liForm.getAttribute("id")}`).collapse("toggle");
-    newItem.setAttribute("draggable", true);
-    setDraggable(newItem);
-    openSideIssueListen(newItem);
-    mouseOverListItem(newItem);
-    mouseLeaveListItem(newItem);
-    elem.parentElement.previousElementSibling.lastElementChild.value = "";
+    sendAjaxRequest("post", url, { title, author, list, 'description': "" }, createIssueHandler);
   });
+}
+
+function createIssueHandler() {
+  console.log(this.responseText)
+  const response = JSON.parse(this.responseText);
+  console.log(response);
+  let id = response['id'];
+  let title = response['name'];
+
+  let liForm = issue.parentElement.parentElement.parentElement;
+  let list = liForm.parentElement;
+  let newItem = document.createElement("li");
+  // eventualmente este id deve vir da database (após a inserção com ajax)
+  newItem.id = id;
+  newItem.className = "task-item text-left";
+  newItem.setAttribute("draggable", "true");
+  newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"> <h6 class="mb-0 py-2 task-title">${title}</h6>
+  <button type="button" class="btn ml-auto d-none edit-task"><i class="fas fa-pencil-alt float-right"></i></button>
+    </span>
+    <span class="d-flex flex-row align-items-center mx-2 row-2">
+      <p class="w-100 mb-2"><span class="list-item-counter">#3</span> <span class="list-item-creator"> opened by
+          Revuj</span></p>
+    </span>`;
+
+  list.insertBefore(newItem, liForm);
+  newItem.setAttribute("draggable", true);
+  setDraggable(newItem);
+  openSideIssueListen(newItem);
+  mouseOverListItem(newItem);
+  mouseLeaveListItem(newItem);
+  issue.parentElement.previousElementSibling.lastElementChild.value = "";
 }
 
 function listenCancelAddItem(elem) {
@@ -150,6 +166,23 @@ delete_list_button.addEventListener("click", event => {
   console.log({ list_id })
   sendAjaxRequest("delete", url, { 'list': list_id }, null);
 });
+
+/* Delete Issue */
+delete_issue_button.addEventListener("click", event => {
+  let issue_id = delete_issue_button.getAttribute("data-issue-id");
+  let url = `/api/issues/${issue_id}`;
+  console.log({ issue_id })
+  sendAjaxRequest("delete", url, { 'issue': issue_id }, deleteIssueHandler);
+  pageWrapper.classList.toggle("is-collapsed-right");
+});
+
+function deleteIssueHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response);
+  let issue_id = response['id'];
+  let issue = document.getElementById(issue_id);
+  issue.parentElement.removeChild(issue);
+}
 
 function setDraggable(elem) {
   elem.addEventListener("dragstart", function (e) {
@@ -239,9 +272,9 @@ function openSideIssueListen(elem) {
     } else {
       sideIssue.setAttribute("data-task-id", taskID);
       sideIssue.querySelector(".task-title").innerHTML = taskTitle;
-
       pageWrapper.classList.toggle("is-collapsed-right");
     }
+    delete_issue_button.dataset.issueId = taskID;
   });
 }
 
