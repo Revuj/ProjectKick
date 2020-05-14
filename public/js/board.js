@@ -143,6 +143,12 @@ delete_list_button.addEventListener("click", event => {
   let list_id = delete_list_button.getAttribute("data-list-id");
   let list = document.getElementById(list_id);
   list.parentElement.removeChild(list);
+
+  let id = document.getElementById("project-name").dataset.project;
+  let url = `/api/projects/${id}/list`;
+  list_id = list_id.split("-").slice(-1)[0];
+  console.log({ list_id })
+  sendAjaxRequest("delete", url, { 'list': list_id }, null);
 });
 
 function setDraggable(elem) {

@@ -45,4 +45,13 @@ class IssueController extends Controller
 
         return $issueList;
     }
+
+    public function removeList(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+        $issueList = IssueList::find($request->input('list'));
+        $issueList->delete();
+
+        return $issueList;
+    }
 }
