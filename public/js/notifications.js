@@ -70,14 +70,18 @@ notifications_filters.forEach(elem => elem.addEventListener('click', (e) => {
   fetch(`/api/notification/${invite_id}/invite`, init)
   .then(function(response) {
     if(response.ok) {
-      console.log(response);
       response.json().then(data =>{
         if (message in data) {
           alert(response['message']);
         }
         else {
-          let btns = document.querySelectorAll(`button[data-invite = '${invite_id}']`);
-          btns.forEach(btn => btn.parentElement.remove());
+          let btns = document.querySelectorAll(`.secondary-button[data-invite = '${invite_id}']`);
+          console.log(data)
+          btns.forEach((btn) => { 
+            console.log(btn.parentNode);
+            btn.parentNode.remove();
+        
+          });
           all_counter.textContent =  parseInt(all_counter.textContent) - 1;
           invited_counter.textContent =  parseInt(invited_counter.textContent) - 1;
         }

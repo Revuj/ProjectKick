@@ -15,6 +15,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\DB;
 
 
 class NotificationController extends Controller
@@ -58,17 +59,17 @@ class NotificationController extends Controller
 
     public function deleteInvite(Request $request, $id) {
         
-        //$notification = Notification::findOrFail($id);
-        $invite = NotificationInvite::findOrFail($id);
-        /*
+        $notification = Notification::findOrFail($id);
+        $invite = NotificationInvite::where('notification_id', '=', $id);
+        
         DB::beginTransaction();
 
        
         try {
 
-            //$notification->delete($id);
-            //$invite->delte($id);
-             DB::commit();
+            //$notification->delete();
+            //$invite->delete();
+            DB::commit();
             // all good
         }
         catch (ModelNotFoundException $err) {
@@ -79,9 +80,9 @@ class NotificationController extends Controller
             return response()->json([
                 'message' => 'Invalid delete.',
             ], 400);
-        }*/
+        }
 
-        return response()->json([]);
+        return response()->json([$notification, $invite]);
     }
 
     public function authorizeUser(Request $request)
