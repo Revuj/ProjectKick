@@ -52,10 +52,10 @@ function createProjectHandler() {
 
   let active_projects = document.getElementById("active-projects");
   let project_card = document.createElement('div');
-  project_card.classList.add("card", "project");
-  project_card.id = id;
+  project_card.classList.add("card-container", "col-lg-4", "col-md-6", "col-sm-12", "p-1");
   project_card.innerHTML =
-    `<div class="card-header d-flex align-items-center">
+    `<div class="card project" id="${id}">
+      <div class="card-header d-flex align-items-center">
       <a
         class="text-decoration-none title"
         href="project_overview.html"
@@ -99,6 +99,7 @@ function createProjectHandler() {
     </div>
     <div class="d-flex justify-content-left card-footer">
       <span class="font-weight-lighter">Created at ${months[now.getMonth()]} ${now.getDay()} ${now.getYear() + 1900}</span>
+    </div>
     </div>`
 
   active_projects.appendChild(project_card);
