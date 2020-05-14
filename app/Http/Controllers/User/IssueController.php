@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Issue;
 use App\IssueList;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
@@ -50,7 +51,8 @@ class IssueController extends Controller
         $issue->description = $request->input('description');
         $issue->issue_list_id = $request->input('list');
         $issue->save();
-        return response()->json($issue);
+        $user = User::find($issue->author_id);
+        return response()->json([$issue, $user]);
     }
 
     public function addList(Request $request, $id)

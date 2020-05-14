@@ -107,13 +107,12 @@ function createIssueHandler() {
   console.log(this.responseText)
   const response = JSON.parse(this.responseText);
   console.log(response);
-  let id = response['id'];
-  let title = response['name'];
-
+  let id = response[0]['id'];
+  let title = response[0]['name'];
+  let username = response[1]['username'];
   let liForm = issue.parentElement.parentElement.parentElement;
   let list = liForm.parentElement;
   let newItem = document.createElement("li");
-  // eventualmente este id deve vir da database (após a inserção com ajax)
   newItem.id = id;
   newItem.className = "task-item text-left";
   newItem.setAttribute("draggable", "true");
@@ -121,8 +120,8 @@ function createIssueHandler() {
   <button type="button" class="btn ml-auto d-none edit-task"><i class="fas fa-pencil-alt float-right"></i></button>
     </span>
     <span class="d-flex flex-row align-items-center mx-2 row-2">
-      <p class="w-100 mb-2"><span class="list-item-counter">#3</span> <span class="list-item-creator"> opened by
-          Revuj</span></p>
+      <p class="w-100 mb-2"><span class="list-item-counter">#${id}</span> <span class="list-item-creator"> opened by
+          ${username}</span></p>
     </span>`;
 
   list.insertBefore(newItem, liForm);
@@ -259,6 +258,8 @@ function openSideIssueListen(elem) {
     console.log(elem);
     let taskID = elem.getAttribute("id");
     let taskTitle = elem.querySelector(".task-title").innerHTML;
+    let authorName = elem.querySelector(".author-reference").innerHTML;
+    let description = elem.querySelector(".issue-description").innerHTML;
     if (pageWrapper.classList.contains("is-collapsed-right")) {
       title.classList.remove("d-none");
       editTitleFrom.classList.add("d-none");
@@ -266,12 +267,16 @@ function openSideIssueListen(elem) {
       if (taskID !== sideIssue.getAttribute("data-task-id")) {
         sideIssue.setAttribute("data-task-id", taskID);
         sideIssue.querySelector(".task-title").innerHTML = taskTitle;
+        sideIssue.querySelector("#issue-author").innerHTML = authorName;
+        sideIssue.querySelector("#issue-description").innerHTML = description;
       } else {
         pageWrapper.classList.toggle("is-collapsed-right");
       }
     } else {
       sideIssue.setAttribute("data-task-id", taskID);
       sideIssue.querySelector(".task-title").innerHTML = taskTitle;
+      sideIssue.querySelector("#issue-author").innerHTML = authorName;
+      sideIssue.querySelector("#issue-description").innerHTML = description;
       pageWrapper.classList.toggle("is-collapsed-right");
     }
     delete_issue_button.dataset.issueId = taskID;

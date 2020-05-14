@@ -106,20 +106,30 @@
                       <i class="fas fa-pencil-alt float-right"></i>
                     </button>
                   </div>
+                  <span class="issue-description d-none">{{ $issue->description }}</span>
                   <span class="d-flex flex-row align-items-center mx-2 row-2">
                     <p class="w-100 mb-2">
                       <span class="list-item-counter">#{{ $issue->id }}</span>
-                      <span class="author-reference">{{ \App\User::find($issue->author_id)->username }}</span>
+                      <span>opened by <span class="author-reference">{{ \App\User::find($issue->author_id)->username }}</span>
                     </p>
                   </span>
-                  <span class="d-flex flex-row-reverse mx-2 row-3">
-                    @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
-                      <span class="list-item-author ml-2"><img
-                        src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
-                        draggable="false" />
-                      </span>
-                    @endforeach
-                  </span>
+                  <span class="d-flex justify-content-between ml-2">
+                    <span class="d-flex flex-row">
+                      @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)
+                      <h6 class="mb-0 p-1 list-item-label bg-info mr-1">
+                        {{ $issueTag->name }}
+                      </h6>                
+                      @endforeach
+                    </span>
+                    <span class="d-flex flex-row-reverse mx-2 row-3">
+                      @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
+                        <span class="list-item-author ml-2"><img
+                          src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
+                          draggable="false" />
+                        </span>
+                      @endforeach
+                    </span>
+                 </span>
                 </li>
               @endforeach
               <li class="add-item-li collapse" id="add-item-{{ $list->id }}">
@@ -288,11 +298,13 @@
               </button>
             </div>
             <p class="w-100">
-              #1 Opened by Revuj
+              #1 Opened by <span id="issue-author" class="author-reference"></span>
             </p>
           </div>
-          <div class="assignees-container">
-            <h6 class="block pb-2">Assignees</h6>
+          <div id="issue-description">
+          </div>
+          <div class="assignees-container mt-3">
+            <h6 class="block pb-2 font-weight-bold">Assignees</h6>
             <ul class="assignees d-flex align-items-center">
               <li class="mr-2">
                 <img
@@ -318,8 +330,8 @@
               </li>
             </ul>
           </div>
-          <div class="labels-container">
-            <h6 class="block">Labels</h6>
+          <div class="labels-container mt-3">
+            <h6 class="block font-weight-bold">Labels</h6>
             <ul class="labels d-flex align-items-center">
               <li class="mr-2">
                 <h6 class="mb-0 p-1 list-item-label bg-info">
@@ -341,8 +353,8 @@
               </li>
             </ul>
           </div>
-          <div class="due-date-container">
-            <h6 class="block pb-2">Due Date</h6>
+          <div class="due-date-container mt-3">
+            <h6 class="block pb-2 font-weight-bold">Due Date</h6>
 
             <button type="button" class="custom-button due-date-button">
               <i class="far fa-clock mr-2"></i>Feb 29

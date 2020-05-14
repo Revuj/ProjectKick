@@ -2616,11 +2616,11 @@ insert into issue_tag (issue_id, tag_id) values (26, 92);
 insert into issue_tag (issue_id, tag_id) values (21, 93);
 insert into issue_tag (issue_id, tag_id) values (28, 94);
 insert into issue_tag (issue_id, tag_id) values (9, 95);
-insert into issue_tag (issue_id, tag_id) values (6, 96);
-insert into issue_tag (issue_id, tag_id) values (13, 97);
-insert into issue_tag (issue_id, tag_id) values (20, 98);
-insert into issue_tag (issue_id, tag_id) values (10, 99);
-insert into issue_tag (issue_id, tag_id) values (26, 100);
+insert into issue_tag (issue_id, tag_id) values (193, 96);
+insert into issue_tag (issue_id, tag_id) values (178, 97);
+insert into issue_tag (issue_id, tag_id) values (120, 98);
+insert into issue_tag (issue_id, tag_id) values (32, 99);
+insert into issue_tag (issue_id, tag_id) values (32, 100);
 
 insert into assigned_user (user_id, issue_id) values (3, 295);
 insert into assigned_user (user_id, issue_id) values (10, 174);
