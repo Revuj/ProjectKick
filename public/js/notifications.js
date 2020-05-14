@@ -2,127 +2,102 @@ let notifications_filters = document.querySelectorAll(
   "#notifications-list-container li"
 );
 
-const others = document.getElementById('others-notifications');
-const all = document.getElementById('all-notifications');
-
-
-/* fecth from the database */
-let messages = [
-  { type: "invited", sender: "John", date: "just now", project: "lbaw2025" },
-  { type: "invited", sender: "Abelha", date: "2 days ago", project: "sdis" },
-  {
-    type: "invited",
-    sender: "Abelha",
-    date: "1 month ago",
-    project: "iart-proj"
-  },
-  { type: "kicked", sender: "Tiago", date: "3 days ago", project: "ltw" },
-  {
-    type: "assigned",
-    date: "1 minute ago",
-    project: "BDAD",
-    title: "Delivery 1st Project"
-  },
-  {
-    type: "assigned",
-    date: "1 day ago",
-    project: "BDAD",
-    title: "Normalize database"
-  },
-  { type: "assigned", date: "2 weeks ago", project: "PPIN", title: "Namaste" },
-  {
-    type: "issue",
-    date: "1 minute ago",
-    project: "LPOO",
-    title: "Mutation Tests"
-  },
-  { type: "meeting", date: "1 week ago", project: "LPOO" } // system messages and reports to the admin
-];
-
-notifications_filters.forEach(elem =>
-  elem.addEventListener("click", event => {
-    notifications_filters.forEach(elem => elem.classList.remove("active"));
-    elem.classList.add("active");
-    let notifications_container = document.querySelector(
-      ".notification-container"
-    );
-    notifications_container.innerHTML = "";
-    let filtered_messages;
-    switch (elem.id) {
-      case "assigned-notifications":
-        filtered_messages = messages.filter(
-          message => message.type == "assigned"
-        );
-        break;
-      case "invited-notifications":
-        filtered_messages = messages.filter(
-          message => message.type == "invited"
-        );
-        break;
-      case "meetings-notifications":
-        filtered_messages = messages.filter(
-          message => message.type == "meeting"
-        );
-        break;
-      case "others-notifications":
-        filtered_messages = messages.filter(
-          message => message.type == "kicked" || message.type == "issue"
-        );
-        break;
-      case "all-notifications":
-        filtered_messages = messages;
-        break;
-    }
-    renderMessages(filtered_messages);
-  })
+let notifications_containers = document.querySelectorAll(
+  ".notification-container"
 );
 
-function renderMessages(messages) {
-  messages.forEach(message => {
-    let msg;
-    switch (message.type) {
-      case "invited":
-        msg = new invited(
-          message.type,
-          message.sender,
-          message.date,
-          message.project
-        );
-        break;
-      case "kicked":
-        msg = new kicked(
-          message.type,
-          message.sender,
-          message.date,
-          message.project
-        );
-        break;
-      case "assigned":
-        msg = new assigned(
-          message.type,
-          message.date,
-          message.project,
-          message.title
-        );
-        break;
-      case "issue":
-        msg = new issue(
-          message.type,
-          message.date,
-          message.project,
-          message.title
-        );
-        break;
-      case "meeting":
-        msg = new meeting(message.type, message.date, message.project);
-        break;
-      default:
-        return;
-    }
+let accept_buttons = document.querySelectorAll(
+  '.custom-button.primary-button'
+);
 
-    msg.render();
+let refuse_buttons = document.querySelectorAll(
+  '.custom-button.secondary-button'
+);
+
+refuse_buttons.forEach(btn => btn.addEventListener('click', deleteInvite.bind(btn)));
+
+
+let all = document.getElementById('all-notifications');
+const assigned = document.getElementById('assigned-notifications');
+const invited = document.getElementById('invited-notifications');
+const kicked = document.getElementById('kicked-notifications');
+const meetings = document.getElementById('meetings-notifications');
+
+/*notification containers:*/
+const all_container = document.getElementById('all');
+const invited_container = document.getElementById('invited');
+const kicked_container = document.getElementById('kicked');
+const meeting_container = document.getElementById('meetings');
+const assigned_container = document.getElementById('assigned');
+
+let all_counter = all.querySelector('.type-counter');
+let invited_counter = invited.querySelector('.type-counter');
+let kicked_counter = kicked.querySelector('.type-counter');
+
+notifications_filters.forEach(elem => elem.addEventListener('click', (e) => {
+    let active_notif = document.querySelector('#notifications-list-container li.active');
+    if (active_notif === elem) {
+      return;
+    }
+    active_notif.classList.remove('active');
+    elem.classList.add('active');
+
+
+    let active_container = document.querySelector('.notification-container.active');
+    let target_container=  document.getElementById(elem.id.split('-')[0]);
+    console.log(target_container)
+    active_container.classList.remove('active');
+    active_container.classList.add('d-none');
+
+    target_container.classList.add('active');
+    target_container.classList.remove('d-none');
+})) ;
+
+
+
+ async function deleteInvite() { 
+  let element = this;
+  let invite_id = element.getAttribute('data-invite');
+
+  let init = {
+    method:'DELETE',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/api/notification/${invite_id}/invite`, init)
+  .then(function(response) {
+    if(response.ok) {
+      console.log(response);
+      response.json().then(data =>{
+        if (message in data) {
+          alert(response['message']);
+        }
+        else {
+          let btns = document.querySelectorAll(`button[data-invite = '${invite_id}']`);
+          btns.forEach(btn => btn.parentElement.remove());
+          all_counter.textContent =  parseInt(all_counter.textContent) - 1;
+          invited_counter.textContent =  parseInt(invited_counter.textContent) - 1;
+        }
+      })
+    }
+    else {
+      console.log('Network response was not ok.');
+    }
+  }).catch(function(error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
   });
+  
+ }
+
+let acceptInvite = function (data) {
+  // delete invite
+
 }
+
+
 
 class message {
   constructor(type, date) {
@@ -158,14 +133,16 @@ class message {
   }
 }
 
-class invited extends message {
+
+class invite extends message {
   constructor(type, sender, date, project) {
     super(type, date);
     this.sender = sender;
     this.project = project;
   }
 
-  render() {
+  //{TODO PHOTO PATH CHECK}
+  getElement() {
     let contentTemplate = document.createElement("li");
     contentTemplate.classList.add("invited-notification");
     this.addClassesToElementList(contentTemplate);
@@ -173,20 +150,34 @@ class invited extends message {
     let upperContent = document.createElement("div");
     upperContent.classList.add("d-flex", "justify-content-between");
     upperContent.innerHTML += `<div class = "d-flex align-items-center">
-                <img class = "m-2" src="./assets/profile.png" alt="profile_pic" style="width: 40px">
+                <img class = "m-2" src="/assets/profile.png"
+                alt="profile_pic" style="width: 40px">
                 <p><span class="author-reference">${this.sender} </span>invited you to the project <span class="project-reference">${this.project}</span></p>
             </div>
-            <p class="timestamp smaller-text m-2">${this.date}</p>`;
+            <p class="timestamp smaller-text m-2"> ${mappingDifDateDescript(this.date)}</p>`;
 
     contentTemplate.appendChild(upperContent);
 
-    contentTemplate.innerHTML += `<button type="submit" class="custom-button primary-button mx-2">Accept <i class="fas fa-check"></i></button>`;
-    contentTemplate.innerHTML += `<button type="submit" class="custom-button secondary-button mx-2">Deny <i class="fas fa-times"></i></button>`;
-    this.notification_list.appendChild(contentTemplate);
+
+    let delete_btn = document.createElement("button");
+    delete_btn.classList.add("custom-button", "primary-button", "mx-2");
+    delete_btn.innerHTML = 'Accept <i class="fas fa-check"></i>';
+    delete_btn.addEventListener('click', () => alert("go"));
+
+    let accept_btn = document.createElement("button");
+    accept_btn.classList.add("custom-button", "secondary-button", "mx-2");
+    accept_btn.innerHTML = 'Deny <i class="fas fa-times"></i>';
+    accept_btn.addEventListener('click', () => alert("go"));
+
+    contentTemplate.appendChild(delete_btn);
+    contentTemplate.appendChild(accept_btn);
+
+    return contentTemplate;
   }
+
 }
 
-class kicked extends message {
+class kick extends message {
   constructor(type, sender, date, project) {
     super(type, date);
     this.sender = sender;
@@ -195,7 +186,7 @@ class kicked extends message {
 
   render() {
     let contentTemplate = document.createElement("li");
-    contentTemplate.classList.add("kicked-notification");
+    contentTemplate.classList.add("kicked-notification", "m-2", "p-2", "notification-list-item","border-bottom");
     this.addClassesToElementList(contentTemplate);
 
     let upperContent = document.createElement("div");
@@ -212,26 +203,25 @@ class kicked extends message {
     this.notification_list.appendChild(contentTemplate);
   }
 
-  getNewElement() {
+  getElement() {
     let contentTemplate = document.createElement("li");
-    contentTemplate.classList.add("kicked-notification");
+    contentTemplate.classList.add("kicked-notification", "m-2", "p-2", "notification-list-item", "border-bottom");
 
     contentTemplate.innerHTML = `
-    <li class = "kicked-notification">
       <div class = "d-flex justify-content-between">
         <div class = "d-flex align-items-center justify-content-center">
-          <img class = "m-2" src="./assets/profile.png" alt="profile_pic" style="width: 40px">
-          <p><span class="author-reference">${this.sender} </span>kicked you out of the project <span class="project-reference">${this.project}</span>
+        <img class = "m-2" src="/assets/profile.png"
+        alt="profile_pic" style="width: 40px">
+        <p><span class="author-reference">${this.sender} </span>kicked you out of the project <span class="project-reference">${this.project}</span>
         </div>
         <p class="timestamp smaller-text m-2">${this.date}</p>
       </div>
-    </li>
     `;
     return contentTemplate;
   }
 }
 
-class assigned extends message {
+class assign extends message {
   constructor(type, date, project, title) {
     super(type, date);
     this.project = project;
@@ -298,4 +288,36 @@ class meeting extends message {
     this.notification_list.appendChild(contentTemplate);
   }
 }
+
+// ================================================================
+// ================ LISTENING TO THE CHANNELS =====================
+// ================================================================
+
+
+
+invitation_channel.bind('invitation', function (data) {
+  let new_invite = new invite('invited', data['sender'],
+    data['date'], data['project']).getElement();
+
+    all_counter.textContent =  parseInt(all_counter.textContent) + 1;
+    invited_counter.textContent =  parseInt(invited_counter.textContent) + 1;
+
+    all_container.prepend(new_invite);
+    invited_container.prepend(new_invite);
+});
+
+kicking_channel.bind('kicked-out', function(data) {
+  let new_kicked = new kick('invited', data['sender'],
+  data['date'], data['project']).getElement();
+
+  all_counter.textContent =  parseInt(all_counter.textContent) + 1;
+  kicked_counter.textContent =  parseInt(invited_counter.textContent) + 1;
+
+  all_container.prepend(new_kicked);
+  kicked_container.prepend(new_kicked);
+});
+
+
+
+
 

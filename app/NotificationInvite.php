@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class NotificationInvite extends Model
 {
+    protected $appends = ['typeofNotification'];
+
     /**
      * The table associated with the model.
      *
@@ -30,5 +32,9 @@ class NotificationInvite extends Model
     public function project()
     {
         return $this->belongsTo(Project::class, 'project_id');
+    }
+
+    public function getTypeOfNotificationAttribute() {
+        return 'invite';
     }
 }

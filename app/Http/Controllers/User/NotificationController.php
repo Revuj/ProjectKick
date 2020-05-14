@@ -7,27 +7,81 @@ use App\NotificationAssign;
 use App\NotificationEvent;
 use App\NotificationInvite;
 use App\NotificationKick;
+use App\Notification;
 use App\User;
-// use App\NotifcationInvite;
-// use App\NotifcationEvent;
-// use App\NotifcationAssign;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\Response;
+
 
 class NotificationController extends Controller
 {
 
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
-        $kicked_notificatons = NotificationKick::join('notification', 'notification_kicked.notification_id', '=', 'notification.id')->where('receiver_id', '=', $id);
-        $invite_notificatons = NotificationInvite::join('notification', 'notification_invite.notification_id', '=', 'notification.id')->where('receiver_id', '=', $id);
-        $event_notificatons = NotificationEvent::join('notification', 'notification_event.notification_id', '=', 'notification.id')->where('receiver_id', '=', $id);
-        $assign_notificatons = NotificationAssign::join('notification', 'notification_assign.notification_id', '=', 'notification.id')->where('receiver_id', '=', $id);
+        
+        $kicked_notifications = NotificationKick::join('notification', 'notification_kick.notification_id', '=', 'notification.id')
+        ->join('user', 'user.id', '=', 'sender_id')
+        ->join('project', 'project.id', '=', 'project_id')
+        ->where('receiver_id', '=', $id)
+        ->select('*')-> get();
 
-        return view('pages.notifications', ['kicked_notifications' => $kicked_notificatons, 'invite_notifications' => $invite_notificatons, 'event_notifications' => $event_notificatons, 'assign_notifications' => $assign_notificatons]);
+        $invite_notifications = NotificationInvite::join('notification', 'notification_invite.notification_id', '=', 'notification.id')
+        ->join('user', 'user.id', '=', 'sender_id')
+        ->where('receiver_id', '=', $id)
+        ->select('*')->get();
+
+        $event_notifications = NotificationEvent::join('notification', 'notification_event.notification_id', '=', 'notification.id')
+        ->join('user', 'user.id', '=', 'sender_id')
+        ->where('receiver_id', '=', $id)
+        ->select('*')->get();
+
+        $assign_notifications = NotificationAssign::join('notification', 'notification_assign.notification_id', '=', 'notification.id')
+        ->join('user', 'user.id', '=', 'sender_id')
+        ->where('receiver_id', '=', $id)
+        ->select('*')->get();
+        // acrescentar depois aqui as outras
+        $result = $kicked_notifications->toBase()->merge($invite_notifications)->sortByDesc('date');
+        return view('pages.notifications', [
+            'kicked_notifications' => $kicked_notifications,
+            'invite_notifications'=> $invite_notifications,
+            'meeting_notifications' => $event_notifications,
+            'assign_notifications' => $assign_notifications,
+            'all' => $result
+        ]);
+    }
+
+    public function deleteInvite(Request $request, $id) {
+        
+        //$notification = Notification::findOrFail($id);
+        $invite = NotificationInvite::findOrFail($id);
+        /*
+        DB::beginTransaction();
+
+       
+        try {
+
+            //$notification->delete($id);
+            //$invite->delte($id);
+             DB::commit();
+            // all good
+        }
+        catch (ModelNotFoundException $err) {
+            DB::rollback();
+            return response()->json([], 404);
+        } catch (QueryException $err) {
+            DB::rollback();
+            return response()->json([
+                'message' => 'Invalid delete.',
+            ], 400);
+        }*/
+
+        return response()->json([]);
     }
 
     public function authorizeUser(Request $request)

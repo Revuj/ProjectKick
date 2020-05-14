@@ -110,9 +110,46 @@ function emptyInput(input) {
   input.value = '';
 }
 
+function insertAfter(referenceNode, newNode) {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
+function mappingDifDateDescript(date) {
+  let now = new Date();
+  const diffTime = Math.abs(new Date(date) - now);
+  console.log(diffTime);
+  const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365)); 
+  if (diffYears > 1) return diffYears + " years ago";
+  else if (diffYears === 1) return " a year ago";
+
+  const diffMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30));
+  if (diffMonths> 1) return diffYears + " months ago";
+  else if (diffMonths === 1) return " a month ago";
+
+  const diffWeeks = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7));
+  if (diffWeeks > 1) return diffYears + " weeks ago";
+  else if (diffWeeks === 1) return " a week ago";
+
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
+  if (diffDays > 1) return diffYears + " days ago";
+  else if (diffDays === 1) return " yesterday";
+
+  const diffHours = Math.floor(diffTime / (1000 * 60 * 60)); 
+  console.log(diffHours);
+  if (diffHours > 1) return diffYears + " hours ago";
+  else if (diffHours === 1) return " a hour ago";
+
+  const diffMins = Math.floor(diffTime / (1000 * 60)); 
+  if (diffMins > 3) return diffYears + " minutes ago";
+  else if (diffMins === 1) return " just now";
+ 
+}
+
 // ========================================
 // ===== Dealing with notifications =======
 // ========================================
+const dropdown_notification= document.querySelector('.notification-dropdown');
+const dropdown_notification_tittle = document.querySelector('.notification-title');
 const user_id = document.querySelector('ul').getAttribute('data-user');
 console.log(user_id);
 Pusher.logToConsole = true;
@@ -129,19 +166,57 @@ var pusher = new Pusher('7d3a9c163bd45174c885', {
 let kicking_channel = pusher.subscribe('private-kicked.' + user_id);
 
 kicking_channel.bind('kicked-out', (data) => {
-  alert(JSON.stringify(data));
-  //const new_kicked = new kicked('kicked', data['sender'], data['date'], date['project']).getNewElement();
-  //others.prepend(new_kicked);
-  //all.preprend(new_kicked);
+  console.log(data);
+  
+  let new_notification = document.createElement('div');
+  new_notification.classList.add('notify_item','clickable');
+  new_notification.innerHTML = `
+    <div class="notify_img">
+      <img
+        src="/assets/profile.png"
+        alt="profile_pic"
+        style="width: 50px"
+      />
+    </div>
+    <div class="notify_info">
+      <p>${data['sender']} kicked you out of <span>T${data['project']}</span></p>
+      <span class="notify_time">${mappingDifDateDescript(data['date'])}</span>
+    </div>
+  `;
+
+  insertAfter( dropdown_notification_tittle, new_notification);
 
 });
 
 let invitation_channel = pusher.subscribe('private-invited.' + user_id);
 
-invitation_channel.bind('invitation', (data)=> {
-  alert(JSON.stringify(data));
+/* {todo} check if path exists */
+invitation_channel.bind('invitation', function(data) {
+  console.log(data);
+  
+  let new_notification = document.createElement('div');
+  new_notification.classList.add('notify_item','clickable');
+  new_notification.innerHTML = `
+    <div class="notify_img">
+      <img
+        src="/assets/profile.png"
+        alt="profile_pic"
+        style="width: 50px"
+      />
+    </div>
+    <div class="notify_info">
+      <p>${data['sender']} invite you to <span>T${data['project']}</span></p>
+      <span class="notify_time">${mappingDifDateDescript(data['date'])}</span>
+    </div>
+  `;
+
+  insertAfter( dropdown_notification_tittle, new_notification);
+
 
 });
+
+
+
 
 
 

@@ -20,6 +20,7 @@ class KickedOut implements ShouldBroadcast
     private $sender;
     private $receiver;
     private $date;
+    
 
     /**
      * Create a new event instance.

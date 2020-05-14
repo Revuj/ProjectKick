@@ -13,6 +13,8 @@ use App\Project;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ProjectController extends Controller
 {
@@ -112,19 +114,25 @@ class ProjectController extends Controller
         // estou a adicionar logo mas no futuro deveria ser um convite
         $membership = new MemberStatus();
         $membership->role = $role;
-        $membership->user_id = $user->id;
+        $membership->user_id = $user['id'];
         $membership->project_id = $id;
         // $membership->save();
 
-        $user_id = $user->id;
+        $user_id = $user['id'];
         $sender_id = $request->input("senderId");
 
-        $event = new Invitation($request->input('projectName'), $request->input('senderUsername'), $user_id, Carbon::now()->toDateTimeString());
+        $event = new Invitation(
+            $request->input('projectName'),
+            $request->input('senderUsername'),
+            $user_id, Carbon::now()->toDateTimeString(),
+            $user['photo_path']
+        );
         event($event);
 
+        DB::beginTransaction();
         $notification = new Notification();
         $notification->date = Carbon::now()->toDateTimeString();
-        $notification->description = "";
+       // $notification->description = "";
         $notification->receiver_id = $user_id;
         $notification->sender_id = $sender_id;
         $notification->save();
@@ -133,6 +141,7 @@ class ProjectController extends Controller
         $notificationKick->notification_id = $notification->id;
         $notificationKick->project_id = $id;
         $notificationKick->save();
+        DB::commit();
 
         return $membership;
     }
@@ -155,7 +164,7 @@ class ProjectController extends Controller
 
         $notification = new Notification();
         $notification->date = Carbon::now()->toDateTimeString();
-        $notification->description = "";
+        //$notification->description = "";
         $notification->receiver_id = $user_id;
         $notification->sender_id = $sender_id;
         $notification->save();

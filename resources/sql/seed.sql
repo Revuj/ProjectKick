@@ -154,7 +154,6 @@ CREATE TABLE event_personal (
 CREATE TABLE notification (
     id SERIAL PRIMARY KEY,
     "date" timestamp with time zone DEFAULT now() NOT NULL,
-    description text,
     receiver_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE
                                                      ON UPDATE CASCADE,
     sender_id integer NOT NULL REFERENCES "user"  ON DELETE CASCADE
@@ -3114,3 +3113,141 @@ insert into assigned_user (user_id, issue_id) values (5, 310);
 insert into assigned_user (user_id, issue_id) values (7, 181);
 insert into assigned_user (user_id, issue_id) values (7, 248);
 insert into assigned_user (user_id, issue_id) values (13, 287);
+
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-06-03 07:30:55',  22, 15);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-07-19 12:12:39',  16, 27);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-03-01 05:54:01', 29, 2);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-08-08 07:34:08', 28, 29);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-03-29 06:27:16',  20, 6);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-06-25 19:27:09', 14, 10);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-09-12 11:04:17',  1, 9);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-02-25 22:43:31',  8, 16);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-10-13 14:54:58',  27, 4);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-02-18 12:56:27', 2, 18);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2023-01-08 11:51:47', 2, 1);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-02-20 09:43:37', 23, 21);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2023-03-10 10:55:33', 2, 29);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-08-21 23:37:47',  21, 12);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-06-29 13:41:34',  20, 7);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-09-12 00:33:25',  24, 21);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-08-07 05:27:17',  12, 16);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-08-25 18:08:17',  21, 7);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-12-13 18:20:13',  17, 28);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-09-05 17:03:11',  13, 14);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-12-28 18:26:21', 7, 16);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-08-17 02:18:39',  15, 7);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-11-15 09:33:22',  4, 21);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-07-23 00:19:26',  25, 1);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-01-17 22:04:26', 19, 14);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-11-06 10:50:07',  21, 8);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-01-28 20:11:52',  19, 30);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-09-12 06:41:50', 11, 8);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2023-02-05 02:23:14',  24, 9);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-02-19 07:56:38',  25, 10);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-02-08 16:00:37',  19, 3);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-06-08 04:42:23',  28, 23);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-06-22 14:21:21',  2, 1);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-06-07 07:46:39', 21, 27);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-05-05 22:37:11',  30, 6);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-10-08 22:21:51',  21, 28);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-01-22 09:58:56', 3, 8);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-01-19 12:59:13', 2, 23);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-08-08 15:11:52',  18, 4);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-11-06 08:32:40', 6, 28);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-08-27 05:35:39',  16, 15);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-12-03 09:04:42', 13, 2);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-10-24 08:10:55', 17, 14);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-05-18 12:44:00',  3, 2);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2023-03-12 07:30:33', 26, 3);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-07-05 02:12:10', 17, 26);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-02-08 12:39:59',  11, 20);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-03-16 11:54:39', 4, 30);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-01-12 21:48:51', 18, 4);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-01-03 22:57:58', 26, 11);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2023-02-18 06:49:02',  11, 25);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2023-02-27 11:13:00',  14, 24);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-10-28 01:36:56', 7, 2);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-09-30 11:35:48',  3, 22);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-03-10 23:54:38', 5, 21);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-08-08 00:51:11',  7, 5);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-04-07 19:34:55', 17, 14);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-03-22 11:22:33',  15, 21);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-01-01 23:31:54',  2, 21);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-12-20 19:36:36', 30, 10);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-08-17 07:23:33',  4, 1);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-01-18 08:47:19',  19, 3);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-05-29 13:05:37', 6, 23);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-09-25 01:52:32', 12, 6);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-09-20 22:05:27', 17, 16);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-09-04 17:21:53', 18, 27);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2023-02-12 14:36:02', 7, 26);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-01-24 20:00:13', 29, 4);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-04-20 20:07:48',  20, 13);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-10-13 19:02:56',  14, 13);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-06-01 12:42:30',  22, 5);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-12-12 04:58:10',  21, 25);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-01-05 07:42:50', 4, 11);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-06-23 08:39:36',  27, 2);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-08-25 14:14:22',  14, 25);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-11-12 12:13:54',  11, 30);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-09-18 09:28:57', 12, 7);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2020-08-04 19:13:48', 25, 23);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2021-06-11 14:28:27',  12, 28);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-06-14 06:31:57', 20, 28);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-06-14 06:31:57', 31, 28);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-06-13 06:31:57', 31, 28);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-06-17 06:31:57', 31, 25);
+insert into notification (id, "date",  receiver_id, sender_id) values (DEFAULT, '2022-06-18 06:31:57', 31, 24);
+
+
+
+
+insert into notification_kick (notification_id, project_id) values (1, 45);
+insert into notification_kick (notification_id, project_id) values (2, 24);
+insert into notification_kick (notification_id, project_id) values (3, 40);
+insert into notification_kick (notification_id, project_id) values (4, 11);
+insert into notification_kick (notification_id, project_id) values (5, 4);
+insert into notification_kick (notification_id, project_id) values (6, 42);
+insert into notification_kick (notification_id, project_id) values (7, 49);
+insert into notification_kick (notification_id, project_id) values (8, 16);
+insert into notification_kick (notification_id, project_id) values (9, 6);
+insert into notification_kick (notification_id, project_id) values (10, 30);
+insert into notification_kick (notification_id, project_id) values (11, 10);
+insert into notification_kick (notification_id, project_id) values (12, 50);
+insert into notification_kick (notification_id, project_id) values (13, 6);
+insert into notification_kick (notification_id, project_id) values (14, 12);
+insert into notification_kick (notification_id, project_id) values (15, 40);
+insert into notification_kick (notification_id, project_id) values (16, 15);
+insert into notification_kick (notification_id, project_id) values (17, 38);
+insert into notification_kick (notification_id, project_id) values (18, 2);
+insert into notification_kick (notification_id, project_id) values (19, 26);
+insert into notification_kick (notification_id, project_id) values (20, 15);
+insert into notification_kick (notification_id, project_id) values (81, 15);
+insert into notification_kick (notification_id, project_id) values (83, 15);
+
+
+
+insert into notification_invite (notification_id, project_id) values (21, 26);
+insert into notification_invite (notification_id, project_id) values (22, 10);
+insert into notification_invite (notification_id, project_id) values (23, 9);
+insert into notification_invite (notification_id, project_id) values (24, 29);
+insert into notification_invite (notification_id, project_id) values (25, 34);
+insert into notification_invite (notification_id, project_id) values (26, 7);
+insert into notification_invite (notification_id, project_id) values (27, 30);
+insert into notification_invite (notification_id, project_id) values (28, 2);
+insert into notification_invite (notification_id, project_id) values (29, 49);
+insert into notification_invite (notification_id, project_id) values (30, 4);
+insert into notification_invite (notification_id, project_id) values (31, 46);
+insert into notification_invite (notification_id, project_id) values (32, 44);
+insert into notification_invite (notification_id, project_id) values (33, 20);
+insert into notification_invite (notification_id, project_id) values (34, 48);
+insert into notification_invite (notification_id, project_id) values (35, 37);
+insert into notification_invite (notification_id, project_id) values (36, 1);
+insert into notification_invite (notification_id, project_id) values (37, 6);
+insert into notification_invite (notification_id, project_id) values (38, 17);
+insert into notification_invite (notification_id, project_id) values (39, 35);
+insert into notification_invite (notification_id, project_id) values (40, 42);
+insert into notification_invite (notification_id, project_id) values (82, 15);
+insert into notification_invite (notification_id, project_id) values (84, 15);
+
+

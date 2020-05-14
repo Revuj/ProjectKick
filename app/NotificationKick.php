@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class NotificationKick extends Model
 {
+
+    protected $appends = ['typeofNotification'];
+
     /**
      * The table associated with the model.
      *
@@ -30,5 +33,9 @@ class NotificationKick extends Model
     public function project()
     {
         return $this->belongsTo(Project::class, 'project_id');
+    }
+
+    public function getTypeOfNotificationAttribute() {
+        return 'kick';
     }
 }

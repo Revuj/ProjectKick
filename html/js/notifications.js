@@ -60,7 +60,7 @@ notifications_filters.forEach(elem =>
           message => message.type == "meeting"
         );
         break;
-      case "others-notifications":
+      case "kicked-notifications":
         filtered_messages = messages.filter(
           message => message.type == "kicked" || message.type == "issue"
         );
