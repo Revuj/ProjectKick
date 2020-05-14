@@ -114,9 +114,17 @@
               @else
                 <li class="issue open px-2 border-bottom">
               @endif
+                <span class="issue-description d-none">{{ $issue->description }}</span>
+                <span class="issue-due-date d-none">
+                  @if ($issue->due_date == null)
+                    none
+                  @else
+                    {{ \Carbon\Carbon::parse($issue->due_date)->format('M d Y') }}
+                  @endif
+                </span>
                   <div class="issue-header d-flex align-items-center">
                     <a href="issue.html" class="task-title nostyle">{{ $issue->name }}</a>
-                      <ul class="labels d-flex justify-content-center mx-2">
+                      <ul class="d-flex justify-content-center mx-2">
                       @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)                        
                           <li class="mr-2">
                             <h6  style="background-color:#{{ $issueTag->color->rgb_code }}" class="mb-0 px-1 list-item-label">{{ $issueTag->name }}</h6>
@@ -143,7 +151,7 @@
                     <div class="assignees-container mt-2 ml-auto text-center">
                       <ul class="assignees d-flex ">
                         @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
-                          <li class="mr-2">
+                          <li class="mr-2 assignee">
                             <img
                               src="{{asset('assets/avatars/' . "profile". '.png')}}"
                               alt="{{ $assignee->username }}"
@@ -161,103 +169,90 @@
         </div>
       </div>
       <!--end of main-container can possible be a section in the future-->
-      <!-- Sidebar Issue -->
-      <div id="side-issue-container">
-        <div id="side-issue" class="d-flex flex-column h-100 mx-3 py-3">
-          <div id="side-issue-header" class="border-bottom mb-3">
-            <div class="d-flex align-items-start">
-              <h4 class="task-title mr-auto">HELLO</h4>
-              <form class="edit-issue-title-form form-group d-none mr-auto">
-                <div class="form-group text-left">
-                  <input
-                    type="text"
-                    class="form-control"
-                    class="item-title"
-                    placeholder=""
-                  />
-                </div>
-                <div class="d-flex justify-content-between">
-                  <button
-                    type="submit"
-                    class="btn btn-primary edit-item-title btn"
-                  >
-                    Submit
-                  </button>
-                  <button
-                    type="reset"
-                    class="btn btn-primary edit-item-title-cancel"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-              <button type="button" class="btn d-none edit-task mr-1">
-                <i class="fas fa-pencil-alt float-right"></i>
-              </button>
-              <button type="button" class="btn close-side-issue">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-            <p class="w-100">#1 Opened by Revuj</p>
-          </div>
-          <div class="assignees-container">
-            <h6 class="block pb-2">Assignees</h6>
-            <ul class="assignees d-flex align-items-center">
-              <li class="mr-2">
-                <img
-                  src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
+
+     <!-- Sidebar Issue -->
+     <div id="side-issue-container">
+      <div id="side-issue" class="d-flex flex-column h-100 mx-3 py-3">
+        <div id="side-issue-header" class="border-bottom mb-3">
+          <div class="d-flex align-items-start">
+            <h4 class="task-title mr-auto">HELLO</h4>
+            <form class="edit-issue-title-form form-group d-none mr-auto">
+              <div class="form-group text-left">
+                <input
+                  type="text"
+                  class="form-control"
+                  class="item-title"
+                  placeholder=""
                 />
-              </li>
-              <li class="mr-2">
-                <img
-                  src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
-                />
-              </li>
-              <li>
-                <button type="button" class="custom-button add-button">
-                  <i class="fas fa-plus"></i>
+              </div>
+              <div class="d-flex justify-content-between">
+                <button
+                  type="submit"
+                  class="btn btn-primary edit-item-title btn"
+                >
+                  Submit
                 </button>
-              </li>
-            </ul>
-          </div>
-          <div class="labels-container">
-            <h6 class="block">Labels</h6>
-            <ul class="labels d-flex align-items-center">
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-info">Iteration 1</h6>
-              </li>
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-warning">Iteration 2</h6>
-              </li>
-              <li>
-                <button type="button" class="custom-button add-button">
-                  <i class="fas fa-plus"></i>
+                <button
+                  type="reset"
+                  class="btn btn-primary edit-item-title-cancel"
+                >
+                  Cancel
                 </button>
-              </li>
-            </ul>
-          </div>
-          <div class="due-date-container">
-            <button type="button" class="custom-button due-date-button">
-              <i class="far fa-clock mr-2"></i>Feb 29
+              </div>
+            </form>
+            <button type="button" class="btn d-none edit-task mr-1">
+              <i class="fas fa-pencil-alt float-right"></i>
+            </button>
+            <button type="button" class="btn close-side-issue">
+              <i class="fas fa-times"></i>
             </button>
           </div>
-          <button
-            type="button"
-            class="custom-button close-button delete-issue mt-auto"
-          >
-            Delete
+          <p class="w-100">
+            #1 Opened by <span id="issue-author" class="author-reference"></span>
+          </p>
+        </div>
+        <div id="issue-description">
+        </div>
+        <div class="assignees-container mt-3">
+          <h6 class="block py-2 font-weight-bold">Assignees</h6>
+          <ul class="assignees d-flex align-items-center">
+          </ul>
+        </div>
+        <div class="labels-container mt-3">
+          <h6 class="block py-2 font-weight-bold">Labels</h6>
+          <ul class="labels d-flex align-items-center">
+            <li>
+              <button
+                type="button"
+                class="custom-button add-button add-label"
+              >
+                <i class="fas fa-plus"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="due-date-container mt-3">
+          <h6 class="block py-2 font-weight-bold">Due Date</h6>
+
+          <button type="button" class="custom-button due-date-button">
+            <i class="far fa-clock mr-2"></i><span id="due-date"></span>
           </button>
         </div>
+        <button
+          id="delete-issue-button"
+          type="button"
+          class="custom-button close-button delete-issue mt-auto"
+        >
+          Delete
+        </button>
       </div>
+    </div>
+
+
       <div
         class="modal"
         id="addTaskModal"
-        tabindex="-1"
-        role="dialog"
+%
         aria-labelledby="addTaskModalLabel"
         aria-hidden="true"
       >
