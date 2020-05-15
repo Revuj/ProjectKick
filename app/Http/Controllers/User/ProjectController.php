@@ -15,7 +15,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
 class ProjectController extends Controller
 {
     public function activity($id)
@@ -132,7 +131,7 @@ class ProjectController extends Controller
         DB::beginTransaction();
         $notification = new Notification();
         $notification->date = Carbon::now()->toDateTimeString();
-       // $notification->description = "";
+        // $notification->description = "";
         $notification->receiver_id = $user_id;
         $notification->sender_id = $sender_id;
         $notification->save();
@@ -201,7 +200,7 @@ class ProjectController extends Controller
         $project_id = $id;
 
         //dd($channels);
-        return view('pages.chat', compact('first_channel', 'channels', 'project_id'));
+        return view('pages.chat', compact('first_channel', 'channels', 'project_id', 'project'));
 
     }
 }

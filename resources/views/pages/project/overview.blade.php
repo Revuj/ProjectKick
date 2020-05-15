@@ -1,4 +1,4 @@
-@extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true, 'sidebar' => 'project'])
+@extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true, 'sidebar' => 'project', 'project' => $project->id] )
 
 @section('title', 'Kick | Project Overview')
 
@@ -54,7 +54,7 @@
 <div class="main-content-container px-4">
           <nav>
             <ol class="breadcrumb custom-separator">
-              <li><a href="#0">lbaw</a></li>
+              <li><a href="#0">{{ $project->name }}</a></li>
               <li class="current">Project Overview</li>
             </ol>
           </nav>

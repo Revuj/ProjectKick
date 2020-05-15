@@ -30,7 +30,11 @@
       @endif
 
       @if($sidebar != 'none')
-        @include('inc.sidebar_' . $sidebar)
+        @if (isset($project))
+          @include('inc.sidebar_' . $sidebar, ['project' => $project])
+        @else
+          @include('inc.sidebar_' . $sidebar, ['project' => ''])
+        @endif
       @endif
       <noscript>
           <span class="warning">Warning:&nbsp;</span><i>JavaScript</i> is currently disabled and is required to fully experience this website
