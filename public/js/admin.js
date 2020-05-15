@@ -1,3 +1,141 @@
+document.addEventListener('DOMContentLoaded', build);
+
+function build() {
+  //getCountries();
+  //getIntelPerMonth();
+  //getBannedUsers();
+  getRecentUsers();
+
+}
+
+async function getCountries() {
+
+  let init = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/countries`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+         
+          console.log(data);
+
+        }
+      })
+    }
+    else {
+      console.log('Network response was not ok.');
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+
+}
+
+async function getIntelPerMonth() {
+  let init = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/monthlyIntel`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+        }
+      })
+    }
+    else {
+    
+      console.log('Network response was not ok.' + JSON.stringify(data));
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+
+}
+
+async function getBannedUsers() {
+  let init = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/bannedUsers`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+        }
+      })
+    }
+    else {
+    
+      console.log('Network response was not ok.' + JSON.stringify(data));
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+
+}
+
+async function getRecentUsers() {
+  let init = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/recentUsers`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+        }
+      })
+    }
+    else {
+    
+      console.log('Network response was not ok.' + JSON.stringify(data));
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+
+}
+
+
+
 new Chart(document.getElementById('line-chart'), {
   type: 'line',
   data: {

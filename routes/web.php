@@ -94,6 +94,11 @@ Route::group(['middleware' => ['auth']], function () {
         'prefix' => "admin"], function () {
         Route::get('/{id}', 'AdminController@dashboard');
         Route::get('/search', 'AdminController@search');
+        Route::post('/countries', 'AdminController@fetchCountries'); /*api*/
+        Route::post('/monthlyIntel', 'AdminController@fetchIntelPerMonth'); /*api */
+        Route::post('/bannedUsers', 'AdminController@bannedUsers'); /*api */
+        Route::post('/recentUsers','AdminController@recentUsers'); /*api */
     });
+
 
 });

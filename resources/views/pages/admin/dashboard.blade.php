@@ -1,6 +1,6 @@
 @extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true, 'sidebar' => 'admin'])
 
-@section('title', 'Administrator | Dashboard')
+@section('title', 'Admin | Dashboard')
 
 @section('style')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
@@ -37,8 +37,8 @@
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="js/libs/chartjs-plugin-doughnutlabel.min.js"></script>
-    <script src="{{asset('js/admin.js')}}" defer></script>
     <script src="{{asset('js/index.js')}}" defer></script>
+    <script src="{{asset('js/admin.js')}}" defer></script>
 @endsection
 
 @section('content')
@@ -53,7 +53,7 @@
                 <i class="fas fa-project-diagram fa-3x text-info"></i>
                 <div class="text-right text-secondary">
                   <h5>Project Number</h5>
-                  <h3>135,000</h3>
+                  <h3 class = "text-center">{{$projects}}</h3>
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@
                 <i class="fas fa-tasks fa-3x text-success"></i>
                 <div class="text-right text-secondary">
                   <h5 class="h5">Closed tasks</h5>
-                  <h3>39,000</h3>
+                  <h3 class = "text-center">{{$closed_tasks}}</h3>
                 </div>
               </div>
             </div>
@@ -85,9 +85,9 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <i class="fas fa-users fa-3x text-info"></i>
-                <div class="text-right text-secondary">
+                <div class="text-right text-secondary px-3">
                   <h5>Users</h5>
-                  <h3>15,000</h3>
+                  <h3 class = "text-center">{{$nr_users}}</h3>
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@
                 <i class="fas fa-chart-line fa-3x text-danger"></i>
                 <div class="text-right text-secondary">
                   <h5>Closed Reports</h5>
-                  <h3>45,000</h3>
+                  <h3 class = "text-center"> {{$nr_reports}}</h3>
                 </div>
               </div>
             </div>
