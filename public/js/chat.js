@@ -145,7 +145,7 @@ function drawMessageTemplate(message) {
     let current_chat = document.querySelector('#chat-msg' + active_chat);
 
     let image = `
-        <img src="{{ asset('assets/avatars/'.${message['photo_path']}.'png') }}" alt="{{$message['username']}} profile picture" />
+        <img src= "/assets/avatars/${message['photo_path']}.png" alt="{{$message['username']}} profile picture" />
      `;
 
 
@@ -153,6 +153,7 @@ function drawMessageTemplate(message) {
     messageWrapper.classList.add('incoming_msg', 'd-flex', 'align-items-start')
     messageWrapper.innerHTML = `
       <div class="incoming_msg_img">
+        ${image}
       </div>
       <div class="message d-flex flex-column align-items-start"> 
             <div class="message-header"><span class="author">${message['username']}</span>
