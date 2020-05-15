@@ -24,7 +24,13 @@ class MessageController extends Controller
         $user = User::select('username', 'photo_path')
             ->where('id', $message->user_id)->first();
 
-        $event = new MessageEvent($request->input('channel_id'), $request->input('content'));
+        $event = new MessageEvent(
+            $request->input('channel_id'),
+            $request->input('content'),
+            $user['photo_path'],
+            $user['username'],
+            $message->date
+        );
 
         event($event);
 

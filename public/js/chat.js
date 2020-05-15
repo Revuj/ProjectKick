@@ -32,7 +32,7 @@ function bindAtiveChannel() {
     if (active_chat == null)
         return;
     channels[active_chat.getAttribute('data-chat')].bind('my-event', function (data) {
-        alert(JSON.stringify(data));
+        drawMessageTemplate(data);
     });
 }
 
@@ -61,7 +61,7 @@ function changeChat() {
     let new_active_id = chat.getAttribute('data-chat')
 
     channels[new_active_id].bind('my-event', function (data) {
-        alert(JSON.stringify(data));
+        drawMessageTemplate(data);
     });
 
 
@@ -140,32 +140,26 @@ function messageHandler() {
  * @param {message information} message 
  * @param {user information} author 
  */
-function drawMessageTemplate(message, author) {
-
+function drawMessageTemplate(message) {
     let active_chat = document.querySelector('.active_chat').getAttribute('data-chat');
     let current_chat = document.querySelector('#chat-msg' + active_chat);
 
     let image = `
-    @if (is_file(public_path('assets/avatar/'. $message['photo_path'] .'png' )))
-    <img src="{{ asset('assets/avatars/'.$message['photo_path'] .'png') }}" alt="{{$message['username']}} profile picture" />
-    @else
-    <img src="{{ asset('assets/profile.png')}}" alt="{{$message['username']}} profile picture" />
-    @endif
+        <img src= "/assets/avatars/${message['photo_path']}.png" alt="{{$message['username']}} profile picture" />
      `;
 
-
-    //console.log(fileExists('/public/assets/profile.png'))
 
     let messageWrapper = document.createElement('div')
     messageWrapper.classList.add('incoming_msg', 'd-flex', 'align-items-start')
     messageWrapper.innerHTML = `
       <div class="incoming_msg_img">
+        ${image}
       </div>
-      <div class="message d-flex flex-column align-items-start">  <!--17:12 PM | 3 Days Ago-->
-            <div class="message-header"><span class="author">${author['username']}</span>
+      <div class="message d-flex flex-column align-items-start"> 
+            <div class="message-header"><span class="author">${message['username']}</span>
             <span class="time_date px-2"> ${message['date']} </span></div>
             <div class="message-content">
-            ${message['content']}
+                ${message['message']}
             </div>
         </div>
     `;
@@ -307,7 +301,7 @@ function confirmExit() {
             channels[key].unsubscribe('private-groups.' + key);
         }
     }
-    return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+    //return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
 
 }
 
