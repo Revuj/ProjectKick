@@ -1,250 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Template for pages</title>
 
-    <!-- Owl-Carousel -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
-      crossorigin="anonymous"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Template for pages</title>
 
-    <!-- Font Awesome CDN -->
-    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+  <!-- Owl-Carousel -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
+  <!-- Font Awesome CDN -->
+  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-    <!-- Custom Style-->
-    <link rel="stylesheet" href="./css/navbar.css" />
-    <link rel="stylesheet" href="./css/reportuser.css" />
-    <script src="./js/navbar.js" defer></script>
-    <script src="js/index.js" defer></script>
-  </head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
-  <body>
-    <div class="page-wrapper h-100 is-collapsed">
-      <nav class="top-navbar">
-        <div
-          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
-        >
-          <div class="hamburger mobile side-menu-item">
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-          </div>
-          <div class="logo">
-            <a class="nostyle" href="index.html">
-              <h4 class="mb-0 px-3">
-                <i class="fas fa-drafting-compass"></i> Kick
-              </h4>
-            </a>
-          </div>
+  <!-- Custom Style-->
+  <link rel="stylesheet" href="./css/navbar.css" />
+  <link rel="stylesheet" href="./css/reportuser.css" />
+  <script src="./js/navbar.js" defer></script>
+  <script src="js/index.js" defer></script>
+</head>
 
-          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-            <!--notifications-->
-            <li class="utility notification mb-0">
-              <a href="#"><i class="fas fa-bell"></i></a>
-              <span class="num">4</span>
-              <div class="notification-dropdown d-none">
-                <h6 class="notification-title text-center">notifications</h6>
-                <div class="notify_item clickable">
-                  <div class="notify_img">
-                    <img
-                      src="./assets/profile.png"
-                      alt="profile_pic"
-                      style="width: 50px"
-                    />
-                  </div>
-                  <div class="notify_info">
-                    <p>Alex commented on the<span>Task Share</span></p>
-                    <span class="notify_time">10 minutes ago</span>
-                  </div>
+<body>
+  <div class="page-wrapper h-100 is-collapsed">
+    <nav class="top-navbar">
+      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
+        <div class="hamburger mobile side-menu-item">
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+        </div>
+        <div class="logo">
+          <a class="nostyle" href="/">
+            <h4 class="mb-0 px-3">
+              <i class="fas fa-drafting-compass"></i> Kick
+            </h4>
+          </a>
+        </div>
+
+        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+          <!--notifications-->
+          <li class="utility notification mb-0">
+            <a href="#"><i class="fas fa-bell"></i></a>
+            <span class="num">4</span>
+            <div class="notification-dropdown d-none">
+              <h6 class="notification-title text-center">notifications</h6>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
                 </div>
-                <div class="notify_item clickable">
-                  <div class="notify_img">
-                    <img
-                      src="./assets/profile.png"
-                      alt="profile_pic"
-                      style="width: 50px"
-                    />
-                  </div>
-                  <div class="notify_info">
-                    <p>Alex commented on the<span>Task Share</span></p>
-                    <span class="notify_time">10 minutes ago</span>
-                  </div>
-                </div>
-                <div class="notify_item clickable">
-                  More(2) ...
+                <div class="notify_info">
+                  <p>Alex commented on the<span>Task Share</span></p>
+                  <span class="notify_time">10 minutes ago</span>
                 </div>
               </div>
-            </li>
-            <!--profile-->
-            <li class="px-2 utility ml-3 mb-0 user  ">
-              <a href="#"><i class="fas fa-user"></i></a>
-              <div class="user-dropdown d-none">
-                <h6 class="user-title text-center">Profile</h6>
-                <div class="notify_item clickable">
-                  <div class="notify_img">
-                    <img
-                      src="./assets/profile.png"
-                      alt="profile_pic"
-                      style="width: 40px"
-                    />
-                  </div>
-                  <div class="notify_info">
-                    <p><a class="nostyle" href="profile.html">Me</a></p>
-                  </div>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
                 </div>
-                <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
-                <div class="notify_item clickable d-flex">
-                  <p class="m-0" id="dark-mode">Dark Mode</p>
-                  <span class="mt-2 mr-4">
-                    <label id="switch" class="switch">
+                <div class="notify_info">
+                  <p>Alex commented on the<span>Task Share</span></p>
+                  <span class="notify_time">10 minutes ago</span>
+                </div>
+              </div>
+              <div class="notify_item clickable">
+                More(2) ...
+              </div>
+            </div>
+          </li>
+          <!--profile-->
+          <li class="px-2 utility ml-3 mb-0 user  ">
+            <a href="#"><i class="fas fa-user"></i></a>
+            <div class="user-dropdown d-none">
+              <h6 class="user-title text-center">Profile</h6>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 40px" />
+                </div>
+                <div class="notify_info">
+                  <p><a class="nostyle" href="profile.html">Me</a></p>
+                </div>
+              </div>
+              <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+              <div class="notify_item clickable d-flex">
+                <p class="m-0" id="dark-mode">Dark Mode</p>
+                <span class="mt-2 mr-4">
+                  <label id="switch" class="switch">
                     <input type="checkbox" onchange="toggleTheme()" id="slider">
                     <span class="slider round"></span>
-                  </span>
-                </div>
-
-                <div class="notify_item clickable d-flex">
-                  <a href="index.html" class="nostyle">Logout</a>
-                </div>
+                </span>
               </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
 
-      <nav class="sidebar-menu">
-        <ul>
-          <li class="hamburger side-menu-item">
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-          </li>
-          <li class="side-menu-item dropdown">
-            <a href="my_projects.html">
-              <span class="m-2"><i class="fas fa-columns"></i></span>
-              <span class="side-menu-item-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="side-menu-item dropdown">
-            <a href="my_work.html">
-              <span class="m-2"><i class="fas fa-tasks"></i></span>
-              <span class="side-menu-item-title">My Work</span>
-            </a>
-          </li>
-          <li class="side-menu-item">
-            <a href="calendar.html">
-              <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
-              <span class="side-menu-item-title">Calendar</span>
-            </a>
-          </li>
-          <li class="side-menu-item">
-            <a href="searchpage.html">
-              <span class="m-2"><i class="fas fa-search"></i></span>
-              <span class="side-menu-item-title">Search</span>
-            </a>
+              <div class="notify_item clickable d-flex">
+                <a href="/" class="nostyle">Logout</a>
+              </div>
+            </div>
           </li>
         </ul>
-      </nav>
+      </div>
+    </nav>
 
-      <!--generic container-->
+    <nav class="sidebar-menu">
+      <ul>
+        <li class="hamburger side-menu-item">
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+        </li>
+        <li class="side-menu-item dropdown">
+          <a href="my_projects.html">
+            <span class="m-2"><i class="fas fa-columns"></i></span>
+            <span class="side-menu-item-title">Dashboard</span>
+          </a>
+        </li>
+        <li class="side-menu-item dropdown">
+          <a href="my_work.html">
+            <span class="m-2"><i class="fas fa-tasks"></i></span>
+            <span class="side-menu-item-title">My Work</span>
+          </a>
+        </li>
+        <li class="side-menu-item">
+          <a href="calendar.html">
+            <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
+            <span class="side-menu-item-title">Calendar</span>
+          </a>
+        </li>
+        <li class="side-menu-item">
+          <a href="searchpage.html">
+            <span class="m-2"><i class="fas fa-search"></i></span>
+            <span class="side-menu-item-title">Search</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-      <div class="main-container">
-        <div id="report-user-container" class="px-3">
-          <h3
-            id="user-report-title"
-            class="title task-title pb-2 mt-5 mb-0 font-weight-bold"
-          >
-            Report a User
-          </h3>
-          <form id="report-user-form" class="py-4 p-3">
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="user-reported" class="font-weight-bold"
-                  >User to Report</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="user-reported"
-                  placeholder="Enter a username"
-                />
-                <small id="reportHelp" class="form-text"
-                  >The report is completly anonymous.</small
-                >
-              </div>
-              <div class="form-group col-sm-12">
-                <label for="report-description" class="font-weight-bold"
-                  >Why are you reporting this user?</label
-                >
-                <textarea
-                  class="form-control"
-                  id="report-description"
-                  rows="3"
-                ></textarea>
-              </div>
-              <div class="form-group col-sm-12">
-                <label for="report-annexes" class="font-weight-bold"
-                  >Input any relevant file for the report analysis.</label
-                >
-                <div class="col-sm-6 pl-0">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="file02" />
-                    <label class="custom-file-label" for="file02"
-                      >Choose file</label
-                    >
-                  </div>
+    <!--generic container-->
+
+    <div class="main-container">
+      <div id="report-user-container" class="px-3">
+        <h3 id="user-report-title" class="title task-title pb-2 mt-5 mb-0 font-weight-bold">
+          Report a User
+        </h3>
+        <form id="report-user-form" class="py-4 p-3">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="user-reported" class="font-weight-bold">User to Report</label>
+              <input type="text" class="form-control" id="user-reported" placeholder="Enter a username" />
+              <small id="reportHelp" class="form-text">The report is completly anonymous.</small>
+            </div>
+            <div class="form-group col-sm-12">
+              <label for="report-description" class="font-weight-bold">Why are you reporting this user?</label>
+              <textarea class="form-control" id="report-description" rows="3"></textarea>
+            </div>
+            <div class="form-group col-sm-12">
+              <label for="report-annexes" class="font-weight-bold">Input any relevant file for the report
+                analysis.</label>
+              <div class="col-sm-6 pl-0">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="file02" />
+                  <label class="custom-file-label" for="file02">Choose file</label>
                 </div>
               </div>
             </div>
-            <div class="d-flex justify-content-end">
-              <button id="submit-report" type="submit" class="btn btn-success">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button id="submit-report" type="submit" class="btn btn-success">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
-      <!--end of main-container can possible be a section in the future-->
     </div>
-    <!--end of page wrapper-->
+    <!--end of main-container can possible be a section in the future-->
+  </div>
+  <!--end of page wrapper-->
 
-    <script>
-      let user_dropdown = document.querySelector(".user-dropdown");
-      let notification_dropdown = document.querySelector(
-        ".notification-dropdown"
-      );
+  <script>
+    let user_dropdown = document.querySelector(".user-dropdown");
+    let notification_dropdown = document.querySelector(
+      ".notification-dropdown"
+    );
 
-      document
-        .querySelector(".notification")
-        .addEventListener("click", function() {
-          notification_dropdown.classList.toggle("d-none");
-          if (!user_dropdown.classList.contains("d-none"))
-            user_dropdown.classList.add("d-none");
-        });
-
-      document.querySelector(".user").addEventListener("click", function() {
-        user_dropdown.classList.toggle("d-none");
-        if (!notification_dropdown.classList.contains("d-none"))
-          notification_dropdown.classList.add("d-none");
+    document
+      .querySelector(".notification")
+      .addEventListener("click", function () {
+        notification_dropdown.classList.toggle("d-none");
+        if (!user_dropdown.classList.contains("d-none"))
+          user_dropdown.classList.add("d-none");
       });
-    </script>
-  </body>
+
+    document.querySelector(".user").addEventListener("click", function () {
+      user_dropdown.classList.toggle("d-none");
+      if (!notification_dropdown.classList.contains("d-none"))
+        notification_dropdown.classList.add("d-none");
+    });
+  </script>
+</body>
+
 </html>

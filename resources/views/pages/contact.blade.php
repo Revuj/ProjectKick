@@ -33,7 +33,7 @@
 @section('content')
 
 <nav id="main-nav" class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand ml-4" href="index.html">
+      <a class="navbar-brand ml-4" href="/">
         <h4><i class="fas fa-drafting-compass"></i> Kick</h4>
       </a>
       <button
@@ -76,8 +76,8 @@
           <input type="checkbox" onchange="toggleTheme()" id="slider">
           <span class="slider round"></span>
         </span>
-        <a href="auth.html" class="btn mr-4">Login</a>
-        <a href="auth.html" class="btn mr-4">Signup</a>
+        <a href="/login" class="btn mr-4">Login</a>
+        <a href="/register" class="btn mr-4">Signup</a>
       </div>
     </nav>
       <div class="main-container">

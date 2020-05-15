@@ -30,7 +30,7 @@
 
 @section('content')
     <nav id="main-nav" class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand ml-4" href="index.html">
+      <a class="navbar-brand ml-4" href="/">
         <h4><i class="fas fa-drafting-compass"></i> Kick</h4>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -66,8 +66,8 @@
           <input type="checkbox" onchange="toggleTheme()" id="slider">
           <span class="slider round"></span>
         </span>
-        <a href="auth.html" class="btn mr-4">Login</a>
-        <a href="auth.html" class="btn mr-4">Signup</a>
+        <a href="/login" class="btn mr-4">Login</a>
+        <a href="/register" class="btn mr-4">Signup</a>
       </div>
     </nav>
     <div>
@@ -184,7 +184,7 @@
             </div>
           </div>
         <h3 class="font-weight-bold mt-5 mb-3 title">Still have questions about ProjectKick?</h3>
-        <button id="get-in-touch" class="custom-button secondary-button"><a href="contact.html" class="nostyle">Get in touch</a></button>
+        <button id="get-in-touch" class="custom-button secondary-button"><a href="/contact" class="nostyle">Get in touch</a></button>
         </div>
       </div>
       <footer>
@@ -193,12 +193,12 @@
             &#x00A9 2020 Project Kick
           </p>
           <p class="p-3 m-0">
-            <a href="about.html">
+            <a href="/about">
               About
             </a>
           </p>
           <p class="p-3 m-0">
-            <a href="contact.html">
+            <a href="/contact">
               Contact Us
             </a>
           </p>

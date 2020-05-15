@@ -1,271 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Template for pages</title>
-    <!-- Owl-Carousel -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-      integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw="
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-      integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw="
-      crossorigin="anonymous"
-    />
-    <!-- Font Awesome CDN -->
-    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <!-- Custom Style-->
-    <link rel="stylesheet" href="./css/navbar.css" />
-    <link rel="stylesheet" href="./css/issuelist.css" />
 
-    <script src="./js/issueslist.js" defer></script>
-    <script src="./js/navbar.js" defer></script>
-    <script src="js/index.js" defer></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Template for pages</title>
+  <!-- Owl-Carousel -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+  <!-- Font Awesome CDN -->
+  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!-- Custom Style-->
+  <link rel="stylesheet" href="./css/navbar.css" />
+  <link rel="stylesheet" href="./css/issuelist.css" />
 
-  </head>
-  <body>
-    <div class="page-wrapper h-100 is-collapsed">
-      <nav class="top-navbar">
-        <div
-          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
-        >
-          <div class="hamburger mobile side-menu-item">
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-          </div>
-          <div class="logo">
-            <a class="nostyle" href="my_projects.html">
-              <h4 class="mb-0 px-3">
-                <i class="fas fa-drafting-compass"></i> Kick
-              </h4>
-            </a>
-          </div>
+  <script src="./js/issueslist.js" defer></script>
+  <script src="./js/navbar.js" defer></script>
+  <script src="js/index.js" defer></script>
 
-          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-            <!--notifications-->
-            <li class="utility notification mb-0">
-              <a href="#"><i class="fas fa-bell"></i></a>
-              <span class="num">4</span>
-              <div class="notification-dropdown d-none">
-                <h6 class="notification-title text-center">notifications</h6>
-                <div class="notify_item clickable">
-                  <div class="notify_img">
-                    <img
-                      src="./assets/profile.png"
-                      alt="profile_pic"
-                      style="width: 50px"
-                    />
-                  </div>
-                  <div class="notify_info">
-                    <p>Alex commented on the<span>Task Share</span></p>
-                    <span class="notify_time">10 minutes ago</span>
-                  </div>
+</head>
+
+<body>
+  <div class="page-wrapper h-100 is-collapsed">
+    <nav class="top-navbar">
+      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
+        <div class="hamburger mobile side-menu-item">
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+        </div>
+        <div class="logo">
+          <a class="nostyle" href="my_projects.html">
+            <h4 class="mb-0 px-3">
+              <i class="fas fa-drafting-compass"></i> Kick
+            </h4>
+          </a>
+        </div>
+
+        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+          <!--notifications-->
+          <li class="utility notification mb-0">
+            <a href="#"><i class="fas fa-bell"></i></a>
+            <span class="num">4</span>
+            <div class="notification-dropdown d-none">
+              <h6 class="notification-title text-center">notifications</h6>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
                 </div>
-                <div class="notify_item clickable">
-                  <div class="notify_img">
-                    <img
-                      src="./assets/profile.png"
-                      alt="profile_pic"
-                      style="width: 50px"
-                    />
-                  </div>
-                  <div class="notify_info">
-                    <p>Alex commented on the<span>Task Share</span></p>
-                    <span class="notify_time">10 minutes ago</span>
-                  </div>
-                </div>
-                <div class="notify_item clickable">
-                  More(2) ...
+                <div class="notify_info">
+                  <p>Alex commented on the<span>Task Share</span></p>
+                  <span class="notify_time">10 minutes ago</span>
                 </div>
               </div>
-            </li>
-            <!--profile-->
-            <li class="px-2 utility ml-3 mb-0 user  ">
-              <a href="#"><i class="fas fa-user"></i></a>
-              <div class="user-dropdown d-none">
-                <h6 class="user-title text-center">Profile</h6>
-                <div class="notify_item clickable">
-                  <div class="notify_img">
-                    <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
-                  </div>
-                  <div class="notify_info">
-                    <p><a class="nostyle" href="profile.html">Me</a></p>
-                  </div>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 50px" />
                 </div>
-                <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
-                <div class="notify_item clickable d-flex">
-                  <p class="m-0" id="dark-mode">Dark Mode</p>
-                  <span class="mt-2 mr-4">
-                    <label id="switch" class="switch">
+                <div class="notify_info">
+                  <p>Alex commented on the<span>Task Share</span></p>
+                  <span class="notify_time">10 minutes ago</span>
+                </div>
+              </div>
+              <div class="notify_item clickable">
+                More(2) ...
+              </div>
+            </div>
+          </li>
+          <!--profile-->
+          <li class="px-2 utility ml-3 mb-0 user  ">
+            <a href="#"><i class="fas fa-user"></i></a>
+            <div class="user-dropdown d-none">
+              <h6 class="user-title text-center">Profile</h6>
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img src="./assets/profile.png" alt="profile_pic" style="width: 40px">
+                </div>
+                <div class="notify_info">
+                  <p><a class="nostyle" href="profile.html">Me</a></p>
+                </div>
+              </div>
+              <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+              <div class="notify_item clickable d-flex">
+                <p class="m-0" id="dark-mode">Dark Mode</p>
+                <span class="mt-2 mr-4">
+                  <label id="switch" class="switch">
                     <input type="checkbox" onchange="toggleTheme()" id="slider">
                     <span class="slider round"></span>
-                  </span>
-                </div>
-  
-                <div class="notify_item clickable d-flex">
-                  <a href="index.html" class="nostyle">Logout</a>
-                </div>
-  
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <!--       inside a project he sidebar-menu options can be       board       flux diagram       calendar       tasks       forum       back       ...     -->
-      <nav class="sidebar-menu">
-        <ul>
-          <li class="hamburger side-menu-item">
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-          </li>
-          <li class="side-menu-item dropdown">
-            <a href="project_overview.html">
-              <span class="m-2"><i class="fas fa-home"></i> </span>
-              <span class="side-menu-item-title">Project Overview</span>
-            </a>
-            <ul class="side-menu-dropdown">
-              <li class="side-menu-item main-dropdown-title">
-                <a href="project_overview.html">
-                  <span class="">Project Overview</span>
-                </a>
-              </li>
-              <li class="side-menu-item">
-                <a class="" href="project_team.html">
-                  <span class="">Members</span>
-                </a>
-              </li>
-              <li class="side-menu-item">
-                <a href="activity.html"> <span class="">Activity</span> </a>
-              </li>
-            </ul>
-          </li>
-          <li class="side-menu-item dropdown active">
-            <a href="issuelist.html">
-              <span class="m-2"><i class="far fa-folder"></i></span>
-              <span class="side-menu-item-title">Issues</span>
-            </a>
-            <ul class="side-menu-dropdown">
-              <li class="side-menu-item main-dropdown-title">
-                <a href="issuelist.html"> <span class="">Issues</span> </a>
-              </li>
-              <li class="side-menu-item">
-                <a class="active" href="issuelist.html">
-                  <span class="">List</span>
-                </a>
-              </li>
-              <li class="side-menu-item">
-                <a href="board.html"> <span class="">Boards</span> </a>
-              </li>
-            </ul>
-          </li>
-          <li class="side-menu-item">
-            <a href="chat.html">
-              <span class="m-2"><i class="far fa-comment-alt"></i></span>
-              <span class="side-menu-item-title">Chat</span>
-            </a>
+                </span>
+              </div>
+
+              <div class="notify_item clickable d-flex">
+                <a href="/" class="nostyle">Logout</a>
+              </div>
+
           </li>
         </ul>
-      </nav>
-      <!--generic container-->
-      <div class="main-container">
-        <div class="main-content-container px-4">
-          <nav>
-            <ol class="breadcrumb custom-separator">
-              <li><a href="#0">lbaw</a></li>
-              <li><a href="#0">Issues</a></li>
-              <li class="current">List</li>
-            </ol>
-          </nav>
-          <div id="issue-list-container" class="pt-1 mb-0">
-            <ul class="d-flex border-bottom nav-links pb-2">
-              <li id="open-issues" class="active">
-                Open <span class="type-counter">2</span>
-              </li>
-              <li id="closed-issues">
-                Closed <span class="type-counter">1</span>
-              </li>
-              <li id="all-issues">
-                All <span class="type-counter">3</span>
-              </li>
-              <button
-                type="button"
-                data-toggle="modal"
-                data-target="#addTaskModal"
-                class="btn btn-success ml-auto "
-              >
-                <i class="fa fa-plus-circle fa-lg"></i> <span>Add Task</span>
-              </button>
-            </ul>
-            
-            <div id="filter-issues" class="border-bottom py-3 my-0">
-              <form class="d-md-flex justify-content-between">
-                <div class="form-group mb-0 flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="issues-filter"
-                    id="issues-filter"
-                    placeholder="Search or filter results..."
-                  />
+      </div>
+    </nav>
+    <!--       inside a project he sidebar-menu options can be       board       flux diagram       calendar       tasks       forum       back       ...     -->
+    <nav class="sidebar-menu">
+      <ul>
+        <li class="hamburger side-menu-item">
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+        </li>
+        <li class="side-menu-item dropdown">
+          <a href="project_overview.html">
+            <span class="m-2"><i class="fas fa-home"></i> </span>
+            <span class="side-menu-item-title">Project Overview</span>
+          </a>
+          <ul class="side-menu-dropdown">
+            <li class="side-menu-item main-dropdown-title">
+              <a href="project_overview.html">
+                <span class="">Project Overview</span>
+              </a>
+            </li>
+            <li class="side-menu-item">
+              <a class="" href="project_team.html">
+                <span class="">Members</span>
+              </a>
+            </li>
+            <li class="side-menu-item">
+              <a href="activity.html"> <span class="">Activity</span> </a>
+            </li>
+          </ul>
+        </li>
+        <li class="side-menu-item dropdown active">
+          <a href="issuelist.html">
+            <span class="m-2"><i class="far fa-folder"></i></span>
+            <span class="side-menu-item-title">Issues</span>
+          </a>
+          <ul class="side-menu-dropdown">
+            <li class="side-menu-item main-dropdown-title">
+              <a href="issuelist.html"> <span class="">Issues</span> </a>
+            </li>
+            <li class="side-menu-item">
+              <a class="active" href="issuelist.html">
+                <span class="">List</span>
+              </a>
+            </li>
+            <li class="side-menu-item">
+              <a href="board.html"> <span class="">Boards</span> </a>
+            </li>
+          </ul>
+        </li>
+        <li class="side-menu-item">
+          <a href="chat.html">
+            <span class="m-2"><i class="far fa-comment-alt"></i></span>
+            <span class="side-menu-item-title">Chat</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!--generic container-->
+    <div class="main-container">
+      <div class="main-content-container px-4">
+        <nav>
+          <ol class="breadcrumb custom-separator">
+            <li><a href="#0">lbaw</a></li>
+            <li><a href="#0">Issues</a></li>
+            <li class="current">List</li>
+          </ol>
+        </nav>
+        <div id="issue-list-container" class="pt-1 mb-0">
+          <ul class="d-flex border-bottom nav-links pb-2">
+            <li id="open-issues" class="active">
+              Open <span class="type-counter">2</span>
+            </li>
+            <li id="closed-issues">
+              Closed <span class="type-counter">1</span>
+            </li>
+            <li id="all-issues">
+              All <span class="type-counter">3</span>
+            </li>
+            <button type="button" data-toggle="modal" data-target="#addTaskModal" class="btn btn-success ml-auto ">
+              <i class="fa fa-plus-circle fa-lg"></i> <span>Add Task</span>
+            </button>
+          </ul>
+
+          <div id="filter-issues" class="border-bottom py-3 my-0">
+            <form class="d-md-flex justify-content-between">
+              <div class="form-group mb-0 flex-grow-1">
+                <input type="text" class="form-control" name="issues-filter" id="issues-filter"
+                  placeholder="Search or filter results..." />
+              </div>
+              <div id="filter-buttons" class="dropdown ml-1">
+                <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownFiltersButton"
+                  type="button" type="submit" class="custom-button primary-button dropdown-toggle">
+                  Sort by<i class="fas fa-chevron-down ml-3"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownFiltersButton">
+                  <a class="dropdown-item" href="#">Due Date</a>
+                  <a class="dropdown-item" href="#">Opening Date</a>
+                  <a class="dropdown-item" href="#">Assignees</a>
                 </div>
-                <div id="filter-buttons" class="dropdown ml-1">
-                  <button
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    id="dropdownFiltersButton"
-                    type="button"
-                    type="submit"
-                    class="custom-button primary-button dropdown-toggle"
-                  >
-                    Sort by<i class="fas fa-chevron-down ml-3"></i>
-                  </button>
-                  <div
-                    class="dropdown-menu"
-                    aria-labelledby="dropdownFiltersButton"
-                  >
-                    <a class="dropdown-item" href="#">Due Date</a>
-                    <a class="dropdown-item" href="#">Opening Date</a>
-                    <a class="dropdown-item" href="#">Assignees</a>
-                  </div>
-                  <button id = "asc-button" class="custom-button primary-button">
-                    <i class="fas fa-arrow-up"></i>
-                  </button>
-                </div>
-              </form>
-            </div>
+                <button id="asc-button" class="custom-button primary-button">
+                  <i class="fas fa-arrow-up"></i>
+                </button>
+              </div>
+            </form>
           </div>
-          
-          <ul id="issue-list" class="mx-2">
-            <!--
+        </div>
+
+        <ul id="issue-list" class="mx-2">
+          <!--
             <li class="issue open px-2 border-bottom">
               <div class="issue-header d-flex align-items-center">
                 <a href="issue.html" class="task-title nostyle title">boards</a>
@@ -442,186 +397,135 @@
 
 
           -->
-          </ul>
-        </div>
+        </ul>
       </div>
-      <!--end of main-container can possible be a section in the future-->
-      <!-- Sidebar Issue -->
-      <div id="side-issue-container">
-        <div id="side-issue" class="d-flex flex-column h-100 mx-3 py-3">
-          <div id="side-issue-header" class="border-bottom mb-3">
-            <div class="d-flex align-items-start">
-              <h4 class="task-title mr-auto">HELLO</h4>
-              <form class="edit-issue-title-form form-group d-none mr-auto">
-                <div class="form-group text-left">
-                  <input
-                    type="text"
-                    class="form-control"
-                    class="item-title"
-                    placeholder=""
-                  />
-                </div>
-                <div class="d-flex justify-content-between">
-                  <button
-                    type="submit"
-                    class="btn btn-primary edit-item-title btn"
-                  >
-                    Submit
-                  </button>
-                  <button
-                    type="reset"
-                    class="btn btn-primary edit-item-title-cancel"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-              <button type="button" class="btn d-none edit-task mr-1">
-                <i class="fas fa-pencil-alt float-right"></i>
-              </button>
-              <button type="button" class="btn close-side-issue">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-            <p class="w-100">#1 Opened by Revuj</p>
-          </div>
-          <div class="assignees-container">
-            <h6 class="block pb-2">Assignees</h6>
-            <ul class="assignees d-flex align-items-center">
-              <li class="mr-2">
-                <img
-                  src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
-                />
-              </li>
-              <li class="mr-2">
-                <img
-                  src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
-                />
-              </li>
-              <li>
-                <button type="button" class="custom-button add-button">
-                  <i class="fas fa-plus"></i>
+    </div>
+    <!--end of main-container can possible be a section in the future-->
+    <!-- Sidebar Issue -->
+    <div id="side-issue-container">
+      <div id="side-issue" class="d-flex flex-column h-100 mx-3 py-3">
+        <div id="side-issue-header" class="border-bottom mb-3">
+          <div class="d-flex align-items-start">
+            <h4 class="task-title mr-auto">HELLO</h4>
+            <form class="edit-issue-title-form form-group d-none mr-auto">
+              <div class="form-group text-left">
+                <input type="text" class="form-control" class="item-title" placeholder="" />
+              </div>
+              <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary edit-item-title btn">
+                  Submit
                 </button>
-              </li>
-            </ul>
-          </div>
-          <div class="labels-container">
-            <h6 class="block">Labels</h6>
-            <ul class="labels d-flex align-items-center">
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-info">Iteration 1</h6>
-              </li>
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-warning">Iteration 2</h6>
-              </li>
-              <li>
-                <button type="button" class="custom-button add-button">
-                  <i class="fas fa-plus"></i>
+                <button type="reset" class="btn btn-primary edit-item-title-cancel">
+                  Cancel
                 </button>
-              </li>
-            </ul>
-          </div>
-          <div class="due-date-container">
-            <button type="button" class="custom-button due-date-button">
-              <i class="far fa-clock mr-2"></i>Feb 29
+              </div>
+            </form>
+            <button type="button" class="btn d-none edit-task mr-1">
+              <i class="fas fa-pencil-alt float-right"></i>
+            </button>
+            <button type="button" class="btn close-side-issue">
+              <i class="fas fa-times"></i>
             </button>
           </div>
-          <button
-            type="button"
-            class="custom-button close-button delete-issue mt-auto"
-          >
-            Delete
+          <p class="w-100">#1 Opened by Revuj</p>
+        </div>
+        <div class="assignees-container">
+          <h6 class="block pb-2">Assignees</h6>
+          <ul class="assignees d-flex align-items-center">
+            <li class="mr-2">
+              <img src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4" alt="@vitorb19" draggable="false" />
+            </li>
+            <li class="mr-2">
+              <img src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4" alt="@vitorb19" draggable="false" />
+            </li>
+            <li>
+              <button type="button" class="custom-button add-button">
+                <i class="fas fa-plus"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="labels-container">
+          <h6 class="block">Labels</h6>
+          <ul class="labels d-flex align-items-center">
+            <li class="mr-2">
+              <h6 class="mb-0 p-1 list-item-label bg-info">Iteration 1</h6>
+            </li>
+            <li class="mr-2">
+              <h6 class="mb-0 p-1 list-item-label bg-warning">Iteration 2</h6>
+            </li>
+            <li>
+              <button type="button" class="custom-button add-button">
+                <i class="fas fa-plus"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="due-date-container">
+          <button type="button" class="custom-button due-date-button">
+            <i class="far fa-clock mr-2"></i>Feb 29
           </button>
         </div>
+        <button type="button" class="custom-button close-button delete-issue mt-auto">
+          Delete
+        </button>
       </div>
-      <div
-        class="modal"
-        id="addTaskModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="addTaskModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-row">
-                  <div class="col">
-                    <label for="board-name" class="col-form-label"
-                      >Select Board</label
-                    >
-                    <input type="text" class="form-control" id="board-name" />
-                  </div>
+    </div>
+    <div class="modal" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-row">
+                <div class="col">
+                  <label for="board-name" class="col-form-label">Select Board</label>
+                  <input type="text" class="form-control" id="board-name" />
                 </div>
-                <div class="form-group mt-4">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="task-name"
-                    placeholder="What needs to be done?"
-                  />
+              </div>
+              <div class="form-group mt-4">
+                <input type="text" class="form-control" id="task-name" placeholder="What needs to be done?" />
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <label for="task-assignment" class="col-form-label">Who should do this?</label>
+                  <input type="text" class="form-control" id="task-assignment" />
                 </div>
-                <div class="form-row">
-                  <div class="col">
-                    <label for="task-assignment" class="col-form-label"
-                      >Who should do this?</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="task-assignment"
-                    />
-                  </div>
-                  <div class="col">
-                    <label for="task-due-date" class="col-form-label"
-                      >Due Date</label
-                    >
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="task-due-date"
-                    />
-                  </div>
+                <div class="col">
+                  <label for="task-due-date" class="col-form-label">Due Date</label>
+                  <input type="date" class="form-control" id="task-due-date" />
                 </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn " data-dismiss="modal">
-                Close
-              </button>
-              <button type="button" class="btn btn-success">Add Task</button>
-            </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn " data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-success">Add Task</button>
           </div>
         </div>
       </div>
     </div>
-    <!--end of page wrapper-->
-    <script>
-      document
-        .querySelector('.notification')
-        .addEventListener('click', function() {
-          console.log(document.querySelector('.notification').classList);
-          document
-            .querySelector('.notification-dropdown')
-            .classList.toggle('display-block');
-        });
-      
-    </script>
-  </body>
+  </div>
+  <!--end of page wrapper-->
+  <script>
+    document
+      .querySelector('.notification')
+      .addEventListener('click', function () {
+        console.log(document.querySelector('.notification').classList);
+        document
+          .querySelector('.notification-dropdown')
+          .classList.toggle('display-block');
+      });
+
+  </script>
+</body>
+
 </html>

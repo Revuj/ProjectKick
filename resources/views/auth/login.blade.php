@@ -33,7 +33,7 @@
 
 <div class="container mt-5 shadow-lg rounded">
     <div class="logo py-3 px-3">
-      <a class="nostyle" href="index.html">
+      <a class="nostyle" href="/">
         <h4 class="mb-0 px-3">
           <i class="fas fa-drafting-compass"></i> Kick
         </h4>

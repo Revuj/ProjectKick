@@ -79,8 +79,8 @@
             <input type="checkbox" onchange="toggleTheme()" id="slider">
             <span class="slider round"></span>
         </span>
-        <a href="auth.html" class="btn mr-4">Login</a>
-        <a href="auth.html" class="btn mr-4">Signup</a>
+        <a href="/login" class="btn mr-4">Login</a>
+        <a href="/register" class="btn mr-4">Signup</a>
         </div>
     </nav>
 

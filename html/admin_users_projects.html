@@ -1,712 +1,590 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>Kick | Users List</title>
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Kick | Users List</title>
 
-    <link rel="stylesheet" href="./css/admin_users_projects.css" />
-    <link rel="stylesheet" href="./css/navbar.css" />
-    <script src="js/admin_user_projects.js" defer></script>
-    <script src="js/index.js" defer></script>
-  </head>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
-  <body>
-    <div class="page-wrapper h-100 is-collapsed">
-      <nav class="top-navbar">
-        <div
-          class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between"
-        >
-          <div class="hamburger mobile side-menu-item">
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-          </div>
-          <div class="logo">
-            <a class="nostyle" href="index.html">
-              <h4 class="mb-0 px-3">
-                <i class="fas fa-drafting-compass"></i> Kick
-              </h4>
-            </a>
-          </div>
-          <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
-            <!--profile-->
-<li class="px-2 utility ml-3 mb-0 user">
-  <a href="#"><i class="fas fa-user"></i></a>
-  <div class="user-dropdown d-none">
-    <h6 class="user-title text-center">Profile</h6>
-    <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
-    <div class="notify_item clickable d-flex">
-      <p class="m-0" id="dark-mode">Dark Mode</p>
-    </div>
+  <link rel="stylesheet" href="./css/admin_users_projects.css" />
+  <link rel="stylesheet" href="./css/navbar.css" />
+  <script src="js/admin_user_projects.js" defer></script>
+  <script src="js/index.js" defer></script>
+</head>
 
-    <div class="notify_item clickable d-flex">
-      <a href="index.html" class="nostyle">Logout</a>
-    </div>
-
-</li>
-</ul>
+<body>
+  <div class="page-wrapper h-100 is-collapsed">
+    <nav class="top-navbar">
+      <div class="top-menu d-flex flex-row bd-highlight align-items-center justify-content-between">
+        <div class="hamburger mobile side-menu-item">
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
         </div>
-      </nav>
-      <nav class="sidebar-menu">
-        <ul>
-          <li class="hamburger side-menu-item">
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-            <div class="hamburger-symbol"></div>
-          </li>
-          <li class="side-menu-item dropdown">
-            <a href="admin.html">
-              <span class="m-2"><i class="fas fa-chart-line"></i></span>
-              <span class="side-menu-item-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="side-menu-item dropdown">
-            <a href="user_reports.html">
-              <span class="m-2"><i class="fas fa-folder"></i></span>
-              <span class="side-menu-item-title">User Reports</span>
-            </a>
-          </li>
-          <li class="side-menu-item">
-            <a class="active" href="admin_users_projects.html">
-              <span class="m-2"><i class="fas fa-search"></i></span>
-              <span class="side-menu-item-title">Search</span>
-            </a>
+        <div class="logo">
+          <a class="nostyle" href="/">
+            <h4 class="mb-0 px-3">
+              <i class="fas fa-drafting-compass"></i> Kick
+            </h4>
+          </a>
+        </div>
+        <ul class="d-flex align-items-end align-items-center mb-0 mr-3">
+          <!--profile-->
+          <li class="px-2 utility ml-3 mb-0 user">
+            <a href="#"><i class="fas fa-user"></i></a>
+            <div class="user-dropdown d-none">
+              <h6 class="user-title text-center">Profile</h6>
+              <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
+              <div class="notify_item clickable d-flex">
+                <p class="m-0" id="dark-mode">Dark Mode</p>
+              </div>
+
+              <div class="notify_item clickable d-flex">
+                <a href="/" class="nostyle">Logout</a>
+              </div>
+
           </li>
         </ul>
-      </nav>
+      </div>
+    </nav>
+    <nav class="sidebar-menu">
+      <ul>
+        <li class="hamburger side-menu-item">
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+          <div class="hamburger-symbol"></div>
+        </li>
+        <li class="side-menu-item dropdown">
+          <a href="admin.html">
+            <span class="m-2"><i class="fas fa-chart-line"></i></span>
+            <span class="side-menu-item-title">Dashboard</span>
+          </a>
+        </li>
+        <li class="side-menu-item dropdown">
+          <a href="user_reports.html">
+            <span class="m-2"><i class="fas fa-folder"></i></span>
+            <span class="side-menu-item-title">User Reports</span>
+          </a>
+        </li>
+        <li class="side-menu-item">
+          <a class="active" href="admin_users_projects.html">
+            <span class="m-2"><i class="fas fa-search"></i></span>
+            <span class="side-menu-item-title">Search</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-      <div class="main-container" id="my_work">
-        <div class="main-content-container px-4">
-          <nav>
-            <ol class="breadcrumb custom-separator">
-              <li class="current">Users and Projects</li>
-            </ol>
-          </nav>
-          <div id="tables-types" class="d-flex border-bottom p-2">
-            <li class="active">
-              Users <span class="tables-type-counter">9</span>
-            </li>
-            <li>Projects <span class="tables-type-counter">5</span></li>
-          </div>
-          <div id="filter-issues" class="border-bottom py-3 my-0">
-            <form class="d-md-flex justify-content-between">
-              <div class="form-group mb-0 flex-grow-1">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="issues-filter"
-                  id="issues-filter"
-                  placeholder="Search or filter results..."
-                />
+    <div class="main-container" id="my_work">
+      <div class="main-content-container px-4">
+        <nav>
+          <ol class="breadcrumb custom-separator">
+            <li class="current">Users and Projects</li>
+          </ol>
+        </nav>
+        <div id="tables-types" class="d-flex border-bottom p-2">
+          <li class="active">
+            Users <span class="tables-type-counter">9</span>
+          </li>
+          <li>Projects <span class="tables-type-counter">5</span></li>
+        </div>
+        <div id="filter-issues" class="border-bottom py-3 my-0">
+          <form class="d-md-flex justify-content-between">
+            <div class="form-group mb-0 flex-grow-1">
+              <input type="text" class="form-control" name="issues-filter" id="issues-filter"
+                placeholder="Search or filter results..." />
+            </div>
+            <div id="filter-buttons" class="dropdown ml-1">
+              <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownFiltersButton"
+                type="button" type="submit" class="custom-button primary-button dropdown-toggle">
+                Sort by<i class="fas fa-chevron-down ml-3"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownFiltersButton">
+                <a class="dropdown-item" href="#">Due Date</a>
+                <a class="dropdown-item" href="#">Opening Date</a>
+                <a class="dropdown-item" href="#">Assignees</a>
               </div>
-              <div id="filter-buttons" class="dropdown ml-1">
-                <button
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  id="dropdownFiltersButton"
-                  type="button"
-                  type="submit"
-                  class="custom-button primary-button dropdown-toggle"
-                >
-                  Sort by<i class="fas fa-chevron-down ml-3"></i>
-                </button>
-                <div
-                  class="dropdown-menu"
-                  aria-labelledby="dropdownFiltersButton"
-                >
-                  <a class="dropdown-item" href="#">Due Date</a>
-                  <a class="dropdown-item" href="#">Opening Date</a>
-                  <a class="dropdown-item" href="#">Assignees</a>
-                </div>
-                <button type="submit" class="custom-button primary-button">
-                  <i class="fas fa-arrow-up"></i>
-                </button>
-              </div>
-            </form>
-          </div>
-          <div class="row m-2">
-            <div class="mx-auto">
-              <div class="main-box clearfix">
-                <div class="table-responsive" id="users">
-                  <table class="table user-list">
-                    <thead>
-                      <tr>
-                        <th style="width: 30%">User</th>
-                        <th style="width: 15%">Created</th>
-                        <th class="text-center" style="width: 15%">Status</th>
-                        <th style="width: 25%">Email</th>
-                        <th style="width: 15%">&nbsp;</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td data-label="User">
-                          <img src="assets/profile.png" alt="" />
-                          <a href="#" class="user-link">Mila Kunis</a>
-                        </td>
-                        <td data-label="Created">
-                          2013/08/08
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-secondary">Inactive</span>
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">mila@kunis.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-ban fa-inverse"></i>
-                              Ban
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                          <img src="assets/profile.png" alt="" />
-                          <a href="#" class="user-link">George Clooney</a>
-                        </td>
-                        <td data-label="Created">
-                          2013/08/12
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-danger">Banned</span>
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">marlon@brando.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-ban fa-inverse"></i>
-                              Ban
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                          <img src="assets/profile.png" alt="" />
-                          <a href="#" class="user-link">Ryan Gossling</a>
-                        </td>
-                        <td data-label="Created">
-                          2013/03/03
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-success">Active</span>
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">jack@nicholson</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-ban fa-inverse"></i>
-                              Ban
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                          <img src="assets/profile.png" alt="" />
-                          <a href="#" class="user-link">Emma Watson</a>
-                        </td>
-                        <td data-label="Created">
-                          2004/01/24
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-success">Active</span>
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">humphrey@bogart.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-ban fa-inverse"></i>
-                              Ban
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                          <img src="assets/profile.png" alt="" />
-                          <a href="#" class="user-link">Robert Downey Jr.</a>
-                        </td>
-                        <td data-label="Created">
-                          2013/12/31
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-success">Active</span>
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">spencer@tracy</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-ban fa-inverse"></i>
-                              Ban
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                          <img src="assets/profile.png" alt="" />
-                          <a href="#" class="user-link">Mila Kunis</a>
-                        </td>
-                        <td data-label="Created">
-                          2013/08/08
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-danger">Banned</span>
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">mila@kunis.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-ban fa-inverse"></i>
-                              Ban
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                          <img src="assets/profile.png" alt="" />
-                          <a href="#" class="user-link">George Clooney</a>
-                        </td>
-                        <td data-label="Created">
-                          2013/08/12
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-secondary">Inactive</span>
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">marlon@brando.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-ban fa-inverse"></i>
-                              Ban
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                          <img src="assets/profile.png" alt="" />
-                          <a href="#" class="user-link">Ryan Gossling</a>
-                        </td>
-                        <td data-label="Created">
-                          2013/03/03
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-success">Active</span>
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">jack@nicholson</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-ban fa-inverse"></i>
-                              Ban
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="User">
-                          <img src="assets/profile.png" alt="" />
-                          <a href="#" class="user-link">Emma Watson</a>
-                        </td>
-                        <td data-label="Created">
-                          2004/01/24
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-success">Active</span>
-                        </td>
-                        <td data-label="Email">
-                          <a href="#">humphrey@bogart.com</a>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-ban fa-inverse"></i>
-                              Ban
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div class="table-responsive d-none" id="projects">
-                  <table class="table project-list">
-                    <thead>
-                      <tr>
-                        <th style="width: 30%">Projects</th>
-                        <th style="width: 15%">Created</th>
-                        <th class="text-center" style="width: 15%">Status</th>
-                        <th style="width: 25%">Progress</th>
-                        <th style="width: 15%">&nbsp;</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td data-label="Project">
-                          <a href="#" class="project-link"
-                            >Creative Portfolio</a
-                          >
-                        </td>
-                        <td data-label="Created">
-                          2013/08/08
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-secondary">Inactive</span>
-                        </td>
-                        <td data-label="Progress">
-                          <div class="mb-2 progress" style="height: 5px;">
-                            <div
-                              class="progress-bar"
-                              role="progressbar"
-                              aria-valuenow="80"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              style="width: 80%;"
-                            ></div>
-                          </div>
-                          <div>
-                            Tasks Completed:<span class="text-inverse"
-                              >36/94</span
-                            >
-                          </div>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa-inverse"></i>
-                              Delete
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="Project">
-                          <a href="#" class="project-link"
-                            >Directory &amp; listing</a
-                          >
-                        </td>
-                        <td data-label="Created">
-                          2013/08/12
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-secondary">Inactive</span>
-                        </td>
-                        <td data-label="Progress">
-                          <div class="mb-2 progress" style="height: 5px;">
-                            <div
-                              class="progress-bar"
-                              role="progressbar"
-                              aria-valuenow="60"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              style="width: 60%;"
-                            ></div>
-                          </div>
-                          <div>
-                            Tasks Completed:<span class="text-inverse"
-                              >26/94</span
-                            >
-                          </div>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa-inverse"></i>
-                              Delete
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="Project">
-                          <a href="#" class="project-link">New Dashboard BS3</a>
-                        </td>
-                        <td data-label="Created">
-                          2013/03/03
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-success">Active</span>
-                        </td>
-                        <td data-label="Progress">
-                          <div class="mb-2 progress" style="height: 5px;">
-                            <div
-                              class="progress-bar"
-                              role="progressbar"
-                              aria-valuenow="20"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              style="width: 20%;"
-                            ></div>
-                          </div>
-                          <div>
-                            Tasks Completed:<span class="text-inverse"
-                              >10/50</span
-                            >
-                          </div>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa-inverse"></i>
-                              Delete
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="Project">
-                          <a href="#" class="project-link"
-                            >Creative Portfolio</a
-                          >
-                        </td>
-                        <td data-label="Created">
-                          2004/01/24
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-success">Active</span>
-                        </td>
-                        <td data-label="Progress">
-                          <div class="mb-2 progress" style="height: 5px;">
-                            <div
-                              class="progress-bar"
-                              role="progressbar"
-                              aria-valuenow="80"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              style="width: 80%;"
-                            ></div>
-                          </div>
-                          <div>
-                            Tasks Completed:<span class="text-inverse"
-                              >36/94</span
-                            >
-                          </div>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa-inverse"></i>
-                              Delete
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-label="Project">
-                          <a href="#" class="project-link"
-                            >Directory &amp; listing</a
-                          >
-                        </td>
-                        <td data-label="Created">
-                          2013/12/31
-                        </td>
-                        <td data-label="Status" class="align-center">
-                          <span class="badge badge-success">Active</span>
-                        </td>
-                        <td data-label="Progress">
-                          <div class="mb-2 progress" style="height: 5px;">
-                            <div
-                              class="progress-bar"
-                              role="progressbar"
-                              aria-valuenow="90"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              style="width: 90%;"
-                            ></div>
-                          </div>
-                          <div>
-                            Tasks Completed:<span class="text-inverse"
-                              >90/100</span
-                            >
-                          </div>
-                        </td>
-                        <td align="center">
-                          <a href="#" class="table-link">
-                            <button class="custom-button close-button">
-                              <i class="fa fa-trash fa-inverse"></i>
-                              Delete
-                            </button>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <button type="submit" class="custom-button primary-button">
+                <i class="fas fa-arrow-up"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="row m-2">
+          <div class="mx-auto">
+            <div class="main-box clearfix">
+              <div class="table-responsive" id="users">
+                <table class="table user-list">
+                  <thead>
+                    <tr>
+                      <th style="width: 30%">User</th>
+                      <th style="width: 15%">Created</th>
+                      <th class="text-center" style="width: 15%">Status</th>
+                      <th style="width: 25%">Email</th>
+                      <th style="width: 15%">&nbsp;</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td data-label="User">
+                        <img src="assets/profile.png" alt="" />
+                        <a href="#" class="user-link">Mila Kunis</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/08/08
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-secondary">Inactive</span>
+                      </td>
+                      <td data-label="Email">
+                        <a href="#">mila@kunis.com</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-ban fa-inverse"></i>
+                            Ban
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="User">
+                        <img src="assets/profile.png" alt="" />
+                        <a href="#" class="user-link">George Clooney</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/08/12
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-danger">Banned</span>
+                      </td>
+                      <td data-label="Email">
+                        <a href="#">marlon@brando.com</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-ban fa-inverse"></i>
+                            Ban
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="User">
+                        <img src="assets/profile.png" alt="" />
+                        <a href="#" class="user-link">Ryan Gossling</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/03/03
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-success">Active</span>
+                      </td>
+                      <td data-label="Email">
+                        <a href="#">jack@nicholson</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-ban fa-inverse"></i>
+                            Ban
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="User">
+                        <img src="assets/profile.png" alt="" />
+                        <a href="#" class="user-link">Emma Watson</a>
+                      </td>
+                      <td data-label="Created">
+                        2004/01/24
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-success">Active</span>
+                      </td>
+                      <td data-label="Email">
+                        <a href="#">humphrey@bogart.com</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-ban fa-inverse"></i>
+                            Ban
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="User">
+                        <img src="assets/profile.png" alt="" />
+                        <a href="#" class="user-link">Robert Downey Jr.</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/12/31
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-success">Active</span>
+                      </td>
+                      <td data-label="Email">
+                        <a href="#">spencer@tracy</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-ban fa-inverse"></i>
+                            Ban
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="User">
+                        <img src="assets/profile.png" alt="" />
+                        <a href="#" class="user-link">Mila Kunis</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/08/08
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-danger">Banned</span>
+                      </td>
+                      <td data-label="Email">
+                        <a href="#">mila@kunis.com</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-ban fa-inverse"></i>
+                            Ban
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="User">
+                        <img src="assets/profile.png" alt="" />
+                        <a href="#" class="user-link">George Clooney</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/08/12
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-secondary">Inactive</span>
+                      </td>
+                      <td data-label="Email">
+                        <a href="#">marlon@brando.com</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-ban fa-inverse"></i>
+                            Ban
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="User">
+                        <img src="assets/profile.png" alt="" />
+                        <a href="#" class="user-link">Ryan Gossling</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/03/03
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-success">Active</span>
+                      </td>
+                      <td data-label="Email">
+                        <a href="#">jack@nicholson</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-ban fa-inverse"></i>
+                            Ban
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="User">
+                        <img src="assets/profile.png" alt="" />
+                        <a href="#" class="user-link">Emma Watson</a>
+                      </td>
+                      <td data-label="Created">
+                        2004/01/24
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-success">Active</span>
+                      </td>
+                      <td data-label="Email">
+                        <a href="#">humphrey@bogart.com</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-ban fa-inverse"></i>
+                            Ban
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
-              <div class="d-flex mt-3">
-                <nav class="" aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a href="#" class="page-link" aria-label="Previous"
-                        ><span aria-hidden="true"
-                          ><i class="fa fa-fw fa-angle-left"></i></span
-                        ><span class="sr-only">Previous</span></a
-                      >
-                    </li>
-                    <li class="page-item active">
-                      <a href="#" class="page-link">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a href="#" class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a href="#" class="page-link" aria-label="Next"
-                        ><span aria-hidden="true"
-                          ><i class="fa fa-fw fa-angle-right"></i></span
-                        ><span class="sr-only">Next</span></a
-                      >
-                    </li>
-                  </ul>
-                </nav>
+              <div class="table-responsive d-none" id="projects">
+                <table class="table project-list">
+                  <thead>
+                    <tr>
+                      <th style="width: 30%">Projects</th>
+                      <th style="width: 15%">Created</th>
+                      <th class="text-center" style="width: 15%">Status</th>
+                      <th style="width: 25%">Progress</th>
+                      <th style="width: 15%">&nbsp;</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td data-label="Project">
+                        <a href="#" class="project-link">Creative Portfolio</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/08/08
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-secondary">Inactive</span>
+                      </td>
+                      <td data-label="Progress">
+                        <div class="mb-2 progress" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0"
+                            aria-valuemax="100" style="width: 80%;"></div>
+                        </div>
+                        <div>
+                          Tasks Completed:<span class="text-inverse">36/94</span>
+                        </div>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-trash fa-inverse"></i>
+                            Delete
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="Project">
+                        <a href="#" class="project-link">Directory &amp; listing</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/08/12
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-secondary">Inactive</span>
+                      </td>
+                      <td data-label="Progress">
+                        <div class="mb-2 progress" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                            aria-valuemax="100" style="width: 60%;"></div>
+                        </div>
+                        <div>
+                          Tasks Completed:<span class="text-inverse">26/94</span>
+                        </div>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-trash fa-inverse"></i>
+                            Delete
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="Project">
+                        <a href="#" class="project-link">New Dashboard BS3</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/03/03
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-success">Active</span>
+                      </td>
+                      <td data-label="Progress">
+                        <div class="mb-2 progress" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                            aria-valuemax="100" style="width: 20%;"></div>
+                        </div>
+                        <div>
+                          Tasks Completed:<span class="text-inverse">10/50</span>
+                        </div>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-trash fa-inverse"></i>
+                            Delete
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="Project">
+                        <a href="#" class="project-link">Creative Portfolio</a>
+                      </td>
+                      <td data-label="Created">
+                        2004/01/24
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-success">Active</span>
+                      </td>
+                      <td data-label="Progress">
+                        <div class="mb-2 progress" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0"
+                            aria-valuemax="100" style="width: 80%;"></div>
+                        </div>
+                        <div>
+                          Tasks Completed:<span class="text-inverse">36/94</span>
+                        </div>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-trash fa-inverse"></i>
+                            Delete
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="Project">
+                        <a href="#" class="project-link">Directory &amp; listing</a>
+                      </td>
+                      <td data-label="Created">
+                        2013/12/31
+                      </td>
+                      <td data-label="Status" class="align-center">
+                        <span class="badge badge-success">Active</span>
+                      </td>
+                      <td data-label="Progress">
+                        <div class="mb-2 progress" style="height: 5px;">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
+                            aria-valuemax="100" style="width: 90%;"></div>
+                        </div>
+                        <div>
+                          Tasks Completed:<span class="text-inverse">90/100</span>
+                        </div>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="table-link">
+                          <button class="custom-button close-button">
+                            <i class="fa fa-trash fa-inverse"></i>
+                            Delete
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-          </div>
 
-          <div
-            class="modal"
-            id="addTaskModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="addTaskModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="form-row">
-                      <div class="col">
-                        <label for="project-name" class="col-form-label"
-                          >Select Project</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="project-name"
-                        />
-                      </div>
-                      <div class="col d-none">
-                        <label for="task-list" class="col-form-label"
-                          >Task List</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="task-list"
-                        />
-                      </div>
+            <div class="d-flex mt-3">
+              <nav class="" aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a href="#" class="page-link" aria-label="Previous"><span aria-hidden="true"><i
+                          class="fa fa-fw fa-angle-left"></i></span><span class="sr-only">Previous</span></a>
+                  </li>
+                  <li class="page-item active">
+                    <a href="#" class="page-link">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a href="#" class="page-link">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a href="#" class="page-link">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a href="#" class="page-link" aria-label="Next"><span aria-hidden="true"><i
+                          class="fa fa-fw fa-angle-right"></i></span><span class="sr-only">Next</span></a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="project-name" class="col-form-label">Select Project</label>
+                      <input type="text" class="form-control" id="project-name" />
                     </div>
-                    <div class="form-group mt-4">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="task-name"
-                        placeholder="What needs to be done?"
-                      />
+                    <div class="col d-none">
+                      <label for="task-list" class="col-form-label">Task List</label>
+                      <input type="text" class="form-control" id="task-list" />
                     </div>
-                    <div class="form-row">
-                      <div class="col">
-                        <label for="task-assignment" class="col-form-label"
-                          >Who should do this?</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="task-assignment"
-                        />
-                      </div>
-                      <div class="col">
-                        <label for="task-due-date" class="col-form-label"
-                          >Due Date</label
-                        >
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="task-due-date"
-                        />
-                      </div>
+                  </div>
+                  <div class="form-group mt-4">
+                    <input type="text" class="form-control" id="task-name" placeholder="What needs to be done?" />
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="task-assignment" class="col-form-label">Who should do this?</label>
+                      <input type="text" class="form-control" id="task-assignment" />
                     </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn " data-dismiss="modal">
-                    Close
-                  </button>
-                  <button type="button" class="btn btn-success">Add</button>
-                </div>
+                    <div class="col">
+                      <label for="task-due-date" class="col-form-label">Due Date</label>
+                      <input type="date" class="form-control" id="task-due-date" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn " data-dismiss="modal">
+                  Close
+                </button>
+                <button type="button" class="btn btn-success">Add</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
