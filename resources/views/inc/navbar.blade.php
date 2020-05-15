@@ -10,7 +10,7 @@
       <div class="hamburger-symbol"></div>
     </div>
     <div class="logo">
-      <a class="nostyle" href="my_projects.html">
+      <a class="nostyle" href="/users/{{ Auth::user()->id }}/projects">
         <h4 class="mb-0 px-3">
           <i class="fas fa-drafting-compass"></i> Kick
         </h4>
@@ -50,9 +50,9 @@
               <span class="notify_time">10 minutes ago</span>
             </div>
           </div>
-          <div class="notify_item clickable">
+          <a class="notify_item clickable nostyle" href="/users/{{ Auth::user()->id }}/notifications">
             More(2) ...
-          </div>
+          </a>
         </div>
       </li>
       <!--profile-->

@@ -6,7 +6,7 @@
       <div class="hamburger-symbol"></div>
     </li>
     <li class="side-menu-item dropdown">
-      <a class="{{(request()->segment(3) == 'projects') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}" href="./projects">
+      <a class="{{(request()->segment(3) == 'projects') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}" href="/users/{{ $user }}/projects">
         <span class="m-2"><i class="fas fa-columns"></i></span>
         <span class="side-menu-item-title">Dashboard</span>
       </a>
@@ -18,7 +18,7 @@
       </a>
     </li>
     <li class="side-menu-item">
-      <a class="{{(request()->segment(3) == 'calendar') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}" href="calendar.html">
+      <a class="{{(request()->segment(3) == 'calendar') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}" href="/users/{{ $user }}/calendar">
         <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
         <span class="side-menu-item-title">Calendar</span>
       </a>
