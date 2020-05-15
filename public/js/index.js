@@ -118,37 +118,37 @@ function mappingDifDateDescript(date) {
   let now = new Date();
   const diffTime = Math.abs(new Date(date) - now);
   console.log(diffTime);
-  const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365)); 
+  const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
   if (diffYears > 1) return diffYears + " years ago";
   else if (diffYears === 1) return " a year ago";
 
   const diffMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30));
-  if (diffMonths> 1) return diffYears + " months ago";
+  if (diffMonths > 1) return diffYears + " months ago";
   else if (diffMonths === 1) return " a month ago";
 
   const diffWeeks = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7));
   if (diffWeeks > 1) return diffYears + " weeks ago";
   else if (diffWeeks === 1) return " a week ago";
 
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   if (diffDays > 1) return diffYears + " days ago";
   else if (diffDays === 1) return " yesterday";
 
-  const diffHours = Math.floor(diffTime / (1000 * 60 * 60)); 
+  const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
   console.log(diffHours);
   if (diffHours > 1) return diffYears + " hours ago";
   else if (diffHours === 1) return " a hour ago";
 
-  const diffMins = Math.floor(diffTime / (1000 * 60)); 
+  const diffMins = Math.floor(diffTime / (1000 * 60));
   if (diffMins > 3) return diffYears + " minutes ago";
   else if (diffMins === 1) return " just now";
- 
+
 }
 
 // ========================================
 // ===== Dealing with notifications =======
 // ========================================
-const dropdown_notification= document.querySelector('.notification-dropdown');
+const dropdown_notification = document.querySelector('.notification-dropdown');
 const dropdown_notification_tittle = document.querySelector('.notification-title');
 const user_id = document.querySelector('ul').getAttribute('data-user');
 console.log(user_id);
@@ -167,9 +167,9 @@ let kicking_channel = pusher.subscribe('private-kicked.' + user_id);
 
 kicking_channel.bind('kicked-out', (data) => {
   console.log(data);
-  
+
   let new_notification = document.createElement('div');
-  new_notification.classList.add('notify_item','clickable');
+  new_notification.classList.add('notify_item', 'clickable');
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
@@ -184,18 +184,18 @@ kicking_channel.bind('kicked-out', (data) => {
     </div>
   `;
 
-  insertAfter( dropdown_notification_tittle, new_notification);
+  insertAfter(dropdown_notification_tittle, new_notification);
 
 });
 
 let invitation_channel = pusher.subscribe('private-invited.' + user_id);
 
 /* {todo} check if path exists */
-invitation_channel.bind('invitation', function(data) {
+invitation_channel.bind('invitation', function (data) {
   console.log(data);
-  
+
   let new_notification = document.createElement('div');
-  new_notification.classList.add('notify_item','clickable');
+  new_notification.classList.add('notify_item', 'clickable');
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
@@ -210,10 +210,12 @@ invitation_channel.bind('invitation', function(data) {
     </div>
   `;
 
-  insertAfter( dropdown_notification_tittle, new_notification);
+  insertAfter(dropdown_notification_tittle, new_notification);
 
 
 });
+
+
 
 
 
