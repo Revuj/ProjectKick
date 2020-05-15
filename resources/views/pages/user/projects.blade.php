@@ -1,4 +1,4 @@
-@extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true, 'sidebar' => 'user'])
+@extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true, 'sidebar' => 'user', 'user' => $user_id])
 
 @section('title', 'Kick | My Projects')
 
@@ -138,7 +138,7 @@
                   <div class="card-header d-flex align-items-center">
                     <a
                       class="text-decoration-none title"
-                      href="project_overview.html"
+                      href="/projects/{{ $project->id }}"
                       >{{ $project->name }}
                     </a>
                     <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="{{ $project->id }}">

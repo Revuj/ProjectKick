@@ -1,4 +1,4 @@
-@extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true, 'sidebar' => 'user'])
+@extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true, 'sidebar' => 'user', 'user' => $user])
 
 @section('title', 'Notifications')
 

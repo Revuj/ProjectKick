@@ -26,11 +26,23 @@
   <body>
     <div class="page-wrapper h-100 is-collapsed">
       @if(empty($hide_navbar))
-            @include('inc.navbar')
+        @if (isset($user))
+          @include('inc.navbar', ['user' => $user])
+        @else
+          @include('inc.navbar', ['user' => ''])
+        @endif
       @endif
 
       @if($sidebar != 'none')
-        @include('inc.sidebar_' . $sidebar)
+        @if (isset($project) && isset($user))
+          @include('inc.sidebar_' . $sidebar, ['project' => $project, 'user' => $user])
+        @elseif (isset($project))
+          @include('inc.sidebar_' . $sidebar, ['project' => $project, 'user' => ''])
+        @elseif (isset($user))
+          @include('inc.sidebar_' . $sidebar, ['project' => '', 'user' => $user])
+        @else
+          @include('inc.sidebar_' . $sidebar, ['project' => '', 'user' => ''])
+        @endif
       @endif
       <noscript>
           <span class="warning">Warning:&nbsp;</span><i>JavaScript</i> is currently disabled and is required to fully experience this website
