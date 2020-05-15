@@ -16,16 +16,22 @@ class MessageEvent implements ShouldBroadcastNow
 
     public $channel;
     public $message;
+    public $photo_path;
+    public $username;
+    public $date;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($channel, $message)
+    public function __construct($channel, $message, $photo_path, $username, $date)
     {
         $this->channel = $channel;
         $this->message = $message;
+        $this->photo_path = $photo_path;
+        $this->username = $username;
+        $this->date = $date;
     }
 
     /**
