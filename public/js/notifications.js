@@ -15,7 +15,7 @@ let refuse_buttons = document.querySelectorAll(
 );
 
 refuse_buttons.forEach(btn => btn.addEventListener('click', deleteInvite.bind(btn)));
-
+accept_buttons.forEach(btn => btn.addEventListener('click', acceptInvite.bind(btn)));
 
 let all = document.getElementById('all-notifications');
 let assigned = document.getElementById('assigned-notifications');
@@ -96,8 +96,36 @@ async function deleteInvite() {
 
 }
 
-let acceptInvite = function (data) {
-  // delete invite
+async function acceptInvite() {
+  let element = this;
+  let project_id = element.getAttribute('data-invite');
+
+  let init = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+  fetch(`/api/project/${project_id}/invite`, init)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(data => {
+          if (message in data) {
+            alert(response['message']);
+          }
+          else {
+            console.log(data);
+            // perform delete
+          }
+        })
+      }
+      else {
+        console.log('Network response was not ok.');
+      }
+    }).catch(function (error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
 
 }
 

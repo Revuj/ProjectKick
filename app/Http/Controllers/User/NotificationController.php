@@ -9,6 +9,7 @@ use App\NotificationInvite;
 use App\NotificationKick;
 use App\Notification;
 use App\User;
+use App\MemberStatus;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 
@@ -34,8 +35,10 @@ class NotificationController extends Controller
 
         $invite_notifications = NotificationInvite::join('notification', 'notification_invite.notification_id', '=', 'notification.id')
         ->join('user', 'user.id', '=', 'sender_id')
+        ->join('project', 'project.id', '=', 'project_id')
         ->where('receiver_id', '=', $id)
         ->select('*')->get();
+
 
         $event_notifications = NotificationEvent::join('notification', 'notification_event.notification_id', '=', 'notification.id')
         ->join('user', 'user.id', '=', 'sender_id')
@@ -83,6 +86,27 @@ class NotificationController extends Controller
         }
 
         return response()->json([$notification, $invite]);
+    }
+
+    public function acceptInvite(Request $request, $id) {
+
+        try {
+            MemberStatus::create([
+                'departure_date' => null,
+                'user_id' => Auth::id(),
+                'project_id' => $id
+            ]);
+
+        }catch (ModelNotFoundException $err) {
+            DB::rollback();
+            return response()->json([], 404);
+        } catch (QueryException $err) {
+            DB::rollback();
+            return response()->json([
+                'message' => 'Invalid delete.',
+            ], 400);
+        }
+        return response()->json([$id]);
     }
 
     public function authorizeUser(Request $request)

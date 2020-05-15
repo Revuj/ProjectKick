@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
         Route::post('/api/users/{id}/notifications', 'NotificationController@fetchNotifications');
         Route::delete('/api/notification/{id}/invite', 'NotificationController@deleteInvite');
+        Route::put('/api/project/{id}/invite', 'NotificationController@acceptInvite');
+
         //user
         Route::prefix('users')->group(function () {
             Route::get('/{id}/projects', "UserController@projects");
