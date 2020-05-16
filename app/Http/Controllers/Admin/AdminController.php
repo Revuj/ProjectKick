@@ -13,8 +13,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
-
+use App\IssueList;
 
 
 class AdminController extends Controller
@@ -90,6 +89,17 @@ class AdminController extends Controller
 
     public function search()
     {
-        return view('pages.admin.search');
+        $users = User::where('is_admin','=','false')->get();
+        $projects = Project::with(['IssueLists.issues' => function($q) {
+            $q->select( DB::raw('count(*) as total'), 'is_completed')
+            ->groupby('is_completed');
+        }])->get();
+        
+     
+    
+        return view('pages.admin.search', [
+            'users' => $users,
+            'projects' => $projects
+        ]);
     }
 }
