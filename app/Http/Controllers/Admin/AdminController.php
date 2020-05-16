@@ -90,13 +90,7 @@ class AdminController extends Controller
     public function search()
     {
         $users = User::where('is_admin','=','false')->get();
-        $projects = Project::with(['IssueLists.issues' => function($q) {
-            $q->select( DB::raw('count(*) as total'), 'is_completed')
-            ->groupby('is_completed');
-        }])->get();
-        
-     
-    
+        $projects = Project::all();
         return view('pages.admin.search', [
             'users' => $users,
             'projects' => $projects

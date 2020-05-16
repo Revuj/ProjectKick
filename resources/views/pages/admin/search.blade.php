@@ -37,7 +37,6 @@
 
 @php
   $today = getdate();
-  echo $projects;
 @endphp
 
 @section('content')
@@ -105,10 +104,9 @@
                       </tr>
                     </thead>
                     <tbody>
-
-                    @foreach($users as $user)
-                      @include('partials.Admin.userTr', $user)
-                    @endforeach
+                      @foreach($users as $user)
+                        @include('partials.Admin.userTr', $user)
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -125,11 +123,9 @@
                       </tr>
                     </thead>
                     <tbody>
-
-                    @foreach($projects as $project)
-                      @include('partials.Admin.projectTr', $project)
-                    @endforeach
-                     
+                      @foreach($projects as $project)
+                        @include('partials.Admin.projectTr', $project)
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
