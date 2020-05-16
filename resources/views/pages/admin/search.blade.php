@@ -53,17 +53,29 @@
             <li>Projects <span class="tables-type-counter">{{count($projects)}}</span></li>
           </div>
           <div id="filter-issues" class="border-bottom py-3 my-0">
-            <form class="d-md-flex justify-content-between">
+          <form  class="d-md-flex justify-content-between">
+              @csrf
               <div class="form-group mb-0 flex-grow-1">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="issues-filter"
-                  id="issues-filter"
-                  placeholder="Search or filter results..."
-                />
+                
+                <!-- [FILTER]-->
+            
+
+                <div id="searchbar" type="text">
+                <input name = "text-filter" class ="form control" id="text-filter" type="text" placeholder= "Search or query for a project ..." />
+
+                <button id="searchbarbutton">
+                    <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+                
               </div>
+
               <div id="filter-buttons" class="dropdown ml-1">
+              <!--
                 <button
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -71,10 +83,11 @@
                   id="dropdownFiltersButton"
                   type="button"
                   type="submit"
-                  class="custom-button primary-button dropdown-toggle"
-                >
+                  class="custom-button primary-button"
+                > 
                   Sort by<i class="fas fa-chevron-down ml-3"></i>
-                </button>
+                </button>-->
+                <!--
                 <div
                   class="dropdown-menu"
                   aria-labelledby="dropdownFiltersButton"
@@ -82,8 +95,21 @@
                   <a class="dropdown-item" href="#">Due Date</a>
                   <a class="dropdown-item" href="#">Opening Date</a>
                   <a class="dropdown-item" href="#">Assignees</a>
-                </div>
-                <button type="submit" class="custom-button primary-button">
+                </div> -->
+                
+                <select class="custom-button primary-button h-100 mx-1" name="filter-select" id="filter-select-user">
+                  <option class = "primary-button custom-button" value="due-date">Due Date</option>
+                  <option class = "primary-button custom-button" value="opening-date">Opening Date</option>
+                  <option class = "primary-button custom-button" value="name">Name</option>
+                </select>
+
+                <select class="d-none custom-button primary-button h-100 mx-1" name="filter-select" id="filter-select-project">
+                  <option class = "primary-button custom-button" value="due-date">Due</option>
+                  <option class = "primary-button custom-button" value="opening-date">Opening Date</option>
+                  <option class = "primary-button custom-button" value="name">Name</option>
+                </select>
+
+                <button type = "button" id = "orderType" class="custom-button primary-button">
                   <i class="fas fa-arrow-up"></i>
                 </button>
               </div>
