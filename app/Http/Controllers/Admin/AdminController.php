@@ -118,8 +118,28 @@ class AdminController extends Controller
 
      
         return response()->json([
-            $sorted->get(), $filter->get()
+            $sorted->get()
         ]);
+    }
+
+    public function fetchUsers(Request $request) {
+        $filter = $this->filterUsers($request);
+
+        return response()->json([
+            $filter->get()
+        ]); 
+    }
+
+    protected function filterUsers($request)
+    {
+        $search = $request->input('search');
+        if (!empty($search))
+            $projects = User::where('is_admin','=','false')
+            ->whereRaw("search @@ plainto_tsquery('english', ?)", [$search]);
+        else {
+            $projects = User::where('is_admin','=','false');
+        }
+        return $projects;
     }
 
     protected function filterProjects($request)

@@ -51,7 +51,7 @@ let arrow = document.querySelector('#orderType');
 let selectable_user = document.querySelector('#filter-select-user');
 let selectable_project = document.querySelector('#filter-select-project');
 
-let project_text = document.querySelector('#text-filter');
+let value_input_text = document.querySelector('#text-filter');
 let button_search = document.querySelector('#searchbarbutton');
 
 
@@ -79,6 +79,9 @@ button_search.addEventListener('click', (e) => {
     if (active_projects === true) {
       requestProjects(option);
     }
+    else if (active_projects === false) {
+      requestUsers(option);
+    }
 
 });
 
@@ -87,7 +90,7 @@ function requestProjects(option) {
   let data = {
     option : option,
     order : sort_asc,
-    search : project_text.value
+    search : value_input_text.value
   };
   let init = {
     method: 'POST',
@@ -117,8 +120,44 @@ function requestProjects(option) {
   }).catch(function (error) {
     console.log('There has been a problem with your fetch operation: ' + error.message);
   });
-
-
 }
+
+
+function requestUsers(option) {
+  let data = {
+    option : option,
+    order : sort_asc,
+    search : value_input_text.value
+  };
+  let init = {
+    method: 'POST',
+    body: encodeForAjax(data),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/fetchUsers`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+        }
+      })
+    }
+    else {
+    
+      console.log('Network response was not ok.' + JSON.stringify(data));
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+}
+
 
 
