@@ -87,6 +87,52 @@ class AdminController extends Controller
         return response()->json([$users]);
     }
 
+
+
+    private function sortFunction($projects, $sortableTrait, $order = 'ASC')
+    {
+
+        $sortCol = 'project.';
+        if ($sortableTrait === 'Opening Date') {
+            $sortCol = $sortCol . 'creation_date';
+        } else if ($sortableTrait === 'Due Date') {
+            $sortCol = $sortCol . 'finish_date';
+        } else if ($sortableTrait === 'Name') {
+            $sortCol = $sortCol . 'name';
+        } else {
+            return $projects;
+        }
+
+        return $projects->orderBy($sortCol, $order);
+    }
+
+    public function fetchProjects(Request $request) {
+
+        
+        $filter = $this->filterProjects( $request);
+        $sortableTrait = $request->input('option');
+
+        $order = ($request->input('order') === 'true') ? 'ASC' : 'DESC';
+        $sorted = $this->sortFunction($filter, $sortableTrait, $order);
+        
+
+     
+        return response()->json([
+            $sorted->get(), $filter->get()
+        ]);
+    }
+
+    protected function filterProjects($request)
+    {
+        $search = $request->input('search');
+        if (!empty($search))
+            $projects = Project::whereRaw("project.search @@ plainto_tsquery('english', ?)", [$search]);
+        else {
+            $projects = new Project();
+        }
+        return $projects;
+    }
+
     public function search()
     {
         $users = User::where('is_admin','=','false')->get();

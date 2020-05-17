@@ -69,8 +69,56 @@ arrow.addEventListener('click', function (e) {
 
   sort_asc = !sort_asc;
   /*ajax call */
- 
+});
 
-})
+button_search.addEventListener('click', (e) => {
+    e.preventDefault();
+    let option = (active_projects) ? selectable_project.options[selectable_project.selectedIndex].text
+    : selectable_user.options[selectable_user.selectedIndex].text;
+
+    if (active_projects === true) {
+      requestProjects(option);
+    }
+
+});
+
+
+function requestProjects(option) {
+  let data = {
+    option : option,
+    order : sort_asc,
+    search : project_text.value
+  };
+  let init = {
+    method: 'POST',
+    body: encodeForAjax(data),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/fetchProjects`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+        }
+      })
+    }
+    else {
+    
+      console.log('Network response was not ok.' + JSON.stringify(data));
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+
+
+}
 
 

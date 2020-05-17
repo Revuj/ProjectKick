@@ -98,6 +98,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/monthlyIntel', 'AdminController@fetchIntelPerMonth'); /*api */
         Route::post('/bannedUsers', 'AdminController@bannedUsers'); /*api */
         Route::post('/recentUsers','AdminController@recentUsers'); /*api */
+        
+        Route::post('/fetchProjects', 'AdminController@fetchProjects');/*api */
     });
 
 
