@@ -124,10 +124,35 @@ class AdminController extends Controller
 
     public function fetchUsers(Request $request) {
         $filter = $this->filterUsers($request);
+        $sortableTrait = $request->input('option');
+
+        $order = ($request->input('order') === 'true') ? 'ASC' : 'DESC';
+        $sorted = $this->sortUsers($filter, $sortableTrait, $order);
+
 
         return response()->json([
-            $filter->get()
+            $sorted->get()
         ]); 
+    }
+
+    private function sortUsers($users, $sortableTrait, $order = 'ASC')
+    {
+
+        $sortCol = 'user.';
+        if ($sortableTrait === 'Creation Date') {
+            $sortCol = $sortCol . 'creation_date';
+        } else if ($sortableTrait === 'Username') {
+            $sortCol = $sortCol . 'username';
+        } else if ($sortableTrait === 'Email') {
+            $sortCol = $sortCol . 'email';
+        }else if ($sortableTrait === 'Banned') {
+            return $users->where('is_banned', '=', 'true');
+        }
+         else {
+            return $users;
+        }
+
+        return $users->orderBy($sortCol, $order);
     }
 
     protected function filterUsers($request)

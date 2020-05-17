@@ -98,9 +98,10 @@
                 </div> -->
                 
                 <select class="custom-button primary-button h-100 mx-1" name="filter-select" id="filter-select-user">
-                  <option class = "primary-button custom-button" value="due-date">Due Date</option>
-                  <option class = "primary-button custom-button" value="opening-date">Opening Date</option>
-                  <option class = "primary-button custom-button" value="name">Name</option>
+                  <option class = "primary-button custom-button" value="due-date">Creation Date</option>
+                  <option class = "primary-button custom-button" value="opening-date">Banned</option>
+                  <option class = "primary-button custom-button" value="name">Username</option>
+                  <option class = "primary-button custom-button" value="name">Email</option>
                 </select>
 
                 <select class="d-none custom-button primary-button h-100 mx-1" name="filter-select" id="filter-select-project">
