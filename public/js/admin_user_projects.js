@@ -174,8 +174,38 @@ function getUnbanBtn(user_id) {
       unbanUser.call(unban_btn);
     });
 
-    return unban_btn;
-    
+    return unban_btn;  
+}
+
+function getBannedStatus() {
+  let td_status = document.createElement('td');
+  td_status.setAttribute('data-label', 'Status');
+  td_status.classList.add('align-center');
+
+    td_status.innerHTML = `
+    <span class="badge text-danger">
+      banned
+    </span>
+  `;
+  
+
+  return td_status;
+
+}
+
+function getUnBannedStatus() {
+  let td_status = document.createElement('td');
+  td_status.setAttribute('data-label', 'Status');
+  td_status.classList.add('align-center');
+  
+  td_status.innerHTML = `
+      <span class="badge text-success">
+        normal
+      </span>
+  `;
+
+
+  return td_status;
 }
 
 function getBanBtn( user_id) {
@@ -228,6 +258,7 @@ function banUser() {
         else {
           console.log(data);
           element.replaceWith(unban_btn);
+          unban_btn.parentNode.parentNode.querySelector('td[data-label = "Status"]').replaceWith(getBannedStatus());
         }
       })
     }
@@ -263,6 +294,7 @@ function unbanUser() {
         else {
           console.log(data);
           element.replaceWith(ban_btn);
+          ban_btn.parentNode.parentNode.querySelector('td[data-label = "Status"]').replaceWith(getUnBannedStatus());
         }
       })
     }
