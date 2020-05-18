@@ -101,6 +101,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/fetchProjects', 'AdminController@fetchProjects');/*api */
         Route::post('/fetchUsers', 'AdminController@fetchUsers');/*api */
+        Route::put('/banUser/{id}', 'AdminController@banUser'); /*api */
+        Route::put('/unbanUser/{id}', 'AdminController@banUser'); /*api */
 
     });
 

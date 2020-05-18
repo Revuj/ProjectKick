@@ -178,6 +178,16 @@ class AdminController extends Controller
         return $projects;
     }
 
+    public function banUser(Request $request, $id) {
+        
+        return response()->json([$id]);
+    }
+
+    public function unbanUser(Request $request, $id) {
+        
+        return response()->json([$id]);
+    }
+
     public function search()
     {
         $users = User::where('is_admin','=','false')->get();
