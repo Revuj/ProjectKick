@@ -179,18 +179,19 @@ class AdminController extends Controller
     }
 
     public function banUser(Request $request, $id) {
-
-        User::where('id', $id)
-          ->update(['is_banned' => true]);
         
+        $user = User::findOrFail($id);
+        $user->is_banned = true;
+        $user->save();        
         return response()->json([]);
     }
 
     public function unbanUser(Request $request, $id) {
 
-        User::where('id', $id)
-        ->update(['is_banned' => false]);
-        return response()->json([]);
+        $user = User::findOrFail($id);
+        $user->is_banned = false;
+        $user->save();  
+        return response()->json([$user]);
     }
 
     public function search()

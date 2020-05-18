@@ -330,7 +330,7 @@ function getUserRow(user) {
   let user_id = user['id'];
   let td_button = document.createElement('td');
   td_button.classList.add('text-center');
-  let tdbutton = (user['is_banned']) ? getBanBtn(user_id) : getUnbanBtn(user_id);
+  let tdbutton = (user['is_banned']) ?  getUnbanBtn(user_id) : getBanBtn(user_id);
   td_button.appendChild(tdbutton);
 
   tr.appendChild(td_username);
