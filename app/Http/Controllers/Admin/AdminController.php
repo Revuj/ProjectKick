@@ -199,6 +199,26 @@ class AdminController extends Controller
         return response()->json([$res]);
     }
 
+    public function fetchNrProjects(Request $request) {
+        $nr_projects = count(Project::all());
+        return response()->json([$nr_projects]);
+    }
+
+    public function fetchNrTasks(Request $request) {
+        $closed_tasks = count(Issue::where('is_completed','=', 'true')->get());
+        return response()->json([$closed_tasks]);
+    }
+
+    public function fetchNrUsers(Request $request) {
+        $user_number = count(User::all());
+        return response()->json([$user_number]);
+    }
+
+    public function fetchNrReports(Request $request){
+        $nr_reports = count(Report::all());
+        return response()->json([$nr_reports]);
+    }
+
     public function search()
     {
         $users = User::where('is_admin','=','false')->get();

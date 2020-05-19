@@ -46,23 +46,27 @@
   <div class="row">
     <div class="col-xl-12 col-lg-9 col-md-8 ml-auto">
       <div class="row pt-md-5 mt-md-3 mb-5">
+
+
+
         <div class="col-xl-3 col-sm-6 p-2">
           <div class="card card-common">
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <i class="fas fa-project-diagram fa-3x text-info"></i>
+              <i class="fas fa-project-diagram fa-3x  text-info"></i>
                 <div class="text-right text-secondary">
-                  <h5>Project Number</h5>
-                  <h3 class = "text-center">{{$projects}}</h3>
+                  <h5 class="h5">Project Number</h5>
+                  <h3 id = "number-projects" class = "text-center">{{$projects}}</h3>
                 </div>
               </div>
             </div>
-            <div class="card-footer text-secondary">
-              <i class="fas fa-sync mr-3"></i>
+            <div class="card-footer text-secondary clickable" id = "project-update">
+              <i class="fas fa-sync mr-3 reload"></i>
               <span>Updated Now</span>
             </div>
           </div>
         </div>
+
         <div class="col-xl-3 col-sm-6 p-2">
           <div class="card card-common">
             <div class="card-body">
@@ -70,46 +74,49 @@
                 <i class="fas fa-tasks fa-3x text-success"></i>
                 <div class="text-right text-secondary">
                   <h5 class="h5">Closed tasks</h5>
-                  <h3 class = "text-center">{{$closed_tasks}}</h3>
+                  <h3 id = "number-tasks" class = "text-center">{{$closed_tasks}}</h3>
                 </div>
               </div>
             </div>
-            <div class="card-footer text-secondary">
-              <i class="fas fa-sync mr-3"></i>
+            <div class="card-footer text-secondary clickable" id = "task-update">
+              <i class="fas fa-sync mr-3 reload"></i>
               <span>Updated Now</span>
             </div>
           </div>
         </div>
+
+
         <div class="col-xl-3 col-sm-6 p-2">
           <div class="card card-common">
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <i class="fas fa-users fa-3x text-info"></i>
                 <div class="text-right text-secondary px-3">
-                  <h5>Users</h5>
-                  <h3 class = "text-center">{{$nr_users}}</h3>
+                  <h5 class = "h5">Users</h5>
+                  <h3 id = "number-users" class = "text-center">{{$nr_users}}</h3>
                 </div>
               </div>
             </div>
-            <div class="card-footer text-secondary">
-              <i class="fas fa-sync mr-3"></i>
+            <div class="card-footer text-secondary clickable" id = "user-update">
+              <i class="fas fa-sync mr-3 reload"></i>
               <span>Updated Now</span>
             </div>
           </div>
         </div>
+
         <div class="col-xl-3 col-sm-6 p-2">
           <div class="card card-common">
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <i class="fas fa-chart-line fa-3x text-danger"></i>
-                <div class="text-right text-secondary">
-                  <h5>Closed Reports</h5>
-                  <h3 class = "text-center"> {{$nr_reports}}</h3>
+                <div class="text-right text-secondary px-3">
+                  <h5 class = "h5">Closed Reports</h5>
+                  <h3 id = "number-reports" class = "text-center"> {{$nr_reports}}</h3>
                 </div>
               </div>
             </div>
-            <div class="card-footer text-secondary">
-              <i class="fas fa-sync mr-3"></i>
+            <div class="card-footer text-secondary clickable" id = "report-update">
+              <i class="fas fa-sync mr-3 reload"></i>
               <span>Updated Now</span>
             </div>
           </div>

@@ -1,5 +1,158 @@
 document.addEventListener('DOMContentLoaded', build);
 
+const update_projectNr = document.getElementById('project-update')
+const update_taskNr = document.getElementById('task-update');
+const update_userNr = document.getElementById('user-update');
+const update_reportNr = document.getElementById('report-update');
+
+let nr_projetcs= document.getElementById('number-projects');
+let nr_tasks = document.getElementById('number-tasks');
+let nr_users = document.getElementById('number-users');
+let nr_reports = document.getElementById('number-reports');
+
+
+
+
+update_projectNr.addEventListener('click', ()=> {
+  animation360deg (update_projectNr.querySelector('.reload'), 1000);
+  let init = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/fetchNrProject`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+          nr_projetcs.innerText = data[0];
+        }
+      })
+    }
+    else {
+      console.log('Network response was not ok.');
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+
+});
+
+update_taskNr.addEventListener('click', ()=> {
+  animation360deg (update_taskNr.querySelector('.reload'), 1000);
+
+  let init = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/fetchNrTasks`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+          nr_tasks.innerText = data[0];
+        }
+      })
+    }
+    else {
+      console.log('Network response was not ok.');
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+
+
+});
+
+update_userNr.addEventListener('click', ()=> {
+  animation360deg (update_userNr.querySelector('.reload'), 1000);
+  let init = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/fetchNrUsers`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+          nr_users.innerText = data[0];
+        }
+      })
+    }
+    else {
+      console.log('Network response was not ok.');
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+
+});
+
+update_reportNr.addEventListener('click', ()=> {
+  animation360deg (update_reportNr.querySelector('.reload'), 1000);
+
+  let init = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/fetchNrReports`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+          nr_reports.innerText = data[0];
+        }
+      })
+    }
+    else {
+      console.log('Network response was not ok.');
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
+
+});
+
+
+
+function animation360deg (element, duration) {
+  element.animate( [
+    { transform: 'rotateZ(0deg)' }, 
+    { transform: 'rotateZ(360deg)' }
+  ], {duration: duration});
+}
+
 function build() {
   //getCountries();
   //getIntelPerMonth();
