@@ -132,6 +132,11 @@
           </div>
           <div class="p-2 card-columns row" id="active-projects">
             @foreach ($projects as $project)
+              @php 
+                $total_issues = count($project->project->issues()->get());  
+                $closed_issues = count($project->project->issues()->where('is_completed', '=', 'true')->get());
+                $open_issues = count($project->project->issues()->where('is_completed', '=', 'false')->get());  
+              @endphp
               @if ($project->finish_date == null)
               <div class="card-container col-lg-4 col-md-6 col-sm-12 p-1">
                 <div class="card project" id="{{ $project->id }}">
@@ -160,15 +165,15 @@
                           aria-valuenow="80"
                           aria-valuemin="0"
                           aria-valuemax="100"
-                          @if (count($project->project->issues()->get()) > 0)
-                            style="width: {{count($project->project->issues()->where('is_completed', '=', 'false')->get()) / count($project->project->issues()->get()) * 100}}%;"
+                          @if ($total_issues > 0)
+                            style="width: {{$closed_issues / $total_issues * 100}}%;"
                           @else
                             style="width: 0%;"
                           @endif
                           ></div>
                       </div>
                       <div>
-                        Tasks Completed:<span class="text-inverse"> {{ count($project->project->issues()->where('is_completed', '=', 'false')->get()) }}/{{ count($project->project->issues()->get()) }}</span>
+                        Tasks Completed:<span class="text-inverse"> {{ $closed_issues }}/{{ $total_issues }}</span>
                       </div>
                     </div>
                     <div class="mt-3 project-members">
