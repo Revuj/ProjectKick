@@ -9,7 +9,7 @@ const filter_user = document.getElementById('filter-select-user');
 const filter_project = document.getElementById('filter-select-project');
 const ban_btns = document.querySelectorAll('.ban');
 const unban_btns = document.querySelectorAll('.unban');
-
+const delete_project = document.querySelectorAll('.delete-project button');
 
 users_button.addEventListener('click', event => {
   event.preventDefault();
@@ -375,6 +375,72 @@ function getUserRow(user) {
 }
 
 
+function getProjectRow(project) {
+  let tr = document.createElement('tr');
+
+  /*name */
+  let td_name = document.createElement('td');
+  td_name.setAttribute('data-label', 'Project');
+  td_name.innerHTML = `
+    <a href="#" class="project-link">
+      ${project['name']}
+    </a>
+  `;
+
+  /*date*/
+  let td_date = document.createElement('td');
+  td_date.setAttribute('data-label', 'Created');
+  let date = new Date(project['creation_date']).toString();
+  let separator = date.split(' ');
+  td_date.innerHTML = `
+    ${separator[2]} ${separator[1]}  ${separator[3]}
+  `;
+
+  /*status*/
+  let status;
+  let today = new Date();
+  if (project['finish_date'] === null || project['finish_date'] >= today) {
+    status = 'Active';
+  } else {
+    status = 'Inactive';
+  }
+  let td_status = document.createElement('td');
+  td_status.setAttribute('data-label', 'Status');
+  td_status.classList.add('align-center');
+  td_status.innerHTML = `
+  <span class="badge text-danger">
+    ${status}
+  </span>
+  `;
+
+  /**progress */
+  let td_progress;
+
+  /*delete button */
+  let td_button = document.createElement('td');
+  td_button.classList.add('text-center', 'delete-project');
+  let btn = document.createElement('button');
+  btn.classList.add('btn', 'btn-outline-danger', 'table-link');
+  btn.setAttribute('data-project', project['id']);
+  btn.innerHTML = `
+  <i class="fa fa-trash"></i> 
+  Delete
+  `;
+  //btn.addEventListener('click', );
+
+  td_button.appendChild(btn);
+
+  /** join everything */
+
+  tr.appendChild(td_name);
+  tr.appendChild(td_date);
+  tr.appendChild(td_status);
+  tr.appendChild(td_progress);
+  tr.appendChild(td_button);
+  
+}
+
+
 function renderUsers(users) {
 
   const info_users = document.querySelector('#users tbody');
@@ -386,6 +452,56 @@ function renderUsers(users) {
   users.forEach(user => {
     info_users.appendChild(getUserRow(user));
   })
+}
+
+function renderProjects(projects) {
+  const info_projects = document.querySelector('#projects tbody');
+
+  while(info_projects.firstChild) {
+    info_projects.removeChild(info_projects.firstChild);
+  }
+
+  projects.forEach(project => {
+    info_projects.appendChild(getProjectRow(project));
+  }
+)}
+
+
+delete_project.forEach(delete_btn => delete_btn.addEventListener('click', function (){
+  deleteProject.call(delete_btn);
+}));
+
+
+function deleteProject() {
+  let id = this.getAttribute('data-project');
+  let element = this;
+  let init = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+  fetch(`/admin/project/${id}`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('message' in data) {
+          alert(response['message']);
+        }
+        else {
+          console.log(data);
+          element.parentNode.parentNode.remove();
+        }
+      })
+    }
+    else {
+    
+      console.log('Network response was not ok.' + JSON.stringify(data));
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
 }
 
 

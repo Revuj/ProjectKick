@@ -103,8 +103,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/fetchUsers', 'AdminController@fetchUsers');/*api */
         Route::put('/banUser/{id}', 'AdminController@banUser'); /*api */
         Route::put('/unbanUser/{id}', 'AdminController@UnbanUser'); /*api */
+        Route::delete('/project/{id}', 'AdminController@deleteProject'); /*may change? */
 
     });
+
 
 
 });

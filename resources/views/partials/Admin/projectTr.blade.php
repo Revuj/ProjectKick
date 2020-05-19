@@ -37,12 +37,10 @@
         >
         </div>
     </td>
-    <td>
-        <a href="#" class="table-link">
-        <button class="btn btn-outline-danger">
+    <td class = "text-center delete-project">
+        <button class="btn btn-outline-danger table-link" data-project = "{{$project['id']}}">
         <i class="fa fa-trash"></i> 
             Delete
         </button>
-        </a>
     </td>
 </tr>

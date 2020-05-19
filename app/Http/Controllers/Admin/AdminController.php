@@ -191,7 +191,12 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
         $user->is_banned = false;
         $user->save();  
-        return response()->json([$user]);
+        return response()->json([]);
+    }
+
+    public function deleteProject($id) {
+        $res = Project::findOrFail($id)->delete();
+        return response()->json([$res]);
     }
 
     public function search()
