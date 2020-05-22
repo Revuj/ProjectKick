@@ -67,8 +67,8 @@ class NotificationController extends Controller
 
         try {
 
-            //$notification->delete();
-            //$invite->delete();
+            $notification->delete();
+            $invite->delete();
             DB::commit();
             // all good
         } catch (ModelNotFoundException $err) {
