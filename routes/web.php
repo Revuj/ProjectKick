@@ -108,6 +108,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/fetchNrTasks', 'AdminController@fetchNrTasks');
         Route::post('/fetchNrUsers', 'AdminController@fetchNrUsers');
         Route::post('/fetchNrReports', 'AdminController@fetchNrReports');
+        Route::post('/fetchTeamBySize', 'AdminController@fetchByTeamSize');
     });
 
 

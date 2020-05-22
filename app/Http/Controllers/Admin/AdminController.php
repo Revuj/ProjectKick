@@ -219,6 +219,33 @@ class AdminController extends Controller
         return response()->json([$nr_reports]);
     }
 
+    public function fetchByTeamSize() {
+        
+        $projects = Project::join('member_status', 'member_status.project_id','=', 'project.id')
+        ->select('project.id', DB::raw('count(*) as total'))
+        ->groupBy('project.id')
+        ->get();
+
+        $groups = [
+            'small' => 0,
+            'medium' => 0,
+            'large' => 0
+        ];
+
+        foreach($projects as $project) {
+            if ($project->total < 5)
+                $groups['small'] ++;
+            else if ($project->total > 20) 
+                $groups['large']++;
+            else {
+                $groups['medium']++;
+            }
+        }
+
+        return response()->json([$groups]);
+
+    }
+
     public function search()
     {
         $users = User::where('is_admin','=','false')->get();

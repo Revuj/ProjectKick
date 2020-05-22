@@ -127,7 +127,7 @@
   <!-- end of row-->
 
   <!--earth -->
-  <div id="chartdiv"></div>
+  <div class = "w-100" id="chartdiv"></div>
 
   <!--EVOLUTION GRAPH-->
   <div class="container-fluid">

@@ -155,25 +155,25 @@ async function getCountries() {
   }
 
   fetch(`/admin/countries`, init)
-  .then(function (response) {
-    if (response.ok) {
-      response.json().then(data => {
-        if ('message' in data) {
-          alert(response['message']);
-        }
-        else {
-          const countries = data[0];
-          loadMapCountryDensity(countries);
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(data => {
+          if ('message' in data) {
+            alert(response['message']);
+          }
+          else {
+            const countries = data[0];
+            loadMapCountryDensity(countries);
 
-        }
-      })
-    }
-    else {
-      console.log('Network response was not ok.');
-    }
-  }).catch(function (error) {
-    console.log('There has been a problem with your fetch operation: ' + error.message);
-  });
+          }
+        })
+      }
+      else {
+        console.log('Network response was not ok.');
+      }
+    }).catch(function (error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
 
 }
 
@@ -189,9 +189,41 @@ function animation360deg(element, duration) {
 
 function build() {
   getCountries();
+  getTeamSize();
   //getIntelPerMonth();
   //getBannedUsers();
   //getRecentUsers();
+
+}
+
+async function getTeamSize() {
+  let init = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  }
+
+  fetch(`/admin/fetchTeamBySize`, init)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(data => {
+          if ('message' in data) {
+            alert(response['message']);
+          }
+          else {
+            loadCicularGraphTeam(data[0]);
+          }
+        })
+      }
+      else {
+
+        console.log('Network response was not ok.' + JSON.stringify(data));
+      }
+    }).catch(function (error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
 
 }
 
@@ -346,43 +378,45 @@ new Chart(document.getElementById('line-chart'), {
   }
 });
 
-new Chart(document.getElementById('doughnut-chart'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Small Teams (< 5)', 'Medium Teams', 'Big teams (> 20)'],
-    datasets: [
-      {
-        backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
-        data: [2478, 5267, 734]
-      }
-    ]
-  },
-  options: {
-    plugins: {
-      doughnutlabel: {
-        labels: [
-          {
-            text: 'Teams Size',
-            font: {
-              size: '60'
+function loadCicularGraphTeam(groups) {
+  new Chart(document.getElementById('doughnut-chart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Small Teams (< 5)', 'Medium Teams', 'Big teams (> 20)'],
+      datasets: [
+        {
+          backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
+          data: [groups['small'], groups['medium'],  groups['large']]
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        doughnutlabel: {
+          labels: [
+            {
+              text: 'Teams Size',
+              font: {
+                size: '60'
+              }
             }
-          }
-        ]
+          ]
+        }
+      },
+      font: function (context) {
+        var width = context.chart.width;
+        var size = Math.round(width / 32);
+        return {
+          size: size,
+          weight: 600
+        };
+      },
+      legend: {
+        display: false
       }
-    },
-    font: function (context) {
-      var width = context.chart.width;
-      var size = Math.round(width / 32);
-      return {
-        size: size,
-        weight: 600
-      };
-    },
-    legend: {
-      display: false
     }
-  }
-});
+  });
+}
 
 function loadMapCountryDensity(countries) {
   am4core.ready(function () {
@@ -400,7 +434,7 @@ function loadMapCountryDensity(countries) {
     let mapData = []
 
     countries.forEach(country => {
-      mapData.push({id: country.name, name: country.name, value: country.total, color: chart.colors.getIndex(0) })
+      mapData.push({ id: country.name, name: country.name, value: country.total, color: chart.colors.getIndex(0) })
     })
 
     /*
