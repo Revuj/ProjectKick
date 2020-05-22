@@ -11,6 +11,36 @@ let nr_users = document.getElementById('number-users');
 let nr_reports = document.getElementById('number-reports');
 
 
+const btn_yearStats = document.getElementById('year-stats');
+const btn_teamSize  = document.getElementById('team-size');
+
+const stats = document.getElementById('stats');
+const round_chart = document.getElementById('round-chart');
+
+btn_yearStats.addEventListener('click', (e) => {
+  e.preventDefault();
+  stats.classList.remove('d-none');
+  round_chart.classList.add('d-none');
+  
+  btn_teamSize.classList.add('secondary-button');
+  btn_teamSize.classList.remove('primary-button');
+  btn_yearStats.classList.remove('secondary-button');
+  btn_yearStats.classList.add('primary-button');
+  
+
+});
+
+btn_teamSize.addEventListener('click', (e)=> {
+  e.preventDefault();
+  stats.classList.add('d-none');
+  round_chart.classList.remove('d-none');
+
+  btn_yearStats.classList.remove('primary-button');
+  btn_yearStats.classList.add('secondary-button');
+
+  btn_teamSize.classList.remove('secondary-button');
+  btn_teamSize.classList.add('primary-button');
+})
 
 
 update_projectNr.addEventListener('click', () => {
@@ -395,13 +425,17 @@ function loadMonthlyCharts(issues, projects, users) {
       ]
     },
     options: {
+      aspectRatio: 2.5,
+
       title: {
         display: true,
         text: 'Numbers last 12 months'
       },
 
       legend: {
-        display: false
+        display: true,
+        align:'center',
+        position:'left',
       }
     }
   });
@@ -420,28 +454,36 @@ function loadCicularGraphTeam(groups) {
       ]
     },
     options: {
+      aspectRatio: 2.5,
+      title: {
+        display: true,
+        text: 'Current number of teams per size',
+        padding: 25
+      },
+
       plugins: {
         doughnutlabel: {
           labels: [
             {
               text: 'Teams Size',
               font: {
-                size: '60'
+                size: '30'
               }
             }
           ]
         }
       },
       font: function (context) {
-        var width = context.chart.width;
-        var size = Math.round(width / 32);
         return {
-          size: size,
-          weight: 600
+          size: 300,
+          weight: 500
         };
       },
       legend: {
-        display: false
+        display: true,
+        position :'left',
+        fontSize: 30,
+        padding: 35
       }
     }
   });

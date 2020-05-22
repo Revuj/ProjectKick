@@ -130,95 +130,17 @@
   <div class = "w-100" id="chartdiv"></div>
 
   <!--EVOLUTION GRAPH-->
-  <div class="container-fluid">
+  <div class="container-fluid mt-5">
     <div class="row">
-      <div class="col-xs-6 col-md-6">
+      <button type = "button" id = "year-stats" class = "rounded-top custom-button primary-button w-200p">Last year stats</button>
+      <button type = "button" id = "team-size" class = "rounded-top custom-button secondary-button w-200p">Team sizes</button>
+    </div>
+    <div class="row">
+      <div id = "stats" class="col-xs-12 col-md-12 shadow p-3 mb-5 bg-white rounded">
         <canvas class="graph-item" id="line-chart"></canvas>
       </div>
-      <div class="col-xs-6 col-md-6">
+      <div id = "round-chart" class="col-xs-12 col-md-12 shadow p-3 mb-5 d-none rounded">
         <canvas class="graph-item" id="doughnut-chart"></canvas>
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-6 col-md-6">
-        <table class="table table-striped">
-          <caption>
-            Banned users
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Start Date</th>
-              <th scope="col">End date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Name">Mark Otto</td>
-              <td data-label="Start Date">12-3-2019</td>
-              <td data-label="End Date">12-3-2019</td>
-            </tr>
-            <tr>
-              <td data-label="Name">Mark Otto</td>
-              <td data-label="Start Date">12-3-2019</td>
-              <td data-label="End Date">12-3-2019</td>
-            </tr>
-            <tr>
-              <td data-label="Name">Mark Otto</td>
-              <td data-label="Start Date">12-3-2019</td>
-              <td data-label="End Date">12-3-2019</td>
-            </tr>
-            <tr>
-              <td data-label="Name">Mark Otto</td>
-              <td data-label="Start Date">12-3-2019</td>
-              <td data-label="End Date">12-3-2019</td>
-            </tr>
-            <tr>
-              <td data-label="Name">Mark Otto</td>
-              <td data-label="Start Date">12-3-2019</td>
-              <td data-label="End Date">12-3-2019</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-xs-6 col-md-6">
-        <table class="table table-striped">
-          <caption>
-            New users
-          </caption>
-
-          <thead>
-            <tr>
-              <th scope="col">Users</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Users">Mark Otto</td>
-              <td data-label="Date">12-3-2019</td>
-            </tr>
-            <tr>
-              <td data-label="Users">Mark Otto</td>
-              <td data-label="Date">12-3-2019</td>
-            </tr>
-            <tr>
-              <td data-label="Users">Mark Otto</td>
-              <td data-label="Date">12-3-2019</td>
-            </tr>
-            <tr>
-              <td data-label="Users">Mark Otto</td>
-              <td data-label="Date">12-3-2019</td>
-            </tr>
-            <tr>
-              <td data-label="Users">Mark Otto</td>
-              <td data-label="Date">12-3-2019</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>

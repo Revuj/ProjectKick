@@ -11,6 +11,29 @@
   margin: 3rem 0;
 }
 
+.w-200p {
+  width:200px;
+}
+
+
+#year-stats, #team-size {
+  border-bottom-left-radius:0;
+  border-bottom-right-radius: 0;
+  outline: none;
+}
+
+#year-stats {
+  border-top-right-radius: 0;
+}
+
+#team-size {
+  border-top-left-radius: 0;
+}
+
+.small-shadow {
+  box-shadow: var(--primary-shadow);
+}
+
 @media only screen and (max-width: 600px) {
   #chartdiv {
     display: none;
