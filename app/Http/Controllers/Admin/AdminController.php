@@ -46,28 +46,34 @@ class AdminController extends Controller
         $aYearAgo = $firstDay->clone()->subYears(1)->format("Y-m-d H:i:s");
 
         $issues = Issue::where('creation_date','>=', $aYearAgo)
+        -> where('creation_date', '<=', $now)
          ->select(DB::raw('count(id) as total'),
          DB::raw("extract(month from creation_date) as month"), 
          DB::raw("extract(year from creation_date) as year")
          )
         ->groupby('year', 'month')
+        ->orderby('month')
         ->get();
 
         $projects = Project::where('creation_date','>=', $aYearAgo)
+        -> where('creation_date', '<=', $now)
         ->select(DB::raw('count(id) as total'),
         DB::raw("extract(month from creation_date) as month"), 
         DB::raw("extract(year from creation_date) as year")
         )
        ->groupby('year', 'month')
+       ->orderby('month')
        ->get();
 
 
        $users = User::where('creation_date','>=', $aYearAgo)
+       -> where('creation_date', '<=', $now)
        ->select(DB::raw('count(id) as total'),
        DB::raw("extract(month from creation_date) as month"), 
        DB::raw("extract(year from creation_date) as year")
        )
       ->groupby('year', 'month')
+      ->orderby('month')
       ->get();
 
         return response()->json([$issues, $projects, $users]);

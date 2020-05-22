@@ -190,7 +190,7 @@ function animation360deg(element, duration) {
 function build() {
   getCountries();
   getTeamSize();
-  //getIntelPerMonth();
+  getIntelPerMonth();
   //getBannedUsers();
   //getRecentUsers();
 
@@ -245,7 +245,8 @@ async function getIntelPerMonth() {
             alert(response['message']);
           }
           else {
-            console.log(data);
+            const [issues, projects, users] = data;
+            loadMonthlyCharts(issues, projects, users)
           }
         })
       }
@@ -322,71 +323,99 @@ async function getRecentUsers() {
 }
 
 
+function loadMonthlyCharts(issues, projects, users) {
 
-new Chart(document.getElementById('line-chart'), {
-  type: 'line',
-  data: {
-    labels: [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ],
-    datasets: [
-      {
-        data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478, 912, 912],
-        label: 'Number of project',
-        borderColor: '#3e95cd',
-        backgroundColor: 'rgba(1,181,198,0.2)',
-        fill: true
-      },
-      {
-        data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 267, 898, 611],
-        label: 'Tasks done',
-        borderColor: '#8e5ea2',
-        backgroundColor: 'rgba(179,181,198,0.2)',
 
-        fill: true
-      },
-      {
-        data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734, 1200, 1700],
-        label: 'Number of reports',
-        borderColor: '#3cba9f',
-        backgroundColor: 'rgba(1,81,198,0.2)',
 
-        fill: true
-      }
-    ]
-  },
-  options: {
-    title: {
-      display: true,
-      text: 'Numbers last 12 months'
-    },
+  let project = [];
 
-    legend: {
-      display: false
-    }
+  for (let i = 1; i <= 12; i++) {
+    const x =  projects.find(u => { return u['month'] === i.toString()});
+    if (x === undefined) project.push(0); else project.push(x['total'])  
   }
-});
+
+  projects.forEach(elem => project.push(elem['total']));
+
+  let issue = [];
+  for (let i = 1; i <= 12; i++) {
+    const x =  issues.find(u => { return u['month'] === i.toString()});
+    if (x === undefined) issue.push(0); else issue.push(x['total'])  
+  }
+
+  let user = []
+  for (let i = 1; i <= 12; i++) {
+    const x =  users.find(u => { return u['month'] === i.toString();});
+    if (x === undefined) user.push(0); else user.push(x['total'])
+  }
+
+
+
+
+  new Chart(document.getElementById('line-chart'), {
+    type: 'line',
+    data: {
+      labels: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+      ],
+      datasets: [
+        {
+          data: project,
+          label: 'Number of project',
+          borderColor: '#3e95cd',
+          backgroundColor: 'rgba(1,181,198,0.2)',
+          fill: true
+        },
+        {
+          data: issue,
+          label: 'Tasks done',
+          borderColor: '#8e5ea2',
+          backgroundColor: 'rgba(179,181,198,0.2)',
+
+          fill: true
+        },
+        {
+          data: user,
+          label: 'Number of new users',
+          borderColor: '#3cba9f',
+          backgroundColor: 'rgba(1,81,198,0.2)',
+
+          fill: true
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Numbers last 12 months'
+      },
+
+      legend: {
+        display: false
+      }
+    }
+  });
+}
 
 function loadCicularGraphTeam(groups) {
   new Chart(document.getElementById('doughnut-chart'), {
     type: 'doughnut',
     data: {
-      labels: ['Small Teams (< 5)', 'Medium Teams', 'Big teams (> 20)'],
+      labels: ['Small Teams (< 5)', 'Medium Teams (5-20)', 'Big teams (> 20)'],
       datasets: [
         {
           backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
-          data: [groups['small'], groups['medium'],  groups['large']]
+          data: [groups['small'], groups['medium'], groups['large']]
         }
       ]
     },
