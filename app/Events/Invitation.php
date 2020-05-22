@@ -21,19 +21,22 @@ class Invitation implements ShouldBroadcast
     public $receiver;
     public $date;
     public $senderPhotoPath;
+    public $projectId;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($project, $sender, $receiver, $date, $senderPhotoPath)
+    public function __construct($project, $sender, $receiver, $date, $senderPhotoPath, $projectId)
     {
         $this->project = $project;
         $this->sender = $sender;
         $this->receiver = $receiver;
         $this->date = $date;
         $this->senderPhotoPath = $senderPhotoPath;
+        $this->projectId = $projectId;
+        
     }
 
     /**

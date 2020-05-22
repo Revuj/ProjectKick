@@ -124,7 +124,8 @@ class ProjectController extends Controller
             $request->input('projectName'),
             $request->input('senderUsername'),
             $user_id, Carbon::now()->toDateTimeString(),
-            $user['photo_path']
+            $user['photo_path'],
+            $id
         );
         event($event);
 
