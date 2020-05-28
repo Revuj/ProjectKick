@@ -398,9 +398,17 @@
           <div class="due-date-container mt-3">
             <h6 class="block pb-2 font-weight-bold">Due Date</h6>
 
-            <button type="button" class="custom-button due-date-button">
+            <button type="button" class="custom-button due-date-button" id="change-due-date">
               <i class="far fa-clock mr-2"></i><span id="due-date"></span>
             </button>
+            <form id="select-due-date" class="mt-2 d-none">
+              <input
+                  type="date"
+                  id="new-due-date"
+                  name="new-due-date"
+                  class="form-control"
+                />
+            </form>
           </div>
           <button
             id="delete-issue-button"

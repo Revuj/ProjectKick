@@ -370,6 +370,8 @@ function openSideIssueListen(elem) {
     addAssigneeBtn.addEventListener("click", () => {
       addNewAssigneeContainer.classList.toggle("d-none")
     })
+
+    document.getElementById("select-due-date").classList.add("d-none");
   });
 }
 
@@ -408,6 +410,7 @@ closeSideIssueButton.addEventListener("click", event => {
   editTitleFrom.classList.toggle("d-none");
   side_issue_header.querySelector("p").classList.toggle("d-none");
   document.getElementById("add-new-label").classList.add("d-none");
+  document.getElementById("select-due-date").classList.add("d-none");
 });
 
 cancelEditTitleButton.addEventListener("click", event => {
@@ -430,6 +433,14 @@ let addNewAssigneeContainer = document.getElementById("add-new-assignee");
 let addAssigneeBtn = document.getElementById("add-assignee");
 addAssigneeBtn.addEventListener("click", () => {
   addNewAssigneeContainer.classList.toggle("d-none")
+})
+
+// Add Due Date
+let selectDueDateContainer = document.getElementById("select-due-date");
+let selectDueDateBtn = document.getElementById("change-due-date");
+selectDueDateBtn.addEventListener("click", () => {
+  selectDueDateContainer.classList.toggle("d-none")
+
 })
 
 /*general functions */
