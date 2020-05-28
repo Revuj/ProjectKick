@@ -118,13 +118,15 @@ class AdminController extends Controller
         $filter = $this->filterProjects( $request);
         $sortableTrait = $request->input('option');
 
+       
+
         $order = ($request->input('order') === 'true') ? 'ASC' : 'DESC';
         $sorted = $this->sortFunction($filter, $sortableTrait, $order);
         
-
+        
      
         return response()->json([
-            $sorted->get()
+            $sorted->get(), $filter->get()
         ]);
     }
 
