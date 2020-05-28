@@ -183,3 +183,42 @@
   font-weight: 600;
   color:white;
 }
+
+#add-new-label, #add-new-assignee {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 1rem;
+  border-radius: 5px;
+  width: 100%;
+  background-color: var(--background-hover);
+  padding-bottom: 0.5rem;
+}
+
+#write-label, #write-assignee {
+  width: 100%;
+  box-sizing: border-box; 
+  padding: 0.5rem;
+}
+
+#new-label, #new-assignee {
+    box-sizing: border-box; 
+}
+
+#existing-labels, #existing-users {
+  background-color: white;
+}
+
+.existing-label-container, .existing-user-container {
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.existing-label-container:last-of-type {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+}

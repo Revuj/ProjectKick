@@ -258,7 +258,6 @@ function mouseLeaveListItem(elem) {
 
 function openSideIssueListen(elem) {
   elem.addEventListener("click", function () {
-    console.log(elem);
     let taskID = elem.getAttribute("id");
     let taskTitle = elem.querySelector(".task-title").innerHTML;
     let authorName = elem.querySelector(".author-reference").innerHTML;
@@ -301,12 +300,27 @@ function openSideIssueListen(elem) {
     sideBarAssignees.innerHTML += `
     <li>
       <button
+        id="add-assignee"
         type="button"
         class="custom-button add-button add-assignee"
       >
         <i class="fas fa-plus"></i>
       </button>
     </li>`
+
+    let existingUsers = document.getElementsByClassName("existing-user-container");
+    console.log(existingUsers)
+    let userIds = [...assignees].map(elem => elem.dataset.userId);
+    console.log(userIds);
+    [...existingUsers].forEach(elem => {
+      if (userIds.includes(elem.dataset.userId)) {
+        elem.querySelector(".selected-user").style.visibility = "visible";
+        elem.querySelector(".remove-user").style.visibility = "visible";
+      } else {
+        elem.querySelector(".selected-user").style.visibility = "hidden";
+        elem.querySelector(".remove-user").style.visibility = "hidden";
+      }
+    });
 
     let sideBarLabels = document.querySelector(".labels");
     sideBarLabels.innerHTML = "";
@@ -322,6 +336,7 @@ function openSideIssueListen(elem) {
     sideBarLabels.innerHTML += `
     <li>
       <button
+        id="add-label"
         type="button"
         class="custom-button add-button add-label"
       >
@@ -329,6 +344,32 @@ function openSideIssueListen(elem) {
       </button>
     </li>
     `
+
+    let existingLabels = document.getElementsByClassName("existing-label-container");
+    let labelIds = [...labels].map(elem => elem.dataset.labelId);
+    [...existingLabels].forEach(elem => {
+      if (labelIds.includes(elem.dataset.labelId)) {
+        elem.querySelector(".selected-label").style.visibility = "visible";
+        elem.querySelector(".remove-label").style.visibility = "visible";
+      } else {
+        elem.querySelector(".selected-label").style.visibility = "hidden";
+        elem.querySelector(".remove-label").style.visibility = "hidden";
+      }
+    });
+
+    let addNewLabelContainer = document.getElementById("add-new-label");
+    addNewLabelContainer.classList.add("d-none")
+    let addLabelBtn = document.getElementById("add-label");
+    addLabelBtn.addEventListener("click", () => {
+      addNewLabelContainer.classList.toggle("d-none");
+    })
+
+    let addNewAssigneeContainer = document.getElementById("add-new-assignee");
+    addNewAssigneeContainer.classList.add("d-none")
+    let addAssigneeBtn = document.getElementById("add-assignee");
+    addAssigneeBtn.addEventListener("click", () => {
+      addNewAssigneeContainer.classList.toggle("d-none")
+    })
   });
 }
 
@@ -366,6 +407,7 @@ closeSideIssueButton.addEventListener("click", event => {
   title.classList.toggle("d-none");
   editTitleFrom.classList.toggle("d-none");
   side_issue_header.querySelector("p").classList.toggle("d-none");
+  document.getElementById("add-new-label").classList.add("d-none");
 });
 
 cancelEditTitleButton.addEventListener("click", event => {
@@ -375,6 +417,20 @@ cancelEditTitleButton.addEventListener("click", event => {
 });
 
 [...sideIssueButtons].forEach(elem => openSideIssueListen(elem));
+
+// Add Label
+let addNewLabelContainer = document.getElementById("add-new-label");
+let addLabelBtn = document.getElementById("add-label");
+addLabelBtn.addEventListener("click", () => {
+  addNewLabelContainer.classList.toggle("d-none")
+})
+
+// Add Assignee
+let addNewAssigneeContainer = document.getElementById("add-new-assignee");
+let addAssigneeBtn = document.getElementById("add-assignee");
+addAssigneeBtn.addEventListener("click", () => {
+  addNewAssigneeContainer.classList.toggle("d-none")
+})
 
 /*general functions */
 
