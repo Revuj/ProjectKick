@@ -26,7 +26,7 @@
   <nav>
     <ol class="breadcrumb custom-separator">
       <li><a href="#0">lbaw</a></li>
-      <li><a href="#0">Issues</a></li>
+      <li><a href="/projects/{{$issue->issueList->project_id}}/issuelist">Issues</a></li>
       <li class="current">#{{$issue->id}}</li>
     </ol>
   </nav>
@@ -35,7 +35,7 @@
       <div id="issue-header" class="mb-0 d-flex flex-column">
         <div class="d-flex align-items-center pt-2">
           <p class="mr-auto i smaller-text mb-0">
-          @if($issue['is_completed'])
+          @if($issue['is_completed'] === false)
           <span class="bg-success text-light issue-status">Open</span>
           @else
           <span class="bg-danger text-light issue-status">Closed</span>
@@ -45,8 +45,10 @@
             <span class="issue-status-description">
            
             Created {{ date_format(date_create($issue['creation_date']), '\o\n l jS F Y')}} by 
-              <span class="author-reference">{{$author}}</span></span
-            >
+            <a class = "nostyle" href="/users/{{$author->id}}"> <span class="author-reference">{{$author->name}}</span></a>
+             
+              
+              </span>
           </p>
           <button class="custom-button close-button">
             <i class="fas fa-check-circle"></i>
@@ -124,7 +126,9 @@
 
             @foreach($users as $user)
             <li class="mr-2">
+            <a href="/users/{{$user['id']}}">
               <img src="{{ asset('assets/avatars/'.  $user['photo_path'] .'.png') }}" alt="{{ $user['username']}} profile picture" />
+            </a>
             </li>
             @endforeach
             </ul>
@@ -143,8 +147,7 @@
       </div>
       <div class="add-comment-container mt-4">
         <form class="d-flex">
-        <img class = "comment-author"src="{{ asset('assets/avatars/'.  Auth::User()['photo_path'] .'.png') }}" alt="{{ Auth::User()['username']}} profile picture" />
-
+          <img class = "comment-author" src="{{ asset('assets/avatars/'.  Auth::User()['photo_path'] .'.png') }}" alt="{{ Auth::User()['username']}} profile picture" />
           <input
             class="w-100 mx-2 px-2"
             type="text"
@@ -159,11 +162,11 @@
       @foreach ($comments as $comment)
       
       <div class="comment d-flex border-bottom mt-4 pb-1">
-        <img class = "comment-author"src="{{ asset('assets/avatars/'.  $comment['photo_path'] .'.png') }}" alt="{{ $comment['username']}} profile picture" />
+        <img class = "comment-author" src="{{ asset('assets/avatars/'.  $comment['photo_path'] .'.png') }}" alt="{{ $comment['username']}} profile picture" />
 
           <div class="comment-detail ml-3">
             <h6>
-              <span class="author-reference">{{ $comment['username']}}</span>
+              <a href="/users/{{$comment['user_id']}}"><span class="author-reference">{{ $comment['username']}}</span></a>
               <span class="comment-timestamp ml-1"> {{ date_format(date_create($issue['creation_date']),'h:i a \o\n l jS F Y')}}</span>
             </h6>
             <p>
