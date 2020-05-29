@@ -300,7 +300,7 @@
                   </button>
                 </div>
               </form>
-              <button type="button" class="btn d-none edit-task mr-1">
+              <button type="button" class="btn edit-task d-none mr-1">
                 <i class="fas fa-pencil-alt float-right"></i>
               </button>
               <button type="button" class="btn close-side-issue">
