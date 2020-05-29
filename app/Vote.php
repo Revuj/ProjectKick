@@ -6,8 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
+    use Traits\HasCompositePrimaryKey;
+
     protected $table = "vote";
     protected $fillable = ['user_id', 'comment_id', 'upvote'];
+
+
+    protected $primaryKey = array('user_id', 'comment_id');
+
+    public $incrementing = false;
+
 
     public function issue()
     {
