@@ -143,11 +143,8 @@
       </div>
       <div class="add-comment-container mt-4">
         <form class="d-flex">
-          <img
-            class="comment-author"
-            src="https://assets-br.wemystic.com.br/20191112193725/bee-on-flower_1519375600-960x640.jpg"
-            alt=""
-          />
+        <img class = "comment-author"src="{{ asset('assets/avatars/'.  Auth::User()['photo_path'] .'.png') }}" alt="{{ Auth::User()['username']}} profile picture" />
+
           <input
             class="w-100 mx-2 px-2"
             type="text"
