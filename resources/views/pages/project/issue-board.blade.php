@@ -379,8 +379,12 @@
                   />
               </form>
                 <ul id="existing-labels">
-                  @foreach ($list->issues()->get() as $issue)
-                    @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)
+                  @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')
+                    ->join('issue', 'issue_tag.issue_id', '=', 'issue.id')
+                    ->join('issue_list', 'issue.issue_list_id', '=', 'issue_list.id')
+                    ->where('issue_list.project_id', '=', $project->id)
+                    ->select('tag.name as name', 'tag.id as id')
+                    ->get() as $issueTag)
                       <li class="existing-label-container d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }}>
                         <i class="fas fa-check selected-label mr-2"></i>
                         <div class="color bg-info"> 
@@ -390,7 +394,6 @@
                         </h6>
                         <i class="fas fa-times remove-label ml-auto mr-2"></i>
                       </li>
-                      @endforeach
                   @endforeach
                 </ul>
             </div>
