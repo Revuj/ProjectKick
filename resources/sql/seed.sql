@@ -46,6 +46,8 @@ CREATE TABLE country (
     name country_name NOT NULL
 );
 
+
+
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     email text UNIQUE CHECK (email LIKE '%@%.%_') NOT NULL,
@@ -251,6 +253,19 @@ CREATE TABLE assigned_user (
     PRIMARY KEY (
         user_id,
         issue_id
+    )
+);
+
+CREATE TABLE vote (
+    user_id integer NOT NULL REFERENCES "user"  ON DELETE CASCADE
+                                                     ON UPDATE CASCADE,
+    comment_id integer  NOT NULL REFERENCES comment ON DELETE CASCADE
+                                                     ON UPDATE CASCADE,
+    upvote smallint NOT NULL,
+
+    PRIMARY KEY (
+        user_id,
+        comment_id
     )
 );
 
@@ -523,7 +538,6 @@ CREATE TRIGGER update_issue_search
     AFTER UPDATE ON issue
     FOR EACH ROW 
     EXECUTE PROCEDURE issue_search_update();
-
 
 insert into country (id, name) values (DEFAULT, 'AF');
 insert into country (id, name) values (DEFAULT, 'AL');
@@ -1625,7 +1639,7 @@ insert into issue (id, name, description, creation_date, due_date, is_completed,
 insert into issue (id, name, description, creation_date, due_date, is_completed, closed_date, issue_list_id, author_id, complete_id) values (DEFAULT, 'id luctus nec', 'sem mauris laoreet', '2020-03-06 13:28:37', null, true, null, 27, 25, null);
 
 insert into "comment" (id, content, creation_date, issue_id, user_id) values (DEFAULT, 'congue eget semper rutrum nulla', '2019-04-01 14:22:36', 456, 12);
-insert into "comment" (id, content, creation_date, issue_id, user_id) values (DEFAULT, 'etiam justo etiam', '2019-12-08 07:03:27', 487, 4);
+insert into "comment" (id, content, creation_date, issue_id, user_id) values (DEFAULT, 'etiam justo etiam', '2019-12-08 07:03:27', 456, 4);
 insert into "comment" (id, content, creation_date, issue_id, user_id) values (DEFAULT, 'massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi', '2019-10-22 02:40:57', 137, 1);
 insert into "comment" (id, content, creation_date, issue_id, user_id) values (DEFAULT, 'pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo odio', '2019-08-29 01:23:28', 170, 3);
 insert into "comment" (id, content, creation_date, issue_id, user_id) values (DEFAULT, 'quam a odio in hac habitasse', '2020-02-13 01:07:48', 295, 2);
@@ -3257,5 +3271,38 @@ insert into notification_invite (notification_id, project_id) values (39, 35);
 insert into notification_invite (notification_id, project_id) values (40, 42);
 insert into notification_invite (notification_id, project_id) values (82, 15);
 insert into notification_invite (notification_id, project_id) values (84, 15);
+
+
+insert into vote (user_id, comment_id, upvote) values (28, 1, 1);
+insert into vote (user_id, comment_id, upvote) values (18, 1, 1);
+insert into vote (user_id, comment_id, upvote) values (7, 36, -1);
+insert into vote (user_id, comment_id, upvote) values (6, 78, 1);
+insert into vote (user_id, comment_id, upvote) values (8, 9, -1);
+insert into vote (user_id, comment_id, upvote) values (22, 83, -1);
+insert into vote (user_id, comment_id, upvote) values (23, 81,-1);
+insert into vote (user_id, comment_id, upvote) values (20, 8, -1);
+insert into vote (user_id, comment_id, upvote) values (21, 86, -1);
+insert into vote (user_id, comment_id, upvote) values (14, 7, 1);
+insert into vote (user_id, comment_id, upvote) values (23, 52, -1);
+insert into vote (user_id, comment_id, upvote) values (27, 50, 1);
+insert into vote (user_id, comment_id, upvote) values (21, 27, -1);
+insert into vote (user_id, comment_id, upvote) values (22, 97, 1);
+insert into vote (user_id, comment_id, upvote) values (16, 57, -1);
+insert into vote (user_id, comment_id, upvote) values (9, 12, 1);
+insert into vote (user_id, comment_id, upvote) values (25, 90, -1);
+insert into vote (user_id, comment_id, upvote) values (2, 38, 1);
+insert into vote (user_id, comment_id, upvote) values (5, 55, -1);
+insert into vote (user_id, comment_id, upvote) values (10, 64, -1);
+insert into vote (user_id, comment_id, upvote) values (2, 83, -1);
+insert into vote (user_id, comment_id, upvote) values (8, 60, -1);
+insert into vote (user_id, comment_id, upvote) values (8, 69, -1);
+insert into vote (user_id, comment_id, upvote) values (2, 63, 1);
+insert into vote (user_id, comment_id, upvote) values (15, 33, 1);
+insert into vote (user_id, comment_id, upvote) values (19, 100, 1);
+insert into vote (user_id, comment_id, upvote) values (23, 38, -1);
+insert into vote (user_id, comment_id, upvote) values (23, 25, -1);
+insert into vote (user_id, comment_id, upvote) values (22, 36, 1);
+insert into vote (user_id, comment_id, upvote) values (24, 50, 1);
+
 
 

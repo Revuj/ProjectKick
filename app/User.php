@@ -145,6 +145,12 @@ class User extends Authenticatable
         $this->hasMany(EventPersonal::class, 'user_id');
     }
 
+    public function votes()
+    {
+        return $this->hasMany(Vote::class, 'user_id');
+
+    }
+
     /* fazer ligacao para os eventos e notifications e vote*/
 
 }

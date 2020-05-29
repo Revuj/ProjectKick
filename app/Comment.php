@@ -32,14 +32,20 @@ class Comment extends Model
     /**
      * @return 
      */
-    public function issue()
+    public function votes()
     {
-        return $this->belongsTo(Issue::class, 'issue_id');
+        return $this->hasMany(Vote::class, 'comment_id');
     }
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function issue()
+    {
+        return $this->belongsTo(Issue::class, 'issue_id');
+    }
+
 
     // maybe fazer alguma coisa em relacao ao voto
 }

@@ -7,13 +7,38 @@ use App\Issue;
 use App\IssueList;
 use App\Project;
 use App\User;
+use App\Comment;
 use Illuminate\Http\Request;
+use DB;
 
 class IssueController extends Controller
 {
     public function show($id)
     {
-        return view('pages.issue');
+        DB::beginTransaction();
+        $issue = Issue::findOrFail($id);
+        $author = User::findOrFail($issue->author_id);
+        $tags = $issue->tags()->join('color', 'tag.color_id', '=', 'color.id')->select('name', 'rgb_code')->get();
+        $assignedTo = $issue->assignTo()->select('photo_path', 'username')->get();
+        $comments = $issue->comments()
+        ->join('vote', 'vote.comment_id', '=', 'comment.id')
+        ->join('user', 'comment.user_id', '=', 'user.id')
+        ->selectRaw('comment.*, username, photo_path, sum(vote.upvote) as total')
+        ->groupby('comment.id','username', 'photo_path')
+        ->get();
+    
+        DB::commit();
+
+        //dd($comments);
+        //dd($tags);
+        //dd($issue);
+        return view('pages.project.issue', [
+            'issue' => $issue,
+            'author' => $author->name,
+            'tags' => $tags,
+            'users' => $assignedTo,
+            'comments' => $comments
+        ]);
     }
 
     public function showList($id)

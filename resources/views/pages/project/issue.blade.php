@@ -1,6 +1,6 @@
 @extends('layouts.app', ['hide_navbar' => false, 'hide_footer' => true, 'sidebar' => 'project'])
 
-@section('title', 'Project_name | Issue_name')
+@section('title', 'Project | Issue')
 
 @section('style')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
@@ -27,7 +27,7 @@
     <ol class="breadcrumb custom-separator">
       <li><a href="#0">lbaw</a></li>
       <li><a href="#0">Issues</a></li>
-      <li class="current">#7</li>
+      <li class="current">#{{$issue->id}}</li>
     </ol>
   </nav>
   <div id="issue-container">
@@ -35,10 +35,17 @@
       <div id="issue-header" class="mb-0 d-flex flex-column">
         <div class="d-flex align-items-center pt-2">
           <p class="mr-auto i smaller-text mb-0">
-            <span class="bg-success text-light issue-status">Open</span>
-            <span class="issue-status-description"
-              >Opened 5 days ago by
-              <span class="author-reference">Revuj</span></span
+          @if($issue['is_completed'])
+          <span class="bg-success text-light issue-status">Open</span>
+          @else
+          <span class="bg-danger text-light issue-status">Closed</span>
+          @endif
+
+
+            <span class="issue-status-description">
+           
+            Created {{ date_format(date_create($issue['creation_date']), '\o\n l jS F Y')}} by 
+              <span class="author-reference">{{$author}}</span></span
             >
           </p>
           <button class="custom-button close-button">
@@ -74,7 +81,7 @@
         </div>
         <div class="d-flex align-items-center my-2">
           <h4 class="title task-title mr-auto mt-2">
-            Hello, I'm a sexy Issue!
+            {{$issue['name']}}
           </h4>
           <button
             type="button"
@@ -84,16 +91,13 @@
           </button>
         </div>
         <ul class="labels smaller-text d-flex align-items-center">
-          <li class="mr-2">
-            <h6 class="label mb-0 px-1 list-item-label bg-info">
-              Iteration 1
+        @foreach($tags as $tag)
+        <li class="mr-2">
+            <h6 class="label mb-0 px-1 list-item-label bg-info p-1 text-white" style="background-color:{{$tag->rgb_code}};" >
+              {{$tag->name}}
             </h6>
-          </li>
-          <li class="mr-2">
-            <h6 class="label mb-0 px-1 list-item-label bg-warning">
-              Iteration 2
-            </h6>
-          </li>
+        </li>
+        @endforeach
           <li>
             <button
               type="button"
@@ -107,10 +111,7 @@
       <div class="row border-bottom my-4">
         <div class="col-md-9 description text-left">
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et
-            deserunt velit, eligendi accusantium repellendus minima
-            dolor quis blanditiis voluptatum fuga ab aperiam quaerat
-            praesentium qui consequuntur possimus nihil, ipsum ea?
+          {{$issue['description']}}
           </p>
         </div>
         <div
@@ -120,25 +121,22 @@
             <ul
               class="assignees d-flex align-items-center justify-content-center pb-3"
             >
-              <li class="mr-2">
-                <img
-                  src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
-                />
-              </li>
-              <li>
-                <img
-                  src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-                  alt="@vitorb19"
-                  draggable="false"
-                />
-              </li>
+
+            @foreach($users as $user)
+            <li class="mr-2">
+              <img src="{{ asset('assets/avatars/'.  $user['photo_path'] .'.png') }}" alt="{{ $user['username']}} profile picture" />
+            </li>
+            @endforeach
             </ul>
           </div>
           <div class="due-date-container ml-auto">
             <button type="button" class="custom-button due-date-button">
-              <i class="far fa-clock mr-2"></i>Feb 29
+              <i class="far fa-clock mr-2"></i>
+              @if(!$issue['due_date'] === NULL)
+                Not defined
+              @else
+                {{ date_format(date_create($issue['due_date']), 'jS F Y')}}
+              @endif
             </button>
           </div>
         </div>
@@ -160,72 +158,30 @@
         </form>
       </div>
       <div class="comments-container">
-        <div class="comment d-flex border-bottom mt-4 pb-1">
-          <img
-            class="comment-author"
-            src="https://avatars3.githubusercontent.com/u/41621540?s=40&v=4"
-            alt=""
-          />
+
+      @foreach ($comments as $comment)
+      
+      <div class="comment d-flex border-bottom mt-4 pb-1">
+        <img class = "comment-author"src="{{ asset('assets/avatars/'.  $comment['photo_path'] .'.png') }}" alt="{{ $comment['username']}} profile picture" />
+
           <div class="comment-detail ml-3">
             <h6>
-              <span class="author-reference">Revuj</span>
-              <span class="comment-timestamp ml-1">just now...</span>
+              <span class="author-reference">{{ $comment['username']}}</span>
+              <span class="comment-timestamp ml-1"> {{ date_format(date_create($issue['creation_date']),'h:i a \o\n l jS F Y')}}</span>
             </h6>
             <p>
-              Good job Abelha!
+              {{$comment['content']}}
             </p>
           </div>
           <div class="karma ml-auto mr-3 d-flex flex-column">
             <i class="fas fa-chevron-up"></i>
-            <p class="mb-0 text-center">1</p>
+            <p class="mb-0 text-center">{{$comment['total']}}</p>
             <i class="fas fa-chevron-down"></i>
           </div>
         </div>
-        <div class="comment d-flex border-bottom mt-4 pb-1">
-          <img
-            class="comment-author"
-            src="https://assets-br.wemystic.com.br/20191112193725/bee-on-flower_1519375600-960x640.jpg"
-            alt=""
-          />
-          <div class="comment-detail ml-3">
-            <h6>
-              <span class="author-reference">Abelha</span>
-              <span class="comment-timestamp ml-1">3 hours ago</span>
-            </h6>
-            <p>
-              Almost Done...
-            </p>
-          </div>
-          <div class="karma ml-auto mr-3 d-flex flex-column">
-            <i class="fas fa-chevron-up text-info"></i>
-            <p class="mb-0 text-center">2</p>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        <div class="comment d-flex border-bottom mt-4 pb-1">
-          <img
-            class="comment-author"
-            src="https://avatars2.githubusercontent.com/u/44231794?s=40&v=4"
-            alt=""
-          />
-          <div class="comment-detail ml-3">
-            <h6>
-              <span class="author-reference">Vator</span>
-              <span class="comment-timestamp ml-1">2 weeks ago</span>
-            </h6>
-            <p>
-              Hey guys I opened this issue but will never work on it.
-            </p>
-            <p>
-              Good Luck!
-            </p>
-          </div>
-          <div class="karma ml-auto mr-3 d-flex flex-column">
-            <i class="fas fa-chevron-up"></i>
-            <p class="mb-0 text-center">1</p>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
+
+      @endforeach
+
       </div>
     </div>
   </div>
