@@ -300,7 +300,7 @@
                   </button>
                 </div>
               </form>
-              <button type="button" class="btn d-none edit-task mr-1">
+              <button type="button" class="btn edit-task d-none mr-1">
                 <i class="fas fa-pencil-alt float-right"></i>
               </button>
               <button type="button" class="btn close-side-issue">
@@ -337,8 +337,12 @@
                   />
               </form>
                 <ul id="existing-users">
-                  @foreach ($list->issues()->get() as $issue)
-                    @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
+                    @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')
+                    ->join('issue', 'assigned_user.issue_id', '=', 'issue.id')
+                    ->join('issue_list', 'issue.issue_list_id', '=', 'issue_list.id')
+                    ->where('issue_list.project_id', '=', $project->id)
+                    ->select('user.id as id', 'user.username as username')
+                    ->get() as $assignee)
                       <li class="existing-user-container d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }}>
                         <i class="fas fa-check selected-user mr-2"></i>
                         <span class="assignee ml-2"><img
@@ -351,7 +355,6 @@
                         <i class="fas fa-times remove-user ml-auto mr-2"></i>
                       </li>
                     @endforeach
-                  @endforeach
                 </ul>
             </div>
           </div>
@@ -379,8 +382,12 @@
                   />
               </form>
                 <ul id="existing-labels">
-                  @foreach ($list->issues()->get() as $issue)
-                    @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)
+                  @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')
+                    ->join('issue', 'issue_tag.issue_id', '=', 'issue.id')
+                    ->join('issue_list', 'issue.issue_list_id', '=', 'issue_list.id')
+                    ->where('issue_list.project_id', '=', $project->id)
+                    ->select('tag.name as name', 'tag.id as id')
+                    ->get() as $issueTag)
                       <li class="existing-label-container d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }}>
                         <i class="fas fa-check selected-label mr-2"></i>
                         <div class="color bg-info"> 
@@ -390,7 +397,6 @@
                         </h6>
                         <i class="fas fa-times remove-label ml-auto mr-2"></i>
                       </li>
-                      @endforeach
                   @endforeach
                 </ul>
             </div>
