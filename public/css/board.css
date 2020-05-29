@@ -211,7 +211,13 @@
   border-top: 1px solid var(--border-color);
   font-size: 0.9em;
   font-weight: 600;
+  transition: 0.3s;
 }
+
+.existing-label-container:hover , .existing-user-container:hover  {
+  background-color: var(--background-hover);
+}
+
 
 .existing-label-container:last-of-type {
   border-bottom: 1px solid var(--border-color);
