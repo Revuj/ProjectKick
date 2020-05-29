@@ -170,10 +170,30 @@
               {{$comment['content']}}
             </p>
           </div>
-          <div class="karma ml-auto mr-3 d-flex flex-column">
-            <i class="fas fa-chevron-up"></i>
-            <p class="mb-0 text-center">{{$comment['total']}}</p>
-            <i class="fas fa-chevron-down"></i>
+          <div data-target = "{{$comment['id']}}" class="karma ml-auto mr-3 d-flex flex-column">
+            
+
+            @php
+              $vote = $comment->votes->where('user_id', Auth::Id());
+              $upvote = $vote->first()['upvote'];
+            @endphp
+
+            @if ($vote->count() > 0)
+              @if($upvote === true)
+                <i class="fas fa-chevron-up upvote voted"></i>
+                <p class="mb-0 text-center">{{$comment['total']}}</p>
+                <i class="fas fa-chevron-down downvote"></i>
+              @else
+                <i class="fas fa-chevron-up upvote"></i>
+                <p class="mb-0 text-center">{{$comment['total']}}</p>
+                <i class="fas fa-chevron-down downvote"></i>
+              @endif
+            @else
+              <i class="fas fa-chevron-up upvote"></i>
+              <p class="mb-0 text-center">{{$comment['total']}}</p>
+              <i class="fas fa-chevron-down downvote voted"></i>
+            @endif
+
           </div>
         </div>
 

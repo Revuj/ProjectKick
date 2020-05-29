@@ -59,6 +59,19 @@
   opacity: 0.6;
 }
 
+.upvote, .downvote {
+  cursor: pointer;
+  transform: 1s ease-in;
+}
+
+.upvote:hover, .downvote:hover {
+  color: var(--secondary-color) ;
+}
+
+.voted {
+  color: orange;
+}
+
 @media only screen and (max-width: 600px) {
   .issue-status-description {
     display: none;

@@ -3273,7 +3273,7 @@ insert into notification_invite (notification_id, project_id) values (82, 15);
 insert into notification_invite (notification_id, project_id) values (84, 15);
 
 
-insert into vote (user_id, comment_id, upvote) values (28, 1, 1);
+insert into vote (user_id, comment_id, upvote) values (31, 1, -1);
 insert into vote (user_id, comment_id, upvote) values (18, 1, 1);
 insert into vote (user_id, comment_id, upvote) values (7, 36, -1);
 insert into vote (user_id, comment_id, upvote) values (6, 78, 1);
