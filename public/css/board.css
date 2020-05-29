@@ -113,11 +113,6 @@
   height: 100%;
 }
 
-.edit-task {
-  display: none;
-  background-color: white;
-}
-
 .list-item-counter,
 .list-item-creator,
 .list-item-label {
