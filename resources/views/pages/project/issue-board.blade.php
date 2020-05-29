@@ -126,14 +126,14 @@
                       {{-- <h6 style="background-color:#{{ $issueTag->color->rgb_code }}" class="mb-0 p-1 list-item-label mr-1">
                         {{ $issueTag->name }}
                       </h6>                 --}}
-                      <h6 class="mb-0 p-1 list-item-label mr-1 bg-info">
+                      <h6 class="mb-0 p-1 list-item-label mr-1 bg-info" data-label-id={{ $issueTag->id }}>
                         {{ $issueTag->name }}
                       </h6> 
                       @endforeach
                     </span>
                     <span class="d-flex flex-row-reverse mx-2 row-3">
                       @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
-                        <span class="assignee ml-2"><img
+                        <span class="assignee ml-2" data-user-id={{ $assignee->id }}><img
                           src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
                           draggable="false" />
                         </span>
@@ -316,23 +316,51 @@
           <div class="assignees-container mt-3">
             <h6 class="block pb-2 font-weight-bold">Assignees</h6>
             <ul class="assignees d-flex align-items-center">
+              <li>
+                <button
+                  id="add-assignee"
+                  type="button"
+                  class="custom-button add-button add-assignee"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </li>
             </ul>
+            <div id="add-new-assignee" class="d-none">
+              <form id="write-assignee">
+                <input
+                    type="text"
+                    id="new-assignee"
+                    name="new-assignee"
+                    class="form-control"
+                    placeholder="Type or choose an assignee..."
+                  />
+              </form>
+                <ul id="existing-users">
+                  @foreach ($list->issues()->get() as $issue)
+                    @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
+                      <li class="existing-user-container d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }}>
+                        <i class="fas fa-check selected-user mr-2"></i>
+                        <span class="assignee ml-2"><img
+                          src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
+                          draggable="false" />
+                        </span>
+                        <h6 class="mb-0 p-1 existing-user font-weight-bold ml-2">
+                          {{ $assignee->username }}
+                        </h6>
+                        <i class="fas fa-times remove-user ml-auto mr-2"></i>
+                      </li>
+                    @endforeach
+                  @endforeach
+                </ul>
+            </div>
           </div>
           <div class="labels-container mt-3">
             <h6 class="block font-weight-bold">Labels</h6>
             <ul class="labels d-flex align-items-center">
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-info">
-                  Iteration 1
-                </h6>
-              </li>
-              <li class="mr-2">
-                <h6 class="mb-0 p-1 list-item-label bg-warning">
-                  Iteration 2
-                </h6>
-              </li>
               <li>
                 <button
+                  id="add-label"
                   type="button"
                   class="custom-button add-button add-label"
                 >
@@ -340,13 +368,47 @@
                 </button>
               </li>
             </ul>
+            <div id="add-new-label" class="d-none">
+              <form id="write-label">
+                <input
+                    type="text"
+                    id="new-label"
+                    name="new-label"
+                    class="form-control"
+                    placeholder="Type or choose a label..."
+                  />
+              </form>
+                <ul id="existing-labels">
+                  @foreach ($list->issues()->get() as $issue)
+                    @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)
+                      <li class="existing-label-container d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }}>
+                        <i class="fas fa-check selected-label mr-2"></i>
+                        <div class="color bg-info"> 
+                        </div>
+                        <h6 class="mb-0 p-1 existing-label">
+                          {{ $issueTag->name }}
+                        </h6>
+                        <i class="fas fa-times remove-label ml-auto mr-2"></i>
+                      </li>
+                      @endforeach
+                  @endforeach
+                </ul>
+            </div>
           </div>
           <div class="due-date-container mt-3">
             <h6 class="block pb-2 font-weight-bold">Due Date</h6>
 
-            <button type="button" class="custom-button due-date-button">
+            <button type="button" class="custom-button due-date-button" id="change-due-date">
               <i class="far fa-clock mr-2"></i><span id="due-date"></span>
             </button>
+            <form id="select-due-date" class="mt-2 d-none">
+              <input
+                  type="date"
+                  id="new-due-date"
+                  name="new-due-date"
+                  class="form-control"
+                />
+            </form>
           </div>
           <button
             id="delete-issue-button"

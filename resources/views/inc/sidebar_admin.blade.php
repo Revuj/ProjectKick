@@ -18,7 +18,7 @@
       </a>
     </li>
     <li class="{{(request()->segment(2) == 'search') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}">
-      <a href="#">
+      <a href="/admin/search">
         <span class="m-2"><i class="fas fa-search"></i></span>
         <span class="side-menu-item-title">Search</span>
       </a>
