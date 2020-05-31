@@ -93,7 +93,7 @@
                   <i class="fas fa-plus"></i>
                 </button>
                 <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal"
-                 data-list-id="task-list-{{ $list->id }}">
+                 data-list-id="task-list-{{ $list->id }}" data-list-name="task-list-{{ $list->name }}">
                  <i class="fas fa-trash-alt"></i>
                 </button>
               </div>
@@ -343,8 +343,8 @@
                     ->where('issue_list.project_id', '=', $project->id)
                     ->select('user.id as id', 'user.username as username')
                     ->get() as $assignee)
-                      <li class="existing-user-container d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }}>
-                        <i class="fas fa-check selected-user mr-2"></i>
+                      <li class="existing-user-container clickable d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }}>
+                        <i class="fas fa-check selected-user invisible mr-2"></i>
                         <span class="assignee ml-2"><img
                           src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
                           draggable="false" />
@@ -352,7 +352,6 @@
                         <h6 class="mb-0 p-1 existing-user font-weight-bold ml-2">
                           {{ $assignee->username }}
                         </h6>
-                        <i class="fas fa-times remove-user ml-auto mr-2"></i>
                       </li>
                     @endforeach
                 </ul>
@@ -388,14 +387,13 @@
                     ->where('issue_list.project_id', '=', $project->id)
                     ->select('tag.name as name', 'tag.id as id')
                     ->get() as $issueTag)
-                      <li class="existing-label-container d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }}>
-                        <i class="fas fa-check selected-label mr-2"></i>
+                      <li class="existing-label-container clickable d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }}>
+                        <i class="fas fa-check invisible selected-label mr-2"></i>
                         <div class="color bg-info"> 
                         </div>
                         <h6 class="mb-0 p-1 existing-label">
                           {{ $issueTag->name }}
                         </h6>
-                        <i class="fas fa-times remove-label ml-auto mr-2"></i>
                       </li>
                   @endforeach
                 </ul>
