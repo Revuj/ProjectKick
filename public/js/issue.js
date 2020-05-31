@@ -9,13 +9,13 @@ downvotes.forEach(downvoteArrow => downvoteArrow.addEventListener('click', downv
 function upvote() {
   const comment_id = this.parentNode.getAttribute('data-target');
   const upvote = 1  ;
-  vote(comment_id, upvote);
+  vote(comment_id, upvote, this);
 }
 
 function downvote() {
   const comment_id = this.parentNode.getAttribute('data-target');
   const upvote = -1;
-  vote(comment_id, upvote);
+  vote(comment_id, upvote, this);
 }
 
 const nth = function(d) {
@@ -88,6 +88,9 @@ function createComment(comment, current_user) {
   new_comment.appendChild(voting);
 
   document.querySelector('.comments-container').prepend(new_comment);
+  child1.addEventListener('click', upvote.bind(child1));
+  child3.addEventListener('click', downvote.bind(child3));
+
 }
 
 async function makeComment() {
@@ -137,7 +140,7 @@ async function makeComment() {
 
 }
 
-async function vote(comment_id, upvote) {
+async function vote(comment_id, upvote, clickedArrow) {
 
   let init = {
     method: 'PUT',
@@ -148,27 +151,40 @@ async function vote(comment_id, upvote) {
     body: encodeForAjax({ comment_id, upvote})
   }
 
+  let value = clickedArrow.parentNode.querySelector('p');
+
+
   fetch(`/api/votes`, init)
   .then(function (response) {
     if (response.ok) {
       response.json().then(data => {
         if ('errors' in data) {
-          /*
-          const error_message = data['errors']['content'][0];
+          const error_message = data['errors'];
           const div_elem = document.getElementById('error-write');
           div_elem.querySelector('.content').textContent = error_message;
           div_elem.classList.remove('d-none');
+          clickedArrow.classList.remove('voted');
+          const val = upvote === 1 ? -1 : 1;
+          value.innerHTML = parseInt(value.innerHTML) + val; 
           setTimeout(() => {
             div_elem.classList.add('d-none');
             div_elem.querySelector('.content').textContent = "";
-          }, 3500);*/
-          console.log(data)
+          }, 3500);
         }
         else {
-          /*
-          const comment = data[0];
-          const current_user = data[1];
-          createComment(comment, current_user)*/
+          if ('update' in data) {
+            clickedArrow.parentNode.querySelector('.voted').classList.remove('voted');
+            clickedArrow.classList.add('voted');
+            const val = upvote === 1 ? 2 : -2;
+            console.log(val)
+            value.innerHTML = parseInt(value.innerHTML) + val; 
+            
+          }
+          else if ('create' in data) {
+            const val = upvote === 1 ? 1 : -1;
+            value.innerHTML = parseInt(value.innerHTML) + val;
+            clickedArrow.classList.add('voted')
+          }
           console.log(data)
         }
       })

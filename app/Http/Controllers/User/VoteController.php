@@ -38,7 +38,7 @@ class VoteController extends Controller {
             }
             else {
                 $updated_vote = $vote->update(['upvote' => $request['upvote']]);
-                return response()->json(['update', $updated_vote]);
+                return response()->json(['update' => $updated_vote]);
             }
 
         }
@@ -48,7 +48,7 @@ class VoteController extends Controller {
                   'user_id' =>  $request->user_id,
                   'upvote' => $request->upvote
               ]);
-              return response()->json([$vote ,$request->upvote]);
+              return response()->json([ 'create' => $vote]);
         }
 
     }
