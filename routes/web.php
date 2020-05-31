@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/api/issues/{id}', 'IssueController@delete');
         Route::post('/api/issues', 'IssueController@create');
         Route::put('/api/issues/comment', 'CommentController@store');
+        Route::put('/api/issues/{id}', 'IssueController@update');
 
         // Vote
         Route::put('/api/votes', 'VoteController@store');
@@ -66,7 +67,6 @@ Route::group(['middleware' => ['auth']], function () {
         // Chat
         Route::put('/api/project/{id}/chat', 'ChatController@create');
         Route::delete('/api/channels/{id}', 'ChatController@delete');
-
 
         //Project
         Route::put('/api/projects', 'ProjectController@create');
@@ -102,10 +102,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/countries', 'AdminController@fetchCountries'); /*api*/
         Route::post('/monthlyIntel', 'AdminController@fetchIntelPerMonth'); /*api */
         Route::post('/bannedUsers', 'AdminController@bannedUsers'); /*api */
-        Route::post('/recentUsers','AdminController@recentUsers'); /*api */
+        Route::post('/recentUsers', 'AdminController@recentUsers'); /*api */
 
-        Route::post('/fetchProjects', 'AdminController@fetchProjects');/*api */
-        Route::post('/fetchUsers', 'AdminController@fetchUsers');/*api */
+        Route::post('/fetchProjects', 'AdminController@fetchProjects'); /*api */
+        Route::post('/fetchUsers', 'AdminController@fetchUsers'); /*api */
         Route::put('/banUser/{id}', 'AdminController@banUser'); /*api */
         Route::put('/unbanUser/{id}', 'AdminController@UnbanUser'); /*api */
         Route::delete('/project/{id}', 'AdminController@deleteProject'); /*may change? */
@@ -115,7 +115,5 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/fetchNrReports', 'AdminController@fetchNrReports');
         Route::post('/fetchTeamBySize', 'AdminController@fetchByTeamSize');
     });
-
-
 
 });

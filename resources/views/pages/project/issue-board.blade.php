@@ -281,7 +281,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    class="item-title"
+                    id="new-task-title"
                     placeholder=""
                   />
                 </div>

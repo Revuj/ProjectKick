@@ -439,8 +439,28 @@ let selectDueDateContainer = document.getElementById("select-due-date");
 let selectDueDateBtn = document.getElementById("change-due-date");
 selectDueDateBtn.addEventListener("click", () => {
   selectDueDateContainer.classList.toggle("d-none")
-
 })
+
+// Edit Title
+let submitTitle = document.querySelector(".edit-item-title");
+submitTitle.addEventListener("click", (event) => {
+  event.preventDefault();
+  let title = document.getElementById("new-task-title").value;
+  let id = delete_issue_button.dataset.issueId;
+  let url = `/api/issues/${id}`;
+  sendAjaxRequest("put", url, { title }, changeTitleHandler);
+})
+
+function changeTitleHandler() {
+  const response = JSON.parse(this.responseText);
+  let newTitle = response['name'];
+  document.querySelector("#side-issue-container .task-title").innerHTML = newTitle;
+  title.classList.toggle("d-none");
+  editTitleFrom.classList.toggle("d-none");
+  side_issue_header.querySelector("p").classList.toggle("d-none");
+  document.getElementById(response['id']).querySelector('.task-title').innerHTML = newTitle;
+}
+
 
 /*general functions */
 
