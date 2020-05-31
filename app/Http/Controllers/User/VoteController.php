@@ -48,7 +48,9 @@ class VoteController extends Controller {
                   'user_id' =>  $request->user_id,
                   'upvote' => $request->upvote
               ]);
-              return response()->json([ 'create' => $vote]);
+              $username = \App\Comment::findOrFail($request->comment_id)->user()->first()['username'];
+              $message = 'Voted successfully voted on the comment made by ' . $username ;
+              return response()->json([ 'create' => $vote, 'message' =>  $message]);
         }
 
     }

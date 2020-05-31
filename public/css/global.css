@@ -791,6 +791,11 @@ input:checked + .slider:before {
   background-color: #FFD2D2;
 }
 
+.success-color {
+  background-color: #abfaaf;
+  color: #0baa13;
+  
+}
 /*button animation number 2
 
 .btn-custom {

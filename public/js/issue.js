@@ -1,7 +1,7 @@
 const comment = document.getElementById('new-comment');
 const upvotes = document.querySelectorAll('.upvote');
 const downvotes = document.querySelectorAll('.downvote');
-
+let timeout;
 
 upvotes.forEach(upvoteArrow => upvoteArrow.addEventListener('click', upvote.bind(upvoteArrow)));
 downvotes.forEach(downvoteArrow => downvoteArrow.addEventListener('click', downvote.bind(downvoteArrow)));
@@ -16,6 +16,12 @@ function downvote() {
   const comment_id = this.parentNode.getAttribute('data-target');
   const upvote = -1;
   vote(comment_id, upvote, this);
+}
+
+function clearTime() {
+  if (timeout !== null && timeout !== undefined) {
+    clearTimeout(timeout);
+  }
 }
 
 const nth = function(d) {
@@ -113,12 +119,15 @@ async function makeComment() {
         response.json().then(data => {
           if ('errors' in data) {
             const error_message = data['errors']['content'][0];
-            const div_elem = document.getElementById('error-write');
+            const div_elem = document.getElementById('dialog');
+            div_elem.classList.add('error-color');
             div_elem.querySelector('.content').textContent = error_message;
             div_elem.classList.remove('d-none');
-            setTimeout(() => {
+            clearTime();
+            timeout = setTimeout(() => {
               div_elem.classList.add('d-none');
               div_elem.querySelector('.content').textContent = "";
+              div_elem.classList.remove('error-color');
             }, 3500);
           }
           else {
@@ -160,15 +169,20 @@ async function vote(comment_id, upvote, clickedArrow) {
       response.json().then(data => {
         if ('errors' in data) {
           const error_message = data['errors'];
-          const div_elem = document.getElementById('error-write');
+          const div_elem = document.getElementById('dialog');
+          div_elem.classList.add('error-color');
           div_elem.querySelector('.content').textContent = error_message;
           div_elem.classList.remove('d-none');
+          div_elem.classList.remove('success-color')
           clickedArrow.classList.remove('voted');
           const val = upvote === 1 ? -1 : 1;
           value.innerHTML = parseInt(value.innerHTML) + val; 
-          setTimeout(() => {
+          clearTime();
+          timeout = setTimeout(() => {
             div_elem.classList.add('d-none');
             div_elem.querySelector('.content').textContent = "";
+            div_elem.classList.remove('error-color');
+
           }, 3500);
         }
         else {
@@ -183,9 +197,21 @@ async function vote(comment_id, upvote, clickedArrow) {
           else if ('create' in data) {
             const val = upvote === 1 ? 1 : -1;
             value.innerHTML = parseInt(value.innerHTML) + val;
-            clickedArrow.classList.add('voted')
+            clickedArrow.classList.add('voted');
+            const dialog = document.getElementById('dialog');
+            dialog.classList.remove('d-none');
+            dialog.querySelector('.content').textContent = data['message'];
+            dialog.classList.remove('error-color');
+            dialog.classList.add('success-color');
+            clearTime();
+            timeout = setTimeout(() => {
+              dialog.classList.add('d-none');
+              dialog.querySelector('.content').textContent = "";
+              dialog.classList.remove('success-color');
+  
+            }, 3500);
+
           }
-          console.log(data)
         }
       })
     }

@@ -150,7 +150,7 @@
       <div class="add-comment-container">
       
       <div class = "position-relative w-100 py-3 mb-5">
-        <div class = "mt-0 p-2 error-color rounded position-absolute w-100 d-none" id = "error-write">
+        <div class = "mt-0 p-2 rounded position-absolute w-100 d-none" id = "dialog">
           <div class="error-content ml-3">
             <i class="fas fa-exclamation-triangle"></i>
               <span class = "ml-2 content"> Something went wrong</span>
