@@ -2,6 +2,22 @@ const comment = document.getElementById('new-comment');
 const upvotes = document.querySelectorAll('.upvote');
 const downvotes = document.querySelectorAll('.downvote');
 
+
+upvotes.forEach(upvoteArrow => upvoteArrow.addEventListener('click', upvote.bind(upvoteArrow)));
+downvotes.forEach(downvoteArrow => downvoteArrow.addEventListener('click', downvote.bind(downvoteArrow)));
+
+function upvote() {
+  const comment_id = this.parentNode.getAttribute('data-target');
+  const upvote = 1  ;
+  vote(comment_id, upvote);
+}
+
+function downvote() {
+  const comment_id = this.parentNode.getAttribute('data-target');
+  const upvote = -1;
+  vote(comment_id, upvote);
+}
+
 const nth = function(d) {
   if (d > 3 && d < 21) return 'th';
   switch (d % 10) {
@@ -86,7 +102,6 @@ async function makeComment() {
       'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
     },
     body: encodeForAjax({ user_id, issue_id, content })
-
   }
 
   fetch(`/api/issues/comment`, init)
@@ -119,6 +134,52 @@ async function makeComment() {
     }).catch(function (error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
+
+}
+
+async function vote(comment_id, upvote) {
+
+  let init = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    },
+    body: encodeForAjax({ comment_id, upvote})
+  }
+
+  fetch(`/api/votes`, init)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(data => {
+        if ('errors' in data) {
+          /*
+          const error_message = data['errors']['content'][0];
+          const div_elem = document.getElementById('error-write');
+          div_elem.querySelector('.content').textContent = error_message;
+          div_elem.classList.remove('d-none');
+          setTimeout(() => {
+            div_elem.classList.add('d-none');
+            div_elem.querySelector('.content').textContent = "";
+          }, 3500);*/
+          console.log(data)
+        }
+        else {
+          /*
+          const comment = data[0];
+          const current_user = data[1];
+          createComment(comment, current_user)*/
+          console.log(data)
+        }
+      })
+    }
+    else {
+
+      console.log('Network response was not ok.' + JSON.stringify(data));
+    }
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+  });
 
 }
 

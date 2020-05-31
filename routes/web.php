@@ -60,6 +60,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/api/issues', 'IssueController@create');
         Route::put('/api/issues/comment', 'CommentController@store');
 
+        // Vote
+        Route::put('/api/votes', 'VoteController@store');
+
         // Chat
         Route::put('/api/project/{id}/chat', 'ChatController@create');
         Route::delete('/api/channels/{id}', 'ChatController@delete');

@@ -181,7 +181,7 @@
           <div class="comment-detail ml-3">
             <h6>
               <a href="/users/{{$comment['user_id']}}"><span class="author-reference">{{ $comment['username']}}</span></a>
-              <span class="comment-timestamp ml-1"> {{ date_format(date_create($issue['creation_date']),'h:i a \o\n l jS F Y')}}</span>
+              <span class="comment-timestamp ml-1"> {{ date_format(date_create($comment['creation_date']),'h:i a \o\n l jS F Y')}}</span>
             </h6>
             <p>
               {{$comment['content']}}
@@ -194,9 +194,9 @@
               $vote = $comment->votes->where('user_id', Auth::Id());
               $upvote = $vote->first()['upvote'];
             @endphp
-            
+
             @if ($vote->count() > 0)
-              @if($upvote === true)
+              @if($upvote === 1)
                 <i class="fas fa-chevron-up upvote voted"></i>
                 <p class="mb-0 text-center">{{$comment['total']}}</p>
                 <i class="fas fa-chevron-down downvote"></i>

@@ -25,6 +25,7 @@ class IssueController extends Controller
         ->join('user', 'comment.user_id', '=', 'user.id')
         ->selectRaw('comment.*, username, photo_path, coalesce(sum(vote.upvote),0) as total')
         ->groupby('comment.id', 'username', 'photo_path')
+        ->orderby('comment.creation_date', 'desc')
         ->get();
     
         DB::commit();
