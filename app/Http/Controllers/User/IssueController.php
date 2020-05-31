@@ -21,10 +21,10 @@ class IssueController extends Controller
         $tags = $issue->tags()->join('color', 'tag.color_id', '=', 'color.id')->select('name', 'rgb_code')->get();
         $assignedTo = $issue->assignTo()->select('photo_path', 'username', 'id')->get();
         $comments = $issue->comments()
-        ->join('vote', 'vote.comment_id', '=', 'comment.id')
+        ->leftjoin('vote', 'vote.comment_id', '=', 'comment.id')
         ->join('user', 'comment.user_id', '=', 'user.id')
-        ->selectRaw('comment.*, username, photo_path, sum(vote.upvote) as total')
-        ->groupby('comment.id','username', 'photo_path')
+        ->selectRaw('comment.*, username, photo_path, coalesce(sum(vote.upvote),0) as total')
+        ->groupby('comment.id', 'username', 'photo_path')
         ->get();
     
         DB::commit();

@@ -786,6 +786,11 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.error-color {
+  color: #D8000C;
+  background-color: #FFD2D2;
+}
+
 /*button animation number 2
 
 .btn-custom {

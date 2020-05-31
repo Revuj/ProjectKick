@@ -18,6 +18,8 @@
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
     <script src="{{asset('js/navbar.js')}}" defer></script>
     <script src="{{asset('js/index.js')}}" defer></script>
+    <script src="{{asset('js/issue.js')}}" defer></script>
+
 @endsection
 
 
@@ -25,7 +27,7 @@
 <div class="main-content-container px-4">
   <nav>
     <ol class="breadcrumb custom-separator">
-      <li><a href="#0">lbaw</a></li>
+      <li><a href="/projects/{{$issue->issueList->project_id}}">Project</a></li>
       <li><a href="/projects/{{$issue->issueList->project_id}}/issuelist">Issues</a></li>
       <li class="current">#{{$issue->id}}</li>
     </ol>
@@ -110,7 +112,7 @@
           </li>
         </ul>
       </div>
-      <div class="row border-bottom my-4">
+      <div class="row border-bottom my-2">
         <div class="col-md-9 description text-left">
           <p>
           {{$issue['description']}}
@@ -145,7 +147,17 @@
           </div>
         </div>
       </div>
-      <div class="add-comment-container mt-4">
+      <div class="add-comment-container">
+      
+      <div class = "position-relative w-100 py-3 mb-5">
+        <div class = "mt-0 p-2 error-color rounded position-absolute w-100 d-none" id = "error-write">
+          <div class="error-content ml-3">
+            <i class="fas fa-exclamation-triangle"></i>
+              <span class = "ml-2 content"> Something went wrong</span>
+          </div>
+        </div>
+      </div>
+
         <form class="d-flex">
           <img class = "comment-author" src="{{ asset('assets/avatars/'.  Auth::User()['photo_path'] .'.png') }}" alt="{{ Auth::User()['username']}} profile picture" />
           <input
@@ -153,7 +165,9 @@
             type="text"
             name="comment"
             id="new-comment"
-            placeholder="Write a comment..."
+            placeholder=" Write a comment..."
+            data-user = "{{Auth::Id()}}"
+            data-issue = "{{$issue->id}}"
           />
         </form>
       </div>
@@ -180,7 +194,7 @@
               $vote = $comment->votes->where('user_id', Auth::Id());
               $upvote = $vote->first()['upvote'];
             @endphp
-
+            
             @if ($vote->count() > 0)
               @if($upvote === true)
                 <i class="fas fa-chevron-up upvote voted"></i>
@@ -189,12 +203,12 @@
               @else
                 <i class="fas fa-chevron-up upvote"></i>
                 <p class="mb-0 text-center">{{$comment['total']}}</p>
-                <i class="fas fa-chevron-down downvote"></i>
+                <i class="fas fa-chevron-down downvote voted"></i>
               @endif
             @else
               <i class="fas fa-chevron-up upvote"></i>
               <p class="mb-0 text-center">{{$comment['total']}}</p>
-              <i class="fas fa-chevron-down downvote voted"></i>
+              <i class="fas fa-chevron-down downvote"></i>
             @endif
 
           </div>
