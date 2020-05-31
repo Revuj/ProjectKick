@@ -274,7 +274,7 @@
       <div id="side-issue-container">
         <div id="side-issue" class="d-flex flex-column h-100 mx-3 py-3">
           <div id="side-issue-header" class="border-bottom mb-3">
-            <div class="d-flex align-items-start">
+            <div class="d-flex align-items-center">
               <h4 class="task-title mr-auto">HELLO</h4>
               <form class="edit-issue-title-form form-group d-none mr-auto">
                 <div class="form-group text-left">
@@ -359,7 +359,7 @@
             </div>
           </div>
           <div class="labels-container mt-3">
-            <h6 class="block font-weight-bold">Labels</h6>
+            <h6 class="block pb-2 font-weight-bold">Labels</h6>
             <ul class="labels d-flex align-items-center">
               <li>
                 <button
