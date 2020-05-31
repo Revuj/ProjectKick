@@ -124,9 +124,19 @@ class IssueController extends Controller
 
         $title = $request->input("title");
         $description = $request->input("description");
+        $dueDate = $request->input("due_date");
 
-        $issue->name = $title;
-        $issue->description = $description;
+        if ($title != null) {
+            $issue->name = $title;
+        }
+
+        if ($description != null) {
+            $issue->description = $description;
+        }
+
+        if ($dueDate != null) {
+            $issue->due_date = $dueDate;
+        }
 
         $issue->save();
 

@@ -266,7 +266,7 @@ function openSideIssueListen(elem) {
     let labels = elem.querySelectorAll(".list-item-label");
     if (pageWrapper.classList.contains("is-collapsed-right")) {
       title.classList.remove("d-none");
-      editTitleFrom.classList.add("d-none");
+      editTitleForm.classList.add("d-none");
       side_issue_header.querySelector("p").classList.remove("d-none");
       if (taskID !== sideIssue.getAttribute("data-task-id")) {
         sideIssue.setAttribute("data-task-id", taskID);
@@ -386,7 +386,7 @@ let sideIssue = document.querySelector("#side-issue");
 let sideIssueButtons = document.querySelectorAll(".task-item");
 let pageWrapper = document.querySelector(".page-wrapper");
 let title = side_issue_header.querySelector(".task-title");
-let editTitleFrom = side_issue_header.querySelector(".edit-issue-title-form");
+let editTitleForm = side_issue_header.querySelector(".edit-issue-title-form");
 let cancelEditTitleButton = side_issue_header.querySelector(
   ".edit-item-title-cancel"
 );
@@ -397,24 +397,24 @@ mouseLeaveListItem(side_issue_header);
 side_issue_header
   .querySelector(".edit-task")
   .addEventListener("click", event => {
-    editTitleFrom.querySelector("input").value = title.innerHTML;
+    editTitleForm.querySelector("input").value = title.innerHTML;
     title.classList.toggle("d-none");
-    editTitleFrom.classList.toggle("d-none");
+    editTitleForm.classList.toggle("d-none");
     side_issue_header.querySelector("p").classList.toggle("d-none");
   });
 
 closeSideIssueButton.addEventListener("click", event => {
   pageWrapper.classList.toggle("is-collapsed-right");
-  title.classList.toggle("d-none");
-  editTitleFrom.classList.toggle("d-none");
-  side_issue_header.querySelector("p").classList.toggle("d-none");
+  title.classList.remove("d-none");
+  editTitleForm.classList.add("d-none");
+  side_issue_header.querySelector("p").classList.remove("d-none");
   document.getElementById("add-new-label").classList.add("d-none");
   document.getElementById("select-due-date").classList.add("d-none");
 });
 
 cancelEditTitleButton.addEventListener("click", event => {
   title.classList.toggle("d-none");
-  editTitleFrom.classList.toggle("d-none");
+  editTitleForm.classList.toggle("d-none");
   side_issue_header.querySelector("p").classList.toggle("d-none");
 });
 
@@ -435,11 +435,35 @@ addAssigneeBtn.addEventListener("click", () => {
 })
 
 // Add Due Date
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Augt', 'Sep', 'Oct', 'Nov', 'Dec'];
 let selectDueDateContainer = document.getElementById("select-due-date");
 let selectDueDateBtn = document.getElementById("change-due-date");
+let submitDueDateBtn = document.getElementById("submit-due-date");
+let newDueDate = document.getElementById("new-due-date");
+let dueDate = document.getElementById("due-date");
+
 selectDueDateBtn.addEventListener("click", () => {
   selectDueDateContainer.classList.toggle("d-none")
 })
+
+submitDueDateBtn.addEventListener("click", () => {
+  selectDueDateContainer.classList.toggle("d-none")
+  let due_date = newDueDate.value;
+  let id = delete_issue_button.dataset.issueId;
+  let url = `/api/issues/${id}`;
+  sendAjaxRequest("put", url, { due_date }, changeDueDateHandler);
+})
+
+function changeDueDateHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response);
+  let date = response['due_date'].split("-");
+  let year = date[0];
+  let month = months[parseInt(date[1]) - 1];
+  let day = parseInt(date[2]).toString();
+  dueDate.innerHTML = month + " " + day + " " + year;
+  console.log(dueDate);
+}
 
 // Edit Title
 let submitTitle = document.querySelector(".edit-item-title");
@@ -456,7 +480,7 @@ function changeTitleHandler() {
   let newTitle = response['name'];
   document.querySelector("#side-issue-container .task-title").innerHTML = newTitle;
   title.classList.toggle("d-none");
-  editTitleFrom.classList.toggle("d-none");
+  editTitleForm.classList.toggle("d-none");
   side_issue_header.querySelector("p").classList.toggle("d-none");
   document.getElementById(response['id']).querySelector('.task-title').innerHTML = newTitle;
 }

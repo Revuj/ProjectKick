@@ -408,12 +408,17 @@
               <i class="far fa-clock mr-2"></i><span id="due-date"></span>
             </button>
             <form id="select-due-date" class="mt-2 d-none">
-              <input
-                  type="date"
-                  id="new-due-date"
-                  name="new-due-date"
-                  class="form-control"
-                />
+                <span class="d-flex">
+                  <input
+                    type="date"
+                    id="new-due-date"
+                    name="new-due-date"
+                    class="form-control"
+                  />
+                  <button type="button" class="btn edit-task" id="submit-due-date">
+                    <i class="far fa-save"></i>
+                  </button>
+                </span>
             </form>
           </div>
           <button
