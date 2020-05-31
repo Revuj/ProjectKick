@@ -312,6 +312,8 @@ function openSideIssueListen(elem) {
     [...existingUsers].forEach(elem => {
       if (userIds.includes(elem.dataset.userId)) {
         elem.querySelector(".selected-user").classList.remove("invisible");
+      } else {
+        elem.querySelector(".selected-user").classList.add("invisible");
       }
     });
 
@@ -343,6 +345,8 @@ function openSideIssueListen(elem) {
     [...existingLabels].forEach(elem => {
       if (labelIds.includes(elem.dataset.labelId)) {
         elem.querySelector(".selected-label").classList.remove("invisible");
+      } else {
+        elem.querySelector(".selected-label").classList.add("invisible");
       }
     });
 
@@ -432,7 +436,19 @@ addAssigneeBtn.addEventListener("click", () => {
 
 let existingMembers = document.getElementsByClassName("existing-user-container");
 [...existingMembers].forEach(elem => elem.addEventListener("click", () => {
-  elem.querySelector(".selected-user").classList.toggle("invisible");
+  let selectedUser = elem.querySelector(".selected-user");
+  selectedUser.classList.toggle("invisible");
+  let id = delete_issue_button.dataset.issueId;
+  let user = elem.dataset.userId;
+  let url = `/api/issues/${id}/assign`;
+  let request = null;
+  if (selectedUser.classList.contains("invisible"))
+    request = "delete";
+  else
+    request = "post";
+
+  console.log({ user, id })
+  sendAjaxRequest(request, url, { user }, null);
 }))
 
 // Add Due Date

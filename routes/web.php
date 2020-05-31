@@ -60,6 +60,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/api/issues', 'IssueController@create');
         Route::put('/api/issues/comment', 'CommentController@store');
         Route::put('/api/issues/{id}', 'IssueController@update');
+        Route::post('/api/issues/{id}/assign', 'IssueController@assign');
+        Route::delete('/api/issues/{id}/assign', 'IssueController@desassign');
 
         // Vote
         Route::put('/api/votes', 'VoteController@store');

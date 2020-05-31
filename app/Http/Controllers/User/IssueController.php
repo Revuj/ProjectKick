@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\AssignedUser;
 use App\Http\Controllers\Controller;
 use App\Issue;
 use App\IssueList;
@@ -117,10 +118,7 @@ class IssueController extends Controller
 
     public function update(Request $request, $id)
     {
-        $issue = Issue::find($id);
-        if ($issue == null) {
-            abort(404);
-        }
+        $issue = Issue::findOrFail($id);
 
         $title = $request->input("title");
         $description = $request->input("description");
@@ -142,4 +140,27 @@ class IssueController extends Controller
 
         return $issue;
     }
+
+    public function assign(Request $request, $id)
+    {
+        $issue = Issue::findOrFail($id);
+
+        $user_id = $request->input("user");
+        $user = User::findOrFail($user_id);
+
+        $assigned_user = AssignedUser::create(['user_id' => $user_id, 'issue_id' => $id]);
+
+        return $assigned_user;
+    }
+
+    public function desassign(Request $request, $id)
+    {
+        $issue = Issue::findOrFail($id);
+        $user = $request->input("user");
+        $assigned_user = AssignedUser::find(['user_id' => intval($user), 'issue_id' => intval($id)]);
+        $assigned_user->delete();
+
+        return $assigned_user;
+    }
+
 }

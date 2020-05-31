@@ -342,6 +342,7 @@
                     ->join('issue_list', 'issue.issue_list_id', '=', 'issue_list.id')
                     ->where('issue_list.project_id', '=', $project->id)
                     ->select('user.id as id', 'user.username as username')
+                    ->groupBy('user.id')
                     ->get() as $assignee)
                       <li class="existing-user-container clickable d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }}>
                         <i class="fas fa-check selected-user invisible mr-2"></i>
@@ -386,6 +387,7 @@
                     ->join('issue_list', 'issue.issue_list_id', '=', 'issue_list.id')
                     ->where('issue_list.project_id', '=', $project->id)
                     ->select('tag.name as name', 'tag.id as id')
+                    ->groupBy('tag.id')
                     ->get() as $issueTag)
                       <li class="existing-label-container clickable d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }}>
                         <i class="fas fa-check invisible selected-label mr-2"></i>
