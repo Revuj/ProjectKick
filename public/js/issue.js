@@ -238,8 +238,39 @@ comment.addEventListener('keypress', function (event) {
 let editIssueBtn = document.getElementById("edit-issue");
 let issueTitle = document.getElementById("issue-title");
 let issueDescription = document.getElementById("issue-description");
+let saveIssueBtn = document.getElementById("save-issue");
+let editTitleInput = document.getElementById("edit-task-label");
+let editDescriptionInput = document.getElementById("edit-task-description");
+
 
 editIssueBtn.addEventListener("click", () => {
-  issueTitle.contentEditable = "true";
-  issueDescription.contentEditable = "true";
+  saveIssueBtn.classList.toggle("d-none");
+  editIssueBtn.classList.toggle("d-none");
+  issueTitle.classList.toggle("d-none");
+  issueDescription.classList.toggle("d-none");
+  editTitleInput.value = issueTitle.innerHTML.trim();
+  editDescriptionInput.value = issueDescription.innerHTML.trim();
+  editTitleInput.classList.toggle("d-none");
+  editDescriptionInput.classList.toggle("d-none");
 })
+
+saveIssueBtn.addEventListener("click", () => {
+  editIssueBtn.classList.toggle("d-none");
+  saveIssueBtn.classList.toggle("d-none");
+  issueTitle.classList.toggle("d-none");
+  issueDescription.classList.toggle("d-none");
+  editTitleInput.classList.toggle("d-none");
+  editDescriptionInput.classList.toggle("d-none");
+
+  let title = editTitleInput.value.trim();
+  let description = editDescriptionInput.value.trim();
+  let id = saveIssueBtn.dataset.issueId;
+  let url = `/api/issues/${id}`;
+  sendAjaxRequest("put", url, { title, description }, editIssueHandler);
+})
+
+function editIssueHandler() {
+  const response = JSON.parse(this.responseText);
+  issueTitle.innerHTML = response['name'];
+  issueDescription.innerHTML = response['description'];
+}

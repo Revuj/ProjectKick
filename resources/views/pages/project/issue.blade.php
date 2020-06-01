@@ -87,19 +87,25 @@
           <h4 class="title task-title mr-auto mt-2" id="issue-title">
             {{$issue['name']}}
           </h4>
+          <input
+            type="text"
+            class="form-control d-none"
+            id="edit-task-label"
+          />
           <button
             type="button"
-            class="custom-button edit-button edit-task mr-1"
+            class="custom-button edit-button edit-task d-none ml-auto"
             id="save-issue"
+            data-issue-id="{{ $issue['id'] }}"
           >
-            <i class="ml-auto far fa-save float-right"></i>
+            <i class="far fa-save"></i>
           </button>
           <button
             type="button"
-            class="custom-button edit-button edit-task mr-1"
+            class="custom-button edit-button edit-task"
             id="edit-issue"
           >
-            <i class="ml-auto fas fa-pencil-alt float-right"></i>
+            <i class="fas fa-pencil-alt"></i>
           </button>
         </div>
         <ul class="labels smaller-text d-flex align-items-center">
@@ -125,6 +131,11 @@
           <p id="issue-description">
           {{$issue['description']}}
           </p>
+          <input
+          type="text"
+          class="form-control d-none"
+          id="edit-task-description"
+        />
         </div>
         <div
           class="col-md-3 members-and-duedate pb-3 d-flex flex-column justify-content-end ml-auto"

@@ -47,11 +47,20 @@
   background: white;
 }
 
-#issue-header .edit-button {
+#edit-issue, #save-issue {
+  width: 42px;
+}
+
+#edit-task-label {
+  width: 50%;
+  margin-right: 5rem;
+}
+
+#header #edit-issue {
   display: none;
 }
 
-#issue-header:hover .edit-button {
+#issue-header:hover #edit-issue {
   display: inline-block;
 }
 
@@ -72,9 +81,9 @@
   color: orange;
 }
 
-[contenteditable] {
+[contenteditable="true"] {
   outline: 0px solid transparent;
-  border-bottom: 2px solid var(--secondary-color);
+  border-bottom: 2px solid var(--container-text-color);
 }
 
 @media only screen and (max-width: 600px) {
