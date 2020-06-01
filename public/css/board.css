@@ -200,6 +200,8 @@
 
 #existing-labels, #existing-users {
   background-color: white;
+  max-height: 176px;
+  overflow-y: auto;
 }
 
 .existing-label-container, .existing-user-container {
@@ -222,4 +224,9 @@
   width: 20px;
   height: 20px;
   border-radius: 5px;
+}
+
+.kanban-table .add-item, .kanban-table .cancel-add-item {
+  color: white;
+  font-weight: 600;
 }

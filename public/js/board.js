@@ -45,7 +45,7 @@ function createListHandler() {
   newList.innerHTML = `              
 		<div class="task-list-title d-flex align-items-center py-0">
 			<h6 class="mr-auto my-0 text-left p-3"><i class="fa fa-fw fa-caret-right"></i>${list_to_add_name.value}</h6>
-      <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-${list_to_add_name.value}" aria-expanded="false" aria-controls="add-item">
+      <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-${id}" aria-expanded="false" aria-controls="add-item">
       <i class="fas fa-plus"></i>
       </button>
       <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal" data-list-id="task-list-${id}" data-list-name="task-list-${name}">
@@ -53,7 +53,7 @@ function createListHandler() {
       </button>
 		</div>
     <ul class="task-items">
-      <li class="add-item-li collapse" id="add-item-${list_to_add_name.value}">
+      <li class="add-item-li collapse" id="add-item-${id}">
       <form class="add-item-form form-group">
         <div class="form-group text-left">
           <label for="item-title">Title</label>
@@ -126,7 +126,14 @@ function createIssueHandler() {
     <span class="d-flex flex-row align-items-center mx-2 row-2">
       <p class="w-100 mb-2"><span class="list-item-counter">#${id}</span> <span class="list-item-creator"> opened by
       <span class="author-reference">${username}</span></span></p>
-    </span>`;
+    </span>
+    <span class="d-flex justify-content-between ml-2">
+    <span class="d-flex flex-row labels-selected flex-wrap">
+    </span>
+    <span class="d-flex flex-row-reverse mx-2 row-3 members-assigned">
+    </span>
+    </span>
+    `;
 
   list.insertBefore(newItem, liForm);
   newItem.setAttribute("draggable", true);
@@ -214,8 +221,6 @@ function setDraggable(elem) {
     });
 
     list.addEventListener("drop", function (e) {
-      console.log("oi");
-      console.log(this);
       this.append(draggedItem);
     });
   }
@@ -289,7 +294,7 @@ function openSideIssueListen(elem) {
     sideBarAssignees.innerHTML = "";
     assignees.forEach(elem => {
       sideBarAssignees.innerHTML += `
-      <li class="mr-2">
+      <li class="mr-2 mb-1" data-user-id=${elem.dataset.userId}>
         ${elem.innerHTML}
       </li>
       `;
@@ -321,7 +326,7 @@ function openSideIssueListen(elem) {
     sideBarLabels.innerHTML = "";
     labels.forEach(elem => {
       sideBarLabels.innerHTML += `
-      <li class="mr-2">
+      <li class="mr-2 mb-1"  data-label-id=${elem.dataset.labelId}>
         <h6 class="mb-0 p-1 list-item-label bg-info">
           ${elem.innerHTML}
         </h6>
@@ -421,15 +426,170 @@ addLabelBtn.addEventListener("click", () => {
   addNewLabelContainer.classList.toggle("d-none")
 })
 
+function labelListen(elem) {
+  elem.querySelector(".selected-label").classList.toggle("invisible");
+  let selectedLabel = elem.querySelector(".selected-label");
+  let id = delete_issue_button.dataset.issueId;
+  let label = elem.dataset.labelId;
+  let url = `/api/issues/${id}/label`;
+
+  if (selectedLabel.classList.contains("invisible")) {
+    sendAjaxRequest("delete", url, { label }, deleteLabelHandler);
+  } else {
+    sendAjaxRequest("post", url, { label }, addLabelHandler);
+  }
+}
+
 let existingLabels = document.getElementsByClassName("existing-label-container");
 [...existingLabels].forEach(elem => elem.addEventListener("click", () => {
-  elem.querySelector(".selected-label").classList.toggle("invisible");
+  labelListen(elem);
 }))
+
+function deleteLabelHandler() {
+  const response = JSON.parse(this.responseText);
+  let id = delete_issue_button.dataset.issueId;
+  document.getElementById(id).querySelector(`[data-label-id='${response.tag_id}']`).remove();
+  document.querySelector(".labels").querySelector(`[data-label-id='${response.tag_id}']`).remove();
+}
+
+function addLabelHandler() {
+  const response = JSON.parse(this.responseText);
+  let newLabel = document.createElement("li");
+  newLabel.className = "mr-2";
+  newLabel.innerHTML = `
+  <h6 class="mb-1 p-1 list-item-label bg-info"> 
+    ${response.name}
+  </h6>
+  `
+  newLabel.dataset.labelId = response['id'];
+
+  let id = delete_issue_button.dataset.issueId;
+  document.querySelector(".labels").prepend(newLabel);
+
+  let newLabelCopy = document.createElement("h6");
+  newLabelCopy.className = "mb-1 p-1 list-item-label mr-1 bg-info";
+  newLabelCopy.dataset.labelId = response['id'];
+  newLabelCopy.innerHTML = response.name;
+  document.getElementById(id).querySelector(".labels-selected").prepend(newLabelCopy);
+}
+
+// Create New Label
+let labelForm = document.getElementById("write-label");
+let newLabel = document.getElementById("new-label");
+
+/* Search for Label */
+newLabel.addEventListener("keyup", () => {
+  // ignores capitalization and spaces
+  let filter = newLabel.value.toUpperCase().replace(/\s/g, "");
+
+  // only filters cars when input size has more than 2 characters
+  if (filter.length < 3) {
+    [...existingLabels].forEach((label) => {
+      label.classList.add("d-flex");
+      label.classList.remove("d-none");
+    });
+    return;
+  }
+
+  [...existingLabels].forEach((label) => {
+    console.log(label.dataset.labelName.toUpperCase());
+    if (
+      label.dataset.labelName.toUpperCase().replace(/\s/g, "").indexOf(filter) != -1
+    ) {
+      label.classList.add("d-flex");
+      label.classList.remove("d-none");
+    } else {
+      label.classList.remove("d-flex");
+      label.classList.add("d-none");
+    }
+  });
+
+});
+
+labelForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let name = newLabel.value;
+  let id = delete_issue_button.dataset.issueId;
+  let url = `/api/issues/${id}/label`;
+
+  sendAjaxRequest("post", url, { name }, createLabelHandler);
+  newLabel.value = "";
+})
+
+function createLabelHandler() {
+  const response = JSON.parse(this.responseText);
+  let newLabel = document.createElement("li");
+  newLabel.className = "mr-2 mb-1";
+  newLabel.innerHTML = `
+  <h6 class="mb-0 p-1 list-item-label bg-info"> 
+    ${response.name}
+  </h6>
+  `
+  newLabel.dataset.labelId = response['id'];
+
+  let id = delete_issue_button.dataset.issueId;
+  document.querySelector(".labels").prepend(newLabel);
+
+  let newLabelCopy = document.createElement("h6");
+  newLabelCopy.className = "mb-1 p-1 list-item-label mr-1 bg-info";
+  newLabelCopy.dataset.labelId = response['id'];
+  newLabelCopy.innerHTML = response.name;
+  document.getElementById(id).querySelector(".labels-selected").append(newLabelCopy);
+
+  let existingLabel = document.createElement("li");
+  existingLabel.className = "existing-label-container clickable d-flex flex-row align-items-center p-2"
+  existingLabel.dataset.labelId = response['id'];
+  existingLabel.dataset.labelName = response['name'];
+  existingLabel.innerHTML = `
+    < i class="fas fa-check selected-label mr-2" aria - hidden="true" ></i >
+      <div class="color bg-info">
+      </div>
+      <h6 class="mb-0 p-1 existing-label">
+        ${response.name}
+      </h6>
+  `
+
+  document.getElementById("existing-labels").prepend(existingLabel);
+
+  existingLabel.addEventListener("click", elem => labelListen(elem));
+}
 
 
 // Add Assignee
 let addNewAssigneeContainer = document.getElementById("add-new-assignee");
 let addAssigneeBtn = document.getElementById("add-assignee");
+
+let newAssignee = document.getElementById("new-assignee");
+
+/* Search for Assignee */
+newAssignee.addEventListener("keyup", () => {
+  // ignores capitalization and spaces
+  let filter = newAssignee.value.toUpperCase().replace(/\s/g, "");
+
+  // only filters cars when input size has more than 2 characters
+  if (filter.length < 3) {
+    [...existingMembers].forEach((user) => {
+      user.classList.add("d-flex");
+      user.classList.remove("d-none");
+    });
+    return;
+  }
+
+  [...existingMembers].forEach((user) => {
+    console.log(user.dataset.username.toUpperCase());
+    if (
+      user.dataset.username.toUpperCase().replace(/\s/g, "").indexOf(filter) != -1
+    ) {
+      user.classList.add("d-flex");
+      user.classList.remove("d-none");
+    } else {
+      user.classList.remove("d-flex");
+      user.classList.add("d-none");
+    }
+  });
+
+});
+
 addAssigneeBtn.addEventListener("click", () => {
   addNewAssigneeContainer.classList.toggle("d-none")
 })
@@ -441,15 +601,41 @@ let existingMembers = document.getElementsByClassName("existing-user-container")
   let id = delete_issue_button.dataset.issueId;
   let user = elem.dataset.userId;
   let url = `/api/issues/${id}/assign`;
-  let request = null;
-  if (selectedUser.classList.contains("invisible"))
-    request = "delete";
-  else
-    request = "post";
 
-  console.log({ user, id })
-  sendAjaxRequest(request, url, { user }, null);
+  if (selectedUser.classList.contains("invisible")) {
+    sendAjaxRequest("delete", url, { user }, deleteMemberHandler);
+  } else {
+    sendAjaxRequest("post", url, { user }, addMemberHandler);
+  }
 }))
+
+
+function addMemberHandler() {
+  const response = JSON.parse(this.responseText);
+
+  let newMember = document.createElement("li");
+  newMember.className = "mr-2";
+  newMember.innerHTML = `
+    <img src="/assets/avatars/${response['photo_path']}.png" alt=${response['username']} draggable="false">
+  `
+  newMember.dataset.userId = response['id'];
+
+  let id = delete_issue_button.dataset.issueId;
+  document.querySelector(".assignees").prepend(newMember);
+
+  let newMemberCopy = document.createElement("li");
+  newMemberCopy.className = "assignee ml-2";
+  newMemberCopy.dataset.userId = response['id'];
+  newMemberCopy.innerHTML = newMember.innerHTML;
+  document.getElementById(id).querySelector(".members-assigned").append(newMemberCopy);
+}
+
+function deleteMemberHandler() {
+  const response = JSON.parse(this.responseText);
+  let id = delete_issue_button.dataset.issueId;
+  document.getElementById(id).querySelector(`[data-user-id='${response.id}']`).remove();
+  document.querySelector(".assignees").querySelector(`[data-user-id='${response.id}']`).remove();
+}
 
 // Add Due Date
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Augt', 'Sep', 'Oct', 'Nov', 'Dec'];

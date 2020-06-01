@@ -6,7 +6,9 @@ use App\AssignedUser;
 use App\Http\Controllers\Controller;
 use App\Issue;
 use App\IssueList;
+use App\IssueTag;
 use App\Project;
+use App\Tag;
 use App\User;
 use DB;
 use Illuminate\Http\Request;
@@ -150,7 +152,7 @@ class IssueController extends Controller
 
         $assigned_user = AssignedUser::create(['user_id' => $user_id, 'issue_id' => $id]);
 
-        return $assigned_user;
+        return User::findOrFail($user_id);
     }
 
     public function desassign(Request $request, $id)
@@ -160,7 +162,36 @@ class IssueController extends Controller
         $assigned_user = AssignedUser::find(['user_id' => intval($user), 'issue_id' => intval($id)]);
         $assigned_user->delete();
 
-        return $assigned_user;
+        return User::findOrFail($user);
     }
 
+    public function label(Request $request, $id)
+    {
+        $issue = Issue::findOrFail($id);
+        $label = $request->input("label");
+        $name = $request->input("name");
+        $tag = null;
+
+        if ($label != null) {
+            IssueTag::create(['issue_id' => $id, 'tag_id' => $label]);
+            $tag = Tag::findOrFail($label);
+        }
+
+        if ($name != null) {
+            $tag = Tag::create(['name' => $name, 'color_id' => 1]);
+            IssueTag::create(['issue_id' => $id, 'tag_id' => $tag->id]);
+        }
+
+        return $tag;
+    }
+
+    public function unlabel(Request $request, $id)
+    {
+        $issue = Issue::findOrFail($id);
+        $label = $request->input("label");
+        $issue_tag = IssueTag::find(['issue_id' => $id, 'tag_id' => $label]);
+        $issue_tag->delete();
+
+        return $issue_tag;
+    }
 }
