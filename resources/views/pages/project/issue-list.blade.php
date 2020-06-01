@@ -123,7 +123,7 @@
                   @endif
                 </span>
                   <div class="issue-header d-flex align-items-center">
-                    <a href="issue.html" class="task-title nostyle">{{ $issue->name }}</a>
+                    <a href="/issues/{{ $issue->id }}" class="task-title nostyle">{{ $issue->name }}</a>
                       <ul class="d-flex justify-content-center mx-2">
                       @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)                        
                           <li class="mr-2">
@@ -137,7 +137,7 @@
                           <i class="fas fa-calendar-alt mr-2"></i>{{ \Carbon\Carbon::parse($issue->due_date)->format('M d Y') }}
                         </div>
                       @endif
-                    <a href="issue.html" class="nostyle comments-number-container ml-auto">
+                    <a href="/issues/{{ $issue->id }}" class="nostyle comments-number-container ml-auto">
                       <i class="fas fa-comments mr-2"></i>{{ count($issue->comments) }}
                     </a>
                   </div>
@@ -175,14 +175,14 @@
      <div id="side-issue-container">
       <div id="side-issue" class="d-flex flex-column h-100 mx-3 py-3">
         <div id="side-issue-header" class="border-bottom mb-3">
-          <div class="d-flex align-items-start">
+          <div class="d-flex align-items-center">
             <h4 class="task-title mr-auto">HELLO</h4>
             <form class="edit-issue-title-form form-group d-none mr-auto">
               <div class="form-group text-left">
                 <input
                   type="text"
                   class="form-control"
-                  class="item-title"
+                  id="new-task-title"
                   placeholder=""
                 />
               </div>
@@ -201,7 +201,7 @@
                 </button>
               </div>
             </form>
-            <button type="button" class="btn d-none edit-task mr-1">
+            <button type="button" class="btn edit-task d-none mr-1">
               <i class="fas fa-pencil-alt float-right"></i>
             </button>
             <button type="button" class="btn close-side-issue">
@@ -215,15 +215,55 @@
         <div id="issue-description">
         </div>
         <div class="assignees-container mt-3">
-          <h6 class="block py-2 font-weight-bold">Assignees</h6>
-          <ul class="assignees d-flex align-items-center">
-          </ul>
-        </div>
-        <div class="labels-container mt-3">
-          <h6 class="block py-2 font-weight-bold">Labels</h6>
-          <ul class="labels d-flex align-items-center">
+          <h6 class="block pb-2 font-weight-bold">Assignees</h6>
+          <ul class="assignees d-flex flex-wrap">
             <li>
               <button
+                id="add-assignee"
+                type="button"
+                class="custom-button add-button add-assignee"
+              >
+                <i class="fas fa-plus"></i>
+              </button>
+            </li>
+          </ul>
+          <div id="add-new-assignee" class="d-none">
+            <form id="write-assignee">
+              <input
+                  type="text"
+                  id="new-assignee"
+                  name="new-assignee"
+                  class="form-control"
+                  placeholder="Type or choose an assignee..."
+                />
+            </form>
+              <ul id="existing-users">
+                  @foreach (\App\User::join('member_status', 'user.id', '=', 'member_status.user_id')
+                  ->join('project', 'project.id', '=', 'member_status.project_id')
+                  ->where('project.id', '=', $project->id)
+                  ->select('user.id as id', 'user.username as username')
+                  ->groupBy('user.id')
+                  ->get() as $assignee)
+                    <li class="existing-user-container clickable d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }} data-username="{{ $assignee->username }}">
+                      <i class="fas fa-check selected-user invisible mr-2"></i>
+                      <span class="assignee ml-2"><img
+                        src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
+                        draggable="false" />
+                      </span>
+                      <h6 class="mb-0 p-1 existing-user font-weight-bold ml-2">
+                        {{ $assignee->username }}
+                      </h6>
+                    </li>
+                  @endforeach
+              </ul>
+          </div>
+        </div>
+        <div class="labels-container mt-3">
+          <h6 class="block pb-2 font-weight-bold">Labels</h6>
+          <ul class="labels d-flex align-items-center flex-wrap">
+            <li>
+              <button
+                id="add-label"
                 type="button"
                 class="custom-button add-button add-label"
               >
@@ -231,13 +271,55 @@
               </button>
             </li>
           </ul>
+          <div id="add-new-label" class="d-none">
+            <form id="write-label">
+              <input
+                  type="text"
+                  id="new-label"
+                  name="new-label"
+                  class="form-control"
+                  placeholder="Type or choose a label..."
+                />
+            </form>
+              <ul id="existing-labels">
+                @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')
+                  ->join('issue', 'issue_tag.issue_id', '=', 'issue.id')
+                  ->join('issue_list', 'issue.issue_list_id', '=', 'issue_list.id')
+                  ->where('issue_list.project_id', '=', $project->id)
+                  ->select('tag.name as name', 'tag.id as id')
+                  ->groupBy('tag.id')
+                  ->get() as $issueTag)
+                    <li class="existing-label-container clickable d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }} data-label-name="{{ $issueTag->name }}">
+                      <i class="fas fa-check invisible selected-label mr-2"></i>
+                      <div class="color bg-info"> 
+                      </div>
+                      <h6 class="mb-0 p-1 existing-label">
+                        {{ $issueTag->name }}
+                      </h6>
+                    </li>
+                @endforeach
+              </ul>
+          </div>
         </div>
         <div class="due-date-container mt-3">
-          <h6 class="block py-2 font-weight-bold">Due Date</h6>
+          <h6 class="block pb-2 font-weight-bold">Due Date</h6>
 
-          <button type="button" class="custom-button due-date-button">
+          <button type="button" class="custom-button due-date-button" id="change-due-date">
             <i class="far fa-clock mr-2"></i><span id="due-date"></span>
           </button>
+          <form id="select-due-date" class="mt-2 d-none">
+              <span class="d-flex">
+                <input
+                  type="date"
+                  id="new-due-date"
+                  name="new-due-date"
+                  class="form-control"
+                />
+                <button type="button" class="btn edit-task" id="submit-due-date">
+                  <i class="far fa-save"></i>
+                </button>
+              </span>
+          </form>
         </div>
         <button
           id="delete-issue-button"

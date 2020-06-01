@@ -62,6 +62,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/api/issues/{id}', 'IssueController@update');
         Route::post('/api/issues/{id}/assign', 'IssueController@assign');
         Route::delete('/api/issues/{id}/assign', 'IssueController@desassign');
+        Route::post('/api/issues/{id}/label', 'IssueController@label');
+        Route::delete('/api/issues/{id}/label', 'IssueController@unlabel');
 
         // Vote
         Route::put('/api/votes', 'VoteController@store');

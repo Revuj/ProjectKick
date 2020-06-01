@@ -101,7 +101,7 @@
               @foreach ($list->issues()->get() as $issue)
                 <li id={{ $issue->id }} class="task-item text-left" draggable="true">
                   <div class="d-flex flex-row align-items-center ml-2 row-1">
-                    <h6 class="mb-0 py-2 task-title title">{{ $issue->name }}</h6>
+                    <a class="nostyle" href="/issues/{{ $issue->id }}"><h6 class="mb-0 py-2 task-title title">{{ $issue->name }}</h6></a>
                     <button type="button" class="btn ml-auto d-none edit-task">
                       <i class="fas fa-pencil-alt float-right"></i>
                     </button>
@@ -121,17 +121,17 @@
                     </p>
                   </span>
                   <span class="d-flex justify-content-between ml-2">
-                    <span class="d-flex flex-row">
+                    <span class="d-flex flex-row labels-selected flex-wrap">
                       @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')->where('issue_tag.issue_id', '=', $issue->id )->get() as $issueTag)
                       {{-- <h6 style="background-color:#{{ $issueTag->color->rgb_code }}" class="mb-0 p-1 list-item-label mr-1">
                         {{ $issueTag->name }}
                       </h6>                 --}}
-                      <h6 class="mb-0 p-1 list-item-label mr-1 bg-info" data-label-id={{ $issueTag->id }}>
+                      <h6 class="mb-1 p-1 list-item-label mr-1 bg-info" data-label-id={{ $issueTag->id }}>
                         {{ $issueTag->name }}
                       </h6> 
                       @endforeach
                     </span>
-                    <span class="d-flex flex-row-reverse mx-2 row-3">
+                    <span class="d-flex flex-row-reverse mx-2 row-3 members-assigned">
                       @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
                         <span class="assignee ml-2" data-user-id={{ $assignee->id }}><img
                           src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
@@ -149,7 +149,7 @@
                     <input type="text" class="form-control" class="item-title" placeholder="" />
                   </div>
                   <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-primary add-item btn">Submit</button>
+                    <button type="submit" class="btn btn-primary add-item">Submit</button>
                     <button type="reset" class="btn btn-primary cancel-add-item">Cancel</button>
                   </div>
                 </form>
@@ -315,7 +315,7 @@
           </div>
           <div class="assignees-container mt-3">
             <h6 class="block pb-2 font-weight-bold">Assignees</h6>
-            <ul class="assignees d-flex align-items-center">
+            <ul class="assignees d-flex flex-wrap">
               <li>
                 <button
                   id="add-assignee"
@@ -337,14 +337,13 @@
                   />
               </form>
                 <ul id="existing-users">
-                    @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')
-                    ->join('issue', 'assigned_user.issue_id', '=', 'issue.id')
-                    ->join('issue_list', 'issue.issue_list_id', '=', 'issue_list.id')
-                    ->where('issue_list.project_id', '=', $project->id)
+                    @foreach (\App\User::join('member_status', 'user.id', '=', 'member_status.user_id')
+                    ->join('project', 'project.id', '=', 'member_status.project_id')
+                    ->where('project.id', '=', $project->id)
                     ->select('user.id as id', 'user.username as username')
                     ->groupBy('user.id')
                     ->get() as $assignee)
-                      <li class="existing-user-container clickable d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }}>
+                      <li class="existing-user-container clickable d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }} data-username="{{ $assignee->username }}">
                         <i class="fas fa-check selected-user invisible mr-2"></i>
                         <span class="assignee ml-2"><img
                           src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
@@ -360,7 +359,7 @@
           </div>
           <div class="labels-container mt-3">
             <h6 class="block pb-2 font-weight-bold">Labels</h6>
-            <ul class="labels d-flex align-items-center">
+            <ul class="labels d-flex align-items-center flex-wrap">
               <li>
                 <button
                   id="add-label"
@@ -389,7 +388,7 @@
                     ->select('tag.name as name', 'tag.id as id')
                     ->groupBy('tag.id')
                     ->get() as $issueTag)
-                      <li class="existing-label-container clickable d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }}>
+                      <li class="existing-label-container clickable d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }} data-label-name="{{ $issueTag->name }}">
                         <i class="fas fa-check invisible selected-label mr-2"></i>
                         <div class="color bg-info"> 
                         </div>
