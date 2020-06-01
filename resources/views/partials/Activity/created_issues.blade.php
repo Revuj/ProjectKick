@@ -16,7 +16,6 @@
         </div>
 
         <p class="text-left my-1">
-        
             @php
                 $first10words = implode(' ', array_slice(str_word_count($elem['description'],1), 0, 10));
             @endphp

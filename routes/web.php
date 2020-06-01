@@ -103,10 +103,12 @@ Route::group(['middleware' => ['auth']], function () {
         'prefix' => "admin"], function () {
         Route::get('/{id}', 'AdminController@dashboard');
         Route::get('/search', 'AdminController@search');
+        Route::get('/reports', 'AdminController@reports');
         Route::post('/countries', 'AdminController@fetchCountries'); /*api*/
         Route::post('/monthlyIntel', 'AdminController@fetchIntelPerMonth'); /*api */
         Route::post('/bannedUsers', 'AdminController@bannedUsers'); /*api */
         Route::post('/recentUsers', 'AdminController@recentUsers'); /*api */
+    
 
         Route::post('/fetchProjects', 'AdminController@fetchProjects'); /*api */
         Route::post('/fetchUsers', 'AdminController@fetchUsers'); /*api */
