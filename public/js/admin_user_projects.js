@@ -23,7 +23,7 @@ users_button.addEventListener('click', event => {
     users_button.classList.add('active');
     projects_button.classList.remove('active');
 
-     filter_user.classList.remove('d-none');
+    filter_user.classList.remove('d-none');
     filter_project.classList.add('d-none');
     active_projects = false;
   }
@@ -63,7 +63,7 @@ arrow.addEventListener('click', function (e) {
   e.preventDefault();
 
   let option = (active_projects) ? selectable_project.options[selectable_project.selectedIndex].text
-                                  : selectable_user.options[selectable_user.selectedIndex].text
+    : selectable_user.options[selectable_user.selectedIndex].text
   console.log(option)
   //let author_id = create_button.dataset.user;
 
@@ -75,25 +75,25 @@ arrow.addEventListener('click', function (e) {
 });
 
 button_search.addEventListener('click', (e) => {
-    e.preventDefault();
-    let option = (active_projects) ? selectable_project.options[selectable_project.selectedIndex].text
+  e.preventDefault();
+  let option = (active_projects) ? selectable_project.options[selectable_project.selectedIndex].text
     : selectable_user.options[selectable_user.selectedIndex].text;
 
-    if (active_projects === true) {
-      requestProjects(option);
-    }
-    else if (active_projects === false) {
-      requestUsers(option);
-    }
+  if (active_projects === true) {
+    requestProjects(option);
+  }
+  else if (active_projects === false) {
+    requestUsers(option);
+  }
 
 });
 
 
 function requestProjects(option) {
   let data = {
-    option : option,
-    order : sort_asc,
-    search : value_input_text.value
+    option: option,
+    order: sort_asc,
+    search: value_input_text.value
   };
   let init = {
     method: 'POST',
@@ -105,32 +105,33 @@ function requestProjects(option) {
   }
 
   fetch(`/admin/fetchProjects`, init)
-  .then(function (response) {
-    if (response.ok) {
-      response.json().then(data => {
-        if ('message' in data) {
-          alert(response['message']);
-        }
-        else {
-          console.log(data);
-        }
-      })
-    }
-    else {
-    
-      console.log('Network response was not ok.' + JSON.stringify(data));
-    }
-  }).catch(function (error) {
-    console.log('There has been a problem with your fetch operation: ' + error.message);
-  });
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(data => {
+          if ('message' in data) {
+            alert(response['message']);
+          }
+          else {
+            console.log(data);
+            renderProjects(data[0]);
+          }
+        })
+      }
+      else {
+
+        console.log('Network response was not ok.' + JSON.stringify(data));
+      }
+    }).catch(function (error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
 }
 
 
 function requestUsers(option) {
   let data = {
-    option : option,
-    order : sort_asc,
-    search : value_input_text.value
+    option: option,
+    order: sort_asc,
+    search: value_input_text.value
   };
   let init = {
     method: 'POST',
@@ -142,39 +143,39 @@ function requestUsers(option) {
   }
 
   fetch(`/admin/fetchUsers`, init)
-  .then(function (response) {
-    if (response.ok) {
-      response.json().then(data => {
-        if ('message' in data) {
-          alert(response['message']);
-        }
-        else {
-          console.log(data);
-          renderUsers(data[0]);
-        }
-      })
-    }
-    else {
-    
-      console.log('Network response was not ok.' + JSON.stringify(data));
-    }
-  }).catch(function (error) {
-    console.log('There has been a problem with your fetch operation: ' + error.message);
-  });
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(data => {
+          if ('message' in data) {
+            alert(response['message']);
+          }
+          else {
+            console.log(data);
+            renderUsers(data[0]);
+          }
+        })
+      }
+      else {
+
+        console.log('Network response was not ok.' + JSON.stringify(data));
+      }
+    }).catch(function (error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
 }
 
 function getUnbanBtn(user_id) {
-    let unban_btn = document.createElement('button');
-    unban_btn.classList.add("btn", "btn-outline-success", "px-1", "unban");
-    unban_btn.setAttribute('data-target', user_id);
-    unban_btn.innerHTML = `
+  let unban_btn = document.createElement('button');
+  unban_btn.classList.add("btn", "btn-outline-success", "px-1", "unban");
+  unban_btn.setAttribute('data-target', user_id);
+  unban_btn.innerHTML = `
       <i class="fa fa-ban fa-check" aria-hidden="true"></i>
       Unban`;
-    unban_btn.addEventListener('click', () => {
-      unbanUser.call(unban_btn);
-    });
+  unban_btn.addEventListener('click', () => {
+    unbanUser.call(unban_btn);
+  });
 
-    return unban_btn;  
+  return unban_btn;
 }
 
 function getBannedStatus() {
@@ -182,12 +183,12 @@ function getBannedStatus() {
   td_status.setAttribute('data-label', 'Status');
   td_status.classList.add('align-center');
 
-    td_status.innerHTML = `
+  td_status.innerHTML = `
     <span class="badge text-danger">
       banned
     </span>
   `;
-  
+
 
   return td_status;
 
@@ -197,7 +198,7 @@ function getUnBannedStatus() {
   let td_status = document.createElement('td');
   td_status.setAttribute('data-label', 'Status');
   td_status.classList.add('align-center');
-  
+
   td_status.innerHTML = `
       <span class="badge text-success">
         normal
@@ -208,7 +209,7 @@ function getUnBannedStatus() {
   return td_status;
 }
 
-function getBanBtn( user_id) {
+function getBanBtn(user_id) {
   let ban_btn = document.createElement('button');
   ban_btn.classList.add("btn", "btn-outline-danger", "ban");
   ban_btn.setAttribute('data-target', user_id);
@@ -217,21 +218,21 @@ function getBanBtn( user_id) {
     Ban `;
 
   ban_btn.addEventListener('click', () => {
-      banUser.call(ban_btn);
+    banUser.call(ban_btn);
   });
-  
-  return ban_btn;  
+
+  return ban_btn;
 }
 
-ban_btns.forEach(ban_btn => 
+ban_btns.forEach(ban_btn =>
   ban_btn.addEventListener('click', () => {
-   banUser.call(ban_btn);
-}));
+    banUser.call(ban_btn);
+  }));
 
-unban_btns.forEach(unban_btn => 
+unban_btns.forEach(unban_btn =>
   unban_btn.addEventListener('click', () => {
-  unbanUser.call(unban_btn);
-}));
+    unbanUser.call(unban_btn);
+  }));
 
 
 function banUser() {
@@ -249,28 +250,28 @@ function banUser() {
   }
 
   fetch(`/admin/banUser/${id}`, init)
-  .then(function (response) {
-    if (response.ok) {
-      response.json().then(data => {
-        if ('message' in data) {
-          alert(response['message']);
-        }
-        else {
-          console.log(data);
-          element.replaceWith(unban_btn);
-          unban_btn.parentNode.parentNode.querySelector('td[data-label = "Status"]').replaceWith(getBannedStatus());
-        }
-      })
-    }
-    else {
-    
-      console.log('Network response was not ok.' + JSON.stringify(data));
-    }
-  }).catch(function (error) {
-    console.log('There has been a problem with your fetch operation: ' + error.message);
-  });
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(data => {
+          if ('message' in data) {
+            alert(response['message']);
+          }
+          else {
+            console.log(data);
+            element.replaceWith(unban_btn);
+            unban_btn.parentNode.parentNode.querySelector('td[data-label = "Status"]').replaceWith(getBannedStatus());
+          }
+        })
+      }
+      else {
 
-  
+        console.log('Network response was not ok.' + JSON.stringify(data));
+      }
+    }).catch(function (error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+
+
 }
 
 function unbanUser() {
@@ -285,33 +286,33 @@ function unbanUser() {
     },
   }
   fetch(`/admin/unbanUser/${id}`, init)
-  .then(function (response) {
-    if (response.ok) {
-      response.json().then(data => {
-        if ('message' in data) {
-          alert(response['message']);
-        }
-        else {
-          console.log(data);
-          element.replaceWith(ban_btn);
-          ban_btn.parentNode.parentNode.querySelector('td[data-label = "Status"]').replaceWith(getUnBannedStatus());
-        }
-      })
-    }
-    else {
-    
-      console.log('Network response was not ok.' + JSON.stringify(data));
-    }
-  }).catch(function (error) {
-    console.log('There has been a problem with your fetch operation: ' + error.message);
-  });
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(data => {
+          if ('message' in data) {
+            alert(response['message']);
+          }
+          else {
+            console.log(data);
+            element.replaceWith(ban_btn);
+            ban_btn.parentNode.parentNode.querySelector('td[data-label = "Status"]').replaceWith(getUnBannedStatus());
+          }
+        })
+      }
+      else {
+
+        console.log('Network response was not ok.' + JSON.stringify(data));
+      }
+    }).catch(function (error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
 
 }
 
 function getUserRow(user) {
 
   let tr = document.createElement('tr');
-  
+
   /*username */
   let td_username = document.createElement('td');
   td_username.setAttribute('data-label', "User");
@@ -362,7 +363,7 @@ function getUserRow(user) {
   let user_id = user['id'];
   let td_button = document.createElement('td');
   td_button.classList.add('text-center');
-  let tdbutton = (user['is_banned']) ?  getUnbanBtn(user_id) : getBanBtn(user_id);
+  let tdbutton = (user['is_banned']) ? getUnbanBtn(user_id) : getBanBtn(user_id);
   td_button.appendChild(tdbutton);
 
   tr.appendChild(td_username);
@@ -382,7 +383,7 @@ function getProjectRow(project) {
   let td_name = document.createElement('td');
   td_name.setAttribute('data-label', 'Project');
   td_name.innerHTML = `
-    <a href="#" class="project-link">
+    <a href="/projects/${project['id']}" class="project-link">
       ${project['name']}
     </a>
   `;
@@ -398,23 +399,42 @@ function getProjectRow(project) {
 
   /*status*/
   let status;
+  let class_color;
   let today = new Date();
   if (project['finish_date'] === null || project['finish_date'] >= today) {
     status = 'Active';
+    class_color = "text-success";
   } else {
     status = 'Inactive';
+    class_color = "text-danger";
   }
   let td_status = document.createElement('td');
   td_status.setAttribute('data-label', 'Status');
   td_status.classList.add('align-center');
+
+
   td_status.innerHTML = `
-  <span class="badge text-danger">
+  <span class="badge ${class_color}">
     ${status}
   </span>
   `;
 
-  /**progress */
-  let td_progress;
+
+  const issues = project['nr_issues'];
+  const open_issues = project['nr_open_issues'];
+  let td_progress = document.createElement('td');
+  td_progress.setAttribute('data-attribute', 'Progress');
+  let value = (issues > 0) ? (issues - open_issues) / issues : 0;
+
+  td_progress.innerHTML = `
+  <div class="mb-2 progress" style="height: 5px;">
+    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ${ value * 100}%;"></div>
+    </div>
+    <div>
+    Tasks Completed:
+    <span class="text-inverse"> ${issues - open_issues} / ${issues}</span>
+  </div>
+  `;
 
   /*delete button */
   let td_button = document.createElement('td');
@@ -426,7 +446,7 @@ function getProjectRow(project) {
   <i class="fa fa-trash"></i> 
   Delete
   `;
-  //btn.addEventListener('click', );
+  btn.addEventListener('click', () => deleteProject.call(btn));
 
   td_button.appendChild(btn);
 
@@ -437,7 +457,9 @@ function getProjectRow(project) {
   tr.appendChild(td_status);
   tr.appendChild(td_progress);
   tr.appendChild(td_button);
-  
+
+  return tr;
+
 }
 
 
@@ -457,17 +479,18 @@ function renderUsers(users) {
 function renderProjects(projects) {
   const info_projects = document.querySelector('#projects tbody');
 
-  while(info_projects.firstChild) {
+  while (info_projects.firstChild) {
     info_projects.removeChild(info_projects.firstChild);
   }
 
   projects.forEach(project => {
     info_projects.appendChild(getProjectRow(project));
   }
-)}
+  )
+}
 
 
-delete_project.forEach(delete_btn => delete_btn.addEventListener('click', function (){
+delete_project.forEach(delete_btn => delete_btn.addEventListener('click', function () {
   deleteProject.call(delete_btn);
 }));
 
@@ -483,25 +506,25 @@ function deleteProject() {
     },
   }
   fetch(`/admin/project/${id}`, init)
-  .then(function (response) {
-    if (response.ok) {
-      response.json().then(data => {
-        if ('message' in data) {
-          alert(response['message']);
-        }
-        else {
-          console.log(data);
-          element.parentNode.parentNode.remove();
-        }
-      })
-    }
-    else {
-    
-      console.log('Network response was not ok.' + JSON.stringify(data));
-    }
-  }).catch(function (error) {
-    console.log('There has been a problem with your fetch operation: ' + error.message);
-  });
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(data => {
+          if ('message' in data) {
+            alert(response['message']);
+          }
+          else {
+            console.log(data);
+            element.parentNode.parentNode.remove();
+          }
+        })
+      }
+      else {
+
+        console.log('Network response was not ok.' + JSON.stringify(data));
+      }
+    }).catch(function (error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
 }
 
 
