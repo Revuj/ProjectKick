@@ -21,6 +21,8 @@
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
 
     <script src="{{asset('js/index.js')}}" defer></script>
+    <script src="{{asset('js/activity.js')}}" defer></script>
+
     
 @endsection
 
@@ -60,121 +62,72 @@
 
           <!--filters-->
           <div id="tables-types" class="d-flex border-bottom nav-links">
-            <li class="active">
-              Today <span class="tables-type-counter">2</span>
-            </li>
-            <li>This week <span class="tables-type-counter">3</span></li>
-            <li>This Month <span class="tables-type-counter">3</span></li>
-            <li>All <span class="tables-type-counter">332</span></li>
+            <li data-target = "created-issues" class="active">Created issues <span class="tables-type-counter mx-1">{{count($creation_issues)}}</span></li>
+            <li data-target = "closed-issues"> Closed issues <span class="tables-type-counter mx-1">{{count($closed_issues)}}</span></li>
+            <li data-target = "comments"> Comments <span class="tables-type-counter mx-1">{{count($comments)}}</span></li>
+            <li data-target = "channels"> Channels <span class="tables-type-counter mx-1">{{count($channels)}}</span></li>
+            <li data-target = "all">All <span class="tables-type-counter mx-1">{{count($activity)}}</span></li>
           </div>
           <!--end of fiters-->
 
           <!--history-->
           <div id="history">
             <div class="timeline-body mt-4">
-              <div class="timeline-item">
-                <p class="time">Now</p>
-                <div class="content">
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="title text-left">
-                      Normalize database
-                    </div>
-                    <div class="time-mobile">
-                      Now
-                    </div>
-                  </div>
 
-                  <p class="text-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                    illum, harum iusto quaerat accusamus quis odio a asperiores,
-                    enim delectus, ea veritatis itaque architecto nisi!
-                  </p>
-                  <p class="author text-right p-2">
-                    <span class="status open bg-success">Opened</span> by
-                    <span class="author-reference text-right">Vator</span>
-                  </p>
-                </div>
+              <div id="created-issues" class = "active">
+                @foreach($creation_issues as $elem)
+                  @include('partials.Activity.created_issues', $elem)
+                @endforeach
+
+                @include('partials.Activity.info_project', [$project, $author]);
               </div>
 
-              <div class="timeline-item">
-                <p class="time">5 min</p>
-                <div class="content">
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="title text-left">
-                      Finish Design
-                    </div>
-                    <div class="time-mobile">
-                      Now
-                    </div>
-                  </div>
+              <div id = "closed-issues" class = "d-none">
+                @foreach($closed_issues as $elem)
+                  @include('partials.Activity.closed_issues', $elem)
+                @endforeach
 
-                  <p class="text-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                    illum, harum iusto quaerat accusamus quis odio a asperiores,
-                    enim delectus, ea veritatis itaque architecto nisi!
-                  </p>
-                  <p class="author text-right p-2">
-                    <span class="status open bg-success">Opened</span> by
-                    <span class="author-reference text-right">Revuj</span>
-                  </p>
-                </div>
+                @include('partials.Activity.info_project', [$project, $author]);
               </div>
-              <div class="timeline-item">
-                <p class="time">Now</p>
-                <div class="content">
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="title text-left">
-                      Deliver a2
-                    </div>
-                    <div class="time-mobile">
-                      3 h
-                    </div>
-                  </div>
 
-                  <p class="text-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                    illum, harum iusto quaerat accusamus quis odio a asperiores,
-                    enim delectus, ea veritatis itaque architecto nisi!
-                  </p>
-                  <p class="author text-right p-2">
-                    <span class="status closed bg-danger">Closed</span> by
-                    <span class="author-reference text-right">Abelha</span>
-                  </p>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <p class="time">Now</p>
-                <div class="content">
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="title text-left">
-                      Deliver a2
-                    </div>
-                    <div class="time-mobile">
-                      Now
-                    </div>
-                  </div>
+              <div id = "comments" class = "d-none">
+                @foreach($comments as $elem)
+                  @include('partials.Activity.comments', $elem)
+                @endforeach
 
-                  <p class="text-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                    illum, harum iusto quaerat accusamus quis odio a asperiores,
-                    enim delectus, ea veritatis itaque architecto nisi!
-                  </p>
-                  <p class="author text-right p-2">
-                    <span class="status open bg-info">Commented</span>
-                    by
-                    <span class="author-reference text-right">Vator</span>
-                  </p>
-                </div>
+                @include('partials.Activity.info_project', [$project, $author]);
               </div>
-            </div>
+
+              <div id="channels" class = "d-none">
+                @foreach($channels as $elem)
+                  @include('partials.Activity.channel', $elem)
+                @endforeach
+
+                @include('partials.Activity.info_project', [$project, $author]);
+              </div>
+
+              <div id="all" class = "d-none">
+                @foreach($activity as $elem)
+
+                  @if ($elem['type'] === 'create_issues')
+                    @include('partials.Activity.created_issues', $elem)
+
+                  @elseif($elem['type'] === 'close_issues')
+                    @include('partials.Activity.closed_issues', $elem)
+
+                  @elseif($elem['type'] === 'comment')
+                    @include('partials.Activity.comments', $elem)
+
+                  @elseif($elem['type'] === 'channel') 
+                    @include('partials.Activity.channel', $elem)
+
+                  @endif             
+
+                @endforeach
+
+                @include('partials.Activity.info_project', [$project, $author]);
+              </div>
+
           </div>
         </div>
 

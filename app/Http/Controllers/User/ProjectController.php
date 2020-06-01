@@ -14,13 +14,63 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+
 
 class ProjectController extends Controller
 {
     public function activity($id)
     {
-        $this->authorize('checkActivity', Project::find($id));
-        return view('pages.project.activity');
+       // $this->authorize('checkActivity', Project::find($id));
+
+       // creation date
+        $project = Project::findOrFail($id, ['id', 'name', 'creation_date', 'author_id' , 'description']);
+        $project_name = $project['name'];
+
+        //date of creation and closing of issues
+        $issues = $project->issues();
+
+        $creation_issues = $issues->join('user', 'user.id', '=', 'author_id')
+        ->select('issue.name', 'author_id', 'user.username','issue.creation_date as date', 'closed_date', 'issue.id', 'issue.description')
+        ->get()->map(function($issues) {
+            $issues['type'] = 'create_issues';
+            return $issues;
+        });
+
+        $closed_issues = $issues->where('is_completed', '=', 'true')
+        ->select('issue.name', 'complete_id', 'closed_date as date', 'user.username', 'issue.description', 'issue.id')
+        ->get()->map(function($issues) {
+            $issues['type'] = 'close_issues';
+            return $issues;
+        });
+
+        // register comments made
+        $comments = $issues->join('comment', 'comment.issue_id', '=', 'issue.id')
+        ->select('comment.id', 'comment.creation_date as date', 'comment.issue_id', 'comment.user_id', 'issue.name', 'comment.content')
+        ->get()->map(function($comment) {
+            $comment['type'] = 'comment';
+            $comment['username'] = \App\User::find($comment->user_id)['username'];
+            return $comment;
+        });;
+
+        // channels
+        $channels = $project->channels()
+        ->select('channel.id', 'name', 'creation_date as date', 'description')->get()->map(function($channel)  {
+            $channel['type'] = 'channel';
+            return $channel;
+        });
+
+       
+        $mergedCollection = $creation_issues->toBase()->merge($closed_issues)->toBase()->merge($comments)->toBase()->merge($channels)->sortbyDesc('date');
+        return view('pages.project.activity', [
+            'activity' => $mergedCollection,
+            'creation_issues' => $creation_issues->sortbyDesc('date'),
+            'closed_issues' => $closed_issues->sortByDesc('date'),
+            'comments' => $comments->sortByDesc('date'),
+            'channels' => $channels->sortByDesc('date'),
+            'project' => $project,
+            'author' => $project->author()->first()
+        ]);
     }
 
     public function index($id)
