@@ -84,12 +84,20 @@
           </button>
         </div>
         <div class="d-flex align-items-center my-2">
-          <h4 class="title task-title mr-auto mt-2">
+          <h4 class="title task-title mr-auto mt-2" id="issue-title">
             {{$issue['name']}}
           </h4>
           <button
             type="button"
             class="custom-button edit-button edit-task mr-1"
+            id="save-issue"
+          >
+            <i class="ml-auto far fa-save float-right"></i>
+          </button>
+          <button
+            type="button"
+            class="custom-button edit-button edit-task mr-1"
+            id="edit-issue"
           >
             <i class="ml-auto fas fa-pencil-alt float-right"></i>
           </button>
@@ -114,7 +122,7 @@
       </div>
       <div class="row border-bottom my-2">
         <div class="col-md-9 description text-left">
-          <p>
+          <p id="issue-description">
           {{$issue['description']}}
           </p>
         </div>

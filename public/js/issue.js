@@ -8,7 +8,7 @@ downvotes.forEach(downvoteArrow => downvoteArrow.addEventListener('click', downv
 
 function upvote() {
   const comment_id = this.parentNode.getAttribute('data-target');
-  const upvote = 1  ;
+  const upvote = 1;
   vote(comment_id, upvote, this);
 }
 
@@ -24,12 +24,12 @@ function clearTime() {
   }
 }
 
-const nth = function(d) {
+const nth = function (d) {
   if (d > 3 && d < 21) return 'th';
   switch (d % 10) {
-    case 1:  return "st";
-    case 2:  return "nd";
-    case 3:  return "rd";
+    case 1: return "st";
+    case 2: return "nd";
+    case 3: return "rd";
     default: return "th";
   }
 }
@@ -38,27 +38,27 @@ function createComment(comment, current_user) {
 
   const date = new Date(comment['creation_date']);
   let h = date.getHours(), m = date.getMinutes();
-  let _time = (h > 12) ? (h-12 + ':' + m +'pm') : (h + ':' + m +'am');
+  let _time = (h > 12) ? (h - 12 + ':' + m + 'pm') : (h + ':' + m + 'am');
 
   let day_week = {
-    0 :'Sunday',
-    1 :'Monday',
-    2 :'Tuesday',
-    3 :'Wednesday',
-    4 :'Thursday',
-    5 :'Friday',
-    6 :'Sathurday'
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Sathurday'
   }
 
   let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
-  const time = _time + ' on ' +  day_week[date.getDay()] + " " + date.getDate() + nth(date.getDate()) + " " + months[date.getMonth()] + " " + date.getFullYear();
+  const time = _time + ' on ' + day_week[date.getDay()] + " " + date.getDate() + nth(date.getDate()) + " " + months[date.getMonth()] + " " + date.getFullYear();
 
   let new_comment = document.createElement('div');
   new_comment.classList.add('comment', 'd-flex', 'border-bottom', 'mt-4', 'pb-1');
 
-    new_comment.innerHTML  = `
+  new_comment.innerHTML = `
     <img class="comment-author" src="/assets/avatars/${current_user['photo_path']}.png" alt="${current_user['username']} profile picture">
 
     <div class="comment-detail ml-3">
@@ -73,7 +73,7 @@ function createComment(comment, current_user) {
 
   let voting = document.createElement('div');
   voting.classList.add('karma', 'ml-auto', 'mr-3', 'd-flex', 'flex-column');
-  voting.setAttribute('data-target', `${comment['id']}` );
+  voting.setAttribute('data-target', `${comment['id']}`);
 
   let child1 = document.createElement('i');
   child1.classList.add('fas', 'fa-chevron-up', 'upvote');
@@ -157,71 +157,71 @@ async function vote(comment_id, upvote, clickedArrow) {
       'Content-Type': 'application/x-www-form-urlencoded',
       'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
     },
-    body: encodeForAjax({ comment_id, upvote})
+    body: encodeForAjax({ comment_id, upvote })
   }
 
   let value = clickedArrow.parentNode.querySelector('p');
 
 
   fetch(`/api/votes`, init)
-  .then(function (response) {
-    if (response.ok) {
-      response.json().then(data => {
-        if ('errors' in data) {
-          const error_message = data['errors'];
-          const div_elem = document.getElementById('dialog');
-          div_elem.classList.add('error-color');
-          div_elem.querySelector('.content').textContent = error_message;
-          div_elem.classList.remove('d-none');
-          div_elem.classList.remove('success-color')
-          clickedArrow.classList.remove('voted');
-          const val = upvote === 1 ? -1 : 1;
-          value.innerHTML = parseInt(value.innerHTML) + val; 
-          clearTime();
-          timeout = setTimeout(() => {
-            div_elem.classList.add('d-none');
-            div_elem.querySelector('.content').textContent = "";
-            div_elem.classList.remove('error-color');
-
-          }, 3500);
-        }
-        else {
-          if ('update' in data) {
-            clickedArrow.parentNode.querySelector('.voted').classList.remove('voted');
-            clickedArrow.classList.add('voted');
-            const val = upvote === 1 ? 2 : -2;
-            console.log(val)
-            value.innerHTML = parseInt(value.innerHTML) + val; 
-            
-          }
-          else if ('create' in data) {
-            const val = upvote === 1 ? 1 : -1;
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(data => {
+          if ('errors' in data) {
+            const error_message = data['errors'];
+            const div_elem = document.getElementById('dialog');
+            div_elem.classList.add('error-color');
+            div_elem.querySelector('.content').textContent = error_message;
+            div_elem.classList.remove('d-none');
+            div_elem.classList.remove('success-color')
+            clickedArrow.classList.remove('voted');
+            const val = upvote === 1 ? -1 : 1;
             value.innerHTML = parseInt(value.innerHTML) + val;
-            clickedArrow.classList.add('voted');
-            const dialog = document.getElementById('dialog');
-            dialog.classList.remove('d-none');
-            dialog.querySelector('.content').textContent = data['message'];
-            dialog.classList.remove('error-color');
-            dialog.classList.add('success-color');
             clearTime();
             timeout = setTimeout(() => {
-              dialog.classList.add('d-none');
-              dialog.querySelector('.content').textContent = "";
-              dialog.classList.remove('success-color');
-  
+              div_elem.classList.add('d-none');
+              div_elem.querySelector('.content').textContent = "";
+              div_elem.classList.remove('error-color');
+
             }, 3500);
-
           }
-        }
-      })
-    }
-    else {
+          else {
+            if ('update' in data) {
+              clickedArrow.parentNode.querySelector('.voted').classList.remove('voted');
+              clickedArrow.classList.add('voted');
+              const val = upvote === 1 ? 2 : -2;
+              console.log(val)
+              value.innerHTML = parseInt(value.innerHTML) + val;
 
-      console.log('Network response was not ok.' + JSON.stringify(data));
-    }
-  }).catch(function (error) {
-    console.log('There has been a problem with your fetch operation: ' + error.message);
-  });
+            }
+            else if ('create' in data) {
+              const val = upvote === 1 ? 1 : -1;
+              value.innerHTML = parseInt(value.innerHTML) + val;
+              clickedArrow.classList.add('voted');
+              const dialog = document.getElementById('dialog');
+              dialog.classList.remove('d-none');
+              dialog.querySelector('.content').textContent = data['message'];
+              dialog.classList.remove('error-color');
+              dialog.classList.add('success-color');
+              clearTime();
+              timeout = setTimeout(() => {
+                dialog.classList.add('d-none');
+                dialog.querySelector('.content').textContent = "";
+                dialog.classList.remove('success-color');
+
+              }, 3500);
+
+            }
+          }
+        })
+      }
+      else {
+
+        console.log('Network response was not ok.' + JSON.stringify(data));
+      }
+    }).catch(function (error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
 
 }
 
@@ -233,3 +233,13 @@ comment.addEventListener('keypress', function (event) {
     comment.value = "";
   }
 });
+
+// Edit Issue
+let editIssueBtn = document.getElementById("edit-issue");
+let issueTitle = document.getElementById("issue-title");
+let issueDescription = document.getElementById("issue-description");
+
+editIssueBtn.addEventListener("click", () => {
+  issueTitle.contentEditable = "true";
+  issueDescription.contentEditable = "true";
+})
