@@ -36,17 +36,19 @@ create_list_btn.addEventListener("click", () => {
 function createListHandler() {
   const response = JSON.parse(this.responseText);
   console.log(response)
+  let id = response['id'];
+  let name = response['name'];
 
   let newList = document.createElement("div");
   newList.className = "bd-highlight task";
-  newList.id = `task-list-${list_to_add_name.value}`;
+  newList.id = `task-list-${id}`;
   newList.innerHTML = `              
 		<div class="task-list-title d-flex align-items-center py-0">
 			<h6 class="mr-auto my-0 text-left p-3"><i class="fa fa-fw fa-caret-right"></i>${list_to_add_name.value}</h6>
       <button class="btn mx-4 p-0 order-3" data-toggle="collapse" data-target="#add-item-${list_to_add_name.value}" aria-expanded="false" aria-controls="add-item">
       <i class="fas fa-plus"></i>
       </button>
-      <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal" data-list-id="task-list-${list_to_add_name.value}">
+      <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal" data-list-id="task-list-${id}" data-list-name="task-list-${name}">
         <i class="fas fa-trash-alt"></i>
       </button>
 		</div>
@@ -109,7 +111,6 @@ function createIssueHandler() {
   console.log(response);
   let id = response[0]['id'];
   let title = response[0]['name'];
-  let description = response[0]['description'];
   let username = response[1]['username'];
   let liForm = issue.parentElement.parentElement.parentElement;
   let list = liForm.parentElement;
@@ -118,32 +119,8 @@ function createIssueHandler() {
   newItem.className = "task-item text-left";
   newItem.setAttribute("draggable", "true");
   newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"> <h6 class="mb-0 py-2 task-title">${title}</h6>
-  <form class="edit-issue-title-form form-group d-none mr-auto">
-    <div class="form-group text-left">
-      <input
-        type="text"
-        class="form-control"
-        class="item-title"
-        placeholder=""
-      />
-    </div>
-    <div class="d-flex justify-content-between">
-      <button
-        type="submit"
-        class="btn btn-primary edit-item-title btn"
-      >
-        Submit
-      </button>
-      <button
-        type="reset"
-        class="btn btn-primary edit-item-title-cancel"
-      >
-        Cancel
-      </button>
-    </div>
-  </form>
   <button type="button" class="btn ml-auto d-none edit-task"><i class="fas fa-pencil-alt float-right"></i></button>
-    <span class="issue-description d-none">${description}</span>
+    <span class="issue-description d-none"></span>
     <span class="issue-due-date d-none">none</span>
     </span>
     <span class="d-flex flex-row align-items-center mx-2 row-2">
@@ -169,12 +146,10 @@ function listenCancelAddItem(elem) {
 
 /* Allows modal to know which list to delete */
 $("#delete-list-modal").on("show.bs.modal", function (event) {
-  let button = $(event.relatedTarget); // Button that triggered the modal
-  let recipient = button.data("list-id"); // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  let button = $(event.relatedTarget);
+  let recipient = button.data("list-id");
   let modal = $(this);
-  modal.find(".modal-title").text("Delete " + recipient.substring(10));
+  modal.find(".modal-title").text("Delete " + button.data("list-name").substring(10));
   document
     .getElementById("delete-list-button")
     .setAttribute("data-list-id", recipient);
@@ -185,11 +160,9 @@ delete_list_button.addEventListener("click", event => {
   let list_id = delete_list_button.getAttribute("data-list-id");
   let list = document.getElementById(list_id);
   list.parentElement.removeChild(list);
-
   let id = document.getElementById("project-name").dataset.project;
   let url = `/api/projects/${id}/list`;
   list_id = list_id.split("-").slice(-1)[0];
-  console.log({ list_id })
   sendAjaxRequest("delete", url, { 'list': list_id }, null);
 });
 
@@ -291,7 +264,7 @@ function openSideIssueListen(elem) {
     let labels = elem.querySelectorAll(".list-item-label");
     if (pageWrapper.classList.contains("is-collapsed-right")) {
       title.classList.remove("d-none");
-      editTitleFrom.classList.add("d-none");
+      editTitleForm.classList.add("d-none");
       side_issue_header.querySelector("p").classList.remove("d-none");
       if (taskID !== sideIssue.getAttribute("data-task-id")) {
         sideIssue.setAttribute("data-task-id", taskID);
@@ -338,11 +311,9 @@ function openSideIssueListen(elem) {
     console.log(userIds);
     [...existingUsers].forEach(elem => {
       if (userIds.includes(elem.dataset.userId)) {
-        elem.querySelector(".selected-user").style.visibility = "visible";
-        elem.querySelector(".remove-user").style.visibility = "visible";
+        elem.querySelector(".selected-user").classList.remove("invisible");
       } else {
-        elem.querySelector(".selected-user").style.visibility = "hidden";
-        elem.querySelector(".remove-user").style.visibility = "hidden";
+        elem.querySelector(".selected-user").classList.add("invisible");
       }
     });
 
@@ -373,11 +344,9 @@ function openSideIssueListen(elem) {
     let labelIds = [...labels].map(elem => elem.dataset.labelId);
     [...existingLabels].forEach(elem => {
       if (labelIds.includes(elem.dataset.labelId)) {
-        elem.querySelector(".selected-label").style.visibility = "visible";
-        elem.querySelector(".remove-label").style.visibility = "visible";
+        elem.querySelector(".selected-label").classList.remove("invisible");
       } else {
-        elem.querySelector(".selected-label").style.visibility = "hidden";
-        elem.querySelector(".remove-label").style.visibility = "hidden";
+        elem.querySelector(".selected-label").classList.add("invisible");
       }
     });
 
@@ -411,7 +380,7 @@ let sideIssue = document.querySelector("#side-issue");
 let sideIssueButtons = document.querySelectorAll(".task-item");
 let pageWrapper = document.querySelector(".page-wrapper");
 let title = side_issue_header.querySelector(".task-title");
-let editTitleFrom = side_issue_header.querySelector(".edit-issue-title-form");
+let editTitleForm = side_issue_header.querySelector(".edit-issue-title-form");
 let cancelEditTitleButton = side_issue_header.querySelector(
   ".edit-item-title-cancel"
 );
@@ -422,24 +391,24 @@ mouseLeaveListItem(side_issue_header);
 side_issue_header
   .querySelector(".edit-task")
   .addEventListener("click", event => {
-    editTitleFrom.querySelector("input").value = title.innerHTML;
+    editTitleForm.querySelector("input").value = title.innerHTML;
     title.classList.toggle("d-none");
-    editTitleFrom.classList.toggle("d-none");
+    editTitleForm.classList.toggle("d-none");
     side_issue_header.querySelector("p").classList.toggle("d-none");
   });
 
 closeSideIssueButton.addEventListener("click", event => {
   pageWrapper.classList.toggle("is-collapsed-right");
-  title.classList.toggle("d-none");
-  editTitleFrom.classList.toggle("d-none");
-  side_issue_header.querySelector("p").classList.toggle("d-none");
+  title.classList.remove("d-none");
+  editTitleForm.classList.add("d-none");
+  side_issue_header.querySelector("p").classList.remove("d-none");
   document.getElementById("add-new-label").classList.add("d-none");
   document.getElementById("select-due-date").classList.add("d-none");
 });
 
 cancelEditTitleButton.addEventListener("click", event => {
   title.classList.toggle("d-none");
-  editTitleFrom.classList.toggle("d-none");
+  editTitleForm.classList.toggle("d-none");
   side_issue_header.querySelector("p").classList.toggle("d-none");
 });
 
@@ -452,6 +421,12 @@ addLabelBtn.addEventListener("click", () => {
   addNewLabelContainer.classList.toggle("d-none")
 })
 
+let existingLabels = document.getElementsByClassName("existing-label-container");
+[...existingLabels].forEach(elem => elem.addEventListener("click", () => {
+  elem.querySelector(".selected-label").classList.toggle("invisible");
+}))
+
+
 // Add Assignee
 let addNewAssigneeContainer = document.getElementById("add-new-assignee");
 let addAssigneeBtn = document.getElementById("add-assignee");
@@ -459,13 +434,74 @@ addAssigneeBtn.addEventListener("click", () => {
   addNewAssigneeContainer.classList.toggle("d-none")
 })
 
+let existingMembers = document.getElementsByClassName("existing-user-container");
+[...existingMembers].forEach(elem => elem.addEventListener("click", () => {
+  let selectedUser = elem.querySelector(".selected-user");
+  selectedUser.classList.toggle("invisible");
+  let id = delete_issue_button.dataset.issueId;
+  let user = elem.dataset.userId;
+  let url = `/api/issues/${id}/assign`;
+  let request = null;
+  if (selectedUser.classList.contains("invisible"))
+    request = "delete";
+  else
+    request = "post";
+
+  console.log({ user, id })
+  sendAjaxRequest(request, url, { user }, null);
+}))
+
 // Add Due Date
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Augt', 'Sep', 'Oct', 'Nov', 'Dec'];
 let selectDueDateContainer = document.getElementById("select-due-date");
 let selectDueDateBtn = document.getElementById("change-due-date");
+let submitDueDateBtn = document.getElementById("submit-due-date");
+let newDueDate = document.getElementById("new-due-date");
+let dueDate = document.getElementById("due-date");
+
 selectDueDateBtn.addEventListener("click", () => {
   selectDueDateContainer.classList.toggle("d-none")
-
 })
+
+submitDueDateBtn.addEventListener("click", () => {
+  selectDueDateContainer.classList.toggle("d-none")
+  let due_date = newDueDate.value;
+  let id = delete_issue_button.dataset.issueId;
+  let url = `/api/issues/${id}`;
+  sendAjaxRequest("put", url, { due_date }, changeDueDateHandler);
+})
+
+function changeDueDateHandler() {
+  const response = JSON.parse(this.responseText);
+  console.log(response);
+  let date = response['due_date'].split("-");
+  let year = date[0];
+  let month = months[parseInt(date[1]) - 1];
+  let day = parseInt(date[2]).toString();
+  dueDate.innerHTML = month + " " + day + " " + year;
+  console.log(dueDate);
+}
+
+// Edit Title
+let submitTitle = document.querySelector(".edit-item-title");
+submitTitle.addEventListener("click", (event) => {
+  event.preventDefault();
+  let title = document.getElementById("new-task-title").value;
+  let id = delete_issue_button.dataset.issueId;
+  let url = `/api/issues/${id}`;
+  sendAjaxRequest("put", url, { title }, changeTitleHandler);
+})
+
+function changeTitleHandler() {
+  const response = JSON.parse(this.responseText);
+  let newTitle = response['name'];
+  document.querySelector("#side-issue-container .task-title").innerHTML = newTitle;
+  title.classList.toggle("d-none");
+  editTitleForm.classList.toggle("d-none");
+  side_issue_header.querySelector("p").classList.toggle("d-none");
+  document.getElementById(response['id']).querySelector('.task-title').innerHTML = newTitle;
+}
+
 
 /*general functions */
 
