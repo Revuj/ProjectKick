@@ -10,6 +10,7 @@ use App\IssueTag;
 use App\Project;
 use App\Tag;
 use App\User;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 
@@ -125,6 +126,7 @@ class IssueController extends Controller
         $title = $request->input("title");
         $description = $request->input("description");
         $dueDate = $request->input("due_date");
+        $status = $request->input("status");
 
         if ($title != null) {
             $issue->name = $title;
@@ -136,6 +138,15 @@ class IssueController extends Controller
 
         if ($dueDate != null) {
             $issue->due_date = $dueDate;
+        }
+
+        if ($status != null) {
+            if ($status == "true") {
+                $issue->is_completed = true;
+                $issue->closed_date = Carbon::now()->toDateTimeString();
+            } else if ($status == "false") {
+                $issue->is_completed = false;
+            }
         }
 
         $issue->save();

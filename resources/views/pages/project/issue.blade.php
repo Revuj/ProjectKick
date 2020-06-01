@@ -38,9 +38,9 @@
         <div class="d-flex align-items-center pt-2">
           <p class="mr-auto i smaller-text mb-0">
           @if($issue['is_completed'] === false)
-          <span class="bg-success text-light issue-status">Open</span>
+            <span class="bg-success text-light issue-status" id="issue-status">Open</span>
           @else
-          <span class="bg-danger text-light issue-status">Closed</span>
+            <span class="bg-danger text-light issue-status" id="issue-status">Closed</span>
           @endif
 
 
@@ -52,9 +52,16 @@
               
               </span>
           </p>
-          <button class="custom-button close-button">
-            <i class="fas fa-check-circle"></i>
-          </button>
+          @if($issue['is_completed'] === false)
+            <button class="custom-button close-button" id="close-button">
+              <i class="fas fa-check-circle"></i>
+            </button>
+          @else
+            <button class="custom-button open-button" id="close-button">
+              <i class="fas fa-check-circle"></i>
+            </button>
+          @endif
+          
           <form class="edit-issue-title-form form-group d-none mr-auto">
             <div class="form-group text-left">
               <input

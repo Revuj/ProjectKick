@@ -274,3 +274,29 @@ function editIssueHandler() {
   issueTitle.innerHTML = response['name'];
   issueDescription.innerHTML = response['description'];
 }
+
+// Open / Close Issue
+let closeBtn = document.getElementById("close-button");
+let issueStatus = document.getElementById("issue-status");
+
+closeBtn.addEventListener("click", () => {
+  closeBtn.classList.toggle("close-button");
+  closeBtn.classList.toggle("open-button");
+  let id = saveIssueBtn.dataset.issueId;
+  let url = `/api/issues/${id}`;
+  let status = null;
+
+  if (issueStatus.innerHTML == "Open") {
+    issueStatus.innerHTML = "Closed";
+    issueStatus.classList.remove("bg-success");
+    issueStatus.classList.add("bg-danger");
+    status = "true";
+  } else {
+    issueStatus.innerHTML = "Open";
+    issueStatus.classList.remove("bg-danger");
+    issueStatus.classList.add("bg-success");
+    status = "false";
+  }
+
+  sendAjaxRequest("put", url, { status }, null);
+})

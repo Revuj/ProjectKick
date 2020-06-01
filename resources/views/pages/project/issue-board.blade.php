@@ -241,11 +241,7 @@
                     class="col-form-label font-weight-bold"
                     >Label:</label
                   >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="edit-task-label"
-                  />
+                   
                 </div>
               </form>
             </div>
