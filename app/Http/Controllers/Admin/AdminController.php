@@ -42,24 +42,13 @@ class AdminController extends Controller
 
     public function reports() {
 
-        /**
-         * 
-        id   => 1
-        "description" => "eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semp ▶"
-        "reports_id" => 18
-        "reported_id" => 20
-        "sender" => "dbartoszinskih"
-        "receiver" => "lcumberlandj"
-      ]
-         * 
-         */
 
         $reports = \App\Report::all()->map(function($r) {
             $r['sender'] = User::find($r->reports_id)['username'];
             $r['receiver'] = User::find($r->reported_id)['username'];
             return $r;
         })->sortbyDesc('id');
-        
+
         return view('pages.admin.reports', [
             'admin_id' => \Auth::Id(),
             'reports' => $reports
@@ -147,12 +136,18 @@ class AdminController extends Controller
        
 
         $order = ($request->input('order') === 'true') ? 'ASC' : 'DESC';
-        $sorted = $this->sortFunction($filter, $sortableTrait, $order);
+        $sort = $this->sortFunction($filter, $sortableTrait, $order);
         
-        
+        $sorted = $sort->get()->map(function($project) {
+            $issues = $project->issues();
+            $project['nr_issues'] = count($issues->get());
+            $nr_open = count($issues->where('is_completed', '=', 'false')->get());
+            $project['nr_open_issues'] = $nr_open;
+            return $project;
+        });
      
         return response()->json([
-            $sorted->get(), $filter->get()
+            $sorted
         ]);
     }
 

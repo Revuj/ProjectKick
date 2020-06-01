@@ -24,7 +24,7 @@
             aria-valuemin="0"
             aria-valuemax="100"
             @if (count($project->issues()->get()) > 0)
-            style="width: {{count($project->issues()->where('is_completed', '=', 'false')->get()) / count($project->issues()->get()) * 100}}%;"
+            style="width: {{count($project->issues()->where('is_completed', '=', 'true')->get()) / count($project->issues()->get()) * 100}}%;"
             @else
             style="width: 0%;"
             @endif
@@ -33,7 +33,7 @@
         </div>
         <div>
         Tasks Completed:
-        <span class="text-inverse">{{count($project->issues()->where('is_completed', '=', 'false')->get())}} / {{count($project->issues()->get())}}</span
+        <span class="text-inverse">{{count($project->issues()->where('is_completed', '=', 'true')->get())}} / {{count($project->issues()->get())}}</span
         >
         </div>
     </td>
