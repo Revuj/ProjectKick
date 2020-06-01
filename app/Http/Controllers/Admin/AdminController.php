@@ -40,6 +40,32 @@ class AdminController extends Controller
         return response()->json([$users_per_country]);
     }
 
+    public function reports() {
+
+        /**
+         * 
+        id   => 1
+        "description" => "eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semp ▶"
+        "reports_id" => 18
+        "reported_id" => 20
+        "sender" => "dbartoszinskih"
+        "receiver" => "lcumberlandj"
+      ]
+         * 
+         */
+
+        $reports = \App\Report::all()->map(function($r) {
+            $r['sender'] = User::find($r->reports_id)['username'];
+            $r['receiver'] = User::find($r->reported_id)['username'];
+            return $r;
+        })->sortbyDesc('id');
+        
+        return view('pages.admin.reports', [
+            'admin_id' => \Auth::Id(),
+            'reports' => $reports
+        ]);
+    }
+
     public function fetchIntelPerMonth(Request $request) {
         $now = new Carbon();   
         $firstDay = $now->firstOfMonth();     
