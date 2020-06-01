@@ -101,7 +101,7 @@
               @foreach ($list->issues()->get() as $issue)
                 <li id={{ $issue->id }} class="task-item text-left" draggable="true">
                   <div class="d-flex flex-row align-items-center ml-2 row-1">
-                    <h6 class="mb-0 py-2 task-title title">{{ $issue->name }}</h6>
+                    <a class="nostyle" href="/issues/{{ $issue->id }}"><h6 class="mb-0 py-2 task-title title">{{ $issue->name }}</h6></a>
                     <button type="button" class="btn ml-auto d-none edit-task">
                       <i class="fas fa-pencil-alt float-right"></i>
                     </button>

@@ -52,79 +52,79 @@ cancelEditTitleButton.addEventListener("click", event => {
 [...sideIssueButtons].forEach(elem => openSideIssueListen(elem));
 
 function openSideIssueListen(elem) {
-  elem.addEventListener("click", function () {
-    console.log(elem);
-    let taskID = elem.getAttribute("id");
-    let taskTitle = elem.querySelector(".task-title").innerHTML;
-    let authorName = elem.querySelector(".author-reference").innerHTML;
-    let description = elem.querySelector(".issue-description").innerHTML;
-    let dueDate = elem.querySelector(".issue-due-date").innerHTML;
-    let assignees = elem.querySelectorAll(".assignee");
-    let labels = elem.querySelectorAll(".list-item-label");
-    if (pageWrapper.classList.contains("is-collapsed-right")) {
-      title.classList.remove("d-none");
-      editTitleFrom.classList.add("d-none");
-      side_issue_header.querySelector("p").classList.remove("d-none");
-      if (taskID !== sideIssue.getAttribute("data-task-id")) {
-        sideIssue.setAttribute("data-task-id", taskID);
-        sideIssue.querySelector(".task-title").innerHTML = taskTitle;
-        sideIssue.querySelector("#issue-author").innerHTML = authorName;
-        sideIssue.querySelector("#issue-description").innerHTML = description;
-        sideIssue.querySelector("#due-date").innerHTML = dueDate;
-      } else {
-        pageWrapper.classList.toggle("is-collapsed-right");
-      }
-    } else {
-      sideIssue.setAttribute("data-task-id", taskID);
-      sideIssue.querySelector(".task-title").innerHTML = taskTitle;
-      sideIssue.querySelector("#issue-author").innerHTML = authorName;
-      sideIssue.querySelector("#issue-description").innerHTML = description;
-      sideIssue.querySelector("#due-date").innerHTML = dueDate;
-      pageWrapper.classList.toggle("is-collapsed-right");
-    }
-    delete_issue_button.dataset.issueId = taskID;
+  // elem.addEventListener("click", function () {
+  //   console.log(elem);
+  //   let taskID = elem.getAttribute("id");
+  //   let taskTitle = elem.querySelector(".task-title").innerHTML;
+  //   let authorName = elem.querySelector(".author-reference").innerHTML;
+  //   let description = elem.querySelector(".issue-description").innerHTML;
+  //   let dueDate = elem.querySelector(".issue-due-date").innerHTML;
+  //   let assignees = elem.querySelectorAll(".assignee");
+  //   let labels = elem.querySelectorAll(".list-item-label");
+  //   if (pageWrapper.classList.contains("is-collapsed-right")) {
+  //     title.classList.remove("d-none");
+  //     editTitleFrom.classList.add("d-none");
+  //     side_issue_header.querySelector("p").classList.remove("d-none");
+  //     if (taskID !== sideIssue.getAttribute("data-task-id")) {
+  //       sideIssue.setAttribute("data-task-id", taskID);
+  //       sideIssue.querySelector(".task-title").innerHTML = taskTitle;
+  //       sideIssue.querySelector("#issue-author").innerHTML = authorName;
+  //       sideIssue.querySelector("#issue-description").innerHTML = description;
+  //       sideIssue.querySelector("#due-date").innerHTML = dueDate;
+  //     } else {
+  //       pageWrapper.classList.toggle("is-collapsed-right");
+  //     }
+  //   } else {
+  //     sideIssue.setAttribute("data-task-id", taskID);
+  //     sideIssue.querySelector(".task-title").innerHTML = taskTitle;
+  //     sideIssue.querySelector("#issue-author").innerHTML = authorName;
+  //     sideIssue.querySelector("#issue-description").innerHTML = description;
+  //     sideIssue.querySelector("#due-date").innerHTML = dueDate;
+  //     pageWrapper.classList.toggle("is-collapsed-right");
+  //   }
+  //   delete_issue_button.dataset.issueId = taskID;
 
-    let sideBarAssignees = document.querySelector("#side-issue .assignees");
-    sideBarAssignees.innerHTML = "";
-    assignees.forEach(elem => {
-      sideBarAssignees.innerHTML += `
-      <li class="mr-2">
-        ${elem.innerHTML}
-      </li>
-      `;
-    });
-    sideBarAssignees.innerHTML += `
-    <li>
-      <button
-        type="button"
-        class="custom-button add-button add-assignee"
-      >
-        <i class="fas fa-plus"></i>
-      </button>
-    </li>`
+  //   let sideBarAssignees = document.querySelector("#side-issue .assignees");
+  //   sideBarAssignees.innerHTML = "";
+  //   assignees.forEach(elem => {
+  //     sideBarAssignees.innerHTML += `
+  //     <li class="mr-2">
+  //       ${elem.innerHTML}
+  //     </li>
+  //     `;
+  //   });
+  //   sideBarAssignees.innerHTML += `
+  //   <li>
+  //     <button
+  //       type="button"
+  //       class="custom-button add-button add-assignee"
+  //     >
+  //       <i class="fas fa-plus"></i>
+  //     </button>
+  //   </li>`
 
-    let sideBarLabels = document.querySelector(".labels");
-    sideBarLabels.innerHTML = "";
-    labels.forEach(elem => {
-      sideBarLabels.innerHTML += `
-      <li class="mr-2">
-        <h6 class="mb-0 p-1 list-item-label bg-info">
-          ${elem.innerHTML}
-        </h6>
-      </li>
-      `;
-    });
-    sideBarLabels.innerHTML += `
-    <li>
-      <button
-        type="button"
-        class="custom-button add-button add-label"
-      >
-        <i class="fas fa-plus"></i>
-      </button>
-    </li>
-    `
-  });
+  //   let sideBarLabels = document.querySelector(".labels");
+  //   sideBarLabels.innerHTML = "";
+  //   labels.forEach(elem => {
+  //     sideBarLabels.innerHTML += `
+  //     <li class="mr-2">
+  //       <h6 class="mb-0 p-1 list-item-label bg-info">
+  //         ${elem.innerHTML}
+  //       </h6>
+  //     </li>
+  //     `;
+  //   });
+  //   sideBarLabels.innerHTML += `
+  //   <li>
+  //     <button
+  //       type="button"
+  //       class="custom-button add-button add-label"
+  //     >
+  //       <i class="fas fa-plus"></i>
+  //     </button>
+  //   </li>
+  //   `
+  // });
 }
 
 /* Delete Issue */

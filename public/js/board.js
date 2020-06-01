@@ -118,7 +118,7 @@ function createIssueHandler() {
   newItem.id = id;
   newItem.className = "task-item text-left";
   newItem.setAttribute("draggable", "true");
-  newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"> <h6 class="mb-0 py-2 task-title">${title}</h6>
+  newItem.innerHTML = `<span class="d-flex flex-row align-items-center ml-2 row-1"><a class="nostyle" href="/issues/${id}"><h6 class="mb-0 py-2 task-title title">${title}</h6></a>
   <button type="button" class="btn ml-auto d-none edit-task"><i class="fas fa-pencil-alt float-right"></i></button>
     <span class="issue-description d-none"></span>
     <span class="issue-due-date d-none">none</span>
