@@ -144,10 +144,12 @@
   .time-mobile {
     display: block;
   }
+
 }
 
 @media screen and (max-width: 768px) {
   .tables-type-counter {
     display: none !important;
   }
+
 }
