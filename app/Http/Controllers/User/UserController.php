@@ -220,6 +220,30 @@ class UserController extends Controller
         return $projects->get();
     }
 
+    public function projectCoordinator(Request $request, $id)
+    {
+        //$this->authorize('own', User::findOrFail($id));
+
+        try {
+            $user = User::findOrFail($id);
+
+            $projects = $user->projectsStatus()
+                ->join('project', 'project.id', '=', 'member_status.project_id')
+                ->join('user', 'user.id', '=', 'project.author_id')
+                ->where('role', '=', 'coordinator')
+                ->whereNull('departure_date')
+                ->select('project.id', 'project.name', 'user.username', 'user.photo_path', 'user.id as author_id');
+
+            return $projects->get();
+        } catch (ModelNotFoundException $err) {
+            return response()->json([], 404);
+        } catch (QueryException $err) {
+            return response()->json([
+                'message' => 'No projects were found. You don\'t have the privileges to add a meeting to your projects',
+            ], 400);
+        }
+    }
+
     public function calendar($id)
     {
         $this->authorize('own', User::findOrFail($id));
@@ -248,14 +272,10 @@ class UserController extends Controller
         if ($user == null) {
             abort(404);
         }
-        $month = $request->input("month");
-        $year = $request->input("year");
-        $events = DB::table('event_personal')
-            ->join('event', 'event.id', '=', 'event_personal.event_id')
-            ->where('event_personal.user_id', '=', $id)
+
+        $events = DB::table('event')
             ->select('event.title', 'event.start_date');
 
         return $events->get();
     }
-
 }
