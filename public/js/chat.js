@@ -8,7 +8,7 @@ let project_id = create_chat_btn.getAttribute('data-project');
 let active_chat = document.querySelector('.active_chat');
 let msgHistory = document.querySelector(".chat-msgs");
 
-let channels = []
+let channel = null;
 let toDelete;
 
 Pusher.logToConsole = true;
@@ -23,16 +23,13 @@ var pusher = new Pusher('7d3a9c163bd45174c885', {
 });
 
 function subscribeToChannels() {
-    available_chats.forEach(chat => {
-        let id = chat.getAttribute('data-chat');
-        channels[id] = pusher.subscribe('private-groups.' + id);
-    })
+    channel = pusher.subscribe('private-groups.' + active_chat.getAttribute('id'));
 }
 
 function bindAtiveChannel() {
     if (active_chat == null)
         return;
-    channels[active_chat.getAttribute('data-chat')].bind('my-event', function (data) {
+    channel.bind('my-event', function (data) {
         drawMessageTemplate(data);
         updateScroll();
     });
@@ -51,31 +48,11 @@ function changeChat() {
     if (active_chat == chat) return;
 
     if (active_chat != null) {
-        let currently_active_id = active_chat.getAttribute('data-chat');
-        channels[currently_active_id].unbind('my-event');
-        let currently_active_description = document.getElementById('chat-info' + currently_active_id);
-        let currently_active_chat = document.getElementById('chat-msg' + currently_active_id);
-        currently_active_description.classList.add('d-none');
-        currently_active_chat.classList.add('d-none');
-        active_chat.classList.remove('active_chat');
+        let new_active_id = chat.getAttribute('id')
+        channel.unbind('my-event');
+        window.location.href = `/projects/${project_id}/chats/${new_active_id}`;
+
     }
-
-    let new_active_id = chat.getAttribute('data-chat')
-
-    channels[new_active_id].bind('my-event', function (data) {
-        drawMessageTemplate(data);
-    });
-
-
-    let new_active_description = document.getElementById('chat-info' + new_active_id);
-    let new_ative_chat_msg = document.getElementById('chat-msg' + new_active_id);
-
-
-    new_active_description.classList.remove('d-none');
-    new_ative_chat_msg.classList.remove('d-none');
-
-    chat.classList.add('active_chat');
-
 }
 
 
@@ -110,7 +87,7 @@ if (message !== null) {
  * ajax request to create a new message
  */
 function requestCreateMsg() {
-    const active = document.querySelector('.active_chat').getAttribute('data-chat')
+    const active = document.querySelector('.active_chat').getAttribute('id')
     let url = `/api/chat/${active}/messages`;
 
     sendAjaxRequest('put', url, {
@@ -123,7 +100,8 @@ function requestCreateMsg() {
  * response handler to the new message request
  */
 function messageHandler() {
-
+    const response = JSON.parse(this.responseText);
+    console.log(response)
 }
 
 // missing images
@@ -133,7 +111,7 @@ function messageHandler() {
  * @param {user information} author 
  */
 function drawMessageTemplate(message) {
-    let active_chat = document.querySelector('.active_chat').getAttribute('data-chat');
+    let active_chat = document.querySelector('.active_chat').getAttribute('id');
     let current_chat = document.querySelector('#chat-msg' + active_chat);
 
     let image = `
@@ -204,7 +182,7 @@ function newChatHandler() {
 function addChatTemplate(chat) {
     let id = chat['id'];
 
-    channels[id] = pusher.subscribe('private-groups.' + id);
+    //channels[id] = pusher.subscribe('private-groups.' + id);
     /*add to the left side */
     let inbox = document.querySelector('.inbox_msg');
     let inbox_template = document.createElement('div');
@@ -276,24 +254,28 @@ function deleteHandler() {
 
 function deleteChannel(e) {
     e.preventDefault();
-    console.log(toDelete);
     sendAjaxRequest("delete", `/api/channels/${toDelete}`, {}, deleteHandler);
+    if (toDelete === active_chat.getAttribute('id')) {
+        window.location.href = `/projects/${project_id}/chats/`;
+    }   
 }
 
-//Notification.requestPermission();
 
 
 window.onbeforeunload = confirmExit;
 
 function confirmExit() {
 
+    /*
     for (let key in channels) {
         // check if the property/key is defined in the object itself, not in parent
         if (channels.hasOwnProperty(key)) {
             channels[key].unsubscribe('private-groups.' + key);
         }
-    }
-    //return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+    }*/
+
+    channel.unsubscribe('private-groups.' + active_chat.getAttribute('id'));
+    console.log('unsubscribe');
 
 }
 
@@ -301,6 +283,53 @@ function confirmExit() {
 function updateScroll() {
     msgHistory.scrollTop = msgHistory.scrollHeight;
 }
+
+//======
+
+class MessageManager {
+
+    constructor() {
+        this._current_page = 1;
+        this._load_more = true;
+        updateScroll();
+
+    }
+
+    addListener(element_id) {
+        let reference = this;
+    
+        document.addEventListener('scroll', function (e) {
+            let scrollTop = document.getElementById(element_id).scrollTop;
+
+            if (scrollTop == 0) {
+                reference.addCall();
+                reference.print()
+            }
+
+
+        }, true);
+
+    }
+
+    print() {
+        console.log("page: " + this._current_page + "| load more: " + this._load_more);
+    }
+
+    addCall() {
+        if (this._load_more === true) this._current_page++;
+    }
+
+    setEverythingLoaded() {
+        this._load_more = false;
+    }
+
+
+}
+
+let manager = new MessageManager();
+manager.addListener('chat-msg25');
+
+
 
 
 

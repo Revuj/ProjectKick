@@ -93,7 +93,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{id}/members', 'ProjectController@members');
             Route::get('/{id}/issuelist', 'IssueController@showList');
             Route::get('/{id}/board', 'IssueController@showBoard');
-            Route::get('/{id}/chats', 'ProjectController@show');
+            Route::get('{project_id}/chats/{id?}', 'ProjectController@show');
+
         });
 
         // Events

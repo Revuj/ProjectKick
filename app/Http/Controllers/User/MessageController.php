@@ -9,21 +9,43 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 class MessageController extends Controller
 {
 
     public function create(Request $request, $id)
-    {
+    {   
+        $request['user_id'] = \Auth::Id();
 
-        $message = new Message();
-        $message->content = $request->input('content');
-        $message->date = Carbon::now()->toDateTimeString();
-        $message->channel_id = $request->input('channel_id');
-        $message->user_id = Auth::id();
+        $rules = [
+            'content' => 'required|string|max:200|min:1',
+            'channel_id' => 'required|integer|exists:channel,id',
+            'user_id'    => 'required|integer|exists:user,id',
+        ];
+
+        $messages = [
+            'content.required' => 'The message can not be empty'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors(), $request]);
+        }   
+        
+
+        $message = Message::create([
+            'user_id' =>$request->user_id,
+            'channel_id' => $request->channel_id,
+            'content' => $request['content'],
+        ])->refresh();
+
+
         $user = User::select('username', 'photo_path')
             ->where('id', $message->user_id)->first();
-
+        
         $event = new MessageEvent(
             $request->input('channel_id'),
             $request->input('content'),
@@ -33,9 +55,7 @@ class MessageController extends Controller
         );
 
         event($event);
-
-        $message->save();
-
+        
         return response()->json([
             $message, $user,
         ]);

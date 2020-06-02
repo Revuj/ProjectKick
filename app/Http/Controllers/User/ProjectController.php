@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 
 
+
 class ProjectController extends Controller
 {
     public function activity($id)
@@ -272,31 +273,33 @@ class ProjectController extends Controller
         return $membership;
     }
 
-    public function show($id)
+    public function show($project_id, $id = null)
     {
-        $project = Project::findOrFail($id);
-        $channelsDB = $project->channels();
-        $channels = array();
-        foreach ($channelsDB->get() as $channel) {
-            $messages = $channel->messages()
-                ->join('user', 'user.id', '=', 'message.user_id')
-                ->select('user.username', 'date', 'content', 'photo_path')
-                ->orderBy('date')->get();
+        $channels = Project::findOrFail($project_id)->channels()->get();
+        $current_channel;
 
-            $channels[] = [
-                'channel_id' => $channel->id,
-                'channel_name' => $channel->name,
-                'channel_description' => $channel->description,
-                'messages' => $messages,
-            ];
-
+        if ($id === NULL) {
+            $current_channel = (count($channels) > 0)? $channels[0] : NULL;
+        } else {
+            $current_channel = \App\Channel::findorFail($id);
         }
 
-        $first_channel = array_shift($channels);
-        $project_id = $id;
+        $messages = ($current_channel === NULL) ? NULL : $current_channel->messages()
+        ->join('user', 'user.id', '=', 'message.user_id')
+        ->select('user.username', 'date', 'content', 'photo_path')
+        ->orderBy('date', 'desc')
+        ->skip(0)->take(10) /*get last 15 rows */
+        ->get()->reverse();
 
-        //dd($channels);
-        return view('pages.chat', compact('first_channel', 'channels', 'project_id', 'project'));
+       // dd($channels);
+
+        return view('pages.chat', [
+            'current_channel' => $current_channel,
+            'channels' => $channels,
+            'messages' => $messages,
+            'project_id' =>$project_id
+        ]);
+
 
     }
 }

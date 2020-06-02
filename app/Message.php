@@ -18,7 +18,7 @@ class Message extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'description', 'project_id'];
+    protected $fillable = [ 'channel_id', 'user_id', 'content'];
 
     /**
      * @return
