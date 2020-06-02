@@ -133,6 +133,10 @@ async function acceptInvite() {
         "There has been a problem with your fetch operation: " + error.message
       );
     });
+
+  let delete_btn = element.nextElementSibling;
+  console.log(delete_btn);
+  deleteInvite.call(delete_btn);
 }
 
 class message {
@@ -189,14 +193,14 @@ class invite extends message {
                 <img class = "m-2" src="/assets/profile.png"
                 alt="profile_pic" style="width: 40px"/>
                 <p><span class="author-reference">${
-                  this.sender
-                } </span>invited you to the project <span class="project-reference">${
+      this.sender
+      } </span>invited you to the project <span class="project-reference">${
       this.project
-    }</span></p>
+      }</span></p>
                 </div>
                 <p class="timestamp smaller-text m-2"> ${mappingDifDateDescript(
-                  this.date
-                )}</p>`;
+        this.date
+      )}</p>`;
 
     contentTemplate.appendChild(upperContent);
 

@@ -28,13 +28,13 @@ class NotificationController extends Controller
             ->join('user', 'user.id', '=', 'sender_id')
             ->join('project', 'project.id', '=', 'project_id')
             ->where('receiver_id', '=', $id)
-            ->select('*')->get();
+            ->select('notification_id', 'project_id', 'date', 'receiver_id', 'sender_id', 'username', 'photo_path')->get();
 
         $invite_notifications = NotificationInvite::join('notification', 'notification_invite.notification_id', '=', 'notification.id')
             ->join('user', 'user.id', '=', 'sender_id')
             ->join('project', 'project.id', '=', 'project_id')
             ->where('receiver_id', '=', $id)
-            ->select('*')->get();
+            ->select('notification_id', 'project_id', 'date', 'receiver_id', 'sender_id', 'username', 'photo_path')->get();
 
         $event_notifications = NotificationEvent::join('notification', 'notification_event.notification_id', '=', 'notification.id')
             ->join('user', 'user.id', '=', 'sender_id')
@@ -45,7 +45,7 @@ class NotificationController extends Controller
             ->join('user', 'user.id', '=', 'sender_id')
             ->where('receiver_id', '=', $id)
             ->select('*')->get();
-        // acrescentar depois aqui as outras
+
         $result = $kicked_notifications->toBase()->merge($invite_notifications)->sortByDesc('date');
         return view('pages.notifications', [
             'kicked_notifications' => $kicked_notifications,
@@ -59,18 +59,16 @@ class NotificationController extends Controller
 
     public function deleteInvite(Request $request, $id)
     {
+        $notification = Notification::find($id);
 
-        $notification = Notification::findOrFail($id);
         $invite = NotificationInvite::where('notification_id', '=', $id);
 
         DB::beginTransaction();
 
         try {
-
             $notification->delete();
             $invite->delete();
             DB::commit();
-            // all good
         } catch (ModelNotFoundException $err) {
             DB::rollback();
             return response()->json([], 404);
