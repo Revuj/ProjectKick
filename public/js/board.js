@@ -601,11 +601,12 @@ let existingMembers = document.getElementsByClassName("existing-user-container")
   let id = delete_issue_button.dataset.issueId;
   let user = elem.dataset.userId;
   let url = `/api/issues/${id}/assign`;
+  let sender = document.getElementById("auth-username").dataset.id;
 
   if (selectedUser.classList.contains("invisible")) {
     sendAjaxRequest("delete", url, { user }, deleteMemberHandler);
   } else {
-    sendAjaxRequest("post", url, { user }, addMemberHandler);
+    sendAjaxRequest("post", url, { user, sender }, addMemberHandler);
   }
 }))
 

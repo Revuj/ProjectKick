@@ -3,36 +3,40 @@
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 /**
  * New notification about a new assignment in a project
  */
-class Assignment implements  ShouldBroadcast
+class Assignment implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $message;
-    private $type;
-    private $id;
-    private $project;
+    public $issue;
+    public $sender;
+    public $receiver;
+    public $date;
+    public $senderPhotoPath;
+    public $issueId;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message, $type, $id, $project)
+    public function __construct($issue, $sender, $receiver, $date, $senderPhotoPath, $issueId)
     {
-        $this->message = $message;
-        $this->type = $type;
-        $this->id = $id;
-        $this->project = $project;
+        $this->issue = $issue;
+        $this->sender = $sender;
+        $this->receiver = $receiver;
+        $this->date = $date;
+        $this->senderPhotoPath = $senderPhotoPath;
+        $this->issueId = $issueId;
+
     }
 
     /**
@@ -42,11 +46,11 @@ class Assignment implements  ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('assign.' . $this->id);
+        return new PrivateChannel('assigned.' . $this->receiver);
     }
 
     public function broadcastAs()
     {
-        return 'assign';
+        return 'assignment';
     }
 }

@@ -14,54 +14,50 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Collection;
-
-
 
 class ProjectController extends Controller
 {
     public function activity($id)
     {
-       // $this->authorize('checkActivity', Project::find($id));
+        // $this->authorize('checkActivity', Project::find($id));
 
-       // creation date
-        $project = Project::findOrFail($id, ['id', 'name', 'creation_date', 'author_id' , 'description']);
+        // creation date
+        $project = Project::findOrFail($id, ['id', 'name', 'creation_date', 'author_id', 'description']);
         $project_name = $project['name'];
 
         //date of creation and closing of issues
         $issues = $project->issues();
 
         $creation_issues = $issues->join('user', 'user.id', '=', 'author_id')
-        ->select('issue.name', 'author_id', 'user.username','issue.creation_date as date', 'closed_date', 'issue.id', 'issue.description')
-        ->get()->map(function($issues) {
+            ->select('issue.name', 'author_id', 'user.username', 'issue.creation_date as date', 'closed_date', 'issue.id', 'issue.description')
+            ->get()->map(function ($issues) {
             $issues['type'] = 'create_issues';
             return $issues;
         });
 
         $closed_issues = $issues->where('is_completed', '=', 'true')
-        ->select('issue.name', 'complete_id', 'closed_date as date', 'user.username', 'issue.description', 'issue.id')
-        ->get()->map(function($issues) {
+            ->select('issue.name', 'complete_id', 'closed_date as date', 'user.username', 'issue.description', 'issue.id')
+            ->get()->map(function ($issues) {
             $issues['type'] = 'close_issues';
             return $issues;
         });
 
         // register comments made
         $comments = $issues->join('comment', 'comment.issue_id', '=', 'issue.id')
-        ->select('comment.id', 'comment.creation_date as date', 'comment.issue_id', 'comment.user_id', 'issue.name', 'comment.content')
-        ->get()->map(function($comment) {
+            ->select('comment.id', 'comment.creation_date as date', 'comment.issue_id', 'comment.user_id', 'issue.name', 'comment.content')
+            ->get()->map(function ($comment) {
             $comment['type'] = 'comment';
             $comment['username'] = \App\User::find($comment->user_id)['username'];
             return $comment;
-        });;
+        });
 
         // channels
         $channels = $project->channels()
-        ->select('channel.id', 'name', 'creation_date as date', 'description')->get()->map(function($channel)  {
+            ->select('channel.id', 'name', 'creation_date as date', 'description')->get()->map(function ($channel) {
             $channel['type'] = 'channel';
             return $channel;
         });
 
-       
         $mergedCollection = $creation_issues->toBase()->merge($closed_issues)->toBase()->merge($comments)->toBase()->merge($channels)->sortbyDesc('date');
         return view('pages.project.activity', [
             'activity' => $mergedCollection,
@@ -70,14 +66,14 @@ class ProjectController extends Controller
             'comments' => $comments->sortByDesc('date'),
             'channels' => $channels->sortByDesc('date'),
             'project' => $project,
-            'author' => $project->author()->first()
+            'author' => $project->author()->first(),
         ]);
     }
 
     public function index($id)
     {
         $project = Project::findOrFail($id);
-       // $this->authorize('view', $project);
+        // $this->authorize('view', $project);
 
         $author = User::find($project->author_id);
 
@@ -86,16 +82,15 @@ class ProjectController extends Controller
 
         $now = Carbon::now();
 
-        if ($project->finish_date === NULL) {
-            $duration = NULL;
-            $remaing = NULL;
-        }
-        else {
+        if ($project->finish_date === null) {
+            $duration = null;
+            $remaing = null;
+        } else {
             $finish_date = new Carbon($project->finish_date);
             $duration = $finish_date->diffForHumans($created);
 
             if ($finish_date->gt($now)) {
-                $remaing = $finish_date->diffForHumans($now) ;
+                $remaing = $finish_date->diffForHumans($now);
             } else {
                 $remaing = 0;
                 $active = false;
@@ -104,22 +99,22 @@ class ProjectController extends Controller
         }
 
         $recent_issues = $project->issues()
-        ->join('user', 'user.id', '=', 'issue.author_id')
-        ->select('issue.id as issue_id', 'issue.name', 'user.id as user_id', 'user.username', 'issue.creation_date')
-        ->orderby('issue.creation_date', 'desc')
-        ->take(5)
-        ->get()->map(function($issue) use(&$now)  {
-            $issue['diff_date'] = (new Carbon($issue['creation_date']))->diffForHumans($now) .' today';
+            ->join('user', 'user.id', '=', 'issue.author_id')
+            ->select('issue.id as issue_id', 'issue.name', 'user.id as user_id', 'user.username', 'issue.creation_date')
+            ->orderby('issue.creation_date', 'desc')
+            ->take(5)
+            ->get()->map(function ($issue) use (&$now) {
+            $issue['diff_date'] = (new Carbon($issue['creation_date']))->diffForHumans($now) . ' today';
             return $issue;
         });
 
         $recent_channels = $project->channels()
-        ->orderby('channel.creation_date')
-        ->take(5)
-        ->get()->map(function($channel) use(&$now) {
-            $channel['diff_date'] = (new Carbon($channel['creation_date']))->diffForHumans($now) .' today';
+            ->orderby('channel.creation_date')
+            ->take(5)
+            ->get()->map(function ($channel) use (&$now) {
+            $channel['diff_date'] = (new Carbon($channel['creation_date']))->diffForHumans($now) . ' today';
             return $channel;
-        }); 
+        });
 
         //dd($recent_channels);
         return view('pages.project.overview', [
@@ -129,7 +124,7 @@ class ProjectController extends Controller
             'remaing' => $remaing,
             'active' => $active,
             'issues' => $recent_issues,
-            'channels' => $recent_channels
+            'channels' => $recent_channels,
         ]);
     }
 
@@ -228,7 +223,6 @@ class ProjectController extends Controller
         DB::beginTransaction();
         $notification = new Notification();
         $notification->date = Carbon::now()->toDateTimeString();
-        // $notification->description = "";
         $notification->receiver_id = $user_id;
         $notification->sender_id = $sender_id;
         $notification->save();
@@ -278,28 +272,27 @@ class ProjectController extends Controller
         $channels = Project::findOrFail($project_id)->channels()->get();
         $current_channel;
 
-        if ($id === NULL) {
-            $current_channel = (count($channels) > 0)? $channels[0] : NULL;
+        if ($id === null) {
+            $current_channel = (count($channels) > 0) ? $channels[0] : null;
         } else {
             $current_channel = \App\Channel::findorFail($id);
         }
 
-        $messages = ($current_channel === NULL) ? NULL : $current_channel->messages()
-        ->join('user', 'user.id', '=', 'message.user_id')
-        ->select('user.username', 'date', 'content', 'photo_path')
-        ->orderBy('date', 'desc')
-        ->skip(0)->take(10) /*get last 15 rows */
-        ->get()->reverse();
+        $messages = ($current_channel === null) ? null : $current_channel->messages()
+            ->join('user', 'user.id', '=', 'message.user_id')
+            ->select('user.username', 'date', 'content', 'photo_path')
+            ->orderBy('date', 'desc')
+            ->skip(0)->take(10) /*get last 15 rows */
+            ->get()->reverse();
 
-       // dd($channels);
+        // dd($channels);
 
         return view('pages.chat', [
             'current_channel' => $current_channel,
             'channels' => $channels,
             'messages' => $messages,
-            'project_id' =>$project_id
+            'project_id' => $project_id,
         ]);
-
 
     }
 }

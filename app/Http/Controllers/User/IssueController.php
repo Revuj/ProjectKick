@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\AssignedUser;
+use App\Events\Assignment;
 use App\Http\Controllers\Controller;
 use App\Issue;
 use App\IssueList;
 use App\IssueTag;
+use App\Notification;
+use App\NotificationAssign;
 use App\Project;
 use App\Tag;
 use App\User;
@@ -161,7 +164,34 @@ class IssueController extends Controller
         $user_id = $request->input("user");
         $user = User::findOrFail($user_id);
 
+        $sender_id = $request->input("sender");
+        $sender = User::findOrFail($sender_id);
+
         $assigned_user = AssignedUser::create(['user_id' => $user_id, 'issue_id' => $id]);
+
+        $assignment = new Assignment(
+            $issue->name,
+            $sender->username,
+            $user_id,
+            Carbon::now()->toDateTimeString(),
+            $request->photo_path,
+            $id
+        );
+
+        event($assignment);
+
+        DB::beginTransaction();
+        $notification = new Notification();
+        $notification->date = Carbon::now()->toDateTimeString();
+        $notification->receiver_id = $user_id;
+        $notification->sender_id = $sender_id;
+        $notification->save();
+
+        $notificationAssign = new NotificationAssign();
+        $notificationAssign->notification_id = $notification->id;
+        $notificationAssign->issue_id = $id;
+        $notificationAssign->save();
+        DB::commit();
 
         return User::findOrFail($user_id);
     }

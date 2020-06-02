@@ -120,7 +120,7 @@ function mappingDifDateDescript(date) {
   console.log(diffTime);
   const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
   if (diffYears > 1) return diffYears + " years ago";
-  else if (diffYears === 1) return " a year ago";
+  else if (diffYears === 1) return " an year ago";
 
   const diffMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30));
   if (diffMonths > 1) return diffYears + " months ago";
@@ -137,7 +137,7 @@ function mappingDifDateDescript(date) {
   const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
   console.log(diffHours);
   if (diffHours > 1) return diffYears + " hours ago";
-  else if (diffHours === 1) return " a hour ago";
+  else if (diffHours === 1) return " an hour ago";
 
   const diffMins = Math.floor(diffTime / (1000 * 60));
   if (diffMins > 3) return diffYears + " minutes ago";
@@ -205,14 +205,36 @@ invitation_channel.bind('invitation', function (data) {
       />
     </div>
     <div class="notify_info">
-      <p>${data['sender']} invite you to <span>T${data['project']}</span></p>
+      <p>${data['sender']} invite you to <span>${data['project']}</span></p>
       <span class="notify_time">${mappingDifDateDescript(data['date'])}</span>
     </div>
   `;
 
   insertAfter(dropdown_notification_tittle, new_notification);
+});
 
+let assign_channel = pusher.subscribe('private-assigned.' + user_id);
 
+assign_channel.bind('assignment', function (data) {
+  console.log(data);
+
+  let new_notification = document.createElement('div');
+  new_notification.classList.add('notify_item', 'clickable');
+  new_notification.innerHTML = `
+    <div class="notify_img">
+      <img
+        src="/assets/profile.png"
+        alt="profile_pic"
+        style="width: 50px"
+      />
+    </div>
+    <div class="notify_info">
+      <p>${data['sender']} assigned you the issue <span>T${data['issue']}</span></p>
+      <span class="notify_time">${mappingDifDateDescript(data['date'])}</span>
+    </div>
+  `;
+
+  insertAfter(dropdown_notification_tittle, new_notification);
 });
 
 

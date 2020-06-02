@@ -349,25 +349,36 @@ class kick extends message {
 }
 
 class assign extends message {
-  constructor(type, date, project, title) {
+  constructor(type, sender, date, issue, issueId) {
     super(type, date);
-    this.project = project;
-    this.title = title;
+    this.sender = sender;
+    this.issue = issue;
+    this.issueId = issueId;
   }
 
-  render() {
+  getElement() {
     let contentTemplate = document.createElement("li");
-    contentTemplate.classList.add("assigned-notification");
+    contentTemplate.classList.add("invited-notification");
+    this.addClassesToElementList(contentTemplate);
+
     let upperContent = document.createElement("div");
     upperContent.classList.add("d-flex", "justify-content-between");
-    upperContent.innerHTML += `<p> The issue <span class="issue-reference">${this.title}</span> on the project <span class="project-reference">${this.project}</span> has been assigned to you</p>
-                                <p class="timestamp smaller-text">${this.date}</p>`;
+    upperContent.innerHTML += `<div class ="d-flex align-items-center">
+                <img class = "m-2" src="/assets/profile.png"
+                alt="profile_pic" style="width: 40px"/>
+                <p><span class="author-reference">${
+      this.sender
+      } </span>assigned you to the issue <span class="project-reference">${
+      this.issue
+      }</span></p>
+                </div>
+                <p class="timestamp smaller-text m-2"> ${mappingDifDateDescript(
+        this.date
+      )}</p>`;
 
     contentTemplate.appendChild(upperContent);
-    contentTemplate.innerHTML += `<a href="issue.html"><button type="submit" class="custom-button primary-button mx-2">Go to Issue</button></a>`;
-    this.notification_list.appendChild(contentTemplate);
-    this.addClassesToElementList(contentTemplate);
-    this.notification_list.appendChild(contentTemplate);
+
+    return contentTemplate;
   }
 }
 
@@ -451,4 +462,23 @@ kicking_channel.bind("kicked-out", function (data) {
   let kickedClone = new_kicked.cloneNode(true);
   all_container.prepend(new_kicked);
   kicked_container.prepend(kickedClone);
+});
+
+assign_channel.bind("assignment", function (data) {
+  console.log(data["sender"], data["date"], data["issue"], data["issueId"]);
+
+  let new_assignment = new assign(
+    "assignment",
+    data["sender"],
+    data["date"],
+    data["issue"],
+    data["issueId"]
+  ).getElement();
+
+  all_counter.textContent = parseInt(all_counter.textContent) + 1;
+  assigned_counter.textContent = parseInt(assigned_counter.textContent) + 1;
+
+  let assignmentClone = new_assignment.cloneNode(true);
+  all_container.prepend(new_assignment);
+  assigned_container.prepend(assignmentClone);
 });
