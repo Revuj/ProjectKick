@@ -2,7 +2,7 @@
 <li class="assign-notification m-2 p-2 notification-list-item border-bottom">  
   <div class = "d-flex justify-content-between">
     <div class = "d-flex align-items-center justify-content-center">
-        @if (is_file(public_path('assets/avatar/'. $elem['photo_path'] .'png' )))
+        @if (is_file(public_path('assets/avatar/'. $elem['photo_path'] . '.png' )))
             <img  class="m-2" src="{{ asset('assets/avatars/'.  $elem['photo_path'] .'png') }}" alt="{{ $elem['username']}} profile picture" style = "width:40px" />
         @else
             <img  class="m-2" src="{{ asset('assets/profile.png')}}" alt="{{ $elem['username']}} profile picture" style = "width:40px" />

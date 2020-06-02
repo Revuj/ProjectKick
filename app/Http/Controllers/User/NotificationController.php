@@ -46,7 +46,7 @@ class NotificationController extends Controller
             ->where('receiver_id', '=', $id)
             ->select('*')->get();
 
-        $result = $kicked_notifications->toBase()->merge($invite_notifications)->sortByDesc('date');
+        $result = $kicked_notifications->toBase()->merge($invite_notifications)->merge($event_notifications)->merge($assign_notifications)->sortByDesc('date');
         return view('pages.notifications', [
             'kicked_notifications' => $kicked_notifications,
             'invite_notifications' => $invite_notifications,

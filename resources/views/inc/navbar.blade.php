@@ -19,39 +19,64 @@
 
     <ul data-user ="{{ Auth::user()->id }}" class="d-flex align-items-end align-items-center mb-0 mr-3">
       <!--notifications-->
+      @php
+        $kicked_notifications = \App\NotificationKick::join('notification', 'notification_kick.notification_id', '=', 'notification.id')
+        ->join('user', 'user.id', '=', 'sender_id')
+        ->join('project', 'project.id', '=', 'project_id')
+        ->where('receiver_id', '=', Auth::user()->id)
+        ->select('notification_id', 'project_id', 'date', 'receiver_id', 'sender_id', 'username', 'photo_path', 'project.name as name')->get();
+        
+        $invite_notifications = \App\NotificationInvite::join('notification', 'notification_invite.notification_id', '=', 'notification.id')
+            ->join('user', 'user.id', '=', 'sender_id')
+            ->join('project', 'project.id', '=', 'project_id')
+            ->where('receiver_id', '=', Auth::user()->id)
+            ->select('notification_id', 'project_id', 'date', 'receiver_id', 'sender_id', 'username', 'photo_path', 'project.name as name')->get();
+
+        $event_notifications = \App\NotificationEvent::join('notification', 'notification_event.notification_id', '=', 'notification.id')
+            ->join('user', 'user.id', '=', 'sender_id')
+            ->where('receiver_id', '=', Auth::user()->id)
+            ->select('*')->get();
+
+        $assign_notifications = \App\NotificationAssign::join('notification', 'notification_assign.notification_id', '=', 'notification.id')
+            ->join('user', 'user.id', '=', 'sender_id')
+            ->where('receiver_id', '=', Auth::user()->id)
+            ->select('*')->get();
+
+        $notifications = $kicked_notifications->toBase()->merge($invite_notifications)->merge($event_notifications)->merge($assign_notifications)->sortByDesc('date');
+      @endphp
       <li class="utility notification mb-0">
         <a href="#"><i class="fas fa-bell"></i></a>
-        <span class="num">4</span>
+        <span class="num">{{count($notifications)}}</span>
         <div class="notification-dropdown d-none">
           <h6 class="notification-title text-center">notifications</h6>
-          <div class="notify_item clickable">
-            <div class="notify_img">
-              <img
-                src="{{asset('assets/profile.png')}}"
-                alt="profile_pic"
-                style="width: 50px"
-              />
-            </div>
-            <div class="notify_info">
-              <p>Alex commented on the<span>Task Share</span></p>
-              <span class="notify_time">10 minutes ago</span>
-            </div>
-          </div>
-          <div class="notify_item clickable">
-            <div class="notify_img">
-              <img
-                src="{{asset('assets/profile.png')}}"
-                alt="profile_pic"
-                style="width: 50px"
-              />
-            </div>
-            <div class="notify_info">
-              <p>Alex commented on the<span>Task Share</span></p>
-              <span class="notify_time">10 minutes ago</span>
-            </div>
-          </div>
+          
+            @foreach($notifications as $notification)
+              @break ($loop->index == 2)
+              <div class="notify_item clickable">
+                <div class="notify_img">
+                  <img
+                    src="{{ asset('assets/avatars/'.  $notification['photo_path'] . '.png') }}"
+                    alt="{{ $elem['username']}} profile picture"
+                    style="width: 50px"
+                  />
+                </div>
+                <div class="notify_info">
+                  @if ($elem['typeOfNotification'] === 'kick')
+                    <p><span class=".author-reference">{{$elem['username']}}</span> kicked you from project <span class=".project-reference">{{$elem['name']}}</span></p>
+                  @elseif ($elem ['typeOfNotification'] === 'invite')
+                    <p><span class=".author-reference">{{$elem['username']}}</span> invited you to project <span class=".project-reference">{{$elem['name']}}</span></p>
+                  @elseif ($elem ['typeOfNotification'] === 'event')
+                    <p><span class=".author-reference">{{$elem['username']}}</span> created an event</p>
+                  @elseif ($elem ['typeOfNotification'] === 'assign')
+                    <p><span class=".author-reference">{{$elem['username']}}</span> assigned you an issue</p>
+                  @endif
+                  
+                  <span class="notify_time">10 minutes ago</span>
+                </div>
+              </div>
+            @endforeach
           <a class="notify_item clickable nostyle" href="/users/{{ Auth::user()->id }}/notifications">
-            More(2) ...
+            More({{count($notifications) - 2}}) ...
           </a>
         </div>
       </li>
