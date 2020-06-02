@@ -27,7 +27,7 @@
 <div class="main-content-container px-4">
   <nav>
     <ol class="breadcrumb custom-separator">
-      <li><a href="/projects/{{$issue->issueList->project_id}}">Project</a></li>
+      <li><a href="/projects/{{$issue->issueList->project_id}}">{{ $issue->issueList->project->name }}</a></li>
       <li><a href="/projects/{{$issue->issueList->project_id}}/issuelist">Issues</a></li>
       <li class="current">#{{$issue->id}}</li>
     </ol>
@@ -152,12 +152,12 @@
               class="assignees d-flex align-items-center justify-content-center pb-3"
             >
 
-            @foreach($users as $user)
-            <li class="mr-2">
-            <a href="/users/{{$user['id']}}">
-              <img src="{{ asset('assets/avatars/'.  $user['photo_path'] .'.png') }}" alt="{{ $user['username']}} profile picture" />
-            </a>
-            </li>
+            @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $user)
+              <li class="mr-2">
+                <a href="/users/{{$user['id']}}">
+                  <img src="{{ asset('assets/avatars/'.  $user['photo_path'] .'.png') }}" alt="{{ $user['username']}} profile picture" />
+                </a>
+              </li>
             @endforeach
             </ul>
           </div>
@@ -175,7 +175,7 @@
       </div>
       <div class="add-comment-container">
       
-      <div class = "position-relative w-100 py-3 mb-5">
+      <div class = "position-relative w-100 pb-3 mb-1">
         <div class = "mt-0 p-2 rounded position-absolute w-100 d-none" id = "dialog">
           <div class="error-content ml-3">
             <i class="fas fa-exclamation-triangle"></i>
