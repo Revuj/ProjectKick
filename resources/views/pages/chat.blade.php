@@ -147,7 +147,7 @@
             
             @if(count($channels))
               @foreach($channels as $channel)
-              <div id = "chat-msg{{$channel['channel_id']}}" class = "d-none">
+              <div id = "chat-msg{{$channel['channel_id']}}" class = "chat-msgs px-1 d-none">
                 @foreach($channel['messages'] as $message)
                 <div class="incoming_msg d-flex align-items-start">
                           <div class="incoming_msg_img">

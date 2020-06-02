@@ -136,6 +136,7 @@
 
 .type_msg {
   position: relative;
+  bottom: 0;
 }
 
 .msg_send_btn {
