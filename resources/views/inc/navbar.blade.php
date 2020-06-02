@@ -56,19 +56,19 @@
                 <div class="notify_img">
                   <img
                     src="{{ asset('assets/avatars/'.  $notification['photo_path'] . '.png') }}"
-                    alt="{{ $elem['username']}} profile picture"
+                    alt="{{ $notification['username']}} profile picture"
                     style="width: 50px"
                   />
                 </div>
                 <div class="notify_info">
-                  @if ($elem['typeOfNotification'] === 'kick')
-                    <p><span class=".author-reference">{{$elem['username']}}</span> kicked you from project <span class=".project-reference">{{$elem['name']}}</span></p>
-                  @elseif ($elem ['typeOfNotification'] === 'invite')
-                    <p><span class=".author-reference">{{$elem['username']}}</span> invited you to project <span class=".project-reference">{{$elem['name']}}</span></p>
-                  @elseif ($elem ['typeOfNotification'] === 'event')
-                    <p><span class=".author-reference">{{$elem['username']}}</span> created an event</p>
-                  @elseif ($elem ['typeOfNotification'] === 'assign')
-                    <p><span class=".author-reference">{{$elem['username']}}</span> assigned you an issue</p>
+                  @if ($notification['typeOfNotification'] === 'kick')
+                    <p><span class=".author-reference">{{$notification['username']}}</span> kicked you from project <span class=".project-reference">{{$notification['name']}}</span></p>
+                  @elseif ($notification ['typeOfNotification'] === 'invite')
+                    <p><span class=".author-reference">{{$notification['username']}}</span> invited you to project <span class=".project-reference">{{$notification['name']}}</span></p>
+                  @elseif ($notification ['typeOfNotification'] === 'event')
+                    <p><span class=".author-reference">{{$notification['username']}}</span> created an event</p>
+                  @elseif ($notification ['typeOfNotification'] === 'assign')
+                    <p><span class=".author-reference">{{$notification['username']}}</span> assigned you an issue</p>
                   @endif
                   
                   <span class="notify_time">10 minutes ago</span>
@@ -76,7 +76,13 @@
               </div>
             @endforeach
           <a class="notify_item clickable nostyle" href="/users/{{ Auth::user()->id }}/notifications">
-            More({{count($notifications) - 2}}) ...
+            More(
+              @if(count($notifications) > 2)
+                 {{count($notifications) - 2}}
+              @else
+                 0
+              @endif
+              ) ...
           </a>
         </div>
       </li>
