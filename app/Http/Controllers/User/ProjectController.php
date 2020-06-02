@@ -75,16 +75,61 @@ class ProjectController extends Controller
 
     public function index($id)
     {
-        $project = Project::find($id);
-        $this->authorize('view', $project);
-
-        if ($project == null) {
-            abort(404);
-        }
+        $project = Project::findOrFail($id);
+       // $this->authorize('view', $project);
 
         $author = User::find($project->author_id);
 
-        return view('pages.project.overview', ['project' => $project, 'author' => $author]);
+        $created = new Carbon($project->creation_date);
+        $active = true;
+
+        $now = Carbon::now();
+
+        if ($project->finish_date === NULL) {
+            $duration = NULL;
+            $remaing = NULL;
+        }
+        else {
+            $finish_date = new Carbon($project->finish_date);
+            $duration = $finish_date->diffForHumans($created);
+
+            if ($finish_date->gt($now)) {
+                $remaing = $finish_date->diffForHumans($now) ;
+            } else {
+                $remaing = 0;
+                $active = false;
+            }
+
+        }
+
+        $recent_issues = $project->issues()
+        ->join('user', 'user.id', '=', 'issue.author_id')
+        ->select('issue.id as issue_id', 'issue.name', 'user.id as user_id', 'user.username', 'issue.creation_date')
+        ->orderby('issue.creation_date', 'desc')
+        ->take(5)
+        ->get()->map(function($issue) use(&$now)  {
+            $issue['diff_date'] = (new Carbon($issue['creation_date']))->diffForHumans($now) .' today';
+            return $issue;
+        });
+
+        $recent_channels = $project->channels()
+        ->orderby('channel.creation_date')
+        ->take(5)
+        ->get()->map(function($channel) use(&$now) {
+            $channel['diff_date'] = (new Carbon($channel['creation_date']))->diffForHumans($now) .' today';
+            return $channel;
+        }); 
+
+        //dd($recent_channels);
+        return view('pages.project.overview', [
+            'project' => $project,
+            'author' => $author,
+            'duration' => $duration,
+            'remaing' => $remaing,
+            'active' => $active,
+            'issues' => $recent_issues,
+            'channels' => $recent_channels
+        ]);
     }
 
     public function members($id)

@@ -54,8 +54,8 @@
 <div class="main-content-container px-4">
           <nav>
             <ol class="breadcrumb custom-separator">
-              <li><a href="#0">{{ $project->name }}</a></li>
-              <li class="current">Project Overview</li>
+              <li><a href="#">{{ $project->name }}</a></li>
+              <li class="current"><i class="fas fa-project-diagram"></i> Project Overview</li>
             </ol>
           </nav>
           <div id="project-container">
@@ -69,8 +69,11 @@
                   <p class="mr-auto">
                     <span class="project-creator">
                       Project created by
-                      <span class="author-reference text-primary"
-                        >{{ $author->username }}</span
+                      <span class="author-reference">
+                      <a class = "nostyle" href="/users/{{$project->author_id}}">
+                        {{ $author->username }}
+                      </a>
+                      </span
                       ></span
                     >
                   </p>
@@ -107,16 +110,34 @@
                     <div class="row">
                       <div class="col">
                         <label>Created</label>
-                        <p class="font-weight-bold mb-4">{{ \Carbon\Carbon::parse($project->creation_date)->format('M d Y') }}</p>
+                        <p class="font-weight-bold mb-4">
+                         {{ date_format(date_create($project->creation_date), 'jS F Y')}}
+                        </p>
                         <label>Duration</label>
                         <p class="font-weight-bold mb-4">
-                          90 days
-                          <span class="text-muted"
-                            ><small>(50 days remaining)</small></span
-                          >
+                          @if ($remaing !== NULL)
+                            {{$duration}} start
+                          @else
+                            Not yet defined
+                          @endif                          
+                          <span class="text-muted p-0 m-0">
+                            <small> 
+                              @if ($remaing !== NULL)
+                                @if ($remaing === 0)
+                                  (No days remaining)
+                                @else
+                                ({{$remaing}} today)
+                                @endif
+                              @endif
+                            </small>
+                          </span>
                         </p>
                         <label>Status</label> <br />
+                        @if ($active === true)
                         <span class="badge badge-success">Active</span>
+                        @else
+                        <span class="badge badge-danger">Inactive</span>
+                        @endif
                       </div>
                       <div class="col">
                         <label>Progress</label>
@@ -128,7 +149,7 @@
                             aria-valuemin="0"
                             aria-valuemax="100"
                             @if (count($project->issues()->get()) > 0)
-                              style="width: {{count($project->issues()->where('is_completed', '=', 'false')->get()) / count($project->issues()->get()) * 100}}%;"
+                              style="width: {{count($project->issues()->where('is_completed', '=', 'true')->get()) / count($project->issues()->get()) * 100}}%;"
                              @else
                               style="width: 0%;"
                             @endif
@@ -136,7 +157,7 @@
                         </div>
                         <p class="mb-4">
                           Tasks Completed:<span class="text-inverse"
-                            > {{ count($project->issues()->where('is_completed', '=', 'false')->get()) }}/{{ count($project->issues()->get()) }}</span
+                            > {{ count($project->issues()->where('is_completed', '=', 'true')->get()) }}/{{ count($project->issues()->get()) }}</span
                           >
                         </p>
                         <label>Project Members</label>
@@ -154,61 +175,52 @@
                 <div class="col-md-5">
                   <div class="card mb-3">
                     <div class="card-header">
-                      <i class="fa fa-tasks"></i> <span>Recent Issues</span>
+                      <i class="fa fa-tasks mx-1"></i> <span>Recent Issues</span>
                     </div>
                     <div class="card-body">
                       <ul class="list-unstyled simple-todo-list">
-                        <li>
-                          <a href="issue.html" class="task-title nostyle"
-                            >make pages responsive</a
+
+                        @foreach ($issues as $issue)
+                        <li class = "mb-2 border-bottom w-100 author">
+                          <a href="/issues/{{$issue->issue_id}}" class="task-title nostyle"
+                            >{{$issue->name}}
+                          </a
                           >
                           <p class="smaller-text">
-                            #10<span class="open-description"></span>
+                            <span class="open-description"></span>
                             Opened by
-                            <span class="author-reference">Abelha</span> 4 days
-                            ago
+                            <span class="author-reference">
+                              <a class = "nostyle" href="/users/{{$issue->user_id}}">
+                                {{$issue->username}}
+                              </a>
+                            </span>
+                             {{$issue->diff_date}}
                           </p>
                         </li>
-                        <li>
-                          <a href="issue.html" class="task-title nostyle"
-                            >normalize database</a
-                          >
-                          <p class="smaller-text">
-                            #15
-                            <span class="open-description"
-                              >Opened by
-                              <span class="author-reference">Vator</span> 2 days
-                              ago</span
-                            >
-                          </p>
-                        </li>
+                        @endforeach
                       </ul>
                     </div>
                   </div>
                   <div class="card mb-3">
                     <div class="card-header">
-                      <i class="fa fa-comment-alt"></i> <span>Channels</span>
+                      <i class="fa fa-comment-alt mx-1"></i> <span>Channels</span>
                     </div>
                     <div class="card-body">
-                      <div class="chat_list active_chat">
+
+                    @foreach($channels as $channel)
+
+                    <div class="chat_list border-bottom mb-2">
                         <a class="chat_ib">
-                          <p># developers-team</p>
-                        </a>
-                      </div>
-                      <div class="chat_list">
-                        <a class="chat_ib">
-                          <p>
-                            # annoucements-hq <span class="unread_msgs">3</span>
+                          <p class = "m-0 p-0"># {{$channel->name}}</p>
+                          <p class = "m-0 p-0">
+                            <small>
+                              Created {{$channel->diff_date}}
+                            </small>
                           </p>
                         </a>
                       </div>
-                      <div class="chat_list">
-                        <a class="chat_ib">
-                          <p>
-                            # relaxing-room <span class="unread_msgs">1</span>
-                          </p>
-                        </a>
-                      </div>
+                    @endforeach
+
                     </div>
                   </div>
                   <!-- END RECENT FILES -->
