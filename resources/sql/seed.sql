@@ -163,7 +163,7 @@ CREATE TABLE event_personal (
 
 CREATE TABLE notification (
     id SERIAL PRIMARY KEY,
-    "date" timestamp with time zone DEFAULT now() NOT NULL,
+    "date" timestamp with time zone DEFAULT CURRENT_DATE NOT NULL,
     receiver_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE
                                                      ON UPDATE CASCADE,
     sender_id integer NOT NULL REFERENCES "user"  ON DELETE CASCADE
@@ -366,7 +366,7 @@ CREATE OR REPLACE FUNCTION event_start_date()
 RETURNS TRIGGER AS
 $BODY$
 BEGIN
-IF NEW.start_date < Now() THEN
+IF NEW.start_date < CURRENT_DATE THEN
     RAISE EXCEPTION 'Event start date cannot be in the past';
 END IF;
 RETURN NEW;

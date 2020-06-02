@@ -88,7 +88,7 @@
 }
 
 .btn-outline-primary.active {
-  color: var(--text-color) !important;
+  color: white !important;
   background-color: var(--primary-color) !important;
 }
 
@@ -98,6 +98,6 @@
 }
 
 .btn-outline-primary:hover {
-  color: var(--text-color) !important;
+  color: white !important;
   background-color: var(--primary-color) !important;
 }

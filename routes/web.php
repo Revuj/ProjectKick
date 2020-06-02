@@ -33,8 +33,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/api/users/{id}/photo', 'User\UserController@updatePhoto');
 
     //user role permissions
-    Route::group(['middleware' => ['auth.user', 'not_banned'],
-        'namespace' => 'User'], function () {
+    Route::group([
+        'middleware' => ['auth.user', 'not_banned'],
+        'namespace' => 'User'
+    ], function () {
 
         Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
         Route::post('/api/users/{id}/notifications', 'NotificationController@fetchNotifications');
@@ -52,6 +54,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/api/users/{id}/sort', 'UserController@fetchSort');
 
         Route::post('/api/users/{id}/projects', 'UserController@filterProjects');
+        Route::post('/api/users/{id}/projects/coordinator', 'UserController@projectCoordinator');
+
         Route::post('/api/users/{id}/events', 'UserController@events');
 
         // Issues
@@ -87,20 +91,20 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{id}/issuelist', 'IssueController@showList');
             Route::get('/{id}/board', 'IssueController@showBoard');
             Route::get('/{id}/chats', 'ProjectController@show');
-
         });
 
         // Events
         Route::post('/api/events', 'EventController@create');
 
         Route::post('/pusher/auth', 'NotificationController@authorizeUser');
-
     });
 
     // admin permissions
-    Route::group(['middleware' => ['auth.admin'],
+    Route::group([
+        'middleware' => ['auth.admin'],
         'namespace' => 'Admin',
-        'prefix' => "admin"], function () {
+        'prefix' => "admin"
+    ], function () {
         Route::get('/{id}', 'AdminController@dashboard');
         Route::get('/search', 'AdminController@search');
         Route::get('/reports', 'AdminController@reports');
@@ -108,7 +112,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/monthlyIntel', 'AdminController@fetchIntelPerMonth'); /*api */
         Route::post('/bannedUsers', 'AdminController@bannedUsers'); /*api */
         Route::post('/recentUsers', 'AdminController@recentUsers'); /*api */
-    
+
 
         Route::post('/fetchProjects', 'AdminController@fetchProjects'); /*api */
         Route::post('/fetchUsers', 'AdminController@fetchUsers'); /*api */
@@ -121,5 +125,4 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/fetchNrReports', 'AdminController@fetchNrReports');
         Route::post('/fetchTeamBySize', 'AdminController@fetchByTeamSize');
     });
-
 });
