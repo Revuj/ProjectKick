@@ -237,6 +237,31 @@ assign_channel.bind('assignment', function (data) {
   insertAfter(dropdown_notification_tittle, new_notification);
 });
 
+let meeting_channel = pusher.subscribe('private-meeting.' + user_id);
+
+meeting_channel.bind('meeting', function (data) {
+  console.log(data);
+
+  let new_notification = document.createElement('div');
+  new_notification.classList.add('notify_item', 'clickable');
+  new_notification.innerHTML = `
+    <div class="notify_img">
+      <img
+        src="/assets/profile.png"
+        alt="profile_pic"
+        style="width: 50px"
+      />
+    </div>
+    <div class="notify_info">
+      <p>${data['sender']} scheduled a meeting for the project <span>T${data['project']}</span></p>
+      <span class="notify_time">${mappingDifDateDescript(data['date'])}</span>
+    </div>
+  `;
+
+  insertAfter(dropdown_notification_tittle, new_notification);
+});
+
+
 
 
 

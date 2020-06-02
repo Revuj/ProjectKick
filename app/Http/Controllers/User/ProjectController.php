@@ -314,8 +314,6 @@ class ProjectController extends Controller
             ->skip(0)->take(15) /*get last 15 rows */
             ->get()->reverse();
 
-        // dd($channels);
-
         return view('pages.chat', [
             'current_channel' => $current_channel,
             'channels' => $channels,
