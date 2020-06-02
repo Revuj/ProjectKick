@@ -110,10 +110,10 @@ class ProjectController extends Controller
         });
 
         $recent_channels = $project->channels()
-            ->orderby('channel.creation_date')
-            ->take(5)
-            ->get()->map(function ($channel) use (&$now) {
-            $channel['diff_date'] = (new Carbon($channel['creation_date']))->diffForHumans($now) . ' today';
+        ->orderby('channel.creation_date', 'desc')
+        ->take(5)
+        ->get()->map(function($channel) use(&$now) {
+            $channel['diff_date'] = (new Carbon($channel['creation_date']))->diffForHumans($now) .' today';
             return $channel;
         });
 
