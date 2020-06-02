@@ -15,6 +15,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
+
 
 
 
@@ -273,6 +275,33 @@ class ProjectController extends Controller
         return $membership;
     }
 
+    public function loadMessages(Request $request, $id) {
+        
+        $rules = [
+            'page' => 'required|numeric|min:1'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors(), $request]);
+        }
+
+        $items_number = $request->page * 15;
+        $temp = \App\Channel::findOrFail($id)->messages();
+        $number_messages = count($temp->get()); 
+        $load_more = ( ($items_number + 15) > $number_messages) ? false : true;
+
+        $messages = $temp
+        ->join('user', 'user.id', '=', 'message.user_id')
+        ->select('user.username', 'date', 'content', 'photo_path')
+        ->orderBy('date', 'desc')
+        ->skip($items_number)->take(15) /*get last 15 rows */
+        ->get();
+
+        return response()->json([$messages, $load_more]);    
+    }
+
     public function show($project_id, $id = null)
     {
         $channels = Project::findOrFail($project_id)->channels()->get();
@@ -288,7 +317,7 @@ class ProjectController extends Controller
         ->join('user', 'user.id', '=', 'message.user_id')
         ->select('user.username', 'date', 'content', 'photo_path')
         ->orderBy('date', 'desc')
-        ->skip(0)->take(10) /*get last 15 rows */
+        ->skip(0)->take(15) /*get last 15 rows */
         ->get()->reverse();
 
        // dd($channels);

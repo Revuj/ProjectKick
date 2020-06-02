@@ -257,7 +257,7 @@ function deleteChannel(e) {
     sendAjaxRequest("delete", `/api/channels/${toDelete}`, {}, deleteHandler);
     if (toDelete === active_chat.getAttribute('id')) {
         window.location.href = `/projects/${project_id}/chats/`;
-    }   
+    }
 }
 
 
@@ -289,7 +289,7 @@ function updateScroll() {
 class MessageManager {
 
     constructor() {
-        this._current_page = 1;
+        this._current_page = 0;
         this._load_more = true;
         updateScroll();
 
@@ -297,13 +297,31 @@ class MessageManager {
 
     addListener(element_id) {
         let reference = this;
-    
+        let page = this._current_page;
+
         document.addEventListener('scroll', function (e) {
             let scrollTop = document.getElementById(element_id).scrollTop;
 
-            if (scrollTop == 0) {
+            if (scrollTop == 0 && reference._load_more === true) {
                 reference.addCall();
+                page = reference._current_page;
                 reference.print()
+                sendAjaxRequest("POST", `/api/channel/${active_chat.getAttribute('id')}/message`, { page }, function () {
+                    const response = JSON.parse(this.responseText);
+
+                    if (response.errors) {
+                        console.log("errors");
+                    }
+                    else {
+                        const new_messages = response[0];
+                        const load_more = response[1];
+                        reference.setEverythingLoaded(load_more);
+                        reference.addMessages(new_messages, page);
+
+
+
+                    }
+                });
             }
 
 
@@ -319,15 +337,50 @@ class MessageManager {
         if (this._load_more === true) this._current_page++;
     }
 
-    setEverythingLoaded() {
-        this._load_more = false;
+    setEverythingLoaded(value) {
+        this._load_more = value;
+    }
+
+    addMessages(messages, pages) {
+        console.log(messages);
+        let active_chat = document.querySelector('.active_chat').getAttribute('id');
+        let current_chat = document.querySelector('#chat-msg' + active_chat);
+
+        for (let m = messages.length-1; m >=0; m--) {
+            const message = messages[m];
+
+            let image = `
+                <img src= "/assets/avatars/${message['photo_path']}.png" alt="{{$message['username']}} profile picture" />
+             `;
+
+
+            let messageWrapper = document.createElement('div')
+            messageWrapper.classList.add('incoming_msg', 'd-flex', 'align-items-start')
+            messageWrapper.innerHTML = `
+              <div class="incoming_msg_img">
+                ${image}
+              </div>
+              <div class="message d-flex flex-column align-items-start"> 
+                    <div class="message-header"><span class="author">${message['username']}</span>
+                    <span class="time_date px-2"> ${message['date']} </span></div>
+                    <div class="message-content">
+                        ${message['content']}
+                    </div>
+                </div>
+            `;
+            current_chat.prepend(messageWrapper);
+        };
+
+        const percent = (messages.length)/(pages * 15);
+        console.log(percent)
+        msgHistory.scrollTop = msgHistory.scrollHeight * (1 - percent);
     }
 
 
 }
 
 let manager = new MessageManager();
-manager.addListener('chat-msg25');
+manager.addListener('chat-msg' + active_chat.getAttribute('id'));
 
 
 
