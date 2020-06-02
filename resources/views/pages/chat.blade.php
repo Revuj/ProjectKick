@@ -121,7 +121,7 @@
 
         </div>
           <div class="mesgs d-flex flex-column justify-content-between">
-            <div class="msg_history pt-1 px-1 d-flex flex-column">
+            <div class="msg_history pt-1 px-1 d-flex flex-column" id="msg_history">
             
             <div id = "chat-msg{{$first_channel['channel_id']}}">
             @if(!empty($first_channel))
@@ -134,7 +134,7 @@
                           <img src="{{ asset('assets/profile.png')}}" alt="{{ $message['username']}} profile picture" />
                         @endif
                         </div>
-                        <div class="message d-flex flex-column align-items-start">  <!--17:12 PM | 3 Days Ago--> 
+                        <div class="message d-flex flex-column align-items-start">   
                             <div class="message-header"><span class="author">{{ $message['username']}}</span><span class="time_date px-2"> {{date('d M Y, h:i a', strtotime($message['date']))}} </span></div>
                             <div class="message-content">
                               {{ $message['content']}}

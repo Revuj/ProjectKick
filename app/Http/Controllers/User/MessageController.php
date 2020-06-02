@@ -34,7 +34,7 @@ class MessageController extends Controller
 
         event($event);
 
-        // $message->save();
+        $message->save();
 
         return response()->json([
             $message, $user,

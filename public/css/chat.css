@@ -147,7 +147,7 @@
   width: 33px;
 }
 
-.msg_history {
+#msg_history {
   height: 100%;
   overflow-y: auto;
 }

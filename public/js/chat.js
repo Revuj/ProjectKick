@@ -6,6 +6,7 @@ const message = document.querySelector('#messageToSend');
 const create_chat_btn = document.querySelector('#create-chat');
 let project_id = create_chat_btn.getAttribute('data-project');
 let active_chat = document.querySelector('.active_chat');
+let msgHistory = document.getElementById("msg_history");
 
 let channels = []
 let toDelete;
@@ -33,6 +34,7 @@ function bindAtiveChannel() {
         return;
     channels[active_chat.getAttribute('data-chat')].bind('my-event', function (data) {
         drawMessageTemplate(data);
+        updateScroll();
     });
 }
 
@@ -122,16 +124,6 @@ function requestCreateMsg() {
  */
 function messageHandler() {
 
-
-
-    /*
-    const response = JSON.parse(this.responseText);
-    if ('message' in response) {
-        // show error on screen
-    }
-    else {
-        drawMessageTemplate(response[0], response[1]);
-    }*/
 }
 
 // missing images
@@ -303,6 +295,11 @@ function confirmExit() {
     }
     //return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
 
+}
+
+// Scrolling when adding new message
+function updateScroll() {
+    msgHistory.scrollTop = msgHistory.scrollHeight;
 }
 
 
