@@ -299,6 +299,17 @@ a.nostyle:visited {
   background-color: var(--primary-color);
 }
 
+.seen-button {
+  text-transform: uppercase;
+  font-family: "Oxanium", serif;
+  background-color: var(--primary-color);
+}
+
+.seen-button:hover {
+  border-color: var(--primary-color);
+  background-color: var(--accent-color);
+}
+
 .open-button {
   border-color: var(--open-color);
   background-color: var(--open-color);

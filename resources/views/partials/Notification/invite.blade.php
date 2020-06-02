@@ -6,10 +6,10 @@
             @else
                 <img  class="m-2" src="{{ asset('assets/profile.png')}}" alt="{{ $elem['username']}} profile picture" style = "width:40px" />
             @endif
-            <p><span class="author-reference">{{$elem['username']}} </span>invited you to the project <span class="project-reference">{{$elem['name']}}</span>           
+            <p><span class="author-reference">{{$elem['username']}} </span>invited you to the project <a class="project-reference nostyle clickable">{{$elem['name']}}</a>           
         </div>
         <p class="timestamp smaller-text m-2">{{date('d M Y, h:i a', strtotime($elem['date']))}}</p>
     </div>
     <button data-invite="{{$elem['project_id']}}" type="button" class="custom-button primary-button mx-2">Accept <i class="fas fa-check" aria-hidden="true"></i></button>
-    <button data-invite="{{$elem['notification_id']}}" type="button" class="custom-button secondary-button mx-2">Deny <i class="fas fa-times" aria-hidden="true"></i></button>
+    <button data-notification-type="invite" data-notification="{{$elem['notification_id']}}" type="button" class="custom-button secondary-button mx-2">Deny <i class="fas fa-times" aria-hidden="true"></i></button>
 </li>

@@ -35,12 +35,15 @@ Route::group(['middleware' => ['auth']], function () {
     //user role permissions
     Route::group([
         'middleware' => ['auth.user', 'not_banned'],
-        'namespace' => 'User'
+        'namespace' => 'User',
     ], function () {
 
         Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
         Route::post('/api/users/{id}/notifications', 'NotificationController@fetchNotifications');
         Route::delete('/api/notification/{id}/invite', 'NotificationController@deleteInvite');
+        Route::delete('/api/notification/{id}/kick', 'NotificationController@deleteKick');
+        Route::delete('/api/notification/{id}/event', 'NotificationController@deleteEvent');
+        Route::delete('/api/notification/{id}/assign', 'NotificationController@deleteAssign');
         Route::put('/api/project/{id}/invite', 'NotificationController@acceptInvite');
 
         //user
@@ -103,7 +106,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group([
         'middleware' => ['auth.admin'],
         'namespace' => 'Admin',
-        'prefix' => "admin"
+        'prefix' => "admin",
     ], function () {
         Route::get('/{id}', 'AdminController@dashboard');
         Route::get('/search', 'AdminController@search');
@@ -112,7 +115,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/monthlyIntel', 'AdminController@fetchIntelPerMonth'); /*api */
         Route::post('/bannedUsers', 'AdminController@bannedUsers'); /*api */
         Route::post('/recentUsers', 'AdminController@recentUsers'); /*api */
-
 
         Route::post('/fetchProjects', 'AdminController@fetchProjects'); /*api */
         Route::post('/fetchUsers', 'AdminController@fetchUsers'); /*api */

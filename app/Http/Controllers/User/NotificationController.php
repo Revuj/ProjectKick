@@ -28,13 +28,13 @@ class NotificationController extends Controller
             ->join('user', 'user.id', '=', 'sender_id')
             ->join('project', 'project.id', '=', 'project_id')
             ->where('receiver_id', '=', $id)
-            ->select('notification_id', 'project_id', 'date', 'receiver_id', 'sender_id', 'username', 'photo_path')->get();
+            ->select('notification_id', 'project_id', 'date', 'receiver_id', 'sender_id', 'username', 'photo_path', 'project.name as name')->get();
 
         $invite_notifications = NotificationInvite::join('notification', 'notification_invite.notification_id', '=', 'notification.id')
             ->join('user', 'user.id', '=', 'sender_id')
             ->join('project', 'project.id', '=', 'project_id')
             ->where('receiver_id', '=', $id)
-            ->select('notification_id', 'project_id', 'date', 'receiver_id', 'sender_id', 'username', 'photo_path')->get();
+            ->select('notification_id', 'project_id', 'date', 'receiver_id', 'sender_id', 'username', 'photo_path', 'project.name as name')->get();
 
         $event_notifications = NotificationEvent::join('notification', 'notification_event.notification_id', '=', 'notification.id')
             ->join('user', 'user.id', '=', 'sender_id')
@@ -57,17 +57,13 @@ class NotificationController extends Controller
         ]);
     }
 
-    public function deleteInvite(Request $request, $id)
+    public function deleteNotification($notification, $child)
     {
-        $notification = Notification::find($id);
-
-        $invite = NotificationInvite::where('notification_id', '=', $id);
-
         DB::beginTransaction();
 
         try {
             $notification->delete();
-            $invite->delete();
+            $child->delete();
             DB::commit();
         } catch (ModelNotFoundException $err) {
             DB::rollback();
@@ -79,7 +75,35 @@ class NotificationController extends Controller
             ], 400);
         }
 
-        return response()->json([$notification, $invite]);
+        return response()->json([$notification, $child]);
+    }
+
+    public function deleteKick(Request $request, $id)
+    {
+        $notification = Notification::find($id);
+        $child = NotificationKick::where('notification_id', '=', $id);
+        return self::deleteNotification($notification, $child);
+    }
+
+    public function deleteEvent(Request $request, $id)
+    {
+        $notification = Notification::find($id);
+        $child = NotificationEvent::where('notification_id', '=', $id);
+        return self::deleteNotification($notification, $child);
+    }
+
+    public function deleteAssign(Request $request, $id)
+    {
+        $notification = Notification::find($id);
+        $child = NotificationAssign::where('notification_id', '=', $id);
+        return self::deleteNotification($notification, $child);
+    }
+
+    public function deleteInvite(Request $request, $id)
+    {
+        $notification = Notification::find($id);
+        $child = NotificationInvite::where('notification_id', '=', $id);
+        return self::deleteNotification($notification, $child);
     }
 
     public function acceptInvite(Request $request, $id)

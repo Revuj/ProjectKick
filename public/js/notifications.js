@@ -12,11 +12,21 @@ let refuse_buttons = document.querySelectorAll(
   ".custom-button.secondary-button"
 );
 
+let seen_buttons = document.querySelectorAll(
+  ".custom-button.seen-button"
+);
+
+
 refuse_buttons.forEach((btn) =>
   btn.addEventListener("click", deleteInvite.bind(btn))
 );
+
 accept_buttons.forEach((btn) =>
   btn.addEventListener("click", acceptInvite.bind(btn))
+);
+
+seen_buttons.forEach((btn) =>
+  btn.addEventListener("click", seenNotification.bind(btn))
 );
 
 let all = document.getElementById("all-notifications");
@@ -35,6 +45,9 @@ let assigned_container = document.getElementById("assigned");
 let all_counter = all.querySelector(".type-counter");
 let invited_counter = invited.querySelector(".type-counter");
 let kicked_counter = kicked.querySelector(".type-counter");
+let meeting_counter = meetings.querySelector(".type-counter");
+let assigned_counter = assigned.querySelector(".type-counter");
+
 
 notifications_filters.forEach((elem) =>
   elem.addEventListener("click", (e) => {
@@ -60,9 +73,10 @@ notifications_filters.forEach((elem) =>
   })
 );
 
-async function deleteInvite() {
+async function seenNotification() {
   let element = this;
-  let invite_id = element.getAttribute("data-invite");
+  let notification_id = element.getAttribute("data-notification");
+  let type = element.getAttribute("data-notification-type");
 
   let init = {
     method: "DELETE",
@@ -72,6 +86,61 @@ async function deleteInvite() {
     },
   };
 
+  fetch(`/api/notification/${notification_id}/` + type, init)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then((data) => {
+          if (message in data) {
+            alert(response["message"]);
+          } else {
+            let btns = document.querySelectorAll(
+              `.seen-button[data-notification = '${notification_id}']`
+            );
+            console.log(data);
+            btns.forEach((btn) => {
+              console.log(btn.parentNode);
+              btn.parentNode.remove();
+            });
+            all_counter.textContent = parseInt(all_counter.textContent) - 1;
+            switch (type) {
+              case "kick":
+                kicked_counter.textContent = parseInt(kicked_counter.textContent) - 1;
+                break;
+              case "assign":
+                assigned_counter.textContent = parseInt(assigned_counter.textContent) - 1;
+                break;
+              case "meeting":
+                meeting_counter.textContent = parseInt(meeting_counter.textContent) - 1;
+                break;
+            }
+            // invited_counter.textContent =
+            //   parseInt(invited_counter.textContent) - 1;
+          }
+        });
+      } else {
+        console.log("Network response was not ok.");
+      }
+    })
+    .catch(function (error) {
+      console.log(
+        "There has been a problem with your fetch operation: " + error.message
+      );
+    });
+}
+
+async function deleteInvite() {
+  let element = this;
+  let invite_id = element.getAttribute("data-notification");
+
+  let init = {
+    method: "delete",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+    }
+  };
+
+  console.log({ invite_id })
   fetch(`/api/notification/${invite_id}/invite`, init)
     .then(function (response) {
       if (response.ok) {
@@ -80,7 +149,7 @@ async function deleteInvite() {
             alert(response["message"]);
           } else {
             let btns = document.querySelectorAll(
-              `.secondary-button[data-invite = '${invite_id}']`
+              `.secondary-button[data-notification = '${invite_id}']`
             );
             console.log(data);
             btns.forEach((btn) => {

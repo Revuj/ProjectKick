@@ -11,5 +11,6 @@
         </div>
         <p class="timestamp smaller-text m-2">{{date('d M Y, h:i a', strtotime($elem['date']))}}</p>
     </div>
+    <button data-notification-type="kick" data-notification="{{$elem['notification_id']}}" type="button" class="custom-button seen-button mx-2">Seen <i class="fas fa-check" aria-hidden="true"></i></button>
 </li>
 

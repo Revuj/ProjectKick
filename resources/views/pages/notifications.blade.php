@@ -71,6 +71,10 @@
         @include('partials.Notification.kick', $elem)
       @elseif ($elem ['typeOfNotification'] === 'invite')
         @include('partials.Notification.invite', $elem)
+      @elseif ($elem ['typeOfNotification'] === 'event')
+        @include('partials.Notification.meeting', $elem)
+      @elseif ($elem ['typeOfNotification'] === 'assign')
+        @include('partials.Notification.assign', $elem)
       @endif
     @endforeach
   </ul>
@@ -88,12 +92,16 @@
   </ul>
 
   <ul class="p-0 m-2 notification-container none" id = "meetings">
-
+    @foreach($meeting_notifications as $elem)
+      @include('partials.Notification.meeting', $elem)
+    @endforeach
   </ul>
 
   <ul class="p-0 m-2 notification-container none" id = "assigned">
-
-</ul>
+    @foreach($assign_notifications as $elem)
+        @include('partials.Notification.kick', $elem)
+    @endforeach
+  </ul>
 
 
 
