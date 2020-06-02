@@ -121,9 +121,9 @@
 
         </div>
           <div class="mesgs d-flex flex-column justify-content-between">
-            <div class="msg_history pt-1 px-1 d-flex flex-column" id="msg_history">
+            <div class="msg_history pt-1 d-flex flex-column" id="msg_history">
             
-            <div id = "chat-msg{{$first_channel['channel_id']}}">
+            <div id = "chat-msg{{$first_channel['channel_id']}}" class="chat-msgs px-1">
             @if(!empty($first_channel))
               @foreach($first_channel['messages'] as $message)
                   <div class="incoming_msg d-flex align-items-start">

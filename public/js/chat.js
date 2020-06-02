@@ -6,7 +6,7 @@ const message = document.querySelector('#messageToSend');
 const create_chat_btn = document.querySelector('#create-chat');
 let project_id = create_chat_btn.getAttribute('data-project');
 let active_chat = document.querySelector('.active_chat');
-let msgHistory = document.getElementById("msg_history");
+let msgHistory = document.querySelector(".chat-msgs");
 
 let channels = []
 let toDelete;
