@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/api/users/{id}/photo', 'User\UserController@updatePhoto');
 
     //user role permissions
-    Route::group(['middleware' => ['auth.user'],
+    Route::group(['middleware' => ['auth.user', 'not_banned'],
         'namespace' => 'User'], function () {
 
         Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this

@@ -59,6 +59,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'auth.admin' => \App\Http\Middleware\AccessAdmin::class,
         'auth.user' => \App\Http\Middleware\AccessUser::class,
+        'not_banned' => \App\Http\Middleware\CheckBanned::class,
+
 
     ];
 }

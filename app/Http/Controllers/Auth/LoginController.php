@@ -49,13 +49,14 @@ class LoginController extends Controller
         return $request->user();
     }
 
+    /*
     protected function credentials(Request $request)
     {
         return array_merge(
             $request->only($this->username(), 'password'),
             ['is_banned' => false]
         );
-    }
+    }*/
     
     public function username() {
         $loginType = request()->input('username');

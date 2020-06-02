@@ -40,6 +40,13 @@
       </a>
     </div>
 
+    @if (session('message'))
+        <div class="alert alert-danger mx-2">
+        <i class="fas fa-exclamation-triangle"></i>
+        {{ session('message') }}
+        </div>
+    @endif
+
     <div class="row">
       <div class="col-md-6 d-none d-md-block">
         <div id="carouselExampleFade" class="carousel slide carousel-fade mb-3" data-ride="carousel">

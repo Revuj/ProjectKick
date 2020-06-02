@@ -809,9 +809,9 @@ insert into "user" (id, email, username, password, name, phone_number, photo_pat
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'hizkoviciq@hatena.ne.jp', 'hizkoviciq', 'DGTFxMjls3RM', 'Herve Izkovici', '516-346-5758', DEFAULT, false, 103, '2018-08-04 20:18:21', false);
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'vbrambellr@lulu.com', 'vbrambellr', '1hJOs5FT', 'Vinita Brambell', '970-150-6223', DEFAULT, false, 22, '2018-07-03 21:34:44', false);
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'kbrentnalls@t-online.de', 'kbrentnalls', 'uUVRoDsV', 'Kelli Brentnall', '700-992-1174', DEFAULT, false, 116, '2019-03-20 05:19:49', false);
-insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'lchmielt@webmd.com', 'lchmielt', 'qNLdSGv', 'Lucille Chmiel', '436-184-2954', DEFAULT, false, 4, '2019-10-13 09:24:01', false);
+insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'lchmielt@webmd.com', 'lchmielt', 'qNLdSGv', 'Lucille Chmiel', '436-184-2954', DEFAULT, false, 4, '2019-10-13 09:24:01', true);
 insert into "user" (id, email, username, password, name, phone_number, photo_path, is_admin, country_id, creation_date, is_banned) values (DEFAULT, 'abelha@gmail.com', 'abelha', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W'
-, 'Lucille Chmiel', '436-184', DEFAULT, false, 4, '2019-10-13 09:24:01', false);
+, 'Lucille Chmiel', '436-184', DEFAULT, false, 4, '2019-10-13 09:24:01', true);
 
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Zaam-Dox', 'Fusce consequat. Nulla nisl. Nunc nisl.', '2023-01-08 06:33:51', '2023-06-02 17:39:06', 3);
 insert into project (id, name, description, creation_date, finish_date, author_id) values (DEFAULT, 'Voyatouch', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.
