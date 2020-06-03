@@ -134,12 +134,11 @@ class ProjectController extends Controller
     {
         // verificar se é coordenador para poder remover/convidar
         $project = Project::find($id);
-        $this->authorize('checkMembers', $project);
-
         if ($project == null) {
             abort(404);
         }
 
+        $this->authorize('checkMembers', $project);
         return view('pages.project.members', ["project" => $project]);
     }
 
@@ -159,12 +158,12 @@ class ProjectController extends Controller
 
     public function delete($id)
     {
-        $this->authorize('delete', Project::find($id));
         $project = Project::find($id);
         if ($project == null) {
             abort(404);
         }
 
+        $this->authorize('coordinator', $project);
         $project->delete($id);
 
         return $project;

@@ -18,9 +18,6 @@ class MeetingPolicy
      */
     public function create(User $user, EventMeeting $eventMeeting)
     {
-
-        error_log('olaolaolaoaoodkasokd  policy');
-
         return $user->projectsStatus()->join('project', 'project.id', '=', 'member_status.project_id')
             ->where([
                 ['role', '=', 'coordinator'],

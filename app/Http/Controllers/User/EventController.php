@@ -20,25 +20,57 @@ class EventController extends Controller
 {
     public function show($id)
     {
+        $this->authorize('own', User::findOrFail($id));
         return view('pages.calendar');
     }
 
     public function createPersonalEvent($event, $user)
     {
+        $this->authorize('own', User::findOrFail($user));
+
         $personalEvent = new EventPersonal();
         $personalEvent->event_id = $event;
         $personalEvent->user_id = $user;
         $personalEvent->save();
     }
 
-    public function createMeetingEvent($event, $project)
+    public function createMeetingEvent($event, $project_id, $sender_id)
     {
         $meetingEvent = new EventMeeting();
         $meetingEvent->event_id = $event;
-        $meetingEvent->project_id = $project;
+        $meetingEvent->project_id = $project_id;
 
         $this->authorize('create', $meetingEvent);
         $meetingEvent->save();
+
+        $sender = User::findOrFail($sender_id);
+        $project = Project::findOrFail($project_id);
+
+        $members = MemberStatus::where("project_id", "=", $project_id)->get();
+        foreach ($members as $member) {
+            $assignment = new Meeting(
+                $project->name,
+                $sender->username,
+                $member->user_id,
+                Carbon::now()->toDateTimeString(),
+                $sender->photo_path,
+                $project_id
+            );
+            event($assignment);
+
+            DB::beginTransaction();
+            $notification = new Notification();
+            $notification->date = Carbon::now()->toDateTimeString();
+            $notification->receiver_id = 1;
+            $notification->sender_id = 2;
+            $notification->save();
+
+            $notificationEvent = new NotificationEvent();
+            $notificationEvent->notification_id = $notification->id;
+            $notificationEvent->event_id = $event->id;
+            $notificationEvent->save();
+            DB::commit();
+        }
     }
 
     public function create(Request $request)
@@ -70,46 +102,16 @@ class EventController extends Controller
         $id = $request->id;
 
         $sender_id = $request->input("sender");
-        $sender = User::findOrFail($sender_id);
 
-        $project = Project::findOrFail($id);
-
-        $members = null;
         if ($type == 'personal') {
             $this->createPersonalEvent($event->id, $id);
         } else if ($type == 'meeting') {
-            $this->createMeetingEvent($event->id, $id);
-
-            $members = MemberStatus::where("project_id", "=", $id)->get();
-            foreach ($members as $member) {
-                $assignment = new Meeting(
-                    $project->name,
-                    $sender->username,
-                    $member->user_id,
-                    Carbon::now()->toDateTimeString(),
-                    $sender->photo_path,
-                    $id
-                );
-
-                event($assignment);
-
-                $notification = new Notification();
-                $notification->date = Carbon::now()->toDateTimeString();
-                $notification->receiver_id = 1;
-                $notification->sender_id = 2;
-                $notification->save();
-
-                $notificationEvent = new NotificationEvent();
-                $notificationEvent->notification_id = $notification->id;
-                $notificationEvent->event_id = $event->id;
-                $notificationEvent->save();
-            }
+            $this->createMeetingEvent($event->id, $id, $sender_id);
         }
 
         return response()->json([
             'title' => $event->title,
             'start_date' => $event->start_date,
-            'members' => $members,
         ], 200);
     }
 }

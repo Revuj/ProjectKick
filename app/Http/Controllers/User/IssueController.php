@@ -54,6 +54,7 @@ class IssueController extends Controller
         if ($project == null) {
             abort(404);
         }
+        $this->authorize('member', $project);
 
         $openIssues = 0;
         $closedIssues = 0;
@@ -76,18 +77,21 @@ class IssueController extends Controller
         if ($project == null) {
             abort(404);
         }
+        $this->authorize('member', $project);
 
         return view('pages.project.issue-board', ['issueLists' => $project->issueLists()->get(), 'project' => $project]);
     }
 
     public function showUserIssues($id)
     {
+        $this->authorize('own', User::findOrFail($id));
         return view('pages.user-issues');
     }
 
     public function delete(Request $request, $id)
     {
         $issue = Issue::findOrFail($id);
+        $this->authorize('delete', $issue);
         $issue->delete();
         return $issue;
     }
@@ -99,6 +103,8 @@ class IssueController extends Controller
         $issue->author_id = $request->input('author');
         $issue->description = $request->input('description');
         $issue->issue_list_id = $request->input('list');
+
+        $this->authorize('create', $issue);
         $issue->save();
         $user = User::find($issue->author_id);
         return response()->json([$issue, $user]);
@@ -107,6 +113,7 @@ class IssueController extends Controller
     public function addList(Request $request, $id)
     {
         $project = Project::findOrFail($id);
+        $this->authorize('member', $project);
 
         $issueList = new IssueList();
         $issueList->name = $request->input('name');
@@ -119,6 +126,8 @@ class IssueController extends Controller
     public function removeList(Request $request, $id)
     {
         $project = Project::findOrFail($id);
+        $this->authorize('coordinator', $project);
+
         $issueList = IssueList::find($request->input('list'));
         $issueList->delete();
 
@@ -128,6 +137,7 @@ class IssueController extends Controller
     public function update(Request $request, $id)
     {
         $issue = Issue::findOrFail($id);
+        $this->authorize('update', $issue);
 
         $title = $request->input("title");
         $description = $request->input("description");
@@ -163,6 +173,7 @@ class IssueController extends Controller
     public function assign(Request $request, $id)
     {
         $issue = Issue::findOrFail($id);
+        $this->authorize('update', $issue);
 
         $user_id = $request->input("user");
         $user = User::findOrFail($user_id);
@@ -202,6 +213,8 @@ class IssueController extends Controller
     public function desassign(Request $request, $id)
     {
         $issue = Issue::findOrFail($id);
+        $this->authorize('update', $issue);
+
         $user = $request->input("user");
         $assigned_user = AssignedUser::find(['user_id' => intval($user), 'issue_id' => intval($id)]);
         $assigned_user->delete();
@@ -212,6 +225,8 @@ class IssueController extends Controller
     public function label(Request $request, $id)
     {
         $issue = Issue::findOrFail($id);
+        $this->authorize('update', $issue);
+
         $label = $request->input("label");
         $name = $request->input("name");
         $tag = null;
@@ -232,6 +247,8 @@ class IssueController extends Controller
     public function unlabel(Request $request, $id)
     {
         $issue = Issue::findOrFail($id);
+        $this->authorize('update', $issue);
+
         $label = $request->input("label");
         $issue_tag = IssueTag::find(['issue_id' => $id, 'tag_id' => $label]);
         $issue_tag->delete();

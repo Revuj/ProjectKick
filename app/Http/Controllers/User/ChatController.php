@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Channel;
 use App\Http\Controllers\Controller;
+use App\Project;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\Response;
@@ -24,11 +25,7 @@ class ChatController extends Controller
 
     public function create(Request $request, $id)
     {
-
-        /*
-        Validator::make($request->all(), [
-        'name' => 'required|max:255'
-        ])->validate(); */
+        $this->authorize('member', Project::findOrFail($id));
 
         $chat = Channel::create([
             'name' => $request->input('name'),
@@ -54,9 +51,10 @@ class ChatController extends Controller
             abort(404);
         }
 
+        $this->authorize('coordinator', Project::findOrFail($channel->project_id));
+
         $channel->delete($id);
 
         return $channel;
     }
-
 }

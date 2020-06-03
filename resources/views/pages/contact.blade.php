@@ -84,21 +84,37 @@
         <div class="main-content-container px-2">
         <div id="contact-us" class="text-left">
           <h3 id="contact-us-title" class="title task-title pb-2 mt-5 mb-0 font-weight-bold">Contact us</h3>
-          <form id="contact-us-form" class="py-4 p-3">
+          @if (!empty($status))
+            <div class="alert alert-success" role="alert">
+              {{ $status }}
+            </div>
+          @endif
+          <form id="contact-us-form" class="py-4 p-3" method="POST" action="{{ route('contact') }}">
+            {{ csrf_field() }}
             <div class="row">
               <div class="form-group col-sm-12">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                <input name="name" type="text" class="form-control @if ($errors->has('name')) is-invalid  @endif" id="name" placeholder="Enter your name">
+                @if ($errors->has('name'))
+                  <span class="text-danger">
+                    {{ $errors->first('name') }}
+                  </span>
+                @endif
               </div>
 
               <div class="form-group col-sm-12">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" placeholder="Enter your email">
+                <input name="email" type="text" class="form-control @if ($errors->has('email')) is-invalid  @endif" id="email" placeholder="Enter your email">
+                @if ($errors->has('email'))
+                  <span class="text-danger">
+                    {{ $errors->first('email') }}
+                  </span>
+                @endif
               </div>
 
               <div class="form-group col-sm-12">
                 <label for="message">Please enter your message here...</label>
-                <textarea class="form-control" id="message" rows="3"></textarea>
+                <textarea name="message" class="form-control" id="message" rows="3"></textarea>
             </div>
             </div>
             <div class="d-flex justify-content-end">

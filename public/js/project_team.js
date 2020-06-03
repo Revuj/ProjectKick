@@ -78,7 +78,10 @@ addMemberButton.addEventListener("click", async () => {
   event.preventDefault();
 
   let ddData = $("#users_dropdown").data("ddslick");
-  let user_id = ddData.selectedData === null ? "" : ddData.selectedData.value;
+  let user_id =
+    ddData != null && ddData.selectedData != null
+      ? ddData.selectedData.value
+      : "";
   let id = addMemberButton.dataset.project;
   let projectName = document.getElementById("project-name").innerHTML;
   let senderUsername = document.getElementById("auth-username");

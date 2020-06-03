@@ -17,6 +17,7 @@ Route::get('/report', 'Report');
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/', 'PageController@index')->name('home');
     Route::get('/contact', 'PageController@contact');
+    Route::post('/contact', 'ContactController@contact')->name('contact');
     Route::get('/about', 'PageController@about');
 });
 
@@ -99,7 +100,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/{id}/issuelist', 'IssueController@showList');
             Route::get('/{id}/board', 'IssueController@showBoard');
             Route::get('{project_id}/chats/{id?}', 'ProjectController@show');
-
         });
 
         // Events
