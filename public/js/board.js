@@ -30,14 +30,19 @@ create_list_btn.addEventListener("click", () => {
 
   let id = document.getElementById("project-name").dataset.project;
   let url = `/api/projects/${id}/list`;
-  sendAjaxRequest("post", url, { 'name': list_to_add_name.value }, createListHandler);
+  sendAjaxRequest(
+    "post",
+    url,
+    { name: list_to_add_name.value },
+    createListHandler
+  );
 });
 
 function createListHandler() {
   const response = JSON.parse(this.responseText);
-  console.log(response)
-  let id = response['id'];
-  let name = response['name'];
+  console.log(response);
+  let id = response["id"];
+  let name = response["name"];
 
   let newList = document.createElement("div");
   newList.className = "bd-highlight task";
@@ -89,7 +94,7 @@ function createListHandler() {
 
 let issue = null;
 function listenAddItem(elem) {
-  elem.addEventListener("click", event => {
+  elem.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
     let title =
@@ -99,19 +104,24 @@ function listenAddItem(elem) {
     let liForm = issue.parentElement.parentElement.parentElement;
     let list = liForm.id.split("-").splice(-1)[0];
     let url = `/api/issues`;
-    console.log({ title, author, list })
+    console.log({ title, author, list });
     $(`#${liForm.getAttribute("id")}`).collapse("toggle");
-    sendAjaxRequest("post", url, { title, author, list, 'description': "" }, createIssueHandler);
+    sendAjaxRequest(
+      "post",
+      url,
+      { title, author, list, description: "" },
+      createIssueHandler
+    );
   });
 }
 
 function createIssueHandler() {
-  console.log(this.responseText)
+  console.log(this.responseText);
   const response = JSON.parse(this.responseText);
   console.log(response);
-  let id = response[0]['id'];
-  let title = response[0]['name'];
-  let username = response[1]['username'];
+  let id = response[0]["id"];
+  let title = response[0]["name"];
+  let username = response[1]["username"];
   let liForm = issue.parentElement.parentElement.parentElement;
   let list = liForm.parentElement;
   let newItem = document.createElement("li");
@@ -145,7 +155,7 @@ function createIssueHandler() {
 }
 
 function listenCancelAddItem(elem) {
-  elem.addEventListener("click", event => {
+  elem.addEventListener("click", (event) => {
     let liForm = elem.parentElement.parentElement.parentElement;
     $(`#${liForm.getAttribute("id")}`).collapse("toggle");
   });
@@ -156,36 +166,38 @@ $("#delete-list-modal").on("show.bs.modal", function (event) {
   let button = $(event.relatedTarget);
   let recipient = button.data("list-id");
   let modal = $(this);
-  modal.find(".modal-title").text("Delete " + button.data("list-name").substring(10));
+  modal
+    .find(".modal-title")
+    .text("Delete " + button.data("list-name").substring(10));
   document
     .getElementById("delete-list-button")
     .setAttribute("data-list-id", recipient);
 });
 
 /* Delete List */
-delete_list_button.addEventListener("click", event => {
+delete_list_button.addEventListener("click", (event) => {
   let list_id = delete_list_button.getAttribute("data-list-id");
   let list = document.getElementById(list_id);
   list.parentElement.removeChild(list);
   let id = document.getElementById("project-name").dataset.project;
   let url = `/api/projects/${id}/list`;
   list_id = list_id.split("-").slice(-1)[0];
-  sendAjaxRequest("delete", url, { 'list': list_id }, null);
+  sendAjaxRequest("delete", url, { list: list_id }, null);
 });
 
 /* Delete Issue */
-delete_issue_button.addEventListener("click", event => {
+delete_issue_button.addEventListener("click", (event) => {
   let issue_id = delete_issue_button.getAttribute("data-issue-id");
   let url = `/api/issues/${issue_id}`;
-  console.log({ issue_id })
-  sendAjaxRequest("delete", url, { 'issue': issue_id }, deleteIssueHandler);
+  console.log({ issue_id });
+  sendAjaxRequest("delete", url, { issue: issue_id }, deleteIssueHandler);
   pageWrapper.classList.toggle("is-collapsed-right");
 });
 
 function deleteIssueHandler() {
   const response = JSON.parse(this.responseText);
   console.log(response);
-  let issue_id = response['id'];
+  let issue_id = response["id"];
   let issue = document.getElementById(issue_id);
   issue.parentElement.removeChild(issue);
 }
@@ -233,13 +245,13 @@ function dragDrop() {
 }
 
 /* Edit Task Label */
-[...edit_item_buttons].forEach(elem =>
-  elem.addEventListener("click", event => {
+[...edit_item_buttons].forEach((elem) =>
+  elem.addEventListener("click", (event) => {
     let label = elem.previousElementSibling;
   })
 );
 
-save_edit_item.addEventListener("click", event => {
+save_edit_item.addEventListener("click", (event) => {
   let newLabel = document.getElementById("edit-task-label").value;
   let dataTaskLabel = save_edit_item.getAttribute("data-task-id");
   let taskToEdit = document.getElementById(`${dataTaskLabel}`);
@@ -247,18 +259,22 @@ save_edit_item.addEventListener("click", event => {
 });
 
 function mouseOverListItem(elem) {
-  elem.addEventListener("mouseover", event => {
-    elem.querySelector(".edit-task").classList.remove("d-none");
+  elem.addEventListener("mouseover", (event) => {
+    if (elem.querySelector(".edit-task") !== null) {
+      elem.querySelector(".edit-task").classList.remove("d-none");
+    }
   });
 }
 
 function mouseLeaveListItem(elem) {
-  elem.addEventListener("mouseleave", event => {
-    elem.querySelector(".edit-task").classList.add("d-none");
+  elem.addEventListener("mouseleave", (event) => {
+    if (elem.querySelector(".edit-task") !== null) {
+      elem.querySelector(".edit-task").classList.add("d-none");
+    }
   });
 }
 
-function openSideIssueListen(elem) {
+function openSideIssueListen(elem, can_edit) {
   elem.addEventListener("click", function () {
     let taskID = elem.getAttribute("id");
     let taskTitle = elem.querySelector(".task-title").innerHTML;
@@ -292,7 +308,7 @@ function openSideIssueListen(elem) {
 
     let sideBarAssignees = document.querySelector(".assignees");
     sideBarAssignees.innerHTML = "";
-    assignees.forEach(elem => {
+    assignees.forEach((elem) => {
       sideBarAssignees.innerHTML += `
       <li class="mr-2 mb-1" data-user-id=${elem.dataset.userId}>
         ${elem.innerHTML}
@@ -308,13 +324,15 @@ function openSideIssueListen(elem) {
       >
         <i class="fas fa-plus"></i>
       </button>
-    </li>`
+    </li>`;
 
-    let existingUsers = document.getElementsByClassName("existing-user-container");
-    console.log(existingUsers)
-    let userIds = [...assignees].map(elem => elem.dataset.userId);
+    let existingUsers = document.getElementsByClassName(
+      "existing-user-container"
+    );
+    console.log(existingUsers);
+    let userIds = [...assignees].map((elem) => elem.dataset.userId);
     console.log(userIds);
-    [...existingUsers].forEach(elem => {
+    [...existingUsers].forEach((elem) => {
       if (userIds.includes(elem.dataset.userId)) {
         elem.querySelector(".selected-user").classList.remove("invisible");
       } else {
@@ -324,7 +342,7 @@ function openSideIssueListen(elem) {
 
     let sideBarLabels = document.querySelector(".labels");
     sideBarLabels.innerHTML = "";
-    labels.forEach(elem => {
+    labels.forEach((elem) => {
       sideBarLabels.innerHTML += `
       <li class="mr-2 mb-1"  data-label-id=${elem.dataset.labelId}>
         <h6 class="mb-0 p-1 list-item-label bg-info">
@@ -343,11 +361,13 @@ function openSideIssueListen(elem) {
         <i class="fas fa-plus"></i>
       </button>
     </li>
-    `
+    `;
 
-    let existingLabels = document.getElementsByClassName("existing-label-container");
-    let labelIds = [...labels].map(elem => elem.dataset.labelId);
-    [...existingLabels].forEach(elem => {
+    let existingLabels = document.getElementsByClassName(
+      "existing-label-container"
+    );
+    let labelIds = [...labels].map((elem) => elem.dataset.labelId);
+    [...existingLabels].forEach((elem) => {
       if (labelIds.includes(elem.dataset.labelId)) {
         elem.querySelector(".selected-label").classList.remove("invisible");
       } else {
@@ -356,18 +376,18 @@ function openSideIssueListen(elem) {
     });
 
     let addNewLabelContainer = document.getElementById("add-new-label");
-    addNewLabelContainer.classList.add("d-none")
+    addNewLabelContainer.classList.add("d-none");
     let addLabelBtn = document.getElementById("add-label");
     addLabelBtn.addEventListener("click", () => {
       addNewLabelContainer.classList.toggle("d-none");
-    })
+    });
 
     let addNewAssigneeContainer = document.getElementById("add-new-assignee");
-    addNewAssigneeContainer.classList.add("d-none")
+    addNewAssigneeContainer.classList.add("d-none");
     let addAssigneeBtn = document.getElementById("add-assignee");
     addAssigneeBtn.addEventListener("click", () => {
-      addNewAssigneeContainer.classList.toggle("d-none")
-    })
+      addNewAssigneeContainer.classList.toggle("d-none");
+    });
 
     document.getElementById("select-due-date").classList.add("d-none");
   });
@@ -376,9 +396,9 @@ function openSideIssueListen(elem) {
 console.log(document.querySelectorAll(".task-item"));
 
 /* Show edit button when item is hovered */
-[...list_items].forEach(elem => mouseOverListItem(elem));
+[...list_items].forEach((elem) => mouseOverListItem(elem));
 
-[...list_items].forEach(elem => mouseLeaveListItem(elem));
+[...list_items].forEach((elem) => mouseLeaveListItem(elem));
 
 /* Side Issue Related */
 let sideIssue = document.querySelector("#side-issue");
@@ -395,14 +415,14 @@ mouseLeaveListItem(side_issue_header);
 
 side_issue_header
   .querySelector(".edit-task")
-  .addEventListener("click", event => {
+  .addEventListener("click", (event) => {
     editTitleForm.querySelector("input").value = title.innerHTML;
     title.classList.toggle("d-none");
     editTitleForm.classList.toggle("d-none");
     side_issue_header.querySelector("p").classList.toggle("d-none");
   });
 
-closeSideIssueButton.addEventListener("click", event => {
+closeSideIssueButton.addEventListener("click", (event) => {
   pageWrapper.classList.toggle("is-collapsed-right");
   title.classList.remove("d-none");
   editTitleForm.classList.add("d-none");
@@ -411,20 +431,22 @@ closeSideIssueButton.addEventListener("click", event => {
   document.getElementById("select-due-date").classList.add("d-none");
 });
 
-cancelEditTitleButton.addEventListener("click", event => {
+cancelEditTitleButton.addEventListener("click", (event) => {
   title.classList.toggle("d-none");
   editTitleForm.classList.toggle("d-none");
   side_issue_header.querySelector("p").classList.toggle("d-none");
 });
 
-[...sideIssueButtons].forEach(elem => openSideIssueListen(elem));
+[...sideIssueButtons].forEach((elem) => {
+  openSideIssueListen(elem, elem.querySelector('button.edit') != null);
+});
 
 // Add Label
 let addNewLabelContainer = document.getElementById("add-new-label");
 let addLabelBtn = document.getElementById("add-label");
 addLabelBtn.addEventListener("click", () => {
-  addNewLabelContainer.classList.toggle("d-none")
-})
+  addNewLabelContainer.classList.toggle("d-none");
+});
 
 function labelListen(elem) {
   elem.querySelector(".selected-label").classList.toggle("invisible");
@@ -440,16 +462,26 @@ function labelListen(elem) {
   }
 }
 
-let existingLabels = document.getElementsByClassName("existing-label-container");
-[...existingLabels].forEach(elem => elem.addEventListener("click", () => {
-  labelListen(elem);
-}))
+let existingLabels = document.getElementsByClassName(
+  "existing-label-container"
+);
+[...existingLabels].forEach((elem) =>
+  elem.addEventListener("click", () => {
+    labelListen(elem);
+  })
+);
 
 function deleteLabelHandler() {
   const response = JSON.parse(this.responseText);
   let id = delete_issue_button.dataset.issueId;
-  document.getElementById(id).querySelector(`[data-label-id='${response.tag_id}']`).remove();
-  document.querySelector(".labels").querySelector(`[data-label-id='${response.tag_id}']`).remove();
+  document
+    .getElementById(id)
+    .querySelector(`[data-label-id='${response.tag_id}']`)
+    .remove();
+  document
+    .querySelector(".labels")
+    .querySelector(`[data-label-id='${response.tag_id}']`)
+    .remove();
 }
 
 function addLabelHandler() {
@@ -460,17 +492,20 @@ function addLabelHandler() {
   <h6 class="mb-1 p-1 list-item-label bg-info"> 
     ${response.name}
   </h6>
-  `
-  newLabel.dataset.labelId = response['id'];
+  `;
+  newLabel.dataset.labelId = response["id"];
 
   let id = delete_issue_button.dataset.issueId;
   document.querySelector(".labels").prepend(newLabel);
 
   let newLabelCopy = document.createElement("h6");
   newLabelCopy.className = "mb-1 p-1 list-item-label mr-1 bg-info";
-  newLabelCopy.dataset.labelId = response['id'];
+  newLabelCopy.dataset.labelId = response["id"];
   newLabelCopy.innerHTML = response.name;
-  document.getElementById(id).querySelector(".labels-selected").prepend(newLabelCopy);
+  document
+    .getElementById(id)
+    .querySelector(".labels-selected")
+    .prepend(newLabelCopy);
 }
 
 // Create New Label
@@ -493,7 +528,10 @@ newLabel.addEventListener("keyup", () => {
 
   [...existingLabels].forEach((label) => {
     if (
-      label.dataset.labelName.toUpperCase().replace(/\s/g, "").indexOf(filter) != -1
+      label.dataset.labelName
+        .toUpperCase()
+        .replace(/\s/g, "")
+        .indexOf(filter) != -1
     ) {
       label.classList.add("d-flex");
       label.classList.remove("d-none");
@@ -502,7 +540,6 @@ newLabel.addEventListener("keyup", () => {
       label.classList.add("d-none");
     }
   });
-
 });
 
 labelForm.addEventListener("submit", (event) => {
@@ -513,7 +550,7 @@ labelForm.addEventListener("submit", (event) => {
 
   sendAjaxRequest("post", url, { name }, createLabelHandler);
   newLabel.value = "";
-})
+});
 
 function createLabelHandler() {
   const response = JSON.parse(this.responseText);
@@ -523,22 +560,26 @@ function createLabelHandler() {
   <h6 class="mb-0 p-1 list-item-label bg-info"> 
     ${response.name}
   </h6>
-  `
-  newLabel.dataset.labelId = response['id'];
+  `;
+  newLabel.dataset.labelId = response["id"];
 
   let id = delete_issue_button.dataset.issueId;
   document.querySelector(".labels").prepend(newLabel);
 
   let newLabelCopy = document.createElement("h6");
   newLabelCopy.className = "mb-1 p-1 list-item-label mr-1 bg-info";
-  newLabelCopy.dataset.labelId = response['id'];
+  newLabelCopy.dataset.labelId = response["id"];
   newLabelCopy.innerHTML = response.name;
-  document.getElementById(id).querySelector(".labels-selected").append(newLabelCopy);
+  document
+    .getElementById(id)
+    .querySelector(".labels-selected")
+    .append(newLabelCopy);
 
   let existingLabel = document.createElement("li");
-  existingLabel.className = "existing-label-container clickable d-flex flex-row align-items-center p-2"
-  existingLabel.dataset.labelId = response['id'];
-  existingLabel.dataset.labelName = response['name'];
+  existingLabel.className =
+    "existing-label-container clickable d-flex flex-row align-items-center p-2";
+  existingLabel.dataset.labelId = response["id"];
+  existingLabel.dataset.labelName = response["name"];
   existingLabel.innerHTML = `
     < i class="fas fa-check selected-label mr-2" aria - hidden="true" ></i >
       <div class="color bg-info">
@@ -546,13 +587,12 @@ function createLabelHandler() {
       <h6 class="mb-0 p-1 existing-label">
         ${response.name}
       </h6>
-  `
+  `;
 
   document.getElementById("existing-labels").prepend(existingLabel);
 
-  existingLabel.addEventListener("click", elem => labelListen(elem));
+  existingLabel.addEventListener("click", (elem) => labelListen(elem));
 }
-
 
 // Add Assignee
 let addNewAssigneeContainer = document.getElementById("add-new-assignee");
@@ -577,7 +617,8 @@ newAssignee.addEventListener("keyup", () => {
   [...existingMembers].forEach((user) => {
     console.log(user.dataset.username.toUpperCase());
     if (
-      user.dataset.username.toUpperCase().replace(/\s/g, "").indexOf(filter) != -1
+      user.dataset.username.toUpperCase().replace(/\s/g, "").indexOf(filter) !=
+      -1
     ) {
       user.classList.add("d-flex");
       user.classList.remove("d-none");
@@ -586,29 +627,31 @@ newAssignee.addEventListener("keyup", () => {
       user.classList.add("d-none");
     }
   });
-
 });
 
 addAssigneeBtn.addEventListener("click", () => {
-  addNewAssigneeContainer.classList.toggle("d-none")
-})
+  addNewAssigneeContainer.classList.toggle("d-none");
+});
 
-let existingMembers = document.getElementsByClassName("existing-user-container");
-[...existingMembers].forEach(elem => elem.addEventListener("click", () => {
-  let selectedUser = elem.querySelector(".selected-user");
-  selectedUser.classList.toggle("invisible");
-  let id = delete_issue_button.dataset.issueId;
-  let user = elem.dataset.userId;
-  let url = `/api/issues/${id}/assign`;
-  let sender = document.getElementById("auth-username").dataset.id;
+let existingMembers = document.getElementsByClassName(
+  "existing-user-container"
+);
+[...existingMembers].forEach((elem) =>
+  elem.addEventListener("click", () => {
+    let selectedUser = elem.querySelector(".selected-user");
+    selectedUser.classList.toggle("invisible");
+    let id = delete_issue_button.dataset.issueId;
+    let user = elem.dataset.userId;
+    let url = `/api/issues/${id}/assign`;
+    let sender = document.getElementById("auth-username").dataset.id;
 
-  if (selectedUser.classList.contains("invisible")) {
-    sendAjaxRequest("delete", url, { user }, deleteMemberHandler);
-  } else {
-    sendAjaxRequest("post", url, { user, sender }, addMemberHandler);
-  }
-}))
-
+    if (selectedUser.classList.contains("invisible")) {
+      sendAjaxRequest("delete", url, { user }, deleteMemberHandler);
+    } else {
+      sendAjaxRequest("post", url, { user, sender }, addMemberHandler);
+    }
+  })
+);
 
 function addMemberHandler() {
   const response = JSON.parse(this.responseText);
@@ -616,29 +659,51 @@ function addMemberHandler() {
   let newMember = document.createElement("li");
   newMember.className = "mr-2";
   newMember.innerHTML = `
-    <img src="/assets/avatars/${response['photo_path']}.png" alt=${response['username']} draggable="false">
-  `
-  newMember.dataset.userId = response['id'];
+    <img src="/assets/avatars/${response["photo_path"]}.png" alt=${response["username"]} draggable="false">
+  `;
+  newMember.dataset.userId = response["id"];
 
   let id = delete_issue_button.dataset.issueId;
   document.querySelector(".assignees").prepend(newMember);
 
   let newMemberCopy = document.createElement("li");
   newMemberCopy.className = "assignee ml-2";
-  newMemberCopy.dataset.userId = response['id'];
+  newMemberCopy.dataset.userId = response["id"];
   newMemberCopy.innerHTML = newMember.innerHTML;
-  document.getElementById(id).querySelector(".members-assigned").append(newMemberCopy);
+  document
+    .getElementById(id)
+    .querySelector(".members-assigned")
+    .append(newMemberCopy);
 }
 
 function deleteMemberHandler() {
   const response = JSON.parse(this.responseText);
   let id = delete_issue_button.dataset.issueId;
-  document.getElementById(id).querySelector(`[data-user-id='${response.id}']`).remove();
-  document.querySelector(".assignees").querySelector(`[data-user-id='${response.id}']`).remove();
+  document
+    .getElementById(id)
+    .querySelector(`[data-user-id='${response.id}']`)
+    .remove();
+  document
+    .querySelector(".assignees")
+    .querySelector(`[data-user-id='${response.id}']`)
+    .remove();
 }
 
 // Add Due Date
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Augt', 'Sep', 'Oct', 'Nov', 'Dec'];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Augt",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 let selectDueDateContainer = document.getElementById("select-due-date");
 let selectDueDateBtn = document.getElementById("change-due-date");
 let submitDueDateBtn = document.getElementById("submit-due-date");
@@ -646,21 +711,21 @@ let newDueDate = document.getElementById("new-due-date");
 let dueDate = document.getElementById("due-date");
 
 selectDueDateBtn.addEventListener("click", () => {
-  selectDueDateContainer.classList.toggle("d-none")
-})
+  selectDueDateContainer.classList.toggle("d-none");
+});
 
 submitDueDateBtn.addEventListener("click", () => {
-  selectDueDateContainer.classList.toggle("d-none")
+  selectDueDateContainer.classList.toggle("d-none");
   let due_date = newDueDate.value;
   let id = delete_issue_button.dataset.issueId;
   let url = `/api/issues/${id}`;
   sendAjaxRequest("put", url, { due_date }, changeDueDateHandler);
-})
+});
 
 function changeDueDateHandler() {
   const response = JSON.parse(this.responseText);
   console.log(response);
-  let date = response['due_date'].split("-");
+  let date = response["due_date"].split("-");
   let year = date[0];
   let month = months[parseInt(date[1]) - 1];
   let day = parseInt(date[2]).toString();
@@ -676,18 +741,21 @@ submitTitle.addEventListener("click", (event) => {
   let id = delete_issue_button.dataset.issueId;
   let url = `/api/issues/${id}`;
   sendAjaxRequest("put", url, { title }, changeTitleHandler);
-})
+});
 
 function changeTitleHandler() {
   const response = JSON.parse(this.responseText);
-  let newTitle = response['name'];
-  document.querySelector("#side-issue-container .task-title").innerHTML = newTitle;
+  let newTitle = response["name"];
+  document.querySelector(
+    "#side-issue-container .task-title"
+  ).innerHTML = newTitle;
   title.classList.toggle("d-none");
   editTitleForm.classList.toggle("d-none");
   side_issue_header.querySelector("p").classList.toggle("d-none");
-  document.getElementById(response['id']).querySelector('.task-title').innerHTML = newTitle;
+  document
+    .getElementById(response["id"])
+    .querySelector(".task-title").innerHTML = newTitle;
 }
-
 
 /*general functions */
 
@@ -719,20 +787,19 @@ function changecolors(type_message, item) {
 /*========================  FILTERS ==================================*/
 const input_filter = document.querySelector("#filter-issues");
 
-input_filter.addEventListener("input", e => {
+input_filter.addEventListener("input", (e) => {
   filterTasks(tasks_list, e.target.value);
 });
-
 
 function filterTasks(task_list, value) {
   let filtered = [];
 
-  task_list.forEach(task => {
+  task_list.forEach((task) => {
     // for each board
 
     let element = { name: task.name };
 
-    element.tasks = task.tasks.filter(element => {
+    element.tasks = task.tasks.filter((element) => {
       // for each task
       const regex = new RegExp(`^${value}`, "gi");
 
@@ -755,21 +822,20 @@ function filterTasks(task_list, value) {
 
   kanban_table.innerHTML = outputKanbanHTML(filtered);
   let list_items = document.querySelectorAll(".task-item");
-  [...list_items].forEach(elem => {
+  [...list_items].forEach((elem) => {
     mouseOverListItem(elem);
     mouseLeaveListItem(elem);
     setDraggable(elem);
   });
 }
 
-
 list_items = document.getElementsByClassName("task-item");
-[...list_items].forEach(elem => {
+[...list_items].forEach((elem) => {
   mouseOverListItem(elem);
   mouseLeaveListItem(elem);
   setDraggable(elem);
 });
 let add_item_button = document.querySelectorAll(".add-item");
 let cancel_add_item_button = document.querySelectorAll(".cancel-add-item");
-[...add_item_button].forEach(elem => listenAddItem(elem));
-[...cancel_add_item_button].forEach(elem => listenCancelAddItem(elem));
+[...add_item_button].forEach((elem) => listenAddItem(elem));
+[...cancel_add_item_button].forEach((elem) => listenCancelAddItem(elem));
