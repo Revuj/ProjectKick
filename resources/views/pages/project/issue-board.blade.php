@@ -394,7 +394,7 @@
             <button type="button" class="custom-button due-date-button" id="change-due-date">
               <i class="far fa-clock mr-2"></i><span id="due-date"></span>
             </button>
-            @can('update', $issue)
+
             <form id="select-due-date" class="mt-2 d-none">
                 <span class="d-flex">
                   <input
@@ -408,15 +408,15 @@
                   </button>
                 </span>
             </form>
-            @endcan
+
           </div>
-          <button
-            id="delete-issue-button"
-            type="button"
-            class="custom-button close-button delete-issue mt-auto"
-          >
-            Delete
-          </button>
+            <button
+              id="delete-issue-button"
+              type="button"
+              class="custom-button close-button delete-issue mt-auto"
+            >
+              Delete
+            </button>
         </div>
       </div>
 @endsection

@@ -382,21 +382,30 @@ function openSideIssueListen(elem, can_edit) {
       }
     });
 
-    let addNewLabelContainer = document.getElementById("add-new-label");
-    addNewLabelContainer.classList.add("d-none");
-    let addLabelBtn = document.getElementById("add-label");
-    addLabelBtn.addEventListener("click", () => {
-      addNewLabelContainer.classList.toggle("d-none");
-    });
+    if (can_edit) {
+      let addNewLabelContainer = document.getElementById("add-new-label");
+      addNewLabelContainer.classList.add("d-none");
+      let addLabelBtn = document.getElementById("add-label");
+      addLabelBtn.addEventListener("click", () => {
+        addNewLabelContainer.classList.toggle("d-none");
+      });
 
-    let addNewAssigneeContainer = document.getElementById("add-new-assignee");
-    addNewAssigneeContainer.classList.add("d-none");
-    let addAssigneeBtn = document.getElementById("add-assignee");
-    addAssigneeBtn.addEventListener("click", () => {
-      addNewAssigneeContainer.classList.toggle("d-none");
-    });
+      let addNewAssigneeContainer = document.getElementById("add-new-assignee");
+      addNewAssigneeContainer.classList.add("d-none");
+      let addAssigneeBtn = document.getElementById("add-assignee");
+      addAssigneeBtn.addEventListener("click", () => {
+        addNewAssigneeContainer.classList.toggle("d-none");
+      });
+    }
+
 
     document.getElementById("select-due-date").classList.add("d-none");
+
+
+    if (!document.getElementById(taskID).querySelector('button.edit-task')) {
+      delete_issue_button.parentElement.removeChild(delete_issue_button);
+      selectDueDateContainer.parentElement.removeChild(selectDueDateContainer);
+    }
   });
 }
 
@@ -445,7 +454,7 @@ cancelEditTitleButton.addEventListener("click", (event) => {
 });
 
 [...sideIssueButtons].forEach((elem) => {
-  openSideIssueListen(elem, elem.querySelector('button.edit') != null);
+  openSideIssueListen(elem, elem.querySelector('button.edit-task') != null);
 });
 
 // Add Label
@@ -793,10 +802,14 @@ function changecolors(type_message, item) {
 
 /*========================  FILTERS ==================================*/
 const input_filter = document.querySelector("#filter-issues");
+try {
+  input_filter.addEventListener("input", (e) => {
+    filterTasks(tasks_list, e.target.value);
+  });
+} catch {
 
-input_filter.addEventListener("input", (e) => {
-  filterTasks(tasks_list, e.target.value);
-});
+}
+
 
 function filterTasks(task_list, value) {
   let filtered = [];
