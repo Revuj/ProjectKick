@@ -23,6 +23,7 @@ class NotificationController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        $this->authorize('own', $user);
 
         $kicked_notifications = NotificationKick::join('notification', 'notification_kick.notification_id', '=', 'notification.id')
             ->join('user', 'user.id', '=', 'sender_id')
@@ -60,7 +61,6 @@ class NotificationController extends Controller
     public function deleteNotification($notification, $child)
     {
         DB::beginTransaction();
-
         try {
             $notification->delete();
             $child->delete();
@@ -81,29 +81,33 @@ class NotificationController extends Controller
     public function deleteKick(Request $request, $id)
     {
         $notification = Notification::find($id);
+        $this->authorize('own', User::findOrFail($notification->receiver_id));
         $child = NotificationKick::where('notification_id', '=', $id);
-        return self::deleteNotification($notification, $child);
+        return $this->deleteNotification($notification, $child);
     }
 
     public function deleteEvent(Request $request, $id)
     {
         $notification = Notification::find($id);
+        $this->authorize('own', User::findOrFail($notification->receiver_id));
         $child = NotificationEvent::where('notification_id', '=', $id);
-        return self::deleteNotification($notification, $child);
+        return $this->deleteNotification($notification, $child);
     }
 
     public function deleteAssign(Request $request, $id)
     {
         $notification = Notification::find($id);
+        $this->authorize('own', User::findOrFail($notification->receiver_id));
         $child = NotificationAssign::where('notification_id', '=', $id);
-        return self::deleteNotification($notification, $child);
+        return $this->deleteNotification($notification, $child);
     }
 
     public function deleteInvite(Request $request, $id)
     {
         $notification = Notification::find($id);
+        $this->authorize('own', User::findOrFail($notification->receiver_id));
         $child = NotificationInvite::where('notification_id', '=', $id);
-        return self::deleteNotification($notification, $child);
+        return $this->deleteNotification($notification, $child);
     }
 
     public function acceptInvite(Request $request, $id)
@@ -115,7 +119,6 @@ class NotificationController extends Controller
                 'user_id' => Auth::id(),
                 'project_id' => $id,
             ]);
-
         } catch (ModelNotFoundException $err) {
             DB::rollback();
             return response()->json([], 404);
@@ -134,7 +137,6 @@ class NotificationController extends Controller
         if (!Auth::check()) {
 
             return new Response('Forbidden', 403);
-
         }
 
         $pusher = new \Pusher\Pusher(config('broadcasting.connections.pusher.key'), config('broadcasting.connections.pusher.secret'), config('broadcasting.connections.pusher.app_id'));
@@ -146,6 +148,5 @@ class NotificationController extends Controller
             $request->input('socket_id')
 
         );
-
     }
 }

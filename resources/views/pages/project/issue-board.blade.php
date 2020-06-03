@@ -92,19 +92,23 @@
                   aria-expanded="false" aria-controls="add-item">
                   <i class="fas fa-plus"></i>
                 </button>
+                @can('coordinator', $project)
                 <button type="button" class="btn" data-toggle="modal" data-target="#delete-list-modal"
                  data-list-id="task-list-{{ $list->id }}" data-list-name="task-list-{{ $list->name }}">
                  <i class="fas fa-trash-alt"></i>
                 </button>
+                @endcan
               </div>
               <ul class="task-items">
               @foreach ($list->issues()->get() as $issue)
                 <li id={{ $issue->id }} class="task-item text-left" draggable="true">
                   <div class="d-flex flex-row align-items-center ml-2 row-1">
                     <a class="nostyle" href="/issues/{{ $issue->id }}"><h6 class="mb-0 py-2 task-title title">{{ $issue->name }}</h6></a>
+                    @can('update', $issue)
                     <button type="button" class="btn ml-auto d-none edit-task">
                       <i class="fas fa-pencil-alt float-right"></i>
                     </button>
+                    @endcan
                   </div>
                   <span class="issue-description d-none">{{ $issue->description }}</span>
                   <span class="issue-due-date d-none">

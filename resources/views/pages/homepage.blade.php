@@ -160,7 +160,7 @@
                 you!
             </p>
             <p>
-                <a href="auth.html" class="custom-button primary-button px-3 mt-2">Start now →</a>
+                <a href="/register" class="custom-button primary-button px-3 mt-2">Start now →</a>
             </p>
             </div>
         </div>
@@ -200,7 +200,7 @@
                 chat where you can discuss your thoughts with your team.
             </p>
             <p>
-                <a href="auth.html" class="custom-button primary-button px-3 mt-2">Start now →</a>
+                <a href="/register" class="custom-button primary-button px-3 mt-2">Start now →</a>
             </p>
             </div>
         </div>
@@ -247,7 +247,7 @@
                 on it.
             </p>
             <p>
-                <a href="auth.html" class="custom-button primary-button px-3 mt-2">Start now →</a>
+                <a href="/register" class="custom-button primary-button px-3 mt-2">Start now →</a>
             </p>
             </div>
           </div>
