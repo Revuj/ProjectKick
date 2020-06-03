@@ -475,7 +475,7 @@ CREATE TRIGGER add_project_creator
     EXECUTE PROCEDURE add_project_creator();
 
 CREATE TRIGGER only_coordinator
-    BEFORE DELETE ON member_status
+    BEFORE UPDATE OF departure_date ON member_status
     FOR EACH ROW
     EXECUTE PROCEDURE only_coordinator();
 
