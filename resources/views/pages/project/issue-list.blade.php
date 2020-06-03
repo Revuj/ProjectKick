@@ -57,14 +57,6 @@
               <li id="all-issues">
                 All <span class="type-counter">{{ $openIssues + $closedIssues}}</span>
               </li>
-              <button
-                type="button"
-                data-toggle="modal"
-                data-target="#addTaskModal"
-                class="btn btn-success ml-auto "
-              >
-                <i class="fa fa-plus-circle fa-lg"></i> <span>Add Task</span>
-              </button>
             </ul>
 
             <div id="filter-issues" class="border-bottom py-3 my-0">

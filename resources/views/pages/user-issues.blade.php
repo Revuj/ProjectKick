@@ -49,15 +49,6 @@
               Today <span class="tables-type-counter">2</span>
             </li>
             <li>Upcoming <span class="tables-type-counter">3</span></li>
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#addTaskModal"
-              class="btn btn-success ml-auto "
-            >
-              <i class="fa fa-plus-circle fa-lg"></i>
-              <span>Add Task</span>
-            </button>
           </div>
           <div id="filter-issues" class="border-bottom py-3 my-0">
             <form class="d-md-flex justify-content-between">

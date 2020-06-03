@@ -12,7 +12,7 @@
       </a>
     </li>
     <li class="side-menu-item dropdown">
-      <a class="{{(request()->segment(3) == 'issues') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}" href="{{ Auth::user()->id }}/issues.html">
+      <a class="{{(request()->segment(3) == 'issues') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}" href="/users/{{ Auth::user()->id }}/issues">
         <span class="m-2"><i class="fas fa-tasks"></i></span>
         <span class="side-menu-item-title">My Work</span>
       </a>
@@ -21,12 +21,6 @@
       <a class="{{(request()->segment(3) == 'calendar') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}" href="/users/{{ Auth::user()->id }}/calendar">
         <span class="m-2"><i class="fas fa-calendar-alt"></i></span>
         <span class="side-menu-item-title">Calendar</span>
-      </a>
-    </li>
-    <li class="side-menu-item">
-      <a href="searchpage.html">
-        <span class="m-2"><i class="fas fa-search"></i></span>
-        <span class="side-menu-item-title">Search</span>
       </a>
     </li>
   </ul>
