@@ -370,7 +370,36 @@
                 </button>
               </li>
             </ul>
-            
+            <div id="add-new-label" class="d-none">
+              <form id="write-label">
+                <input
+                    type="text"
+                    id="new-label"
+                    name="new-label"
+                    class="form-control"
+                    placeholder="Type or choose a label..."
+                  />
+              </form>
+                <ul id="existing-labels">
+                  @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')
+                    ->join('issue', 'issue_tag.issue_id', '=', 'issue.id')
+                    ->join('issue_list', 'issue.issue_list_id', '=', 'issue_list.id')
+                    ->where('issue_list.project_id', '=', $project->id)
+                    ->select('tag.name as name', 'tag.id as id')
+                    ->groupBy('tag.id')
+                    ->get() as $issueTag)
+                      <li class="existing-label-container clickable d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }} data-label-name="{{ $issueTag->name }}">
+                        <i class="fas fa-check invisible selected-label mr-2"></i>
+                        <div class="color bg-info"> 
+                        </div>
+                        <h6 class="mb-0 p-1 existing-label">
+                          {{ $issueTag->name }}
+                        </h6>
+                      </li>
+                  @endforeach
+                </ul>
+            </div>
+
           </div>
           <div class="due-date-container mt-3">
             <h6 class="block pb-2 font-weight-bold">Due Date</h6>

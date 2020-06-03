@@ -12,7 +12,7 @@
       </a>
     </li>
     <li class="side-menu-item dropdown">
-      <a class="{{(request()->segment(3) == 'issues') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}" href="my_work.html">
+      <a class="{{(request()->segment(3) == 'issues') ? 'side-menu-item dropdown active' : 'side-menu-item dropdown'}}" href="{{ Auth::user()->id }}/issues.html">
         <span class="m-2"><i class="fas fa-tasks"></i></span>
         <span class="side-menu-item-title">My Work</span>
       </a>
