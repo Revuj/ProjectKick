@@ -250,8 +250,8 @@
           <div class="due-date-container ml-auto">
             <button type="button" class="custom-button due-date-button">
               <i class="far fa-clock mr-2"></i>
-              @if(!$issue['due_date'] === NULL)
-                Not defined
+              @if($issue['due_date'] === NULL)
+                none
               @else
                 {{ date_format(date_create($issue['due_date']), 'jS F Y')}}
               @endif
