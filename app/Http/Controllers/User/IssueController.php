@@ -83,9 +83,19 @@ class IssueController extends Controller
     }
 
     public function showUserIssues($id)
-    {
-        $this->authorize('own', User::findOrFail($id));
-        return view('pages.user-issues');
+    {   
+        $user = User::findOrFail($id);
+  
+        $issues =  DB::table('assigned_user')->join('user', 'user.id', '=', 'assigned_user.user_id')
+        ->join('issue', 'issue.id', '=', 'assigned_user.issue_id')
+        ->where('user.id','=', $id)
+        ->select('issue.*')
+        ->orderby('creation_date', 'desc')
+        ->get();   
+        return view('pages.user-issues' , [
+            'issues' => $issues ,
+            'today' => Carbon::now()
+        ]);
     }
 
     public function delete(Request $request, $id)
