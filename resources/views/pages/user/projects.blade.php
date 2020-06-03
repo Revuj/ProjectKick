@@ -116,13 +116,13 @@
                   <a class="dropdown-item" href="#">Assignees</a>
                 </div> -->
                 
-                <select class="custom-button primary-button h-100 mx-1" name="filter-select" id="filter-select">
+                <select class="custom-button primary-button h-100 mx-1 d-none" name="filter-select" id="filter-select">
                 <option class = "primary-button custom-button" value="due-date">Due Date</option>
                 <option class = "primary-button custom-button" value="opening-date">Opening Date</option>
                 <option class = "primary-button custom-button" value="name">Name</option>
                 </select>
 
-                <button type = "button" id = "orderType" class="custom-button primary-button">
+                <button type = "button" id = "orderType" class="custom-button primary-button d-none">
                   <i class="fas fa-arrow-up"></i>
                 </button>
               </div>
@@ -254,31 +254,6 @@
                 </div>
               @endif
             @endforeach
-          </div>
-          <div class="d-flex p-2">
-            {{-- <nav class="" aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a href="#" class="page-link" aria-label="Previous"
-                    ><span aria-hidden="true"
-                      ><i class="fa fa-fw fa-angle-left"></i></span
-                    ><span class="sr-only">Previous</span></a
-                  >
-                </li>
-                <li class="page-item active">
-                  <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                <li class="page-item">
-                  <a href="#" class="page-link" aria-label="Next"
-                    ><span aria-hidden="true"
-                      ><i class="fa fa-fw fa-angle-right"></i></span
-                    ><span class="sr-only">Next</span></a
-                  >
-                </li>
-              </ul>
-            </nav> --}}
           </div>
         </div>
 

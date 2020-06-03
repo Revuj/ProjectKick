@@ -179,6 +179,10 @@
   color:white;
 }
 
+.assignees-container , .labels-container{
+  position: relative;
+}
+
 #add-new-label, #add-new-assignee {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-top: 1rem;
@@ -186,6 +190,9 @@
   width: 100%;
   background-color: var(--background-hover);
   padding-bottom: 0.5rem;
+  position: absolute;
+  top: 60px;  
+  z-index: 300;
 }
 
 #write-label, #write-assignee {
@@ -193,6 +200,8 @@
   box-sizing: border-box; 
   padding: 0.5rem;
 }
+
+
 
 #new-label, #new-assignee {
     box-sizing: border-box; 

@@ -48,19 +48,6 @@
         <section
           class="board-options d-flex flex-row bd-highlight align-items-center"
         >
-          <div id="filter-issues" class="py-3 my-0 flex-grow-1">
-            <form class="d-flex justify-content-between">
-              <div class="form-group mb-0 flex-grow-1 mr-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="issues-filter"
-                  id="issues-filter"
-                  placeholder="Search or filter results..."
-                />
-              </div>
-            </form>
-          </div>
           <!-- create a new task-->
           <div class=" bd-highlight">
             <form id="add-list-form" class="input-group inputArea">

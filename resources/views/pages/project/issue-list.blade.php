@@ -57,9 +57,10 @@
               <li id="all-issues">
                 All <span class="type-counter">{{ $openIssues + $closedIssues}}</span>
               </li>
+
             </ul>
 
-            <div id="filter-issues" class="border-bottom py-3 my-0">
+            <div id="filter-issues" class="border-bottom py-3 my-0 d-none">
               <form class="d-md-flex justify-content-between">
                 <div class="form-group mb-0 flex-grow-1">
                   <input

@@ -151,11 +151,11 @@ function searchHandler() {
   const response = JSON.parse(this.responseText);
   let projects = document.querySelectorAll(".project");
   if (response.length === 0) {
-    projects.forEach(elem => { elem.style.display = "inline-block" });
+    projects.forEach(elem => { elem.parentElement.style.display = "inline-block" });
     return;
   }
-  projects.forEach(elem => { elem.style.display = "none" });
-  response.forEach(elem => document.getElementById(elem.id).style.display = "inline-block");
+  projects.forEach(elem => { elem.parentElement.style.display = "none" });
+  response.forEach(elem => document.getElementById(elem.id).parentElement.style.display = "inline-block");
 }
 
 button_search.addEventListener('click', (e) => {
@@ -170,6 +170,15 @@ button_search.addEventListener('click', (e) => {
 function sorting() {
   const response = JSON.parse(this.responseText);
   console.log(response)
+
+  // let projects = document.querySelectorAll(".project");
+  // projects.forEach(elem => { elem.parentElement.style.display = "none" });
+  // for (let object in response) {
+  //   elem = response[object]
+  //   console.log(elem)
+  //   console.log(document.getElementById(elem['id']))
+  //   document.getElementById(elem['id']).parentElement.style.display = "inline-block";
+  // }
 }
 
 
