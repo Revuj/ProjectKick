@@ -315,16 +315,19 @@ function openSideIssueListen(elem, can_edit) {
       </li>
       `;
     });
-    sideBarAssignees.innerHTML += `
-    <li>
-      <button
-        id="add-assignee"
-        type="button"
-        class="custom-button add-button add-assignee"
-      >
-        <i class="fas fa-plus"></i>
-      </button>
-    </li>`;
+    if (can_edit) {
+      sideBarAssignees.innerHTML += `
+      <li>
+        <button
+          id="add-assignee"
+          type="button"
+          class="custom-button add-button add-assignee"
+        >
+          <i class="fas fa-plus"></i>
+        </button>
+      </li>`;
+    }
+
 
     let existingUsers = document.getElementsByClassName(
       "existing-user-container"
@@ -351,17 +354,21 @@ function openSideIssueListen(elem, can_edit) {
       </li>
       `;
     });
-    sideBarLabels.innerHTML += `
-    <li>
-      <button
-        id="add-label"
-        type="button"
-        class="custom-button add-button add-label"
-      >
-        <i class="fas fa-plus"></i>
-      </button>
-    </li>
-    `;
+
+    if (can_edit) {
+      sideBarLabels.innerHTML += `
+      <li>
+        <button
+          id="add-label"
+          type="button"
+          class="custom-button add-button add-label"
+        >
+          <i class="fas fa-plus"></i>
+        </button>
+      </li>
+      `;
+    }
+
 
     let existingLabels = document.getElementsByClassName(
       "existing-label-container"
