@@ -22,7 +22,7 @@
           </a>
         </li>
         <li class="side-menu-item">
-          <a class="{{(request()->segment(3) == 'activity') ? 'active' : ''}}" href="activity.html">
+          <a class="{{(request()->segment(3) == 'activity') ? 'active' : ''}}" href="/projects/{{ $project }}/activity">
             <span class="">Activity</span>
           </a>
         </li>

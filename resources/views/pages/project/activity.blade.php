@@ -54,7 +54,7 @@
 <div class="main-content-container px-4">
           <nav>
             <ol class="breadcrumb custom-separator">
-              <li><a href="#0">lbaw</a></li>
+              <li><a href="#0">{{ $project_col->name }}</a></li>
               <li><a href="#0">Project Overview</a></li>
               <li class="current">Activity</li>
             </ol>
@@ -79,7 +79,7 @@
                   @include('partials.Activity.created_issues', $elem)
                 @endforeach
 
-                @include('partials.Activity.info_project', [$project, $author]);
+                @include('partials.Activity.info_project', [$project_col, $author]);
               </div>
 
               <div id = "closed-issues" class = "d-none">
@@ -87,7 +87,7 @@
                   @include('partials.Activity.closed_issues', $elem)
                 @endforeach
 
-                @include('partials.Activity.info_project', [$project, $author]);
+                @include('partials.Activity.info_project', [$project_col, $author]);
               </div>
 
               <div id = "comments" class = "d-none">
@@ -95,7 +95,7 @@
                   @include('partials.Activity.comments', $elem)
                 @endforeach
 
-                @include('partials.Activity.info_project', [$project, $author]);
+                @include('partials.Activity.info_project', [$project_col, $author]);
               </div>
 
               <div id="channels" class = "d-none">
@@ -103,7 +103,7 @@
                   @include('partials.Activity.channel', $elem)
                 @endforeach
 
-                @include('partials.Activity.info_project', [$project, $author]);
+                @include('partials.Activity.info_project', [$project_col, $author]);
               </div>
 
               <div id="all" class = "d-none">
@@ -125,7 +125,7 @@
 
                 @endforeach
 
-                @include('partials.Activity.info_project', [$project, $author]);
+                @include('partials.Activity.info_project', [$project_col, $author]);
               </div>
 
           </div>

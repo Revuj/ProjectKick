@@ -36,12 +36,15 @@ class IssueController extends Controller
 
         DB::commit();
 
+        $project = $issue->issueList->project->id;
+
         return view('pages.project.issue', [
             'issue' => $issue,
             'author' => $author,
             'tags' => $tags,
             'users' => $assignedTo,
             'comments' => $comments,
+            'project' => $project,
         ]);
     }
 

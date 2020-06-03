@@ -14,9 +14,9 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -33,32 +33,32 @@ class ProjectController extends Controller
         $creation_issues = $issues->join('user', 'user.id', '=', 'author_id')
             ->select('issue.name', 'author_id', 'user.username', 'issue.creation_date as date', 'closed_date', 'issue.id', 'issue.description')
             ->get()->map(function ($issues) {
-                $issues['type'] = 'create_issues';
-                return $issues;
-            });
+            $issues['type'] = 'create_issues';
+            return $issues;
+        });
 
         $closed_issues = $issues->where('is_completed', '=', 'true')
             ->select('issue.name', 'complete_id', 'closed_date as date', 'user.username', 'issue.description', 'issue.id')
             ->get()->map(function ($issues) {
-                $issues['type'] = 'close_issues';
-                return $issues;
-            });
+            $issues['type'] = 'close_issues';
+            return $issues;
+        });
 
         // register comments made
         $comments = $issues->join('comment', 'comment.issue_id', '=', 'issue.id')
             ->select('comment.id', 'comment.creation_date as date', 'comment.issue_id', 'comment.user_id', 'issue.name', 'comment.content')
             ->get()->map(function ($comment) {
-                $comment['type'] = 'comment';
-                $comment['username'] = \App\User::find($comment->user_id)['username'];
-                return $comment;
-            });
+            $comment['type'] = 'comment';
+            $comment['username'] = \App\User::find($comment->user_id)['username'];
+            return $comment;
+        });
 
         // channels
         $channels = $project->channels()
             ->select('channel.id', 'name', 'creation_date as date', 'description')->get()->map(function ($channel) {
-                $channel['type'] = 'channel';
-                return $channel;
-            });
+            $channel['type'] = 'channel';
+            return $channel;
+        });
 
         $mergedCollection = $creation_issues->toBase()->merge($closed_issues)->toBase()->merge($comments)->toBase()->merge($channels)->sortbyDesc('date');
         return view('pages.project.activity', [
@@ -67,7 +67,8 @@ class ProjectController extends Controller
             'closed_issues' => $closed_issues->sortByDesc('date'),
             'comments' => $comments->sortByDesc('date'),
             'channels' => $channels->sortByDesc('date'),
-            'project' => $project,
+            'project_col' => $project,
+            'project' => $project->id,
             'author' => $project->author()->first(),
         ]);
     }
@@ -105,17 +106,17 @@ class ProjectController extends Controller
             ->orderby('issue.creation_date', 'desc')
             ->take(5)
             ->get()->map(function ($issue) use (&$now) {
-                $issue['diff_date'] = (new Carbon($issue['creation_date']))->diffForHumans($now) . ' today';
-                return $issue;
-            });
+            $issue['diff_date'] = (new Carbon($issue['creation_date']))->diffForHumans($now) . ' today';
+            return $issue;
+        });
 
         $recent_channels = $project->channels()
             ->orderby('channel.creation_date', 'desc')
             ->take(5)
             ->get()->map(function ($channel) use (&$now) {
-                $channel['diff_date'] = (new Carbon($channel['creation_date']))->diffForHumans($now) . ' today';
-                return $channel;
-            });
+            $channel['diff_date'] = (new Carbon($channel['creation_date']))->diffForHumans($now) . ' today';
+            return $channel;
+        });
 
         //dd($recent_channels);
         return view('pages.project.overview', [
@@ -350,6 +351,7 @@ class ProjectController extends Controller
             'current_channel' => $current_channel,
             'channels' => $channels,
             'messages' => $messages,
+            'project' => $project_id,
             'project_id' => $project_id,
         ]);
     }

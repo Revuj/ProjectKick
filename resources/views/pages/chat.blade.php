@@ -38,7 +38,7 @@ $project_id])
 <div class="main-content-container px-4">
     <nav>
         <ol class="breadcrumb custom-separator">
-            <li><a href="#0">lbaw</a></li>
+            <li><a href="#0"> {{ \App\Project::findOrFail($project_id)->name }}</a></li>
             <li class="current">Chat</li>
         </ol>
     </nav>
