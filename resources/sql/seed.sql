@@ -167,7 +167,7 @@ CREATE TABLE notification (
     receiver_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE
                                                      ON UPDATE CASCADE,
     sender_id integer NOT NULL REFERENCES "user"  ON DELETE CASCADE
-                                                     ON UPDATE CASCADE CHECK (sender_id <> receiver_id)
+                                                     ON UPDATE CASCADE
 );
 
 CREATE TABLE notification_kick (

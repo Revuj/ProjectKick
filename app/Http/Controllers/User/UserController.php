@@ -273,10 +273,21 @@ class UserController extends Controller
             abort(404);
         }
 
-        $events = DB::table('event')
+        $projects = $user->projectsStatus()->select('member_status.project_id')->get()->toArray();
+        $reCreateArray = array_column($projects, 'project_id');
+
+        $events_personal = DB::table('event_personal')
+            ->join('event', 'event.id', '=', 'event_personal.event_id')
+            ->where('event_personal.user_id', '=', $id)
             ->select('event.title', 'event.start_date');
 
-        return $events->get();
+        $meetings = DB::table('event_meeting')
+            ->join('event', 'event.id', '=', 'event_meeting.event_id')
+            ->whereIn('event_meeting.project_id', $reCreateArray)
+            ->select('event.title', 'event.start_date');
+
+        $finalQuery = $events_personal->union($meetings)->get();
+        return $finalQuery;
     }
 
     public function searchUsers(Request $request)

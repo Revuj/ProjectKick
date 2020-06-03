@@ -351,24 +351,6 @@
                       id="project_description"
                     ></textarea>
                   </div>
-                  <div class="form-group">
-                    <label for="project_tags" class="col-form-label"
-                      >Tags</label
-                    >
-                    <br />
-                    <div class="d-flex">
-                      <ul class="labels d-flex mx-2">
-                        <li class="mr-2">
-                          <h6 class="mb-0 px-1 list-item-label bg-success">
-                            a3
-                          </h6>
-                        </li>
-                      </ul>
-                      <button class="btn p-0">
-                        <i class="fa fa-tag mr--small"></i>
-                      </button>
-                    </div>
-                  </div>
                   <div class="modal-footer">
                     <button type="button" class="btn " data-dismiss="modal">
                       Close

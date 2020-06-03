@@ -202,13 +202,13 @@ class Calendar {
         let day = days[j];
         daysTemplate += `<td class=" clickable ${
           day.currentMonth ? "" : "another-month"
-          }${day.today ? " active-day " : ""}${
+        }${day.today ? " active-day " : ""}${
           day.selected ? "selected-day" : ""
-          }${day.hasEvent ? " event-day" : ""}" data-day="${
+        }${day.hasEvent ? " event-day" : ""}" data-day="${
           day.dayNumber
-          }" data-month="${day.month}" data-year="${day.year}">${
+        }" data-month="${day.month}" data-year="${day.year}">${
           days[j].dayNumber
-          }</td>`;
+        }</td>`;
       }
       daysTemplate += "</tr>";
       i = j - 1;
@@ -227,7 +227,7 @@ class Calendar {
     this.availableMonths.forEach((month, idx) => {
       monthTemplate += `<li class="${
         idx === calendar.active.month ? "active" : ""
-        }" data-month="${idx}">${month}</li>`;
+      }" data-month="${idx}">${month}</li>`;
     });
 
     this.elements.month.innerHTML = monthTemplate;
@@ -413,8 +413,9 @@ addEventButton.addEventListener("click", async (event) => {
     .id;
   let sender = document.getElementById("auth-username").dataset.id;
 
-
   let id = getTypeId(type);
+
+  console.log("oioioi");
 
   const response = await fetch(url, {
     method: "POST",
@@ -544,7 +545,7 @@ function addProjectsSelect(result) {
     width: "100%",
     imagePosition: "left",
     selectText: "Select a project",
-    onSelected: function (data) { },
+    onSelected: function (data) {},
   });
 }
 
