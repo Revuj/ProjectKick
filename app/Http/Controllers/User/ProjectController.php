@@ -12,18 +12,19 @@ use App\NotificationKick;
 use App\Project;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
     public function activity($id)
     {
-        // $this->authorize('checkActivity', Project::find($id));
-
         // creation date
         $project = Project::findOrFail($id, ['id', 'name', 'creation_date', 'author_id', 'description']);
+        $this->authorize('member', $project);
         $project_name = $project['name'];
 
         //date of creation and closing of issues
@@ -32,32 +33,32 @@ class ProjectController extends Controller
         $creation_issues = $issues->join('user', 'user.id', '=', 'author_id')
             ->select('issue.name', 'author_id', 'user.username', 'issue.creation_date as date', 'closed_date', 'issue.id', 'issue.description')
             ->get()->map(function ($issues) {
-            $issues['type'] = 'create_issues';
-            return $issues;
-        });
+                $issues['type'] = 'create_issues';
+                return $issues;
+            });
 
         $closed_issues = $issues->where('is_completed', '=', 'true')
             ->select('issue.name', 'complete_id', 'closed_date as date', 'user.username', 'issue.description', 'issue.id')
             ->get()->map(function ($issues) {
-            $issues['type'] = 'close_issues';
-            return $issues;
-        });
+                $issues['type'] = 'close_issues';
+                return $issues;
+            });
 
         // register comments made
         $comments = $issues->join('comment', 'comment.issue_id', '=', 'issue.id')
             ->select('comment.id', 'comment.creation_date as date', 'comment.issue_id', 'comment.user_id', 'issue.name', 'comment.content')
             ->get()->map(function ($comment) {
-            $comment['type'] = 'comment';
-            $comment['username'] = \App\User::find($comment->user_id)['username'];
-            return $comment;
-        });
+                $comment['type'] = 'comment';
+                $comment['username'] = \App\User::find($comment->user_id)['username'];
+                return $comment;
+            });
 
         // channels
         $channels = $project->channels()
             ->select('channel.id', 'name', 'creation_date as date', 'description')->get()->map(function ($channel) {
-            $channel['type'] = 'channel';
-            return $channel;
-        });
+                $channel['type'] = 'channel';
+                return $channel;
+            });
 
         $mergedCollection = $creation_issues->toBase()->merge($closed_issues)->toBase()->merge($comments)->toBase()->merge($channels)->sortbyDesc('date');
         return view('pages.project.activity', [
@@ -74,7 +75,7 @@ class ProjectController extends Controller
     public function index($id)
     {
         $project = Project::findOrFail($id);
-        // $this->authorize('view', $project);
+        $this->authorize('member', $project);
 
         $author = User::find($project->author_id);
 
@@ -96,7 +97,6 @@ class ProjectController extends Controller
                 $remaing = 0;
                 $active = false;
             }
-
         }
 
         $recent_issues = $project->issues()
@@ -105,17 +105,17 @@ class ProjectController extends Controller
             ->orderby('issue.creation_date', 'desc')
             ->take(5)
             ->get()->map(function ($issue) use (&$now) {
-            $issue['diff_date'] = (new Carbon($issue['creation_date']))->diffForHumans($now) . ' today';
-            return $issue;
-        });
+                $issue['diff_date'] = (new Carbon($issue['creation_date']))->diffForHumans($now) . ' today';
+                return $issue;
+            });
 
         $recent_channels = $project->channels()
-        ->orderby('channel.creation_date', 'desc')
-        ->take(5)
-        ->get()->map(function($channel) use(&$now) {
-            $channel['diff_date'] = (new Carbon($channel['creation_date']))->diffForHumans($now) .' today';
-            return $channel;
-        });
+            ->orderby('channel.creation_date', 'desc')
+            ->take(5)
+            ->get()->map(function ($channel) use (&$now) {
+                $channel['diff_date'] = (new Carbon($channel['creation_date']))->diffForHumans($now) . ' today';
+                return $channel;
+            });
 
         //dd($recent_channels);
         return view('pages.project.overview', [
@@ -171,12 +171,12 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
-        // verificar que é coordenador
-
         $project = Project::find($id);
         if ($project == null) {
             abort(404);
         }
+
+        $this->authorize('coordinator', $project);
 
         $title = $request->input("title");
         $description = $request->input("description");
@@ -191,31 +191,22 @@ class ProjectController extends Controller
 
     public function invite(Request $request, $id)
     {
-        // verificar que é coordenador
-
         $project = Project::find($id);
         if ($project == null) {
             abort(404);
         }
 
-        $receiver = $request->input("receiver");
-        $role = $request->input("role");
-        $user = User::where("username", "=", $receiver)->first();
+        $this->authorize('coordinator', $project);
 
-        // estou a adicionar logo mas no futuro deveria ser um convite
-        $membership = new MemberStatus();
-        $membership->role = $role;
-        $membership->user_id = $user['id'];
-        $membership->project_id = $id;
-        // $membership->save();
-
-        $user_id = $user['id'];
+        $user_id = $request->input("user_id");
+        $user = User::where("id", "=", $user_id)->first();
         $sender_id = $request->input("senderId");
 
         $event = new Invitation(
             $request->input('projectName'),
             $request->input('senderUsername'),
-            $user_id, Carbon::now()->toDateTimeString(),
+            $user_id,
+            Carbon::now()->toDateTimeString(),
             $user['photo_path'],
             $id
         );
@@ -233,17 +224,16 @@ class ProjectController extends Controller
         $notificationKick->project_id = $id;
         $notificationKick->save();
         DB::commit();
-
-        return $membership;
     }
 
     public function remove(Request $request, $id)
     {
-        $this->authorize('delete', Project::find($id));
         $project = Project::find($id);
         if ($project == null) {
             abort(404);
         }
+
+        $this->authorize('coordinator', $project);
 
         $user_id = $request->input("user");
         $sender_id = $request->input("sender");
@@ -253,9 +243,9 @@ class ProjectController extends Controller
         $event = new KickedOut($request->input('project'), $request->input('username'), $user_id, Carbon::now()->toDateTimeString());
         event($event);
 
+        DB::beginTransaction();
         $notification = new Notification();
         $notification->date = Carbon::now()->toDateTimeString();
-        //$notification->description = "";
         $notification->receiver_id = $user_id;
         $notification->sender_id = $sender_id;
         $notification->save();
@@ -264,6 +254,48 @@ class ProjectController extends Controller
         $notificationKick->notification_id = $notification->id;
         $notificationKick->project_id = $id;
         $notificationKick->save();
+        DB::commit();
+
+        return $membership;
+    }
+
+    public function leave(Request $request, $id)
+    {
+        $project = Project::find($id);
+        if ($project == null) {
+            abort(404);
+        }
+
+        $user_id = $request->input("user");
+
+        $this->authorize('member', $project);
+        $this->authorize('own', User::findOrFail($user_id));
+
+        $membership = MemberStatus::where("user_id", "=", $user_id)->where("project_id", "=", $id)->first();
+        $membership->delete();
+
+        return redirect()->route('dashboard', [Auth::user()->id]);
+    }
+
+    public function promote(Request $request, $id)
+    {
+        $project = Project::find($id);
+
+        if ($project == null) {
+            abort(404);
+        }
+
+        $this->authorize('coordinator', $project);
+
+        try {
+            $user_id = $request->input("user");
+            $status = $request->input("status");
+            $membership = MemberStatus::where("user_id", "=", $user_id)->where("project_id", "=", $id)->first();
+            $membership->role = $status;
+            //$membership->save();
+        } catch (QueryException $exc) {
+            return response()->json([], 404);
+        }
 
         return $membership;
     }
@@ -320,6 +352,5 @@ class ProjectController extends Controller
             'messages' => $messages,
             'project_id' => $project_id,
         ]);
-
     }
 }

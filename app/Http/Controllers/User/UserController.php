@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -222,10 +223,9 @@ class UserController extends Controller
 
     public function projectCoordinator(Request $request, $id)
     {
-        //$this->authorize('own', User::findOrFail($id));
-
         try {
             $user = User::findOrFail($id);
+            $this->authorize('own', $user);
 
             $projects = $user->projectsStatus()
                 ->join('project', 'project.id', '=', 'member_status.project_id')
@@ -277,5 +277,32 @@ class UserController extends Controller
             ->select('event.title', 'event.start_date');
 
         return $events->get();
+    }
+
+    public function searchUsers(Request $request)
+    {
+        $rules = [
+            'search' => 'required|string',
+        ];
+
+        $messages = [
+            'required' => "Please insert a username"
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 404);
+        }
+
+        $input = $request->input('search');
+
+        $users = DB::table('user')
+            ->where('user.username', 'like', '%' . $input . '%')
+            ->where('is_admin', '=', 'false')
+            ->whereNull('deleted_at')
+            ->select('user.id', 'user.username', 'user.photo_path', 'user.email');
+
+        return $users->get();
     }
 }

@@ -47,14 +47,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/api/project/{id}/invite', 'NotificationController@acceptInvite');
 
         //user
+        Route::get('users/{id}/projects', "UserController@projects")->name('dashboard');
         Route::prefix('users')->group(function () {
-            Route::get('/{id}/projects', "UserController@projects");
             Route::get('/{id}/issues', 'IssueController@showUserIssues');
             Route::get('/{id}/calendar', 'UserController@calendar');
             Route::get('/{id}/notifications', 'NotificationController@show');
         });
         //[this]
         Route::post('/api/users/{id}/sort', 'UserController@fetchSort');
+        Route::post('/api/users', 'UserController@searchUsers');
 
         Route::post('/api/users/{id}/projects', 'UserController@filterProjects');
         Route::post('/api/users/{id}/projects/coordinator', 'UserController@projectCoordinator');
@@ -85,6 +86,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/api/projects/{id}', 'ProjectController@update');
         Route::post('/api/projects/{id}/members', 'ProjectController@invite');
         Route::delete('/api/projects/{id}/members', 'ProjectController@remove');
+        Route::post('/api/projects/{id}/members/leave', 'ProjectController@leave');
+        //Route::delete('/api/projects/{id}/members/leave', 'ProjectController@leave');
+        Route::put('/api/projects/{id}/members', 'ProjectController@promote');
         Route::post('/api/projects/{id}/list', 'IssueController@addList');
         Route::delete('/api/projects/{id}/list', 'IssueController@removeList');
         Route::post('api/channel/{id}/message', 'ProjectController@loadMessages');

@@ -3,10 +3,8 @@
 @section('title', 'Kick | Team members')
 
 @section('script')
-<script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
     ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -18,6 +16,7 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
     <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/project_team.js')}}" defer></script>
@@ -63,15 +62,28 @@
             </li>
             <li>Coordinator <span id="coordinators-counter" class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'coordinator')->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span></li>
             <li>All <span id="total-counter" class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span></li>
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#addMemberModal"
-              class="btn btn-success ml-auto "
-            >
-              <i class="fa fa-plus-circle fa-lg"></i>
-              <span>Add Member</span>
-            </button>
+            <div class="ml-auto">
+              @can('leave', $project)
+              <button
+                type="button"
+                data-toggle="modal"
+                data-target="#leave-modal"
+                class="btn btn-close mr-1"
+              >
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Leave</span>
+              </button>
+              @endcan
+              <button
+                type="button"
+                data-toggle="modal"
+                data-target="#addMemberModal"
+                class="btn btn-success"
+              >
+                <i class="fa fa-plus-circle fa-lg"></i>
+                <span>Add Member</span>
+              </button>
+            </div>
           </div>
           <div id="filter-issues" class="border-bottom py-3 my-0">
             <form class="d-md-flex justify-content-between">
@@ -126,9 +138,11 @@
                         <th class="font-weight-bold" style="width: 20%">
                           Email
                         </th>
-                        <th class="font-weight-bold" style="width: 30%">
-                          &nbsp;
-                        </th>
+                        @can('coordinator', $project)
+                          <th class="font-weight-bold" style="width: 30%">
+                            &nbsp;
+                          </th>
+                        @endcan
                       </tr>
                     </thead>
                     <tbody>
@@ -145,6 +159,7 @@
                           <td data-label="Email">
                             <a href="#">{{ $member->email }}</a>
                           </td>
+                          @can('coordinator', $project)
                           <td align="center">
                             <a href="#" class="table-link">
                               <button class="custom-button close-button" data-toggle="modal" data-target="#remove-member-modal" data-user="{{ $member->user_id }}" data-username="{{ $member->username }}">
@@ -153,12 +168,13 @@
                               </button>
                             </a>
                             <a href="#" class="table-link">
-                              <button class="custom-button open-button ">
+                              <button class="custom-button open-button" data-toggle="modal" data-target="#promote-member-modal" data-user="{{ $member->user_id }}" data-username="{{ $member->username }}">
                                 <i class="fa fa-arrow-alt-circle-up"></i>
                                 Promote
                               </button>
                             </a>
                           </td>
+                          @endcan
                         </tr>
                       @endforeach
                     </tbody>
@@ -177,9 +193,6 @@
                         <th class="font-weight-bold" style="width: 20%">
                           Email
                         </th>
-                        <th class="font-weight-bold" style="width: 30%">
-                          &nbsp;
-                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -195,20 +208,6 @@
                           </td>
                           <td data-label="Email">
                             <a href="#">{{ $member->email }}</a>
-                          </td>
-                          <td align="center">
-                            <a href="#" class="table-link">
-                              <button class="custom-button close-button"  data-toggle="modal" data-target="#remove-member-modal" data-user="{{ $member->user_id }}" data-username="{{ $member->username }}">
-                                <i class="fa fa-trash fa"></i>
-                                Remove
-                              </button>
-                            </a>
-                            <a href="#" class="table-link">
-                              <button class="custom-button open-button ">
-                                <i class="fa fa-arrow-alt-circle-up"></i>
-                                Promote
-                              </button>
-                            </a>
                           </td>
                         </tr>
                       @endforeach
@@ -228,9 +227,6 @@
                         <th class="font-weight-bold" style="width: 20%">
                           Email
                         </th>
-                        <th class="font-weight-bold" style="width: 30%">
-                          &nbsp;
-                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -246,20 +242,6 @@
                           </td>
                           <td data-label="Email">
                             <a href="#">{{ $member->email }}</a>
-                          </td>
-                          <td align="center">
-                            <a href="#" class="table-link">
-                              <button class="custom-button close-button"  data-toggle="modal" data-target="#remove-member-modal" data-user="{{ $member->user_id }}" data-username="{{ $member->username }}">
-                                <i class="fa fa-trash fa"></i>
-                                Remove
-                              </button>
-                            </a>
-                            <a href="#" class="table-link">
-                              <button class="custom-button open-button ">
-                                <i class="fa fa-arrow-alt-circle-up"></i>
-                                Promote
-                              </button>
-                            </a>
                           </td>
                         </tr>
                       @endforeach
@@ -294,31 +276,65 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form>
+                <form onsubmit="return false">
                   <div class="form-group">
                     <label for="username" class="col-form-label">Username</label>
                     <input type="text" class="form-control" id="username" />
                   </div>
-                  <div class="form-group">
-                    <div class="btn-group" data-toggle="buttons">
-                      <label class="btn btn-outline-primary">
-                        <input type="radio" name="role" id="developer" checked="checked"/>
-                        <span>Project Developer</span>
-                      </label>
-                      <label class="btn btn-outline-primary">
-                        <input type="radio" name="role" id="coordinator" />
-                        <span>Project Coordinator</span>
-                      </label>
-                    </div>
-                  </div>
+                  <div id="users_dropdown"></div>
+                  <div id="error" class="mt-2"></div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn " data-dismiss="modal">
+                <button type="button" class="btn" data-dismiss="modal">
                   Close
                 </button>
-                <button type="button" class="btn btn-success" id="add-member" data-project="{{ $project->id }}" data-dismiss="modal">
+                <button type="button" class="btn btn-success" id="add-member" data-project="{{ $project->id }}">
                   Add Member
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leave modal -->
+        <div
+          class="modal fade"
+          id="leave-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Leave project?</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-left">
+                <p>
+                  This action will remove you from the project. Are you sure you want to continue?
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">
+                  Close
+                </button>
+                <button
+                  id="leave-button"
+                  type="button"
+                  data-dismiss="modal"
+                  class="btn btn-close"
+                >
+                  Leave
                 </button>
               </div>
             </div>
@@ -354,20 +370,60 @@
                 </p>
               </div>
               <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
+                <button type="button" class="btn" data-dismiss="modal">
                   Close
                 </button>
                 <button
                   id="remove-member"
                   type="button"
                   data-dismiss="modal"
-                  class="btn btn-primary btn-danger"
+                  class="btn btn-close"
                 >
                   Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Promote Member modal -->
+        <div
+          class="modal fade"
+          id="promote-member-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Promote <span id="user-to-promote"> from the project?</span></h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-left">
+                <p>
+                  This action will promote the member you select from the project. Are you sure you want to continue?
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">
+                  Close
+                </button>
+                <button
+                  id="promote-member"
+                  type="button"
+                  data-dismiss="modal"
+                  class="btn btn-success"
+                >
+                  Promote
                 </button>
               </div>
             </div>

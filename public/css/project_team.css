@@ -156,6 +156,11 @@ body {
   color: var(--open-color);
 }
 
+#remove-member {
+  background-color: var(--close-color);
+  color: white;
+}
+
 @media only screen and (max-width: 768px) {
   .modal-dialog {
     width: 100%;
