@@ -115,26 +115,63 @@
             <i class="fas fa-pencil-alt"></i>
           </button>
         </div>
+        <span class="labels-container">
         <ul class="labels smaller-text d-flex align-items-center">
         @foreach($tags as $tag)
         <li class="mr-2">
-            <h6 class="label mb-0 px-1 list-item-label bg-info p-1 text-white" style="background-color:{{$tag->rgb_code}};" >
+            <h6 class="label mb-0 px-1 list-item-label bg-info p-1 text-white" data-label-id={{ $tag->id }} style="background-color:{{$tag->rgb_code}};" >
               {{$tag->name}}
             </h6>
         </li>
         @endforeach
           <li>
             <button
-              type="button"
-              class="d-none custom-button add-button"
-            >
-              <i class="fas fa-plus"></i>
-            </button>
+            id="add-label"
+            type="button"
+            class="custom-button add-button add-label"
+            data-issue-id="{{ $issue['id'] }}"
+          >
+            <i class="fas fa-plus"></i>
+          </button>
           </li>
         </ul>
+        <div id="add-new-label" class="d-none">
+          <form id="write-label">
+            <input
+                type="text"
+                id="new-label"
+                name="new-label"
+                class="form-control"
+                placeholder="Type or choose a label..."
+              />
+          </form>
+            <ul id="existing-labels">
+              @foreach (\App\Tag::join('issue_tag', 'tag.id', '=', 'issue_tag.tag_id')
+                ->join('issue', 'issue_tag.issue_id', '=', 'issue.id')
+                ->join('issue_list', 'issue.issue_list_id', '=', 'issue_list.id')
+                ->where('issue_list.project_id', '=', $issue->issueList->project->id)
+                ->select('tag.name as name', 'tag.id as id', 'issue_tag.issue_id as issue_id')
+                ->groupBy('tag.id', 'issue_tag.issue_id')
+                ->get()->unique() as $issueTag)
+                  <li class="existing-label-container clickable d-flex flex-row align-items-center p-2" data-label-id={{ $issueTag->id }} data-label-name="{{ $issueTag->name }}">
+                    @if ($tags->contains('id', $issueTag->id))
+                      <i class="fas fa-check selected-label mr-2"></i>
+                    @else
+                      <i class="fas fa-check invisible selected-label mr-2"></i>
+                    @endif
+                    <div class="color bg-info"> 
+                    </div>
+                    <h6 class="mb-0 p-1 existing-label">
+                      {{ $issueTag->name }}
+                    </h6>
+                  </li>
+              @endforeach
+            </ul>
+        </div>
+        </span>
       </div>
-      <div class="row border-bottom my-2">
-        <div class="col-md-9 description text-left">
+      <div class="row my-2">
+        <div class="col-md-12 description text-left">
           <p id="issue-description">
           {{$issue['description']}}
           </p>
@@ -144,22 +181,71 @@
           id="edit-task-description"
         />
         </div>
+      </div>
+
         <div
-          class="col-md-3 members-and-duedate pb-3 d-flex flex-column justify-content-end ml-auto"
-        >
-          <div class="assignees-container ml-auto">
+          class="members-and-duedate pt-2 d-flex justify-content-end border-bottom"
+          >
+          <div class="assignees-container">
             <ul
               class="assignees d-flex align-items-center justify-content-center pb-3"
             >
 
             @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $user)
-              <li class="mr-2">
+              <li class="mr-2" data-user-id={{ $user->id }}>
                 <a href="/users/{{$user['id']}}">
                   <img src="{{ asset('assets/avatars/'.  $user['photo_path'] .'.png') }}" alt="{{ $user['username']}} profile picture" />
                 </a>
               </li>
             @endforeach
+              <li>
+                <button
+                  id="add-assignee"
+                  type="button"
+                  class="custom-button add-button add-assignee"
+                  data-issue-id="{{ $issue['id'] }}"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </li>
             </ul>
+            <div id="add-new-assignee" class="d-none">
+              <form id="write-assignee">
+                <input
+                    type="text"
+                    id="new-assignee"
+                    name="new-assignee"
+                    class="form-control"
+                    placeholder="Type or choose an assignee..."
+                  />
+              </form>
+                <ul id="existing-users">
+                    @php
+                      $assigned = \App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->select('user.id as id')->get()
+                    @endphp
+                    @foreach (\App\User::join('member_status', 'user.id', '=', 'member_status.user_id')
+                    ->join('project', 'project.id', '=', 'member_status.project_id')
+                    ->where('project.id', '=', $issue->issueList->project->id)
+                    ->select('user.id as id', 'user.username as username')
+                    ->groupBy('user.id')
+                    ->get() as $assignee)
+                      <li class="existing-user-container clickable d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }} data-username="{{ $assignee->username }}">
+                        @if ($assigned->contains('id', $assignee->id))
+                          <i class="fas fa-check selected-user mr-2"></i>
+                        @else
+                          <i class="fas fa-check selected-user invisible mr-2"></i>
+                        @endif
+                        <span class="assignee ml-2"><img
+                          src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
+                          draggable="false" />
+                        </span>
+                        <h6 class="mb-0 p-1 existing-user font-weight-bold ml-2">
+                          {{ $assignee->username }}
+                        </h6>
+                      </li>
+                    @endforeach
+                </ul>
+            </div>
           </div>
           <div class="due-date-container ml-auto">
             <button type="button" class="custom-button due-date-button">
@@ -172,7 +258,6 @@
             </button>
           </div>
         </div>
-      </div>
       <div class="add-comment-container">
       
       <div class = "position-relative w-100 pb-3 mb-1">

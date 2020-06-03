@@ -492,7 +492,6 @@ newLabel.addEventListener("keyup", () => {
   }
 
   [...existingLabels].forEach((label) => {
-    console.log(label.dataset.labelName.toUpperCase());
     if (
       label.dataset.labelName.toUpperCase().replace(/\s/g, "").indexOf(filter) != -1
     ) {

@@ -12,6 +12,11 @@
   border-radius: 5px;
 }
 
+.assignee {
+  width: 25px;
+  height: 25px;
+}
+
 .main-container .main-content-container {
   max-width: 1080px;
 }
@@ -85,6 +90,60 @@
   outline: 0px solid transparent;
   border-bottom: 2px solid var(--container-text-color);
 }
+
+#add-new-label, #add-new-assignee {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 1rem;
+  border-radius: 5px;
+  width: 288px;
+  background-color: var(--background-hover);
+  padding-bottom: 0.5rem;
+}
+
+
+.assignees-container , .labels-container{
+  position: relative;
+}
+
+#add-new-assignee, #add-new-label {
+  position: absolute;
+  top: 30px;  
+  z-index: 300;
+}
+
+#write-label, #write-assignee {
+  width: 100%;
+  box-sizing: border-box; 
+  padding: 0.5rem;
+}
+
+#new-label, #new-assignee {
+    box-sizing: border-box; 
+}
+
+
+#existing-labels, #existing-users {
+  background-color: white;
+  max-height: 176px;
+  overflow-y: auto;
+}
+
+.existing-label-container, .existing-user-container {
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.existing-label-container:hover , .existing-user-container:hover  {
+  background-color: var(--background-hover);
+}
+
+
+.existing-label-container:last-of-type {
+  border-bottom: 1px solid var(--border-color);
+}
+
 
 @media only screen and (max-width: 600px) {
   .issue-status-description {

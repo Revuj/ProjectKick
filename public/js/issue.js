@@ -300,3 +300,159 @@ closeBtn.addEventListener("click", () => {
 
   sendAjaxRequest("put", url, { status }, null);
 })
+
+// Add Assignee
+let addNewAssigneeContainer = document.getElementById("add-new-assignee");
+let addAssigneeBtn = document.getElementById("add-assignee");
+let newAssignee = document.getElementById("new-assignee");
+let existingMembers = document.getElementsByClassName("existing-user-container");
+
+
+/* Search for Assignee */
+newAssignee.addEventListener("keyup", () => {
+  // ignores capitalization and spaces
+  let filter = newAssignee.value.toUpperCase().replace(/\s/g, "");
+
+  // only filters cars when input size has more than 2 characters
+  if (filter.length < 3) {
+    [...existingMembers].forEach((user) => {
+      user.classList.add("d-flex");
+      user.classList.remove("d-none");
+    });
+    return;
+  }
+
+  [...existingMembers].forEach((user) => {
+    console.log(user.dataset.username.toUpperCase());
+    if (
+      user.dataset.username.toUpperCase().replace(/\s/g, "").indexOf(filter) != -1
+    ) {
+      user.classList.add("d-flex");
+      user.classList.remove("d-none");
+    } else {
+      user.classList.remove("d-flex");
+      user.classList.add("d-none");
+    }
+  });
+
+});
+
+addAssigneeBtn.addEventListener("click", () => {
+  addNewAssigneeContainer.classList.toggle("d-none")
+});
+
+[...existingMembers].forEach(elem => elem.addEventListener("click", () => {
+  let selectedUser = elem.querySelector(".selected-user");
+  selectedUser.classList.toggle("invisible");
+  let id = addAssigneeBtn.dataset.issueId;
+  let user = elem.dataset.userId;
+  let url = `/api/issues/${id}/assign`;
+  let sender = document.getElementById("auth-username").dataset.id;
+
+  if (selectedUser.classList.contains("invisible")) {
+    sendAjaxRequest("delete", url, { user }, deleteMemberHandler);
+  } else {
+    sendAjaxRequest("post", url, { user, sender }, addMemberHandler);
+  }
+}))
+
+
+function addMemberHandler() {
+  const response = JSON.parse(this.responseText);
+
+  let newMember = document.createElement("li");
+  newMember.className = "mr-2";
+  newMember.innerHTML = `
+    <img src="/assets/avatars/${response['photo_path']}.png" alt=${response['username']} draggable="false">
+  `
+  newMember.dataset.userId = response['id'];
+
+  let id = addAssigneeBtn.dataset.issueId;
+  document.querySelector(".assignees").prepend(newMember);
+}
+
+function deleteMemberHandler() {
+  const response = JSON.parse(this.responseText);
+  document.querySelector(".assignees").querySelector(`[data-user-id='${response.id}']`).remove();
+}
+
+
+// Add Label
+let addNewLabelContainer = document.getElementById("add-new-label");
+let addLabelBtn = document.getElementById("add-label");
+addLabelBtn.addEventListener("click", () => {
+  addNewLabelContainer.classList.toggle("d-none")
+})
+
+function labelListen(elem) {
+  elem.querySelector(".selected-label").classList.toggle("invisible");
+  let selectedLabel = elem.querySelector(".selected-label");
+  let id = addAssigneeBtn.dataset.issueId;
+  let label = elem.dataset.labelId;
+  let url = `/api/issues/${id}/label`;
+
+  if (selectedLabel.classList.contains("invisible")) {
+    sendAjaxRequest("delete", url, { label }, deleteLabelHandler);
+  } else {
+    sendAjaxRequest("post", url, { label }, addLabelHandler);
+  }
+}
+
+let existingLabels = document.getElementsByClassName("existing-label-container");
+[...existingLabels].forEach(elem => elem.addEventListener("click", () => {
+  labelListen(elem);
+}))
+
+function deleteLabelHandler() {
+  const response = JSON.parse(this.responseText);
+  let id = addAssigneeBtn.dataset.issueId;
+  document.querySelector(".labels").querySelector(`[data-label-id='${response.tag_id}']`).remove();
+}
+
+function addLabelHandler() {
+  const response = JSON.parse(this.responseText);
+  let newLabel = document.createElement("li");
+  newLabel.className = "mr-2";
+  newLabel.innerHTML = `
+  <h6 class="label mb-0 px-1 list-item-label bg-info p-1 text-white"> 
+    ${response.name}
+  </h6>
+  `
+
+  newLabel.dataset.labelId = response['id'];
+
+  let id = addAssigneeBtn.dataset.issueId;
+  document.querySelector(".labels").prepend(newLabel);
+}
+
+// Create New Label
+let labelForm = document.getElementById("write-label");
+let newLabel = document.getElementById("new-label");
+
+/* Search for Label */
+newLabel.addEventListener("keyup", () => {
+  // ignores capitalization and spaces
+  let filter = newLabel.value.toUpperCase().replace(/\s/g, "");
+
+  // only filters cars when input size has more than 2 characters
+  if (filter.length < 3) {
+    [...existingLabels].forEach((label) => {
+      label.classList.add("d-flex");
+      label.classList.remove("d-none");
+    });
+    return;
+  }
+
+  [...existingLabels].forEach((label) => {
+    if (
+      label.dataset.labelName.toUpperCase().replace(/\s/g, "").indexOf(filter) != -1
+    ) {
+      label.classList.add("d-flex");
+      label.classList.remove("d-none");
+    } else {
+      label.classList.remove("d-flex");
+      label.classList.add("d-none");
+    }
+  });
+
+});

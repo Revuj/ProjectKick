@@ -24,7 +24,7 @@ class IssueController extends Controller
         DB::beginTransaction();
         $issue = Issue::findOrFail($id);
         $author = User::findOrFail($issue->author_id, ['name', 'id']);
-        $tags = $issue->tags()->join('color', 'tag.color_id', '=', 'color.id')->select('name', 'rgb_code')->get();
+        $tags = $issue->tags()->join('color', 'tag.color_id', '=', 'color.id')->select('name', 'rgb_code', 'tag.id as id')->get();
         $assignedTo = $issue->assignTo()->select('photo_path', 'username', 'id')->get();
         $comments = $issue->comments()
             ->leftjoin('vote', 'vote.comment_id', '=', 'comment.id')
