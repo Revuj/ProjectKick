@@ -155,13 +155,13 @@ function updateUser(e) {
   let email = document.getElementById("feEmail").value;
   let phone = document.getElementById("fePhone").value;
   let password = document.getElementById("fePassword").value;
-  let confirmPassword = document.getElementById("feConfirmPassword").value;
+  let password_confirmation = document.getElementById("feConfirmPassword").value;
   let city = document.getElementById("feCity").value;
   let description = document.getElementById("feDescription").value;
 
   fetch(`/api/users/${id}`, {
     method: 'PUT',
-    body: JSON.stringify({ username, firstName, lastName, email, phone, password, confirmPassword, city, description }),
+    body: JSON.stringify({ username, firstName, lastName, email, phone, password, password_confirmation, city, description }),
     headers: {
       'Content-Type': 'application/json',
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -169,6 +169,7 @@ function updateUser(e) {
   }).then((res) => {
     if (res.ok) {
       res.json().then(data => {
+        console.log(data);
         document.getElementById("username").innerHTML = data.username;
         document.getElementById("email").innerHTML = data.email;
         document.getElementById("phone_number").innerHTML = data.phone_number;

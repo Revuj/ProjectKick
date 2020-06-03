@@ -237,6 +237,40 @@ assign_channel.bind('assignment', function (data) {
   insertAfter(dropdown_notification_tittle, new_notification);
 });
 
+////////////////////////////
+// errors display
+let timeout;
+
+function clearTime() {
+  if (timeout !== null && timeout !== undefined) {
+    clearTimeout(timeout);
+  }
+}
+
+function displayError(data) {
+
+  const errors = data['errors'];
+
+
+  const div_elem = document.getElementById('dialog');
+  div_elem.classList.add('error-color');
+  let wait_factor = 0;
+  div_elem.querySelector('.content').innerHTML='';
+  for (property in errors) {
+    div_elem.querySelector('.content').innerHTML += 
+    `<div> <i class="fas fa-exclamation-triangle mx-2"></i>`
+      + errors[property]  +'</div>';
+      wait_factor++;
+  }
+  div_elem.classList.remove('d-none');
+  clearTime();
+  timeout = setTimeout(() => {
+    div_elem.classList.add('d-none');
+    div_elem.querySelector('.content').textContent = "";
+    div_elem.classList.remove('error-color');
+  }, 3500 * wait_factor );
+}
+
 
 
 

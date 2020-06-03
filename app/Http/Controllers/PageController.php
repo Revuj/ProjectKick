@@ -24,4 +24,8 @@ class PageController extends Controller
         return view('pages.authenticate');
     }
 
+    public function help(){
+        return view('pages.help');
+    } 
+
 }

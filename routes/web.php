@@ -20,6 +20,8 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/about', 'PageController@about');
 });
 
+Route::get('/help', 'PageController@help');
+
 //========================== authentication =============================
 Auth::routes();
 // ================== user and admin pages ==============================

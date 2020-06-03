@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -146,6 +147,22 @@ class ProjectController extends Controller
     {
         $this->authorize('create', new Project());
 
+        $rules = [  
+            'name' => 'required|string|min:1|max:30',
+            'description' => 'required|string|min:1|max:255',
+            'author_id' => 'required|exists:user,id|integer'
+        ];
+
+        $messages = [
+            'required' => ":attribute is required. Please choose it",
+            'max' => ":attribute is too long."
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
+        }
+
         $project = new Project();
         $project->name = $request->input('name');
         $project->description = $request->input('description');
@@ -173,11 +190,23 @@ class ProjectController extends Controller
     {
         // verificar que é coordenador
 
-        $project = Project::find($id);
-        if ($project == null) {
-            abort(404);
-        }
+        $project = Project::findOrFail($id);
+        
+        $rules = [  
+            'title' => 'required|string|min:1|max:30',
+            'description' => 'required|string|min:1|max:512'
+        ];
 
+        $messages = [
+            'required' => ":attribute is required. Please choose it",
+            'max' => ":attribute is too long."
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
+        }
+        
         $title = $request->input("title");
         $description = $request->input("description");
 
@@ -193,10 +222,30 @@ class ProjectController extends Controller
     {
         // verificar que é coordenador
 
-        $project = Project::find($id);
-        if ($project == null) {
-            abort(404);
+        $project = Project::findOrFail($id);
+        
+        $rules = [  
+           'receiver' => 'required|string|min:1|exists:user,username',
+           'role' => 'string|required',
+           'senderId' => 'required|exists:user,id',
+            'projectName' => 'string|required|exists:project,name',
+            'senderUsername' => 'string|required|exists:user,username'
+        ];
+
+        $messages = [
+            'required' => ":attribute is required. Please choose it",
+            'projectName.exists' => 'That project name does not exists',
+            'senderUsername.exists' => 'The username you invited does not exists',
+            'receiver.exists' => 'That user does not exists'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
         }
+
+
 
         $receiver = $request->input("receiver");
         $role = $request->input("role");
@@ -234,16 +283,42 @@ class ProjectController extends Controller
         $notificationKick->save();
         DB::commit();
 
-        return $membership;
+        return response()->json([$request->all()]);
     }
 
+    /**
+     * 
+     */
     public function remove(Request $request, $id)
     {
         $this->authorize('delete', Project::find($id));
-        $project = Project::find($id);
-        if ($project == null) {
-            abort(404);
-        }
+        $project = Project::findOrFail($id);
+
+        /**
+         * se user and sender forem os mesmos é sair da equipa... se for o ultimo equipa done...
+         */
+        $rules = [  
+            'user' => 'integer|required|exists:user,id',
+            'sender' => 'integer|required|exists:user,id',
+            'project'=> 'string|required|min:1|exists:project,name',
+            'username' => 'string|required|min:1|exists:user,username',
+            
+         ];
+ 
+         $messages = [
+             'required' => ":attribute is required. Please choose it",
+             'sender.exists' => 'The sender does not exists',
+             'user.exists' => 'The invite receiver does not exists' 
+         ];
+
+
+ 
+         $validator = Validator::make($request->all(), $rules, $messages);
+         if ($validator->fails()) {
+             return response()->json(['errors' => $validator->errors(), 404]);
+         }
+
+         
 
         $user_id = $request->input("user");
         $sender_id = $request->input("sender");

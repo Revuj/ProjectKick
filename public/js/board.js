@@ -23,10 +23,11 @@ dragDrop();
 
 /*add event listeners */
 create_list_btn.addEventListener("click", () => {
+  /*
   if (is_input_empty(list_to_add_name)) {
     changecolors("error", list_to_add_name);
     return;
-  }
+  }*/
 
   let id = document.getElementById("project-name").dataset.project;
   let url = `/api/projects/${id}/list`;
@@ -35,6 +36,12 @@ create_list_btn.addEventListener("click", () => {
 
 function createListHandler() {
   const response = JSON.parse(this.responseText);
+
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+
   console.log(response)
   let id = response['id'];
   let name = response['name'];
@@ -106,8 +113,13 @@ function listenAddItem(elem) {
 }
 
 function createIssueHandler() {
-  console.log(this.responseText)
   const response = JSON.parse(this.responseText);
+
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+  console.log(this.responseText)
   console.log(response);
   let id = response[0]['id'];
   let title = response[0]['name'];
@@ -184,6 +196,11 @@ delete_issue_button.addEventListener("click", event => {
 
 function deleteIssueHandler() {
   const response = JSON.parse(this.responseText);
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+
   console.log(response);
   let issue_id = response['id'];
   let issue = document.getElementById(issue_id);
@@ -447,6 +464,11 @@ let existingLabels = document.getElementsByClassName("existing-label-container")
 
 function deleteLabelHandler() {
   const response = JSON.parse(this.responseText);
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+
   let id = delete_issue_button.dataset.issueId;
   document.getElementById(id).querySelector(`[data-label-id='${response.tag_id}']`).remove();
   document.querySelector(".labels").querySelector(`[data-label-id='${response.tag_id}']`).remove();
@@ -454,6 +476,11 @@ function deleteLabelHandler() {
 
 function addLabelHandler() {
   const response = JSON.parse(this.responseText);
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+
   let newLabel = document.createElement("li");
   newLabel.className = "mr-2";
   newLabel.innerHTML = `
@@ -517,7 +544,13 @@ labelForm.addEventListener("submit", (event) => {
 })
 
 function createLabelHandler() {
+  console.log(this.responseText)
   const response = JSON.parse(this.responseText);
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+
   let newLabel = document.createElement("li");
   newLabel.className = "mr-2 mb-1";
   newLabel.innerHTML = `
@@ -613,6 +646,10 @@ let existingMembers = document.getElementsByClassName("existing-user-container")
 
 function addMemberHandler() {
   const response = JSON.parse(this.responseText);
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
 
   let newMember = document.createElement("li");
   newMember.className = "mr-2";
@@ -633,6 +670,11 @@ function addMemberHandler() {
 
 function deleteMemberHandler() {
   const response = JSON.parse(this.responseText);
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+
   let id = delete_issue_button.dataset.issueId;
   document.getElementById(id).querySelector(`[data-user-id='${response.id}']`).remove();
   document.querySelector(".assignees").querySelector(`[data-user-id='${response.id}']`).remove();
@@ -660,6 +702,11 @@ submitDueDateBtn.addEventListener("click", () => {
 
 function changeDueDateHandler() {
   const response = JSON.parse(this.responseText);
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+
   console.log(response);
   let date = response['due_date'].split("-");
   let year = date[0];
@@ -681,6 +728,11 @@ submitTitle.addEventListener("click", (event) => {
 
 function changeTitleHandler() {
   const response = JSON.parse(this.responseText);
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+
   let newTitle = response['name'];
   document.querySelector("#side-issue-container .task-title").innerHTML = newTitle;
   title.classList.toggle("d-none");

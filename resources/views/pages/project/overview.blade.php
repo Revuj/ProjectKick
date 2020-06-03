@@ -41,6 +41,17 @@ $project->id] )
             <li class="current"><i class="fas fa-project-diagram"></i> Project Overview</li>
         </ol>
     </nav>
+
+    <div class="w-100 pb-2 my-1">
+        <div class="mt-0 p-2 rounded  w-100 d-none" id="dialog">
+            <div class="error-content ml-3">
+                <span class="content">
+
+                </span>
+            </div>
+        </div>
+    </div>
+
     <div id="project-container">
         <div id="project" class="d-flex flex-column h-100 py-3 text-left">
             <div id="project-header" class="border-bottom mb-3 d-flex flex-row align-items-center">

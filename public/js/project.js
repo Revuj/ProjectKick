@@ -3,6 +3,8 @@ const saveProjectButton = document.getElementById("save-project");
 let projectTitle = document.getElementById("project-title");
 let projectDescription = document.getElementById("project-description");
 
+let previous_state = {};
+
 
 editProjectButton.addEventListener("click", () => {
   projectTitle.style.border = "1px solid rgba(82, 82, 82, 0.329)";
@@ -16,6 +18,14 @@ editProjectButton.addEventListener("click", () => {
 
   editProjectButton.style.display = "none";
   saveProjectButton.style.display = "inline-block";
+
+  previous_state = {
+   id : saveProjectButton.dataset.project ,
+   title : projectTitle.innerHTML ,
+  description : projectDescription.innerHTML,
+
+  }
+
 })
 
 saveProjectButton.addEventListener("click", () => {
@@ -28,18 +38,29 @@ saveProjectButton.addEventListener("click", () => {
   projectDescription.style.background = "none";
   projectDescription.contentEditable = "false";
 
-  let id = saveProjectButton.dataset.project;
-  let title = projectTitle.innerHTML;
+  let id = saveProjectButton.dataset.project ;
+  let title = projectTitle.innerHTML ;
   let description = projectDescription.innerHTML;
+
+
   console.log({ id, title, description });
-  sendAjaxRequest("put", `/api/projects/${id}`, { title, description }, updateProjectHandler);
+  sendAjaxRequest("put", `/api/projects/${id}`, { title, description }, function() {
+    const response = JSON.parse(this.responseText);
+    updateProjectHandler(response);
+  });
 
 
   editProjectButton.style.display = "inline-block";
   saveProjectButton.style.display = "none";
 })
 
-function updateProjectHandler() {
-  const response = JSON.parse(this.responseText);
+function updateProjectHandler(response) {
+
+  if ('errors' in response) {
+    displayError(response)
+    saveProjectButton.dataset.project = previous_state.id;
+    projectTitle.innerHTML = previous_state.title;
+    projectDescription.innerHTML = previous_state.description;
+  }
   console.log(response)
 }

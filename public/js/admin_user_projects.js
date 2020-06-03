@@ -108,11 +108,15 @@ function requestProjects(option) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(data => {
-          if ('message' in data) {
-            alert(response['message']);
+          if ('errors' in data) {
+            console.log(data)
+            console.log(data['errors']);
+            console.log("call1");
+            displayError(data);
           }
           else {
-            console.log(data);
+            console.log("call2")
+            console.log(data)
             renderProjects(data[0]);
           }
         })
@@ -146,11 +150,10 @@ function requestUsers(option) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(data => {
-          if ('message' in data) {
-            alert(response['message']);
+          if ('errors' in data) {
+            displayError(data);
           }
           else {
-            console.log(data);
             renderUsers(data[0]);
           }
         })

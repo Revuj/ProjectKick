@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\IssueList;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class AdminController extends Controller
@@ -129,13 +131,27 @@ class AdminController extends Controller
 
     public function fetchProjects(Request $request) {
 
+        $request['order'] = filter_var($request['order'], FILTER_VALIDATE_BOOLEAN);
+        
+        $rules = [
+            'option' =>'required|string',
+            'search' => 'string|nullable',
+            'order' => 'required|boolean' 
+        ];
+        
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors(), $request]);
+
+        }
         
         $filter = $this->filterProjects( $request);
         $sortableTrait = $request->input('option');
 
        
 
-        $order = ($request->input('order') === 'true') ? 'ASC' : 'DESC';
+        $order = ($request->input('order') === true) ? 'ASC' : 'DESC';
         $sort = $this->sortFunction($filter, $sortableTrait, $order);
         
         $sorted = $sort->get()->map(function($project) {
@@ -152,10 +168,25 @@ class AdminController extends Controller
     }
 
     public function fetchUsers(Request $request) {
+        
+        $request['order'] = filter_var($request['order'], FILTER_VALIDATE_BOOLEAN);
+        
+        $rules = [
+            'option' =>'required|string',
+            'search' => 'string|nullable',
+            'order' => 'required|boolean' 
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors(), $request]);
+        }
+        
         $filter = $this->filterUsers($request);
         $sortableTrait = $request->input('option');
 
-        $order = ($request->input('order') === 'true') ? 'ASC' : 'DESC';
+        $order = ($request->input('order') === true) ? 'ASC' : 'DESC';
         $sorted = $this->sortUsers($filter, $sortableTrait, $order);
 
 

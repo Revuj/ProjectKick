@@ -42,6 +42,15 @@ $project_id])
             <li class="current">Chat</li>
         </ol>
     </nav>
+    <div class="w-100 pb-2">
+        <div class="mt-0 p-2 rounded  w-100 d-none" id="dialog">
+            <div class="error-content ml-3">
+                <span class="content">
+
+                </span>
+            </div>
+        </div>
+    </div>
     <div class="align-items-end w-100 d-flex">
         <button type="button" data-toggle="modal" data-target="#addChannelModal" class="btn btn-success ml-auto">
             <i class="fa fa-plus-circle fa-lg"></i>

@@ -166,8 +166,8 @@ function requestNewChat(name, description) {
  */
 function newChatHandler() {
     const response = JSON.parse(this.responseText);
-    if ('message' in response) {
-        alert(response['message']);
+    if ('errors' in response) {
+        displayError(response);
     }
     else {
         addChatTemplate(response[0]);

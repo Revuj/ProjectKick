@@ -95,6 +95,11 @@ addMemberButton.addEventListener("click", () => {
 
 function inviteMemberHandler() {
   const response = JSON.parse(this.responseText);
+  if ('errors' in response) {
+    console.log(response['errors']);
+    displayError(response);
+    return;
+  }
   console.log(response)
   // mostrar mensagem se utilizador não existir
 }
@@ -111,8 +116,15 @@ removeMemberButton.addEventListener("click", () => {
 })
 
 function removeMemberHandler() {
+  console.log(this.responseText)
   const response = JSON.parse(this.responseText);
   console.log(response)
+  if ('errors' in response) {
+    console.log(response['errors']);
+    displayError(response);
+    return;
+  }
+
   let id = response.user_id;
   let elements = document.getElementsByClassName(`user_${id}`);
   [...elements].forEach(elem => elem.parentNode.removeChild(elem));

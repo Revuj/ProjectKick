@@ -45,6 +45,17 @@
             <li class="current">Boards</li>
           </ol>
         </nav>
+        
+        <div class="w-100 pb-2 my-1">
+        <div class="mt-0 p-2 rounded  w-100 d-none" id="dialog">
+            <div class="error-content ml-3">
+                <span class="content">
+
+                </span>
+            </div>
+        </div>
+    </div>
+
         <section
           class="board-options d-flex flex-row bd-highlight align-items-center"
         >
