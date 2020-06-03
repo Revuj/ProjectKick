@@ -13,6 +13,7 @@ use App\NotificationEvent;
 use App\Project;
 use App\User;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -67,7 +68,7 @@ class EventController extends Controller
 
             $notificationEvent = new NotificationEvent();
             $notificationEvent->notification_id = $notification->id;
-            $notificationEvent->event_id = $event->id;
+            $notificationEvent->event_id = $event;
             $notificationEvent->save();
             DB::commit();
         }
