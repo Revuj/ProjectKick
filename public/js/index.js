@@ -1,4 +1,3 @@
-
 function showSignup() {
   const loginForm = document.getElementById("login-form");
   const signupForm = document.getElementById("signup-form");
@@ -31,7 +30,7 @@ function toggleTheme() {
   if (localStorage.getItem("theme") === "dark") {
     try {
       document.getElementById("slider").checked = true;
-    } catch { }
+    } catch {}
     setTheme("dark");
   } else {
     setTheme("light");
@@ -43,8 +42,7 @@ function setCollapsed(collapsed) {
   let element = document.querySelector(".page-wrapper");
   if (element === null) return;
   localStorage.setItem("collapsed", collapsed);
-  if (collapsed === "true")
-    element.classList.add("is-collapsed");
+  if (collapsed === "true") element.classList.add("is-collapsed");
   else element.classList.remove("is-collapsed");
 }
 
@@ -59,7 +57,7 @@ function toggleCollapse() {
 
 // function to collapse side navbar
 let hamburger_menus = document.querySelectorAll(".hamburger");
-hamburger_menus.forEach(elem =>
+hamburger_menus.forEach((elem) =>
   elem.addEventListener("click", function () {
     toggleCollapse();
   })
@@ -77,37 +75,40 @@ hamburger_menus.forEach(elem =>
 // Ajax functions
 function encodeForAjax(data) {
   if (data == null) return null;
-  return Object.keys(data).map(function (k) {
-    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-  }).join('&');
+  return Object.keys(data)
+    .map(function (k) {
+      return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+    })
+    .join("&");
 }
 
 function sendAjaxRequest(method, url, data, handler) {
-
-  if (method === 'get') {
+  if (method === "get") {
     sendGetRequest(url, data, handler);
     return;
   }
   let request = new XMLHttpRequest();
   console.log({ method, url, data, handler });
   request.open(method, url, true);
-  request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.addEventListener('load', handler);
+  request.setRequestHeader(
+    "X-CSRF-TOKEN",
+    document.querySelector('meta[name="csrf-token"]').content
+  );
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  request.addEventListener("load", handler);
   request.send(encodeForAjax(data));
 }
 
 function sendGetRequest(url, data, handler) {
   let request = new XMLHttpRequest();
-  console.log()
+  console.log();
   request.open("get", `${url}?` + encodeForAjax(data), true);
-  request.addEventListener('load', handler);
+  request.addEventListener("load", handler);
   request.send();
-
 }
 
 function emptyInput(input) {
-  input.value = '';
+  input.value = "";
 }
 
 function insertAfter(referenceNode, newNode) {
@@ -142,34 +143,31 @@ function mappingDifDateDescript(date) {
   const diffMins = Math.floor(diffTime / (1000 * 60));
   if (diffMins > 3) return diffYears + " minutes ago";
   else if (diffMins === 1) return " just now";
-
 }
 
 // ========================================
 // ===== Dealing with notifications =======
 // ========================================
-const dropdown_notification = document.querySelector('.notification-dropdown');
-const dropdown_notification_tittle = document.querySelector('.notification-title');
-const user_id = document.querySelector('ul').getAttribute('data-user');
-console.log(user_id);
-Pusher.logToConsole = true;
-var pusher = new Pusher('7d3a9c163bd45174c885', {
-  cluster: 'eu',
+const dropdown_notification = document.querySelector(".notification-dropdown");
+const dropdown_notification_tittle = document.querySelector(
+  ".notification-title"
+);
+const user_id = document.querySelector("ul").getAttribute("data-user");
+var pusher = new Pusher("7d3a9c163bd45174c885", {
+  cluster: "eu",
   forceTLS: true,
   auth: {
     headers: {
-      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-    }
+      "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+    },
   },
 });
 
-let kicking_channel = pusher.subscribe('private-kicked.' + user_id);
+let kicking_channel = pusher.subscribe("private-kicked." + user_id);
 
-kicking_channel.bind('kicked-out', (data) => {
-  console.log(data);
-
-  let new_notification = document.createElement('div');
-  new_notification.classList.add('notify_item', 'clickable');
+kicking_channel.bind("kicked-out", (data) => {
+  let new_notification = document.createElement("div");
+  new_notification.classList.add("notify_item", "clickable");
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
@@ -179,23 +177,21 @@ kicking_channel.bind('kicked-out', (data) => {
       />
     </div>
     <div class="notify_info">
-      <p>${data['sender']} kicked you out of <span>T${data['project']}</span></p>
-      <span class="notify_time">${mappingDifDateDescript(data['date'])}</span>
+      <p>${data["sender"]} kicked you out of <span>T${
+    data["project"]
+  }</span></p>
+      <span class="notify_time">${mappingDifDateDescript(data["date"])}</span>
     </div>
   `;
 
   insertAfter(dropdown_notification_tittle, new_notification);
-
 });
 
-let invitation_channel = pusher.subscribe('private-invited.' + user_id);
+let invitation_channel = pusher.subscribe("private-invited." + user_id);
 
-/* {todo} check if path exists */
-invitation_channel.bind('invitation', function (data) {
-  console.log(data);
-
-  let new_notification = document.createElement('div');
-  new_notification.classList.add('notify_item', 'clickable');
+invitation_channel.bind("invitation", function (data) {
+  let new_notification = document.createElement("div");
+  new_notification.classList.add("notify_item", "clickable");
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
@@ -205,21 +201,21 @@ invitation_channel.bind('invitation', function (data) {
       />
     </div>
     <div class="notify_info">
-      <p>${data['sender']} invite you to <span>${data['project']}</span></p>
-      <span class="notify_time">${mappingDifDateDescript(data['date'])}</span>
+      <p>${data["sender"]} invite you to <span>${data["project"]}</span></p>
+      <span class="notify_time">${mappingDifDateDescript(data["date"])}</span>
     </div>
   `;
 
   insertAfter(dropdown_notification_tittle, new_notification);
 });
 
-let assign_channel = pusher.subscribe('private-assigned.' + user_id);
+let assign_channel = pusher.subscribe("private-assigned." + user_id);
 
-assign_channel.bind('assignment', function (data) {
+assign_channel.bind("assignment", function (data) {
   console.log(data);
 
-  let new_notification = document.createElement('div');
-  new_notification.classList.add('notify_item', 'clickable');
+  let new_notification = document.createElement("div");
+  new_notification.classList.add("notify_item", "clickable");
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
@@ -229,21 +225,23 @@ assign_channel.bind('assignment', function (data) {
       />
     </div>
     <div class="notify_info">
-      <p>${data['sender']} assigned you the issue <span>T${data['issue']}</span></p>
-      <span class="notify_time">${mappingDifDateDescript(data['date'])}</span>
+      <p>${data["sender"]} assigned you the issue <span>T${
+    data["issue"]
+  }</span></p>
+      <span class="notify_time">${mappingDifDateDescript(data["date"])}</span>
     </div>
   `;
 
   insertAfter(dropdown_notification_tittle, new_notification);
 });
 
-let meeting_channel = pusher.subscribe('private-meeting.' + user_id);
+let meeting_channel = pusher.subscribe("private-meeting." + user_id);
 
-meeting_channel.bind('meeting', function (data) {
+meeting_channel.bind("meeting", function (data) {
   console.log(data);
 
-  let new_notification = document.createElement('div');
-  new_notification.classList.add('notify_item', 'clickable');
+  let new_notification = document.createElement("div");
+  new_notification.classList.add("notify_item", "clickable");
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
@@ -253,19 +251,43 @@ meeting_channel.bind('meeting', function (data) {
       />
     </div>
     <div class="notify_info">
-      <p>${data['sender']} scheduled a meeting for the project <span>T${data['project']}</span></p>
-      <span class="notify_time">${mappingDifDateDescript(data['date'])}</span>
+      <p>${data["sender"]} scheduled a meeting for the project <span>T${
+    data["project"]
+  }</span></p>
+      <span class="notify_time">${mappingDifDateDescript(data["date"])}</span>
     </div>
   `;
 
   insertAfter(dropdown_notification_tittle, new_notification);
 });
 
+let timeout;
 
+function clearTime() {
+  if (timeout !== null && timeout !== undefined) {
+    clearTimeout(timeout);
+  }
+}
 
+function displayError(data) {
+  const errors = data["errors"];
 
-
-
-
-
-
+  const div_elem = document.getElementById("dialog");
+  div_elem.classList.add("error-color");
+  let wait_factor = 0;
+  div_elem.querySelector(".content").innerHTML = "";
+  for (property in errors) {
+    div_elem.querySelector(".content").innerHTML +=
+      `<div> <i class="fas fa-exclamation-triangle mx-2"></i>` +
+      errors[property] +
+      "</div>";
+    wait_factor++;
+  }
+  div_elem.classList.remove("d-none");
+  clearTime();
+  timeout = setTimeout(() => {
+    div_elem.classList.add("d-none");
+    div_elem.querySelector(".content").textContent = "";
+    div_elem.classList.remove("error-color");
+  }, 3500 * wait_factor);
+}

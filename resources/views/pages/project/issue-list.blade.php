@@ -147,7 +147,7 @@
                         @foreach (\App\User::join('assigned_user', 'user.id', '=', 'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as $assignee)
                           <li class="mr-2 assignee">
                             <img
-                              src="{{asset('assets/avatars/' . "profile". '.png')}}"
+                              src="{{asset('assets/avatars/' . $assignee->photo_path . '.png')}}"
                               alt="{{ $assignee->username }}"
                               draggable="false"
                             />

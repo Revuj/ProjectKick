@@ -64,7 +64,7 @@ class UserController extends Controller
                     $user->password = password_hash($password, PASSWORD_DEFAULT);
                 } else {
                     return response()->json([
-                        'message' => 'Passwords dont match.',
+                        'errors' => ['Passwords dont match.'],
                     ], 400);
                 }
             }
@@ -76,11 +76,11 @@ class UserController extends Controller
         } catch (QueryException $err) {
             if ($err->getCode() == 23514) {
                 return response()->json([
-                    'message' => 'Invalid password length.',
+                    'errors' => ['Invalid password length.'],
                 ], 400);
             } else if ($err->getCode() == 23505) {
                 return response()->json([
-                    'message' => 'Invalid username/email.',
+                    'errors' => ['Invalid username or email.'],
                 ], 400);
             }
         }

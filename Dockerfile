@@ -1,8 +1,7 @@
 FROM ubuntu:18.04
 
 # Install dependencies
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends libpq-dev vim nginx php7.2-fpm php7.2-mbstring php7.2-xml php7.2-pgsql
+RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev vim nginx php7.2-fpm php7.2-mbstring php7.2-xml php7.2-pgsql curl php7.2-curl ca-certificates
 
 # Copy project code and install project dependencies
 COPY . /var/www/

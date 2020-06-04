@@ -43,8 +43,15 @@ let toDelete;
 
 function createProjectHandler() {
   const response = JSON.parse(this.responseText);
+
   $('#addProjectModal').modal('hide')
   console.log(response);
+  
+  if ('errors' in response) {
+    displayError(response);
+    return;
+  }
+
   let name = response.name;
   let id = response.id;
   let description = response.description;
@@ -58,7 +65,8 @@ function createProjectHandler() {
       <div class="card-header d-flex align-items-center">
       <a
         class="text-decoration-none title"
-        href="project_overview.html"
+        href="/projects/${id}"
+        
         >${ name}
       </a>
       <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="${id}">
@@ -91,7 +99,7 @@ function createProjectHandler() {
         <div class="avatar-image avatar-image--loaded mr-2">
           <div class="avatar avatar--md avatar-image__image">
             <div class="avatar__content">
-            <img src="../../assets/avatars/${createModal.dataset.photo}.png" alt="" />
+            <img src="../../assets/avatars/${createModal.dataset.photo}.png" alt="profile picture" />
             </div>
           </div>
         </div>

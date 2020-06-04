@@ -146,6 +146,23 @@ class ProjectController extends Controller
     {
         $this->authorize('create', new Project());
 
+        $rules = [
+            'name' => 'required|string|min:1|max:30',
+            'description' => 'required|string|min:1|max:255',
+            'author_id' => 'required|exists:user,id|integer',
+        ];
+
+        $messages = [
+            'required' => ":attribute is required. Please choose it",
+            'max' => ":attribute is too long.",
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
+        }
+
         $project = new Project();
         $project->name = $request->input('name');
         $project->description = $request->input('description');
@@ -171,9 +188,22 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
-        $project = Project::find($id);
-        if ($project == null) {
-            abort(404);
+        $project = Project::findOrFail($id);
+
+        $rules = [
+            'title' => 'required|string|min:1|max:30',
+            'description' => 'required|string|min:1|max:512',
+        ];
+
+        $messages = [
+            'required' => ":attribute is required. Please choose it",
+            'max' => ":attribute is too long.",
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
         }
 
         $this->authorize('coordinator', $project);
@@ -191,10 +221,7 @@ class ProjectController extends Controller
 
     public function invite(Request $request, $id)
     {
-        $project = Project::find($id);
-        if ($project == null) {
-            abort(404);
-        }
+        $project = Project::findOrFail($id);
 
         $this->authorize('coordinator', $project);
 
@@ -224,13 +251,34 @@ class ProjectController extends Controller
         $notificationKick->project_id = $id;
         $notificationKick->save();
         DB::commit();
+
+        return response()->json([$request->all()]);
     }
 
     public function remove(Request $request, $id)
     {
-        $project = Project::find($id);
-        if ($project == null) {
-            abort(404);
+        $project = Project::findOrFail($id);
+
+        /**
+         * se user and sender forem os mesmos é sair da equipa... se for o ultimo equipa done...
+         */
+        $rules = [
+            'user' => 'integer|required|exists:user,id',
+            'sender' => 'integer|required|exists:user,id',
+            'project' => 'string|required|min:1|exists:project,name',
+            'username' => 'string|required|min:1|exists:user,username',
+
+        ];
+
+        $messages = [
+            'required' => ":attribute is required. Please choose it",
+            'sender.exists' => 'The sender does not exists',
+            'user.exists' => 'The invite receiver does not exists',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
         }
 
         $this->authorize('coordinator', $project);
@@ -292,7 +340,7 @@ class ProjectController extends Controller
             $status = $request->input("status");
             $membership = MemberStatus::where("user_id", "=", $user_id)->where("project_id", "=", $id)->first();
             $membership->role = $status;
-            //$membership->save();
+            $membership->save();
         } catch (QueryException $exc) {
             return response()->json([], 404);
         }

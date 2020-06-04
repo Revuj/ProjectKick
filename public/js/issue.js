@@ -1,7 +1,6 @@
 const comment = document.getElementById('new-comment');
 const upvotes = document.querySelectorAll('.upvote');
 const downvotes = document.querySelectorAll('.downvote');
-let timeout;
 
 upvotes.forEach(upvoteArrow => upvoteArrow.addEventListener('click', upvote.bind(upvoteArrow)));
 downvotes.forEach(downvoteArrow => downvoteArrow.addEventListener('click', downvote.bind(downvoteArrow)));
@@ -18,11 +17,6 @@ function downvote() {
   vote(comment_id, upvote, this);
 }
 
-function clearTime() {
-  if (timeout !== null && timeout !== undefined) {
-    clearTimeout(timeout);
-  }
-}
 
 const nth = function (d) {
   if (d > 3 && d < 21) return 'th';
@@ -118,29 +112,16 @@ async function makeComment() {
       if (response.ok) {
         response.json().then(data => {
           if ('errors' in data) {
-            const error_message = data['errors']['content'][0];
-            const div_elem = document.getElementById('dialog');
-            div_elem.classList.add('error-color');
-            div_elem.querySelector('.content').textContent = error_message;
-            div_elem.classList.remove('d-none');
-            clearTime();
-            timeout = setTimeout(() => {
-              div_elem.classList.add('d-none');
-              div_elem.querySelector('.content').textContent = "";
-              div_elem.classList.remove('error-color');
-            }, 3500);
+            displayError(data);
           }
           else {
             const comment = data[0];
             const current_user = data[1];
             createComment(comment, current_user)
-
-
           }
         })
       }
       else {
-
         console.log('Network response was not ok.' + JSON.stringify(data));
       }
     }).catch(function (error) {

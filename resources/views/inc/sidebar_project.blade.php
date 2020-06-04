@@ -51,10 +51,16 @@
         </li>
       </ul>
     </li>
-    <li class="{{(request()->segment(1) == 'chat') ? 'side-menu-item active' : 'side-menu-item'}}">
+    <li class="{{(request()->segment(3) == 'chats') ? 'side-menu-item active' : 'side-menu-item'}}">
       <a href="/projects/{{ $project }}/chats">
         <span class="m-2"><i class="far fa-comment-alt"></i></span>
         <span class="side-menu-item-title">Chat</span>
+      </a>
+    </li>
+    <li class="{{(request()->segment(1) == 'help') ? 'side-menu-item active' : 'side-menu-item'}}">
+      <a href="/help">
+        <span class="m-2"><i class="fas fa-question"></i></span>
+        <span class="side-menu-item-title">Help</span>
       </a>
     </li>
   </ul>

@@ -23,11 +23,6 @@ dragDrop();
 
 /*add event listeners */
 create_list_btn.addEventListener("click", () => {
-  if (is_input_empty(list_to_add_name)) {
-    changecolors("error", list_to_add_name);
-    return;
-  }
-
   let id = document.getElementById("project-name").dataset.project;
   let url = `/api/projects/${id}/list`;
   sendAjaxRequest(
@@ -40,6 +35,11 @@ create_list_btn.addEventListener("click", () => {
 
 function createListHandler() {
   const response = JSON.parse(this.responseText);
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   console.log(response);
   let id = response["id"];
   let name = response["name"];
@@ -118,6 +118,12 @@ function listenAddItem(elem) {
 function createIssueHandler() {
   console.log(this.responseText);
   const response = JSON.parse(this.responseText);
+
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   console.log(response);
   let id = response[0]["id"];
   let title = response[0]["name"];
@@ -196,6 +202,11 @@ delete_issue_button.addEventListener("click", (event) => {
 
 function deleteIssueHandler() {
   const response = JSON.parse(this.responseText);
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   console.log(response);
   let issue_id = response["id"];
   let issue = document.getElementById(issue_id);
@@ -328,7 +339,6 @@ function openSideIssueListen(elem, can_edit) {
       </li>`;
     }
 
-
     let existingUsers = document.getElementsByClassName(
       "existing-user-container"
     );
@@ -369,7 +379,6 @@ function openSideIssueListen(elem, can_edit) {
       `;
     }
 
-
     let existingLabels = document.getElementsByClassName(
       "existing-label-container"
     );
@@ -398,11 +407,9 @@ function openSideIssueListen(elem, can_edit) {
       });
     }
 
-
     document.getElementById("select-due-date").classList.add("d-none");
 
-
-    if (!document.getElementById(taskID).querySelector('button.edit-task')) {
+    if (!document.getElementById(taskID).querySelector("button.edit-task")) {
       delete_issue_button.parentElement.removeChild(delete_issue_button);
       selectDueDateContainer.parentElement.removeChild(selectDueDateContainer);
     }
@@ -454,7 +461,7 @@ cancelEditTitleButton.addEventListener("click", (event) => {
 });
 
 [...sideIssueButtons].forEach((elem) => {
-  openSideIssueListen(elem, elem.querySelector('button.edit-task') != null);
+  openSideIssueListen(elem, elem.querySelector("button.edit-task") != null);
 });
 
 // Add Label
@@ -489,6 +496,12 @@ let existingLabels = document.getElementsByClassName(
 
 function deleteLabelHandler() {
   const response = JSON.parse(this.responseText);
+
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   let id = delete_issue_button.dataset.issueId;
   document
     .getElementById(id)
@@ -502,6 +515,12 @@ function deleteLabelHandler() {
 
 function addLabelHandler() {
   const response = JSON.parse(this.responseText);
+
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   let newLabel = document.createElement("li");
   newLabel.className = "mr-2";
   newLabel.innerHTML = `
@@ -570,6 +589,12 @@ labelForm.addEventListener("submit", (event) => {
 
 function createLabelHandler() {
   const response = JSON.parse(this.responseText);
+
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   let newLabel = document.createElement("li");
   newLabel.className = "mr-2 mb-1";
   newLabel.innerHTML = `
@@ -597,7 +622,7 @@ function createLabelHandler() {
   existingLabel.dataset.labelId = response["id"];
   existingLabel.dataset.labelName = response["name"];
   existingLabel.innerHTML = `
-    < i class="fas fa-check selected-label mr-2" aria - hidden="true" ></i >
+    <i class="fas fa-check selected-label mr-2" aria-hidden="true" ></i>
       <div class="color bg-info">
       </div>
       <h6 class="mb-0 p-1 existing-label">
@@ -672,6 +697,11 @@ let existingMembers = document.getElementsByClassName(
 function addMemberHandler() {
   const response = JSON.parse(this.responseText);
 
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   let newMember = document.createElement("li");
   newMember.className = "mr-2";
   newMember.innerHTML = `
@@ -694,6 +724,11 @@ function addMemberHandler() {
 
 function deleteMemberHandler() {
   const response = JSON.parse(this.responseText);
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   let id = delete_issue_button.dataset.issueId;
   document
     .getElementById(id)
@@ -740,6 +775,12 @@ submitDueDateBtn.addEventListener("click", () => {
 
 function changeDueDateHandler() {
   const response = JSON.parse(this.responseText);
+
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   console.log(response);
   let date = response["due_date"].split("-");
   let year = date[0];
@@ -761,6 +802,12 @@ submitTitle.addEventListener("click", (event) => {
 
 function changeTitleHandler() {
   const response = JSON.parse(this.responseText);
+
+  if ("errors" in response) {
+    displayError(response);
+    return;
+  }
+
   let newTitle = response["name"];
   document.querySelector(
     "#side-issue-container .task-title"
@@ -806,10 +853,7 @@ try {
   input_filter.addEventListener("input", (e) => {
     filterTasks(tasks_list, e.target.value);
   });
-} catch {
-
-}
-
+} catch { }
 
 function filterTasks(task_list, value) {
   let filtered = [];

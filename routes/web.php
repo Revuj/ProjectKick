@@ -28,10 +28,15 @@ Auth::routes();
 // auth user permission
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/users/{id}', 'User\UserController@profile');
-    Route::delete('/api/users/{id}', 'User\UserController@delete');
-    Route::put('/api/users/{id}', 'User\UserController@update');
-    Route::post('/api/users/{id}/photo', 'User\UserController@updatePhoto');
+    Route::group([
+        'middleware' => ['auth.user', 'not_banned'],
+    ], function () {
+        Route::get('/help', 'PageController@help');
+        Route::get('/users/{id}', 'User\UserController@profile');
+        Route::delete('/api/users/{id}', 'User\UserController@delete');
+        Route::put('/api/users/{id}', 'User\UserController@update');
+        Route::post('/api/users/{id}/photo', 'User\UserController@updatePhoto');
+    });
 
     //user role permissions
     Route::group([

@@ -56,6 +56,16 @@
               <li class="current">Dashboard</li>
             </ol>
           </nav>
+          <div class="w-100 pb-2 my-1">
+            <div class="mt-0 p-2 rounded  w-100 d-none" id="dialog">
+                <div class="error-content ml-3">
+                    <span class="content">
+    
+                    </span>
+                </div>
+            </div>
+          </div>
+    
           <div id="tables-types" class="d-flex border-bottom nav-links pb-2">
             <li class="active">
               Active <span class="tables-type-counter">{{ $projects->where('finish_date', null)->count() }} </span>
@@ -146,7 +156,7 @@
                       href="/projects/{{ $project->id }}"
                       >{{ $project->name }}
                     </a>
-                    @can('coordinator', $project)
+                    @can('coordinator', \App\Project::find($project->id))
                     <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="{{ $project->id }}">
                       <i class="fas fa-trash-alt"></i>
                     </button>
@@ -209,7 +219,7 @@
                       href="project_overview.html"
                       >{{ $project->name }}
                     </a>
-                    @can('delete', $project)
+                    @can('coordinator', \App\Project::find($project->id))
                     <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="{{ $project->id }}">
                       <i class="fas fa-trash-alt"></i>
                     </button>
@@ -290,7 +300,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  class="btn"
                   data-dismiss="modal"
                 >
                   Close
@@ -299,7 +309,7 @@
                   id="delete-project-button"
                   type="button"
                   data-dismiss="modal"
-                  class="btn btn-primary btn-danger"
+                  class="btn btn-close"
                 >
                   Delete
                 </button>

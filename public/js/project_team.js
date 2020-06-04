@@ -131,6 +131,13 @@ removeMemberButton.addEventListener("click", () => {
 
 function removeMemberHandler() {
   const response = JSON.parse(this.responseText);
+  
+  if ('errors' in response) {
+    console.log(response['errors']);
+    displayError(response);
+    return;
+  }
+
   console.log(response);
   let id = response.user_id;
   let elements = document.getElementsByClassName(`user_${id}`);

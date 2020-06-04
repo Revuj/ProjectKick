@@ -3,6 +3,16 @@ const saveProjectButton = document.getElementById("save-project");
 let projectTitle = document.getElementById("project-title");
 let projectDescription = document.getElementById("project-description");
 
+let previous_state = {};
+
+previous_state = {
+  id : saveProjectButton.dataset.project ,
+  title : projectTitle.innerHTML ,
+ description : projectDescription.innerHTML,
+
+ }
+
+
 
 editProjectButton.addEventListener("click", () => {
   projectTitle.style.border = "1px solid rgba(82, 82, 82, 0.329)";
@@ -41,5 +51,13 @@ saveProjectButton.addEventListener("click", () => {
 
 function updateProjectHandler() {
   const response = JSON.parse(this.responseText);
+  
+  if ('errors' in response) {
+    displayError(response)
+    saveProjectButton.dataset.project = previous_state.id;
+    projectTitle.innerHTML = previous_state.title;
+    projectDescription.innerHTML = previous_state.description;
+  }
+
   console.log(response)
 }

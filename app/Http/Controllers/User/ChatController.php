@@ -27,6 +27,21 @@ class ChatController extends Controller
     {
         $this->authorize('member', Project::findOrFail($id));
 
+        $rules = [
+            'name' => 'required|string|max:255',
+            'description' => 'string|nullable',
+        ];
+
+        $messages = [
+            'name.required' => 'You have to give a name to your channel',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), $request]);
+        }
+
         $chat = Channel::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
@@ -36,15 +51,12 @@ class ChatController extends Controller
 
         return response()->json([$chat]);
 
-        //$users = Project::find($id)->memberStatus()->join('user', 'user.id', '=', 'member_status.project_id');
-        //event(new ChatCreated($id));
-
     }
 
     public function delete($id)
     {
         //verificar se é coordenador
-        $channel = Channel::find($id);
+        $channel = Channel::findOrFail($id);
 
         //$this->authorize('delete', $channel);
         if ($channel == null) {

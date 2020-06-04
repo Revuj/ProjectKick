@@ -16,7 +16,7 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
+    <script  src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
     <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/project_team.js')}}" defer></script>
@@ -56,6 +56,16 @@
               <li class="current">Project Members</li>
             </ol>
           </nav>
+          <div class="w-100 pb-2">
+            <div class="mt-0 p-2 rounded  w-100 d-none" id="dialog">
+                <div class="error-content ml-3">
+                    <span class="content">
+    
+                    </span>
+                </div>
+            </div>
+        </div>
+    
           <div id="tables-types" class="d-flex border-bottom nav-links pb-2">
             <li class="active">
               Developer <span id="developers-counter" class="tables-type-counter">{{ count(\App\MemberStatus::where('project_id', '=', $project->id)->where('role', '=', 'developer')->join('user', 'user.id', '=', 'member_status.user_id')->get()) }}</span>

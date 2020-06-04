@@ -260,11 +260,10 @@
         </div>
       <div class="add-comment-container">
       
-      <div class = "position-relative w-100 pb-3 mb-1">
-        <div class = "mt-0 p-2 rounded position-absolute w-100 d-none" id = "dialog">
+      <div class = "w-100 pb-3 mb-1">
+        <div class = "mt-0 p-2 rounded w-100 d-none" id = "dialog">
           <div class="error-content ml-3">
-            <i class="fas fa-exclamation-triangle"></i>
-              <span class = "ml-2 content"> Something went wrong</span>
+              <span class = "ml-2 content"> </span>
           </div>
         </div>
       </div>

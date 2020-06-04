@@ -65,7 +65,6 @@
                 <ul class="list-group list-group-flush mt-2">
                   <li class="list-group-item p-2">
                     <h4 id="username" class="title mb-0 mt-2">{{ $username }}</h4>
-                    <span id="country" class="text-muted d-block mb-1">Porto, {{ $country }}</span>
                     <span id="email" class="font-weight-light smaller-text"><i class="far fa-envelope mr-1"></i>{{ $email }}</span>
                     <div id="phone_number" class="font-weight-light smaller-text"><i class="fas fa-phone mr-1"></i>{{ $phone_number }}</div>
                     <div class="mb-4 mt-3">
@@ -75,20 +74,6 @@
                     </div>
                   </li>
                 </ul>
-                <div class="d-flex justify-content-left card-footer">
-                  <ul class="labels d-flex justify-content-center mx-2">
-                    <li class="mr-2">
-                      <h6 class="mb-0 px-1 list-item-label bg-success">
-                        lbaw
-                      </h6>
-                    </li>
-                    <li class="mr-2">
-                      <h6 class="mb-0 px-1 list-item-label bg-warning">
-                        html
-                      </h6>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
             <div class="col-md-8" id="details">
@@ -162,6 +147,16 @@
                     <i class="fas fa-times"></i>
                   </button>
                 </div>
+                <div class="w-100 p-2">
+                  <div class="mt-0 p-2 rounded  w-100 d-none" id="dialog">
+                      <div class="error-content ml-3">
+                          <span class="content">
+      
+                          </span>
+                      </div>
+                  </div>
+              </div>
+
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item pt-0">
                     <div class="row">
@@ -224,7 +219,7 @@
 
                           <div class="form-row">
                             <div class="form-group col-md-6">
-                              <label for="fePassword">Passseword</label>
+                              <label for="fePassword">Passsword</label>
                               <input
                                 type="password"
                                 class="form-control"
@@ -241,28 +236,6 @@
                                 class="form-control"
                                 id="feConfirmPassword"
                                 placeholder="Confirm Password"
-                              />
-                            </div>
-                          </div>
-                          <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label for="feCity">City</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="feCity"
-                                placeholder="City"
-                                value="Porto"
-                              />
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label for="feCountry">Country</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="feCountry"
-                                placeholder="Country"
-                                value="{{ $country }}"
                               />
                             </div>
                           </div>

@@ -16,6 +16,7 @@ use App\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class IssueController extends Controller
 {
@@ -83,18 +84,18 @@ class IssueController extends Controller
     }
 
     public function showUserIssues($id)
-    {   
+    {
         $user = User::findOrFail($id);
-  
-        $issues =  DB::table('assigned_user')->join('user', 'user.id', '=', 'assigned_user.user_id')
-        ->join('issue', 'issue.id', '=', 'assigned_user.issue_id')
-        ->where('user.id','=', $id)
-        ->select('issue.*')
-        ->orderby('creation_date', 'desc')
-        ->get();   
-        return view('pages.user-issues' , [
-            'issues' => $issues ,
-            'today' => Carbon::now()
+
+        $issues = DB::table('assigned_user')->join('user', 'user.id', '=', 'assigned_user.user_id')
+            ->join('issue', 'issue.id', '=', 'assigned_user.issue_id')
+            ->where('user.id', '=', $id)
+            ->select('issue.*')
+            ->orderby('creation_date', 'desc')
+            ->get();
+        return view('pages.user-issues', [
+            'issues' => $issues,
+            'today' => Carbon::now(),
         ]);
     }
 
@@ -108,6 +109,22 @@ class IssueController extends Controller
 
     public function create(Request $request)
     {
+        $rules = [
+            'title' => 'required|string',
+            'author' => 'required|integer|exists:user,id',
+            'description' => 'string|nullable',
+            'list' => 'required|integer|exists:issue_list,id',
+        ];
+
+        $messages = [
+            'required' => ":attribute is required for the issue. Please choose it",
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
+        }
+
         $issue = new Issue();
         $issue->name = $request->input('title');
         $issue->author_id = $request->input('author');
@@ -122,7 +139,23 @@ class IssueController extends Controller
 
     public function addList(Request $request, $id)
     {
+        $rules = [
+            'name' => 'required|string|min:1',
+        ];
+
+        $messages = [
+            'name.required' => "Please choose a name for the issue list",
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
+        }
+        return response()->json([$request->all()]);
+
         $project = Project::findOrFail($id);
+
         $this->authorize('member', $project);
 
         $issueList = new IssueList();
@@ -147,6 +180,26 @@ class IssueController extends Controller
     public function update(Request $request, $id)
     {
         $issue = Issue::findOrFail($id);
+
+        $request['status'] = filter_var($request['status'], FILTER_VALIDATE_BOOLEAN);
+
+        $rules = [
+            'title' => 'string|nullable',
+            'description' => 'string|nullable',
+            'due_date' => 'date|nullable',
+            'status' => 'boolean|nullable',
+        ];
+
+        $messages = [
+            'required' => ":attribute is required. Please choose it",
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
+        }
+
         $this->authorize('update', $issue);
 
         $title = $request->input("title");
@@ -167,10 +220,10 @@ class IssueController extends Controller
         }
 
         if ($status != null) {
-            if ($status == "true") {
+            if ($status == true) {
                 $issue->is_completed = true;
                 $issue->closed_date = Carbon::now()->toDateTimeString();
-            } else if ($status == "false") {
+            } else if ($status == false) {
                 $issue->is_completed = false;
             }
         }
@@ -183,7 +236,24 @@ class IssueController extends Controller
     public function assign(Request $request, $id)
     {
         $issue = Issue::findOrFail($id);
+
         $this->authorize('update', $issue);
+        $rules = [
+            'user' => 'required|integer|exists:user,id',
+            'sender' => 'required|integer|exists:user,id',
+            'due_date' => 'date|nullable',
+            'status' => 'boolean|nullable',
+        ];
+
+        $messages = [
+            'required' => ":attribute is required. Please choose it",
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
+        }
 
         $user_id = $request->input("user");
         $user = User::findOrFail($user_id);
@@ -225,6 +295,19 @@ class IssueController extends Controller
         $issue = Issue::findOrFail($id);
         $this->authorize('update', $issue);
 
+        $rules = [
+            'user' => 'required|integer|exists:user,id',
+        ];
+
+        $messages = [
+            'required' => ":attribute is required. Please choose it",
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
+        }
+
         $user = $request->input("user");
         $assigned_user = AssignedUser::find(['user_id' => intval($user), 'issue_id' => intval($id)]);
         $assigned_user->delete();
@@ -236,6 +319,17 @@ class IssueController extends Controller
     {
         $issue = Issue::findOrFail($id);
         $this->authorize('update', $issue);
+
+        $rules = [
+            'label' => 'nullable|integer|exists:tag,id',
+            'name' => 'required|string|min:1',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 404]);
+        }
 
         $label = $request->input("label");
         $name = $request->input("name");

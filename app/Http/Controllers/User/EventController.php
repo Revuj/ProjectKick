@@ -57,8 +57,10 @@ class EventController extends Controller
                 $sender->photo_path,
                 $project_id
             );
+
             //event($assignment);
 
+            DB::beginTransaction();
             $notification = new Notification();
             $notification->date = Carbon::now()->toDateTimeString();
             $notification->receiver_id = $member->user_id;
@@ -69,6 +71,7 @@ class EventController extends Controller
             $notificationEvent->notification_id = $notification->id;
             $notificationEvent->event_id = $event;
             $notificationEvent->save();
+            DB::commit();
         }
     }
 
