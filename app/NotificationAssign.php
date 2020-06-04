@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class NotificationAssign extends Model
 {
+    protected $appends = ['typeofNotification'];
+
     /**
      * The table associated with the model.
      *
@@ -30,5 +32,10 @@ class NotificationAssign extends Model
     public function issue()
     {
         return $this->belongsTo(Project::class, 'issue_id');
+    }
+
+    public function getTypeOfNotificationAttribute()
+    {
+        return 'assign';
     }
 }

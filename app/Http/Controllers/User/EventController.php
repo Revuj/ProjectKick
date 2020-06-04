@@ -49,17 +49,6 @@ class EventController extends Controller
 
         $members = MemberStatus::where("project_id", "=", $project_id)->get();
         foreach ($members as $member) {
-            $assignment = new Meeting(
-                $project->name,
-                $sender->username,
-                $member->user_id,
-                Carbon::now()->toDateTimeString(),
-                $sender->photo_path,
-                $project_id
-            );
-
-            //event($assignment);
-
             DB::beginTransaction();
             $notification = new Notification();
             $notification->date = Carbon::now()->toDateTimeString();
@@ -72,6 +61,17 @@ class EventController extends Controller
             $notificationEvent->event_id = $event;
             $notificationEvent->save();
             DB::commit();
+
+            $assignment = new Meeting(
+                $project->name,
+                $sender->username,
+                $member->user_id,
+                Carbon::now()->toDateTimeString(),
+                $sender->photo_path,
+                $project_id,
+                $notification->id
+            );
+            event($assignment);
         }
     }
 

@@ -24,7 +24,7 @@ class IssueList extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'id_project'];
+    protected $fillable = ['name', 'project_id'];
 
     /**
      * @return

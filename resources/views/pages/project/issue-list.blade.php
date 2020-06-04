@@ -32,8 +32,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="{{asset('js/issueslist.js')}}" defer></script>
-    <script src="{{asset('js/navbar.js')}}" defer></script>
-    <script src="{{asset('js/index.js')}}" defer></script>
+        <script src="{{asset('js/index.js')}}" defer></script>
 @endsection
 
 
@@ -60,8 +59,8 @@
 
             </ul>
 
-            <div id="filter-issues" class="border-bottom py-3 my-0 d-none">
-              <form class="d-md-flex justify-content-between">
+            <div id="filter-issues" class="border-bottom py-3 my-0">
+              <form class="d-md-flex justify-content-between" id="issues-filter-form">
                 <div class="form-group mb-0 flex-grow-1">
                   <input
                     type="text"
@@ -70,30 +69,6 @@
                     id="issues-filter"
                     placeholder="Search or filter results..."
                   />
-                </div>
-                <div id="filter-buttons" class="dropdown ml-1">
-                  <button
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    id="dropdownFiltersButton"
-                    type="button"
-                    type="submit"
-                    class="custom-button primary-button dropdown-toggle"
-                  >
-                    Sort by<i class="fas fa-chevron-down ml-3"></i>
-                  </button>
-                  <div
-                    class="dropdown-menu"
-                    aria-labelledby="dropdownFiltersButton"
-                  >
-                    <a class="dropdown-item" href="#">Due Date</a>
-                    <a class="dropdown-item" href="#">Opening Date</a>
-                    <a class="dropdown-item" href="#">Assignees</a>
-                  </div>
-                  <button id = "asc-button" class="custom-button primary-button">
-                    <i class="fas fa-arrow-up"></i>
-                  </button>
                 </div>
               </form>
             </div>
@@ -234,13 +209,13 @@
                   @foreach (\App\User::join('member_status', 'user.id', '=', 'member_status.user_id')
                   ->join('project', 'project.id', '=', 'member_status.project_id')
                   ->where('project.id', '=', $project->id)
-                  ->select('user.id as id', 'user.username as username')
+                  ->select('user.id as id', 'user.username as username', 'photo_path')
                   ->groupBy('user.id')
                   ->get() as $assignee)
                     <li class="existing-user-container clickable d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }} data-username="{{ $assignee->username }}">
                       <i class="fas fa-check selected-user invisible mr-2"></i>
                       <span class="assignee ml-2"><img
-                        src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
+                        src="{{asset('assets/avatars/' . $assignee->photo_path . '.png')}}" alt="{{ $assignee->username }}"
                         draggable="false" />
                       </span>
                       <h6 class="mb-0 p-1 existing-user font-weight-bold ml-2">

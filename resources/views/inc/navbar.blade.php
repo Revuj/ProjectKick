@@ -44,6 +44,7 @@
 
         $notifications = $kicked_notifications->toBase()->merge($invite_notifications)->merge($event_notifications)->merge($assign_notifications)->sortByDesc('date');
       @endphp
+      @if(Auth::User()['is_admin'] === false)
       <li class="utility notification mb-0">
         <a href="#"><i class="fas fa-bell"></i></a>
         <span class="num">{{count($notifications)}}</span>
@@ -66,12 +67,10 @@
                   @elseif ($notification ['typeOfNotification'] === 'invite')
                     <p><span class=".author-reference">{{$notification['username']}}</span> invited you to project <span class=".project-reference">{{$notification['name']}}</span></p>
                   @elseif ($notification ['typeOfNotification'] === 'event')
-                    <p><span class=".author-reference">{{$notification['username']}}</span> created an event</p>
+                    <p><span class=".author-reference">{{$notification['username']}}</span> created a meeting</p>
                   @elseif ($notification ['typeOfNotification'] === 'assign')
                     <p><span class=".author-reference">{{$notification['username']}}</span> assigned you an issue</p>
                   @endif
-                  
-                  <span class="notify_time">10 minutes ago</span>
                 </div>
               </div>
             @endforeach
@@ -86,15 +85,17 @@
           </a>
         </div>
       </li>
+      @endif
       <!--profile-->
       <li class="px-2 utility ml-3 mb-0 user  ">
         <a href="#"><i class="fas fa-user"></i></a>
         <div class="user-dropdown d-none">
           <h6 class="user-title text-center">Profile</h6>
+          @if(Auth::User()['is_admin'] === false)
           <div class="notify_item clickable">
             <div class="notify_img">
               <img
-                src="{{asset('assets/profile.png')}}"
+                src="{{asset('assets/'. Auth::User()['photo_path'] . '.png')}}"
                 alt="profile_pic"
                 style="width: 40px"
               />
@@ -103,6 +104,7 @@
               <p><a class="nostyle" href="/users/{{ Auth::user()->id }}" id="auth-username" data-id="{{ Auth::user()->id }}">{{ Auth::user()->username }}</a></p>
             </div>
           </div>
+          @endif
           <!--https://codepen.io/ste-vg/pen/oNgrYOb-->
           <div class="notify_item clickable d-flex">
             <p class="m-0" id="dark-mode">Dark Mode</p>

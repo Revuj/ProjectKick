@@ -152,16 +152,15 @@ class IssueController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors(), 404]);
         }
-        return response()->json([$request->all()]);
 
         $project = Project::findOrFail($id);
 
         $this->authorize('member', $project);
 
-        $issueList = new IssueList();
-        $issueList->name = $request->input('name');
-        $issueList->project_id = $id;
-        $issueList->save();
+        $issueList = IssueList::create([
+            'name' => $request->input('name'),
+            'project_id' => $id,
+        ])->refresh();
 
         return $issueList;
     }
@@ -263,17 +262,6 @@ class IssueController extends Controller
 
         $assigned_user = AssignedUser::create(['user_id' => $user_id, 'issue_id' => $id]);
 
-        $assignment = new Assignment(
-            $issue->name,
-            $sender->username,
-            $user_id,
-            Carbon::now()->toDateTimeString(),
-            $request->photo_path,
-            $id
-        );
-
-        event($assignment);
-
         DB::beginTransaction();
         $notification = new Notification();
         $notification->date = Carbon::now()->toDateTimeString();
@@ -286,6 +274,19 @@ class IssueController extends Controller
         $notificationAssign->issue_id = $id;
         $notificationAssign->save();
         DB::commit();
+
+        $assignment = new Assignment(
+            $issue->name,
+            $sender->username,
+            $user_id,
+            Carbon::now()->toDateTimeString(),
+            $request->photo_path,
+            $id,
+            $notification->id,
+            $sender->photo_path
+        );
+
+        event($assignment);
 
         return User::findOrFail($user_id);
     }
@@ -358,5 +359,16 @@ class IssueController extends Controller
         $issue_tag->delete();
 
         return $issue_tag;
+    }
+
+    protected function filter(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+        $search = $request->input('search');
+        $issues = $project->issues()
+            ->whereRaw("issue.search @@ plainto_tsquery('english', ?)", [$search])
+            ->select('issue.id');
+
+        return $issues->get();
     }
 }

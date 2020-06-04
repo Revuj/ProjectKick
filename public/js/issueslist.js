@@ -197,13 +197,6 @@ let issues_ul = document.querySelector("#issue-list");
 let sortBy = document.querySelectorAll(
   "#filter-buttons .dropdown-menu .dropdown-item"
 );
-let button_asc = document.querySelector("#asc-button");
-
-button_asc.addEventListener("click", e => {
-  ascendent = !ascendent;
-  if (sorting_type === null) return;
-  sortingElementsHTML(sorting_type);
-});
 
 let issues = [
   {
@@ -417,5 +410,34 @@ function issueoutputHTML(issue) {
   return output;
 }
 
-/*parameter deve ser a issues ja filtradas para o tipo open, close ou all */
-//renderIssues(issues);
+let project_id = document.getElementById("project-name").dataset.project;
+
+document.getElementById("issues-filter-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  let search = document.getElementById("issues-filter").value;
+  console.log(search);
+  if (search.length > 0) {
+    sendAjaxRequest("POST", `/api/${project_id}/issues`, { search }, searchIssue);
+  } else {
+    let issues = document.getElementsByClassName("issue");
+    [...issues].forEach(elem => {
+      elem.classList.remove("d-none");
+    });
+  }
+})
+
+function searchIssue() {
+  const response = JSON.parse(this.responseText);
+  console.log(response);
+
+  let issues = document.getElementsByClassName("issue");
+  [...issues].forEach(elem => {
+    elem.classList.add("d-none");
+  });
+
+  for (elem in response) {
+    let id = response[elem].id;
+    document.getElementById(id).classList.remove("d-none");
+  }
+
+}

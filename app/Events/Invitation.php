@@ -22,13 +22,15 @@ class Invitation implements ShouldBroadcast
     public $date;
     public $senderPhotoPath;
     public $projectId;
+    public $notification_id;
+    public $photo;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($project, $sender, $receiver, $date, $senderPhotoPath, $projectId)
+    public function __construct($project, $sender, $receiver, $date, $senderPhotoPath, $projectId, $notification_id, $photo)
     {
         $this->project = $project;
         $this->sender = $sender;
@@ -36,7 +38,8 @@ class Invitation implements ShouldBroadcast
         $this->date = $date;
         $this->senderPhotoPath = $senderPhotoPath;
         $this->projectId = $projectId;
-        
+        $this->notification_id = $notification_id;
+        $this->photo = $photo;
     }
 
     /**

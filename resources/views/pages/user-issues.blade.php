@@ -25,7 +25,6 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
 <script src="{{asset('js/my_work.js')}}" defer></script>
-<script src="{{asset('js/navbar.js')}}" defer></script>
 <script src="{{asset('js/index.js')}}" defer></script>
 @endsection
 

@@ -26,7 +26,6 @@ $project->id])
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
 <script src="{{asset('js/board.js')}}" defer></script>
-<script src="{{asset('js/navbar.js')}}" defer></script>
 <script src="{{asset('js/index.js')}}" defer></script>
 @endsection
 
@@ -128,7 +127,7 @@ $project->id])
                             'assigned_user.user_id')->where('assigned_user.issue_id', '=', $issue->id )->get() as
                             $assignee)
                             <span class="assignee ml-2" data-user-id={{ $assignee->id }}><img
-                                    src="{{asset('assets/avatars/' . "profile". '.png')}}"
+                                    src="{{asset('assets/avatars/' . $assignee->photo_path . '.png')}}"
                                     alt="{{ $assignee->username }}" draggable="false" />
                             </span>
                             @endforeach
@@ -266,13 +265,13 @@ $project->id])
                     @foreach (\App\User::join('member_status', 'user.id', '=', 'member_status.user_id')
                     ->join('project', 'project.id', '=', 'member_status.project_id')
                     ->where('project.id', '=', $project->id)
-                    ->select('user.id as id', 'user.username as username')
+                    ->select('user.id as id', 'user.username as username', 'photo_path')
                     ->groupBy('user.id')
                     ->get() as $assignee)
                     <li class="existing-user-container clickable d-flex flex-row align-items-center p-2"
                         data-user-id={{ $assignee->id }} data-username="{{ $assignee->username }}">
                         <i class="fas fa-check selected-user invisible mr-2"></i>
-                        <span class="assignee ml-2"><img src="{{asset('assets/avatars/' . "profile". '.png')}}"
+                        <span class="assignee ml-2"><img src="{{asset('assets/avatars/' . $assignee->photo_path . '.png')}}"
                                 alt="{{ $assignee->username }}" draggable="false" />
                         </span>
                         <h6 class="mb-0 p-1 existing-user font-weight-bold ml-2">

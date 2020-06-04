@@ -90,7 +90,7 @@ function requestCreateMsg() {
   let url = `/api/chat/${active}/messages`;
 
   sendAjaxRequest(
-    "put",
+    "post",
     url,
     {
       content: message.value,
@@ -129,8 +129,12 @@ function drawMessageTemplate(message) {
         ${image}
       </div>
       <div class="message d-flex flex-column align-items-start"> 
-            <div class="message-header"><span class="author">${message["username"]}</span>
-            <span class="time_date px-2"> ${getDate(message["date"])} </span></div>
+            <div class="message-header"><span class="author">${
+              message["username"]
+            }</span>
+            <span class="time_date px-2"> ${getDate(
+              message["date"]
+            )} </span></div>
             <div class="message-content">
                 ${message["message"]}
             </div>
@@ -158,7 +162,7 @@ create_chat_btn.addEventListener("click", (e) => {
 function requestNewChat(name, description) {
   let url = `/api/project/${project_id}/chat`;
   sendAjaxRequest(
-    "put",
+    "post",
     url,
     {
       name: name,
@@ -187,62 +191,7 @@ function newChatHandler() {
  */
 function addChatTemplate(chat) {
   let id = chat["id"];
-
-  //channels[id] = pusher.subscribe('private-groups.' + id);
-  /*add to the left side */
-  let inbox = document.querySelector(".inbox_msg");
-  let inbox_template = document.createElement("div");
-  inbox_template.classList.add(
-    "clickable",
-    "chat_list",
-    "d-flex",
-    "justify-content-between",
-    "align-items-center"
-  );
-  inbox_template.dataset.chat = `${chat["id"]}`;
-  inbox_template.id = `${chat["id"]}`;
-  let innerHTML = `
-      <a class="chat_ib">
-        <h5># ${chat["name"]}</h5>
-      </a>
-      <button type="button" class="btn delete-channel-button ml-auto text-white " data-toggle="modal" data-target="#delete-channel-modal" data-channel="${id}">
-                <i class="fas fa-trash-alt"></i>
-    </button>`;
-  inbox_template.insertAdjacentHTML("beforeend", innerHTML);
-  inbox.appendChild(inbox_template);
-
-  let channel_header = document.querySelector(".channel_header");
-  let header = document.createElement("div");
-  header.classList.add("m-0", "d-none");
-  header.id = `chat-info${chat["id"]}`;
-  innerHTML = `
-        <span class="channel_name">#  ${chat["name"]}  | </span> 
-        <span class="channel_description"> ${chat["description"]} </span> `;
-
-  header.insertAdjacentHTML("beforeend", innerHTML);
-  channel_header.appendChild(header);
-
-  let msg_history = document.createElement("div");
-  msg_history.id = `chat-msg${id}`;
-  msg_history.classList.add("d-none");
-
-  let typer = document.querySelector(".type_msg");
-  document.querySelector(".msg_history").insertBefore(msg_history, typer);
-
-  /*add listenners */
-  let new_chat = document.querySelector(`div[data-chat = "${chat["id"]}" ]`);
-  console.log(new_chat);
-  new_chat.addEventListener("click", changeChat.bind(new_chat), false);
-
-  // bind new chat
-  changeChat.apply(new_chat);
-
-  let deleteButtons = document.getElementsByClassName("delete-channel-button");
-  deleteButtons[deleteButtons.length - 1].addEventListener("click", (e) => {
-    e.stopPropagation();
-    $("#delete-channel-modal").modal("show");
-    toDelete = deleteButtons[deleteButtons.length - 1].dataset.channel;
-  });
+  window.location.replace(`/projects/${project_id}/chats/${id}`);
 }
 
 // Delete channel
@@ -263,14 +212,14 @@ function deleteHandler() {
   let id = response.id;
   let channel = document.getElementById(id);
   channel.remove();
+  if (toDelete === active_chat.getAttribute("id")) {
+    window.location.href = `/projects/${project_id}/chats/`;
+  }
 }
 
 function deleteChannel(e) {
   e.preventDefault();
   sendAjaxRequest("delete", `/api/channels/${toDelete}`, {}, deleteHandler);
-  if (toDelete === active_chat.getAttribute("id")) {
-    window.location.href = `/projects/${project_id}/chats/`;
-  }
 }
 
 window.onbeforeunload = confirmExit;
@@ -295,31 +244,48 @@ function updateScroll() {
 
 //======
 
-
-
 function getDate(data) {
-  const date = new Date(data);
-  let h = date.getHours(), m = date.getMinutes();
-  let _time = (h > 12) ? (h - 12 + ':' + m + 'pm') : (h + ':' + m + ' am');
+  const date = new Date(data.split("+")[0]);
+  let h = date.getHours(),
+    m = date.getMinutes();
+  let _time = h > 12 ? h - 12 + ":" + m + "pm" : h + ":" + m + " am";
 
   let day_week = {
-    0: 'Sunday',
-    1: 'Monday',
-    2: 'Tuesday',
-    3: 'Wednesday',
-    4: 'Thursday',
-    5: 'Friday',
-    6: 'Sathurday'
-  }
+    0: "Sunday",
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Sathurday",
+  };
 
-  let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-
-  const time = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + ", " + _time;
+  const time =
+    date.getDate() +
+    " " +
+    months[date.getMonth()] +
+    " " +
+    date.getFullYear() +
+    ", " +
+    _time;
 
   return time;
 }
-
 
 class MessageManager {
   constructor() {
@@ -401,8 +367,12 @@ class MessageManager {
                 ${image}
               </div>
               <div class="message d-flex flex-column align-items-start"> 
-                    <div class="message-header"><span class="author">${message["username"]}</span>
-                    <span class="time_date px-2"> ${getDate(message["date"])} </span></div>
+                    <div class="message-header"><span class="author">${
+                      message["username"]
+                    }</span>
+                    <span class="time_date px-2"> ${getDate(
+                      message["date"]
+                    )} </span></div>
                     <div class="message-content">
                         ${message["content"]}
                     </div>

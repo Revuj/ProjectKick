@@ -72,9 +72,11 @@ $project->id] )
                     <div class="project-section general-info">
                         <div class="d-flex mb-2">
                             <h4 class="flex-grow-1 description">Description</h4>
+                            @can('coordinator', $project)
                             <button id="edit-project" type="button" class="custom-button edit-button mr-1">
                                 <i class="ml-auto fas fa-pencil-alt float-right" aria-hidden="true"></i>
                             </button>
+                            @endcan
                             <button id="save-project" type="button" class="custom-button edit-button mr-1"
                                 data-project="{{ $project->id }}">
                                 <i class="ml-auto far fa-save float-right"></i>

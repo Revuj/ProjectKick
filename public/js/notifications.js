@@ -12,10 +12,7 @@ let refuse_buttons = document.querySelectorAll(
   ".custom-button.secondary-button"
 );
 
-let seen_buttons = document.querySelectorAll(
-  ".custom-button.seen-button"
-);
-
+let seen_buttons = document.querySelectorAll(".custom-button.seen-button");
 
 refuse_buttons.forEach((btn) =>
   btn.addEventListener("click", deleteInvite.bind(btn))
@@ -47,7 +44,6 @@ let invited_counter = invited.querySelector(".type-counter");
 let kicked_counter = kicked.querySelector(".type-counter");
 let meeting_counter = meetings.querySelector(".type-counter");
 let assigned_counter = assigned.querySelector(".type-counter");
-
 
 notifications_filters.forEach((elem) =>
   elem.addEventListener("click", (e) => {
@@ -96,21 +92,24 @@ async function seenNotification() {
             let btns = document.querySelectorAll(
               `.seen-button[data-notification = '${notification_id}']`
             );
-            console.log(data);
+            console.log(btns);
             btns.forEach((btn) => {
-              console.log(btn.parentNode);
+              console.log("oioioioi" + btn.parentNode);
               btn.parentNode.remove();
             });
             all_counter.textContent = parseInt(all_counter.textContent) - 1;
             switch (type) {
               case "kick":
-                kicked_counter.textContent = parseInt(kicked_counter.textContent) - 1;
+                kicked_counter.textContent =
+                  parseInt(kicked_counter.textContent) - 1;
                 break;
               case "assign":
-                assigned_counter.textContent = parseInt(assigned_counter.textContent) - 1;
+                assigned_counter.textContent =
+                  parseInt(assigned_counter.textContent) - 1;
                 break;
               case "meeting":
-                meeting_counter.textContent = parseInt(meeting_counter.textContent) - 1;
+                meeting_counter.textContent =
+                  parseInt(meeting_counter.textContent) - 1;
                 break;
             }
             // invited_counter.textContent =
@@ -137,10 +136,10 @@ async function deleteInvite() {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
-    }
+    },
   };
 
-  console.log({ invite_id })
+  console.log({ invite_id });
   fetch(`/api/notification/${invite_id}/invite`, init)
     .then(function (response) {
       if (response.ok) {
@@ -243,11 +242,13 @@ class message {
 }
 
 class invite extends message {
-  constructor(type, sender, date, project, projectId) {
+  constructor(type, sender, date, project, projectId, notification, photo) {
     super(type, date);
     this.sender = sender;
     this.project = project;
     this.projectId = projectId;
+    this.notification = notification;
+    this.photo = photo;
   }
 
   //{TODO PHOTO PATH CHECK}
@@ -259,44 +260,47 @@ class invite extends message {
     let upperContent = document.createElement("div");
     upperContent.classList.add("d-flex", "justify-content-between");
     upperContent.innerHTML += `<div class ="d-flex align-items-center">
-                <img class = "m-2" src="/assets/profile.png"
-                alt="profile_pic" style="width: 40px"/>
-                <p><span class="author-reference">${
+    <img  class="m-2" src="/assets/avatars/${this.photo}.png" alt="${
       this.sender
-      } </span>invited you to the project <span class="project-reference">${
+    } profile picture" style = "width:40px" />
+                <p><span class="author-reference">${
+                  this.sender
+                } </span>invited you to the project <span class="project-reference">${
       this.project
-      }</span></p>
+    }</span></p>
                 </div>
                 <p class="timestamp smaller-text m-2"> ${mappingDifDateDescript(
-        this.date
-      )}</p>`;
+                  this.date
+                )}</p>`;
 
     contentTemplate.appendChild(upperContent);
 
-    let delete_btn = document.createElement("button");
-    delete_btn.classList.add("custom-button", "primary-button", "mx-2");
-    delete_btn.dataset.invite = this.projectId;
-    delete_btn.innerHTML = 'Accept <i class="fas fa-check"></i>';
-    delete_btn.addEventListener("click", acceptInvite.bind(delete_btn));
-
     let accept_btn = document.createElement("button");
-    accept_btn.classList.add("custom-button", "secondary-button", "mx-2");
-    delete_btn.dataset.invite = this.projectId;
-    accept_btn.innerHTML = 'Deny <i class="fas fa-times"></i>';
-    accept_btn.addEventListener("click", deleteInvite.bind(accept_btn));
+    accept_btn.classList.add("custom-button", "primary-button", "mx-2");
+    accept_btn.dataset.invite = this.projectId;
+    accept_btn.innerHTML = 'Accept <i class="fas fa-check"></i>';
+    accept_btn.addEventListener("click", acceptInvite.bind(accept_btn));
 
-    contentTemplate.appendChild(delete_btn);
+    let delete_btn = document.createElement("button");
+    delete_btn.classList.add("custom-button", "secondary-button", "mx-2");
+    delete_btn.dataset.notification = this.notification;
+    delete_btn.innerHTML = 'Deny <i class="fas fa-times"></i>';
+    delete_btn.addEventListener("click", deleteInvite.bind(delete_btn));
+
     contentTemplate.appendChild(accept_btn);
+    contentTemplate.appendChild(delete_btn);
 
     return contentTemplate;
   }
 }
 
 class kick extends message {
-  constructor(type, sender, date, project) {
+  constructor(type, sender, date, project, notification, photo) {
     super(type, date);
     this.sender = sender;
     this.project = project;
+    this.notification = notification;
+    this.photo = photo;
   }
 
   render() {
@@ -320,6 +324,11 @@ class kick extends message {
 
     contentTemplate.appendChild(upperContent);
 
+    contentTemplate.innerHTML += `
+      <button data-notification-type="meeting" data-notification="88" type="button" 
+      class="custom-button seen-button mx-2">Seen <i class="fas fa-check" aria-hidden="true"></i></button>
+    `;
+
     this.addClassesToElementList(contentTemplate);
     this.notification_list.appendChild(contentTemplate);
   }
@@ -337,23 +346,46 @@ class kick extends message {
     contentTemplate.innerHTML = `
       <div class = "d-flex justify-content-between">
         <div class = "d-flex align-items-center justify-content-center">
-        <img class = "m-2" src="/assets/profile.png"
-        alt="profile_pic" style="width: 40px"/>
-        <p><span class="author-reference">${this.sender} </span>kicked you out of the project <span class="project-reference">${this.project}</span></p>
+        <img  class="m-2" src="/assets/avatars/${this.photo}.png" alt="${
+      this.sender
+    } profile picture" style = "width:40px" />
+        <p><span class="author-reference">${
+          this.sender
+        } </span>kicked you out of the project <span class="project-reference">${
+      this.project
+    }</span></p>
         </div>
-        <p class="timestamp smaller-text m-2">${this.date}</p>
+        <p class="timestamp smaller-text m-2">${mappingDifDateDescript(
+          this.date
+        )}</p>
       </div>
     `;
+
+    let seen_btn = document.createElement("button");
+    seen_btn.classList.add(
+      "seen-button",
+      "custom-button",
+      "primary-button",
+      "mx-2"
+    );
+    seen_btn.dataset.notification = this.notification;
+    seen_btn.setAttribute("data-notification-type", this.type);
+    seen_btn.innerHTML = 'Seen <i class="fas fa-check"></i>';
+    seen_btn.addEventListener("click", seenNotification.bind(seen_btn));
+    contentTemplate.appendChild(seen_btn);
+
     return contentTemplate;
   }
 }
 
 class assign extends message {
-  constructor(type, sender, date, issue, issueId) {
+  constructor(type, sender, date, issue, issueId, notification, photo) {
     super(type, date);
     this.sender = sender;
     this.issue = issue;
     this.issueId = issueId;
+    this.notification = notification;
+    this.photo = photo;
   }
 
   getElement() {
@@ -364,29 +396,44 @@ class assign extends message {
     let upperContent = document.createElement("div");
     upperContent.classList.add("d-flex", "justify-content-between");
     upperContent.innerHTML += `<div class ="d-flex align-items-center">
-                <img class = "m-2" src="/assets/profile.png"
-                alt="profile_pic" style="width: 40px"/>
-                <p><span class="author-reference">${
+    <img  class="m-2" src="/assets/avatars/${this.photo}.png" alt="${
       this.sender
-      } </span>assigned you to the issue <span class="project-reference">${
+    } profile picture" style = "width:40px" />
+                <p><span class="author-reference">${
+                  this.sender
+                } </span>assigned you to the issue <span class="project-reference">${
       this.issue
-      }</span></p>
+    }</span></p>
                 </div>
                 <p class="timestamp smaller-text m-2"> ${mappingDifDateDescript(
-        this.date
-      )}</p>`;
+                  this.date
+                )}</p>`;
 
     contentTemplate.appendChild(upperContent);
+
+    let seen_btn = document.createElement("button");
+    seen_btn.classList.add(
+      "seen-button",
+      "custom-button",
+      "primary-button",
+      "mx-2"
+    );
+    seen_btn.dataset.notification = this.notification;
+    seen_btn.setAttribute("data-notification-type", this.type);
+    seen_btn.innerHTML = 'Seen <i class="fas fa-check"></i>';
+    seen_btn.addEventListener("click", seenNotification.bind(seen_btn));
+    contentTemplate.appendChild(seen_btn);
 
     return contentTemplate;
   }
 }
 
 class issue extends message {
-  constructor(type, date, project, title) {
+  constructor(type, date, project, title, notification) {
     super(type, date);
     this.project = project;
     this.title = title;
+    this.notification = notification;
   }
 
   render() {
@@ -406,9 +453,23 @@ class issue extends message {
 }
 
 class meeting extends message {
-  constructor(type, date, project) {
+  constructor(
+    type,
+    project,
+    sender,
+    receiver,
+    date,
+    photo,
+    project_id,
+    notification
+  ) {
     super(type, date);
     this.project = project;
+    this.sender = sender;
+    this.receiver = receiver;
+    this.photo = photo;
+    this.project_id = project_id;
+    this.notification = notification;
   }
 
   render() {
@@ -419,11 +480,49 @@ class meeting extends message {
     upperContent.innerHTML += `<p><i class="fas fa-calendar-alt"></i> You have a meeting for <span class="project-reference">${this.project}</span> at ${this.date}</p>
                                 <p class="timestamp smaller-text">${this.date}</p>`;
 
-    contentTemplate.appendChild(upperContent);
-    contentTemplate.innerHTML += `<a href="calendar.html"><button type="submit" class="custom-button primary-button mx-2">Go to Calendar</button></a>`;
-
     this.addClassesToElementList(contentTemplate);
     this.notification_list.appendChild(contentTemplate);
+  }
+
+  getElement() {
+    let contentTemplate = document.createElement("li");
+    contentTemplate.classList.add("invited-notification");
+    this.addClassesToElementList(contentTemplate);
+
+    let upperContent = document.createElement("div");
+    upperContent.classList.add("d-flex", "justify-content-between");
+    upperContent.innerHTML += `
+    <div class = "d-flex align-items-center justify-content-center">
+        <img  class="m-2" src="/assets/avatars/${this.photo}.png" alt="${
+      this.sender
+    } profile picture" style = "width:40px" />
+        <p><span class="author-reference">${
+          this.sender
+        } </span> set up a meeting for the project <a href="/projects/${
+      this.project_id
+    }" class="project-reference nostyle clickable">${this.project}</a>
+    </div>
+    <p class="timestamp smaller-text m-2">${mappingDifDateDescript(
+      this.date
+    )}</p>
+    `;
+
+    contentTemplate.appendChild(upperContent);
+
+    let seen_btn = document.createElement("button");
+    seen_btn.classList.add(
+      "seen-button",
+      "custom-button",
+      "primary-button",
+      "mx-2"
+    );
+    seen_btn.dataset.notification = this.notification;
+    seen_btn.setAttribute("data-notification-type", this.type);
+    seen_btn.innerHTML = 'Seen <i class="fas fa-check"></i>';
+    seen_btn.addEventListener("click", seenNotification.bind(seen_btn));
+    contentTemplate.appendChild(seen_btn);
+
+    return contentTemplate;
   }
 }
 
@@ -437,7 +536,9 @@ invitation_channel.bind("invitation", function (data) {
     data["sender"],
     data["date"],
     data["project"],
-    data["projectId"]
+    data["projectId"],
+    data["notification_id"],
+    data["photo"]
   ).getElement();
 
   all_counter.textContent = parseInt(all_counter.textContent) + 1;
@@ -449,11 +550,14 @@ invitation_channel.bind("invitation", function (data) {
 });
 
 kicking_channel.bind("kicked-out", function (data) {
+  console.log(data);
   let new_kicked = new kick(
-    "invited",
+    "kick",
     data["sender"],
     data["date"],
-    data["project"]
+    data["project"],
+    data["notification"],
+    data["photo"]
   ).getElement();
 
   all_counter.textContent = parseInt(all_counter.textContent) + 1;
@@ -468,11 +572,13 @@ assign_channel.bind("assignment", function (data) {
   console.log(data["sender"], data["date"], data["issue"], data["issueId"]);
 
   let new_assignment = new assign(
-    "assignment",
+    "assign",
     data["sender"],
     data["date"],
     data["issue"],
-    data["issueId"]
+    data["issueId"],
+    data["notification"],
+    data["photo"]
   ).getElement();
 
   all_counter.textContent = parseInt(all_counter.textContent) + 1;
@@ -481,4 +587,24 @@ assign_channel.bind("assignment", function (data) {
   let assignmentClone = new_assignment.cloneNode(true);
   all_container.prepend(new_assignment);
   assigned_container.prepend(assignmentClone);
+});
+
+meeting_channel.bind("meeting", function (data) {
+  let new_meeting = new meeting(
+    "meeting",
+    data["project"],
+    data["sender"],
+    data["receiver"],
+    data["date"],
+    data["senderPhotoPath"],
+    data["projectId"],
+    data["notification"]
+  ).getElement();
+
+  all_counter.textContent = parseInt(all_counter.textContent) + 1;
+  meeting_counter.textContent = parseInt(meeting_counter.textContent) + 1;
+
+  let meeting_clone = new_meeting.cloneNode(true);
+  all_container.prepend(new_meeting);
+  meeting_container.prepend(meeting_clone);
 });

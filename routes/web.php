@@ -44,11 +44,11 @@ Route::group(['middleware' => ['auth']], function () {
         'namespace' => 'User',
     ], function () {
 
-        Route::put('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
+        Route::post('/api/chat/{channel_id}/messages', 'MessageController@create'); // add regex to this
         Route::post('/api/users/{id}/notifications', 'NotificationController@fetchNotifications');
         Route::delete('/api/notification/{id}/invite', 'NotificationController@deleteInvite');
         Route::delete('/api/notification/{id}/kick', 'NotificationController@deleteKick');
-        Route::delete('/api/notification/{id}/event', 'NotificationController@deleteEvent');
+        Route::delete('/api/notification/{id}/meeting', 'NotificationController@deleteEvent');
         Route::delete('/api/notification/{id}/assign', 'NotificationController@deleteAssign');
         Route::put('/api/project/{id}/invite', 'NotificationController@acceptInvite');
 
@@ -72,7 +72,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/issues/{id}', 'IssueController@show');
         Route::delete('/api/issues/{id}', 'IssueController@delete');
         Route::post('/api/issues', 'IssueController@create');
-        Route::put('/api/issues/comment', 'CommentController@store');
+        Route::post('/api/{id}/issues', 'IssueController@filter');
+        Route::post('/api/issues/comment', 'CommentController@store');
         Route::put('/api/issues/{id}', 'IssueController@update');
         Route::post('/api/issues/{id}/assign', 'IssueController@assign');
         Route::delete('/api/issues/{id}/assign', 'IssueController@desassign');
@@ -80,14 +81,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/api/issues/{id}/label', 'IssueController@unlabel');
 
         // Vote
-        Route::put('/api/votes', 'VoteController@store');
+        Route::post('/api/votes', 'VoteController@store');
 
         // Chat
-        Route::put('/api/project/{id}/chat', 'ChatController@create');
+        Route::post('/api/project/{id}/chat', 'ChatController@create');
         Route::delete('/api/channels/{id}', 'ChatController@delete');
 
         //Project
-        Route::put('/api/projects', 'ProjectController@create');
+        Route::post('/api/projects', 'ProjectController@create');
         Route::delete('/api/projects/{id}', 'ProjectController@delete');
         Route::put('/api/projects/{id}', 'ProjectController@update');
         Route::post('/api/projects/{id}/members', 'ProjectController@invite');

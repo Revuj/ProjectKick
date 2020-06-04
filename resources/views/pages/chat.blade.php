@@ -25,7 +25,6 @@ $project_id])
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
-<script src="{{asset('js/navbar.js')}}" defer></script>
 <script src="{{asset('js/index.js')}}" defer></script>
 <script src="{{asset('js/chat.js')}}" defer></script>
 
@@ -76,10 +75,12 @@ $project_id])
                         <a class="chat_ib">
                             <h5># {{ $channel['name'] }}</h5>
                         </a>
+                        @can('coordinator', \App\Project::findOrFail($project_id))
                         <button type="button" class="btn delete-channel-button ml-auto text-white " data-toggle="modal"
                             data-target="#delete-channel-modal" data-channel="{{$channel['id'] }}">
                             <i class="fas fa-trash-alt"></i>
                         </button>
+                        @endcan
                     </div>
                     @endforeach
 

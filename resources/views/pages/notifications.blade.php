@@ -34,8 +34,7 @@
     ></script>
     <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/notifications.js')}}" defer></script>
-    <script src="{{asset('js/navbar.js')}}" defer></script>
-@endsection
+    @endsection
 
 
 @section('content')

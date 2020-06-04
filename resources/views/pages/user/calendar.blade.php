@@ -26,8 +26,7 @@
     ></script>
     <script src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
     <script src="{{asset('js/calendar.js')}}" defer></script>
-    <script src="{{asset('js/navbar.js')}}" defer></script>
-    <script src="{{asset('js/index.js')}}" defer></script>
+        <script src="{{asset('js/index.js')}}" defer></script>
 @endsection
 
 @section('content')

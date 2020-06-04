@@ -22,13 +22,15 @@ class Assignment implements ShouldBroadcast
     public $date;
     public $senderPhotoPath;
     public $issueId;
+    public $notification;
+    public $photo;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($issue, $sender, $receiver, $date, $senderPhotoPath, $issueId)
+    public function __construct($issue, $sender, $receiver, $date, $senderPhotoPath, $issueId, $notification, $photo)
     {
         $this->issue = $issue;
         $this->sender = $sender;
@@ -36,7 +38,8 @@ class Assignment implements ShouldBroadcast
         $this->date = $date;
         $this->senderPhotoPath = $senderPhotoPath;
         $this->issueId = $issueId;
-
+        $this->notification = $notification;
+        $this->photo = $photo;
     }
 
     /**

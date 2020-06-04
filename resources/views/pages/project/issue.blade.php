@@ -16,8 +16,7 @@
 
 @section('script')
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
-    <script src="{{asset('js/navbar.js')}}" defer></script>
-    <script src="{{asset('js/index.js')}}" defer></script>
+        <script src="{{asset('js/index.js')}}" defer></script>
     <script src="{{asset('js/issue.js')}}" defer></script>
 
 @endsection
@@ -52,6 +51,7 @@
               
               </span>
           </p>
+          @can('update', $issue)
           @if($issue['is_completed'] === false)
             <button class="custom-button close-button" id="close-button">
               <i class="fas fa-check-circle"></i>
@@ -61,6 +61,7 @@
               <i class="fas fa-check-circle"></i>
             </button>
           @endif
+          @endcan
           
           <form class="edit-issue-title-form form-group d-none mr-auto">
             <div class="form-group text-left">
@@ -107,6 +108,7 @@
           >
             <i class="far fa-save"></i>
           </button>
+          @can('update', $issue)
           <button
             type="button"
             class="custom-button edit-button edit-task"
@@ -114,6 +116,7 @@
           >
             <i class="fas fa-pencil-alt"></i>
           </button>
+          @endcan
         </div>
         <span class="labels-container">
         <ul class="labels smaller-text d-flex align-items-center">
@@ -226,7 +229,7 @@
                     @foreach (\App\User::join('member_status', 'user.id', '=', 'member_status.user_id')
                     ->join('project', 'project.id', '=', 'member_status.project_id')
                     ->where('project.id', '=', $issue->issueList->project->id)
-                    ->select('user.id as id', 'user.username as username')
+                    ->select('user.id as id', 'user.username as username', 'photo_path')
                     ->groupBy('user.id')
                     ->get() as $assignee)
                       <li class="existing-user-container clickable d-flex flex-row align-items-center p-2" data-user-id={{ $assignee->id }} data-username="{{ $assignee->username }}">
@@ -236,7 +239,7 @@
                           <i class="fas fa-check selected-user invisible mr-2"></i>
                         @endif
                         <span class="assignee ml-2"><img
-                          src="{{asset('assets/avatars/' . "profile". '.png')}}" alt="{{ $assignee->username }}"
+                          src="{{asset('assets/avatars/' . $assignee->photo_path . '.png')}}" alt="{{ $assignee->username }}"
                           draggable="false" />
                         </span>
                         <h6 class="mb-0 p-1 existing-user font-weight-bold ml-2">

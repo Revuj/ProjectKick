@@ -30,8 +30,7 @@
 @section('script')
     <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
     <script src="{{asset('js/index.js')}}" defer></script>
-    <script src="{{asset('js/navbar.js')}}" defer></script>
-@endsection
+    @endsection
 
 
 @section('content')

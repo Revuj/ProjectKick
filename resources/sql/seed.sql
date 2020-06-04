@@ -63,6 +63,7 @@ CREATE TABLE "user" (
                                                      ON UPDATE CASCADE,
     creation_date timestamp with time zone DEFAULT now() NOT NULL,
     is_banned bool DEFAULT false NOT NULL,
+    remember_token VARCHAR, -- Necessary for Laravel session remembering
     search TSVECTOR
 );
 

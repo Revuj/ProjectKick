@@ -1,40 +1,52 @@
-const active_button = document.querySelector('#tables-types > li:nth-child(1)');
+const active_button = document.querySelector("#tables-types > li:nth-child(1)");
 const finished_button = document.querySelector(
-  '#tables-types > li:nth-child(2)'
+  "#tables-types > li:nth-child(2)"
 );
 
-active_button.addEventListener('click', event => {
+active_button.addEventListener("click", (event) => {
   event.preventDefault();
   current_project_state = true;
 
-  const active_list = document.querySelector('div.p-2:nth-child(4)');
-  if (active_list.classList.contains('d-none')) {
-    const finished_list = document.querySelector('div.p-2:nth-child(5)');
+  const active_list = document.querySelector("div.p-2:nth-child(4)");
+  if (active_list.classList.contains("d-none")) {
+    const finished_list = document.querySelector("div.p-2:nth-child(5)");
 
-    active_list.classList.remove('d-none');
-    finished_list.classList.add('d-none');
-    active_button.classList.add('active');
-    finished_button.classList.remove('active');
+    active_list.classList.remove("d-none");
+    finished_list.classList.add("d-none");
+    active_button.classList.add("active");
+    finished_button.classList.remove("active");
   }
 });
 
-finished_button.addEventListener('click', event => {
+finished_button.addEventListener("click", (event) => {
   event.preventDefault();
   current_project_state = false;
-  const finished_list = document.querySelector('div.p-2:nth-child(5)');
-  if (finished_list.classList.contains('d-none')) {
-    const active_list = document.querySelector('div.p-2:nth-child(4)');
+  const finished_list = document.querySelector("div.p-2:nth-child(5)");
+  if (finished_list.classList.contains("d-none")) {
+    const active_list = document.querySelector("div.p-2:nth-child(4)");
 
-    finished_list.classList.remove('d-none');
-    active_list.classList.add('d-none');
+    finished_list.classList.remove("d-none");
+    active_list.classList.add("d-none");
 
-    active_button.classList.remove('active');
-    finished_button.classList.add('active');
+    active_button.classList.remove("active");
+    finished_button.classList.add("active");
   }
 });
 
-
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Augt', 'Sep', 'Oct', 'Nov', 'Dec'];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Augt",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 let now = new Date();
 
 const create_button = document.getElementById("create-project");
@@ -44,10 +56,10 @@ let toDelete;
 function createProjectHandler() {
   const response = JSON.parse(this.responseText);
 
-  $('#addProjectModal').modal('hide')
+  $("#addProjectModal").modal("hide");
   console.log(response);
-  
-  if ('errors' in response) {
+
+  if ("errors" in response) {
     displayError(response);
     return;
   }
@@ -58,16 +70,21 @@ function createProjectHandler() {
   let creation_date = response.creation_date;
 
   let active_projects = document.getElementById("active-projects");
-  let project_card = document.createElement('div');
-  project_card.classList.add("card-container", "col-lg-4", "col-md-6", "col-sm-12", "p-1");
-  project_card.innerHTML =
-    `<div class="card project" id="${id}">
+  let project_card = document.createElement("div");
+  project_card.classList.add(
+    "card-container",
+    "col-lg-4",
+    "col-md-6",
+    "col-sm-12",
+    "p-1"
+  );
+  project_card.innerHTML = `<div class="card project" id="${id}">
       <div class="card-header d-flex align-items-center">
       <a
         class="text-decoration-none title"
         href="/projects/${id}"
         
-        >${ name}
+        >${name}
       </a>
       <button type="button" class="btn delete-project-button ml-auto" data-toggle="modal" data-target="#delete-project-modal" data-project="${id}">
         <i class="fas fa-trash-alt"></i>
@@ -77,7 +94,7 @@ function createProjectHandler() {
       <div class="card-body">
         <span id="description">
           <span>
-            ${ description}
+            ${description}
           </span>
         </span>
       <div>
@@ -99,40 +116,51 @@ function createProjectHandler() {
         <div class="avatar-image avatar-image--loaded mr-2">
           <div class="avatar avatar--md avatar-image__image">
             <div class="avatar__content">
-            <img src="../../assets/avatars/${createModal.dataset.photo}.png" alt="profile picture" />
+            <img src="../../assets/avatars/${
+              createModal.dataset.photo
+            }.png" alt="profile picture" />
             </div>
           </div>
         </div>
         </div>
     </div>
     <div class="d-flex justify-content-left card-footer">
-      <span class="font-weight-lighter">Created at ${months[now.getMonth()]} ${now.getDay()} ${now.getYear() + 1900}</span>
+      <span class="font-weight-lighter">Created at ${
+        months[now.getMonth()]
+      } ${now.getDay()} ${now.getYear() + 1900}</span>
     </div>
-    </div>`
+    </div>`;
 
   active_projects.appendChild(project_card);
-  project_card.querySelector('.delete-project-button').addEventListener('click', () => {
-    toDelete = id;
-  })
+  project_card
+    .querySelector(".delete-project-button")
+    .addEventListener("click", () => {
+      toDelete = id;
+    });
 }
 
-
-create_button.addEventListener('click', event => {
+create_button.addEventListener("click", (event) => {
   let name = document.getElementById("project-name").value;
   let description = document.getElementById("project_description").value;
   let author_id = create_button.dataset.user;
   console.log({ name, description, author_id });
-  sendAjaxRequest("put", `/api/projects`, { name, description, author_id }, createProjectHandler);
+  sendAjaxRequest(
+    "post",
+    `/api/projects`,
+    { name, description, author_id },
+    createProjectHandler
+  );
 });
 
-
 let deleteButtons = document.getElementsByClassName("delete-project-button");
-[...deleteButtons].forEach(elem => elem.addEventListener('click', () => {
-  toDelete = elem.dataset.project;
-}))
+[...deleteButtons].forEach((elem) =>
+  elem.addEventListener("click", () => {
+    toDelete = elem.dataset.project;
+  })
+);
 
 const deleteButton = document.getElementById("delete-project-button");
-deleteButton.addEventListener('click', deleteProject);
+deleteButton.addEventListener("click", deleteProject);
 
 function deleteHandler() {
   const response = JSON.parse(this.responseText);
@@ -150,34 +178,42 @@ function deleteProject(e) {
 // ====== query, asc/desc, typeofSort, active
 let sortAsc = true;
 let degree = 0;
-let arrow = document.querySelector('#orderType')
-let selectable = document.querySelector('#filter-select')
-let project_text = document.querySelector('#project-filter');
-let button_search = document.querySelector('#searchbarbutton');
+let arrow = document.querySelector("#orderType");
+let selectable = document.querySelector("#filter-select");
+let project_text = document.querySelector("#project-filter");
+let button_search = document.querySelector("#searchbarbutton");
 
 function searchHandler() {
   const response = JSON.parse(this.responseText);
   let projects = document.querySelectorAll(".project");
   if (response.length === 0) {
-    projects.forEach(elem => { elem.parentElement.style.display = "inline-block" });
+    projects.forEach((elem) => {
+      elem.parentElement.style.display = "inline-block";
+    });
     return;
   }
-  projects.forEach(elem => { elem.parentElement.style.display = "none" });
-  response.forEach(elem => document.getElementById(elem.id).parentElement.style.display = "inline-block");
+  projects.forEach((elem) => {
+    elem.parentElement.style.display = "none";
+  });
+  response.forEach(
+    (elem) =>
+      (document.getElementById(elem.id).parentElement.style.display =
+        "inline-block")
+  );
 }
 
-button_search.addEventListener('click', (e) => {
+button_search.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log(project_text.value)
-  let search = project_text.value
+  console.log(project_text.value);
+  let search = project_text.value;
   let author_id = create_button.dataset.user;
   let url = `/api/users/${author_id}/projects`;
   sendAjaxRequest("post", url, { search }, searchHandler);
-})
+});
 
 function sorting() {
   const response = JSON.parse(this.responseText);
-  console.log(response)
+  console.log(response);
 
   // let projects = document.querySelectorAll(".project");
   // projects.forEach(elem => { elem.parentElement.style.display = "none" });
@@ -189,11 +225,10 @@ function sorting() {
   // }
 }
 
-
-arrow.addEventListener('click', function (e) {
+arrow.addEventListener("click", function (e) {
   e.preventDefault();
-  let option = selectable.options[selectable.selectedIndex].text
-  console.log(option)
+  let option = selectable.options[selectable.selectedIndex].text;
+  console.log(option);
   let author_id = create_button.dataset.user;
 
   degree = (degree + 180) % 360;
@@ -202,21 +237,29 @@ arrow.addEventListener('click', function (e) {
   sortAsc = !sortAsc;
 
   let url = `/api/users/${author_id}/sort`;
-  sendAjaxRequest("post", url, {
-    'option': option,
-    'order': sortAsc,
-  }, sorting);
+  sendAjaxRequest(
+    "post",
+    url,
+    {
+      option: option,
+      order: sortAsc,
+    },
+    sorting
+  );
+});
 
-})
-
-selectable.addEventListener('change', function (e) {
-
-  let option = this.options[this.selectedIndex].text
+selectable.addEventListener("change", function (e) {
+  let option = this.options[this.selectedIndex].text;
   let author_id = create_button.dataset.user;
 
   let url = `/api/users/${author_id}/sort`;
-  sendAjaxRequest("post", url, {
-    'option': option,
-    'order': sortAsc
-  }, sorting);
+  sendAjaxRequest(
+    "post",
+    url,
+    {
+      option: option,
+      order: sortAsc,
+    },
+    sorting
+  );
 });

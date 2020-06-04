@@ -166,21 +166,19 @@ var pusher = new Pusher("7d3a9c163bd45174c885", {
 let kicking_channel = pusher.subscribe("private-kicked." + user_id);
 
 kicking_channel.bind("kicked-out", (data) => {
+  console.log(data);
   let new_notification = document.createElement("div");
   new_notification.classList.add("notify_item", "clickable");
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
-        src="/assets/profile.png"
+        src="/assets/avatars/${data["photo"]}.png"
         alt="profile_pic"
         style="width: 50px"
       />
     </div>
     <div class="notify_info">
-      <p>${data["sender"]} kicked you out of <span>T${
-    data["project"]
-  }</span></p>
-      <span class="notify_time">${mappingDifDateDescript(data["date"])}</span>
+      <p>${data["sender"]} kicked you out of <span>T${data["project"]}</span></p>
     </div>
   `;
 
@@ -195,14 +193,13 @@ invitation_channel.bind("invitation", function (data) {
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
-        src="/assets/profile.png"
+        src="/assets/avatars/${data["photo"]}.png"
         alt="profile_pic"
         style="width: 50px"
       />
     </div>
     <div class="notify_info">
       <p>${data["sender"]} invite you to <span>${data["project"]}</span></p>
-      <span class="notify_time">${mappingDifDateDescript(data["date"])}</span>
     </div>
   `;
 
@@ -219,16 +216,13 @@ assign_channel.bind("assignment", function (data) {
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
-        src="/assets/profile.png"
+        src="/assets/avatars/${data["photo"]}.png"
         alt="profile_pic"
         style="width: 50px"
       />
     </div>
     <div class="notify_info">
-      <p>${data["sender"]} assigned you the issue <span>T${
-    data["issue"]
-  }</span></p>
-      <span class="notify_time">${mappingDifDateDescript(data["date"])}</span>
+      <p>${data["sender"]} assigned you the issue <span>T${data["issue"]}</span></p>
     </div>
   `;
 
@@ -245,16 +239,13 @@ meeting_channel.bind("meeting", function (data) {
   new_notification.innerHTML = `
     <div class="notify_img">
       <img
-        src="/assets/profile.png"
+        src="/assets/avatars/${data["senderPhotoPath"]}.png"
         alt="profile_pic"
         style="width: 50px"
       />
     </div>
     <div class="notify_info">
-      <p>${data["sender"]} scheduled a meeting for the project <span>T${
-    data["project"]
-  }</span></p>
-      <span class="notify_time">${mappingDifDateDescript(data["date"])}</span>
+      <p>${data["sender"]} scheduled a meeting for the project <span>${data["project"]}</span></p>
     </div>
   `;
 

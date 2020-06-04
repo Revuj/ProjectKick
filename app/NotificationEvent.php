@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class NotificationEvent extends Model
 {
+    protected $appends = ['typeofNotification'];
+
     /**
      * The table associated with the model.
      *
@@ -30,5 +32,10 @@ class NotificationEvent extends Model
     public function event()
     {
         return $this->belongsTo(Event::class, 'event_id');
+    }
+
+    public function getTypeOfNotificationAttribute()
+    {
+        return 'event';
     }
 }
